@@ -316,6 +316,7 @@ async function renderS(el, parent, sh) {
   const J = { center: 'CENTER', 'flex-end': 'MAX', end: 'MAX', right: 'MAX', 'space-between': 'SPACE_BETWEEN' };
   const A = { center: 'CENTER', 'flex-end': 'MAX', end: 'MAX', baseline: H ? 'BASELINE' : 'MIN' };
   if (/^i?[fg]$/.test(s.d)) { f.primaryAxisAlignItems = J[s.jc] || 'MIN'; f.counterAxisAlignItems = A[s.ai] || 'MIN'; }
+  if (wrap && f.primaryAxisAlignItems === 'SPACE_BETWEEN' && flow.length > 1) { const a = flow[0].b, b = flow[1].b; f.primaryAxisAlignItems = 'MIN'; if (Math.abs(b[1] - a[1]) < 2) f.itemSpacing = Math.max(0, b[0] - (a[0] + a[2])); }  // 여러 줄 격자는 마지막 줄이 벌어지지 않게 (달력 29, 30)
   if (/^i?g$/.test(s.d) && !(s.gc > 1) && s.ai === 'center') { f.primaryAxisAlignItems = 'CENTER'; f.counterAxisAlignItems = 'CENTER'; }  // grid + place-items: center (아이콘 동그라미 등)
   const inner = Math.max(s.w - pad[1] - pad[3], 0);
   const first = flow[0] && flow[0].b;
@@ -350,7 +351,8 @@ async function pseudo(f, s) {
   for (const [x, y, w, h, c, r] of s.ps || []) {
     const rc = figma.createRectangle(); rc.name = h <= 2 || w <= 2 ? 'line' : 'dot'; rc.fills = [cpaint(c, 'stroke')];
     f.insertChild(0, rc); rc.layoutPositioning = 'ABSOLUTE';  // 글자 뒤에 (선택 동그라미, 기간 띠)
-    const line = h <= 2 && w > 40, right = Math.max(s.w - x - w, 0);
+    const over = x + w > s.w + 1 || y + h > s.h + 1, line = h <= 2 && w > 40 && !over, right = Math.max(s.w - x - w, 0);  // 틀 밖으로 이어지는 선(스테퍼 연결선)은 길이 그대로, 틀은 자르지 않음
+    if (over && !s.ov) f.clipsContent = false;
     rc.resize(line ? Math.max(f.width - x - right, 1) : w, h); rc.x = x; rc.y = y > s.h / 2 && s.h ? f.height - (s.h - y) : y;
     if (r) rc.cornerRadius = Math.min(r, Math.min(w, h) / 2);
     if (line) rc.constraints = { horizontal: 'STRETCH', vertical: y > s.h / 2 ? 'MAX' : 'MIN' };
@@ -401,6 +403,32 @@ function picker(s) {
   const take = (keys) => { for (const k of keys) { const v = (s.parts || {})[k]; if (v === undefined) continue; if (Array.isArray(v)) { const i = used[k] || 0; if (i < v.length) { used[k] = i + 1; return v[i]; } } else if (!used[k]) { used[k] = 1; return v; } } return undefined; };
   const has = (keys) => keys.some((k) => (s.parts || {})[k] !== undefined);
   return { take, has };
+}
+// 한국어 줄바꿈은 낱말 단위로 (사이트 word-break: keep-all). Figma 는 글자 사이에서 끊으므로 줄을 직접 나눈다 (2026-11-08)
+async function KEEPALL(B) {
+  const HAN = /[가-힣]/; const pg = figma.currentPage;
+  const boxes = B.findAll((x) => x.type === 'FRAME' && (x.name === PREFIX + '대표 그림' || (x.name === 'Preview' && x.parent && x.parent.name === 'Example Box')));
+  for (const b of boxes) for (const t of b.findAll((x) => x.type === 'TEXT' && x.visible && x.textAutoResize === 'HEIGHT')) {
+    const s = t.characters; if (!HAN.test(s) || s.includes('\n') || !s.includes(' ')) continue;
+    const seg = t.getStyledTextSegments(['fontName', 'fontSize']); if (seg.length !== 1 || t.height < seg[0].fontSize * 1.9) continue;
+    await figma.loadFontAsync(seg[0].fontName); const m = t.clone(); pg.appendChild(m); m.textAutoResize = 'WIDTH_AND_HEIGHT';
+    const lines = []; let cur = '';
+    for (const w of s.split(' ')) { const tr = cur ? cur + ' ' + w : w; m.characters = tr; if (!cur || m.width <= t.width + 0.5) cur = tr; else { lines.push(cur); cur = w; } }
+    lines.push(cur); m.remove(); if (lines.length > 1 && lines.join('\n') !== s) t.characters = lines.join('\n');
+  }
+}
+// 코드 글자는 사이트처럼 고정폭(ui-monospace → Roboto Mono). 한글은 이 글꼴에 없어 그대로 둔다 (2026-11-08)
+async function MONOFONT(B) {
+  const isCode = (n) => /^(code|pre)\b|ds-codeblock__header/.test(n.name) || (/^figcaption/.test(n.name) && n.parent && /ds-codeblock/.test(n.parent.name));
+  const boxes = B.findAll((x) => x.type === 'FRAME' && (x.name === PREFIX + '대표 그림' || (x.name === 'Preview' && x.parent && x.parent.name === 'Example Box')));
+  for (const b of boxes) for (const t of b.findAll((x) => x.type === 'TEXT')) {
+    let p = t.parent, hit = false; while (p && p !== b) { if (isCode(p)) { hit = true; break; } p = p.parent; } if (!hit || t.fontName === figma.mixed && false) continue;
+    const segs = t.getStyledTextSegments(['fontName']); for (const sg of segs) await figma.loadFontAsync(sg.fontName);
+    const s = t.characters; let i = 0;
+    while (i < s.length) { let j = i; const han = /[\u3131-\uD79D]/.test(s[i]); while (j < s.length && /[\u3131-\uD79D]/.test(s[j]) === han) j++;
+      if (!han) { const cur = t.getRangeFontName(i, i + 1); const st = cur && cur.style && /Medium|SemiBold|Bold/.test(cur.style) ? cur.style.replace('SemiBold', 'Medium') : 'Regular'; const fn = { family: 'Roboto Mono', style: st }; await figma.loadFontAsync(fn); t.setRangeFontName(i, j, fn); }
+      i = j; }
+  }
 }
 async function FILL(inst, s, top) {
   const main = await inst.getMainComponentAsync(); if (!main) return;
@@ -565,6 +593,8 @@ if (DATA.mode === 'preview') {
       out.ex++;
     }
   }
+  await KEEPALL(B);
+  await MONOFONT(B);
   out.mono = await MONOIZE(B);
   return out;
 }
