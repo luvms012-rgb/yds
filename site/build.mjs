@@ -166,7 +166,7 @@ const htmlTree = (html) => {
   }
   return root.c;
 };
-const plain = (h) => String(h).replace(/<[^>]+>/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const plain = (h) => String(h).replace(/<\/?(?:code|b|strong|em|a|span|kbd|small)\b[^>]*>/g, '').replace(/`/g, '').replace(/<[^>]+>/g, ' ')  // 글 안 꾸밈 태그는 띄어쓰기 없이 지운다 (aria-label로, 2026-11-08).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 const figmaPage = (c) => {
   const { rows, rest } = propsTable(c);
   const exs = EXAMPLES[c.slug] || (c.example ? [{ title: '', desc: '', html: codeOf(c.example) || c.example }] : []);

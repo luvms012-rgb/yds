@@ -693,10 +693,11 @@ if (P.cover) {
 }
 // 사용법
 if (P.usage) { const s = section('사용법', '아래 구조를 복사해 씁니다. 대괄호 [ ] 안은 필요할 때만 넣습니다.'); add(s, codeBox(P.usage), true); put(s); }
+else put(section('사용법', '아래 예시의 코드를 복사해 씁니다.'));  // 사이트와 같게 마크업이 없어도 절은 둔다 (2026-11-08)
 // 속성 + 속성별 모양
-if (P.props.length) {
+if (P.props.length || P.propsRest) {  // 표가 없고 '그 밖에' 만 있어도 절을 둔다 (사이트와 같게, 2026-11-08)
   const s = section('속성', 'Figma 속성 이름을 그대로 data-* 속성으로 씁니다.');
-  add(s, table(['속성', '값'], P.props.map(([k, v]) => [codeCell(k), v]), [240]), true);
+  if (P.props.length) add(s, table(['속성', '값'], P.props.map(([k, v]) => [codeCell(k), v]), [240]), true);
   if (P.propsRest) add(s, text('그 밖에: ' + P.propsRest, T.body, 'fg/neutral-muted'), true);
   const main = Object.values(SET).find((n) => DATA.mainSets.includes(n.id));
   if (main) {
