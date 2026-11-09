@@ -170,7 +170,7 @@
 - [파일 탐색기](https://luvms012-rgb.github.io/yds/site/templates/pages/file-explorer.html): 폴더를 열 때마다 옆 칸에 이어 보여 주는 파일 탐색기입니다. 깊은 폴더도 경로를 놓치지 않고 찾아갑니다.
 - [코드 편집기](https://luvms012-rgb.github.io/yds/site/templates/pages/ide.html): 파일 목록, 편집 창, 터미널을 한 화면에 둔 코드 편집기입니다. 칸마다 크기를 바꾸고 접을 수 있습니다.
 - [칸반 보드](https://luvms012-rgb.github.io/yds/site/templates/pages/kanban-board.html): 할 일을 상태별 열에 카드로 배치한 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.
-- [페이지 편집기](https://luvms012-rgb.github.io/yds/site/templates/pages/editor.html): 블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 고른 블록의 속성은 오른쪽에서 바꿉니다.
+- [페이지 편집기](https://luvms012-rgb.github.io/yds/site/templates/pages/editor.html): 블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 선택한 블록의 속성은 오른쪽에서 바꿉니다.
 - [카드 그리드](https://luvms012-rgb.github.io/yds/site/templates/pages/library.html): 카드를 훑어보며 원하는 항목을 찾는 목록 화면입니다. 분류 탭으로 범위를 좁힐 수 있습니다.
 - [문서 목록](https://luvms012-rgb.github.io/yds/site/templates/pages/documentation.html): 문서 사이트의 첫 화면입니다. 분류별 카드로 원하는 문서에 바로 들어갑니다.
 - [디자인 문서](https://luvms012-rgb.github.io/yds/site/templates/pages/documentation-design.html): 설명 사이에 실제로 동작하는 예시를 넣은 디자인 문서입니다. 컴포넌트 사용법을 정리할 때 사용합니다.
@@ -189,10 +189,10 @@
 - [게시판 목록](https://luvms012-rgb.github.io/yds/site/templates/pages/community-board.html): 카페형 게시판의 글 목록입니다. 말머리로 필터링하고 공지는 위에 고정합니다.
 - [커뮤니티 홈](https://luvms012-rgb.github.io/yds/site/templates/pages/community-home.html): 게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.
 - [게시글 상세](https://luvms012-rgb.github.io/yds/site/templates/pages/community-post.html): 게시글 하나를 읽고 댓글로 이야기를 나누는 화면입니다.
-- [글쓰기](https://luvms012-rgb.github.io/yds/site/templates/pages/community-write.html): 커뮤니티에 새 글을 쓰는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.
+- [글쓰기](https://luvms012-rgb.github.io/yds/site/templates/pages/community-write.html): 커뮤니티에 새 글을 작성하는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.
 - [구독 해지](https://luvms012-rgb.github.io/yds/site/templates/pages/subscription-cancel.html): 구독을 해지하기 전에 잃게 되는 혜택을 알려 주는 화면입니다. 할인을 한 번 더 권하고, 해지 여부는 사용자가 정합니다.
 - [요금제 비교](https://luvms012-rgb.github.io/yds/site/templates/pages/pricing-plans.html): 요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제의 가격을 바꿔 가며 비교합니다.
-- [구독 결제](https://luvms012-rgb.github.io/yds/site/templates/pages/subscription-checkout.html): 고른 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.
+- [구독 결제](https://luvms012-rgb.github.io/yds/site/templates/pages/subscription-checkout.html): 선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.
 - [내 구독](https://luvms012-rgb.github.io/yds/site/templates/pages/subscription-settings.html): 지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.
 - [내 정보](https://luvms012-rgb.github.io/yds/site/templates/pages/mypage-profile.html): 내 정보와 알림 설정을 보고 수정하는 화면입니다.
 - [마이페이지 홈](https://luvms012-rgb.github.io/yds/site/templates/pages/mypage-home.html): 마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.
