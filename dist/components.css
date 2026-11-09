@@ -3886,7 +3886,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-sidepanel__texts { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x1_5); min-width: 0; }
 .ds-sidepanel__title { margin: 0; font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-bold); }
 .ds-sidepanel__desc { margin: 0; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
-.ds-sidepanel__close { display: grid; place-items: center; flex: none; width: var(--ds-space-x13); height: var(--ds-space-x13); margin-block: calc(var(--ds-space-x3) * -1); border-radius: var(--ds-shape-lg); color: var(--ds-color-fg-neutral-subtle); }
+.ds-sidepanel__close { display: grid; place-items: center; flex: none; width: var(--ds-space-x13); height: var(--ds-space-x13); margin-block: calc((var(--ds-line-height-t08) - var(--ds-space-x13)) / 2); margin-inline-end: calc((22px - var(--ds-space-x13)) / 2); border-radius: var(--ds-shape-lg); color: var(--ds-color-fg-neutral-subtle); }
 .ds-sidepanel__close > .ds-icon { --ds-icon-size: 22px; }
 .ds-sidepanel__close:active { background: var(--ds-color-bg-transparent-pressed); }
 .ds-sidepanel__body { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 0 var(--ds-space-x6) var(--ds-space-x12); transition: box-shadow var(--ds-duration-fast) var(--ds-easing-standard); }
