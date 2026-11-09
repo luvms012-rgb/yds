@@ -118,7 +118,7 @@
     var lu = t.closest("[data-site-lucide]");
     if (lu && navigator.clipboard) {
       var nm = lu.getAttribute("data-site-lucide"), inCss = !!lu.querySelector(".site-icon__css");
-      navigator.clipboard.writeText(inCss ? "ds-icon--" + nm : lucideCss(nm)).then(function () { if (window.DS) DS.snackbar(inCss ? "복사했어요: ds-icon--" + nm : "icons.css에 넣을 줄을 복사했어요: " + nm); });
+      navigator.clipboard.writeText(inCss ? "ds-icon--" + nm : lucideCss(nm)).then(function () { if (window.DS) DS.snackbar(inCss ? "복사했어요: ds-icon--" + nm : "내 서비스 CSS에 넣을 코드를 복사했어요: " + nm); });
       return;
     }
 
@@ -227,7 +227,7 @@
     if (tags.length) html += '<div class="site-lib__tags">' + tags.map(function (t) { return "<span>" + libEsc(t) + "</span>"; }).join("") + "</div>";
     html += '<div class="site-lib__preview">' + (inDs ? '<i class="ds-icon ds-icon--' + n + '" style="--ds-icon-size: 48px" aria-hidden="true"></i>' : libSvg(n, 48)) + "</div>";
     if (inDs) html += libCode("HTML", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
-    else html += '<p class="site-lib__note">yds에 아직 없는 아이콘입니다. 아래 코드를 복사해 dist/icons.css 맨 끝에 붙여 넣으면 바로 쓸 수 있습니다.</p>' + libCode("icons.css에 붙여 넣을 코드", lucideCss(n));
+    else html += '<p class="site-lib__note">yds에 아직 없는 아이콘입니다. 아래 두 코드를 차례로 붙여 넣으면 바로 쓸 수 있습니다.</p>' + libCode("1. 내 서비스 CSS 파일 맨 끝에 붙이기", lucideCss(n)) + libCode("2. 아이콘을 넣을 HTML 자리에 붙이기", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
     if (L.icons[base]) html += libCode("SVG", '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + L.icons[base] + "</svg>");
     panel.innerHTML = html;
   }

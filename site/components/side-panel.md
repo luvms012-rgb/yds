@@ -6,7 +6,7 @@ PC 화면 가장자리에서 밀려 나오는 창입니다. 지금 화면을 그
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]` 안은 필요할 때만 넣습니다.
+아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
 
 ```html
 <dialog class="ds-sidepanel" id="sp" aria-labelledby="sp-t" [data-size="small"] [data-direction="left"]>

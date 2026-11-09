@@ -233,6 +233,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-hero .site-meta { justify-content: center; }
 /* 이전 / 다음 문서 (레퍼런스 B): 2열 간격 24, 위 64, 회색 채움 모서리 12, 안쪽 14 20, 작은 글 14 + 이름 16 500 */
 .site-doc > .site-pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--ds-space-x6); margin-top: var(--ds-space-x16); }
+.site-doc > .site-feedback { margin: var(--ds-space-x16) 0 0; }
+.site-doc > .site-feedback + .site-pager { margin-top: var(--ds-space-x6); }
 .site-pager a { display: flex; flex-direction: column; justify-content: center; gap: var(--ds-space-x2); min-width: 0; min-height: 52px; padding: 14px var(--ds-space-x5); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral); text-decoration: none; transition: background-color var(--ds-duration-fast) var(--ds-easing-standard); }
 .site-pager a:hover { background: var(--ds-color-bg-neutral-weak-alpha-pressed); }
 .site-pager a[data-dir="next"] { grid-column: 2; align-items: flex-end; text-align: right; }

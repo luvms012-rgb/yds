@@ -2387,7 +2387,7 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
 .ds-card[data-variant="elevated"] { box-shadow: var(--ds-elevation-raised); }
 .ds-card[data-size="small"] { --ds-card-padding: var(--ds-space-x4); --ds-card-gap: var(--ds-space-x3); --ds-card-radius: var(--ds-shape-lg); }
 .ds-card__header { display: flex; flex-direction: column; gap: var(--ds-space-x1); }
-.ds-card__title { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.01em; }
+.ds-card__title { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
 .ds-card__desc { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
 .ds-card[data-size="small"] .ds-card__title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
 .ds-card[data-size="small"] .ds-card__desc { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }

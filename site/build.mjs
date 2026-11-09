@@ -224,6 +224,10 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 // 테마는 11-03 사용자 "우선 숨김, 처음부터 다시": 메뉴, Usage 테마 절, AI 목록, llms.txt에서 뺀다. 다시 열 때 true
 // 11-04 집, 사용자 "테스트용 테마 10개": Themes 페이지는 다시 켜되 상단 메뉴는 다섯 개 그대로(Templates 머리말과 푸터 더 보기에서 간다)
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
+// 의견 보내기 (11-09 사용자 "yds 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기): 폼 주소가 비어 있으면 입구를 만들지 않는다
+// form = 구글 폼 .../viewform 주소, pageEntry = 미리 채운 링크에서 "보낸 페이지" 칸의 entry.숫자
+const FEEDBACK = { form: '', pageEntry: '' };
+const feedbackUrl = (file) => FEEDBACK.form ? esc(`${FEEDBACK.form}?usp=pp_url&${FEEDBACK.pageEntry}=${encodeURIComponent(SITE_URL + file)}`) : '';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
 // 파운데이션: 항목마다 한 페이지 (슬러그, 영문 이름)
@@ -297,7 +301,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA}2608-2" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a></div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA}2608-2" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${feedbackUrl(file) ? `<a href="${feedbackUrl(file)}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
@@ -344,6 +348,7 @@ ${sideNav(section, file, root)}
 <main class="site-main" id="main">
 <article class="site-doc">
 ${body}
+${layout === 'doc' && feedbackUrl(file) ? `<p class="site-feedback"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="${feedbackUrl(file)}" target="_blank" rel="noopener"><i class="ds-icon ds-icon--message-circle ds-icon--sm" aria-hidden="true"></i>의견 보내기</a></p>` : ''}
 ${pagerHtml}
 ${footer}
 </article>
@@ -812,10 +817,10 @@ ${ICON_GROUPS.map(([g, m]) => `<h3 id="icons-${ICON_GROUPS.findIndex(([x]) => x 
 <p>되도록 지금 있는 아이콘을 씁니다. 새 아이콘이 꼭 필요하면 아래 순서를 따릅니다.</p>
 <ol class="site-list">
   <li><a class="ds-link" href="icons-library.html">Library</a>의 Lucide 전체에서 알맞은 아이콘을 고릅니다.</li>
-  <li>오른쪽 칸의 <b>icons.css 줄</b>을 복사해 <code>dist/icons.css</code> 끝에 붙입니다.</li>
+  <li>오른쪽 칸의 첫 번째 코드를 복사해 yds 다음에 불러오는 내 서비스 CSS 파일 맨 끝에 붙입니다.</li>
   <li>그다음부터 <code>ds-icon--이름</code> 클래스로 씁니다.</li>
 </ol>
-${codeblock(`/* Lucide heart - 복사된 줄을 dist/icons.css 끝에 붙인다 */\n:root { --ds-icon-heart: url("data:image/svg+xml,…"); }\n.ds-icon--heart { --ds-icon: var(--ds-icon-heart); }\n\n<!-- 그다음부터 -->\n<i class="ds-icon ds-icon--heart" aria-hidden="true"></i>`)}
+${codeblock(`/* Lucide heart - 내 서비스 CSS 파일 맨 끝에 붙인다 */\n:root { --ds-icon-heart: url("data:image/svg+xml,…"); }\n.ds-icon--heart { --ds-icon: var(--ds-icon-heart); }\n\n<!-- 그다음부터 -->\n<i class="ds-icon ds-icon--heart" aria-hidden="true"></i>`)}
 <h2 id="practices">사용 지침</h2>
 ${practices(ICON_PRACTICES)}
 <p class="site-note">아이콘 그림은 Lucide(ISC 라이선스)입니다. <a class="ds-link" href="{root}assets/lucide-LICENSE.txt">라이선스 전문</a></p>`,
@@ -965,7 +970,7 @@ comps.forEach((c) => {
   const prev = compsAZ[i - 1], next = compsAZ[i + 1];
   const { rows, rest } = propsTable(c);
   const sections = [];
-  sections.push(`<h2 id="usage">사용법</h2>${c.markup ? `<p>아래 구조를 복사해 씁니다. 대괄호 <code>[ ]</code> 안은 필요할 때만 넣습니다.</p>${codeblock(c.markup)}` : '<p>아래 예시의 코드를 복사해 씁니다.</p>'}`);
+  sections.push(`<h2 id="usage">사용법</h2>${c.markup ? `<p>아래 구조를 복사해 씁니다.${/[[<a-z]/.test(c.markup) ? ' 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.' : ''}</p>${codeblock(c.markup)}` : '<p>아래 예시의 코드를 복사해 씁니다.</p>'}`);
   const anatomy = anatomyOf(c);
   if (anatomy) sections.push(anatomy);
   if (rows.length || rest) sections.push(`<h2 id="props">속성</h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 씁니다.</p>${rows.length ? table(['속성', '값'], rows) : ''}${rest ? `<p class="site-note">그 밖에: ${rest}</p>` : ''}`);

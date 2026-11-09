@@ -8,7 +8,7 @@ import path from 'node:path';
 
 const VOID = new Set(['br', 'img', 'input', 'hr', 'meta', 'link', 'source', 'col', 'wbr']);
 // 마크다운에 넣지 않는 것: 미리보기, 대표 그림, 버튼, 메뉴, 이전/다음, 목차 고르기
-const SKIP_CLASS = /\b(pv-stage|site-example__preview|site-example__bar|site-tile__thumb|site-cover|site-meta|site-md|site-toc-select|site-pager|site-footer|ds-codeblock__header|site-anchor|site-frame|site-icons|site-iconlist|site-search)\b/;
+const SKIP_CLASS = /\b(pv-stage|site-example__preview|site-example__bar|site-tile__thumb|site-cover|site-meta|site-md|site-toc-select|site-pager|site-feedback|site-footer|ds-codeblock__header|site-anchor|site-frame|site-icons|site-iconlist|site-search)\b/;
 const SKIP_TAG = new Set(['button', 'svg', 'iframe', 'script', 'style', 'template', 'select', 'input', 'label', 'nav', 'dialog']);
 
 const decode = (s) => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ').replace(/&middot;/g, '·').replace(/&amp;/g, '&');

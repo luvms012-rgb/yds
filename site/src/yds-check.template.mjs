@@ -29,6 +29,11 @@ const walk = (p) => {
   else if (EXT.test(p)) files.push(p);
 };
 targets.forEach(walk);
+// 서비스 CSS 에 직접 더한 아이콘(.ds-icon--이름 { --ds-icon: ... })은 있는 아이콘으로 본다
+for (const f of files) {
+  let s; try { s = fs.readFileSync(f, 'utf8'); } catch { continue; }
+  for (const m of s.matchAll(/\.ds-icon--([a-z0-9-]+)\s*\{[^}]*--ds-icon\s*:/g)) { ICONS.add(m[1]); TOKENS.add('--ds-icon-' + m[1]); }
+}
 
 const problems = [];
 const lineOf = (src, i) => src.slice(0, i).split('\n').length;
