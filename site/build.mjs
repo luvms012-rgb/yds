@@ -221,7 +221,7 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 
 // 상단 메뉴 다섯 (11-03 사용자 "메뉴는 총 5개"): Get Started, Foundations, Components, Templates, Updates
 // Get Started와 Updates는 왼쪽 메뉴 없이 한 칸(레퍼런스 B Get Started), Foundations는 왼쪽 메뉴에 Overview + 항목
-// 테마는 11-03 사용자 "우선 숨김, 처음부터 다시": 메뉴, Usage 테마 절, AI 목록, llms.txt에서 뺀다. 다시 열 때 true
+// 테마는 11-03 사용자 "우선 숨김, 처음부터 다시": 메뉴, Usage 테마 절, AI 목록, yds.txt에서 뺀다. 다시 열 때 true
 // 11-04 집, 사용자 "테스트용 테마 10개": Themes 페이지는 다시 켜되 상단 메뉴는 다섯 개 그대로(Templates 머리말과 푸터 더 보기에서 간다)
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "yds 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기): 폼 주소가 비어 있으면 입구를 만들지 않는다
@@ -284,7 +284,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   const root = '../'.repeat(depth);
   // 제목 구성 (레퍼런스 B): 큰 제목과 설명 (위 경로 글자는 쓰지 않는다)
   body = body.replace(/<header>(\s*<p class="site-eyebrow">[\s\S]*?<\/p>)?/, '<header class="site-head">');
-  // AI가 읽는 마크다운 (llms.txt 표준): 제목 아래 버튼 줄에 Markdown 메뉴. 링크 복사, 내용 복사, 새 창으로 열기, 전체 목차
+  // AI가 읽는 마크다운 (llms.txt 표준을 따르되 파일 이름은 yds.txt, 11-09 사용자 "llms는 어려워"): 제목 아래 버튼 줄에 Markdown 메뉴. 링크 복사, 내용 복사, 새 창으로 열기, 전체 목차
   if (section === 'get-started' || section === 'foundations' || section === 'components') {
     MD_PAGES.push({ file, title, desc, section });
     const menu = mdMenu(path.basename(file).replace(/\.html$/, '.md'), root);
@@ -362,20 +362,22 @@ ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">
   return file;
 }
 const MD_PAGES = [];
-const mdMenu = (md, root) => `<span class="site-md"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" aria-haspopup="menu" aria-expanded="false" data-site-md-toggle><i class="ds-icon ds-icon--file-text ds-icon--sm" aria-hidden="true"></i>Markdown<i class="ds-icon ds-icon--chevron-down ds-icon--sm" aria-hidden="true"></i></button><div class="ds-menu site-md__menu" role="menu" hidden><button type="button" class="ds-menu-item" role="menuitem" data-site-md="link" data-href="${md}"><i class="ds-icon ds-icon--link" aria-hidden="true"></i>링크 복사</button><button type="button" class="ds-menu-item" role="menuitem" data-site-md="copy" data-href="${md}"><i class="ds-icon ds-icon--copy" aria-hidden="true"></i>내용 복사</button><a class="ds-menu-item" role="menuitem" href="${md}" target="_blank" rel="noopener"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i>새 창으로 열기</a><div class="ds-menu__divider" role="separator"></div><a class="ds-menu-item" role="menuitem" href="${root}llms.txt" target="_blank" rel="noopener"><i class="ds-icon ds-icon--list" aria-hidden="true"></i>전체 목차 llms.txt</a></div></span>`;
+const mdMenu = (md, root) => `<span class="site-md"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" aria-haspopup="menu" aria-expanded="false" data-site-md-toggle><i class="ds-icon ds-icon--file-text ds-icon--sm" aria-hidden="true"></i>Markdown<i class="ds-icon ds-icon--chevron-down ds-icon--sm" aria-hidden="true"></i></button><div class="ds-menu site-md__menu" role="menu" hidden><button type="button" class="ds-menu-item" role="menuitem" data-site-md="link" data-href="${md}"><i class="ds-icon ds-icon--link" aria-hidden="true"></i>링크 복사</button><button type="button" class="ds-menu-item" role="menuitem" data-site-md="copy" data-href="${md}"><i class="ds-icon ds-icon--copy" aria-hidden="true"></i>내용 복사</button><a class="ds-menu-item" role="menuitem" href="${md}" target="_blank" rel="noopener"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i>새 창으로 열기</a><div class="ds-menu__divider" role="separator"></div><a class="ds-menu-item" role="menuitem" href="${root}yds.txt" target="_blank" rel="noopener"><i class="ds-icon ds-icon--list" aria-hidden="true"></i>전체 목차 yds.txt</a></div></span>`;
 const written = [];
 const write = (o) => written.push(page(o));
 
 /* ---------------------------------------------------------------- Get Started */
 const CSS_LINK = `<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>`;
-// 첫 화면 요청 글 (11-09 사용자 "프롬프팅과 단계를 최소화", "아주 조금만 친절하게"): 할 일마다 글 하나. 순서와 점검은 llms.txt 머리(LLMS_RULES)가 맡는다
+// 첫 화면 요청 글 (11-09 사용자 "프롬프팅과 단계를 최소화", "아주 조금만 친절하게"): 할 일마다 글 하나. 순서와 점검은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 틀: 하고 싶은 것 / 문서 먼저 익히기 / [채울 값 줄] / 바라는 방식. 채울 값은 "이름: [값]" 따로 줄
-const DOC_LINE = `문서: ${SITE_URL}llms.txt`;
+const DOC_LINE = `문서: ${SITE_URL}yds.txt`;
 const START = [
   ['migrate', '내 사이트에 넣기', `지금 운영 중인 이 사이트에 yds 디자인 시스템을 입히고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
+
+브랜드: [my-brand]
 
 운영 중인 사이트라서 한 번에 바꾸지 말고, 사이트를 먼저 살펴본 뒤 어떤 순서로 바꿀지 알려 줘.
 화면은 하나씩 바꾸고, 바꿀 때마다 전후 화면을 보여 주면 내가 확인할게.
@@ -384,27 +386,45 @@ ${DOC_LINE}
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
 
-브랜드 컬러: [#12a150]
+브랜드: [my-brand]
 첫 화면: [회원 목록]
 
 yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Templates에 있으면 거기서 시작해 줘.
 다 만들면 규칙을 지켰는지 점검하고, 고친 곳을 알려 줘.`],
   ['draft', '화면 시안', `yds 디자인 시스템으로 화면 시안을 만들고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
-문서: ${SITE_URL}llms-full.txt
+문서: ${SITE_URL}yds-full.txt
 
+브랜드: [my-brand]
 만들 화면: [이벤트 신청 페이지]
 들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
 
 yds에 있는 부품과 색만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
 정할 것이 있으면 만들기 전에 물어봐 줘.`],
 ];
-// 브랜드 컬러 요청 글 (Foundations Color 페이지)
-const BRAND_PROMPT = `이 서비스에 브랜드 컬러를 입혀 줘.
-브랜드 컬러: [#12a150]
+// 브랜드 만들기 (11-09 사용자 "yds를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
+const BRAND_PROMPT = `yds 디자인 시스템 위에 우리 브랜드를 만들고 싶어.
+먼저 아래 문서를 읽고 브랜드 규칙을 익혀 줘.
 ${DOC_LINE}
-이 색을 600 단계로 두고 나머지 단계와 다크 모드 값을 만들어 서비스 CSS에 넣어 줘.`;
-// llms.txt 머리에 붙는 규칙 (AI가 요청 글 대신 여기서 읽는다)
+
+브랜드 이름: [my-brand]
+브랜드 컬러: [#0f7a3f]
+모서리: [yds 그대로]
+글꼴: [yds 그대로]
+
+yds와 다른 값만 담은 브랜드 파일을 JSON으로 만들어 줘.
+yds 원본은 고치지 말고, 글자 대비가 모자라면 고칠 색을 제안해 줘.`;
+const BRAND_JSON = `{
+  "name": "우리 브랜드",
+  "color": "#0f7a3f",
+  "shapeScale": 1.25
+}`;
+const BRAND_HTML = `<!-- 브랜드: yds 다음에 불러온다 -->
+<link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
+
+<!-- <html>에 브랜드 이름을 적는다 -->
+<html lang="ko" data-ds-brand="my-brand">`;
+// yds.txt 머리에 붙는 규칙 (AI가 요청 글 대신 여기서 읽는다)
 const LLMS_RULES = `## 지킬 것
 
 - 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓴다.
@@ -414,14 +434,15 @@ const LLMS_RULES = `## 지킬 것
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 원본: yds 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. yds 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
-- 브랜드 컬러: 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 덮어쓴다. 받은 색을 600 단계로 두고, 다크(:root[data-theme="dark"])는 같은 단계를 뒤집어 넣는다.
+- 브랜드: 브랜드 파일(${PUBLIC}/dist/brands/브랜드이름.css)을 yds CSS 다음, 서비스 CSS 앞에 불러오고 <html>에 data-ds-brand="브랜드이름"을 단다. 브랜드 값을 서비스 CSS에 따로 적지 않는다.
+- 새 브랜드: 브랜드 파일(JSON)에는 yds와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), onBrandSolid(브랜드 버튼 위 글자색), canvas, layerDefault, layerFloating(바탕과 면), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
 - 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.
 - 글자: 한국어. 제목 Bold, 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
 - 점검: 끝내기 전에 검사 스크립트(${SITE_URL}ai/yds-check.mjs)를 받아 node로 돌리고, 나온 문제를 모두 고친다.
 
 ## 운영 중인 사이트에 옮길 때
 
-- 한 번에 다 바꾸지 않는다. 살펴보기, yds 넣기, 브랜드 컬러, 화면 하나씩, 점검 순서로 간다.
+- 한 번에 다 바꾸지 않는다. 살펴보기, yds 넣기, 브랜드, 화면 하나씩, 점검 순서로 간다.
 - DS는 @layer 안에 있어 기존 CSS가 늘 이긴다. 그래서 DS를 넣기만 해서는 지금 화면이 바뀌지 않는다. 기존 규칙이 DS 부품을 덮으면 그 화면의 기존 규칙만 걷어 낸다.
 - 서버 코드(PHP, JSP 등)의 로직은 바꾸지 않는다. 스크립트와 서버가 쓰는 class, id, name 속성은 그대로 두고, 필요하면 DS 클래스를 함께 붙인다.
 - 기존 CSS의 hex 색은 가까운 --ds-color-* 역할 토큰으로 바꾸고, 바꾼 짝은 목록으로 남긴다.
@@ -436,19 +457,42 @@ write({
   file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'yds는 같은 화면을 만들게 돕는 디자인 시스템입니다.', layout: 'page',
   body: `<header>
   <h1 class="site-h1">Get Started</h1>
-  <p class="site-lead">yds는 디자이너, 개발자, AI가 같은 이름으로 같은 화면을 만들게 돕는 디자인 시스템입니다.</p>
+  <p class="site-lead">yds는 모든 서비스가 함께 쓰는 뿌리입니다. 브랜드는 다른 값만 얹고, 나머지는 yds를 따라갑니다.</p>
   ${metaLinks({ figma: LINKS.figmaUrl('2608:2'), code: GITHUB })}
 </header>
 
-<h2 id="ai">시작하기</h2>
+<h2 id="structure">구조</h2>
+<ol class="site-gs__layers">
+  <li><strong>yds</strong><span>모든 브랜드가 함께 쓰는 부품, 토큰, 규칙입니다. 담당자만 고칩니다.</span></li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 yds와 다른 값만 담은 파일 하나입니다.</span></li>
+  <li><strong>서비스</strong><span>yds와 브랜드를 불러와 화면을 만듭니다.</span></li>
+</ol>
+
+<h2 id="brand">브랜드 만들기</h2>
+<p>적지 않은 값은 yds를 따라가므로 yds가 바뀌면 브랜드도 함께 바뀝니다. 부품 구조, 간격, 글자 크기, 접근성 규칙은 브랜드에서 바꾸지 않습니다.</p>
+${table(['바꿀 수 있는 값', '파일에 적는 이름', '설명'], [
+  ['브랜드 색', '<code>color</code>', '대표색 하나로 나머지 단계와 다크 모드 값을 만듭니다.'],
+  ['버튼 위 글자색', '<code>onBrandSolid</code>', '브랜드 색이 밝아서 흰 글자가 잘 보이지 않을 때 적습니다.'],
+  ['바탕과 면 색', '<code>canvas</code>, <code>layerDefault</code>, <code>layerFloating</code>', '화면 바탕과 카드, 창의 색입니다.'],
+  ['모서리', '<code>shapeScale</code>', '모든 모서리를 같은 비율로 키우거나 줄입니다.'],
+  ['글꼴', '<code>font</code>', '기본 글꼴 대신 쓸 글꼴입니다.'],
+])}
+${codeTabs([['AI 요청', codeblock(BRAND_PROMPT, 'text', ' data-wrap')], ['브랜드 파일', codeblock(BRAND_JSON, 'json')], ['HTML', codeblock(BRAND_HTML)]])}
+${FEEDBACK_FORM ? `<p class="site-gs__send"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">담당자에게 브랜드 등록 요청</a></p>` : ''}
+
+<h2 id="ai">서비스 시작하기</h2>
 <div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
   ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
 </div>
 ${START.map(([k, l, p], i) => {
   // 칸 이름은 화면에서는 세그먼트가 보여 주고, 읽어 주기와 마크다운에는 숨은 제목으로 남긴다
   const tabs = [['AI 요청', codeblock(p, 'text', ' data-wrap')]];
-  if (k === 'migrate') tabs.push([`HTML v${VERSION}`, codeblock(CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`))]);
+  if (k === 'migrate') tabs.push([`HTML v${VERSION}`, codeblock(`${CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`)}
+
+${BRAND_HTML}`)]);
   if (k === 'start') tabs.push(['HTML', codeblock(`${CSS_LINK}
+
+${BRAND_HTML}
 
 <!-- 다크 모드 -->
 <html lang="ko" data-theme="dark">
@@ -469,10 +513,11 @@ ${START.map(([k, l, p], i) => {
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
-  [`<a class="ds-link" href="llms.txt" target="_blank" rel="noopener">llms.txt</a>`, 'AI용 yds 안내서', 'AI에 yds를 알려 줄 때'],
-  [`<a class="ds-link" href="llms-full.txt" download>llms-full.txt</a>`, 'yds 문서 전체를 모은 파일 하나', '주소를 열지 못하는 AI 대화창에 첨부할 때'],
+  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'AI용 yds 안내서', 'AI에 yds를 알려 줄 때'],
+  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, 'yds 문서 전체를 모은 파일 하나', '주소를 열지 못하는 AI 대화창에 첨부할 때'],
   [['AGENTS.md', 'CLAUDE.md', 'yds.mdc'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join(' / '), 'AI 코딩 도구용 yds 규칙 파일', 'AI 코딩 도구가 늘 yds 규칙을 지키게 할 때'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'yds 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
+  [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 브랜드 값을 확인할 때'],
   [`<a class="ds-link" href="${LINKS.figmaUrl('2608:2')}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'yds 컴포넌트와 변수가 든 Figma 파일', 'Figma로 화면을 그릴 때'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 고를 때']] : []),
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
@@ -532,10 +577,7 @@ const foundPages = {
 <h2 id="code">코드에서 쓰기</h2>
 ${codeblock(`.my-card {\n  background: var(--ds-color-bg-layer-default);\n  color: var(--ds-color-fg-neutral);\n  border: 1px solid var(--ds-color-stroke-neutral-muted);\n}`, 'css')}
 <h3>브랜드 컬러 바꾸기</h3>
-<p>브랜드 컬러 하나만 있으면 됩니다. 아래 글의 대괄호에 그 색을 넣어 AI에 붙여 넣으면, 나머지 단계와 다크 모드 값을 만들어 넣습니다.</p>
-${codeblock(BRAND_PROMPT, 'text', ' data-wrap')}
-<p>직접 넣을 때는 대표 색을 <code>brand-600</code>에 두고, 나머지 단계를 같은 색의 진하기로 채웁니다.</p>
-${codeblock(`/* 서비스 CSS - DS 다음에 불러온다 */\n:root {\n  --ds-color-palette-brand-600: #12a150;  /* 대표 색: 주 버튼, 링크 */\n  --ds-color-palette-brand-700: #0d7d3e;  /* 한 단계 진하게: 눌림 */\n  --ds-color-palette-brand-100: #e6f6ee;  /* 아주 옅게: 옅은 배경 */\n  /* 나머지 단계도 같은 색으로 채운다 */\n}`, 'css')}
+<p>브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 적습니다. 대표색 하나면 나머지 단계와 다크 모드 값이 만들어집니다. <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 만들기</a></p>
 <h2 id="practices">사용 지침</h2>
 ${practices([
   [true, '역할에 맞는 색을 고릅니다. 오류는 critical, 성공은 positive입니다.'],
@@ -548,7 +590,7 @@ ${practices([
   typography: {
     title: '글자', lead: '타이포그래피는 글을 분명하고 읽기 쉽게 전합니다.',
     body: `<h2 id="overview">개요</h2>
-<p>글꼴은 Pretendard 하나입니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
+<p>기본 글꼴은 Pretendard입니다. 다른 글꼴은 <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 파일</a>에서 정합니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
 <h2 id="size">크기</h2>
 ${table(['토큰', '크기 / 줄 높이 (px)', '보기'], tokRe(/--ds-font-size-(t\d\d): (\d+)px/g).map((m) => [`<code>${m[1]}</code>`, `${m[2]} / ${(LIGHT[`--ds-line-height-${m[1]}`] || '').replace('px', '')}`, `<span class="site-sample" style="font-size: var(--ds-font-size-${m[1]}); line-height: var(--ds-line-height-${m[1]}); font-weight: var(--ds-font-weight-bold)">가나다 Aa 123</span>`]))}
 <h2 id="weight">굵기</h2>
@@ -617,6 +659,7 @@ ${table(['토큰', '값', '보기'], [...new Set(tokRe(/--ds-shape-base-([a-z0-9
 <h2 id="code">코드에서 쓰기</h2>
 <p>어떤 영역에 <code>--ds-shape-scale</code>을 0과 1 사이 값으로 덮어쓰면 그 안의 모서리만 덜 둥글게 바뀝니다.</p>
 ${codeblock(`.my-card {\n  border-radius: var(--ds-shape-lg);\n}\n.admin-area {\n  --ds-shape-scale: 0.5;  /*이 영역 안의 모서리를 절반으로 */\n}`, 'css')}
+<p>브랜드 전체의 모서리는 <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 파일</a>의 <code>shapeScale</code>로 정합니다.</p>
 <h2 id="practices">사용 지침</h2>
 ${practices([
   [true, '안쪽 요소의 모서리는 바깥 요소보다 작게 둡니다.'],
@@ -1117,7 +1160,7 @@ figmaDocs();
 
 /* ---------------------------------------------------------------- AI 파일 (site/ai/) */
 // 11-04 사용자 "AI 파일 고도화, 1 ~ 4 모두": 규칙 파일(AGENTS.md, CLAUDE.md, Cursor yds.mdc), 아이콘 목록(icons.json), 규칙 검사(yds-check.mjs).
-// 규칙 글은 llms.txt 와 같은 LLMS_RULES 하나에서 만든다. 검사 스크립트에는 지금 DS 의 클래스, 아이콘, 토큰 목록을 넣는다
+// 규칙 글은 yds.txt 와 같은 LLMS_RULES 하나에서 만든다. 검사 스크립트에는 지금 DS 의 클래스, 아이콘, 토큰 목록을 넣는다
 {
   const AI = path.join(SITE, 'ai');
   fs.mkdirSync(AI, { recursive: true });
@@ -1139,12 +1182,12 @@ figmaDocs();
 
 ## 먼저 볼 것
 
-- 문서 목차: ${SITE_URL}llms.txt (필요한 컴포넌트 문서를 골라 읽는다)
+- 문서 목차: ${SITE_URL}yds.txt (필요한 컴포넌트 문서를 골라 읽는다)
 - 컴포넌트 목록: ${PUBLIC}/components.json
 - 컴포넌트 마크업: ${RAW}/dist/components.css (컴포넌트마다 머리 주석)
 - 아이콘 목록: ${SITE_URL}ai/icons.json
 - 토큰: ${RAW}/dist/tokens.css
-- 화면 출발점: Templates (llms.txt 끝 목록)
+- 화면 출발점: Templates (yds.txt 끝 목록)
 
 ${LLMS_RULES}
 
@@ -1170,7 +1213,7 @@ ${LLMS_RULES}
 - 버전: ${VERSION} (버전 고정 주소 ${PIN}/dist/ybm-ds.css)
 - CSS: ${PUBLIC}/dist/ybm-ds.css
 - JS: ${PUBLIC}/dist/ybm-ds.js
-- 전체 문서 한 파일: ${SITE_URL}llms-full.txt
+- 전체 문서 한 파일: ${SITE_URL}yds-full.txt
 - 규칙 파일: ${SITE_URL}ai/AGENTS.md
 - 아이콘 목록: ${SITE_URL}ai/icons.json
 - 검사 스크립트: ${SITE_URL}ai/yds-check.mjs
@@ -1189,6 +1232,6 @@ DS 다음에 테마 CSS를 붙이고 \`<html data-ds-theme="이름">\`으로 켭
 
 ${themesJson.map((t) => `- [${t.name} ${t.slug}](${PUBLIC}/dist/themes/${t.slug}.css): ${t.desc}`).join('\n')}`;
   const n = writeMarkdown({ SITE, SITE_URL, intro, extra: SHOW_THEMES ? [tplList, themeList] : [tplList], groups: [{ label: 'Get Started', pages: gs }, { label: 'Foundations', pages: found }, { label: 'Components', pages: compPages }] });
-  console.log(`  ✔ 마크다운 ${n}쪽, llms.txt, llms-full.txt`);
+  console.log(`  ✔ 마크다운 ${n}쪽, yds.txt, yds-full.txt`);
 }
 console.log(`  ✔ 사이트 ${written.length}쪽 생성 (컴포넌트 ${comps.length}, 템플릿 ${templates.length})`);

@@ -903,6 +903,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   transition: left var(--ds-duration-normal) var(--ds-easing-emphasized), width var(--ds-duration-normal) var(--ds-easing-emphasized), height var(--ds-duration-normal) var(--ds-easing-emphasized);
 }
 .ds-switch__control:checked { background: var(--ds-switch-on); }
+.ds-switch:not([data-tone="neutral"]) .ds-switch__control:checked { --ds-switch-thumb-color: var(--ds-color-fg-on-brand-solid); }
 .ds-switch__control:checked::before { --ds-switch-t: var(--ds-switch-thumb-on); left: calc(var(--ds-switch-w) - var(--ds-switch-t) - (var(--ds-switch-h) - var(--ds-switch-t)) / 2); }
 .ds-switch:has(:disabled) { cursor: not-allowed; }
 .ds-switch__control:disabled { opacity: 0.38; }

@@ -1,7 +1,7 @@
 // 문서 페이지를 AI 가 읽기 좋은 마크다운으로도 낸다 (llms.txt 표준: llmstxt.org).
 //   페이지마다 같은 주소의 .md   예) components/action-button.html → components/action-button.md
-//   site/llms.txt       전체 목차 (분류별 링크와 한 줄 설명)
-//   site/llms-full.txt  모든 문서를 한 파일로
+//   site/yds.txt       전체 목차 (분류별 링크와 한 줄 설명)
+//   site/yds-full.txt  모든 문서를 한 파일로
 // build.mjs 가 페이지를 다 쓴 뒤 부른다. 생성된 HTML 의 본문(article.site-doc)만 읽어 바꾸고, 미리보기와 버튼은 뺀다.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -153,7 +153,12 @@ export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [] }) {
     }
     if (lines.length) index.push(`## ${g.label}\n\n${lines.join('\n')}`);
   }
-  fs.writeFileSync(path.join(SITE, 'llms.txt'), `${intro}\n\n${[...index, ...extra].join('\n\n')}\n`);
-  fs.writeFileSync(path.join(SITE, 'llms-full.txt'), `${intro}\n\n${[...full, ...extra].join('\n\n---\n\n')}\n`);
+  const toc = `${intro}\n\n${[...index, ...extra].join('\n\n')}\n`;
+  const all = `${intro}\n\n${[...full, ...extra].join('\n\n---\n\n')}\n`;
+  fs.writeFileSync(path.join(SITE, 'yds.txt'), toc);
+  fs.writeFileSync(path.join(SITE, 'yds-full.txt'), all);
+  // 예전 이름: 이미 복사해 간 요청 글과 llms.txt 를 찾는 도구가 깨지지 않게 같은 내용으로 남긴다. 화면에는 보이지 않는다
+  fs.writeFileSync(path.join(SITE, 'llms.txt'), toc);
+  fs.writeFileSync(path.join(SITE, 'llms-full.txt'), all);
   return count;
 }

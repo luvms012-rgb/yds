@@ -240,7 +240,7 @@ gray `00/100~1000`, brand, blue, red, green, yellow, orange, purple `100~1000`, 
 - yds 변경의 반영: 화면이 바뀌지 않는 수정은 자동, 화면이 바뀔 수 있는 변경은 Updates "확인할 변경" 으로 적고 `node tools/brand-diff.mjs <브랜드> [기준 태그]` 로 부품별 전후를 비교한 뒤 `node sync.mjs release x.y.z`. 브랜드 파일도 같은 태그로 고정해 쓸 수 있다(jsDelivr `@v버전/dist/brands/...`).
 
 #### AI 용 마크다운 (2026-11-03)
-- 사이트의 시작하기, Foundations, 컴포넌트 문서는 같은 주소의 `.md` 로도 나온다(`site/md.mjs`, 빌드 때 생성). 전체 목차 `site/llms.txt`, 전체 한 파일 `site/llms-full.txt` (llmstxt.org 방식). 각 페이지 제목 아래 Markdown 메뉴에서 링크 복사, 내용 복사. `llms.txt` 끝에는 템플릿 HTML 원본 목록(Templates)과 테마 CSS 목록(Themes)도 붙는다. 시작하기 첫 화면의 AI 요청 문구도 llms.txt를 읽게 한다.
+- 사이트의 시작하기, Foundations, 컴포넌트 문서는 같은 주소의 `.md` 로도 나온다(`site/md.mjs`, 빌드 때 생성). 전체 목차 `site/yds.txt`, 전체 한 파일 `site/yds-full.txt` (llmstxt.org 방식, 예전 이름 `llms.txt`, `llms-full.txt` 도 같은 내용으로 남긴다). 각 페이지 제목 아래 Markdown 메뉴에서 링크 복사, 내용 복사. `yds.txt` 끝에는 템플릿 HTML 원본 목록(Templates)과 테마 CSS 목록(Themes)도 붙는다. 시작하기 첫 화면의 AI 요청 문구도 yds.txt를 읽게 한다.
 
 로고 고정색(모드 무관): `logo-ybm-blue #0055a7`, `logo-ybm-red #e83743`, `logo-ybm-gray #7d7d7d`
 

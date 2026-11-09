@@ -35,6 +35,8 @@
 }
 ```
 
+브랜드 전체의 모서리는 [브랜드 파일](https://luvms012-rgb.github.io/yds/site/index.md#brand)의 `shapeScale`로 정합니다.
+
 ## 사용 지침
 
 | 구분 | 내용 |

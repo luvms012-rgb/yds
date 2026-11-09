@@ -6,7 +6,7 @@
 
 ## 개요
 
-글꼴은 Pretendard 하나입니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 씁니다.
+기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](https://luvms012-rgb.github.io/yds/site/index.md#brand)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 씁니다.
 
 ## 크기
 

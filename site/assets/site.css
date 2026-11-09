@@ -540,6 +540,16 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-gs__panel { margin-top: var(--ds-space-x4); }
 .site-gs__panel[hidden] { display: none; }
 .site-gs__panel .ds-codeblock { margin: 0; }
+.site-gs__layers { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); margin: 0; padding: 0; list-style: none; }
+.site-gs__layers li { position: relative; display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: var(--ds-space-x6); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
+.site-gs__layers strong { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-semibold); }
+.site-gs__layers span { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; }
+.site-gs__layers li + li::before { content: ""; position: absolute; top: calc(var(--ds-space-x6) * -1); left: calc(50% - var(--ds-space-x2)); width: var(--ds-space-x4); height: var(--ds-space-x4); background: var(--ds-color-fg-neutral-subtle); -webkit-mask: var(--ds-icon-chevron-down) center / contain no-repeat; mask: var(--ds-icon-chevron-down) center / contain no-repeat; }
+@media (min-width: 768px) {
+  .site-gs__layers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-gs__layers li + li::before { top: calc(50% - var(--ds-space-x2)); left: calc(var(--ds-space-x6) * -1); -webkit-mask-image: var(--ds-icon-chevron-right); mask-image: var(--ds-icon-chevron-right); }
+}
+.site-gs__send { margin: var(--ds-space-x4) 0 0; }
 .site-gs__files td:first-child a { white-space: nowrap; }
 @media (min-width: 768px) { .site-gs__files th:first-child { width: 34%; } .site-gs__files th:nth-child(2) { width: 30%; } }
 /* 코드 글자 색 (11-04 사용자 "코드뷰 컬러로 개선, seed 참조"): 레퍼런스 B 의 GitHub 테마 규칙을 DS 팔레트로. 팔레트라 다크 모드에서 같이 뒤집힌다 */

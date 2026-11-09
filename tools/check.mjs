@@ -8,7 +8,7 @@
 //   1 링크      사이트 html 안 상대 주소가 모두 있는 파일인지
 //   2 사이트    사이트 쪽 안 클래스, 아이콘, 토큰이 DS 에 있는지, 화면 글에 줄표/가운뎃점이 없는지, site.css 에 토큰 밖 값이 없는지
 //   3 템플릿    템플릿 67종과 컴포넌트 예시를 site/ai/yds-check.mjs 로 검사 (서비스 화면과 같은 규칙)
-//   4 마크다운  .md 위치, 머리 주소, 화면 코드와 예시 코드가 글자 그대로 있는지, .md 링크, llms 주소
+//   4 마크다운  .md 위치, 머리 주소, 화면 코드와 예시 코드가 글자 그대로 있는지, .md 링크, yds.txt 주소
 //   5 싱크      components.json, components.css 머리 주석, README, index.html, 사이트 페이지, 템플릿 목록, 진입 파일, 이름
 //   5-2 브랜드  brands/*.json 이 허용된 값만 쓰는지, dist/brands 가 원본과 같은지, 글자 대비
 //   6 새 컴포넌트  컴포넌트마다 넣어야 하는 9곳이 다 있는지 (README "새 컴포넌트 넣기")
@@ -162,9 +162,13 @@ check('4 마크다운', ({ err }) => {
     const md = fs.existsSync(mdf) ? norm(fs.readFileSync(mdf, 'utf8')) : '';
     for (const e of list) if (!md.includes(norm(dedent(e.html)))) err(`예시 코드가 .md 에 없음 ${slug}: ${e.title}`);
   }
-  for (const f of ['site/llms.txt', 'site/llms-full.txt']) for (const m of read(f).matchAll(/https:\/\/luvms012-rgb\.github\.io\/yds\/([^\s)"'<>`]+)/g)) {
-    const u = m[1].split('#')[0].replace(/[.,]$/, ''); if (!fs.existsSync(path.join(R, u))) err(`${f} 깨진 주소 ${u}`);
+  for (const f of ['site/yds.txt', 'site/yds-full.txt']) for (const m of read(f).matchAll(/https:\/\/luvms012-rgb\.github\.io\/yds\/([^\s)"'<>`]+)/g)) {
+    const u = m[1].split('#')[0].replace(/[.,]$/, '');
+    if (/^dist\/brands\/(my-brand|브랜드이름)\.css$/.test(u)) continue; // 브랜드 안내의 예시 주소
+    if (!fs.existsSync(path.join(R, u))) err(`${f} 깨진 주소 ${u}`);
   }
+  // 예전 이름은 이미 복사해 간 요청 글을 위해 같은 내용으로 남긴다
+  for (const [a, b] of [['site/llms.txt', 'site/yds.txt'], ['site/llms-full.txt', 'site/yds-full.txt']]) if (read(a) !== read(b)) err(`${a} 내용이 ${b} 와 다름`);
   const reg = readJson('components.json').components.length;
   const listed = (read('site/components/index.md').match(/^- \[/gm) || []).length;
   if (listed !== reg) err(`components/index.md 목록 ${listed}개, 컴포넌트 ${reg}개`);
@@ -185,7 +189,7 @@ check('5 싱크', ({ err }) => {
   for (const s of tpages) if (!tj.some((t) => t.slug === s)) err(`templates.json 에 없는 템플릿 파일 ${s}`);
   const entry = read('dist/ybm-ds.css');
   for (const p of ['tokens.css', 'base.css', 'icons.css', 'components.css', 'utilities.css']) if (!entry.includes(p)) err(`ybm-ds.css 가 ${p} 를 불러오지 않음`);
-  for (const f of ['README.md', 'site/llms.txt', 'dist/components.css', 'dist/ybm-ds.css', 'dist/ybm-ds.js', 'site/index.html', 'site/ai/AGENTS.md']) if (/YBM DS|YBM Design System/.test(read(f).replace(/컬렉션 「YBM DS」/g, ''))) err(`예전 이름 YBM DS 가 남음 ${f}`);
+  for (const f of ['README.md', 'site/yds.txt', 'dist/components.css', 'dist/ybm-ds.css', 'dist/ybm-ds.js', 'site/index.html', 'site/ai/AGENTS.md']) if (/YBM DS|YBM Design System/.test(read(f).replace(/컬렉션 「YBM DS」/g, ''))) err(`예전 이름 YBM DS 가 남음 ${f}`);
   for (const f of ['dist/components.css', 'dist/base.css', 'dist/utilities.css', 'dist/tokens.css', 'site/src/site.css']) if (/--ybm-/.test(read(f))) err(`예전 토큰 이름 --ybm- 이 남음 ${f}`);
   const ver = read('VERSION').trim();
   if (!/^\d+\.\d+\.\d+$/.test(ver)) err(`VERSION 이 x.y.z 모양이 아님: ${ver}`);
