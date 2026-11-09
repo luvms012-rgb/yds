@@ -655,8 +655,13 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-lib__codehead { line-height: var(--ds-line-height-t02); }
 .site-lib__name { line-height: var(--ds-line-height-t04); }
 
-/* 새 소식 점: 글자 오른쪽 위에 붙이고 메뉴 폭은 그대로 둔다 */
-.site-newdot { margin-left: 2px; margin-right: calc((var(--ds-space-x2) + 2px) * -1); transform: translateY(-7px); }
-.site-nav__item:has(.site-newdot) { gap: 0; }
+/* 새 소식 표시: 상단 메뉴는 글자 오른쪽 위에 NEW 를 붙이고 메뉴 폭은 그대로 둔다. 서랍 메뉴는 글자 옆, 메뉴 버튼은 점 */
+.site-topnav__item[data-site-updates] { position: relative; }
+.site-topnav__item .site-newbadge { position: absolute; top: calc(var(--ds-space-x1) * -1); left: calc(100% - var(--ds-space-x3)); animation: site-new-pulse 1.8s var(--ds-easing-standard, ease) infinite; }
+.site-nav__item .site-newbadge { margin-left: var(--ds-space-x2); }
+@keyframes site-new-pulse { 0% { box-shadow: 0 0 0 0 var(--ds-color-bg-critical-solid); } 70%, 100% { box-shadow: 0 0 0 var(--ds-space-x1_5) transparent; } }
+@media (prefers-reduced-motion: reduce) { .site-topnav__item .site-newbadge { animation: none; } }
+.site-doc > .site-release--new { padding: var(--ds-space-x6); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
+.site-release__new { margin-left: var(--ds-space-x2); vertical-align: 2px; }
 .site-menu-btn { position: relative; }
 .site-menu-btn .site-newdot { position: absolute; top: 4px; right: 4px; margin: 0; transform: none; }

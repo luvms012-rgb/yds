@@ -729,21 +729,39 @@
     var top = document.querySelector("[data-site-latest]");
     if (!top) return;
     var latest = top.getAttribute("data-site-latest");
-    function clear() { document.querySelectorAll(".site-newdot, .site-newdot-text").forEach(function (n) { n.remove(); }); }
-    function dot(el, text) {
+    function clear() { document.querySelectorAll(".site-newdot, .site-newbadge, .site-newdot-text").forEach(function (n) { n.remove(); }); }
+    function newBadge(cls) {
+      var b = document.createElement("span"); b.className = "ds-badge " + cls; b.setAttribute("data-variant", "solid"); b.setAttribute("data-tone", "critical"); b.setAttribute("aria-hidden", "true"); b.textContent = "NEW";
+      return b;
+    }
+    function mark(el) {
+      el.appendChild(newBadge("site-newbadge"));
+      var s = document.createElement("span"); s.className = "ds-sr-only site-newdot-text"; s.textContent = "새 소식 있음"; el.appendChild(s);
+    }
+    function dot(el) {
       var d = document.createElement("span"); d.className = "ds-statusdot site-newdot"; d.setAttribute("data-tone", "critical"); d.setAttribute("aria-hidden", "true"); el.appendChild(d);
-      if (text) { var s = document.createElement("span"); s.className = "ds-sr-only site-newdot-text"; s.textContent = "새 소식 있음"; el.appendChild(s); }
+    }
+    /* Updates 페이지를 처음 열었을 때 아직 안 본 맨 위 소식을 강조한다. 다음에 열면 평소 모양으로 돌아간다 */
+    function markRelease() {
+      var r = document.querySelector(".site-release");
+      if (!r || r.classList.contains("site-release--new")) return;
+      r.classList.add("site-release--new");
+      var h = r.querySelector("h2"); if (h) h.appendChild(newBadge("site-release__new"));
     }
     function sync() {
-      var seen = null;
+      var seen = null, unread = false;
       try {
         seen = localStorage.getItem(UPDATES_KEY);
-        if (seen === null || document.querySelector('.site-topnav__item[data-site-updates][aria-current="page"]')) { localStorage.setItem(UPDATES_KEY, latest); seen = latest; }
+        if (seen === null || document.querySelector('.site-topnav__item[data-site-updates][aria-current="page"]')) {
+          unread = seen !== null && seen !== latest;
+          localStorage.setItem(UPDATES_KEY, latest); seen = latest;
+        }
       } catch (e) { seen = latest; }
+      if (unread) markRelease();
       clear();
       if (seen === latest) return;
-      document.querySelectorAll("[data-site-updates]").forEach(function (a) { dot(a, true); });
-      document.querySelectorAll(".site-menu-btn").forEach(function (b) { dot(b, false); });
+      document.querySelectorAll("[data-site-updates]").forEach(mark);
+      document.querySelectorAll(".site-menu-btn").forEach(dot);
     }
     sync();
     window.addEventListener("pageshow", sync);  // 뒤로 가기로 돌아온 페이지에도 본 상태를 맞춘다
