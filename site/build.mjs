@@ -374,55 +374,53 @@ const CSS_LINK = `<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 // 첫 화면 요청 글 (11-09 사용자 "프롬프팅과 단계를 최소화", "아주 조금만 친절하게"): 할 일마다 글 하나. 순서와 점검은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 틀: 하고 싶은 것 / 문서 먼저 익히기 / [채울 값 줄] / 바라는 방식. 채울 값은 "이름: [값]" 따로 줄
 const DOC_LINE = `문서: ${SITE_URL}yds.txt`;
+const BRAND_LINES = `브랜드 이름: [my-brand]
+브랜드 컬러: [#0f7a3f]
+모서리: [yds 그대로]
+글꼴: [yds 그대로]`;
+const BRAND_ASK = '브랜드 파일이 아직 없으면 yds와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 고칠 색을 제안해 줘.';
 const START = [
-  ['migrate', '운영 중인 사이트', `운영 중인 이 사이트를 우리 브랜드의 yds 디자인 시스템으로 바꾸고 싶어.
+  ['migrate', '운영 중인 사이트', `운영 중인 이 사이트를 yds 디자인 시스템 기반의 우리 브랜드로 바꾸고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
 
-브랜드: [my-brand]
+${BRAND_LINES}
 
+${BRAND_ASK}
 운영 중인 사이트라서 한 번에 바꾸지 말고, 사이트를 먼저 살펴본 뒤 어떤 순서로 바꿀지 알려 줘.
 화면은 하나씩 바꾸고, 바꿀 때마다 전후 화면을 보여 주면 내가 확인할게.
 원래 되던 기능은 그대로 동작해야 하고, 애매한 부분은 혼자 정하지 말고 물어봐 줘.`],
-  ['start', '새 서비스', `우리 브랜드의 새 서비스를 yds 디자인 시스템으로 시작하려고 해.
+  ['start', '새 서비스', `yds 디자인 시스템 기반으로 우리 브랜드의 새 서비스를 시작하려고 해.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
 
-브랜드: [my-brand]
+${BRAND_LINES}
 첫 화면: [회원 목록]
 
+${BRAND_ASK}
 yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Templates에 있으면 거기서 시작해 줘.
 다 만들면 규칙을 지켰는지 점검하고, 고친 곳을 알려 줘.`],
-  ['draft', '화면 시안', `우리 브랜드의 화면 시안을 yds 디자인 시스템으로 만들고 싶어.
+  ['draft', '화면 시안', `yds 디자인 시스템 기반으로 우리 브랜드의 화면 시안을 만들고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 문서: ${SITE_URL}yds-full.txt
 
-브랜드: [my-brand]
+${BRAND_LINES}
 만들 화면: [이벤트 신청 페이지]
 들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
 
+${BRAND_ASK}
 yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
 정할 것이 있으면 만들기 전에 물어봐 줘.`],
 ];
 // 브랜드 만들기 (11-09 사용자 "yds를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
-const BRAND_PROMPT = `yds 디자인 시스템 기반으로 우리 브랜드를 만들고 싶어.
-먼저 아래 문서를 읽고 브랜드 규칙을 익혀 줘.
-${DOC_LINE}
-
-브랜드 이름: [my-brand]
-브랜드 컬러: [#0f7a3f]
-모서리: [yds 그대로]
-글꼴: [yds 그대로]
-
-yds와 다른 값만 담은 브랜드 파일을 JSON으로 만들어 줘.
-yds 원본은 고치지 말고, 글자 대비가 모자라면 고칠 색을 제안해 줘.`;
-const FIGMA_PROMPT = `이 Figma 화면을 우리 브랜드의 yds 디자인 시스템으로 구현해 줘.
+const FIGMA_PROMPT = `이 Figma 화면을 yds 디자인 시스템 기반의 우리 브랜드로 구현해 줘.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
 
 Figma: [프레임 주소]
-브랜드: [my-brand]
+${BRAND_LINES}
 
+${BRAND_ASK}
 Figma에 쓰인 컴포넌트와 변수에 맞는 yds 컴포넌트와 토큰을 쓰고, 맞는 것이 없으면 만들기 전에 물어봐 줘.`;
 const BRAND_JSON = `{
   "name": "우리 브랜드",
@@ -479,17 +477,8 @@ write({
   <li><strong>서비스</strong><span>yds와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
-<h2 id="brand">브랜드 만들기</h2>
-<p>브랜드 파일에는 yds와 다른 값만 적습니다. 적지 않은 값은 yds를 그대로 사용하므로, yds가 업데이트되어도 브랜드를 다시 만들 필요가 없습니다. 컴포넌트 구조, 간격, 글자 크기, 접근성 규칙은 모든 브랜드에 똑같이 적용됩니다.</p>
-${table(['바꿀 수 있는 값', '파일에 적는 이름', '설명'], [
-  ['브랜드 색', '<code>color</code>', '대표 색 하나로 나머지 단계와 다크 모드 색을 만듭니다.'],
-  ['모서리', '<code>shapeScale</code>', '모든 모서리를 같은 비율로 키우거나 줄입니다.'],
-  ['글꼴', '<code>font</code>', '기본 글꼴 대신 사용할 글꼴입니다.'],
-])}
-${codeTabs([['AI 요청', codeblock(BRAND_PROMPT, 'text', ' data-wrap')], ['브랜드 파일', codeblock(BRAND_JSON, 'json')], ['HTML', codeblock(BRAND_HTML)]])}
-
 <h2 id="ai">서비스 시작하기</h2>
-<p>브랜드가 정해지면 상황에 맞는 요청 글을 AI에 붙여 넣어 시작합니다.</p>
+<p>상황을 선택하고 요청 글에 브랜드 값을 채워 AI에 붙여 넣으세요. 브랜드 파일이 아직 없으면 AI가 함께 만듭니다.</p>
 <div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
   ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
 </div>
@@ -512,6 +501,15 @@ ${BRAND_HTML}
 </script>`)]);
   return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}</div>`;
 }).join('\n')}
+
+<h3 id="brand">브랜드 파일</h3>
+<p>브랜드 파일에는 yds와 다른 값만 적습니다. 적지 않은 값은 yds를 그대로 사용하므로, yds가 업데이트되어도 브랜드를 다시 만들 필요가 없습니다. 컴포넌트 구조, 간격, 글자 크기, 접근성 규칙은 모든 브랜드에 똑같이 적용됩니다.</p>
+${table(['항목', '이름', '설명'], [
+  ['브랜드 색', '<code>color</code>', '대표 색 하나로 나머지 단계와 다크 모드 색을 만듭니다.'],
+  ['모서리', '<code>shapeScale</code>', '모든 모서리를 같은 비율로 키우거나 줄입니다.'],
+  ['글꼴', '<code>font</code>', '기본 글꼴 대신 사용할 글꼴입니다.'],
+])}
+${codeblock(BRAND_JSON, 'json')}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <p>Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.</p>
