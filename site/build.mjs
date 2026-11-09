@@ -386,9 +386,10 @@ ${DOC_LINE}
 
 yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Templates에 있으면 거기서 시작해 줘.
 다 만들면 규칙을 지켰는지 점검하고, 고친 곳을 알려 줘.`],
-  ['draft', '화면 시안', `첨부한 llms-full.txt는 yds 디자인 시스템 문서야. 먼저 읽고 익혀 줘.
+  ['draft', '화면 시안', `yds 디자인 시스템으로 화면 시안을 만들고 싶어.
+먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
+문서: ${SITE_URL}llms-full.txt
 
-이 디자인 시스템으로 화면 시안을 만들고 싶어.
 만들 화면: [이벤트 신청 페이지]
 들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
 
@@ -453,8 +454,7 @@ ${START.map(([k, l, p], i) => {
 <script>
   if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
 </script>`)]);
-  const extra = k === 'draft' ? `<div class="site-gs__more"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="llms-full.txt" download><i class="ds-icon ds-icon--download ds-icon--sm" aria-hidden="true"></i>llms-full.txt 받기</a></div>` : '';
-  return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}${extra}</div>`;
+  return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}</div>`;
 }).join('\n')}
 
 <h2 id="system">둘러보기</h2>
