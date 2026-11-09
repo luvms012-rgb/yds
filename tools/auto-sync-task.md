@@ -1,4 +1,4 @@
-# yds 세 곳 자동 싱크 - 예약 작업 내용 (2026-11-08)
+# YDS 세 곳 자동 싱크 - 예약 작업 내용 (2026-11-08)
 
 Claude 데스크톱 앱의 예약 작업(Scheduled tasks)으로 매일 한 번 돌린다. 앱이 켜져 있을 때 돌고, 꺼져 있으면 다음에 켤 때 돈다.
 GitHub 쪽 자동 빌드(DS → 사이트)는 `.github/workflows/check.yml` 가 맡고, 이 작업은 Figma 가 들어가는 부분(Figma 쓰기는 Claude 세션에서만 된다)을 맡는다.
@@ -7,7 +7,7 @@ GitHub 쪽 자동 빌드(DS → 사이트)는 `.github/workflows/check.yml` 가 
 
 ## 작업 지시문
 
-yds 디자인 시스템의 세 곳(DS 코드 = works/ybm-ds, 문서 사이트 = 같은 저장소 site/, Figma 파일 fileKey 1VCEsFU3xMWuXIntIrZz9i)을 자동으로 맞춘다. 보고는 한국어로만, 쉬운 말로 짧게.
+YDS 디자인 시스템의 세 곳(DS 코드 = works/ybm-ds, 문서 사이트 = 같은 저장소 site/, Figma 파일 fileKey 1VCEsFU3xMWuXIntIrZz9i)을 자동으로 맞춘다. 보고는 한국어로만, 쉬운 말로 짧게.
 
 0. 시작: works/ybm-ds 에서 `.cache/audit/LOCK` 이 20분 안에 고쳐졌으면 건너뜀. 아니면 `touch .cache/audit/LOCK`, `git pull`. 커밋 안 된 변경이 있으면 보고만 하고 끝.
 1. Figma → DS: ds-sync 스킬 1~3 단계(`node sync.mjs figma` → use_figma 읽기 → tokens/.figma-result.json → `node sync.mjs pull`). 변수 변경은 자동 반영·배포. 부품 목록 차이는 고치지 말고 보고.

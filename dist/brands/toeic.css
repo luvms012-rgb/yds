@@ -1,4 +1,4 @@
-/* yds 브랜드 TOEIC: brands/toeic.json 으로 만든 파일입니다. 직접 고치지 말고 원본을 고친 뒤 node tools/brands.mjs 를 돌립니다.
+/* YDS 브랜드 TOEIC: brands/toeic.json 으로 만든 파일입니다. 직접 고치지 말고 원본을 고친 뒤 node tools/brands.mjs 를 돌립니다.
    <html data-ds-brand="toeic"> 에 dist/ybm-ds.css 다음에 불러옵니다. */
 
 :root[data-ds-brand="toeic"] {

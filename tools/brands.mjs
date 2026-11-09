@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// 브랜드 층 생성기 (2026-11-09 사용자 "yds 를 뿌리로 두고 고유 특성을 뺀 나머지는 자동으로 변경")
+// 브랜드 층 생성기 (2026-11-09 사용자 "YDS 를 뿌리로 두고 고유 특성을 뺀 나머지는 자동으로 변경")
 //   node tools/brands.mjs   brands/<브랜드>.json → dist/brands/<브랜드>.css 를 만들고 대비를 보여 준다
-// 브랜드 파일에는 yds 와 다른 값만 적는다. 적지 않은 값은 모두 yds 를 따라가므로 yds 가 바뀌어도 병합할 것이 없다.
+// 브랜드 파일에는 YDS 와 다른 값만 적는다. 적지 않은 값은 모두 YDS 를 따라가므로 YDS 가 바뀌어도 병합할 것이 없다.
 // 쓰는 법: <html data-ds-brand="브랜드"> 에 dist/ybm-ds.css 다음 dist/brands/브랜드.css
 // 브랜드 파일에 적을 수 있는 값 (이 밖의 값은 tools/check.mjs 가 오류로 막는다)
 //   name           브랜드 이름 (필수)
@@ -67,7 +67,7 @@ export function brandCss(slug, b) {
   if (b.shapeScale !== undefined) shared['--ds-shape-scale'] = b.shapeScale;
   if (b.font !== undefined) shared['--ds-font-family-base'] = b.font;
   const root = `:root[data-ds-brand="${slug}"]`;
-  return `/* yds 브랜드 ${b.name}: brands/${slug}.json 으로 만든 파일입니다. 직접 고치지 말고 원본을 고친 뒤 node tools/brands.mjs 를 돌립니다.\n   <html data-ds-brand="${slug}"> 에 dist/ybm-ds.css 다음에 불러옵니다. */\n\n${block(root, { ...colorVars(b, 'light'), ...shared })}\n${block(`${root}[data-theme="dark"]`, colorVars(b, 'dark'))}`;
+  return `/* YDS 브랜드 ${b.name}: brands/${slug}.json 으로 만든 파일입니다. 직접 고치지 말고 원본을 고친 뒤 node tools/brands.mjs 를 돌립니다.\n   <html data-ds-brand="${slug}"> 에 dist/ybm-ds.css 다음에 불러옵니다. */\n\n${block(root, { ...colorVars(b, 'light'), ...shared })}\n${block(`${root}[data-theme="dark"]`, colorVars(b, 'dark'))}`;
 }
 
 export const loadBrands = () => (fs.existsSync(SRC) ? fs.readdirSync(SRC).filter((f) => f.endsWith('.json')).sort() : []).map((f) => {

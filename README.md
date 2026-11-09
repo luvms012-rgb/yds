@@ -1,4 +1,4 @@
-# yds
+# YDS
 
 YBM 서비스 공용 디자인 시스템. Figma 변수/컴포넌트가 정본이고, 이 저장소(`yds`)는 그걸 코드로 옮긴 배포 패키지와 동기화 도구다.
 이 폴더 하나가 GitHub 저장소 하나다(가이드 사이트와 분리된 단독 저장소).
@@ -14,7 +14,7 @@ YBM 서비스 공용 디자인 시스템. Figma 변수/컴포넌트가 정본이
 ## 1. 폴더 구조
 
 ```
-yds/                         ← 저장소 루트 (2026-11-04 저장소 이름 ybm-ds → yds) = Pages 사이트 루트
+yds/                         ← 저장소 루트 (2026-11-04 저장소 이름 ybm-ds → YDS) = Pages 사이트 루트
 ├─ README.md                 ← 이 문서 (DS 전체 안내)
 ├─ index.html                컴포넌트 미리보기 (48종, Light/Dark, ?only=43-48로 골라 보기)
 ├─ components.json           컴포넌트 목록 - CSS 클래스, Figma 노드 ID, 변형 수 (sync가 양쪽과 대조)
@@ -186,7 +186,7 @@ Top App Bar부터 Multi Select 까지(54~71번)는 2026-10-29 Figma와 CSS를 �
 ### 변수 컬렉션
 | 컬렉션 | 모드 | 변수 수 |
 |---|---|---|
-| **yds** (`VariableCollectionId:3:2`) | Light / Dark | 247 |
+| **YDS** (`VariableCollectionId:3:2`) | Light / Dark | 247 |
 | Typography | 100% (하나) | 73 |
 | Shape | Default (하나) | 9 |
 | Elevation | Default (하나) | 30 |
@@ -232,11 +232,11 @@ gray `00/100~1000`, brand, blue, red, green, yellow, orange, purple `100~1000`, 
 - 사이트 Themes 메뉴에서 테마를 입힌 실제 사이트 화면으로 비교해 볼 수 있다(`site/themes/gen.mjs`, 선명 화면은 `site/themes/vivid.mjs`).
 
 #### 브랜드 - `brands/<브랜드>.json` → `dist/brands/<브랜드>.css` (2026-11-09)
-- yds 는 뿌리 하나만 두고, 브랜드는 yds 와 다른 값만 적은 파일 하나로 얹는다. 적지 않은 값은 모두 yds 를 따라가므로 yds 가 바뀌어도 병합할 것이 없다.
+- YDS 는 뿌리 하나만 두고, 브랜드는 YDS 와 다른 값만 적은 파일 하나로 얹는다. 적지 않은 값은 모두 YDS 를 따라가므로 YDS 가 바뀌어도 병합할 것이 없다.
 - 쓰는 법: `<html data-ds-brand="브랜드">` 에 `dist/ybm-ds.css` 다음 `dist/brands/브랜드.css`.
-- 바꿀 수 있는 값: 브랜드 색(`color` 하나 또는 `palette` 10단계), 브랜드 버튼 위 글자색, 바탕과 면 색, 모서리 배수, 글꼴. 형식은 `tools/brands.mjs` 머리 주석. 부품 구조, 간격, 접근성 규칙은 브랜드에서 바꾸지 않는다. 꼭 필요한 예외는 yds 선택지로 넣어 모든 브랜드가 함께 쓴다.
+- 바꿀 수 있는 값: 브랜드 색(`color` 하나 또는 `palette` 10단계), 브랜드 버튼 위 글자색, 바탕과 면 색, 모서리 배수, 글꼴. 형식은 `tools/brands.mjs` 머리 주석. 부품 구조, 간격, 접근성 규칙은 브랜드에서 바꾸지 않는다. 꼭 필요한 예외는 YDS 선택지로 넣어 모든 브랜드가 함께 쓴다.
 - 새 브랜드: `brands/` 에 파일을 더하고 `node tools/brands.mjs`. 생성물은 손으로 고치지 않는다. `node sync.mjs check` 의 "5-2 브랜드" 가 허용 값, 생성물, 글자 대비를 본다(라이트 브랜드 버튼 글자 4.5 미만이나 어느 조합이든 3 미만은 오류, 그 밖의 4.5 미만은 주의).
-- yds 변경의 반영: 화면이 바뀌지 않는 수정은 자동, 화면이 바뀔 수 있는 변경은 Updates "확인할 변경" 으로 적고 `node tools/brand-diff.mjs <브랜드> [기준 태그]` 로 부품별 전후를 비교한 뒤 `node sync.mjs release x.y.z`. 브랜드 파일도 같은 태그로 고정해 쓸 수 있다(jsDelivr `@v버전/dist/brands/...`).
+- YDS 변경의 반영: 화면이 바뀌지 않는 수정은 자동, 화면이 바뀔 수 있는 변경은 Updates "확인할 변경" 으로 적고 `node tools/brand-diff.mjs <브랜드> [기준 태그]` 로 부품별 전후를 비교한 뒤 `node sync.mjs release x.y.z`. 브랜드 파일도 같은 태그로 고정해 쓸 수 있다(jsDelivr `@v버전/dist/brands/...`).
 
 #### AI 용 마크다운 (2026-11-03)
 - 사이트의 시작하기, Foundations, 컴포넌트 문서는 같은 주소의 `.md` 로도 나온다(`site/md.mjs`, 빌드 때 생성). 전체 목차 `site/yds.txt`, 전체 한 파일 `site/yds-full.txt` (llmstxt.org 방식, 예전 이름 `llms.txt`, `llms-full.txt` 도 같은 내용으로 남긴다). 각 페이지 제목 아래 Markdown 메뉴에서 링크 복사, 내용 복사. `yds.txt` 끝에는 템플릿 HTML 원본 목록(Templates)과 테마 CSS 목록(Themes)도 붙는다. 시작하기 첫 화면의 AI 요청 문구도 yds.txt를 읽게 한다.
@@ -305,7 +305,7 @@ Figma의 `dimension/x*` 변수 scopes = `WIDTH_HEIGHT` + `GAP`.
 - `body` 기본 = t05, `word-break: keep-all`.
 
 ### 5.8 Elevation (그림자)
-2겹(key + ambient) 5단계. 기하값은 Figma `Elevation` 컬렉션, 색은 `yds` 컬렉션의 `elevation/{n}-key|ambient`(다크 모드 자동 대응).
+2겹(key + ambient) 5단계. 기하값은 Figma `Elevation` 컬렉션, 색은 `YDS` 컬렉션의 `elevation/{n}-key|ambient`(다크 모드 자동 대응).
 
 | 단계 | 값 | 역할 별칭 (컴포넌트는 이 이름을 씀) |
 |---|---|---|
@@ -512,7 +512,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 3. 새 컴포넌트를 추가하면 `components.css`(`.ds-*` + `--ds-*` 변수), `components.json`(`figma` 노드와 `doc` 문서 프레임 ID), `index.html`(미리보기 섹션), 이 문서 §6, Figma `description`을 함께 갱신한다.
 4. 토큰을 바꿀 때는 **Figma 변수 → `node sync.mjs figma` → use_figma → `node sync.mjs pull`** 순서. `tokens.css`를 손으로 고치지 않는다.
 5. CSS 수정 후에는 `index.html?only=번호`를 브라우저로 렌더해 Figma 스크린샷과 나란히 비교한다.
-6. **양방향 동기화** - `ds` 폴더를 고치면 같은 작업 안에서 Figma도 고치고, Figma를 고치면 `ds`도 고친다. 작업 시작 전 `node sync.mjs figma` 점검으로 이미 어긋난 곳이 없는지 확인하고, 끝나면 `node sync.mjs deploy`로 GitHub까지 올린다. 2026-11-06 사용자 "피그마가 수정되면 yds를, yds가 수정되면 피그마 자동 수정": 시키지 않아도 한쪽을 고친 작업 안에서 다른 쪽을 맞춘다(변수, 컴포넌트, 문서 프레임, 문서 프레임의 문서/코드 링크는 `node sync.mjs links`). 점검 결과에 차이가 나오면 어느 쪽이 맞는지 정해진 경우 바로 맞추고, 정해지지 않은 것만 묻는다.
+6. **양방향 동기화** - `ds` 폴더를 고치면 같은 작업 안에서 Figma도 고치고, Figma를 고치면 `ds`도 고친다. 작업 시작 전 `node sync.mjs figma` 점검으로 이미 어긋난 곳이 없는지 확인하고, 끝나면 `node sync.mjs deploy`로 GitHub까지 올린다. 2026-11-06 사용자 "피그마가 수정되면 YDS를, YDS가 수정되면 피그마 자동 수정": 시키지 않아도 한쪽을 고친 작업 안에서 다른 쪽을 맞춘다(변수, 컴포넌트, 문서 프레임, 문서 프레임의 문서/코드 링크는 `node sync.mjs links`). 점검 결과에 차이가 나오면 어느 쪽이 맞는지 정해진 경우 바로 맞추고, 정해지지 않은 것만 묻는다.
 7. **Updates 자동 작성** (2026-11-06 사용자 "업데이트 말하지 않아도 자동 업데이트 내용 작성", "피그마에도 같은 씽크로") - DS 의 중요한 시스템 변경이 있을 때만 `site/src/updates.json` 맨 위 그날 날짜에 한 문장씩 더한다(종류 확인할 변경, 새 컴포넌트, 새 기능, 바뀐 것 / 영역은 DS 하나, 쉬운 말 한 문장). 2026-11-09 사용자 지시로 사이트(문서, Get Started, AI 문서, 안내 문구)와 템플릿 소식은 담지 않는다. 새 컴포넌트, 토큰, 브랜드 구조, 서비스 화면이나 쓰는 법이 달라지는 변경이 해당되고 작은 모양 수정은 적지 않는다. Figma Updates 페이지는 2026-11-09 사용자 지시로 지웠다. 작업 기록, 검수만 한 것, 되돌린 것은 적지 않는다.
 
 ### Figma

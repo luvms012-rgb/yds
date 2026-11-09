@@ -248,7 +248,7 @@
 되도록 지금 있는 아이콘을 사용합니다. 새 아이콘이 꼭 필요하면 아래 순서를 따릅니다.
 
 1. [Library](https://luvms012-rgb.github.io/yds/site/foundations/icons-library.md)의 Lucide 전체에서 알맞은 아이콘을 선택합니다.
-2. 오른쪽 칸의 첫 번째 코드를 복사해 yds 다음에 불러오는 내 서비스 CSS 파일 맨 끝에 붙입니다.
+2. 오른쪽 칸의 첫 번째 코드를 복사해 YDS 다음에 불러오는 내 서비스 CSS 파일 맨 끝에 붙입니다.
 3. 그다음부터 `ds-icon--이름` 클래스로 사용합니다.
 
 ```html

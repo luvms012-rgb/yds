@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// yds 규칙 검사 - 화면 파일에서 yds 규칙을 어긴 곳을 찾습니다. 설치할 것 없이 node 만 있으면 됩니다.
+// YDS 규칙 검사 - 화면 파일에서 YDS 규칙을 어긴 곳을 찾습니다. 설치할 것 없이 node 만 있으면 됩니다.
 //   사용: node yds-check.mjs <파일 또는 폴더> [...]   (폴더는 안쪽 html, css, php, jsp, vue, jsx, tsx 를 모두 봅니다)
 //         --json  결과를 JSON 으로   --quiet  요약만
 //   문제가 있으면 종료 코드 1 입니다. AI 도구는 화면을 고친 뒤 이 스크립트를 돌리고, 나온 문제를 모두 고칩니다.
-//   이 파일은 yds 문서 사이트를 만들 때 함께 만들어집니다(yds 2026-11-09). 클래스, 아이콘, 토큰 목록이 안에 들어 있습니다.
+//   이 파일은 YDS 문서 사이트를 만들 때 함께 만들어집니다(YDS 2026-11-09). 클래스, 아이콘, 토큰 목록이 안에 들어 있습니다.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -81,7 +81,7 @@ for (const file of files) {
     for (const c of m[1].split(/\s+/)) {
       if (!c) continue;
       if (c.startsWith('ds-icon--')) { const n = c.slice(9); if (!['sm', 'lg'].includes(n) && !ICONS.has(n)) add(file, src, m.index, '아이콘', `없는 아이콘 ${n} 입니다. icons.json 에 있는 이름만 씁니다.`); continue; }
-      if (/^(ds|u)-/.test(c) && !CLASSES.has(c)) add(file, src, m.index, '클래스', `yds 에 없는 클래스 ${c} 입니다. 새 ds- 클래스를 만들지 않습니다.`);
+      if (/^(ds|u)-/.test(c) && !CLASSES.has(c)) add(file, src, m.index, '클래스', `YDS 에 없는 클래스 ${c} 입니다. 새 ds- 클래스를 만들지 않습니다.`);
     }
   }
   // 접근성: 아이콘만 있는 버튼 이름, 꾸밈 아이콘, 그림 대체 글

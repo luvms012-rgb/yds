@@ -1,4 +1,4 @@
-/* yds 문서 사이트 - 사이트 틀 동작 (DS 동작은 ybm-ds.js가 맡는다) */
+/* YDS 문서 사이트 - 사이트 틀 동작 (DS 동작은 ybm-ds.js가 맡는다) */
 (function () {
   "use strict";
   var KEY = "ybm-site-theme";
@@ -223,11 +223,11 @@
     var D = window.YBM_ICONS || { names: [], use: {} }, L = window.LUCIDE || { icons: {}, tags: {} };
     var inDs = D.names.indexOf(n) >= 0, base = n.replace(/-solid$/, "");
     var tags = (D.use[n] ? D.use[n].split(/,\s*/) : []).concat((L.tags[base] || "").split(/[,\s]+/).filter(Boolean).slice(0, 12));
-    var html = '<div class="site-lib__name"><b>' + n + "</b>" + (inDs ? '<span class="ds-badge" data-tone="positive">yds</span>' : '<span class="ds-badge">Lucide</span>') + "</div>";
+    var html = '<div class="site-lib__name"><b>' + n + "</b>" + (inDs ? '<span class="ds-badge" data-tone="positive">YDS</span>' : '<span class="ds-badge">Lucide</span>') + "</div>";
     if (tags.length) html += '<div class="site-lib__tags">' + tags.map(function (t) { return "<span>" + libEsc(t) + "</span>"; }).join("") + "</div>";
     html += '<div class="site-lib__preview">' + (inDs ? '<i class="ds-icon ds-icon--' + n + '" style="--ds-icon-size: 48px" aria-hidden="true"></i>' : libSvg(n, 48)) + "</div>";
     if (inDs) html += libCode("HTML", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
-    else html += '<p class="site-lib__note">yds에 아직 없는 아이콘입니다. 아래 두 코드를 차례로 붙여 넣으면 바로 쓸 수 있습니다.</p>' + libCode("1. 내 서비스 CSS 파일 맨 끝에 붙이기", lucideCss(n)) + libCode("2. 아이콘을 넣을 HTML 자리에 붙이기", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
+    else html += '<p class="site-lib__note">YDS에 아직 없는 아이콘입니다. 아래 두 코드를 차례로 붙여 넣으면 바로 쓸 수 있습니다.</p>' + libCode("1. 내 서비스 CSS 파일 맨 끝에 붙이기", lucideCss(n)) + libCode("2. 아이콘을 넣을 HTML 자리에 붙이기", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
     if (L.icons[base]) html += libCode("SVG", '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + L.icons[base] + "</svg>");
     panel.innerHTML = html;
   }

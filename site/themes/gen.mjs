@@ -1,7 +1,7 @@
 // 테마 예시 생성기 (테스트용, 2026-11-04): 테마 CSS 10개(dist/themes/<이름>.css)와 테마를 입힌 "실제 사이트" 화면 10개(site/themes/pages/<이름>.html)를 만든다.
 // 사용: node site/themes/gen.mjs  →  node site/build.mjs
 // 레퍼런스 A Themes 처럼 테마 하나가 완성된 사이트 한 장으로 보인다. 화면 구성은 회사 UI 패턴 갤러리(uipatterns web)의
-// 교육, 도서, 매거진, 커뮤니티, 커머스, 금융 서비스 메인 화면에서 yds 에 어울리는 것을 골라 DS 부품으로 다시 짰다. 서비스 이름과 내용은 모두 가상이다.
+// 교육, 도서, 매거진, 커뮤니티, 커머스, 금융 서비스 메인 화면에서 YDS 에 어울리는 것을 골라 DS 부품으로 다시 짰다. 서비스 이름과 내용은 모두 가상이다.
 // 테마가 바꾸는 것은 세 가지뿐이다: 브랜드 팔레트(brand 100~1000), 바탕과 면 색(bg/canvas, bg/layer-*), 모서리 노브(--ds-shape-scale).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -47,7 +47,7 @@ const themeCss = (t) => {
   const p = scale(t.brand);
   const line = (k, v) => `  ${k}: ${v};`;
   return `/* ==========================================================================
-   yds 테마 예시 (테스트용) - ${t.name} (${t.slug})
+   YDS 테마 예시 (테스트용) - ${t.name} (${t.slug})
    --------------------------------------------------------------------------
    ${t.desc}
 
@@ -104,7 +104,7 @@ const gnb = (name, menu, { end = '', search: q = '', cur = 0, sub = '' } = {}) =
 </div>${sub ? `<div class="th-wrap th-gnb__sub">${sub}</div>` : ''}</header>`;
 const foot = (name, links, note) => `<footer class="th-foot"><div class="th-wrap">
   <nav class="th-foot__links" aria-label="약관">${links.map((l, i) => `<a href="#"${i === 1 ? ' data-strong' : ''}>${esc(l)}</a>`).join('')}</nav>
-  <div class="th-foot__body"><p><b>${esc(name)}</b>이 화면은 yds 테마 예시예요. 회사 이름, 상품, 연락처는 모두 가상입니다.<br>${esc(note)}</p><p>© 2026 ${esc(name)}</p></div>
+  <div class="th-foot__body"><p><b>${esc(name)}</b>이 화면은 YDS 테마 예시예요. 회사 이름, 상품, 연락처는 모두 가상입니다.<br>${esc(note)}</p><p>© 2026 ${esc(name)}</p></div>
 </div></footer>`;
 const secHead = (title, { sub = '', more = '전체 보기', id = '' } = {}) => `<div class="th-sec__head"><div><h2${id ? ` id="${id}"` : ''}>${title}</h2>${sub ? `<p>${sub}</p>` : ''}</div>${more ? link(more + ' ' + icon('chevron-right', 'sm'), '#', '') : ''}</div>`;
 const tiles = (items, cls = '') => `<ul class="th-tiles${cls ? ' ' + cls : ''}">${items.map(([ic, t, tone]) => `<li><a href="#"><span class="th-tile">${art(ic, 28, tone || 'brand')}</span><span>${nl(t)}</span></a></li>`).join('')}</ul>`;
@@ -716,7 +716,7 @@ for (const t of THEMES) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(t.name)} 테마 - ${esc(t.site)} (yds 테마 예시)</title>
+<title>${esc(t.name)} 테마 - ${esc(t.site)} (YDS 테마 예시)</title>
 <!-- 생성물: node site/themes/gen.mjs 가 만든다. 직접 고치지 말고 생성기를 고친다 -->
 <link rel="stylesheet" href="../../../dist/ybm-ds.css">
 <link rel="stylesheet" href="../../../dist/themes/${t.slug}.css">

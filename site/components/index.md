@@ -2,7 +2,7 @@
 
 # Components
 
-화면을 구성하는 yds 컴포넌트입니다.
+화면을 구성하는 YDS 컴포넌트입니다.
 
 ## Action
 

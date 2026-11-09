@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// yds 전체 검사 - DS, 사이트, 템플릿, 마크다운이 서로 맞는지 한 번에 본다 (2026-11-04, 세션 임시 검사 6가지를 저장소로 옮김)
+// YDS 전체 검사 - DS, 사이트, 템플릿, 마크다운이 서로 맞는지 한 번에 본다 (2026-11-04, 세션 임시 검사 6가지를 저장소로 옮김)
 //   node tools/check.mjs            빠른 검사 (만들어진 파일 기준)
 //   node tools/check.mjs --regen    템플릿, 사이트, 토큰을 다시 만들어 바뀌는 파일이 없는지도 본다 (GitHub 자동 검사가 쓴다)
 //   node tools/check.mjs --live     라이브(GitHub Pages) 파일이 로컬과 같은지도 본다 (배포 1 ~ 2분 뒤)
@@ -193,7 +193,7 @@ check('5 싱크', ({ err }) => {
   for (const f of ['dist/components.css', 'dist/base.css', 'dist/utilities.css', 'dist/tokens.css', 'site/src/site.css']) if (/--ybm-/.test(read(f))) err(`예전 토큰 이름 --ybm- 이 남음 ${f}`);
   const ver = read('VERSION').trim();
   if (!/^\d+\.\d+\.\d+$/.test(ver)) err(`VERSION 이 x.y.z 모양이 아님: ${ver}`);
-  if (!entry.includes(`yds v${ver}`)) err(`dist/ybm-ds.css 머리 버전이 VERSION(${ver}) 과 다름`);
+  if (!entry.includes(`YDS v${ver}`)) err(`dist/ybm-ds.css 머리 버전이 VERSION(${ver}) 과 다름`);
   if (!read('dist/ybm-ds.js').includes(`version: "${ver}"`)) err(`dist/ybm-ds.js DS.version 이 VERSION(${ver}) 과 다름`);
 });
 

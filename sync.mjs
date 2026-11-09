@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// yds — 통합 동기화: Figma ↔ 로컬(ds/) ↔ GitHub(저장소 + Pages) ↔ 가이드 사이트
+// YDS — 통합 동기화: Figma ↔ 로컬(ds/) ↔ GitHub(저장소 + Pages) ↔ 가이드 사이트
 //
 //   node sync.mjs                  상태 보기 (검증 + git + 배포 주소)
 //   node sync.mjs figma            Figma 점검 스크립트 생성 → tokens/.figma-check.js
@@ -394,7 +394,7 @@ function docpageScript(slug, mode) {
     const reg0 = JSON.parse(read('components.json'));
     const { title, lead, blocks } = mdBlocks(read(pg.md));
     // Figma 파일에만 있는 안내: 이 파일의 페이지 (사이트 메뉴와 같은 순서)
-    const figmaPages = pg.keepVisuals || pg.json ? null : [['Get Started', 'yds 소개와 시작하는 방법'], ['Foundations', '색, 글자, 간격, 모서리, 그림자, 움직임, 기준점'], ['Iconography', 'Lucide 아이콘 라이브러리와 쓰는 법'], ['Action ~ Table & List', `컴포넌트 ${d.components.length}종. 사이트 Components 와 같은 분류 페이지`], ['Updates', 'yds 업데이트 소식. 사이트 Updates 와 같은 글']];
+    const figmaPages = pg.keepVisuals || pg.json ? null : [['Get Started', 'YDS 소개와 시작하는 방법'], ['Foundations', '색, 글자, 간격, 모서리, 그림자, 움직임, 기준점'], ['Iconography', 'Lucide 아이콘 라이브러리와 쓰는 법'], ['Action ~ Table & List', `컴포넌트 ${d.components.length}종. 사이트 Components 와 같은 분류 페이지`], ['Updates', 'YDS 업데이트 소식. 사이트 Updates 와 같은 글']];
     // 견본을 남기는 쪽(Foundations)은 '보기' 칸이 있는 토큰 표를 빼고 Figma 견본으로 보여 준다
     // '보기' 칸이 있는 토큰 표는 Figma 에서 견본을 그려 넣는다(글자 견본, 간격 막대, 모서리 상자, 그림자 카드) - 2026-11-05 사용자 "사이트와 섹션 순서 같게"
     let blocks2 = blocks;
@@ -507,14 +507,14 @@ async function release(ver, message) {
   fs.writeFileSync(path.join(DS, 'site/src/updates.json'), JSON.stringify(up, null, 2).replace(/\[\n\s+"(DS|템플릿|사이트)",\n\s+("[^"]*")\n\s+\]/g, '["$1", $2]') + '\n');
   fs.writeFileSync(path.join(DS, 'VERSION'), ver + '\n');
   const cssF = path.join(DS, 'dist/ybm-ds.css');
-  fs.writeFileSync(cssF, fs.readFileSync(cssF, 'utf8').replace(/yds v\d+\.\d+\.\d+/, 'yds v' + ver));
+  fs.writeFileSync(cssF, fs.readFileSync(cssF, 'utf8').replace(/YDS v\d+\.\d+\.\d+/, 'YDS v' + ver));
   const jsF = path.join(DS, 'dist/ybm-ds.js');
   fs.writeFileSync(jsF, fs.readFileSync(jsF, 'utf8').replace(/version: "\d+\.\d+\.\d+"/, `version: "${ver}"`));
   say(c.g(`  ✔ 버전 ${cur} → ${ver} (VERSION, dist/ybm-ds.css, dist/ybm-ds.js, Updates)`));
   const b2 = spawnSync(process.execPath, [path.join(DS, 'site/build.mjs')], { cwd: DS, stdio: 'inherit' });
   if (b2.status !== 0) die('사이트 만들기 실패');
-  await deploy(message || `yds v${ver}`);
-  git(['tag', '-a', 'v' + ver, '-m', `yds v${ver}`]);
+  await deploy(message || `YDS v${ver}`);
+  git(['tag', '-a', 'v' + ver, '-m', `YDS v${ver}`]);
   if (!flags.has('--no-push')) {
     const env = { ...process.env, GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'never' };
     const p = git(['push', '-q', 'origin', 'v' + ver], { allowFail: true, env, timeout: 60000 });
@@ -572,7 +572,7 @@ async function deploy(message) {
 
 // ── 명령 ─────────────────────────────────────────────────────────────────
 say();
-say(c.b(`  yds 동기화 · ${cmd}`));
+say(c.b(`  YDS 동기화 · ${cmd}`));
 say('  ------------------------------------------------');
 
 if (cmd === 'status') {

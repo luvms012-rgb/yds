@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// 브랜드별 전후 비교 (2026-11-09): 기준 버전의 yds 와 지금의 yds 에 같은 브랜드를 입혀 부품별로 화면을 비교한다.
+// 브랜드별 전후 비교 (2026-11-09): 기준 버전의 YDS 와 지금의 YDS 에 같은 브랜드를 입혀 부품별로 화면을 비교한다.
 //   node tools/brand-diff.mjs <브랜드> [기준 태그, 없으면 최신 태그]
-// 기준 버전의 미리보기(index.html)를 두 벌의 CSS 로 그리므로, 브랜드 화면에서 yds 변경 때문에 달라진 부품만 나온다.
+// 기준 버전의 미리보기(index.html)를 두 벌의 CSS 로 그리므로, 브랜드 화면에서 YDS 변경 때문에 달라진 부품만 나온다.
 // 결과는 .cache/brand-diff/<브랜드>/report.html (로컬 전용). 라이트와 다크를 모두 본다.
 import fs from 'node:fs';
 import os from 'node:os';
