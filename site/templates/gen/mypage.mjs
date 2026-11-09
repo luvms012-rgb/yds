@@ -84,7 +84,7 @@ const ITEMS = [
   ['book', 1, '처음 시작하는 기록 습관', '1권', '16,800원', '구매 확정', 'muted', ['다시 담기']],
   ['product', 4, '스테인리스 텀블러 500ml', '실버 / 2개', '38,000원', '상품 준비 중', '', ['주문 취소']],
 ];
-const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span class="tp-ostate"${tone ? ` data-tone="${tone}"` : ''}>${st}</span><span class="tp-h4">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
+const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span class="tp-ostate"${tone ? ` data-tone="${tone}"` : ''}>${st}</span><span class="tp-name">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
 
 /* 1. 마이페이지 홈 ------------------------------------------------ */
 const home = () => {
@@ -101,7 +101,7 @@ const home = () => {
       <div class="tp-rows">${ITEMS.slice(0, 3).map(oitem).join('')}</div>
     </section>
     <section class="tp-sec">${secHead('찜한 상품', { sub: '12개', tools: link('전체 보기') })}
-      <div class="tp-wish">${wish.map(([th, i, n, p]) => `<a href="#">${thumb('1:1', '', K.photo(th, i, 400), 'lg')}<span class="tp-stack" style="gap: 2px"><span class="tp-sub" style="color: var(--ds-color-fg-neutral)">${n}</span><span class="tp-h4 tp-num">${p}</span></span></a>`).join('')}</div>
+      <div class="tp-wish">${wish.map(([th, i, n, p]) => `<a href="#">${thumb('1:1', '', K.photo(th, i, 400), 'lg')}<span class="tp-stack" style="gap: 2px"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></span></a>`).join('')}</div>
     </section>`);
   return { slug: 'mypage-home', en: 'My Page Home', name: '마이페이지 홈', group: 'My Page', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
 };

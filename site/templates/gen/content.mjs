@@ -117,7 +117,7 @@ const orderDetail = () => {
 </header>
 <div class="tp-od">
   <main class="tp-content tp-wi__main">
-    <section class="tp-sec">${secHead(`<span class="tp-row">상품 ${badge('배송 준비 전', 'warning')}</span>`, { tools: `${btn('송장 출력', { ic: 'printer' })}${btn('배송 처리', { variant: 'neutralSolid' })}` })}<div>${items.map(([n, p, q]) => `<div class="tp-line">${thumb('1:1', '', K.photo('book', BK++, 240))}<div class="tp-stack"><span>${n}</span><span class="tp-caption tp-num">${p} × ${q}</span></div><span class="tp-num">${(parseInt(p.replace(/\D/g, '')) * q).toLocaleString()}원</span></div>`).join('')}</div></section>
+    <section class="tp-sec">${secHead(`<span class="tp-row">상품 ${badge('배송 준비 전', 'warning')}</span>`, { tools: `${btn('송장 출력', { ic: 'printer' })}${btn('배송 처리', { variant: 'neutralSolid' })}` })}<div>${items.map(([n, p, q]) => `<div class="tp-line">${thumb('1:1', '', K.photo('book', BK++, 240))}<div class="tp-stack"><span class="tp-name">${n}</span><span class="tp-caption tp-num">${p} × ${q}</span></div><span class="tp-amount">${(parseInt(p.replace(/\D/g, '')) * q).toLocaleString()}원</span></div>`).join('')}</div></section>
     <section class="tp-sec">${secHead('결제', { tools: badge('결제 완료', 'positive') })}${card(`${[['상품 금액', '89,000원'], ['배송비', '3,000원'], ['할인', '-2,500원']].map(([k, v]) => `<div class="tp-between"><span class="tp-sub">${k}</span>${T(v)}</div>`).join('')}${divider()}<div class="tp-between"><b>합계</b><b class="tp-num">89,500원</b></div>`)}</section>
     <section class="tp-sec">${secHead('활동')}<ol class="tp-tl">${acts.map(([t, d, w]) => `<li><div class="tp-stack"><span class="tp-h4">${t}</span><span class="tp-sub">${d}</span><span class="tp-caption">${w}</span></div></li>`).join('')}</ol></section>
   </main>

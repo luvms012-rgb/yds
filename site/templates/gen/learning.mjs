@@ -98,6 +98,7 @@ const player = () => {
   .tp-video__track > span { display: block; width: 38%; height: 100%; background: var(--ds-color-palette-static-white); }
   .tp-curr { display: flex; flex-direction: column; gap: var(--ds-space-x1); padding: var(--ds-space-x6) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-lesson { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; padding: var(--ds-space-x3); border-radius: var(--ds-shape-lg); color: inherit; text-decoration: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-lesson { font-weight: var(--ds-font-weight-medium); }
   .tp-lesson[aria-current] { background: var(--ds-color-bg-neutral-muted); font-weight: var(--ds-font-weight-semibold); }
   .tp-lesson .ds-icon { color: var(--ds-color-fg-neutral-subtle); }
   .tp-lesson[data-done] .ds-icon { color: var(--ds-color-fg-positive); }
@@ -176,7 +177,7 @@ const dash = () => {
   </div>
   <div class="tp-g2">
     ${card(`<div class="tp-between"><span class="tp-h3">부서별 필수 교육 이수율</span>${select('개인정보 보호 교육', { id: 'ld-must', aria: '필수 교육' })}</div><div class="tp-stack" style="gap: var(--ds-space-x4)">${deps.map(([d, v]) => meter(d, v, v + '%')).join('')}</div>`)}
-    ${card(`<div class="tp-between"><span class="tp-h3">마감이 다가오는 미이수자</span>${badge('224명', 'critical')}</div><p class="tp-sub">개인정보 보호 교육 마감까지 5일 남았어요.</p><div class="tp-rows">${[['오도윤', '생산본부', 20], ['윤채원', '고객경험팀', 0], ['한지아', '생산본부', 35], ['정민재', '경영지원', 10]].map(([n, d, v]) => `<div class="tp-due"><div class="tp-row">${avatar(n, 28)}<div class="tp-stack"><span>${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-caption tp-num">진도 ${v}%</span></div>`).join('')}</div>${btn('독려 알림 보내기', { variant: 'neutralSolid', ic: 'bell', fill: true })}`)}
+    ${card(`<div class="tp-between"><span class="tp-h3">마감이 다가오는 미이수자</span>${badge('224명', 'critical')}</div><p class="tp-sub">개인정보 보호 교육 마감까지 5일 남았어요.</p><div class="tp-rows">${[['오도윤', '생산본부', 20], ['윤채원', '고객경험팀', 0], ['한지아', '생산본부', 35], ['정민재', '경영지원', 10]].map(([n, d, v]) => `<div class="tp-due"><div class="tp-row">${avatar(n, 28)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-caption tp-num">진도 ${v}%</span></div>`).join('')}</div>${btn('독려 알림 보내기', { variant: 'neutralSolid', ic: 'bell', fill: true })}`)}
   </div>
   <div class="tp-g3">
     ${card(`<div class="tp-between"><span class="tp-h3">많이 들은 과정</span>${link('모두 보기')}</div>${table([['과정'], ['분야'], ['수강', 'right'], ['만족도', 'right']], top.map(([n, c, p, r]) => [n, badge(c), T(p), `<span class="tp-star">${icon('star-solid')}${r}</span>`]))}`, { cls: 'tp-span2' })}

@@ -19,7 +19,11 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-h3 { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.01em; }
   .tp-h4 { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); }
   .tp-sub { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
-  .tp-caption { font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); }
+  .tp-caption { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-regular); }
+  /* 리스트 글자 위계: 항목 제목은 굵게, 상품 이름은 보통 + 가격은 굵게, 부가 정보는 13 */
+  .tp-item-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
+  .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+  .tp-amount { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .tp-num { font-variant-numeric: tabular-nums; }
   /* 표는 DS Table 그대로 쓴다 (2026-11-03 DS 개편). 아래는 표 위, 아래 줄만 */
   /* 표 위 한 줄: 왼쪽 개수, 오른쪽 고르기 칸과 찾기 (커뮤니티 게시판 btools) */

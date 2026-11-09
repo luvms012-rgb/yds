@@ -108,7 +108,7 @@ const inbox = () => {
   <aside class="tp-read" aria-label="대화">
     <div class="tp-between"><h2 class="tp-h3">결제 페이지가 일부 해외 카드에서 오류가 나요</h2><div class="tp-row">${iconBtn('archive', '보관')}${iconBtn('folder-input', '폴더로 옮기기')}${iconBtn('trash', '삭제')}${iconBtn('x', '대화 닫기')}</div></div>
     <div class="tp-row" style="flex-wrap: wrap">${badge('긴급', 'critical')}${badge('결제', 'brand')}${badge('해외 카드')}${badge('답변 대기', 'warning')}</div>
-    <div>${K.accordion(msgs.map(([w, t, d, open]) => [`<span class="tp-row">${avatar(w)}<b>${w}</b><span class="tp-caption">${t}</span></span>`, `<p class="tp-sub">${d}</p>`, open]), '')}</div>
+    <div>${K.accordion(msgs.map(([w, t, d, open]) => [`<span class="tp-row">${avatar(w)}<span>${w}</span><span class="tp-caption">${t}</span></span>`, `<p class="tp-sub">${d}</p>`, open]), '')}</div>
     <div class="tp-row">${btn('답장', { variant: 'neutralSolid', ic: 'corner-down-right' })}${btn('전달', { ic: 'arrow-right' })}</div>
   </aside>
 </div>

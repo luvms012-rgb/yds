@@ -46,7 +46,7 @@ const CSS = FRAME_CSS + `
   .tp-item__chk { grid-area: chk; padding-top: 2px; }
   .tp-item__img { grid-area: img; }
   .tp-item__info { grid-area: info; display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
-  .tp-item__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral); text-decoration: none; }
+  .tp-item__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); color: var(--ds-color-fg-neutral); text-decoration: none; }
   .tp-item__opt { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); }
   .tp-item__del { grid-area: del; margin-top: -6px; }
   .tp-item__ctl { grid-area: ctl; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
@@ -54,7 +54,7 @@ const CSS = FRAME_CSS + `
   .tp-selbar .ds-checkbox { white-space: nowrap; }
   .tp-only-md { display: none; }
   .tp-price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-  .tp-price__was { font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); text-decoration: line-through; }
+  .tp-price__was { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); text-decoration: line-through; }
   .tp-price__now { display: flex; align-items: baseline; gap: var(--ds-space-x1); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); }
   .tp-off { color: var(--ds-color-fg-critical); }
   .tp-item[data-soldout] :is(.tp-item__img, .tp-item__name, .tp-price) { opacity: 0.4; }
@@ -88,7 +88,7 @@ const CSS = FRAME_CSS + `
   .tp-recs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x6) var(--ds-space-x4); }
   @media (min-width: 768px) { .tp-recs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .tp-rec { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
-  .tp-rec__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral); text-decoration: none; }
+  .tp-rec__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); color: var(--ds-color-fg-neutral); text-decoration: none; }
   /* 할인 없는 상품도 가격 줄 높이를 같게, 담기 버튼은 카드 맨 아래 한 줄로 */
   .tp-rec .tp-price { align-items: flex-start; gap: 0; margin-top: calc(-1 * var(--ds-space-x1)); }
   .tp-rec .tp-price__was { order: 2; }

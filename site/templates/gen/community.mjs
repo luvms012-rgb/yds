@@ -38,7 +38,7 @@ const CSS = FRAME_CSS + `
   .tp-post__body { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
   .tp-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .tp-who { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); min-width: 0; }
-  .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x3); font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); font-variant-numeric: tabular-nums; }
+  .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x3); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-variant-numeric: tabular-nums; }
   .tp-meta > span { display: inline-flex; align-items: center; gap: var(--ds-space-x1); }
   .tp-meta .ds-icon { --ds-icon-size: 14px; }
   .tp-cnt { margin-inline-start: var(--ds-space-x1); color: var(--ds-color-fg-brand); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
@@ -69,7 +69,7 @@ const home = () => {
     ['모임 모집', '토요일 아침 독서 모임 2명 더 모여요', '한 달에 한 권, 카페에서 두 시간 이야기 나눠요. 이번 달 책은 투표로 정해요.', '책읽는밤', '어제', '22', '7', '388', 2],
   ];
   const post = ([b, t, ex, n, time, like, cmt, view, ph]) => `<a class="tp-post${ph >= 0 ? ' tp-post--thumb' : ''}" href="#"><div class="tp-post__body">${who(n, time, { extra: badge(b) })}<span class="tp-h3">${t}</span><span class="tp-sub tp-clamp">${ex}</span>${meta(like, cmt, view)}</div>${ph >= 0 ? `<div class="tp-post__thumb">${thumb('1:1', '', K.photo('mix', ph, 320), 'lg')}</div>` : ''}</a>`;
-  const hot = (i, t, n, c) => `<a class="tp-hot" href="#">${thumb('4:3', '', K.photo('nature', i, 480), 'lg')}<div class="tp-stack"><span class="tp-h4 tp-clamp">${t}</span><span class="tp-caption">${n} / 댓글 ${T(c)}</span></div></a>`;
+  const hot = (i, t, n, c) => `<a class="tp-hot" href="#">${thumb('4:3', '', K.photo('nature', i, 480), 'lg')}<div class="tp-stack"><span class="tp-item-title tp-clamp">${t}</span><span class="tp-caption">${n} / 댓글 ${T(c)}</span></div></a>`;
   const css = CSS;
   const body = `<div class="tp-app">${topbar(MENU, 0, END)}
 <div class="tp-cm tp-cm--aside">
@@ -101,11 +101,11 @@ const board = () => {
   .tp-btools .ds-input { width: min(100%, 240px); }
   /* 글 목록: 모바일은 제목 + 한 줄 정보, 768 부터 칸을 나눈 표 모양. 줄 선은 줄 자체에 그린다(안쪽 바탕이 덮지 않게) */
   .tp-board { margin: 0; padding: 0; list-style: none; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-solid); }
-  .tp-board > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); font-variant-numeric: tabular-nums; }
+  .tp-board > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-variant-numeric: tabular-nums; }
   .tp-board > li[data-pinned] { background: var(--ds-color-bg-neutral-weak-alpha); }
   .tp-board > li.tp-board__head { display: none; }  /* 줄 규칙(.tp-board > li)보다 세게: !important 대신 선택자로 */
   .tp-board .c-no { display: none; }
-  .tp-board .c-title { order: -1; flex: 1 1 100%; display: flex; align-items: center; gap: var(--ds-space-x1_5); min-width: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral); }
+  .tp-board .c-title { order: -1; flex: 1 1 100%; display: flex; align-items: center; gap: var(--ds-space-x1_5); min-width: 0; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); color: var(--ds-color-fg-neutral); }
   .tp-board .c-title a { overflow: hidden; color: inherit; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
   .tp-board .c-title .ds-icon { flex: none; --ds-icon-size: 14px; color: var(--ds-color-fg-neutral-subtle); }
   .tp-board [data-pinned] .c-title { font-weight: var(--ds-font-weight-semibold); }
