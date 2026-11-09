@@ -17,7 +17,7 @@ const CSS = FRAME_CSS + `
 /* 1. 시험 신청 (한 화면에 단계별 묶음 + 고정 요약) ------------------- */
 const apply = () => {
   const css = CSS + `
-  .tp-ea { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, 1120px); margin-inline: auto; }
+  .tp-ea { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page)); margin-inline: auto; }
   @media (min-width: 1024px) { .tp-ea { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
   .tp-step-h { display: flex; align-items: center; gap: var(--ds-space-x3); }
   .tp-step-no { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); }

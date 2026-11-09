@@ -11,7 +11,7 @@ const won = (n) => T(n.toLocaleString('ko-KR') + '원');
 
 const CSS = FRAME_CSS + `
   /* 쇼핑 배치: 가운데 1200, 1024 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
-  .tp-shop { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, 1200px); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x16); }
+  .tp-shop { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
   .tp-shop__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
   /* 단계 표시: 장바구니 > 주문 결제 > 주문 완료 */
   .tp-steps { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); }

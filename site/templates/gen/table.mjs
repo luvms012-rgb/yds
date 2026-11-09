@@ -157,7 +157,7 @@ const tree = () => {
   .tp-tree-name a { color: var(--ds-color-fg-neutral); text-decoration: none; }
   .tp-tree-name a:hover { text-decoration: underline; }
   /* 커뮤니티와 같은 틀: 1280 가운데, 위 제목은 전체 폭, 아래는 본문 + 오른쪽 정보 280 */
-  .tp-repo { box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, 1280px); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x10); }
+  .tp-repo { box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x10); padding-inline: var(--tp-gutter); }
   .tp-repo__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
   .tp-repo__head > .tp-row { flex-wrap: wrap; }
   .tp-repo__main { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }

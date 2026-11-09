@@ -5,8 +5,8 @@ import { T, FRAME_CSS, selectbox } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, checkbox, radios, textarea, divider, link, esc } = K;
 
 const PR_CSS = FRAME_CSS + `
-  .tp-pr-wrap { box-sizing: border-box; width: min(100%, 1200px); margin-inline: auto; }
-  .tp-pr-narrow { box-sizing: border-box; width: min(100%, 720px); margin-inline: auto; }
+  .tp-pr-wrap { box-sizing: border-box; width: min(100%, var(--tp-page)); margin-inline: auto; }
+  .tp-pr-narrow { box-sizing: border-box; width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-pr-hero { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x3); text-align: center; }
   .tp-pr-period { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--ds-space-x2); }
   .tp-price { display: flex; align-items: baseline; gap: var(--ds-space-x1); }
@@ -109,7 +109,7 @@ const checkout = () => {
 `;
   const inp = (id, ph, attrs = '') => input(id, `placeholder="${esc(ph)}" ${attrs}`);
   const body = `<div class="tp-app"><main class="tp-content">
-  <div class="tp-pr-wrap tp-sub-pay" style="max-width: 1080px">
+  <div class="tp-pr-wrap tp-sub-pay">
     <div class="tp-sub-form">
       <div class="tp-stack" style="gap: var(--ds-space-x3)">${link('요금제 다시 고르기')}<h1 class="tp-h1">프로 요금제 시작하기</h1><p class="tp-sub">첫 7일은 무료예요. 무료 기간이 끝나기 하루 전에 알려 드려요.</p></div>
       ${divider()}

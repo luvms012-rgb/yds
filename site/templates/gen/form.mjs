@@ -28,7 +28,7 @@ const ITEMS = [['TOEIC 실전 모의고사 1000제', '교재 / 2권 세트', '38
 /* 1. 결제 폼 (긴 폼 + 고정 요약) -------------------------------- */
 const payment = () => {
   const css = FORM_CSS + `
-  .tp-pay { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, 1080px); margin-inline: auto; }
+  .tp-pay { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
   @media (min-width: 1024px) { .tp-pay { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-pay__aside { position: sticky; top: var(--ds-space-x6); } }
 `;
   const body = `<div class="tp-app"><main class="tp-content">
@@ -64,7 +64,7 @@ const payment = () => {
 /* 2. 결제 단계 (장바구니 → 결제) -------------------------------- */
 const checkoutWizard = () => {
   const css = FORM_CSS + `
-  .tp-cw { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, 1120px); margin-inline: auto; }
+  .tp-cw { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
   @media (min-width: 1024px) { .tp-cw { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-cw__aside { position: sticky; top: var(--ds-space-x6); } }
   .tp-cart { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--ds-space-x4); padding-block: var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-promo { display: flex; gap: var(--ds-space-x2); align-items: flex-end; }
@@ -91,7 +91,7 @@ const checkoutWizard = () => {
 /* 3. 문의 폼 ----------------------------------------------------- */
 const contact = () => {
   const css = FORM_CSS + `
-  .tp-contact { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, 800px); margin-inline: auto; padding-block: var(--ds-space-x8); }
+  .tp-contact { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-narrow)); margin-inline: auto; padding-block: var(--ds-space-x8); }
   .tp-why { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
   .tp-why > .ds-icon { color: var(--ds-color-fg-brand); }
   .tp-hero-t { font-size: var(--ds-font-size-t12); line-height: var(--ds-line-height-t12); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
@@ -150,7 +150,7 @@ const dialogWizard = () => {
 /* 5. 단계 폼 (가로 진행) ---------------------------------------- */
 const wizard = () => {
   const css = FORM_CSS + `
-  .tp-wz { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, 640px); margin-inline: auto; }
+  .tp-wz { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-wz-head { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 768px) { .tp-wz-head { padding: var(--ds-space-x6); } }
 `;
@@ -173,7 +173,7 @@ const wizard = () => {
 /* 6. 펼치는 단계 폼 (아코디언) ---------------------------------- */
 const inlineWizard = () => {
   const css = FORM_CSS + `
-  .tp-iw { width: min(100%, 720px); margin-inline: auto; }
+  .tp-iw { width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
   .tp-step { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--ds-space-x4); }
   .tp-step__rail { display: flex; flex-direction: column; align-items: center; }
@@ -197,7 +197,7 @@ ${head('자동 빌드 설정', { sub: '앞의 두 단계만 답하면 나머지�
 /* 7. 두 칸 폼 --------------------------------------------------- */
 const twoColumn = () => {
   const css = FORM_CSS + `
-  .tp-tc { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, 1120px); margin-inline: auto; padding-block: var(--ds-space-x6); }
+  .tp-tc { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; padding-block: var(--ds-space-x6); }
   .tp-tc__top { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: center; }
   @media (min-width: 1024px) { .tp-tc__top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .tp-hero-t { font-size: var(--ds-font-size-t12); line-height: var(--ds-line-height-t12); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
@@ -222,7 +222,7 @@ const vertical = () => {
   @media (min-width: 1024px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr) 320px; } }
   .tp-vw__steps { padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 1024px) { .tp-vw__steps { padding: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-vw__steps .ds-stepper { position: sticky; top: var(--ds-space-x6); } }
-  .tp-vw__main { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, 640px); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x12); }
+  .tp-vw__main { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--tp-gutter) var(--ds-space-x12); }
   .tp-vw__help { display: none; }
   @media (min-width: 1024px) { .tp-vw__help { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x6); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-num-input { max-width: 160px; }

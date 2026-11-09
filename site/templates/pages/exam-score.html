@@ -1,4 +1,11 @@
 <!doctype html>
+<!--
+세 사람 모두에게 좋아져야 해
+무엇을 결정하든 아래 셋이 동시에 좋아지는 방향으로 해줘.
+- UX: 쓰는 사람이 더 편하게
+- DX: 개발자가 더 쉽게 만들고 고칠 수 있게
+- AX: 나중에 이 코드를 다룰 AI도 더 쉽게 이해할 수 있게
+-->
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -8,6 +15,14 @@
 <script src="../../../dist/ybm-ds.js" defer></script>
 <style>
   /* 템플릿 배치 전용. 값은 모두 --ds-* 토큰
+  /* 좌우 기준 (2026-11-09 사용자 "좌우를 맞춰줘, 어중간하게 하지 말고"): 가운데 놓는 화면의 내용 폭은 --tp-page 1200, 글과 입력 한 줄 화면은 --tp-narrow 720 두 가지만 쓴다 */
+  :root { --tp-gutter: var(--ds-space-x4); --tp-page: 1200px; --tp-narrow: 720px; --tp-page-box: calc(var(--tp-page) + 2 * var(--tp-gutter)); --tp-narrow-box: calc(var(--tp-narrow) + 2 * var(--tp-gutter)); }
+  @media (min-width: 768px) { :root { --tp-gutter: var(--ds-space-x6); } }
+  /* 스크롤바: 양옆 세로줄이 생기는 트랙을 투명하게, 손잡이만 얇게 */
+  html { scrollbar-width: thin; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
+  /* 머리글도 내용과 같은 좌우선에 */
+  .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-tc, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
+  .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
      배치(여백, 카드, 구분선)는 레퍼런스 A 템플릿, 한글 글자 위계(크기, 굵기, 색 단계, 자간)는 토스를 따른다 */
   body { word-break: keep-all; overflow-wrap: break-word; }
   .tp-app { display: flex; flex-direction: column; min-height: 100vh; background: var(--ds-color-bg-layer-default); }
@@ -119,11 +134,12 @@
 
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-topbar > .ds-topnav { width: min(100%, 1200px); margin-inline: auto; background: none; }
+  .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
   .tp-topbar .ds-topnav__menu { display: none; }
   @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
-  .tp-wrap { width: min(100%, 1200px); margin-inline: auto; }
-  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, 1280px); margin-inline: auto; }
+  .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
+  .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
+  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   /* 옆 메뉴 화면 */
   .tp-app.tp-frame { flex-direction: row; min-height: 100vh; }
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }

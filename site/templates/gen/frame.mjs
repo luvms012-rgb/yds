@@ -7,11 +7,12 @@ export const T = (s) => `<span class="tp-num">${s}</span>`;
 export const FRAME_CSS = `
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-topbar > .ds-topnav { width: min(100%, 1200px); margin-inline: auto; background: none; }
+  .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
   .tp-topbar .ds-topnav__menu { display: none; }
   @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
-  .tp-wrap { width: min(100%, 1200px); margin-inline: auto; }
-  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, 1280px); margin-inline: auto; }
+  .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
+  .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
+  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   /* 옆 메뉴 화면 */
   .tp-app.tp-frame { flex-direction: row; min-height: 100vh; }
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }

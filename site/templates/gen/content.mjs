@@ -3,7 +3,7 @@ const { icon, btn, iconBtn, badge, card, head, secHead, search, divider, thumb, 
 const T = (s) => `<span class="tp-num">${s}</span>`;
 
 const DOC_CSS = `
-  .tp-doc { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, 880px); margin-inline: auto; }
+  .tp-doc { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-doc-title { font-size: var(--ds-font-size-t12); line-height: var(--ds-line-height-t12); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
   .tp-doc p { font-size: var(--ds-font-size-t05); line-height: 28px; }
   .tp-demo { display: grid; place-items: center; min-height: 180px; padding: var(--ds-space-x6); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral-subtle); }
@@ -132,7 +132,7 @@ const orderDetail = () => {
 /* 6. 상품 상세 -------------------------------------------------- */
 const productDetail = () => {
   const css = `
-  .tp-pd { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, 1180px); margin-inline: auto; }
+  .tp-pd { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
   @media (min-width: 1024px) { .tp-pd { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
   .tp-pd__media { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--ds-space-x2); }

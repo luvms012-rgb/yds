@@ -10,7 +10,7 @@ const BOARDS = [['전체글', 'list'], ['인기글', 'star-solid'], ['공지사�
 
 const CSS = FRAME_CSS + `
   /* 커뮤니티 배치: 모바일 1열, 1024 부터 게시판 메뉴 220 | 본문, 1280 부터 오른쪽 칸 300 */
-  .tp-cm { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, 1280px); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); }
+  .tp-cm { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); padding-inline: var(--tp-gutter); }
   .tp-cm__main { display: flex; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; }
   .tp-cm__nav, .tp-cm__aside { display: none; }
   .tp-cm__chips { overflow-x: auto; scrollbar-width: none; }
@@ -208,7 +208,7 @@ const post = () => {
 /* 4. 글쓰기 ----------------------------------------------------- */
 const write = () => {
   const css = CSS + `
-  .tp-cm--one { max-width: 800px; }
+  .tp-cm--one { max-width: var(--tp-narrow-box); }
   .tp-wform { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
   .tp-wpick { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
   @media (min-width: 768px) { .tp-wpick { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -220,7 +220,7 @@ const write = () => {
   .tp-opts > label { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding-block: var(--ds-space-x3); }
   .tp-opts > label + label { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-wbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; justify-content: flex-end; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-wbar__in { display: flex; justify-content: space-between; align-items: center; gap: var(--ds-space-x2); width: min(100%, 752px); margin-inline: auto; }
+  .tp-wbar__in { display: flex; justify-content: space-between; align-items: center; gap: var(--ds-space-x2); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
 `;
   const img = (i, name, main) => `<div class="ds-fileitem" data-type="image"><img class="ds-fileitem__image" src="${K.photo('nature', i, 240)}" alt="${name}">${main ? '<span class="ds-fileitem__badge">대표</span>' : ''}<button type="button" class="ds-fileitem__remove" aria-label="${name} 빼기">${icon('x')}</button></div>`;
   const body = `<div class="tp-app">${topbar(MENU, 1, END)}

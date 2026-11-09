@@ -4,7 +4,7 @@ const { icon, btn, tabs, divider } = K;
 // 사진 자리: 회색 한 가지 바탕 + 사진 아이콘 (여러 색을 쓰지 않는다, 실제 사진은 서비스에서 넣는다)
 const ph = (ratio, i = 0, cls = '', theme = 'mix') => `<div class="ds-imageframe tp-photo${cls ? ' ' + cls : ''}"${ratio ? ` data-ratio="${ratio}"` : ''} aria-hidden="true"><span class="tp-ph"><img src="${K.photo(theme, i, 1200)}" alt="" loading="lazy"></span></div>`;
 const CSS = `
-  .tp-gal { display: flex; flex-direction: column; gap: var(--ds-space-x10); width: min(100%, 1200px); margin-inline: auto; padding: var(--ds-space-x10) var(--ds-space-x4) var(--ds-space-x16); }
+  .tp-gal { display: flex; flex-direction: column; gap: var(--ds-space-x10); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x10) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
   @media (min-width: 768px) { .tp-gal { padding: var(--ds-space-x16) var(--ds-space-x6) var(--ds-space-x24); } }
   .tp-hero-t { font-size: var(--ds-font-size-t12); line-height: var(--ds-line-height-t12); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
   @media (min-width: 1024px) { .tp-hero-t { font-size: var(--ds-font-size-t14); line-height: var(--ds-line-height-t14); } }

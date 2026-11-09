@@ -15,7 +15,7 @@ const NAV_FLAT = NAV.flatMap(([, items]) => items.map(([t]) => t));
 
 const CSS = FRAME_CSS + `
   /* 마이페이지 배치: 모바일 1열 + 위 칩 메뉴, 1024 부터 왼쪽 메뉴 200 | 본문 (커뮤니티와 같은 칸, 여백) */
-  .tp-mp { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, 1200px); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); }
+  .tp-mp { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); padding-inline: var(--tp-gutter); }
   .tp-mp__main { display: flex; flex-direction: column; gap: var(--ds-space-x10); min-width: 0; }
   .tp-mp__nav { display: none; }
   .tp-mp__chips { overflow-x: auto; scrollbar-width: none; }
