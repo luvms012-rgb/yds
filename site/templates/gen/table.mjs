@@ -47,8 +47,8 @@ const filter = () => {
   .tp-ftable th:nth-child(2) { width: 40%; }
 `;
   const body = `<div class="tp-app">
-<main class="tp-content tp-tpage" aria-label="현장 작업">
-  <header class="tp-tpage__head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">현장 작업</h1></div><div class="tp-row">${btn('내보내기', { ic: 'download' })}${btn('작업 만들기', { variant: 'neutralSolid', ic: 'plus' })}</div></header>
+<main class="tp-content tp-tpage" aria-label="작업">
+  <header class="tp-tpage__head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">작업</h1></div><div class="tp-row">${btn('내보내기', { ic: 'download' })}${btn('작업 만들기', { variant: 'neutralSolid', ic: 'plus' })}</div></header>
   <div class="tp-stack" style="gap: var(--ds-space-x3)">
     ${K.chiptabs(['전체 55', '예정 18', '진행 21', '완료 12', '대기 4'], 0, '상태')}
     <div class="tp-ttools"><span class="tp-sub">작업 ${T('55')}개 / ${link('조건 지우기')}</span><div class="tp-ttools__end">${K.even(select('모든 우선순위', { aria: '우선순위' }) + select('모든 담당자', { aria: '담당자' }) + select('지점 3곳', { aria: '지점' }) + select('이번 주', { aria: '기간' }) + search('q', '작업 찾기'))}</div></div>
