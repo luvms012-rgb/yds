@@ -1,0 +1,28 @@
+/* yds 브랜드 TOEIC: brands/toeic.json 으로 만든 파일입니다. 직접 고치지 말고 원본을 고친 뒤 node tools/brands.mjs 를 돌립니다.
+   <html data-ds-brand="toeic"> 에 dist/ybm-ds.css 다음에 불러옵니다. */
+
+:root[data-ds-brand="toeic"] {
+  --ds-color-palette-brand-100: #edf4ff;
+  --ds-color-palette-brand-200: #d2e4fe;
+  --ds-color-palette-brand-300: #a9ccfd;
+  --ds-color-palette-brand-400: #76abf7;
+  --ds-color-palette-brand-500: #458bed;
+  --ds-color-palette-brand-600: #1670df;
+  --ds-color-palette-brand-700: #0c5fc1;
+  --ds-color-palette-brand-800: #064da0;
+  --ds-color-palette-brand-900: #104182;
+  --ds-color-palette-brand-1000: #0e294e;
+}
+
+:root[data-ds-brand="toeic"][data-theme="dark"] {
+  --ds-color-palette-brand-100: #0e294e;
+  --ds-color-palette-brand-200: #0e4080;
+  --ds-color-palette-brand-300: #024a9d;
+  --ds-color-palette-brand-400: #065bbe;
+  --ds-color-palette-brand-500: #0f6cda;
+  --ds-color-palette-brand-600: #3f86e7;
+  --ds-color-palette-brand-700: #6fa4f0;
+  --ds-color-palette-brand-800: #9fc3f6;
+  --ds-color-palette-brand-900: #c4dafa;
+  --ds-color-palette-brand-1000: #ddeafb;
+}

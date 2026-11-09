@@ -26,6 +26,7 @@ jobs:
         run: |
           DATE=$(grep -o '생성: [0-9-]*' tokens/tokens.js | head -1 | cut -d' ' -f2)
           node tokens/build.mjs $DATE
+          node tools/brands.mjs
           node site/templates/gen/run.mjs
           node site/build.mjs
       - name: 바뀐 생성물 자동 커밋

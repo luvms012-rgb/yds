@@ -10,6 +10,7 @@
 //   3 템플릿    템플릿 67종과 컴포넌트 예시를 site/ai/yds-check.mjs 로 검사 (서비스 화면과 같은 규칙)
 //   4 마크다운  .md 위치, 머리 주소, 화면 코드와 예시 코드가 글자 그대로 있는지, .md 링크, llms 주소
 //   5 싱크      components.json, components.css 머리 주석, README, index.html, 사이트 페이지, 템플릿 목록, 진입 파일, 이름
+//   5-2 브랜드  brands/*.json 이 허용된 값만 쓰는지, dist/brands 가 원본과 같은지, 글자 대비
 //   6 새 컴포넌트  컴포넌트마다 넣어야 하는 9곳이 다 있는지 (README "새 컴포넌트 넣기")
 //   7 빌드 경고  site/build.mjs 의 "!" 경고 (부품 설명, 한글 찾기 낱말, 아이콘 쓰임 등)
 import fs from 'node:fs';
@@ -18,6 +19,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { loadBrands, brandCss, contrastOf } from './brands.mjs';
 
 const R = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = path.join(R, 'site');
@@ -60,7 +62,7 @@ if (flags.has('--regen')) {
     const snap = () => Object.fromEntries(tracked().filter((f) => fs.existsSync(path.join(R, f))).map((f) => [f, crypto.createHash('sha1').update(fs.readFileSync(path.join(R, f))).digest('hex')]));
     const before = snap();
     const date = (read('tokens/tokens.js').match(/생성: (\d{4}-\d{2}-\d{2})/) || [])[1];
-    for (const [label, args] of [['토큰', ['tokens/build.mjs', ...(date ? [date] : [])]], ['템플릿', ['site/templates/gen/run.mjs']], ['사이트', ['site/build.mjs']]]) {
+    for (const [label, args] of [['토큰', ['tokens/build.mjs', ...(date ? [date] : [])]], ['브랜드', ['tools/brands.mjs']], ['템플릿', ['site/templates/gen/run.mjs']], ['사이트', ['site/build.mjs']]]) {
       const r = node(args);
       if (r.status !== 0) err(`${label} 만들기 실패: ${(r.stderr || r.stdout).trim().split('\n').slice(-3).join(' / ')}`);
     }
@@ -208,6 +210,21 @@ check('5-1 선 색', ({ err }) => {
     const t = fs.readFileSync(path.join(SITE, 'templates/gen', f), 'utf8');
     for (const m of t.matchAll(/inset 0 0 0 1px var\(--ds-color-(stroke-neutral(?:-[a-z]+)?)\)/g)) if (m[1] !== OUTLINE && m[1] !== 'stroke-neutral-contrast') err(`템플릿 ${f} 바깥 테두리 ${m[1]} (모두 ${OUTLINE})`);
   }
+});
+
+// 5-2. 브랜드 층 (2026-11-09): 브랜드는 허용된 값만 바꾸고, dist/brands 는 손으로 고치지 않는다
+check('5-2 브랜드', ({ err, warn }) => {
+  const tokens = read('dist/tokens.css');
+  const brands = loadBrands();
+  for (const { slug, brand, errors } of brands) {
+    if (errors.length) { err(`브랜드 ${slug}: ${errors.join(', ')}`); continue; }
+    const out = `dist/brands/${slug}.css`;
+    if (!fs.existsSync(path.join(R, out))) err(`${out} 이 없음 (node tools/brands.mjs)`);
+    else if (read(out) !== brandCss(slug, brand)) err(`${out} 이 원본과 다름 (원본을 고치고 node tools/brands.mjs)`);
+    for (const r of contrastOf(brand, tokens)) if (r.level !== '통과') (r.level === '오류' ? err : warn)(`브랜드 ${slug} ${r.mode === 'light' ? '라이트' : '다크'} ${r.label} 대비 ${r.ratio ? r.ratio.toFixed(2) : '계산 못 함'}`);
+  }
+  const dir = path.join(R, 'dist/brands');
+  if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir)) if (!brands.some((b) => b.slug + '.css' === f)) err(`dist/brands/${f} 의 원본이 brands/ 에 없음`);
 });
 
 // 6. 새 컴포넌트 9곳

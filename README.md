@@ -232,6 +232,13 @@ gray `00/100~1000`, brand, blue, red, green, yellow, orange, purple `100~1000`, 
 - 쓰는 법: DS 다음에 테마 파일을 붙이고 `<html data-ds-theme="trust">`. 토큰이 :root에서 값이 정해지므로 테마는 html 에만 단다(영역 단위 테마 없음). 다크는 테마 파일 안 `[data-theme="dark"]` 블록이 맡는다.
 - 사이트 Themes 메뉴에서 테마를 입힌 실제 사이트 화면으로 비교해 볼 수 있다(`site/themes/gen.mjs`, 선명 화면은 `site/themes/vivid.mjs`).
 
+#### 브랜드 - `brands/<브랜드>.json` → `dist/brands/<브랜드>.css` (2026-11-09)
+- yds 는 뿌리 하나만 두고, 브랜드는 yds 와 다른 값만 적은 파일 하나로 얹는다. 적지 않은 값은 모두 yds 를 따라가므로 yds 가 바뀌어도 병합할 것이 없다.
+- 쓰는 법: `<html data-ds-brand="브랜드">` 에 `dist/ybm-ds.css` 다음 `dist/brands/브랜드.css`.
+- 바꿀 수 있는 값: 브랜드 색(`color` 하나 또는 `palette` 10단계), 브랜드 버튼 위 글자색, 바탕과 면 색, 모서리 배수, 글꼴. 형식은 `tools/brands.mjs` 머리 주석. 부품 구조, 간격, 접근성 규칙은 브랜드에서 바꾸지 않는다. 꼭 필요한 예외는 yds 선택지로 넣어 모든 브랜드가 함께 쓴다.
+- 새 브랜드: `brands/` 에 파일을 더하고 `node tools/brands.mjs`. 생성물은 손으로 고치지 않는다. `node sync.mjs check` 의 "5-2 브랜드" 가 허용 값, 생성물, 글자 대비를 본다(라이트 브랜드 버튼 글자 4.5 미만이나 어느 조합이든 3 미만은 오류, 그 밖의 4.5 미만은 주의).
+- yds 변경의 반영: 화면이 바뀌지 않는 수정은 자동, 화면이 바뀔 수 있는 변경은 Updates "확인할 변경" 으로 적고 `node tools/brand-diff.mjs <브랜드> [기준 태그]` 로 부품별 전후를 비교한 뒤 `node sync.mjs release x.y.z`. 브랜드 파일도 같은 태그로 고정해 쓸 수 있다(jsDelivr `@v버전/dist/brands/...`).
+
 #### AI 용 마크다운 (2026-11-03)
 - 사이트의 시작하기, Foundations, 컴포넌트 문서는 같은 주소의 `.md` 로도 나온다(`site/md.mjs`, 빌드 때 생성). 전체 목차 `site/llms.txt`, 전체 한 파일 `site/llms-full.txt` (llmstxt.org 방식). 각 페이지 제목 아래 Markdown 메뉴에서 링크 복사, 내용 복사. `llms.txt` 끝에는 템플릿 HTML 원본 목록(Templates)과 테마 CSS 목록(Themes)도 붙는다. 시작하기 첫 화면의 AI 요청 문구도 llms.txt를 읽게 한다.
 

@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as K from '../templates/gen/kit.mjs';
+import { STEPS, hex2rgb, rgb2hex, mix, scale } from '../../tools/palette.mjs';
 const { esc, icon, btn, iconBtn, badge, photo, input, search, select, chip, tabs, table, accordion, pagination, progress, callout, link, segmented, sw } = K;
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -15,15 +16,7 @@ const OUT = path.join(HERE, 'pages');
 const LUCIDE = JSON.parse(fs.readFileSync(path.join(HERE, '..', 'src', 'lucide-icons.json'), 'utf8')).icons;
 
 // ── 색 ────────────────────────────────────────────────────────────────────
-const hex2rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-const rgb2hex = (c) => '#' + c.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
-const mix = (a, b, t) => rgb2hex(hex2rgb(a).map((v, i) => v + (hex2rgb(b)[i] - v) * t));
-// 600 단계 색 하나로 100~1000 팔레트를 만든다 (밝은 쪽은 흰색, 어두운 쪽은 검정과 섞는다)
-const scale = (base) => ({
-  100: mix(base, '#ffffff', 0.92), 200: mix(base, '#ffffff', 0.84), 300: mix(base, '#ffffff', 0.7), 400: mix(base, '#ffffff', 0.5), 500: mix(base, '#ffffff', 0.26),
-  600: base, 700: mix(base, '#000000', 0.16), 800: mix(base, '#000000', 0.32), 900: mix(base, '#000000', 0.5), 1000: mix(base, '#000000', 0.68),
-});
-const STEPS = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+// (색 계산은 tools/palette.mjs, 브랜드 생성기와 함께 쓴다)
 
 // ── 테마 열 ───────────────────────────────────────────────────────────────
 // brand: 600 단계 색 · canvas/layer: 라이트 바탕과 면 · dark: 다크 바탕과 면 · shape: 모서리 노브 · site: 예시 사이트 이름
