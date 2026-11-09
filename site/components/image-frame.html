@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=ca1ea584">
+<link rel="stylesheet" href="../assets/site.css?v=284005c5">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=ca1ea584" defer></script>
+<script src="../assets/site.js?v=284005c5" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -125,7 +125,7 @@
 <div class="site-toc-select"><button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-controls="site-toc-list" aria-label="이 페이지 목차" data-site-toc><span class="ds-select__value">사용법</span></button><div class="ds-select-content site-toc-list" id="site-toc-list" role="listbox" data-size="medium" hidden><ul class="ds-select-list"><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="usage" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">사용법</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="anatomy"><span class="ds-select-item__body"><span class="ds-select-item__label">구조</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="props"><span class="ds-select-item__body"><span class="ds-select-item__label">속성</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="guide"><span class="ds-select-item__body"><span class="ds-select-item__label">사용 지침</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="examples"><span class="ds-select-item__body"><span class="ds-select-item__label">예시</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="spec"><span class="ds-select-item__body"><span class="ds-select-item__label">규격</span></span></button></li></ul></div></div>
 </header>
 <div class="site-tile__thumb site-cover" data-site-fit-max="2" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><div class="ds-imageframe" data-ratio="4:3" data-stroke style="width:280px"><span style="display:grid;place-items:center;height:100%;background:var(--ds-color-bg-layer-default);color:var(--ds-color-fg-neutral-subtle)"><i class="ds-icon ds-icon--image ds-icon--lg" aria-hidden="true"></i></span><div class="ds-imageframe__floater" data-position="bottom-end"><span class="ds-imageframe__indicator">1/5</span></div></div></div></div></div>
-<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 씁니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
+<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 사용합니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-imageframe&quot;</span> <span class="hl-f">data-ratio</span>=<span class="hl-s">&quot;4:3&quot;</span> <span class="hl-f">[data-radius</span>=<span class="hl-s">&quot;lg&quot;</span>] [data-stroke]&gt;
   &lt;<span class="hl-t">img</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;…&quot;</span> <span class="hl-f">alt</span>=<span class="hl-s">&quot;…&quot;</span>&gt;
@@ -136,10 +136,10 @@
   <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=640&q=70" alt="산으로 둘러싸인 호수">
   <div class="ds-imageframe__floater" data-position="bottom-end"><span class="ds-imageframe__indicator">1/5</span></div>
 </div></div></div></div></div><div class="site-anatomy-table"><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
-<thead><tr><th scope="col">부품</th><th scope="col">설명</th></tr></thead>
+<thead><tr><th scope="col">구성 요소</th><th scope="col">설명</th></tr></thead>
 <tbody><tr><td><span class="site-anatomy__part"><b>Floater</b> <code>ds-imageframe__floater</code></span></td><td>사진 위에 떠 있는 버튼이나 배지입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Indicator</b> <code>ds-imageframe__indicator</code></span></td><td>여러 장 가운데 지금 보는 사진을 알려 주는 표시입니다.</td></tr></tbody></table></div></div>
-<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 씁니다.</p><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
+<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 사용합니다.</p><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">속성</th><th scope="col">값</th></tr></thead>
 <tbody><tr><td><code>ratio</code></td><td><span class="ds-badge">1:1</span> <span class="ds-badge">4:3</span> <span class="ds-badge">16:9</span></td></tr>
 <tr><td>켜고 끄는 속성</td><td><code>stroke</code> <code>indicator</code></td></tr></tbody></table></div>
@@ -149,7 +149,7 @@
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>터치 화면에서는 넘기기 버튼 없이 손가락으로 넘깁니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<a class="site-anchor" href="#examples" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><h3>목록 썸네일을 같은 비율로 맞추기</h3>
-<p>목록 썸네일은 1:1 틀에 사진을 꽉 채워 넣어, 올린 사진의 비율이 달라도 줄이 가지런합니다. 작은 썸네일에는 <code>data-radius=&quot;md&quot;</code>처럼 작은 모서리를 씁니다.</p>
+<p>목록 썸네일은 1:1 틀에 사진을 꽉 채워 넣어, 올린 사진의 비율이 달라도 줄이 가지런합니다. 작은 썸네일에는 <code>data-radius=&quot;md&quot;</code>처럼 작은 모서리를 사용합니다.</p>
 <div class="site-example">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><ul class="ds-list u-full" data-divider style="max-width: 420px">
@@ -237,7 +237,7 @@
 </figure></div>
 </div>
 <h3>흰 바탕 사진에는 테두리 두르기</h3>
-<p>흰 바탕 상품 사진은 <code>data-stroke</code>로 옅은 테두리를 둘러 화면 바탕과 경계를 만듭니다. 사진과 화면이 같은 색이라 사진이 어디서 끝나는지 알기 어려울 때 씁니다.</p>
+<p>흰 바탕 상품 사진은 <code>data-stroke</code>로 옅은 테두리를 둘러 화면 바탕과 경계를 만듭니다. 사진과 화면이 같은 색이라 사진이 어디서 끝나는지 알기 어려울 때 사용합니다.</p>
 <div class="site-example">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-flex u-gap-3 u-full" style="max-width: 420px">

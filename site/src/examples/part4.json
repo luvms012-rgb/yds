@@ -2,13 +2,13 @@
   "snackbar": [
     {
       "title": "저장한 결과를 짧게 알리기",
-      "desc": "저장 버튼을 누르면 화면 아래에 결과를 한 줄로 알립니다. 4초 뒤 저절로 사라지므로 사용자가 닫지 않아도 되는 알림에 씁니다.",
+      "desc": "저장 버튼을 누르면 화면 아래에 결과를 한 줄로 알립니다. 4초 뒤 저절로 사라지므로 사용자가 닫지 않아도 되는 알림에 사용합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-5\" style=\"width: 100%; max-width: 360px\">\n  <div class=\"ds-field\">\n    <div class=\"ds-field__header\">\n      <label class=\"ds-field__label\" for=\"snackbar-ex1-name\">닉네임</label>\n    </div>\n    <div class=\"ds-input\" data-variant=\"outline\">\n      <input class=\"ds-input__control\" id=\"snackbar-ex1-name\" value=\"하늘빛공부\">\n    </div>\n    <div class=\"ds-field__footer\">\n      <p class=\"ds-field__help\">게시판과 댓글에 보이는 이름이에요.</p>\n    </div>\n  </div>\n  <button type=\"button\" class=\"ds-btn\" data-size=\"large\" data-width=\"fill\" onclick=\"DS.snackbar('저장했어요', { variant: 'positive' })\">저장</button>\n</div>"
     },
     {
       "title": "지운 직후 되돌릴 기회 주기",
-      "desc": "알림을 지우면 되돌리기 버튼 하나를 붙여 알립니다. 확인 창으로 흐름을 막지 않으면서 실수를 바로잡을 길을 남길 때 씁니다.",
+      "desc": "알림을 지우면 되돌리기 버튼 하나를 붙여 알립니다. 확인 창으로 흐름을 막지 않으면서 실수를 바로잡을 길을 남길 때 사용합니다.",
       "wide": true,
       "html": "<ul class=\"ds-list\" data-variant=\"inset\" data-divider style=\"width: 100%; max-width: 420px\">\n  <li>\n    <div class=\"ds-list-item\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">주문한 상품이 출발했어요</span>\n        <span class=\"ds-list-item__desc\">오늘 오전 9:12</span>\n      </span>\n      <span class=\"ds-list-item__suffix\">\n        <button type=\"button\" class=\"ds-btn\" data-variant=\"ghost\" data-size=\"small\" data-layout=\"iconOnly\" aria-label=\"알림 지우기\" onclick=\"DS.snackbar('알림을 지웠어요', { action: '되돌리기' })\"><i class=\"ds-icon ds-icon--trash\" aria-hidden=\"true\"></i></button>\n      </span>\n    </div>\n  </li>\n  <li>\n    <div class=\"ds-list-item\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">할인 쿠폰이 3일 뒤 사라져요</span>\n        <span class=\"ds-list-item__desc\">어제 오후 6:30</span>\n      </span>\n      <span class=\"ds-list-item__suffix\">\n        <button type=\"button\" class=\"ds-btn\" data-variant=\"ghost\" data-size=\"small\" data-layout=\"iconOnly\" aria-label=\"알림 지우기\" onclick=\"DS.snackbar('알림을 지웠어요', { action: '되돌리기' })\"><i class=\"ds-icon ds-icon--trash\" aria-hidden=\"true\"></i></button>\n      </span>\n    </div>\n  </li>\n  <li>\n    <div class=\"ds-list-item\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">1:1 문의에 답변이 달렸어요</span>\n        <span class=\"ds-list-item__desc\">11월 2일</span>\n      </span>\n      <span class=\"ds-list-item__suffix\">\n        <button type=\"button\" class=\"ds-btn\" data-variant=\"ghost\" data-size=\"small\" data-layout=\"iconOnly\" aria-label=\"알림 지우기\" onclick=\"DS.snackbar('알림을 지웠어요', { action: '되돌리기' })\"><i class=\"ds-icon ds-icon--trash\" aria-hidden=\"true\"></i></button>\n      </span>\n    </div>\n  </li>\n</ul>"
     },
@@ -62,7 +62,7 @@
     },
     {
       "title": "카드 안 기능 하나를 라벨과 함께 켜기",
-      "desc": "카드 안에서 자동 연장 같은 기능 하나를 라벨 붙은 Switch로 켜고 끕니다. 켜는 순간 적용되고 언제든 다시 끌 수 있는 기능에 씁니다.",
+      "desc": "카드 안에서 자동 연장 같은 기능 하나를 라벨 붙은 Switch로 켜고 끕니다. 켜는 순간 적용되고 언제든 다시 끌 수 있는 기능에 사용합니다.",
       "wide": true,
       "html": "<article class=\"ds-card\" style=\"width: 100%; max-width: 360px\">\n  <header class=\"ds-card__header\">\n    <h3 class=\"ds-card__title\">프리미엄 이용권</h3>\n    <p class=\"ds-card__desc\">다음 결제일 12월 4일</p>\n  </header>\n  <div class=\"ds-card__content\">\n    <label class=\"ds-switch u-full u-between\">\n      <span class=\"ds-switch__label\">자동 연장</span>\n      <input type=\"checkbox\" role=\"switch\" class=\"ds-switch__control\" checked>\n    </label>\n  </div>\n</article>"
     },
@@ -87,15 +87,15 @@
       "html": "<div class=\"ds-table-wrap\">\n  <table class=\"ds-table\">\n    <thead>\n      <tr>\n        <th scope=\"col\" data-align=\"center\" style=\"width: 120px\">결제일</th>\n        <th scope=\"col\">내용</th>\n        <th scope=\"col\" style=\"width: 120px\">결제 수단</th>\n        <th scope=\"col\" data-align=\"end\" style=\"width: 120px\">금액</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td data-align=\"center\">2026.11.02</td>\n        <td><span class=\"ds-table__stack\"><span>비즈니스 영어 회화</span><span>수강권 3개월</span></span></td>\n        <td>신용카드</td>\n        <td data-align=\"end\">89,000원</td>\n      </tr>\n      <tr>\n        <td data-align=\"center\">2026.10.20</td>\n        <td><span class=\"ds-table__stack\"><span>엑셀 실무 완성</span><span>단과 강의</span></span></td>\n        <td>포인트</td>\n        <td data-align=\"end\">45,000원</td>\n      </tr>\n      <tr>\n        <td data-align=\"center\">2026.10.05</td>\n        <td><span class=\"ds-table__stack\"><span>기초 회계 원리</span><span>패키지 2개</span></span></td>\n        <td>계좌 이체</td>\n        <td data-align=\"end\">120,000원</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
     },
     {
-      "title": "결과가 없으면 머리 줄 아래에 빈 안내",
-      "desc": "찾은 결과가 없으면 머리 줄은 그대로 두고 그 아래에 Empty(small)를 표 전체 폭으로 둡니다. 어떤 열을 찾고 있었는지 남아 있어 조건을 바꿔 다시 찾기 쉽습니다.",
+      "title": "결과가 없으면 헤더 행 아래에 빈 안내",
+      "desc": "찾은 결과가 없으면 헤더 행은 그대로 두고 그 아래에 Empty(small)를 표 전체 폭으로 둡니다. 어떤 열을 찾고 있었는지 남아 있어 조건을 바꿔 다시 찾기 쉽습니다.",
       "wide": true,
       "html": "<div class=\"ds-table-wrap\">\n  <table class=\"ds-table\">\n    <thead>\n      <tr>\n        <th scope=\"col\" data-align=\"center\" style=\"width: 72px\">번호</th>\n        <th scope=\"col\">제목</th>\n        <th scope=\"col\" data-align=\"center\" style=\"width: 112px\">상태</th>\n        <th scope=\"col\" data-align=\"center\" style=\"width: 120px\">문의일</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td colspan=\"4\">\n          <div class=\"ds-empty\" data-size=\"small\">\n            <span class=\"ds-empty__media\"><i class=\"ds-icon ds-icon--search\" aria-hidden=\"true\"></i></span>\n            <p class=\"ds-empty__title\">찾는 문의가 없어요</p>\n            <p class=\"ds-empty__desc\">기간을 늘리거나 다른 검색어로 찾아보세요.</p>\n          </div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
     }
   ],
   "table-pagination": [
     {
-      "title": "관리 표 아래에서 페이지와 행 수 고르기",
+      "title": "관리 표 아래에서 페이지와 행 수 선택",
       "desc": "데이터 표 바로 아래에 붙여 페이지와 페이지당 행 수를 함께 바꿉니다. 행 수 선택지는 3가지로 두고, 표와 같은 가로 스크롤 영역 안에 넣어 함께 밀리게 합니다.",
       "wide": true,
       "html": "<div class=\"ds-table-wrap\">\n  <table class=\"ds-table\" data-density=\"compact\">\n    <thead>\n      <tr>\n        <th scope=\"col\" style=\"width: 120px\">이름</th>\n        <th scope=\"col\">이메일</th>\n        <th scope=\"col\" data-align=\"center\" style=\"width: 120px\">가입일</th>\n        <th scope=\"col\" data-align=\"end\" style=\"width: 104px\">수강 강의</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>김하늘</td>\n        <td>sky@example.com</td>\n        <td data-align=\"center\">2026.11.03</td>\n        <td data-align=\"end\">3개</td>\n      </tr>\n      <tr>\n        <td>이준호</td>\n        <td>junho@example.com</td>\n        <td data-align=\"center\">2026.11.02</td>\n        <td data-align=\"end\">1개</td>\n      </tr>\n      <tr>\n        <td>박서연</td>\n        <td>seoyeon@example.com</td>\n        <td data-align=\"center\">2026.11.01</td>\n        <td data-align=\"end\">5개</td>\n      </tr>\n      <tr>\n        <td>최민재</td>\n        <td>minjae@example.com</td>\n        <td data-align=\"center\">2026.10.31</td>\n        <td data-align=\"end\">2개</td>\n      </tr>\n      <tr>\n        <td>정다은</td>\n        <td>daeun@example.com</td>\n        <td data-align=\"center\">2026.10.30</td>\n        <td data-align=\"end\">4개</td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"ds-tablepagination\">\n    <label class=\"ds-tablepagination__size\">\n      <span class=\"ds-tablepagination__label\">페이지당 행 수</span>\n      <span class=\"ds-tablepagination__select\"><select><option selected>5개</option><option>10개</option><option>20개</option></select></span>\n    </label>\n    <div class=\"ds-tablepagination__range\">\n      <span class=\"ds-tablepagination__position\">\n        <span class=\"ds-tablepagination__select\"><select aria-label=\"표시 범위\"><option selected>1-5</option><option>6-10</option><option>11-15</option></select></span>\n        <span class=\"ds-tablepagination__total\">/ 총 48명</span>\n      </span>\n      <nav class=\"ds-pagination\" aria-label=\"표 페이지\">\n        <a class=\"ds-pagination__item\" data-type=\"prev\" aria-disabled=\"true\" aria-label=\"이전 페이지\"></a>\n        <a class=\"ds-pagination__item\" data-type=\"next\" href=\"#\" aria-label=\"다음 페이지\"></a>\n      </nav>\n    </div>\n  </div>\n</div>"
@@ -110,7 +110,7 @@
   "tabs": [
     {
       "title": "모바일 화면을 주요 영역으로 나누기",
-      "desc": "한 화면의 주요 영역을 Tabs로 나누고, 탭이 화면 폭을 똑같이 나눠 가집니다. 탭이 2~4개이고 이름이 짧을 때 기본 fill 모양을 씁니다.",
+      "desc": "한 화면의 주요 영역을 Tabs로 나누고, 탭이 화면 폭을 똑같이 나눠 가집니다. 탭이 2~4개이고 이름이 짧을 때 기본 fill 모양을 사용합니다.",
       "wide": true,
       "html": "<div style=\"width: 100%; max-width: 375px\">\n  <header class=\"ds-appbar\">\n    <div class=\"ds-appbar__left\"></div>\n    <div class=\"ds-appbar__main\"><h1 class=\"ds-appbar__title\">내 강의실</h1></div>\n    <div class=\"ds-appbar__right\"><button type=\"button\" class=\"ds-appbar__button\" aria-label=\"강의 찾기\"><i class=\"ds-icon ds-icon--search\" aria-hidden=\"true\"></i></button></div>\n  </header>\n  <div class=\"ds-tabs\" role=\"tablist\" aria-label=\"강의 구분\">\n    <button type=\"button\" class=\"ds-tabs__trigger\" role=\"tab\" aria-selected=\"true\">수강 중</button>\n    <button type=\"button\" class=\"ds-tabs__trigger\" role=\"tab\" aria-selected=\"false\">수강 완료</button>\n    <button type=\"button\" class=\"ds-tabs__trigger\" role=\"tab\" aria-selected=\"false\">찜한 강의</button>\n  </div>\n  <div role=\"tabpanel\" aria-label=\"수강 중\">\n    <ul class=\"ds-list\" data-divider>\n      <li>\n        <a class=\"ds-list-item\" href=\"#\">\n          <span class=\"ds-list-item__content\">\n            <span class=\"ds-list-item__title\">비즈니스 영어 회화</span>\n            <span class=\"ds-list-item__desc\">12강 가운데 5강을 들었어요</span>\n          </span>\n          <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n        </a>\n      </li>\n      <li>\n        <a class=\"ds-list-item\" href=\"#\">\n          <span class=\"ds-list-item__content\">\n            <span class=\"ds-list-item__title\">엑셀 실무 완성</span>\n            <span class=\"ds-list-item__desc\">24강 가운데 20강을 들었어요</span>\n          </span>\n          <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n        </a>\n      </li>\n    </ul>\n  </div>\n</div>"
     },
@@ -124,13 +124,13 @@
   "tag-group": [
     {
       "title": "글 목록 아래 작성 정보 붙이기",
-      "desc": "게시글 제목 아래에 작성자, 날짜, 조회수를 Tag Group 하나로 붙입니다. 낱말은 조사 없이 짧게 써서 한 줄에 들어가게 합니다.",
+      "desc": "게시글 제목 아래에 작성자, 날짜, 조회수를 Tag Group 하나로 붙입니다. 낱말은 조사 없이 짧게 작성해 한 줄에 들어가게 합니다.",
       "wide": true,
       "html": "<ul class=\"ds-list\" data-divider style=\"width: 100%; max-width: 480px\">\n  <li>\n    <a class=\"ds-list-item\" href=\"#\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">11월 정기 점검 안내</span>\n        <span class=\"ds-tag-group\"><span>운영팀</span><span>2026.11.02</span><span>조회 1,204</span></span>\n      </span>\n    </a>\n  </li>\n  <li>\n    <a class=\"ds-list-item\" href=\"#\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">겨울 방학 특강 신청을 받아요</span>\n        <span class=\"ds-tag-group\"><span>교육팀</span><span>2026.10.28</span><span>조회 862</span></span>\n      </span>\n    </a>\n  </li>\n  <li>\n    <a class=\"ds-list-item\" href=\"#\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">수강권 환불 기준이 바뀌어요</span>\n        <span class=\"ds-tag-group\"><span>운영팀</span><span>2026.10.15</span><span>조회 2,310</span></span>\n      </span>\n    </a>\n  </li>\n</ul>"
     },
     {
       "title": "카드 안 강의 정보를 한 줄로",
-      "desc": "강의 카드에서 수준, 강의 수, 전체 시간을 한 줄로 묶습니다. 묶음 안의 글자 크기는 모두 같게 두고, 카드 글에 맞춰 `data-size=\"t4\"`를 씁니다.",
+      "desc": "강의 카드에서 수준, 강의 수, 전체 시간을 한 줄로 묶습니다. 묶음 안의 글자 크기는 모두 같게 두고, 카드 글에 맞춰 `data-size=\"t4\"`를 사용합니다.",
       "wide": true,
       "html": "<article class=\"ds-card\" style=\"width: 100%; max-width: 320px\">\n  <header class=\"ds-card__header\">\n    <h3 class=\"ds-card__title\">엑셀 실무 완성</h3>\n    <span class=\"ds-tag-group\" data-size=\"t4\"><span>초급</span><span>24강</span><span>12시간</span></span>\n  </header>\n  <div class=\"ds-card__content\">함수부터 피벗 표까지 업무에 바로 쓰는 기능을 익혀요.</div>\n  <footer class=\"ds-card__footer\">\n    <button type=\"button\" class=\"ds-btn\" data-variant=\"neutralWeak\">강의 보기</button>\n  </footer>\n</article>"
     }
@@ -150,7 +150,7 @@
     },
     {
       "title": "단위를 붙이고 옆 버튼과 높이 맞추기",
-      "desc": "포인트처럼 단위가 있는 값은 `ds-input__suffix`로 단위를 붙입니다. 옆에 버튼을 둘 때는 medium 입력 칸과 medium 버튼을 함께 써서 높이를 맞춥니다.",
+      "desc": "포인트처럼 단위가 있는 값은 `ds-input__suffix`로 단위를 붙입니다. 옆에 버튼을 둘 때는 medium 입력 칸과 medium 버튼을 함께 사용해 높이를 맞춥니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 360px\">\n  <div class=\"ds-field__header\">\n    <label class=\"ds-field__label\" for=\"text-field-input-ex3-point\">포인트 사용</label>\n  </div>\n  <div class=\"u-flex u-gap-2\">\n    <div class=\"ds-input u-grow\" data-variant=\"outline\" data-size=\"medium\">\n      <input class=\"ds-input__control\" id=\"text-field-input-ex3-point\" inputmode=\"numeric\" value=\"3,000\">\n      <span class=\"ds-input__suffix\">P</span>\n    </div>\n    <button type=\"button\" class=\"ds-btn\" data-variant=\"neutralWeak\">전액 사용</button>\n  </div>\n  <div class=\"ds-field__footer\">\n    <p class=\"ds-field__help\">12,400P까지 쓸 수 있어요.</p>\n  </div>\n</div>"
     }
@@ -158,13 +158,13 @@
   "text-field-textarea": [
     {
       "title": "문의 내용을 여러 줄로 받기",
-      "desc": "여러 줄 글은 Textarea로 받고 아래에 글자 수를 함께 보여 줍니다. 길이 제한이 있는 문의, 후기, 요청 사항에 씁니다.",
+      "desc": "여러 줄 글은 Textarea로 받고 아래에 글자 수를 함께 보여 줍니다. 길이 제한이 있는 문의, 후기, 요청 사항에 사용합니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"ds-field__header\">\n    <label class=\"ds-field__label\" for=\"text-field-textarea-ex1\">문의 내용</label>\n    <span class=\"ds-field__required\" aria-hidden=\"true\"></span>\n  </div>\n  <textarea class=\"ds-textarea\" id=\"text-field-textarea-ex1\" rows=\"4\" maxlength=\"500\" placeholder=\"주문 번호와 함께 궁금한 점을 적어 주세요\" required></textarea>\n  <div class=\"ds-field__footer\">\n    <p class=\"ds-field__help\">비밀번호 같은 개인 정보는 적지 말아 주세요.</p>\n    <span class=\"ds-field__count\">0/500</span>\n  </div>\n</div>"
     },
     {
       "title": "너무 짧으면 고칠 방법 알리기",
-      "desc": "필수 글이 비었거나 너무 짧으면 Textarea에 `aria-invalid=\"true\"`를 붙이고 오류 문구를 보여 줍니다. 몇 자를 더 써야 하는지처럼 고치는 방법을 적습니다.",
+      "desc": "필수 글이 비었거나 너무 짧으면 Textarea에 `aria-invalid=\"true\"`를 붙이고 오류 문구를 보여 줍니다. 몇 자를 더 입력해야 하는지처럼 고치는 방법을 적습니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"ds-field__header\">\n    <label class=\"ds-field__label\" for=\"text-field-textarea-ex2\">취소 사유</label>\n    <span class=\"ds-field__required\" aria-hidden=\"true\"></span>\n  </div>\n  <textarea class=\"ds-textarea\" id=\"text-field-textarea-ex2\" rows=\"3\" maxlength=\"200\" required aria-invalid=\"true\" aria-describedby=\"text-field-textarea-ex2-error\">일정이 바뀌었어요</textarea>\n  <div class=\"ds-field__footer\">\n    <p class=\"ds-field__help\">강의를 고치는 데 참고할게요.</p>\n    <p class=\"ds-field__error\" id=\"text-field-textarea-ex2-error\">10자 이상 적어 주세요. 지금 9자예요.</p>\n    <span class=\"ds-field__count\">9/200</span>\n  </div>\n</div>"
     }
@@ -178,7 +178,7 @@
     },
     {
       "title": "묶음 제목 옆에 전체 보기 두기",
-      "desc": "묶음 제목 오른쪽에 작은 Text Link로 전체 보기를 둡니다. `data-size=\"small\"`은 제목 옆, 표, 칸 머리처럼 보조 자리에 씁니다.",
+      "desc": "묶음 제목 오른쪽에 작은 Text Link로 전체 보기를 둡니다. `data-size=\"small\"`은 제목 옆, 표, 입력 칸 위처럼 보조 자리에 사용합니다.",
       "wide": true,
       "html": "<section class=\"u-col u-gap-3\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"u-flex u-center u-between\">\n    <h3 class=\"ds-t06 ds-fw-bold\">최근 주문</h3>\n    <a class=\"ds-link\" data-size=\"small\" href=\"#\">전체 보기</a>\n  </div>\n  <ul class=\"ds-list\" data-variant=\"inset\" data-divider>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">무선 이어폰 외 1건</span>\n          <span class=\"ds-list-item__desc\">11월 2일 주문</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">배송 중</span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">텀블러 500ml</span>\n          <span class=\"ds-list-item__desc\">10월 28일 주문</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">배송 완료</span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n  </ul>\n</section>"
     },
@@ -191,14 +191,14 @@
   ],
   "time-picker": [
     {
-      "title": "알림 시간을 화면에서 바로 고르기",
-      "desc": "시간 고르기가 화면의 주된 일이라 Time Picker를 화면에 바로 둡니다. 휠을 굴리거나 항목을 눌러 오전/오후, 시, 분을 고릅니다.",
+      "title": "알림 시간을 화면에서 바로 선택",
+      "desc": "시간 선택이 화면의 주요 기능이라 Time Picker를 화면에 바로 둡니다. 휠을 굴리거나 항목을 눌러 오전/오후, 시, 분을 선택합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-6\" style=\"width: 100%; max-width: 360px\">\n  <div class=\"u-col u-gap-2\">\n    <h3 class=\"ds-t08 ds-fw-bold\">학습 알림 시간을 골라 주세요</h3>\n    <p class=\"ds-t04 ds-fg-muted\">매일 이 시간에 오늘 할 공부를 알려 줘요.</p>\n  </div>\n  <div class=\"ds-timepicker\" role=\"group\" aria-label=\"알림 시간\">\n    <div class=\"ds-timepicker__column\" role=\"listbox\" aria-label=\"오전/오후\" tabindex=\"0\">\n      <div class=\"ds-timepicker__option\" role=\"option\">오전</div>\n      <div class=\"ds-timepicker__option\" role=\"option\" aria-selected=\"true\">오후</div>\n    </div>\n    <div class=\"ds-timepicker__column\" role=\"listbox\" aria-label=\"시\" tabindex=\"0\">\n      <div class=\"ds-timepicker__option\" role=\"option\">1</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">2</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">3</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">4</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">5</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">6</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">7</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">8</div>\n      <div class=\"ds-timepicker__option\" role=\"option\" aria-selected=\"true\">9</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">10</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">11</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">12</div>\n    </div>\n    <div class=\"ds-timepicker__column\" role=\"listbox\" aria-label=\"분\" tabindex=\"0\">\n      <div class=\"ds-timepicker__option\" role=\"option\" aria-selected=\"true\">00</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">05</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">10</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">15</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">20</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">25</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">30</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">35</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">40</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">45</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">50</div>\n      <div class=\"ds-timepicker__option\" role=\"option\">55</div>\n    </div>\n  </div>\n  <button type=\"button\" class=\"ds-btn\" data-size=\"large\" data-width=\"fill\">저장</button>\n</div>"
     },
     {
-      "title": "입력 칸을 누르면 시트에서 고르기",
-      "desc": "폼 안에서는 Field Button을 누르면 Bottom Sheet가 열리고 그 안에서 시간을 고릅니다. 날짜, 장소처럼 다른 입력 칸과 함께 있는 예약 화면에 씁니다.",
+      "title": "입력 칸을 누르면 시트에서 선택",
+      "desc": "폼 안에서는 Field Button을 누르면 Bottom Sheet가 열리고 그 안에서 시간을 선택합니다. 날짜, 장소처럼 다른 입력 칸과 함께 있는 예약 화면에 사용합니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 360px\">\n  <div class=\"ds-field__header\">\n    <span class=\"ds-field__label\" id=\"time-picker-ex2-label\">상담 시간</span>\n    <span class=\"ds-field__required\" aria-hidden=\"true\"></span>\n  </div>\n  <button type=\"button\" class=\"ds-fieldbutton\" data-size=\"large\" aria-labelledby=\"time-picker-ex2-label\" data-ds-open=\"time-picker-ex2-sheet\">\n    <i class=\"ds-icon ds-icon--clock\" aria-hidden=\"true\"></i>\n    <span class=\"ds-fieldbutton__value\" data-placeholder=\"시간을 골라 주세요\"></span>\n    <i class=\"ds-icon ds-icon--chevron-down\" aria-hidden=\"true\"></i>\n  </button>\n</div>\n<dialog class=\"ds-bottomsheet\" id=\"time-picker-ex2-sheet\" aria-labelledby=\"time-picker-ex2-title\" data-handle>\n  <div class=\"ds-bottomsheet__header\">\n    <h2 class=\"ds-bottomsheet__title\" id=\"time-picker-ex2-title\">상담 시간</h2>\n    <button class=\"ds-bottomsheet__close\" data-ds-close aria-label=\"닫기\"></button>\n  </div>\n  <div class=\"ds-bottomsheet__body\">\n    <div class=\"ds-timepicker\" role=\"group\" aria-label=\"상담 시간\">\n      <div class=\"ds-timepicker__column\" role=\"listbox\" aria-label=\"오전/오후\" tabindex=\"0\">\n        <div class=\"ds-timepicker__option\" role=\"option\">오전</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">오후</div>\n      </div>\n      <div class=\"ds-timepicker__column\" role=\"listbox\" aria-label=\"시\" tabindex=\"0\">\n        <div class=\"ds-timepicker__option\" role=\"option\">1</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">2</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">3</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">4</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">5</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">6</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">7</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">8</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">9</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">10</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">11</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">12</div>\n      </div>\n      <div class=\"ds-timepicker__column\" role=\"listbox\" aria-label=\"분\" tabindex=\"0\">\n        <div class=\"ds-timepicker__option\" role=\"option\">00</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">05</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">10</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">15</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">20</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">25</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">30</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">35</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">40</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">45</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">50</div>\n        <div class=\"ds-timepicker__option\" role=\"option\">55</div>\n      </div>\n    </div>\n  </div>\n  <div class=\"ds-bottomsheet__footer\"><button class=\"ds-btn\" data-variant=\"neutralSolid\" data-size=\"large\" data-ds-close>확인</button></div>\n</dialog>"
     }
@@ -218,7 +218,7 @@
     },
     {
       "title": "공부한 시간을 글로 보이기",
-      "desc": "흐른 시간은 `data-start`에 시작 시각을 넣고 `data-format=\"elapsed\"`로 분과 초를 글로 보여 줍니다. 공부한 시간처럼 길이 자체를 읽어야 할 때 씁니다.",
+      "desc": "흐른 시간은 `data-start`에 시작 시각을 넣고 `data-format=\"elapsed\"`로 분과 초를 글로 보여 줍니다. 공부한 시간처럼 길이 자체를 읽어야 할 때 사용합니다.",
       "wide": true,
       "html": "<article class=\"ds-card\" data-size=\"small\" style=\"width: 100%; max-width: 360px\">\n  <header class=\"ds-card__header\">\n    <h3 class=\"ds-card__title\">5강 회의에서 의견 말하기</h3>\n    <p class=\"ds-card__desc\">비즈니스 영어 회화</p>\n  </header>\n  <div class=\"ds-card__content u-flex u-center u-between\">\n    <span class=\"ds-fg-muted\">오늘 공부한 시간</span>\n    <time class=\"ds-timer ds-t04 ds-fw-semibold ds-fg-neutral\" id=\"timer-ex3\" data-format=\"elapsed\">12분 00초</time>\n  </div>\n</article>\n<script>\n  // 미리보기 전용 - 12분 전에 시작\n  document.getElementById('timer-ex3').setAttribute('data-start', String(Date.now() - 12 * 60000));\n</script>"
     }
@@ -226,13 +226,13 @@
   "toggle-button": [
     {
       "title": "한 가지 상태를 켜고 끄기",
-      "desc": "개강 알림처럼 한 가지 상태만 켜고 끄는 데 Toggle Button을 씁니다. 라벨은 그대로 두고 `aria-pressed`로 켜졌는지 알립니다.",
+      "desc": "개강 알림처럼 한 가지 상태만 켜고 끄는 데 Toggle Button을 사용합니다. 라벨은 그대로 두고 `aria-pressed`로 켜졌는지 알립니다.",
       "wide": true,
       "html": "<article class=\"ds-card\" style=\"width: 100%; max-width: 360px\">\n  <header class=\"ds-card__header\">\n    <h3 class=\"ds-card__title\">데이터 분석 입문</h3>\n    <p class=\"ds-card__desc\">12월 2일 개강 예정</p>\n  </header>\n  <div class=\"ds-card__content u-flex u-center u-between u-gap-3\">\n    <span class=\"ds-fg-muted\">개강하는 날 아침에 알려 줘요.</span>\n    <button type=\"button\" class=\"ds-toggle\" aria-pressed=\"true\">개강 알림</button>\n  </div>\n</article>"
     },
     {
       "title": "서로 상관없는 보기 옵션 켜기",
-      "desc": "해석 보기, 단어 뜻 보기처럼 서로 상관없는 옵션을 하나씩 켜고 끕니다. 여러 개 가운데 하나만 고르는 보기 방식은 Segmented Control로 만듭니다.",
+      "desc": "해석 보기, 단어 뜻 보기처럼 서로 상관없는 옵션을 하나씩 켜고 끕니다. 여러 개 가운데 하나만 선택하는 보기 방식은 Segmented Control로 만듭니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-5\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"u-flex u-gap-2\" role=\"group\" aria-label=\"보기 옵션\">\n    <button type=\"button\" class=\"ds-toggle\" aria-pressed=\"true\">해석 보기</button>\n    <button type=\"button\" class=\"ds-toggle\" aria-pressed=\"false\">단어 뜻 보기</button>\n  </div>\n  <div class=\"u-col u-gap-1\">\n    <p class=\"ds-t05\">Could you send me the file by Friday?</p>\n    <p class=\"ds-t04 ds-fg-muted\">금요일까지 파일을 보내 줄 수 있나요?</p>\n  </div>\n  <div class=\"u-col u-gap-1\">\n    <p class=\"ds-t05\">I'll check the schedule and let you know.</p>\n    <p class=\"ds-t04 ds-fg-muted\">일정을 확인하고 알려 줄게요.</p>\n  </div>\n</div>"
     }

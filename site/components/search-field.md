@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <form class="ds-searchfield" role="search" [data-variant="fill"] action="…">
@@ -21,16 +21,16 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
 | **Icon** `ds-input__icon` | 뜻을 빠르게 알려 주는 아이콘입니다. |
-| **Control** `ds-input__control` | 실제로 값을 입력하거나 고르는 부분입니다. |
+| **Control** `ds-input__control` | 실제로 값을 입력하거나 선택하는 부분입니다. |
 | **Clear** `ds-input__clear` | 입력한 값을 지우는 버튼입니다. |
 | **Cancel** `ds-searchfield__cancel` | 찾기를 그만두는 버튼입니다. |
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -42,9 +42,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | `<form role="search">` 로 감싸 Enter 로 보내게 합니다. |
-| **Do** | 앱 머리나 목록 위처럼 바탕이 흰 곳에는 fill 을 씁니다. |
-| **Do** | 추천어 목록이 필요하면 Search Suggestion 을 함께 씁니다. |
+| **Do** | `<form role="search">`로 감싸 Enter로 보내게 합니다. |
+| **Do** | 앱 상단이나 목록 위처럼 바탕이 흰 곳에는 fill을 사용합니다. |
+| **Do** | 추천어 목록이 필요하면 Search Suggestion을 함께 사용합니다. |
 | **Do** | 취소 버튼은 찾기 화면을 따로 열었을 때만 둡니다. |
 
 ## 예시
@@ -57,7 +57,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 <div class="u-full" style="max-width: 375px; padding: var(--ds-space-x2) var(--ds-space-x4)"><form class="ds-searchfield" role="search" data-variant="fill" action="#"><div class="ds-input" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" name="q" placeholder="찾을 낱말을 넣어 주세요" aria-label="찾기"><button type="button" class="ds-input__clear" aria-label="지우기"></button></div><button type="button" class="ds-searchfield__cancel">취소</button></form></div>
 ```
 
-### 목록 위에서 거르기
+### 목록 위에서 필터링하기
 
 목록 위 찾기 칸은 테두리 칸으로 두고 취소는 두지 않습니다. 글자를 넣으면 지우기 버튼이 나옵니다.
 

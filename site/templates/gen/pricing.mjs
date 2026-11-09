@@ -140,7 +140,7 @@ const checkout = () => {
     </aside>
   </div>
 </main></div>`;
-  return { slug: 'subscription-checkout', en: 'Subscription Checkout', name: '구독 결제', group: 'Pricing', desc: '고른 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.', css, body };
+  return { slug: 'subscription-checkout', en: 'Subscription Checkout', name: '구독 결제', group: 'Pricing', desc: '선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.', css, body };
 };
 
 /* 3. 내 구독 ------------------------------------------------------ */

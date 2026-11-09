@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=ca1ea584">
+<link rel="stylesheet" href="../assets/site.css?v=284005c5">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=ca1ea584" defer></script>
+<script src="../assets/site.js?v=284005c5" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -125,7 +125,7 @@
 <div class="site-toc-select"><button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-controls="site-toc-list" aria-label="이 페이지 목차" data-site-toc><span class="ds-select__value">사용법</span></button><div class="ds-select-content site-toc-list" id="site-toc-list" role="listbox" data-size="medium" hidden><ul class="ds-select-list"><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="usage" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">사용법</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="anatomy"><span class="ds-select-item__body"><span class="ds-select-item__label">구조</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="props"><span class="ds-select-item__body"><span class="ds-select-item__label">속성</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="guide"><span class="ds-select-item__body"><span class="ds-select-item__label">사용 지침</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="examples"><span class="ds-select-item__body"><span class="ds-select-item__label">예시</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="spec"><span class="ds-select-item__body"><span class="ds-select-item__label">규격</span></span></button></li></ul></div></div>
 </header>
 <div class="site-tile__thumb site-cover" data-site-fit-max="2" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><ol class="ds-stepper" aria-label="주문 단계" style="width:480px"><li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">장바구니</span></li><li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">주문서 작성</span></li><li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">결제</span></li><li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">주문 완료</span></li></ol></div></div></div>
-<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 씁니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
+<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 사용합니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">ol</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-stepper&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;가입 단계&quot;</span> <span class="hl-f">[data-orientation</span>=<span class="hl-s">&quot;vertical&quot;</span>]&gt;
   &lt;<span class="hl-t">li</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-stepper__step&quot;</span> <span class="hl-f">data-state</span>=<span class="hl-s">&quot;complete&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-stepper__indicator&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-stepper__label&quot;</span>&gt;약관 동의&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">li</span>&gt;
@@ -138,14 +138,14 @@
   <li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">본인 인증</span></li>
   <li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">정보 입력</span></li>
 </ol></div></div></div></div><div class="site-anatomy-table"><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
-<thead><tr><th scope="col">부품</th><th scope="col">설명</th></tr></thead>
+<thead><tr><th scope="col">구성 요소</th><th scope="col">설명</th></tr></thead>
 <tbody><tr><td><span class="site-anatomy__part"><b>Step</b> <code>ds-stepper__step</code></span></td><td>단계 하나입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Indicator</b> <code>ds-stepper__indicator</code></span></td><td>단계 번호나 완료 표시입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Label</b> <code>ds-stepper__label</code></span></td><td>이름이나 값을 보여 주는 글자입니다.</td></tr></tbody></table></div></div>
-<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 씁니다.</p><p class="site-note">그 밖에: state complete, current, upcoming, orientation vertical</p>
+<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 사용합니다.</p><p class="site-note">그 밖에: state complete, current, upcoming, orientation vertical</p>
 <h2 id="guide">사용 지침<a class="site-anchor" href="#guide" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
-<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>단계는 3~5개로 하고, 라벨은 짧은 명사로 씁니다.</td></tr>
+<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>단계는 3~5개로 하고, 라벨은 짧은 명사로 작성합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>단계가 더 많으면 &quot;2 / 6&quot;처럼 글자로 보여 줍니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<a class="site-anchor" href="#examples" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><h3>신청서 위에 지금 단계 보여 주기</h3>
 <p>수강 신청 4단계를 짧은 명사 라벨로 보여 주고 지금 단계를 표시합니다. 단계가 3~5개인 가입, 신청, 결제 흐름의 맨 위에 둡니다.</p>

@@ -6,7 +6,7 @@
 
 ## 개요
 
-기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](https://luvms012-rgb.github.io/yds/site/index.md#ai)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 씁니다.
+기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](https://luvms012-rgb.github.io/yds/site/index.md#ai)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 사용합니다.
 
 ## 크기
 
@@ -61,8 +61,8 @@
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 크기와 줄 높이는 같은 번호끼리 짝으로 씁니다. |
+| **Do** | 크기와 줄 높이는 같은 번호끼리 짝으로 사용합니다. |
 | **Do** | 제목은 Bold, 항목 제목은 SemiBold, 본문은 Regular로 위계를 나눕니다. |
 | **Do** | 한 화면의 크기는 서너 단계로 줄입니다. |
 | **Don't** | px 숫자를 직접 쓰지 않습니다. |
-| **Don't** | 강조를 색으로만 하지 않습니다. 굵기를 먼저 씁니다. |
+| **Don't** | 강조를 색으로만 하지 않습니다. 굵기로 먼저 강조합니다. |

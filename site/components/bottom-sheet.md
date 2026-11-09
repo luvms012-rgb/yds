@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <dialog class="ds-bottomsheet" aria-labelledby="bs-t" [data-header-align="center"] [data-handle]>
@@ -22,7 +22,7 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
 | **Header** `ds-bottomsheet__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
 | **Title** `ds-bottomsheet__title` | 제목입니다. |
@@ -33,7 +33,7 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -43,17 +43,17 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 몇 가지 동작 중 하나를 고를 때는 Menu Sheet를 씁니다. |
+| **Do** | 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다. |
 | **Do** | 입력이나 긴 내용은 Bottom Sheet에 담습니다. |
 | **Do** | 되돌릴 수 없는 동작은 critical로 따로 묶습니다. |
-| **Do** | PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 씁니다. |
+| **Do** | PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. |
 | **Do** | 화면이 좁으면 Bottom Sheet로 바꿉니다. |
 
 ## 예시
 
-### 목록 정렬을 골라 적용하기
+### 목록 정렬을 선택해 적용하기
 
-값을 고른 뒤 적용 버튼으로 반영하는 선택은 Bottom Sheet에 담습니다. 위에 닫기 버튼이 있으니 아래에는 적용 버튼 하나만 둡니다.
+값을 선택한 뒤 적용 버튼으로 반영하는 선택은 Bottom Sheet에 담습니다. 위에 닫기 버튼이 있으니 아래에는 적용 버튼 하나만 둡니다.
 
 ```html
 <div class="u-flex u-center u-between" style="width: 100%; max-width: 375px">
@@ -81,7 +81,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 ### 직접 입력할 수도 있는 선택 받기
 
-고르다가 직접 적어야 할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 받습니다. 동작 몇 개 중 하나를 고를 때만 Menu Sheet를 쓰고, 입력이 있으면 Bottom Sheet를 씁니다.
+선택하다가 직접 입력해야 할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 받습니다. 동작 몇 개 중 하나를 선택할 때만 Menu Sheet를 사용하고, 입력이 있으면 Bottom Sheet를 사용합니다.
 
 ```html
 <div class="ds-field" style="width: 100%; max-width: 375px">

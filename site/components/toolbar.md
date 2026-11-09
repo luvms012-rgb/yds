@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <div class="ds-toolbar" role="toolbar" aria-label="주문 목록 도구" [data-size="small"] [data-variant="muted"] [data-divider]>
@@ -18,18 +18,18 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
 | **Start** `ds-toolbar__start` | 앞쪽에 놓는 영역입니다. |
 | **Title** `ds-toolbar__title` | 막대가 다루는 내용의 이름입니다. |
-| **Count** `ds-toolbar__count` | 고른 개수입니다. |
+| **Count** `ds-toolbar__count` | 선택한 개수입니다. |
 | **Center** `ds-toolbar__center` | 가운데에 놓는 영역입니다. |
 | **End** `ds-toolbar__end` | 로그인 같은 버튼이 놓이는 오른쪽 끝 영역입니다. |
 | **Separator** `ds-toolbar__separator` | 묶음 사이를 나누는 세로선입니다. |
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -40,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 ## 동작
 
-`ybm-ds.js`를 불러오면 알아서 동작합니다.
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
 
 - 막대 안에서 좌우 화살표로 버튼 사이를 옮긴다
 
@@ -48,16 +48,16 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 뒤로, 거르기 같은 보조 동작은 왼쪽에, 저장 같은 주된 동작은 오른쪽에 둡니다. |
-| **Do** | 여러 줄을 고른 뒤 잠깐 나오는 막대는 muted 로 바탕을 깔아 구분합니다. |
-| **Do** | 안의 버튼은 small 로 맞추고, 덜 쓰는 동작은 Menu 로 옮깁니다. |
-| **Don't** | 화면 전체 메뉴에는 쓰지 않습니다. 그때는 Top Navigation 이나 Top App Bar 를 씁니다. |
+| **Do** | 뒤로, 필터 같은 보조 동작은 왼쪽에, 저장 같은 주요 동작은 오른쪽에 둡니다. |
+| **Do** | 여러 줄을 선택한 뒤 잠깐 나오는 막대는 muted로 바탕을 깔아 구분합니다. |
+| **Do** | 안의 버튼은 small로 맞추고, 자주 사용하지 않는 동작은 Menu로 옮깁니다. |
+| **Don't** | 화면 전체 메뉴에는 사용하지 않습니다. 그때는 Top Navigation이나 Top App Bar를 사용합니다. |
 
 ## 예시
 
 ### 표 위 도구 막대
 
-왼쪽에 표 이름을, 오른쪽에 거르기와 내려받기, 주된 동작을 둡니다. 아래 선으로 표와 나눕니다.
+왼쪽에 표 이름을, 오른쪽에 필터와 내려받기, 주요 동작을 둡니다. 아래 선으로 표와 나눕니다.
 
 ```html
 <div class="u-col u-full">
@@ -66,9 +66,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 </div>
 ```
 
-### 여러 줄을 고른 뒤 나오는 막대
+### 여러 줄을 선택한 뒤 나오는 막대
 
-고른 개수와 그 줄들에 할 수 있는 동작만 담고, 바탕을 깔아 잠깐 나온 막대임을 알립니다. 끝에 선택 해제를 둡니다.
+선택한 개수와 그 줄들에 할 수 있는 동작만 담고, 바탕을 깔아 잠깐 나온 막대임을 알립니다. 끝에 선택 해제를 둡니다.
 
 ```html
 <div class="ds-toolbar u-full" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">삭제</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>

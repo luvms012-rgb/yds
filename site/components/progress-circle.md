@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <span class="ds-progress-circle" data-size="40" data-tone="brand" role="progressbar" aria-valuenow="40" style="--ds-progress-value: 40">
@@ -16,14 +16,14 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
 | **Track** `ds-progress-circle__track` | 막대의 바탕입니다. |
 | **Range** `ds-progress-circle__range` | 진행한 양을 보여 주는 호입니다. |
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -37,8 +37,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 | --- | --- |
 | **Do** | 로딩은 Progress Circle의 indeterminate로 보여 줍니다. |
 | **Do** | Spinner 부품은 따로 없습니다. |
-| **Do** | staticWhite는 어두운 배경이나 사진 위에서만 씁니다. |
-| **Do** | determinate는 진행률을 실제로 알 수 있을 때만 씁니다. 모를 때는 indeterminate를 씁니다. |
+| **Do** | staticWhite는 어두운 배경이나 사진 위에서만 사용합니다. |
+| **Do** | determinate는 진행률을 실제로 알 수 있을 때만 사용합니다. 모를 때는 indeterminate를 사용합니다. |
 
 ## 예시
 
@@ -109,7 +109,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 ### 사진 위에서는 staticWhite로
 
-사진처럼 어두운 바탕 위에서는 `data-tone="staticWhite"`를 씁니다. 다크 모드에서도 흰색 그대로라 사진 위에서 늘 잘 보입니다.
+사진처럼 어두운 바탕 위에서는 `data-tone="staticWhite"`를 사용합니다. 다크 모드에서도 흰색 그대로라 사진 위에서 늘 잘 보입니다.
 
 ```html
 <div class="u-col u-gap-2 u-full" style="max-width: 420px">

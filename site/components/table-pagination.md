@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <div class="ds-tablepagination">
@@ -30,11 +30,11 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
-| **Size** `ds-tablepagination__size` | 한 번에 볼 개수를 고르는 영역입니다. |
-| **Label** `ds-tablepagination__label` | 개수 고르기 앞에 붙는 글자입니다. |
-| **Select** `ds-tablepagination__select` | 한 번에 볼 개수를 고르는 Select입니다. |
+| **Size** `ds-tablepagination__size` | 한 번에 볼 개수를 선택하는 영역입니다. |
+| **Label** `ds-tablepagination__label` | 개수 선택 앞에 붙는 글자입니다. |
+| **Select** `ds-tablepagination__select` | 한 번에 볼 개수를 선택하는 Select입니다. |
 | **Range** `ds-tablepagination__range` | 지금 보고 있는 항목 범위입니다. |
 | **Position** `ds-tablepagination__position` | 지금 보고 있는 범위입니다. |
 | **Current** `ds-tablepagination__current` | 지금 페이지 번호입니다. |
@@ -43,7 +43,7 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -55,13 +55,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 데이터 표 아래에서만 씁니다. |
-| **Do** | 일반 목록에는 Pagination을 씁니다. |
+| **Do** | 데이터 표 아래에서만 사용합니다. |
+| **Do** | 일반 목록에는 Pagination을 사용합니다. |
 | **Do** | 페이지당 줄 수 선택지는 3~4가지로 둡니다. |
 
 ## 예시
 
-### 관리 표 아래에서 페이지와 행 수 고르기
+### 관리 표 아래에서 페이지와 행 수 선택
 
 데이터 표 바로 아래에 붙여 페이지와 페이지당 행 수를 함께 바꿉니다. 행 수 선택지는 3가지로 두고, 표와 같은 가로 스크롤 영역 안에 넣어 함께 밀리게 합니다.
 

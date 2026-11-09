@@ -207,7 +207,7 @@ const pageEditor = () => {
   <aside class="tp-pane tp-pane--right" aria-label="속성"><div class="tp-between"><span class="tp-h4">최근 결제 표</span>${iconBtn('trash', '블록 지우기', { size: 'xsmall' })}</div>${field('pe-t', '제목', inp('pe-t', '최근 결제', '제목'))}${field('pe-n', '보여 줄 행 수', select('5개', { id: 'pe-n', size: 'small' }))}<label class="tp-between"><span class="tp-sub">전체 보기 버튼</span>${K.sw('전체 보기 버튼', true)}</label><label class="tp-between"><span class="tp-sub">분류 배지</span>${K.sw('분류 배지', true)}</label>${field('pe-pad', '안쪽 여백', segmented(['좁게', '보통', '넓게'], 1, '안쪽 여백'))}</aside>
 </div>
 </div>`;
-  return { slug: 'editor', en: 'Page Editor', name: '페이지 편집기', group: 'Tools', desc: '블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 고른 블록의 속성은 오른쪽에서 바꿉니다.', css, body };
+  return { slug: 'editor', en: 'Page Editor', name: '페이지 편집기', group: 'Tools', desc: '블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 선택한 블록의 속성은 오른쪽에서 바꿉니다.', css, body };
 };
 
 export const templates = [canvas, explorer, ide, kanban, pageEditor].map((f) => f());

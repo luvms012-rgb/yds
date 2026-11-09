@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <dl class="ds-desclist" [data-layout="top"] [data-columns="2|3"] [data-align="end"] [data-divider]>
@@ -16,7 +16,7 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
 | **Item** `ds-desclist__item` | 이름과 값 한 쌍입니다. |
 | **Label** `ds-desclist__label` | 항목 이름입니다. |
@@ -24,7 +24,7 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -38,16 +38,16 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 이름은 짧게 쓰고, 값이 길면 `data-layout="top"` 으로 이름을 위에 둡니다. |
-| **Do** | 금액처럼 끝을 맞춰 읽는 값은 `data-align="end"` 로 오른쪽에 붙입니다. |
-| **Do** | 고칠 수 있는 값은 Text Field 로 만들고, 이 목록은 보여 주기만 합니다. |
-| **Don't** | 이름과 값이 짝이 아닌 내용에는 쓰지 않습니다. |
+| **Do** | 이름은 짧게 작성하고, 값이 길면 `data-layout="top"`으로 이름을 위에 둡니다. |
+| **Do** | 금액처럼 끝을 맞춰 읽는 값은 `data-align="end"`로 오른쪽에 붙입니다. |
+| **Do** | 고칠 수 있는 값은 Text Field로 만들고, 이 목록은 보여 주기만 합니다. |
+| **Don't** | 이름과 값이 짝이 아닌 내용에는 사용하지 않습니다. |
 
 ## 예시
 
 ### 결제 정보는 금액을 오른쪽 끝에
 
-금액이 있는 목록은 값을 오른쪽 끝에 맞춰 위아래 숫자를 견줘 보기 쉽게 합니다. 마지막 합계만 굵게 씁니다.
+금액이 있는 목록은 값을 오른쪽 끝에 맞춰 위아래 숫자를 견줘 보기 쉽게 합니다. 마지막 합계만 굵게 표시합니다.
 
 ```html
 <dl class="ds-desclist" data-divider data-align="end" style="width: 100%; max-width: 420px"><div class="ds-desclist__item"><dt class="ds-desclist__label">상품 금액</dt><dd class="ds-desclist__value">52,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">할인</dt><dd class="ds-desclist__value">-4,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">배송비</dt><dd class="ds-desclist__value">0원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 금액</dt><dd class="ds-desclist__value"><b>48,000원</b></dd></div></dl>

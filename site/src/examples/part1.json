@@ -2,7 +2,7 @@
   "accordion": [
     {
       "title": "자주 묻는 질문을 하나씩 펼치기",
-      "desc": "같은 `name`을 붙여 한 번에 하나만 열리게 하고, 제목 줄 어디를 눌러도 펼쳐지게 합니다. 고객센터처럼 질문이 여러 개인 화면에서 답을 하나씩 읽게 할 때 씁니다.",
+      "desc": "같은 `name`을 붙여 한 번에 하나만 열리게 하고, 제목 줄 어디를 눌러도 펼쳐지게 합니다. 고객센터처럼 질문이 여러 개인 화면에서 답을 하나씩 읽게 할 때 사용합니다.",
       "wide": true,
       "html": "<div style=\"width: 100%; max-width: 420px\">\n  <details class=\"ds-accordion\" name=\"accordion-ex1\" open>\n    <summary class=\"ds-accordion__trigger\">\n      <span class=\"ds-accordion__body\"><span class=\"ds-accordion__title\">주문을 취소하고 싶어요</span></span>\n    </summary>\n    <div class=\"ds-accordion__content\">결제하고 1시간 안에는 주문 내역에서 바로 취소할 수 있어요. 그 뒤에는 고객센터로 문의해 주세요.</div>\n  </details>\n  <details class=\"ds-accordion\" name=\"accordion-ex1\">\n    <summary class=\"ds-accordion__trigger\">\n      <span class=\"ds-accordion__body\"><span class=\"ds-accordion__title\">배송지를 바꿀 수 있나요?</span></span>\n    </summary>\n    <div class=\"ds-accordion__content\">상품이 출발하기 전까지 주문 상세에서 바꿀 수 있어요.</div>\n  </details>\n  <details class=\"ds-accordion\" name=\"accordion-ex1\">\n    <summary class=\"ds-accordion__trigger\">\n      <span class=\"ds-accordion__body\"><span class=\"ds-accordion__title\">영수증은 어디서 받나요?</span></span>\n    </summary>\n    <div class=\"ds-accordion__content\">주문 상세 아래 영수증 보기를 누르면 내려받을 수 있어요.</div>\n  </details>\n</div>"
     },
@@ -28,7 +28,7 @@
     },
     {
       "title": "버튼은 세 개까지, 나머지는 아이콘으로",
-      "desc": "나란히 두는 버튼은 세 개까지로 하고, 찜이나 공유처럼 가끔 쓰는 동작은 아이콘 버튼으로 작게 둡니다. 아이콘만 있는 버튼에는 `aria-label`로 이름을 붙입니다.",
+      "desc": "나란히 두는 버튼은 세 개까지로 하고, 찜이나 공유처럼 가끔 사용하는 동작은 아이콘 버튼으로 작게 둡니다. 아이콘만 있는 버튼에는 `aria-label`로 이름을 붙입니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-4\" style=\"width: 100%; max-width: 420px\">\n  <strong class=\"ds-t06 ds-fw-bold\">영어 회화 첫걸음</strong>\n  <div class=\"u-flex u-gap-2\">\n    <button class=\"ds-btn\" data-variant=\"neutralOutline\" data-size=\"large\" data-layout=\"iconOnly\" aria-label=\"찜하기\"><i class=\"ds-icon ds-icon--heart\" aria-hidden=\"true\"></i></button>\n    <button class=\"ds-btn\" data-variant=\"neutralOutline\" data-size=\"large\" data-layout=\"iconOnly\" aria-label=\"공유하기\"><i class=\"ds-icon ds-icon--share\" aria-hidden=\"true\"></i></button>\n    <button class=\"ds-btn\" data-size=\"large\" data-width=\"fill\">수강 신청하기</button>\n  </div>\n</div>"
     },
@@ -42,7 +42,7 @@
   "alert-dialog": [
     {
       "title": "지우기 전에 한 번 더 묻기",
-      "desc": "되돌릴 수 없는 삭제는 Alert Dialog로 확인받고, 실행 버튼은 criticalSolid로 둡니다. 바깥을 눌러도 닫히지 않아 버튼을 골라야만 넘어갑니다.",
+      "desc": "되돌릴 수 없는 삭제는 Alert Dialog로 확인받고, 실행 버튼은 criticalSolid로 둡니다. 바깥을 눌러도 닫히지 않아 버튼을 눌러야만 넘어갑니다.",
       "wide": true,
       "html": "<ul class=\"ds-list\" data-variant=\"inset\" style=\"width: 100%; max-width: 420px\">\n  <li>\n    <div class=\"ds-list-item\">\n      <span class=\"ds-list-item__content\">\n        <span class=\"ds-list-item__title\">회사</span>\n        <span class=\"ds-list-item__desc\">서울시 중구 한빛로 12, 3층</span>\n      </span>\n      <span class=\"ds-list-item__suffix\"><button class=\"ds-btn\" data-variant=\"ghost\" data-size=\"small\" data-ds-open=\"alert-dialog-ex1\">삭제</button></span>\n    </div>\n  </li>\n</ul>\n<dialog class=\"ds-dialog ds-alertdialog\" id=\"alert-dialog-ex1\" role=\"alertdialog\" aria-labelledby=\"alert-dialog-ex1-title\" aria-describedby=\"alert-dialog-ex1-desc\">\n  <div class=\"ds-alertdialog__header\">\n    <h2 id=\"alert-dialog-ex1-title\" class=\"ds-alertdialog__title\">배송지를 삭제할까요?</h2>\n    <p id=\"alert-dialog-ex1-desc\" class=\"ds-alertdialog__desc\">삭제한 배송지는 되돌릴 수 없어요.</p>\n  </div>\n  <div class=\"ds-alertdialog__footer\" data-action=\"critical\">\n    <button class=\"ds-btn\" data-variant=\"neutralWeak\" data-ds-close>취소</button>\n    <button class=\"ds-btn\" data-variant=\"criticalSolid\" data-ds-close>삭제</button>\n  </div>\n</dialog>"
     },
@@ -88,7 +88,7 @@
     },
     {
       "title": "급한 장애는 바로 읽히게 알리기",
-      "desc": "결제 장애처럼 바로 알아야 하는 공지는 critical 톤과 `role=\"alert\"`로 띄웁니다. 문구에는 지금 쓸 수 있는 다른 방법까지 적습니다.",
+      "desc": "결제 장애처럼 바로 알아야 하는 공지는 critical 톤과 `role=\"alert\"`로 띄웁니다. 문구에는 지금 사용할 수 있는 다른 방법까지 적습니다.",
       "wide": true,
       "html": "<div style=\"width: 100%\">\n  <div class=\"ds-banner\" role=\"alert\" data-tone=\"critical\">\n    <div class=\"ds-banner__inner\">\n      <i class=\"ds-icon ds-icon--circle-alert-solid\" aria-hidden=\"true\"></i>\n      <p class=\"ds-banner__message\"><strong class=\"ds-banner__title\">결제 장애</strong>  일부 카드 결제가 되지 않아요. 계좌 이체나 간편 결제를 써 주세요.</p>\n    </div>\n  </div>\n  <header class=\"ds-topnav\">\n    <div class=\"ds-topnav__left\">\n      <a class=\"ds-topnav__heading\" href=\"#\"><span class=\"ds-t06 ds-fw-bold\">서비스 이름</span></a>\n      <nav class=\"ds-topnav__menu u-show-from-md\" aria-label=\"주요 메뉴\">\n        <a class=\"ds-topnav__item\" href=\"#\" aria-current=\"page\">홈</a>\n        <a class=\"ds-topnav__item\" href=\"#\">쇼핑</a>\n        <a class=\"ds-topnav__item\" href=\"#\">주문 내역</a>\n        <a class=\"ds-topnav__item\" href=\"#\">고객센터</a>\n      </nav>\n    </div>\n    <div class=\"ds-topnav__end\">\n      <button type=\"button\" class=\"ds-btn\" data-variant=\"ghost\" data-size=\"xsmall\" data-layout=\"iconOnly\" aria-label=\"검색\"><i class=\"ds-icon ds-icon--search\" aria-hidden=\"true\"></i></button>\n      <a class=\"ds-btn\" data-variant=\"neutralWeak\" data-size=\"xsmall\" href=\"#\">로그인</a>\n    </div>\n  </header>\n</div>"
     },
@@ -102,7 +102,7 @@
   "bottom-navigation": [
     {
       "title": "주요 화면 네 곳을 아래에 두기",
-      "desc": "앱의 주요 화면 3개에서 5개를 아래에 두고, 지금 화면은 `aria-current=\"page\"`로 표시합니다. 라벨은 한글 다섯 자 안으로 짧게 씁니다.",
+      "desc": "앱의 주요 화면 3개에서 5개를 아래에 두고, 지금 화면은 `aria-current=\"page\"`로 표시합니다. 라벨은 한글 다섯 자 안으로 짧게 작성합니다.",
       "wide": true,
       "html": "<div style=\"width: 100%; max-width: 375px\">\n  <ul class=\"ds-list\" data-divider>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">영어 회화 첫걸음</span>\n          <span class=\"ds-list-item__desc\">3강까지 들었어요</span>\n        </span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">엑셀 실무 기초</span>\n          <span class=\"ds-list-item__desc\">새 강의 2개가 올라왔어요</span>\n        </span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n  </ul>\n  <nav class=\"ds-bottomnav\" aria-label=\"주요 메뉴\">\n    <a class=\"ds-bottomnav__item\" href=\"#\" aria-current=\"page\">\n      <span class=\"ds-bottomnav__icon\"><i class=\"ds-icon ds-icon--house-solid ds-icon--lg\" aria-hidden=\"true\"></i></span>\n      <span class=\"ds-bottomnav__label\">홈</span>\n    </a>\n    <a class=\"ds-bottomnav__item\" href=\"#\">\n      <span class=\"ds-bottomnav__icon\"><i class=\"ds-icon ds-icon--book-open ds-icon--lg\" aria-hidden=\"true\"></i></span>\n      <span class=\"ds-bottomnav__label\">강의실</span>\n    </a>\n    <a class=\"ds-bottomnav__item\" href=\"#\">\n      <span class=\"ds-bottomnav__icon\"><i class=\"ds-icon ds-icon--shopping-cart ds-icon--lg\" aria-hidden=\"true\"></i></span>\n      <span class=\"ds-bottomnav__label\">장바구니</span>\n    </a>\n    <a class=\"ds-bottomnav__item\" href=\"#\">\n      <span class=\"ds-bottomnav__icon\"><i class=\"ds-icon ds-icon--user ds-icon--lg\" aria-hidden=\"true\"></i></span>\n      <span class=\"ds-bottomnav__label\">내 정보</span>\n    </a>\n  </nav>\n</div>"
     },
@@ -115,14 +115,14 @@
   ],
   "bottom-sheet": [
     {
-      "title": "목록 정렬을 골라 적용하기",
-      "desc": "값을 고른 뒤 적용 버튼으로 반영하는 선택은 Bottom Sheet에 담습니다. 위에 닫기 버튼이 있으니 아래에는 적용 버튼 하나만 둡니다.",
+      "title": "목록 정렬을 선택해 적용하기",
+      "desc": "값을 선택한 뒤 적용 버튼으로 반영하는 선택은 Bottom Sheet에 담습니다. 위에 닫기 버튼이 있으니 아래에는 적용 버튼 하나만 둡니다.",
       "wide": true,
       "html": "<div class=\"u-flex u-center u-between\" style=\"width: 100%; max-width: 375px\">\n  <span class=\"ds-t04 ds-fg-muted\">상품 128개</span>\n  <button type=\"button\" class=\"ds-chip\" data-variant=\"outlineWeak\" data-size=\"small\" aria-haspopup=\"dialog\" data-ds-open=\"bottom-sheet-ex1\">최신순<i class=\"ds-icon ds-icon--chevron-down\" aria-hidden=\"true\"></i></button>\n</div>\n<dialog class=\"ds-bottomsheet\" id=\"bottom-sheet-ex1\" aria-labelledby=\"bottom-sheet-ex1-title\" data-handle>\n  <div class=\"ds-bottomsheet__header\">\n    <h2 class=\"ds-bottomsheet__title\" id=\"bottom-sheet-ex1-title\">정렬</h2>\n    <button class=\"ds-bottomsheet__close\" data-ds-close aria-label=\"닫기\"></button>\n  </div>\n  <div class=\"ds-bottomsheet__body\">\n    <div class=\"ds-radio-group\" role=\"radiogroup\" aria-labelledby=\"bottom-sheet-ex1-title\">\n      <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex1-sort\" checked><span>최신순</span></label>\n      <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex1-sort\"><span>인기순</span></label>\n      <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex1-sort\"><span>낮은 가격순</span></label>\n      <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex1-sort\"><span>높은 가격순</span></label>\n    </div>\n  </div>\n  <div class=\"ds-bottomsheet__footer\">\n    <button class=\"ds-btn\" data-variant=\"neutralSolid\" data-size=\"large\" data-ds-close>적용</button>\n  </div>\n</dialog>"
     },
     {
       "title": "직접 입력할 수도 있는 선택 받기",
-      "desc": "고르다가 직접 적어야 할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 받습니다. 동작 몇 개 중 하나를 고를 때만 Menu Sheet를 쓰고, 입력이 있으면 Bottom Sheet를 씁니다.",
+      "desc": "선택하다가 직접 입력해야 할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 받습니다. 동작 몇 개 중 하나를 선택할 때만 Menu Sheet를 사용하고, 입력이 있으면 Bottom Sheet를 사용합니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 375px\">\n  <div class=\"ds-field__header\"><span class=\"ds-field__label\" id=\"bottom-sheet-ex2-label\">배송 요청 사항</span></div>\n  <button type=\"button\" class=\"ds-fieldbutton\" data-size=\"large\" aria-labelledby=\"bottom-sheet-ex2-label bottom-sheet-ex2-value\" aria-haspopup=\"dialog\" data-ds-open=\"bottom-sheet-ex2\">\n    <span class=\"ds-fieldbutton__value\" id=\"bottom-sheet-ex2-value\">문 앞에 놓아 주세요</span>\n    <i class=\"ds-icon ds-icon--chevron-down\" aria-hidden=\"true\"></i>\n  </button>\n</div>\n<dialog class=\"ds-bottomsheet\" id=\"bottom-sheet-ex2\" aria-labelledby=\"bottom-sheet-ex2-title\" data-handle>\n  <div class=\"ds-bottomsheet__header\">\n    <h2 class=\"ds-bottomsheet__title\" id=\"bottom-sheet-ex2-title\">배송 요청 사항</h2>\n    <button class=\"ds-bottomsheet__close\" data-ds-close aria-label=\"닫기\"></button>\n  </div>\n  <div class=\"ds-bottomsheet__body\">\n    <div class=\"u-col u-gap-3\">\n      <div class=\"ds-radio-group\" role=\"radiogroup\" aria-labelledby=\"bottom-sheet-ex2-title\">\n        <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex2-request\" checked><span>문 앞에 놓아 주세요</span></label>\n        <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex2-request\"><span>경비실에 맡겨 주세요</span></label>\n        <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex2-request\"><span>직접 받을게요</span></label>\n        <label class=\"ds-radio\"><input type=\"radio\" class=\"ds-radio__control\" name=\"bottom-sheet-ex2-request\"><span>직접 적을게요</span></label>\n      </div>\n      <textarea class=\"ds-textarea\" data-size=\"medium\" rows=\"2\" placeholder=\"예: 벨을 누르지 말아 주세요\" aria-label=\"배송 요청 사항 직접 적기\"></textarea>\n    </div>\n  </div>\n  <div class=\"ds-bottomsheet__footer\">\n    <button class=\"ds-btn\" data-variant=\"neutralSolid\" data-size=\"large\" data-ds-close>저장</button>\n  </div>\n</dialog>"
     },
@@ -142,7 +142,7 @@
     },
     {
       "title": "여러 단계 분류를 거슬러 올라가기",
-      "desc": "분류가 여러 단계인 목록에서는 상위 분류를 눌러 바로 올라갈 수 있게 합니다. 모바일 앱 화면에는 Breadcrumbs 대신 뒤로 가기 버튼이 있는 Top App Bar를 씁니다.",
+      "desc": "분류가 여러 단계인 목록에서는 상위 분류를 눌러 바로 올라갈 수 있게 합니다. 모바일 앱 화면에는 Breadcrumbs 대신 뒤로 가기 버튼이 있는 Top App Bar를 사용합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-4\" style=\"width: 100%; max-width: 640px\">\n  <nav class=\"ds-breadcrumbs\" aria-label=\"현재 위치\">\n    <ol>\n      <li><a href=\"#\">홈</a></li>\n      <li><a href=\"#\">가전</a></li>\n      <li><a href=\"#\">주방 가전</a></li>\n      <li><span aria-current=\"page\">커피 머신</span></li>\n    </ol>\n  </nav>\n  <div class=\"u-flex u-center u-between\">\n    <h1 class=\"ds-t09 ds-fw-bold\">커피 머신</h1>\n    <span class=\"ds-t04 ds-fg-subtle\">상품 86개</span>\n  </div>\n  <div class=\"u-flex u-wrap u-gap-2\">\n    <button type=\"button\" class=\"ds-chip\" data-size=\"small\" aria-pressed=\"false\">캡슐형</button>\n    <button type=\"button\" class=\"ds-chip\" data-size=\"small\" aria-pressed=\"false\">반자동</button>\n    <button type=\"button\" class=\"ds-chip\" data-size=\"small\" aria-pressed=\"false\">전자동</button>\n  </div>\n</div>"
     }
@@ -150,13 +150,13 @@
   "callout": [
     {
       "title": "입력 칸 가까이에 미리 알리기",
-      "desc": "이 화면에만 해당하는 안내는 본문 안, 관련 입력 칸 바로 위에 Callout으로 둡니다. 제목과 본문은 한 줄로 이어 쓰고 사이는 두 칸 띄웁니다.",
+      "desc": "이 화면에만 해당하는 안내는 본문 안, 관련 입력 칸 바로 위에 Callout으로 둡니다. 제목과 본문은 한 줄로 이어 작성하고 사이는 두 칸 띄웁니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-4\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"ds-callout\" data-tone=\"informative\">\n    <i class=\"ds-icon ds-icon--info-solid\" aria-hidden=\"true\"></i>\n    <p class=\"ds-callout__content\"><strong class=\"ds-callout__title\">배송 안내</strong>  제주와 산간 지역은 하루 더 걸려요.</p>\n  </div>\n  <div class=\"ds-field\">\n    <div class=\"ds-field__header\"><label class=\"ds-field__label\" for=\"callout-ex1-address\">받는 주소</label></div>\n    <div class=\"ds-input\" data-variant=\"outline\">\n      <i class=\"ds-icon ds-icon--search ds-input__icon\" aria-hidden=\"true\"></i>\n      <input class=\"ds-input__control\" id=\"callout-ex1-address\" placeholder=\"도로명이나 건물 이름으로 찾기\">\n    </div>\n  </div>\n</div>"
     },
     {
       "title": "문제가 생긴 곳에서 고칠 방법 알리기",
-      "desc": "문제가 생긴 정보 바로 위에 critical Callout을 두고 고치는 방법을 링크로 붙입니다. 링크는 문장 끝에 두 칸 띄워 이어 씁니다.",
+      "desc": "문제가 생긴 정보 바로 위에 critical Callout을 두고 고치는 방법을 링크로 붙입니다. 링크는 문장 끝에 두 칸 띄워 이어 작성합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-3\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"ds-callout\" data-tone=\"critical\">\n    <i class=\"ds-icon ds-icon--circle-alert-solid\" aria-hidden=\"true\"></i>\n    <p class=\"ds-callout__content\">등록한 카드의 유효 기간이 지났어요.  <a class=\"ds-callout__link\" href=\"#\">결제 수단 바꾸기</a></p>\n  </div>\n  <ul class=\"ds-list\" data-variant=\"inset\" data-divider>\n    <li>\n      <div class=\"ds-list-item\">\n        <span class=\"ds-list-item__content\"><span class=\"ds-list-item__title\">요금제</span></span>\n        <span class=\"ds-list-item__suffix\">프리미엄, 월 9,900원</span>\n      </div>\n    </li>\n    <li>\n      <div class=\"ds-list-item\">\n        <span class=\"ds-list-item__content\"><span class=\"ds-list-item__title\">다음 결제일</span></span>\n        <span class=\"ds-list-item__suffix\">12월 1일</span>\n      </div>\n    </li>\n  </ul>\n</div>"
     },
@@ -236,13 +236,13 @@
     },
     {
       "title": "버튼을 눌러야 반영되는 선택 받기",
-      "desc": "로그인처럼 버튼을 눌러야 반영되는 선택은 Switch가 아니라 Checkbox로 받습니다. Switch는 누르는 즉시 바뀌는 설정에만 씁니다.",
+      "desc": "로그인처럼 버튼을 눌러야 반영되는 선택은 Switch가 아니라 Checkbox로 받습니다. Switch는 누르는 즉시 바뀌는 설정에만 사용합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-4\" style=\"width: 100%; max-width: 375px\">\n  <div class=\"ds-field\">\n    <div class=\"ds-field__header\"><label class=\"ds-field__label\" for=\"checkbox-ex2-id\">아이디</label></div>\n    <div class=\"ds-input\" data-variant=\"outline\"><input class=\"ds-input__control\" id=\"checkbox-ex2-id\" placeholder=\"아이디를 입력해 주세요\"></div>\n  </div>\n  <div class=\"ds-field\">\n    <div class=\"ds-field__header\"><label class=\"ds-field__label\" for=\"checkbox-ex2-password\">비밀번호</label></div>\n    <div class=\"ds-input\" data-variant=\"outline\"><input class=\"ds-input__control\" id=\"checkbox-ex2-password\" type=\"password\" placeholder=\"비밀번호를 입력해 주세요\"></div>\n  </div>\n  <label class=\"ds-checkbox\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked><span class=\"ds-checkbox__label\">로그인 상태 유지</span></label>\n  <button class=\"ds-btn\" data-size=\"large\" data-width=\"fill\">로그인</button>\n</div>"
     },
     {
-      "title": "목록에서 여러 개를 골라 한 번에 처리하기",
-      "desc": "목록 위에 전체 선택 칸을 두고, 일부만 골랐으면 가로선(`data-indeterminate`)으로 보여 줍니다. 고른 항목은 위쪽 버튼으로 한 번에 처리합니다.",
+      "title": "목록에서 여러 개를 선택해 한 번에 처리하기",
+      "desc": "목록 위에 전체 선택 칸을 두고, 일부만 선택했으면 가로선(`data-indeterminate`)으로 보여 줍니다. 선택한 항목은 위쪽 버튼으로 한 번에 처리합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-3\" style=\"width: 100%; max-width: 375px\">\n  <div class=\"u-flex u-center u-between\">\n    <label class=\"ds-checkbox\"><input type=\"checkbox\" class=\"ds-checkbox__control\" data-indeterminate><span class=\"ds-checkbox__label\">전체 선택 (2/3)</span></label>\n    <button class=\"ds-btn\" data-variant=\"ghost\" data-size=\"xsmall\">선택 삭제</button>\n  </div>\n  <ul class=\"ds-list\" data-variant=\"inset\" data-divider>\n    <li>\n      <div class=\"ds-list-item\">\n        <span class=\"ds-list-item__prefix\"><label class=\"ds-checkbox\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked aria-label=\"무선 이어폰\"></label></span>\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">무선 이어폰</span>\n          <span class=\"ds-list-item__desc\">화이트, 1개</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">59,000원</span>\n      </div>\n    </li>\n    <li>\n      <div class=\"ds-list-item\">\n        <span class=\"ds-list-item__prefix\"><label class=\"ds-checkbox\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked aria-label=\"보온 텀블러\"></label></span>\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">보온 텀블러</span>\n          <span class=\"ds-list-item__desc\">500ml, 2개</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">24,000원</span>\n      </div>\n    </li>\n    <li>\n      <div class=\"ds-list-item\">\n        <span class=\"ds-list-item__prefix\"><label class=\"ds-checkbox\"><input type=\"checkbox\" class=\"ds-checkbox__control\" aria-label=\"노트 3권 세트\"></label></span>\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">노트 3권 세트</span>\n          <span class=\"ds-list-item__desc\">1개</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">9,800원</span>\n      </div>\n    </li>\n  </ul>\n</div>"
     }
@@ -250,33 +250,33 @@
   "checkbox-group": [
     {
       "title": "같은 질문의 답을 한 묶음으로",
-      "desc": "같은 질문에 답하는 체크박스만 세로로 쌓고, 묶음 이름과 안내는 Field Label로 붙입니다. 묶음에 `aria-labelledby`로 이름을 이어 화면 낭독기도 무엇을 고르는지 알게 합니다.",
+      "desc": "같은 질문에 답하는 체크박스만 세로로 쌓고, 묶음 이름과 안내는 Field Label로 붙입니다. 묶음에 `aria-labelledby`로 이름을 이어 스크린 리더도 무엇을 선택하는지 알게 합니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 375px\">\n  <div class=\"ds-field__header\">\n    <span class=\"ds-field__label\" id=\"checkbox-group-ex1-label\">관심 분야</span>\n    <span class=\"ds-field__indicator\">선택</span>\n  </div>\n  <fieldset class=\"ds-checkbox-group\" aria-labelledby=\"checkbox-group-ex1-label\">\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked><span class=\"ds-checkbox__label\">어학</span></label>\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked><span class=\"ds-checkbox__label\">자격증</span></label>\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\"><span class=\"ds-checkbox__label\">취업</span></label>\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\"><span class=\"ds-checkbox__label\">교양</span></label>\n  </fieldset>\n  <div class=\"ds-field__footer\"><p class=\"ds-field__help\">고른 분야의 강의를 먼저 보여 줘요.</p></div>\n</div>"
     },
     {
-      "title": "하나도 고르지 않았을 때 오류 알리기",
-      "desc": "꼭 골라야 하는 묶음을 비워 두면 묶음에 `aria-invalid=\"true\"`를 붙여 안내 글을 오류 문구로 바꿉니다. 오류 문구에는 무엇을 하면 되는지 적습니다.",
+      "title": "하나도 선택하지 않았을 때 오류 알리기",
+      "desc": "꼭 선택해야 하는 묶음을 비워 두면 묶음에 `aria-invalid=\"true\"`를 붙여 안내 글을 오류 문구로 바꿉니다. 오류 문구에는 무엇을 하면 되는지 적습니다.",
       "wide": true,
       "html": "<div class=\"ds-field\" style=\"width: 100%; max-width: 375px\">\n  <div class=\"ds-field__header\">\n    <span class=\"ds-field__label\" id=\"checkbox-group-ex2-label\">답변 받을 방법</span>\n    <span class=\"ds-field__required\" aria-hidden=\"true\"></span>\n  </div>\n  <fieldset class=\"ds-checkbox-group\" aria-labelledby=\"checkbox-group-ex2-label\" aria-describedby=\"checkbox-group-ex2-error\" aria-invalid=\"true\">\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\"><span class=\"ds-checkbox__label\">이메일</span></label>\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\"><span class=\"ds-checkbox__label\">문자 메시지</span></label>\n    <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\"><span class=\"ds-checkbox__label\">전화</span></label>\n  </fieldset>\n  <div class=\"ds-field__footer\">\n    <p class=\"ds-field__help\">답변이 오면 고른 방법으로 알려 줘요.</p>\n    <p class=\"ds-field__error\" id=\"checkbox-group-ex2-error\">답변 받을 방법을 하나 이상 골라 주세요.</p>\n  </div>\n</div>"
     },
     {
       "title": "성격이 다른 선택은 묶음 밖에 두기",
-      "desc": "받을 소식처럼 같은 종류만 묶고, 성격이 다른 선택은 Divider 아래에 따로 둡니다. 저장 버튼으로 한 번에 반영하는 설정이라 Switch 대신 Checkbox를 씁니다.",
+      "desc": "받을 소식처럼 같은 종류만 묶고, 성격이 다른 선택은 Divider 아래에 따로 둡니다. 저장 버튼으로 한 번에 반영하는 설정이라 Switch 대신 Checkbox를 사용합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-5\" style=\"width: 100%; max-width: 375px\">\n  <div class=\"ds-field\">\n    <div class=\"ds-field__header\"><span class=\"ds-field__label\" id=\"checkbox-group-ex3-label\">받을 소식</span></div>\n    <fieldset class=\"ds-checkbox-group\" aria-labelledby=\"checkbox-group-ex3-label\">\n      <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked><span class=\"ds-checkbox__label\">주문 진행</span></label>\n      <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked><span class=\"ds-checkbox__label\">배송 출발</span></label>\n      <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\"><span class=\"ds-checkbox__label\">할인과 이벤트</span></label>\n    </fieldset>\n  </div>\n  <hr class=\"ds-divider\">\n  <label class=\"ds-checkbox\" data-tone=\"neutral\"><input type=\"checkbox\" class=\"ds-checkbox__control\" checked><span class=\"ds-checkbox__label\">밤 9시부터 아침 8시까지는 받지 않기</span></label>\n  <button class=\"ds-btn\" data-size=\"large\" data-width=\"fill\">저장</button>\n</div>"
     }
   ],
   "chip": [
     {
-      "title": "여러 조건을 함께 골라 거르기",
-      "desc": "함께 고를 수 있는 필터는 Chip으로 만들고, 고른 칩에는 `aria-pressed=\"true\"`를 붙입니다. 하나만 골라 보이는 내용을 바꿀 때는 Chip Tabs를 씁니다.",
+      "title": "여러 조건을 함께 선택해 필터링하기",
+      "desc": "함께 선택할 수 있는 필터는 Chip으로 만들고, 선택한 칩에는 `aria-pressed=\"true\"`를 붙입니다. 하나만 선택해 보이는 내용을 바꿀 때는 Chip Tabs를 사용합니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-3\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"u-flex u-wrap u-gap-2\">\n    <button type=\"button\" class=\"ds-chip\" aria-pressed=\"true\">무료 배송</button>\n    <button type=\"button\" class=\"ds-chip\" aria-pressed=\"false\">오늘 출발</button>\n    <button type=\"button\" class=\"ds-chip\" aria-pressed=\"true\">할인 중</button>\n    <button type=\"button\" class=\"ds-chip\" aria-pressed=\"false\">평점 4점 이상</button>\n  </div>\n  <span class=\"ds-t04 ds-fg-subtle\">상품 128개</span>\n</div>"
     },
     {
       "title": "지금 값을 보여 주고 눌러서 바꾸기",
-      "desc": "값을 골라야 하는 필터는 칩에 지금 값과 아래 화살표를 함께 보여 줍니다. 누르면 Bottom Sheet나 Select Content를 열어 값을 바꿉니다.",
+      "desc": "값을 선택해야 하는 필터는 칩에 지금 값과 아래 화살표를 함께 보여 줍니다. 누르면 Bottom Sheet나 Select Content를 열어 값을 바꿉니다.",
       "wide": true,
       "html": "<div class=\"u-col u-gap-3\" style=\"width: 100%; max-width: 420px\">\n  <div class=\"u-flex u-wrap u-gap-2\">\n    <button type=\"button\" class=\"ds-chip\" data-variant=\"outlineWeak\" data-layout=\"iconOnly\" aria-label=\"필터\"><i class=\"ds-icon ds-icon--sliders-horizontal\" aria-hidden=\"true\"></i></button>\n    <button type=\"button\" class=\"ds-chip\" data-variant=\"outlineWeak\" aria-haspopup=\"dialog\">최근 3개월<i class=\"ds-icon ds-icon--chevron-down\" aria-hidden=\"true\"></i></button>\n    <button type=\"button\" class=\"ds-chip\" data-variant=\"outlineWeak\" aria-haspopup=\"dialog\">배송 완료<i class=\"ds-icon ds-icon--chevron-down\" aria-hidden=\"true\"></i></button>\n  </div>\n  <ul class=\"ds-list\" data-variant=\"inset\" data-divider>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">무선 이어폰</span>\n          <span class=\"ds-list-item__desc\">11월 2일 주문</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">배송 완료</span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">보온 텀블러</span>\n          <span class=\"ds-list-item__desc\">10월 21일 주문</span>\n        </span>\n        <span class=\"ds-list-item__suffix\">배송 완료</span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n  </ul>\n</div>"
     },
@@ -290,7 +290,7 @@
   "chip-tabs": [
     {
       "title": "Tabs 아래에서 분류 바꾸기",
-      "desc": "화면의 주요 메뉴는 Tabs로 두고, 그 안에서 분류를 바꿀 때 Chip Tabs를 씁니다. 고른 항목은 늘 하나만 둡니다.",
+      "desc": "화면의 주요 메뉴는 Tabs로 두고, 그 안에서 분류를 바꿀 때 Chip Tabs를 사용합니다. 선택한 항목은 늘 하나만 둡니다.",
       "wide": true,
       "html": "<div style=\"width: 100%; max-width: 375px\">\n  <div class=\"ds-tabs\" role=\"tablist\">\n    <button class=\"ds-tabs__trigger\" role=\"tab\" aria-selected=\"true\">강의</button>\n    <button class=\"ds-tabs__trigger\" role=\"tab\" aria-selected=\"false\">교재</button>\n    <button class=\"ds-tabs__trigger\" role=\"tab\" aria-selected=\"false\">이벤트</button>\n  </div>\n  <div class=\"ds-chiptabs u-mt-3\" role=\"tablist\" aria-label=\"강의 분류\">\n    <button class=\"ds-chiptabs__trigger\" role=\"tab\" aria-selected=\"true\">전체</button>\n    <button class=\"ds-chiptabs__trigger\" role=\"tab\" aria-selected=\"false\">어학</button>\n    <button class=\"ds-chiptabs__trigger\" role=\"tab\" aria-selected=\"false\">자격증</button>\n    <button class=\"ds-chiptabs__trigger\" role=\"tab\" aria-selected=\"false\">취업</button>\n    <button class=\"ds-chiptabs__trigger\" role=\"tab\" aria-selected=\"false\">교양</button>\n  </div>\n  <ul class=\"ds-list u-mt-2\">\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">영어 회화 첫걸음</span>\n          <span class=\"ds-list-item__desc\">강의 24개, 12시간</span>\n        </span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n    <li>\n      <a class=\"ds-list-item\" href=\"#\">\n        <span class=\"ds-list-item__content\">\n          <span class=\"ds-list-item__title\">엑셀 실무 기초</span>\n          <span class=\"ds-list-item__desc\">강의 18개, 9시간</span>\n        </span>\n        <i class=\"ds-icon ds-icon--chevron-right ds-list-item__chevron\" aria-hidden=\"true\"></i>\n      </a>\n    </li>\n  </ul>\n</div>"
     },
@@ -330,7 +330,7 @@
     },
     {
       "title": "긴 한 줄은 줄을 바꿔 다 보이게",
-      "desc": "한 줄이 긴 코드는 `data-wrap`을 붙여 가로로 밀지 않고 줄을 바꿔 보여 줍니다. 주소처럼 끝까지 읽고 그대로 붙여 넣어야 하는 코드에 씁니다.",
+      "desc": "한 줄이 긴 코드는 `data-wrap`을 붙여 가로로 밀지 않고 줄을 바꿔 보여 줍니다. 주소처럼 끝까지 읽고 그대로 붙여 넣어야 하는 코드에 사용합니다.",
       "wide": true,
       "html": "<div class=\"ds-markdown\" style=\"width: 100%; max-width: 480px\">\n  <p>아래 줄을 페이지의 <code>&lt;head&gt;</code> 안에 붙여 넣어 주세요.</p>\n  <figure class=\"ds-codeblock\" data-wrap>\n    <figcaption class=\"ds-codeblock__header\">\n      <span class=\"ds-codeblock__language\">html</span>\n      <button type=\"button\" class=\"ds-codeblock__copy\" data-ds-copy aria-label=\"코드 복사\"><i class=\"ds-icon ds-icon--copy ds-icon--sm\" aria-hidden=\"true\"></i></button>\n    </figcaption>\n    <pre class=\"ds-codeblock__code\"><code>&lt;link rel=\"stylesheet\" href=\"https://cdn.example.com/design-system/1.4.0/dist/styles.css\"&gt;</code></pre>\n  </figure>\n</div>"
     },

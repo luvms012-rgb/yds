@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=ca1ea584">
+<link rel="stylesheet" href="../assets/site.css?v=284005c5">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=ca1ea584" defer></script>
+<script src="../assets/site.js?v=284005c5" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -125,7 +125,7 @@
 <div class="site-toc-select"><button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-controls="site-toc-list" aria-label="이 페이지 목차" data-site-toc><span class="ds-select__value">사용법</span></button><div class="ds-select-content site-toc-list" id="site-toc-list" role="listbox" data-size="medium" hidden><ul class="ds-select-list"><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="usage" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">사용법</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="anatomy"><span class="ds-select-item__body"><span class="ds-select-item__label">구조</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="props"><span class="ds-select-item__body"><span class="ds-select-item__label">속성</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="guide"><span class="ds-select-item__body"><span class="ds-select-item__label">사용 지침</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="examples"><span class="ds-select-item__body"><span class="ds-select-item__label">예시</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="spec"><span class="ds-select-item__body"><span class="ds-select-item__label">규격</span></span></button></li></ul></div></div>
 </header>
 <div class="site-tile__thumb site-cover" data-site-fit-max="2" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><nav class="ds-bottomnav" aria-label="주요 메뉴" style="position:static;width:375px"><span class="ds-bottomnav__item" href="#" aria-current="page"><span class="ds-bottomnav__icon"><i class="ds-icon ds-icon--house-solid ds-icon--lg" aria-hidden="true"></i></span><span class="ds-bottomnav__label">홈</span></span><span class="ds-bottomnav__item" href="#"><span class="ds-bottomnav__icon"><i class="ds-icon ds-icon--search ds-icon--lg" aria-hidden="true"></i></span><span class="ds-bottomnav__label">검색</span></span><span class="ds-bottomnav__item" href="#"><span class="ds-bottomnav__icon"><i class="ds-icon ds-icon--calendar ds-icon--lg" aria-hidden="true"></i></span><span class="ds-bottomnav__label">일정</span></span><span class="ds-bottomnav__item" href="#"><span class="ds-bottomnav__icon"><i class="ds-icon ds-icon--menu ds-icon--lg" aria-hidden="true"></i></span><span class="ds-bottomnav__label">전체</span></span></nav></div></div></div>
-<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 씁니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
+<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 사용합니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">nav</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomnav&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;주요 메뉴&quot;</span>&gt;
   &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-current</span>=<span class="hl-s">&quot;page&quot;</span>&gt;
@@ -140,22 +140,22 @@
     <span class="ds-bottomnav__label">홈</span>
   </span>
 </nav></div></div></div></div><div class="site-anatomy-table"><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
-<thead><tr><th scope="col">부품</th><th scope="col">설명</th></tr></thead>
+<thead><tr><th scope="col">구성 요소</th><th scope="col">설명</th></tr></thead>
 <tbody><tr><td><span class="site-anatomy__part"><b>Item</b> <code>ds-bottomnav__item</code></span></td><td>목록의 항목 하나입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Icon</b> <code>ds-bottomnav__icon</code></span></td><td>메뉴를 나타내는 아이콘입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Badge Dot</b> <code>ds-bottomnav__badge--dot</code></span></td><td>새 소식을 알리는 점입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Label</b> <code>ds-bottomnav__label</code></span></td><td>메뉴 이름입니다.</td></tr></tbody></table></div></div>
-<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 씁니다.</p><p class="site-note">그 밖에: 뱃지 <code>__badge--dot/--count</code> (bg/critical-solid)</p>
+<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 사용합니다.</p><p class="site-note">그 밖에: 뱃지 <code>__badge--dot/--count</code> (bg/critical-solid)</p>
 <h2 id="guide">사용 지침<a class="site-anchor" href="#guide" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>탭은 3~5개를 둡니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>라벨은 한글 5자(영문 10자) 안으로 씁니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>아이콘은 채움(Solid) 모양을 씁니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>배지 숫자는 1~99로 쓰고, 100 이상은 <code>99+</code>로 씁니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>라벨은 한글 5자(영문 10자) 안으로 작성합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>아이콘은 채움(Solid) 모양을 사용합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>배지 숫자는 1~99까지 표시하고, 100 이상은 <code>99+</code>로 표시합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>숫자가 0이면 배지를 숨깁니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>숫자 배지를 세 개 넘게 한꺼번에 띄우지 않습니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<a class="site-anchor" href="#examples" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><h3>주요 화면 네 곳을 아래에 두기</h3>
-<p>앱의 주요 화면 3개에서 5개를 아래에 두고, 지금 화면은 <code>aria-current=&quot;page&quot;</code>로 표시합니다. 라벨은 한글 다섯 자 안으로 짧게 씁니다.</p>
+<p>앱의 주요 화면 3개에서 5개를 아래에 두고, 지금 화면은 <code>aria-current=&quot;page&quot;</code>로 표시합니다. 라벨은 한글 다섯 자 안으로 짧게 작성합니다.</p>
 <div class="site-example">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div style="width: 100%; max-width: 375px">

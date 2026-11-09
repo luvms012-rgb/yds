@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <div class="ds-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
@@ -15,7 +15,7 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -26,9 +26,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | "3/10", "40%"처럼 값을 글자로 막대 위나 옆에 적습니다. 막대만으로는 정확한 숫자를 알 수 없습니다. |
-| **Do** | 화면의 대표 진행률은 brand, 목록 안이나 보조 진행률은 neutral을 씁니다. |
+| **Do** | 화면의 대표 진행률은 brand, 목록 안이나 보조 진행률은 neutral을 사용합니다. |
 | **Do** | 0%일 때도 바탕 막대(track)는 보여 줍니다. 그래야 진행 막대인 줄 알 수 있습니다. |
-| **Do** | 화면 읽기 프로그램이 읽도록 role="progressbar"와 aria-valuenow, aria-valuemin, aria-valuemax를 붙입니다. 라벨이 없으면 aria-label을 붙입니다. |
+| **Do** | 스크린 리더가 읽도록 role="progressbar"와 aria-valuenow, aria-valuemin, aria-valuemax를 붙입니다. 라벨이 없으면 aria-label을 붙입니다. |
 
 ## 예시
 
@@ -57,7 +57,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 ### 목록 안 진행률은 neutral로 낮추기
 
-여러 줄에 붙는 진행률은 `data-tone="neutral"`과 `data-size="small"`로 낮춥니다. brand는 화면의 대표 진행률 하나에만 써야 눈에 띕니다.
+여러 줄에 붙는 진행률은 `data-tone="neutral"`과 `data-size="small"`로 낮춥니다. brand는 화면의 대표 진행률 하나에만 사용해야 눈에 띕니다.
 
 ```html
 <ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">

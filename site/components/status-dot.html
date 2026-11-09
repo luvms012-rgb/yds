@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=ca1ea584">
+<link rel="stylesheet" href="../assets/site.css?v=284005c5">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=ca1ea584" defer></script>
+<script src="../assets/site.js?v=284005c5" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -125,18 +125,18 @@
 <div class="site-toc-select"><button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-controls="site-toc-list" aria-label="이 페이지 목차" data-site-toc><span class="ds-select__value">사용법</span></button><div class="ds-select-content site-toc-list" id="site-toc-list" role="listbox" data-size="medium" hidden><ul class="ds-select-list"><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="usage" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">사용법</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="props"><span class="ds-select-item__body"><span class="ds-select-item__label">속성</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="guide"><span class="ds-select-item__body"><span class="ds-select-item__label">사용 지침</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="examples"><span class="ds-select-item__body"><span class="ds-select-item__label">예시</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="spec"><span class="ds-select-item__body"><span class="ds-select-item__label">규격</span></span></button></li></ul></div></div>
 </header>
 <div class="site-tile__thumb site-cover" data-site-fit-max="2" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><div style="display:flex;align-items:center;gap:24px"><span style="display:inline-flex;align-items:center;gap:var(--ds-space-x1_5);font-size:var(--ds-font-size-t05)"><span class="ds-statusdot" data-tone="positive"></span>연결됨</span><span style="display:inline-flex;align-items:center;gap:var(--ds-space-x1_5);font-size:var(--ds-font-size-t05)"><span class="ds-statusdot" data-tone="warning"></span>지연</span><span style="display:inline-flex;align-items:center;gap:var(--ds-space-x1_5);font-size:var(--ds-font-size-t05)"><span class="ds-statusdot" data-tone="critical"></span>끊김</span></div></div></div></div>
-<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 씁니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
+<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 사용합니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-statusdot&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;positive&quot;</span> <span class="hl-f">[data-pulse]</span>&gt;&lt;/<span class="hl-t">span</span>&gt; &lt;<span class="hl-t">span</span>&gt;연결됨&lt;/<span class="hl-t">span</span>&gt;</code></pre>
 </figure>
-<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 씁니다.</p><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
+<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 사용합니다.</p><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">속성</th><th scope="col">값</th></tr></thead>
 <tbody><tr><td><code>tone</code></td><td><span class="ds-badge">positive</span> <span class="ds-badge">warning</span> <span class="ds-badge">critical</span> <span class="ds-badge">brand</span> <span class="ds-badge">neutral</span></td></tr>
 <tr><td>켜고 끄는 속성</td><td><code>data-pulse</code></td></tr></tbody></table></div>
 <h2 id="guide">사용 지침<a class="site-anchor" href="#guide" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
-<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>색만으로 뜻을 전하지 않도록 글자와 함께 씁니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>프로필 사진 위의 상태는 Avatar의 Status를 씁니다.</td></tr></tbody></table></div>
+<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>색만으로 뜻을 전하지 않도록 글자와 함께 사용합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>프로필 사진 위의 상태는 Avatar의 Status를 사용합니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<a class="site-anchor" href="#examples" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><h3>글자와 함께 서비스 상태 알리기</h3>
 <p>점 옆에 정상, 지연, 중단 같은 글자를 함께 적습니다. 색을 구분하기 어려운 사람도 글자로 상태를 읽을 수 있습니다.</p>
 <div class="site-example">

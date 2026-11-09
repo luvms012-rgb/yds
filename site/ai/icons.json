@@ -354,7 +354,7 @@
       "name": "funnel",
       "class": "ds-icon--funnel",
       "solid": false,
-      "use": "거르기"
+      "use": "필터"
     },
     {
       "name": "git-branch",
@@ -516,7 +516,7 @@
       "name": "list-filter",
       "class": "ds-icon--list-filter",
       "solid": false,
-      "use": "목록 거르기"
+      "use": "목록 필터"
     },
     {
       "name": "list-music",

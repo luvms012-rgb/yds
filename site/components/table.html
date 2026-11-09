@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=ca1ea584">
+<link rel="stylesheet" href="../assets/site.css?v=284005c5">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=ca1ea584" defer></script>
+<script src="../assets/site.js?v=284005c5" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -125,7 +125,7 @@
 <div class="site-toc-select"><button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-controls="site-toc-list" aria-label="이 페이지 목차" data-site-toc><span class="ds-select__value">사용법</span></button><div class="ds-select-content site-toc-list" id="site-toc-list" role="listbox" data-size="medium" hidden><ul class="ds-select-list"><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="usage" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">사용법</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="anatomy"><span class="ds-select-item__body"><span class="ds-select-item__label">구조</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="props"><span class="ds-select-item__body"><span class="ds-select-item__label">속성</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="guide"><span class="ds-select-item__body"><span class="ds-select-item__label">사용 지침</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="examples"><span class="ds-select-item__body"><span class="ds-select-item__label">예시</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="spec"><span class="ds-select-item__body"><span class="ds-select-item__label">규격</span></span></button></li></ul></div></div>
 </header>
 <div class="site-tile__thumb site-cover" data-site-fit-max="2" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><div class="site-cover-panel"><div class="ds-table-wrap" style="width:520px"><table class="ds-table"><thead><tr><th scope="col" data-align="center" style="width:64px">번호</th><th scope="col">제목</th><th scope="col" data-align="center" style="width:112px">등록일</th></tr></thead><tbody><tr><td data-align="center">3</td><td>서비스 이용약관 변경 안내</td><td data-align="center">2026.11.02</td></tr><tr><td data-align="center">2</td><td>연휴 배송 일정 안내</td><td data-align="center">2026.10.20</td></tr><tr><td data-align="center">1</td><td>앱 업데이트 소식</td><td data-align="center">2026.10.08</td></tr></tbody></table></div></div></div></div></div>
-<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 씁니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
+<h2 id="usage">사용법<a class="site-anchor" href="#usage" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>아래 구조를 복사해 사용합니다. 대괄호 <code>[ ]</code>로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.</p><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-table-wrap&quot;</span>&gt;            ← 열이 넘치면 가로 스크롤
   &lt;<span class="hl-t">table</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-table&quot;</span> <span class="hl-f">[data-density</span>=<span class="hl-s">&quot;compact&quot;</span>]&gt;
@@ -151,21 +151,21 @@
     </tbody>
   </table>
 </div></div></div></div></div><div class="site-anatomy-table"><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
-<thead><tr><th scope="col">부품</th><th scope="col">설명</th></tr></thead>
+<thead><tr><th scope="col">구성 요소</th><th scope="col">설명</th></tr></thead>
 <tbody><tr><td><span class="site-anatomy__part"><b>Group</b> <code>ds-table__group</code></span></td><td>관련 항목을 묶는 영역입니다.</td></tr>
 <tr><td><span class="site-anatomy__part"><b>Stack</b> <code>ds-table__stack</code></span></td><td>여러 줄을 쌓아 보여 주는 칸입니다.</td></tr></tbody></table></div></div>
-<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 씁니다.</p><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
+<h2 id="props">속성<a class="site-anchor" href="#props" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><p>Figma 속성 이름을 그대로 <code>data-*</code> 속성으로 사용합니다.</p><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">속성</th><th scope="col">값</th></tr></thead>
 <tbody><tr><td><code>density</code></td><td><span class="ds-badge">compact</span></td></tr>
 <tr><td>켜고 끄는 속성</td><td><code>align</code></td></tr></tbody></table></div>
 <h2 id="guide">사용 지침<a class="site-anchor" href="#guide" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><div class="ds-table-wrap"><table class="ds-table" data-density="compact">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>열은 모바일에서 3개, PC에서 6개 안팎까지 둡니다. 넘치면 가로로 밀어서 봅니다. 모바일에서 열이 많으면 표 대신 Card 목록으로 바꿉니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>표에는 꼭 머리 줄을 둡니다(thead와 th scope=&quot;col&quot;).</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>데이터가 없을 때는 머리 줄 아래에 Empty(small)를 표 전체 폭으로 둡니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>마우스를 올렸을 때 색이 바뀌는 효과는 줄을 눌러 상세로 가는 표에서만 씁니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>표에는 꼭 헤더 행을 둡니다(thead와 th scope=&quot;col&quot;).</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>데이터가 없을 때는 헤더 행 아래에 Empty(small)를 표 전체 폭으로 둡니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>마우스를 올렸을 때 색이 바뀌는 효과는 줄을 눌러 상세로 가는 표에서만 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>글은 왼쪽, 숫자와 금액은 오른쪽에 맞춥니다. 번호, 날짜, 상태처럼 짧고 길이가 같은 값은 가운데에 맞춥니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>한 표 안에서 density를 섞지 않습니다. 데이터가 많은 관리 화면은 compact, 일반 사용자 화면은 default를 씁니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>한 표 안에서 density를 섞지 않습니다. 데이터가 많은 관리 화면은 compact, 일반 사용자 화면은 default를 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>한 칸에 두 줄 넘게 넣지 않습니다. 긴 글은 말줄임하고 상세 화면에서 보여 줍니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<a class="site-anchor" href="#examples" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2><h3>눌러서 상세로 가는 문의 내역</h3>
 <p>줄을 누르면 상세로 가는 표라 <code>data-interactive</code>로 마우스를 올린 줄을 표시합니다. 번호, 상태, 날짜는 가운데에, 제목은 왼쪽에 맞춥니다.</p>
@@ -311,8 +311,8 @@
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>
-<h3>결과가 없으면 머리 줄 아래에 빈 안내</h3>
-<p>찾은 결과가 없으면 머리 줄은 그대로 두고 그 아래에 Empty(small)를 표 전체 폭으로 둡니다. 어떤 열을 찾고 있었는지 남아 있어 조건을 바꿔 다시 찾기 쉽습니다.</p>
+<h3>결과가 없으면 헤더 행 아래에 빈 안내</h3>
+<p>찾은 결과가 없으면 헤더 행은 그대로 두고 그 아래에 Empty(small)를 표 전체 폭으로 둡니다. 어떤 열을 찾고 있었는지 남아 있어 조건을 바꿔 다시 찾기 쉽습니다.</p>
 <div class="site-example">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-table-wrap">

@@ -246,7 +246,7 @@ const write = () => {
 </main>
 <div class="tp-wbar"><div class="tp-wbar__in"><span class="tp-caption">자동 저장 14:32</span><div class="tp-row">${btn('임시 저장', { size: 'medium' })}${btn('등록', { variant: 'brandSolid', size: 'medium' })}</div></div></div>
 </div>`;
-  return { slug: 'community-write', en: 'Write Post', name: '글쓰기', group: 'Community', desc: '커뮤니티에 새 글을 쓰는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.', css, body };
+  return { slug: 'community-write', en: 'Write Post', name: '글쓰기', group: 'Community', desc: '커뮤니티에 새 글을 작성하는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.', css, body };
 };
 
 export const templates = [home(), board(), post(), write()];

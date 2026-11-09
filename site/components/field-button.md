@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 씁니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 없어도 되는 선택 항목입니다. 쓸 때는 대괄호만 지우고, 안 쓰면 통째로 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
 
 ```html
 <button type="button" class="ds-fieldbutton" data-size="large">
@@ -20,14 +20,14 @@
 
 ## 구조
 
-| 부품 | 설명 |
+| 구성 요소 | 설명 |
 | --- | --- |
 | **Affix** `ds-fieldbutton__affix` | 값 앞이나 뒤에 붙는 아이콘입니다. |
-| **Value** `ds-fieldbutton__value` | 고른 값이나 숫자를 보여 줍니다. |
+| **Value** `ds-fieldbutton__value` | 선택한 값이나 숫자를 보여 줍니다. |
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -40,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 폼으로 보내야 하는 값은 disabled 대신 readOnly로 두세요. disabled 값은 보내지지 않습니다. |
-| **Do** | 사용자가 직접 입력해야 하면 Field Button 대신 Text Field Input을 씁니다. |
+| **Do** | 사용자가 직접 입력해야 하면 Field Button 대신 Text Field Input을 사용합니다. |
 | **Do** | 라벨, 설명, 오류 문구는 Field Label로 감싸서 붙이세요. |
 | **Don't** | 지우기(clear) 버튼은 오른쪽 아이콘과 역할이 겹치므로 넣지 않습니다. |
 
@@ -48,7 +48,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 
 ### 정해진 값은 눌러서 고르게 하기
 
-고를 값이 정해진 칸은 Field Button으로 만들고, 누르면 Bottom Sheet에서 고릅니다. 사용자가 직접 써야 하는 칸이면 Text Field Input을 씁니다.
+선택할 값이 정해진 칸은 Field Button으로 만들고, 누르면 Bottom Sheet에서 선택합니다. 사용자가 직접 입력해야 하는 칸이면 Text Field Input을 사용합니다.
 
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
@@ -111,9 +111,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 씁니다.
 </div>
 ```
 
-### 고르지 않은 칸은 오류와 고칠 방법 알리기
+### 선택하지 않은 칸은 오류와 고칠 방법 알리기
 
-라벨과 오류 문구는 Field Label로 감싸 붙이고, 고르지 않은 칸에는 `aria-invalid="true"`를 붙입니다. 오류가 나면 안내 문구 자리에 고치는 방법이 보입니다.
+라벨과 오류 문구는 Field Label로 감싸 붙이고, 선택하지 않은 칸에는 `aria-invalid="true"`를 붙입니다. 오류가 나면 안내 문구 자리에 고치는 방법이 보입니다.
 
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
