@@ -61,17 +61,6 @@
       "rebuilt": true
     },
     {
-      "slug": "table-page",
-      "name": "검색 표",
-      "en": "Searchable Table",
-      "group": "Table",
-      "desc": "문서 한 건의 정보와 항목 표를 함께 보는 화면입니다. 청구서처럼 항목이 많은 문서에 사용합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3078:1191"
-      }
-    },
-    {
       "slug": "table-tree",
       "name": "트리 표",
       "en": "Tree Table",

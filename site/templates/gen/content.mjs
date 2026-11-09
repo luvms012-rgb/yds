@@ -177,7 +177,7 @@ const workItem = () => {
   .tp-props { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: var(--ds-space-x4) var(--ds-space-x3); margin: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-props dt { color: var(--ds-color-fg-neutral-subtle); }
   .tp-props dd { margin: 0; min-width: 0; }
-  @media (min-width: 1024px) { .tp-wi__side { padding: var(--ds-space-x5) var(--ds-space-x6) var(--ds-space-x10) 0; } }
+  @media (min-width: 1024px) { .tp-wi__side { padding: var(--ds-space-x6) var(--ds-space-x6) var(--ds-space-x10); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-sub-item { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-space-x3); padding-block: var(--ds-space-x2_5); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-files { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--ds-space-x3); }
   .tp-file { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); font-size: var(--ds-font-size-t03); }

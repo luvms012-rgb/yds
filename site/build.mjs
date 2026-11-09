@@ -404,7 +404,7 @@ ${BRAND_LINES}
 # 진행 방식
 1. 문서를 읽고 YDS 규칙을 파악한다.
 2. 서비스 목적과 필요한 화면을 질문으로 확인하고, 구현 순서를 제안한다.
-3. 프로젝트에 YDS를 설치하고, 입력 값으로 브랜드 파일을 만든다. 글자 대비가 모자라면 수정할 색을 제안한다.
+3. 프로젝트에 YDS를 설치하고, 입력 값으로 브랜드 파일을 만든다. 글자 대비 수치가 부족하면 수정할 색을 제안한다.
 4. 확인받은 순서대로 화면 단위로 구현한다. 비슷한 화면이 Templates에 있으면 거기서 시작한다.
 5. 완료 후 규칙 준수 여부를 점검하고 수정 내역을 보고한다.
 
@@ -425,7 +425,7 @@ ${BRAND_LINES}
 # 진행 방식
 1. 문서를 읽고 YDS 규칙을 파악한다.
 2. 정할 것이 있으면 제작 전에 확인한다.
-3. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 수정할 색을 제안한다.
+3. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 수정할 색을 제안한다.
 4. 비슷한 화면이 Templates에 있으면 거기서 시작해, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 제작한다.
 
 # 원칙
@@ -450,7 +450,7 @@ const LLMS_RULES = `## 지킬 것
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드: 브랜드 파일(${PUBLIC}/dist/brands/브랜드이름.css)을 YDS CSS 다음, 서비스 CSS 앞에 불러오고 <html>에 data-ds-brand="브랜드이름"을 단다. 브랜드 값을 서비스 CSS에 따로 적지 않는다.
 - 새 브랜드: 브랜드 파일(JSON)에는 YDS와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
-- 브랜드 값을 받지 못했으면 시작 전에 브랜드 이름과 대표색을 묻는다. 모서리와 글꼴은 말이 없으면 YDS 값을 쓴다. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 고칠 색을 제안한다.
+- 브랜드 값을 받지 못했으면 시작 전에 브랜드 이름과 대표색을 묻는다. 모서리와 글꼴은 말이 없으면 YDS 값을 쓴다. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 고칠 색을 제안한다.
 - 시작: 무엇을 만들지 듣지 못했으면 먼저 묻는다. 다 만들면 고친 곳을 알려 준다.
 - 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.
 - 글자: 한국어. 제목 Bold, 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
@@ -471,15 +471,15 @@ const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-chiptabs site-
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
 const hubCard = (href, title, desc, out = false) => `<a class="site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="site-hub__desc">${esc(desc)}</span></a>`;
 write({
-  file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'YDS는 여러 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.', layout: 'page',
+  file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.', layout: 'page',
   body: `<header>
   <h1 class="site-h1">Get Started</h1>
-  <p class="site-lead">YDS는 여러 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
+  <p class="site-lead">YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
   ${metaLinks({ figma: FIGMA_HOME, code: GITHUB })}
 </header>
 
 <h2 id="structure">구조</h2>
-<p>서비스 화면은 YDS 위에 브랜드 값을 더해 만들어집니다.</p>
+<p>서비스 화면은 YDS에 브랜드 값을 더해 만들어집니다.</p>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
   <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
@@ -487,7 +487,7 @@ write({
 </ol>
 
 <h2 id="ai">AI로 시작하기</h2>
-<p>상황을 선택하고 요청 글을 AI에 붙여 넣으세요. 대괄호 안은 내 서비스에 맞게 바꿉니다.</p>
+<p>상황을 선택하고 요청 글을 AI에 붙여 넣으세요. 대괄호 안은 내 서비스에 맞게 바꾸세요.</p>
 <div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
   ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
 </div>
@@ -513,12 +513,11 @@ ${BRAND_HTML}
 
 
 <h2 id="figma">Figma로 시작하기</h2>
-<p>Figma에서 화면을 먼저 그린다면 YDS 라이브러리로 시작합니다.</p>
+<p>Figma로 먼저 시작한다면 YDS 라이브러리로 시작합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>YDS 컴포넌트를 놓고, 색, 간격, 모서리는 YDS 변수로, 글자는 YDS 텍스트 스타일로 지정합니다.</span></li>
 </ol>
-<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다.</p>
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [

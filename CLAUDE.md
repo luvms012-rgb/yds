@@ -52,7 +52,8 @@ git clone https://github.com/luvms012-rgb/yds.git
 
 ## 3. 진행 상황
 - **인수인계 - 다음 세션은 여기부터 (2026-11-09 집 Mac 마무리, 템플릿 정리, 배포함)** - 시작은 "YDS CLAUDE.md 읽고 이어서". 시작할 때 `git pull`. 이번 항목이 최신이고, Figma 쪽 상태는 바로 아래 항목을 본다.
-  - **템플릿은 66종, 사이트 159쪽**. 생성기는 `site/templates/gen/*.mjs`. 순서: `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check` → "배포" 지시가 있을 때만 `node sync.mjs deploy`. 템플릿 규칙은 `site/CLAUDE.md` 에 적어 두었다.
+  - **2026-11-10 회사 PC (배포함, Figma 싱크는 사용자에게 묻는 중)**: Segmented Control medium 모서리 바깥 8 / 안쪽 6(같은 높이 Button 과 맞춤, Updates 확인할 변경), Get Started 문구 다듬기(머리말 "다양한 서비스", 구조, AI로 시작하기, Figma로 시작하기, 요청 글 "글자 대비 수치가 부족하면"). Figma 반영할 것: 세그먼트 medium 모서리, Get Started 프레임 문구. 템플릿 내용 폭 1200 제한을 없애 폭을 채운다(720 좁은 화면은 그대로). 글자 위계를 레퍼런스 템플릿 측정값으로 맞췄다(h1 24/600, h2 20/600, h3 16/700, h4 14/700, 목록 이름 Medium). 검색 표(table-page) 삭제로 65종. 받은함 표를 레퍼런스 기준으로 다시 만들었다(이름과 제목 두 줄, 메시지마다 아바타와 주소, 첨부, 답장 단추). 트리 표와 할 일 상세는 오른쪽 정보 영역을 세로 선으로 나눴다. 미리보기 안 템플릿은 그리기 전에 모노톤을 입혀 파란 색이 잠깐 보이던 문제를 고쳤다(kit.mjs page 머리 스크립트). 자세한 규칙은 site/CLAUDE.md 템플릿 절.
+  - **템플릿은 65종, 사이트 158쪽**. 생성기는 `site/templates/gen/*.mjs`. 순서: `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check` → "배포" 지시가 있을 때만 `node sync.mjs deploy`. 템플릿 규칙은 `site/CLAUDE.md` 에 적어 두었다.
   - **이번에 바뀐 것**: 모든 템플릿 맨 위에 UX/DX/AX 세 사람 정의 주석(kit.mjs `PRINCIPLE`). 좌우 기준 통일(`--tp-gutter` 16/24, 내용 폭 1200, 좁은 폭 720), 페이지 스크롤바 숨김(스크롤바가 폭을 차지해 좌우가 어긋났다). 목록 글자 위계(`tp-item-title`, `tp-name`, `tp-amount`, `tp-caption`).
   - **글을 빼고 배치로 해결 (사용자 지시, 앞으로도 적용)**: 템플릿에 홍보 문구, 설명 글, 툴팁, 보조 라벨을 넣지 않는다. 글 없이 이해가 안 되면 글을 더하지 말고 여백, 정렬, 크기, 순서를 고친다. kit.mjs `stripCopy` 가 빌드 때 지우고, 본문 성격의 글(게시글, 아코디언 내용 등)은 `COPY_KEEP` 으로 남긴다.
   - **개별 템플릿**: 두 칸 폼(form-two-column) 삭제, 커뮤니티는 순위 목록과 인기 게시판, 단순한 글쓰기로 바꾸고 왼쪽 메뉴 겹침을 고쳤다, 필터 표 제목은 "작업". **설정 폼**은 사용자 "설정 패널 참조" 로 설정 패널과 같은 틀(`.tp-sp`, 왼쪽 메뉴 280, 오른쪽 720 한 줄, 구역 사이 구분선)로 바꿨고 위쪽 검색창과 구역 설명은 없앴다.

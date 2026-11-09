@@ -134,7 +134,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 size: small(기본) / medium   layout: hug(기본) / fill
 모션: 선택 배경이 고른 항목으로 미끄러져 이동한다(필수, ybm-ds.js). 누르면 aria-pressed 가 바뀌고 change 이벤트가 난다.
 Figma small : 트랙 bg/neutral / padding 2 / shape/sm / item py6 px12 / shape/xs / t03 Medium fg/neutral-subtle (고른 칸 SemiBold)
-      medium: 트랙 shape/lg / item py8 px16 / shape/sm / t04 Medium (고른 칸 SemiBold)
+      medium: 트랙 shape/sm / item py8 px16 / shape/xs / t04 Medium (고른 칸 SemiBold)
+모서리(2026-11-10): 같은 높이 Button 과 바깥 모서리를 맞춘다. 안쪽 = 바깥 - 트랙 여백 2 (small, medium 모두 8 / 6)
       selected bg/layer-default + elevation raised + fg/neutral / disabled fg/disabled
 높이(2026-11-03): small 32(Button xsmall 과 같음) / medium 40(Button medium, Select medium 과 같음). 글자와 아이콘 모두 같은 높이
 ```

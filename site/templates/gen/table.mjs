@@ -80,74 +80,74 @@ const grouped = () => {
   return { slug: 'table-grouped', en: 'Grouped Table', name: '묶음 표', group: 'Table', desc: '행을 상태별로 묶어 보여 주는 표입니다. 긴 목록을 몇 덩어리로 나눠 읽을 때 사용합니다.', css, body };
 };
 
-/* 4. 받은함 표 --------------------------------------------------- */
+/* 4. 받은함 표 (2026-11-10 사용자 "레퍼런스 받은함 표 기준으로 대폭 수정") -------------
+   왼쪽 표는 목록, 오른쪽은 읽는 창. 표 행은 이름(Medium) 위, 제목(옅은 색) 아래 한 줄 말줄임.
+   읽는 창은 메시지마다 아바타 / 이름과 주소 / 시간과 펼침 단추, 펼친 메시지 아래에 첨부와 답장 단추 */
 const inbox = () => {
-  const rows = [[1, '와이비엠', '결제 페이지가 일부 해외 카드에서 오류가 나요', '오전 9:52', 1], [1, '이준호', '11월 단체 수강 견적 다시 부탁드려요', '오전 9:10', 0], [1, '박하린', '강의 영상 자막 싱크가 맞지 않아요', '오전 8:47', 1], [0, '최민준', '모의고사 점수 반영 문의', '어제', 0], [0, '정다은', '세금 계산서 발행 요청', '어제', 1], [0, '한지우', '앱에서 로그인이 자꾸 풀려요', '10.30', 0], [0, '오세린', '수강 기간 연장 가능한가요?', '10.29', 0], [0, '윤도현', '기업 관리자 권한 추가', '10.28', 1], [0, '서지민', '교재 배송 주소 변경', '10.27', 0]];
+  const rows = [[1, '와이비엠', '결제 페이지가 일부 해외 카드에서 오류가 나요', '오전 9:52', 1], [1, '이준호', '11월 단체 수강 견적 다시 부탁드려요', '오전 9:31', 0], [1, '박하린', '강의 영상 자막 싱크가 맞지 않아요', '오전 8:58', 0], [0, '최민준', '모의고사 점수가 마이페이지에 반영되지 않아요', '오전 8:14', 0], [0, '정다은', '세금 계산서 발행 요청드립니다', '어제', 1], [0, '한지우', '앱에서 로그인이 자꾸 풀려요', '어제', 0], [0, '오세린', '수강 기간 연장이 가능한지 궁금해요', '어제', 0], [0, '윤도현', '기업 관리자 권한을 한 명 더 추가하고 싶어요', '월', 0], [0, '서지민', '교재 배송 주소를 바꾸고 싶어요', '월', 0]];
   const css = TABLE_CSS + `
-  .tp-inbox { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  @media (min-width: 1024px) { .tp-inbox { grid-template-columns: minmax(0, 1fr) 8px minmax(0, 1.1fr); } }
-  .tp-unread { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ds-color-bg-brand-solid); }
-  .tp-inbox__row { display: flex; flex-direction: column; }
-  .tp-inbox__row b { font-weight: var(--ds-font-weight-semibold); }
+  .tp-ibx-tabs { padding-inline: var(--tp-gutter); }
+  @media (min-width: 1024px) { .tp-ibx-app { height: 100vh; } }
+  .tp-inbox { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); min-height: 0; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1024px) { .tp-inbox { grid-template-columns: minmax(0, 1fr) 8px minmax(0, 1.5fr); } }
+  .tp-inbox__list { overflow: auto; }
+  .tp-inbox__list .ds-table th:first-child, .tp-inbox__list .ds-table td:first-child { box-sizing: content-box; width: 8px; padding-inline-end: var(--ds-space-x1); overflow: visible; }
+  .tp-inbox__list td:nth-child(2) { width: 100%; max-width: 0; }
+  .tp-unread { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--ds-color-fg-neutral); }
+  .tp-inbox__row { display: flex; flex-direction: column; gap: 2px; }
+  .tp-inbox__row > span:last-child { overflow: hidden; color: var(--ds-color-fg-neutral-muted); white-space: nowrap; text-overflow: ellipsis; }
+  .tp-inbox__who { font-weight: var(--ds-font-weight-medium); }
+  .tp-inbox__when { justify-content: flex-end; white-space: nowrap; color: var(--ds-color-fg-neutral-muted); }
   .tp-handle { display: none; place-items: center; cursor: col-resize; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
   .tp-handle::after { content: ""; width: 4px; height: 32px; border-radius: 2px; background: var(--ds-color-stroke-neutral-weak); }
   @media (min-width: 1024px) { .tp-handle { display: grid; } }
-  .tp-read { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) { .tp-read { padding: var(--ds-space-x6); box-shadow: none; } }
-  .tp-msg { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+  .tp-read { display: flex; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; padding: var(--ds-space-x6) var(--tp-gutter) var(--ds-space-x10); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1024px) { .tp-read { box-shadow: none; } }
+  .tp-read__head { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  .tp-read__title { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-space-x4); }
+  .tp-read__title > .tp-row { flex: none; gap: var(--ds-space-x1); }
+  .tp-thread { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
+  .tp-msg > summary { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--ds-space-x3); list-style: none; cursor: pointer; }
+  .tp-msg > summary::-webkit-details-marker { display: none; }
+  .tp-msg__from { display: flex; flex-direction: column; min-width: 0; }
+  .tp-msg__from b { font-weight: var(--ds-font-weight-medium); }
+  .tp-msg__time { display: flex; align-items: center; gap: var(--ds-space-x1); }
+  .tp-msg__time .ds-icon { transition: transform var(--ds-duration-fast) var(--ds-easing-standard); }
+  .tp-msg[open] .tp-msg__time .ds-icon { transform: rotate(180deg); }
+  .tp-msg__body { display: flex; flex-direction: column; gap: var(--ds-space-x3); max-width: 640px; padding: var(--ds-space-x3) 0 0 calc(36px + var(--ds-space-x3)); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-msg__body p { margin: 0; }
+  .tp-attach { display: flex; flex-direction: column; gap: var(--ds-space-x2); padding-top: var(--ds-space-x1); }
+  .tp-attach .ds-imageframe { width: 64px; }
+  .tp-msg__acts { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); padding-top: var(--ds-space-x2); }
 `;
-  const msgs = [['와이비엠', '오전 9:21', '안녕하세요, 해외 발급 카드로 결제하면 마지막 단계에서 "결제를 완료하지 못했어요"가 떠요. 국내 카드는 괜찮아요.', 0], ['상담원 이민지', '오전 9:30', '불편을 드려 죄송해요. 결제 대행사에 확인을 요청했어요. 사용하신 카드 종류를 알려 주실 수 있을까요?', 0], ['와이비엠', '오전 9:44', '해외 발급 비자 카드예요. 두 장 모두 같은 오류가 났어요.', 0], ['상담원 이민지', '오전 9:52', '확인했어요. 해외 카드 3D 인증 단계에서 오류가 나는 것으로 보여요. 오늘 오후까지 고친 뒤 다시 안내드릴게요.', 1]];
-  const body = `<div class="tp-app" style="height: 100vh">
-<header class="tp-head" style="flex-direction: column; align-items: stretch; padding-bottom: 0">
-  <div class="tp-between"><div class="tp-head__texts"><h1 class="tp-h1">받은함</h1><p class="tp-sub">대화 9개 중 3개 읽지 않음</p></div><div class="tp-row">${btn('필터', { ic: 'funnel' })}${btn('새 메시지', { variant: 'neutralSolid', ic: 'square-pen' })}</div></div>
-  ${tabs(['전체', '읽지 않음', '별표', '보관함'], 0, '받은함 탭', { layout: 'hug', inset: 'none' })}
+  const msgs = [
+    ['와이비엠', 'ybm@example.com', '오늘 오전 9:21', ['해외에서 발급한 카드로 결제하면 마지막 단계에서 "결제를 완료하지 못했어요"가 떠요. 국내 카드는 괜찮아요.']],
+    ['이민지', 'minji.lee@support.example', '오늘 오전 9:30', ['불편을 드려 죄송해요. 결제 대행사에 확인을 요청했어요. 사용하신 카드 종류를 알려 주실 수 있을까요?']],
+    ['와이비엠', 'ybm@example.com', '오늘 오전 9:52', ['해외 발급 비자 카드예요. 두 장 모두 같은 오류가 났어요.', '오류 화면을 찍어 함께 보내 드려요. 오늘 안에 결제해야 해서 확인 부탁드려요.'], 1],
+  ];
+  const msg = ([who, mail, when, ps, open]) => `<details class="tp-msg"${open ? ' open' : ''}><summary>${avatar(who, 36)}<span class="tp-msg__from"><b>${who}</b><span class="tp-caption">${mail}</span></span><span class="tp-msg__time tp-caption">${T(when)}${icon('chevron-down', 'sm')}</span></summary><div class="tp-msg__body">${ps.map((p) => `<p>${p}</p>`).join('')}${open ? `<div class="tp-attach"><span class="tp-row tp-caption">${icon('paperclip', 'sm')}첨부 1개</span>${K.thumb('1:1', '', K.photo('city', 1, 160), 'md')}</div><div class="tp-msg__acts">${btn('답장', { variant: 'neutralSolid', ic: 'undo-2' })}${btn('전체 답장', { ic: 'users' })}</div>` : ''}</div></details>`;
+  const body = `<div class="tp-app tp-ibx-app">
+<header class="tp-head">
+  <div class="tp-head__texts"><h1 class="tp-h1">받은함</h1><p class="tp-sub">대화 9개 중 3개 읽지 않음</p></div>
+  <div class="tp-head__tools">${btn('새로 고침', { variant: 'ghost', ic: 'refresh-cw' })}${btn('새 메시지', { variant: 'neutralSolid', ic: 'square-pen' })}</div>
 </header>
+<div class="tp-ibx-tabs">${tabs([`받은함 ${badge('3')}`, `확인 필요 ${badge('1')}`, '답변 대기', `해결됨 ${badge('1')}`], 0, '받은함 분류', { layout: 'hug', inset: 'none' })}</div>
 <div class="tp-inbox">
-  <div class="tp-inbox__list" style="overflow:auto"><div class="ds-table-wrap"><table class="ds-table" data-density="compact">${thead(['<span class="tp-sr">상태</span>', '대화', ['받은 시간', 'end']])}<tbody>${rows.map(([u, who, s, t, att], i) => `<tr data-interactive${i === 0 ? ' aria-selected="true"' : ''}><td style="width:28px">${u ? '<span class="tp-unread" role="img" aria-label="읽지 않음"></span>' : ''}</td><td><span class="tp-inbox__row">${u ? `<b>${who}</b><b>${s}</b>` : `<span>${who}</span><span class="tp-sub">${s}</span>`}</span></td><td data-align="end"><span class="tp-row" style="justify-content:flex-end">${att ? icon('paperclip', 'sm') : ''}${T(t)}</span></td></tr>`).join('')}</tbody></table></div></div>
+  <div class="tp-inbox__list"><div class="ds-table-wrap"><table class="ds-table">${thead(['<span class="tp-sr">읽음 상태</span>', '대화', ['받은 시간', 'end']])}<tbody>${rows.map(([u, who, s, when, att], i) => `<tr data-interactive${i === 0 ? ' aria-selected="true"' : ''}><td>${u ? '<span class="tp-unread" role="img" aria-label="읽지 않음"></span>' : ''}</td><td><span class="tp-inbox__row"><span class="tp-inbox__who">${who}</span><span>${s}</span></span></td><td data-align="end"><span class="tp-row tp-inbox__when">${att ? icon('paperclip', 'sm') : ''}${T(when)}</span></td></tr>`).join('')}</tbody></table></div></div>
   <div class="tp-handle" role="separator" aria-label="대화 창 크기 조절" aria-orientation="vertical"></div>
-  <aside class="tp-read" aria-label="대화">
-    <div class="tp-between"><h2 class="tp-h3">결제 페이지가 일부 해외 카드에서 오류가 나요</h2><div class="tp-row">${iconBtn('archive', '보관')}${iconBtn('folder-input', '폴더로 옮기기')}${iconBtn('trash', '삭제')}${iconBtn('x', '대화 닫기')}</div></div>
-    <div class="tp-row" style="flex-wrap: wrap">${badge('긴급', 'critical')}${badge('결제', 'brand')}${badge('해외 카드')}${badge('답변 대기', 'warning')}</div>
-    <div>${K.accordion(msgs.map(([w, t, d, open]) => [`<span class="tp-row">${avatar(w)}<span>${w}</span><span class="tp-caption">${t}</span></span>`, `<p class="tp-sub">${d}</p>`, open]), '')}</div>
-    <div class="tp-row">${btn('답장', { variant: 'neutralSolid', ic: 'corner-down-right' })}${btn('전달', { ic: 'arrow-right' })}</div>
-  </aside>
+  <section class="tp-read" aria-labelledby="ibx-title">
+    <div class="tp-read__head">
+      <div class="tp-read__title"><h2 class="tp-h2" id="ibx-title">결제 페이지가 일부 해외 카드에서 오류가 나요</h2><div class="tp-row">${iconBtn('archive', '보관')}${iconBtn('folder-input', '폴더로 옮기기')}${iconBtn('trash', '삭제')}${iconBtn('x', '대화 닫기')}</div></div>
+      <div class="tp-row" style="flex-wrap: wrap">${badge('긴급', 'critical')}${badge('결제')}${badge('확인 필요')}</div>
+    </div>
+    <div class="tp-thread">${msgs.map(msg).join('')}</div>
+  </section>
 </div>
 </div>`;
   return { slug: 'table-inbox', en: 'Inbox Table', name: '받은함 표', group: 'Table', desc: '왼쪽 목록에서 선택한 항목을 오른쪽에서 바로 읽는 받은 편지함입니다. 메일이나 문의처럼 하나씩 열어 처리할 때 사용합니다.', css, body };
 };
 
-/* 5. 검색 표 (청구서) ------------------------------------------- */
-const searchable = () => {
-  const meta = [['청구 대상', '가 커피 주식회사'], ['청구일', '2026.10.31'], ['마감일', '2026.11.30'], ['상태', badge('미결제', 'warning')], ['담당자', '와이비엠'], ['결제 조건', '말일 기준 30일'], ['통화', 'KRW'], ['청구서 번호', 'INV-2043']];
-  const items = [['요구 사항 워크숍', '기획', '시간제', 12, 150000], ['사용자 인터뷰 진행', '리서치', '시간제', 16, 120000], ['정보 구조 설계', '기획', '고정', 1, 2400000], ['디자인 시스템 정리', '디자인', '고정', 1, 4800000], ['주요 화면 시안', '디자인', '시간제', 64, 130000], ['프로토타입 제작', '디자인', '시간제', 24, 130000], ['접근성 점검', '품질', '고정', 1, 1600000], ['프론트엔드 개발', '개발', '시간제', 120, 140000], ['결제 연동', '개발', '시간제', 36, 160000], ['관리자 화면', '개발', '시간제', 48, 140000], ['QA 테스트', '품질', '시간제', 40, 90000], ['배포와 인수인계', '운영', '고정', 1, 1200000]];
-  const sub = items.reduce((a, [, , , q, p]) => a + q * p, 0), tax = Math.round(sub * 0.1);
-  const css = TABLE_CSS + `
-  .tp-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x4) var(--ds-space-x6); margin: 0; }
-  @media (min-width: 1024px) { .tp-meta { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .tp-meta dt { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
-  .tp-meta dd { margin: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
-  .tp-th { display: inline-flex; align-items: center; gap: var(--ds-space-x1); }
-  .tp-totals { display: flex; flex-direction: column; gap: var(--ds-space-x2); width: min(100%, 360px); margin-left: auto; }
-  .tp-totals hr { margin: 0; }
-`;
-  const th = (t, a) => [`<span class="tp-th">${t}${iconBtn('funnel', t + ' 거르기', { size: 'xsmall' })}</span>`, a];
-  const body = `<div class="tp-app">
-<main class="tp-content">
-  <div class="tp-stack" style="gap: var(--ds-space-x5)">
-    <div class="tp-between"><h1 class="tp-h1">청구서 INV-2043</h1>${btn('PDF 받기', { ic: 'download' })}</div>
-    <dl class="tp-meta">${meta.map(([k, v]) => `<div class="tp-stack"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-  </div>
-  <div class="tp-between" style="align-items: center">${segmented(['전체', '시간제', '고정'], 0, '청구 방식')}<div class="ds-field" style="flex-direction: row; align-items: center; --ds-field-gap: var(--ds-space-x3)"><div class="ds-field__header"><label class="ds-field__label" for="q">항목 찾기</label></div><div style="width: min(100%, 240px)">${search('q', '찾기…')}</div></div></div>
-  <div class="tp-stack" style="gap: var(--ds-space-x4)">
-    ${table([th('항목'), th('분류'), th('방식'), [...th('수량', 'end')], [...th('단가', 'end')], ['금액', 'end']], items.map(([n, c, m, q, p]) => [n, c, badge(m, m === '고정' ? 'informative' : 'neutral'), T(q), T(won(p)), T(won(q * p))]))}
-    <div class="tp-totals">${divider()}<div class="tp-between"><span class="tp-sub">소계</span>${T(won(sub))}</div><div class="tp-between"><span class="tp-sub">부가세 (10%)</span>${T(won(tax))}</div>${divider()}<div class="tp-between"><b>청구 합계</b><b class="tp-num">${won(sub + tax)}</b></div>${divider()}</div>
-  </div>
-</main>
-</div>`;
-  return { slug: 'table-page', en: 'Searchable Table', name: '검색 표', group: 'Table', desc: '문서 한 건의 정보와 항목 표를 함께 보는 화면입니다. 청구서처럼 항목이 많은 문서에 사용합니다.', css, body };
-};
-
-/* 6. 트리 표 (저장소) ------------------------------------------- */
+/* 5. 트리 표 (저장소) ------------------------------------------- */
 const tree = () => {
   const rows = [[0, 'f', '.github', 'ci: 패키지 캐시를 실행 사이에 재사용 (#412)', '3시간 전', 1], [1, 'f', 'workflows', 'ci: 패키지 캐시를 실행 사이에 재사용 (#412)', '3시간 전', 1], [2, 'd', 'ci.yml', 'ci: 패키지 캐시를 실행 사이에 재사용 (#412)', '3시간 전'], [2, 'd', 'release.yml', 'chore: 배포 이름 규칙 바꿈', '2주 전'], [0, 'f', 'docs', 'docs: 도형 묶기 예제 추가', '어제', 0], [0, 'f', 'src', 'feat: 선택 상자 크기 조절 손잡이', '5시간 전', 1], [1, 'f', 'shapes', 'feat: 둥근 사각형 지원', '2일 전', 0], [1, 'd', 'canvas.ts', 'feat: 선택 상자 크기 조절 손잡이', '5시간 전'], [1, 'd', 'index.ts', 'refactor: 내보내기 정리', '1주 전'], [0, 'f', 'tests', 'test: 확대 축소 경계 값', '3일 전', 0], [0, 'd', '.gitignore', 'chore: 처음 만듦', '8개월 전'], [0, 'd', 'LICENSE', 'chore: 처음 만듦', '8개월 전'], [0, 'd', 'package.json', 'chore: 버전 1.4.0', '4일 전'], [0, 'd', 'README.md', 'docs: 설치 방법 정리', '어제']];
   const css = TABLE_CSS + `
@@ -156,13 +156,10 @@ const tree = () => {
   .tp-tree-name .ds-icon { color: var(--ds-color-fg-neutral-subtle); }
   .tp-tree-name a { color: var(--ds-color-fg-neutral); text-decoration: none; }
   .tp-tree-name a:hover { text-decoration: underline; }
-  /* 커뮤니티와 같은 틀: 1280 가운데, 위 제목은 전체 폭, 아래는 본문 + 오른쪽 정보 280 */
-  .tp-repo { box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x10); padding-inline: var(--tp-gutter); }
+  /* 본문과 정보를 나눈다(2026-11-10 사용자 "컨텐츠와 정보를 명확히 분리"): 다른 레이아웃과 같은 .tp-body--panel 틀, 오른쪽 정보 패널은 세로 선으로 나뉜다 */
   .tp-repo__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
   .tp-repo__head > .tp-row { flex-wrap: wrap; }
-  .tp-repo__main { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
-  .tp-repo__side { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-repo { grid-template-columns: minmax(0, 1fr) 280px; column-gap: var(--ds-space-x10); padding-inline: var(--ds-space-x6); } .tp-repo__head { grid-column: 1 / -1; } }
+  .tp-repo__main { gap: var(--ds-space-x4); }
   .tp-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); }
   .tp-toolbar .tp-grow { flex: 1 1 200px; display: flex; justify-content: flex-end; gap: var(--ds-space-x2); flex-wrap: wrap; }
   .tp-about dl { display: grid; grid-template-columns: auto 1fr; gap: var(--ds-space-x2) var(--ds-space-x4); margin: 0; }
@@ -172,19 +169,18 @@ const tree = () => {
   .tp-md h4 { margin: var(--ds-space-x5) 0 var(--ds-space-x2); }
 `;
   const body = `<div class="tp-app">
-<div class="tp-repo">
+<div class="tp-body tp-body--panel">
+<main class="tp-content tp-repo__main">
 <header class="tp-repo__head">
   <div class="tp-row" style="flex-wrap: wrap"><h1 class="tp-h1">canvas-editor</h1>${breadcrumbs(['canvas-editor'])}${badge('공개')}</div>
   <div class="tp-row">${btn('지켜보기', { ic: 'eye' })}${btn('포크 12', { ic: 'git-branch' })}${btn('별 248', { ic: 'star' })}${btn('코드', { variant: 'neutralSolid', ic: 'code', icEnd: 'chevron-down' })}</div>
 </header>
-<main class="tp-repo__main">
   <div class="tp-toolbar">${K.even(`${btn('main', { ic: 'git-branch', icEnd: 'chevron-down' })}${btn('브랜치 8', { variant: 'ghost', ic: 'git-pull-request' })}${btn('태그 14', { variant: 'ghost', ic: 'tag' })}<div class="tp-grow"><div style="width: min(100%, 240px)">${input('goto', 'type="search" placeholder="파일로 이동" aria-label="파일로 이동"', { size: 'small', ic: 'search' })}</div>${btn('파일 추가', { icEnd: 'chevron-down' })}${btn('기록 1,284', { variant: 'ghost', ic: 'rotate-ccw' })}</div>`)}</div>
   <div class="ds-table-wrap"><table class="ds-table" data-density="compact">${thead([`<span class="tp-row">${iconBtn('chevrons-up-down', '모든 행 펼치기', { size: 'xsmall' })}이름</span>`, '마지막 변경', ['시간', 'end']])}<tbody>${rows.map(([d, k, n, m, t, open]) => `<tr><td><span class="tp-tree-name" style="--d:${d}">${k === 'f' ? `<button type="button" class="ds-btn tp-caret" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-expanded="${!!open}" aria-label="${n} ${open ? '접기' : '펼치기'}">${icon(open ? 'chevron-down' : 'chevron-right', 'sm')}</button>${icon(open ? 'folder-open' : 'folder', 'sm')}` : `<span class="tp-spacer"></span>${icon('file', 'sm')}`}<a href="#">${n}</a></span></td><td class="tp-sub">${m}</td><td data-align="end">${T(t)}</td></tr>`).join('')}</tbody></table></div>
   ${card(`${tabs(['README', '라이선스', '기여 안내'], 0, '문서')}<div class="ds-markdown tp-md"><h3>canvas-editor</h3><p>웹 페이지에 넣어 쓰는 작은 벡터 캔버스예요. 도형을 그리고, 묶고, 크기를 바꾸고, 이미지로 내보낼 수 있어요.</p><h4>설치</h4>${codeblock('bash', 'npm install canvas-editor')}<h4>사용</h4>${codeblock('ts', "import { Canvas } from 'canvas-editor';\n\nconst canvas = new Canvas('#stage', { width: 800, height: 600 });\ncanvas.add({ type: 'rect', x: 40, y: 40, w: 120, h: 80 });")}</div>`)}
 </main>
-<aside class="tp-repo__side tp-about" aria-labelledby="s-about">
+<aside class="tp-panel tp-about" aria-labelledby="s-about">
   <h2 class="tp-h3" id="s-about">정보</h2>
-  
   <div class="tp-row" style="flex-wrap: wrap">${['canvas', 'vector', 'editor', 'typescript'].map((t) => badge(t, 'brand')).join('')}</div>
   <dl><dt>별</dt><dd class="tp-num">248</dd><dt>지켜보는 사람</dt><dd class="tp-num">19</dd><dt>포크</dt><dd class="tp-num">12</dd><dt>최근 릴리스</dt><dd>v1.4.0 / 4일 전</dd><dt>라이선스</dt><dd>MIT</dd></dl>
   ${divider()}
@@ -195,4 +191,4 @@ const tree = () => {
   return { slug: 'table-tree', en: 'Tree Table', name: '트리 표', group: 'Table', desc: '상위 행을 펼치면 하위 행이 나오는 계층 표입니다. 폴더처럼 단계가 있는 목록에 사용합니다.', css, body };
 };
 
-export const templates = [collapsible, filter, grouped, inbox, searchable, tree].map((f) => f());
+export const templates = [collapsible, filter, grouped, inbox, tree].map((f) => f());
