@@ -158,7 +158,6 @@
 - [대화상자 단계 폼](https://luvms012-rgb.github.io/yds/site/templates/pages/form-wizard-dialog.html): 보던 화면 위에 창을 띄워 짧은 단계를 진행하는 폼입니다. 화면을 떠나지 않고 간단한 설정을 마칠 때 사용합니다.
 - [단계 폼](https://luvms012-rgb.github.io/yds/site/templates/pages/form-wizard.html): 한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.
 - [펼치는 단계 폼](https://luvms012-rgb.github.io/yds/site/templates/pages/form-wizard-inline.html): 모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.
-- [두 칸 폼](https://luvms012-rgb.github.io/yds/site/templates/pages/form-two-column.html): 입력 칸을 두 열로 나눈 문의 폼입니다. 넓은 화면에서 긴 폼이 짧아 보입니다.
 - [세로 단계 폼](https://luvms012-rgb.github.io/yds/site/templates/pages/form-wizard-vertical.html): 왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.
 - [설정 대화상자](https://luvms012-rgb.github.io/yds/site/templates/pages/settings-dialog.html): 보던 화면을 떠나지 않고 창 안에서 설정을 바꾸는 화면입니다. 바꾼 값은 바로 적용됩니다.
 - [설정 폼](https://luvms012-rgb.github.io/yds/site/templates/pages/settings.html): 모든 설정을 한 페이지에 이어 놓은 가장 단순한 설정 화면입니다. 설정 항목이 많지 않을 때 사용합니다.
@@ -189,7 +188,7 @@
 - [게시판 목록](https://luvms012-rgb.github.io/yds/site/templates/pages/community-board.html): 카페형 게시판의 글 목록입니다. 말머리로 필터링하고 공지는 위에 고정합니다.
 - [커뮤니티 홈](https://luvms012-rgb.github.io/yds/site/templates/pages/community-home.html): 게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.
 - [게시글 상세](https://luvms012-rgb.github.io/yds/site/templates/pages/community-post.html): 게시글 하나를 읽고 댓글로 이야기를 나누는 화면입니다.
-- [글쓰기](https://luvms012-rgb.github.io/yds/site/templates/pages/community-write.html): 커뮤니티에 새 글을 작성하는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.
+- [글쓰기](https://luvms012-rgb.github.io/yds/site/templates/pages/community-write.html): 커뮤니티에 새 글을 작성하는 화면입니다. 게시판을 고른 뒤 제목과 본문을 씁니다.
 - [구독 해지](https://luvms012-rgb.github.io/yds/site/templates/pages/subscription-cancel.html): 구독을 해지하기 전에 잃게 되는 혜택을 알려 주는 화면입니다. 할인을 한 번 더 권하고, 해지 여부는 사용자가 정합니다.
 - [요금제 비교](https://luvms012-rgb.github.io/yds/site/templates/pages/pricing-plans.html): 요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제의 가격을 바꿔 가며 비교합니다.
 - [구독 결제](https://luvms012-rgb.github.io/yds/site/templates/pages/subscription-checkout.html): 선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.

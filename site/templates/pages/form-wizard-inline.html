@@ -21,7 +21,7 @@
   /* 스크롤바: 페이지 스크롤바는 폭을 차지하면 오른쪽 여백만 넓어져 좌우가 어긋난다. 숨기고, 안쪽 스크롤 영역은 트랙 없이 손잡이만 */
   html { scrollbar-width: none; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
   /* 머리글도 내용과 같은 좌우선에 */
-  .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-tc, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
+  .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
      배치(여백, 카드, 구분선)는 레퍼런스 A 템플릿, 한글 글자 위계(크기, 굵기, 색 단계, 자간)는 토스를 따른다 */
   body { word-break: keep-all; overflow-wrap: break-word; }

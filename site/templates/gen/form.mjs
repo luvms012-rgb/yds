@@ -193,26 +193,6 @@ ${head('자동 빌드 설정')}
 };
 
 /* 7. 두 칸 폼 --------------------------------------------------- */
-const twoColumn = () => {
-  const css = FORM_CSS + `
-  .tp-tc { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; padding-block: var(--ds-space-x6); }
-  .tp-tc__top { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: center; }
-  @media (min-width: 1024px) { .tp-tc__top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
-  .tp-hero-t { font-size: var(--ds-font-size-t12); line-height: var(--ds-line-height-t12); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
-`;
-  const topics = ['단체 수강', '시험 접수', '사내 교육', '맞춤 강좌', '학습 플랫폼', '제휴', '취재', '기타'];
-  const body = `<div class="tp-app"><main class="tp-content"><div class="tp-tc">
-  <div class="tp-tc__top"><div class="tp-stack" style="gap: var(--ds-space-x3)"><h1 class="tp-hero-t">무엇을 도와드릴까요?</h1></div>${thumb('16:9', '', K.photo('work', 2, 1200), 'xl')}</div>
-  <div class="tp-g2" style="align-items:start">
-    ${card(`<h2 class="tp-h3">내 정보</h2><div class="tp-form">${req('t-name', '이름', inp('t-name', '이름'))}<div class="tp-pair">${req('t-mail', '이메일', inp('t-mail', '이메일', 'type="email"'))}${field('t-com', '회사', inp('t-com', '회사 이름'))}</div><div class="tp-pair">${field('t-job', '직함', inp('t-job', '직함'))}${field('t-tel', '연락처', inp('t-tel', '전화번호', 'type="tel"'))}</div></div>`, { size: '' })}
-    ${card(`<h2 class="tp-h3">문의 내용</h2><div class="tp-form"><fieldset class="tp-stack" style="border:0;padding:0;margin:0;gap:var(--ds-space-x2)"><legend class="ds-field__label" style="margin-bottom:var(--ds-space-x2)">무엇에 관한 문의인가요?</legend><div class="tp-chips">${topics.map((t, i) => chip(t, { on: i === 0 })).join('')}</div></fieldset>${field('t-budget', '예산 범위', sel('t-budget', '1,000만원 미만'))}${req('t-msg', '자세한 내용', textarea('t-msg', 'rows="5" placeholder="일정, 인원, 바라는 결과를 적어 주세요"'))}${btn('보내기', { variant: 'brandSolid', size: 'large', fill: true })}</div>`, { size: '' })}
-  </div>
-  ${divider()}
-  <div class="tp-g4">${[['일반 문의', 'hello@company.com'], ['기업 영업', 'sales@company.com'], ['언론', 'press@company.com'], ['고객 지원', 'help@company.com']].map(([t, m]) => `<div class="tp-stack"><span class="tp-h4">${t}</span>${link(m, 'mailto:' + m)}</div>`).join('')}</div>
-</div></main></div>`;
-  return { slug: 'form-two-column', en: 'Two-column Form', name: '두 칸 폼', group: 'Form', desc: '입력 칸을 두 열로 나눈 문의 폼입니다. 넓은 화면에서 긴 폼이 짧아 보입니다.', css, body };
-};
-
 /* 8. 세로 단계 폼 (왼쪽 단계 + 오른쪽 도움말) -------------------- */
 const vertical = () => {
   const css = FORM_CSS + `
@@ -253,4 +233,4 @@ const vertical = () => {
   return { slug: 'form-wizard-vertical', en: 'Vertical Wizard', name: '세로 단계 폼', group: 'Form', desc: '왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.', css, body };
 };
 
-export const templates = [payment, checkoutWizard, contact, dialogWizard, wizard, inlineWizard, twoColumn, vertical].map((f) => f());
+export const templates = [payment, checkoutWizard, contact, dialogWizard, wizard, inlineWizard, vertical].map((f) => f());

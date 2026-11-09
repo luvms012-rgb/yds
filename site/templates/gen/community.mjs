@@ -41,13 +41,28 @@ const CSS = FRAME_CSS + `
   .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x3); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-variant-numeric: tabular-nums; }
   .tp-meta > span { display: inline-flex; align-items: center; gap: var(--ds-space-x1); }
   .tp-meta .ds-icon { --ds-icon-size: 14px; }
-  .tp-cnt { margin-inline-start: var(--ds-space-x1); color: var(--ds-color-fg-brand); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
   /* 순위 목록 */
   .tp-rank { display: flex; flex-direction: column; gap: var(--ds-space-x3); margin: 0; padding: 0; list-style: none; counter-reset: rank; }
-  .tp-rank > li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--ds-space-x2); counter-increment: rank; }
+  .tp-rank > li { display: grid; grid-template-columns: var(--ds-space-x5) minmax(0, 1fr); gap: var(--ds-space-x2); align-items: center; counter-increment: rank; }
   .tp-rank > li::before { content: counter(rank); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; color: var(--ds-color-fg-neutral); }
-  .tp-rank a { color: inherit; text-decoration: none; }
-  .tp-hot { display: flex; flex-direction: column; gap: var(--ds-space-x3); color: inherit; text-decoration: none; }
+  .tp-rank a { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); color: inherit; text-decoration: none; }
+  /* 글 줄: 순위 번호, 제목과 댓글 수, 정보 한 줄, 오른쪽 사진 */
+  .tp-trend { margin: 0; padding: 0; list-style: none; }
+  .tp-trend > li + li { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-trend a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; min-height: var(--ds-space-x16); padding-block: var(--ds-space-x3); color: inherit; text-decoration: none; }
+  .tp-trend[data-ranked] a { grid-template-columns: var(--ds-space-x6) minmax(0, 1fr) auto; }
+  .tp-trend__no { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-align: center; }
+  .tp-trend__line { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
+  .tp-trend__t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tp-trend__thumb { width: var(--ds-space-x16); }
+  /* 인기 게시판: 순위, 변동, 이름을 회색 줄로 */
+  .tp-brank { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
+  .tp-brank a { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); color: inherit; text-decoration: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
+  .tp-brank b { width: var(--ds-space-x4); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-align: center; }
+  .tp-brank .ds-icon { --ds-icon-size: 16px; flex: none; }
+  .tp-brank [data-move="up"] { color: var(--ds-color-fg-critical); }
+  .tp-brank [data-move="down"] { color: var(--ds-color-fg-informative); }
+  .tp-brank [data-move="same"] { color: var(--ds-color-fg-neutral-subtle); }
 `;
 
 const boardNav = (cur) => `<nav class="ds-sidenav" aria-label="게시판"><div class="ds-sidenav__content"><div class="ds-sidenav__group"><div class="ds-sidenav__group-label">게시판</div>${BOARDS.map(([t, ic], i) => `<a class="ds-sidenav__item" href="#"${i === cur ? ' aria-current="page"' : ''}><span class="ds-sidenav__prefix">${icon(ic)}</span><span class="ds-sidenav__label">${t}</span></a>`).join('')}</div></div></nav>`;
@@ -56,7 +71,11 @@ const leftNav = (cur) => `<aside class="tp-cm__nav" aria-label="내 정보와 �
 const mobileBoards = (cur) => `<div class="tp-cm__chips">${chiptabs(BOARDS.map(([t]) => t), cur, '게시판')}</div>`;
 const who = (name, time, { lv = '', extra = '' } = {}) => `<div class="tp-who">${avatar(name, 24)}<span class="tp-h4">${name}</span>${lv ? badge(lv) : ''}<span class="tp-caption">${time}</span>${extra}</div>`;
 const meta = (like, cmt, view) => `<div class="tp-meta"><span>${icon('thumbs-up')}${like}</span><span>${icon('message-circle')}${cmt}</span><span>${icon('eye')}${view}</span></div>`;
-const rank = (items) => `<ol class="tp-rank">${items.map(([t, c]) => `<li><a href="#" class="tp-stack"><span class="tp-h4 tp-clamp">${t}</span><span class="tp-caption">댓글 ${T(c)}</span></a></li>`).join('')}</ol>`;
+const rank = (items) => `<ol class="tp-rank">${items.map(([t, c]) => `<li><a href="#"><span class="tp-h4 tp-clamp">${t}</span>${badge(c)}</a></li>`).join('')}</ol>`;
+// 글 줄 묶음. ranked 면 앞에 순위 번호를 붙인다. 줄 = [제목, 댓글 수, 정보 글 목록, 사진 번호(없으면 -1)]
+const trend = (rows, ranked = false) => `<ol class="tp-trend"${ranked ? ' data-ranked' : ''}>${rows.map(([t, c, infos, ph], i) => `<li><a href="#">${ranked ? `<span class="tp-trend__no">${i + 1}</span>` : ''}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-trend__line"><span class="tp-item-title tp-trend__t">${t}</span>${c ? badge(c) : ''}</div><div class="tp-meta">${infos.map((x) => `<span>${x}</span>`).join('')}</div></div>${ph >= 0 ? `<div class="tp-trend__thumb">${thumb('1:1', '', K.photo('mix', ph, 160), 'md')}</div>` : '<span></span>'}</a></li>`).join('')}</ol>`;
+const MOVES = [['same', 'minus'], ['up', 'chevron-up'], ['up', 'chevron-up'], ['down', 'chevron-down'], ['up', 'chevron-up']];
+const boardRank = () => `<ol class="tp-brank">${BOARDS.slice(3).concat(BOARDS.slice(1, 3)).slice(0, 5).map(([n, ic], i) => `<li><a href="#"><b>${i + 1}</b><span data-move="${MOVES[i][0]}">${icon(MOVES[i][1])}</span>${icon(ic)}${n}</a></li>`).join('')}</ol>`;
 const HOT = [['처음 가 본 둘레길, 생각보다 쉬웠어요', 42], ['홈카페 원두 추천해 주세요', 31], ['이번 주말 비 온대요, 실내 데이트 어디 가요?', 28], ['반려식물 잎이 노랗게 변해요', 19], ['책 모임 3월 도서 투표 결과', 16]];
 
 /* 1. 커뮤니티 홈 ------------------------------------------------- */
@@ -68,8 +87,7 @@ const home = () => {
     ['자유게시판', '퇴근하고 30분 걷기, 한 달 해 본 이야기', '처음엔 귀찮았는데 지금은 안 걸으면 잠이 안 와요. 같이 걸을 분 계세요?', '초록손', '5시간 전', '54', '9', '611', -1],
     ['모임 모집', '토요일 아침 독서 모임 2명 더 모여요', '한 달에 한 권, 카페에서 두 시간 이야기 나눠요. 이번 달 책은 투표로 정해요.', '책읽는밤', '어제', '22', '7', '388', 2],
   ];
-  const post = ([b, t, ex, n, time, like, cmt, view, ph]) => `<a class="tp-post${ph >= 0 ? ' tp-post--thumb' : ''}" href="#"><div class="tp-post__body">${who(n, time, { extra: badge(b) })}<span class="tp-h3">${t}</span><span class="tp-sub tp-clamp">${ex}</span>${meta(like, cmt, view)}</div>${ph >= 0 ? `<div class="tp-post__thumb">${thumb('1:1', '', K.photo('mix', ph, 320), 'lg')}</div>` : ''}</a>`;
-  const hot = (i, t, n, c) => `<a class="tp-hot" href="#">${thumb('4:3', '', K.photo('nature', i, 480), 'lg')}<div class="tp-stack"><span class="tp-item-title tp-clamp">${t}</span><span class="tp-caption">${n} / 댓글 ${T(c)}</span></div></a>`;
+  const HOT_ROWS = [['새벽 산에서 본 구름바다, 사진 남겨요', 42, ['자유게시판', '조회 2.1만'], 1], ['바닷가 캠핑장 세 곳 다녀온 비교 후기', 31, ['후기', '조회 1.9만'], 4], ['동네 공원 산책 코스 지도로 정리했어요', 28, ['정보 나눔', '조회 1.6만'], 6], ['봄맞이 사진 공모전 수상작 모음', 16, ['공지사항', '조회 4,480'], 2], ['이번 달 읽을 책 같이 골라요', 9, ['모임 모집', '조회 2,086'], -1]];
   const css = CSS;
   const body = `<div class="tp-app">${topbar(MENU, 0, END)}
 <div class="tp-cm tp-cm--aside">
@@ -77,16 +95,17 @@ const home = () => {
   <main class="tp-cm__main">
     ${mobileBoards(0)}
     <section class="tp-sec">${secHead('지금 뜨는 글', { tools: link('더 보기') })}
-      <div class="tp-g3">${hot(1, '새벽 산에서 본 구름바다, 사진 남겨요', '하늘바라기', 42)}${hot(4, '바닷가 캠핑장 세 곳 다녀온 비교 후기', '캠핑초보', 31)}${hot(6, '동네 공원 산책 코스 지도로 정리했어요', '초록손', 28)}</div>
+      ${chiptabs(['종합', '잡담', '질문', '정보', '후기'], 0, '분류')}
+      ${trend(HOT_ROWS, true)}
     </section>
     <section class="tp-sec">${secHead('새 글', { tools: segmented(['추천순', '최신순'], 1, '정렬') })}
-      <div class="tp-feed">${posts.map(post).join('')}</div>
+      ${trend(posts.map(([b, t, , , time, , cmt, view, ph]) => [t, cmt, [b, time, '조회 ' + view], ph]))}
       ${btn('글 더 보기', { fill: true, icEnd: 'chevron-down' })}
     </section>
   </main>
   <aside class="tp-cm__aside" aria-label="인기글과 소식">
     ${card(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><span class="tp-h3">실시간 인기글</span>${rank(HOT)}</div>`)}
-    ${card(`<div class="tp-stack" style="gap: var(--ds-space-x3)"><span class="tp-h3">이번 주 활발한 멤버</span>${avatars(['하늘바라기', '커피한잔', '캠핑초보', '초록손', '책읽는밤'], 32, 12)}<span class="tp-caption">글과 댓글을 많이 남긴 멤버예요.</span></div>`)}
+    ${card(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><span class="tp-h3">인기 게시판</span>${boardRank()}</div>`)}
     
   </aside>
 </div></div>`;
@@ -125,14 +144,14 @@ const board = () => {
   const pins = [['공지', '커뮤니티 이용 규칙 안내 (3월 바뀐 내용)', '운영자', '03.02', '4,812', '36', 0], ['공지', '봄맞이 사진 공모전, 3월 31일까지 받아요', '운영자', '03.05', '2,930', '58', 12]];
   const rows = [[2418, '잡담', '퇴근하고 30분 걷기, 한 달 해 본 이야기', '초록손', '14:52', '611', '54', 9, true, true], [2417, '질문', '홈카페 처음인데 그라인더부터 사야 할까요?', '커피한잔', '14:20', '842', '36', 18, false, true], [2416, '정보', '초보도 바로 가는 서울 근교 둘레길 5곳', '하늘바라기', '13:47', '1,920', '128', 24, true, false], [2415, '잡담', '이번 주말 비 온대요, 실내 데이트 어디 가요?', '주말산책', '13:05', '402', '12', 28, false, false], [2414, '후기', '주말 캠핑 장비, 이것만 챙기면 충분했어요', '캠핑초보', '11:38', '1,204', '87', 12, true, false], [2413, '질문', '반려식물 잎이 노랗게 변해요, 물을 줄여야 할까요?', '초록손', '10:12', '377', '8', 19, true, false], [2412, '잡담', '오늘 점심 뭐 드셨어요?', '배고픈곰', '09:40', '215', '3', 41, false, false], [2411, '정보', '도서관 전자책 무료로 빌리는 법', '책읽는밤', '어제', '1,508', '96', 15, false, false], [2410, '후기', '처음 가 본 둘레길, 생각보다 쉬웠어요', '하늘바라기', '어제', '2,102', '142', 42, true, false], [2409, '잡담', '봄옷 정리하다 찾은 옛날 사진', '주말산책', '어제', '388', '21', 6, true, false]];
   const head = `<li class="tp-board__head" aria-hidden="true"><span class="c-no">번호</span><span>말머리</span><span class="c-title" style="justify-content:center;color:inherit">제목</span><span>글쓴이</span><span class="c-date">작성일</span><span class="c-view">조회</span><span class="c-like">좋아요</span></li>`;
-  const pin = ([b, t, n, d, v, l, c]) => `<li data-pinned><span class="c-no">${badge('공지', 'critical')}</span><span class="c-cat">${b}</span><span class="c-title"><a href="#">${t}</a>${c ? `<span class="tp-cnt">${c}</span>` : ''}</span><span class="c-author">${n}</span><span class="c-date">${d}</span><span class="c-view"><span class="tp-m">조회 </span>${v}</span><span class="c-like"><span class="tp-m">좋아요 </span>${l}</span></li>`;
-  const row = ([no, b, t, n, d, v, l, c, ph, isNew]) => `<li><span class="c-no">${no}</span><span class="c-cat">${b}</span><span class="c-title"><a href="#">${t}</a>${ph ? icon('image') : ''}${c ? `<span class="tp-cnt">${c}</span>` : ''}${isNew ? badge('새 글', 'brand') : ''}</span><span class="c-author">${n}</span><span class="c-date">${d}</span><span class="c-view"><span class="tp-m">조회 </span>${v}</span><span class="c-like"><span class="tp-m">좋아요 </span>${l}</span></li>`;
+  const pin = ([b, t, n, d, v, l, c]) => `<li data-pinned><span class="c-no">${badge('공지', 'critical')}</span><span class="c-cat">${b}</span><span class="c-title"><a href="#">${t}</a>${c ? badge(c) : ''}</span><span class="c-author">${n}</span><span class="c-date">${d}</span><span class="c-view"><span class="tp-m">조회 </span>${v}</span><span class="c-like"><span class="tp-m">좋아요 </span>${l}</span></li>`;
+  const row = ([no, b, t, n, d, v, l, c, ph, isNew]) => `<li><span class="c-no">${no}</span><span class="c-cat">${b}</span><span class="c-title"><a href="#">${t}</a>${ph ? icon('image') : ''}${c ? badge(c) : ''}${isNew ? badge('새 글', 'brand') : ''}</span><span class="c-author">${n}</span><span class="c-date">${d}</span><span class="c-view"><span class="tp-m">조회 </span>${v}</span><span class="c-like"><span class="tp-m">좋아요 </span>${l}</span></li>`;
   const body = `<div class="tp-app">${topbar(MENU, 1, END)}
 <div class="tp-cm">
   ${leftNav(3)}
   <main class="tp-cm__main">
     ${mobileBoards(3)}
-    <header class="tp-bhead"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">자유게시판</h1><p class="tp-sub">일상 이야기를 자유롭게 나눠요. 멤버 ${T('12,840')}명</p></div>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil' })}</header>
+    <header class="tp-bhead"><h1 class="tp-h1">자유게시판</h1>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil' })}</header>
     <div class="tp-stack" style="gap: var(--ds-space-x3)">
       ${chiptabs(['전체', '잡담', '질문', '정보', '후기'], 0, '말머리')}
       <div class="tp-btools"><span class="tp-sub">글 ${T('2,418')}개</span><div class="tp-row">${K.even(select('최신순', { id: 'bd-sort', aria: '정렬' }) + search('bd-q', '게시판 안에서 찾기'))}</div></div>
@@ -208,45 +227,26 @@ const post = () => {
 /* 4. 글쓰기 ----------------------------------------------------- */
 const write = () => {
   const css = CSS + `
-  .tp-cm--one { max-width: var(--tp-narrow-box); }
-  .tp-wform { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
-  .tp-wpick { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
-  @media (min-width: 768px) { .tp-wpick { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  /* 본문 칸: 도구 줄 + 글 칸을 한 상자로. 선은 상자와 도구 줄 자신에 그린다 */
-  .tp-editor { display: flex; flex-direction: column; border-radius: var(--ds-shape-lg); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
-  .tp-editor__bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1); padding: var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-editor .ds-textarea { --ds-textarea-line-width: 0px; --ds-textarea-min-height: 320px; background: none; }
-  .tp-opts { display: flex; flex-direction: column; }
-  .tp-opts > label { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding-block: var(--ds-space-x3); }
-  .tp-opts > label + label { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-wbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; justify-content: flex-end; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-wbar__in { display: flex; justify-content: space-between; align-items: center; gap: var(--ds-space-x2); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
+  .tp-wtop { position: sticky; top: 0; z-index: var(--ds-z-sticky); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); }
+  .tp-wform { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x4); width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x2) var(--tp-gutter) var(--ds-space-x12); }
+  .tp-wtitle { display: block; box-sizing: border-box; width: 100%; padding: var(--ds-space-x2) 0 var(--ds-space-x4); border: 0; outline: 0; background: none; box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); color: var(--ds-color-fg-neutral); font: inherit; font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-bold); }
+  .tp-wtitle::placeholder { color: var(--ds-color-fg-placeholder); }
+  .tp-wtitle:focus-visible { box-shadow: inset 0 -2px 0 var(--ds-color-stroke-neutral-contrast); }
+  .tp-wform .ds-textarea { --ds-textarea-line-width: 0px; --ds-textarea-min-height: 400px; padding-inline: 0; background: none; }
 `;
-  const img = (i, name, main) => `<div class="ds-fileitem" data-type="image"><img class="ds-fileitem__image" src="${K.photo('nature', i, 240)}" alt="${name}">${main ? '<span class="ds-fileitem__badge">대표</span>' : ''}<button type="button" class="ds-fileitem__remove" aria-label="${name} 빼기">${icon('x')}</button></div>`;
-  const body = `<div class="tp-app">${topbar(MENU, 1, END)}
-<main class="tp-cm tp-cm--one">
-  <div class="tp-cm__main">
-    <header class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">글쓰기</h1></header>
-    <form class="tp-wform" onsubmit="return false">
-      <div class="tp-wpick">${field('w-board', '게시판', select('자유게시판', { id: 'w-board' }), { required: true })}${field('w-cat', '말머리', select('잡담', { id: 'w-cat' }))}</div>
-      ${field('w-title', '제목', input('w-title', 'placeholder="제목을 적어 주세요" maxlength="60"'), { required: true })}
-      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="w-body">본문 <span class="ds-field__required" aria-hidden="true"></span></label></div>
-        <div class="tp-editor"><div class="tp-editor__bar" role="toolbar" aria-label="글 꾸미기">${iconBtn('italic', '기울이기', { size: 'xsmall' })}${iconBtn('link', '링크 넣기', { size: 'xsmall' })}${iconBtn('list', '목록', { size: 'xsmall' })}${iconBtn('image', '사진 넣기', { size: 'xsmall' })}${iconBtn('paperclip', '파일 붙이기', { size: 'xsmall' })}${iconBtn('chart-column', '투표 넣기', { size: 'xsmall' })}</div><textarea class="ds-textarea" id="w-body" placeholder="이야기를 나눠 주세요. 다른 멤버를 존중하는 글을 써 주세요."></textarea></div>
-      </div>
-      <div class="ds-field"><div class="ds-field__header"><span class="ds-field__label">사진</span></div>
-        <div class="ds-fileattach"><div class="ds-fileattach__items"><label class="ds-fileattach__trigger"><input type="file" class="ds-fileattach__input" multiple accept="image/*" aria-label="사진 추가">${icon('plus')}<span class="ds-fileattach__count"><b>3</b>/10</span></label>${img(1, '산 사진', true)}${img(4, '바다 사진')}${img(6, '공원 사진')}</div></div>
-      </div>
-      <div class="tp-opts">
-        <label><span class="tp-stack"><span class="tp-h4">댓글 허용</span><span class="tp-caption">끄면 아무도 댓글을 달 수 없어요.</span></span>${sw('댓글 허용', true)}</label>
-        <label><span class="tp-stack"><span class="tp-h4">이름 숨기기</span><span class="tp-caption">글쓴이 이름 대신 익명으로 보여요.</span></span>${sw('이름 숨기기')}</label>
-      </div>
-      
-    </form>
-  </div>
+  const body = `<div class="tp-app">
+<header class="tp-wtop">${iconBtn('arrow-left', '뒤로', { size: 'medium' })}${btn('등록', { variant: 'brandSolid', size: 'medium' })}</header>
+<main>
+  <form class="tp-wform" onsubmit="return false">
+    <h1 class="tp-sr">글쓰기</h1>
+    <div class="tp-row">${select('자유게시판', { id: 'w-board', aria: '게시판' })}${select('잡담', { id: 'w-cat', aria: '말머리' })}</div>
+    <input class="tp-wtitle" id="w-title" placeholder="제목" aria-label="제목" maxlength="60">
+    <div class="tp-row" role="toolbar" aria-label="글 꾸미기">${iconBtn('image', '사진 넣기', { size: 'medium' })}${iconBtn('video', '영상 넣기', { size: 'medium' })}${iconBtn('list', '목록', { size: 'medium' })}</div>
+    <textarea class="ds-textarea" id="w-body" placeholder="내용" aria-label="내용"></textarea>
+  </form>
 </main>
-<div class="tp-wbar"><div class="tp-wbar__in"><span class="tp-caption">자동 저장 14:32</span><div class="tp-row">${btn('임시 저장', { size: 'medium' })}${btn('등록', { variant: 'brandSolid', size: 'medium' })}</div></div></div>
 </div>`;
-  return { slug: 'community-write', en: 'Write Post', name: '글쓰기', group: 'Community', desc: '커뮤니티에 새 글을 작성하는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.', css, body };
+  return { slug: 'community-write', en: 'Write Post', name: '글쓰기', group: 'Community', desc: '커뮤니티에 새 글을 작성하는 화면입니다. 게시판을 고른 뒤 제목과 본문을 씁니다.', css, body };
 };
 
 export const templates = [home(), board(), post(), write()];

@@ -128,17 +128,6 @@
       "rebuilt": true
     },
     {
-      "slug": "form-two-column",
-      "name": "두 칸 폼",
-      "en": "Two-column Form",
-      "group": "Form",
-      "desc": "입력 칸을 두 열로 나눈 문의 폼입니다. 넓은 화면에서 긴 폼이 짧아 보입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3078:1505"
-      }
-    },
-    {
       "slug": "form-wizard-vertical",
       "name": "세로 단계 폼",
       "en": "Vertical Wizard",
@@ -392,7 +381,7 @@
       "name": "글쓰기",
       "en": "Write Post",
       "group": "Community",
-      "desc": "커뮤니티에 새 글을 작성하는 화면입니다. 게시판과 말머리를 고른 뒤 글과 사진을 올립니다.",
+      "desc": "커뮤니티에 새 글을 작성하는 화면입니다. 게시판을 고른 뒤 제목과 본문을 씁니다.",
       "rebuilt": true
     },
     {

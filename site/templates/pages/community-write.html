@@ -21,7 +21,7 @@
   /* 스크롤바: 페이지 스크롤바는 폭을 차지하면 오른쪽 여백만 넓어져 좌우가 어긋난다. 숨기고, 안쪽 스크롤 영역은 트랙 없이 손잡이만 */
   html { scrollbar-width: none; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
   /* 머리글도 내용과 같은 좌우선에 */
-  .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-tc, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
+  .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
      배치(여백, 카드, 구분선)는 레퍼런스 A 템플릿, 한글 글자 위계(크기, 굵기, 색 단계, 자간)는 토스를 따른다 */
   body { word-break: keep-all; overflow-wrap: break-word; }
@@ -205,55 +205,49 @@
   .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x3); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-variant-numeric: tabular-nums; }
   .tp-meta > span { display: inline-flex; align-items: center; gap: var(--ds-space-x1); }
   .tp-meta .ds-icon { --ds-icon-size: 14px; }
-  .tp-cnt { margin-inline-start: var(--ds-space-x1); color: var(--ds-color-fg-brand); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
   /* 순위 목록 */
   .tp-rank { display: flex; flex-direction: column; gap: var(--ds-space-x3); margin: 0; padding: 0; list-style: none; counter-reset: rank; }
-  .tp-rank > li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--ds-space-x2); counter-increment: rank; }
+  .tp-rank > li { display: grid; grid-template-columns: var(--ds-space-x5) minmax(0, 1fr); gap: var(--ds-space-x2); align-items: center; counter-increment: rank; }
   .tp-rank > li::before { content: counter(rank); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; color: var(--ds-color-fg-neutral); }
-  .tp-rank a { color: inherit; text-decoration: none; }
-  .tp-hot { display: flex; flex-direction: column; gap: var(--ds-space-x3); color: inherit; text-decoration: none; }
+  .tp-rank a { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); color: inherit; text-decoration: none; }
+  /* 글 줄: 순위 번호, 제목과 댓글 수, 정보 한 줄, 오른쪽 사진 */
+  .tp-trend { margin: 0; padding: 0; list-style: none; }
+  .tp-trend > li + li { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-trend a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; min-height: var(--ds-space-x16); padding-block: var(--ds-space-x3); color: inherit; text-decoration: none; }
+  .tp-trend[data-ranked] a { grid-template-columns: var(--ds-space-x6) minmax(0, 1fr) auto; }
+  .tp-trend__no { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-align: center; }
+  .tp-trend__line { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
+  .tp-trend__t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tp-trend__thumb { width: var(--ds-space-x16); }
+  /* 인기 게시판: 순위, 변동, 이름을 회색 줄로 */
+  .tp-brank { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
+  .tp-brank a { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); color: inherit; text-decoration: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
+  .tp-brank b { width: var(--ds-space-x4); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-align: center; }
+  .tp-brank .ds-icon { --ds-icon-size: 16px; flex: none; }
+  .tp-brank [data-move="up"] { color: var(--ds-color-fg-critical); }
+  .tp-brank [data-move="down"] { color: var(--ds-color-fg-informative); }
+  .tp-brank [data-move="same"] { color: var(--ds-color-fg-neutral-subtle); }
 
-  .tp-cm--one { max-width: var(--tp-narrow-box); }
-  .tp-wform { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
-  .tp-wpick { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
-  @media (min-width: 768px) { .tp-wpick { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  /* 본문 칸: 도구 줄 + 글 칸을 한 상자로. 선은 상자와 도구 줄 자신에 그린다 */
-  .tp-editor { display: flex; flex-direction: column; border-radius: var(--ds-shape-lg); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
-  .tp-editor__bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1); padding: var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-editor .ds-textarea { --ds-textarea-line-width: 0px; --ds-textarea-min-height: 320px; background: none; }
-  .tp-opts { display: flex; flex-direction: column; }
-  .tp-opts > label { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding-block: var(--ds-space-x3); }
-  .tp-opts > label + label { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-wbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; justify-content: flex-end; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-wbar__in { display: flex; justify-content: space-between; align-items: center; gap: var(--ds-space-x2); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
+  .tp-wtop { position: sticky; top: 0; z-index: var(--ds-z-sticky); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); }
+  .tp-wform { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x4); width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x2) var(--tp-gutter) var(--ds-space-x12); }
+  .tp-wtitle { display: block; box-sizing: border-box; width: 100%; padding: var(--ds-space-x2) 0 var(--ds-space-x4); border: 0; outline: 0; background: none; box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); color: var(--ds-color-fg-neutral); font: inherit; font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-bold); }
+  .tp-wtitle::placeholder { color: var(--ds-color-fg-placeholder); }
+  .tp-wtitle:focus-visible { box-shadow: inset 0 -2px 0 var(--ds-color-stroke-neutral-contrast); }
+  .tp-wform .ds-textarea { --ds-textarea-line-width: 0px; --ds-textarea-min-height: 400px; padding-inline: 0; background: none; }
 </style>
 </head>
 <body>
-<div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
-  <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">홈</a><a class="ds-topnav__item" href="#" aria-current="page">게시판</a><a class="ds-topnav__item" href="#">인기글</a><a class="ds-topnav__item" href="#">모임</a></nav></div>
-  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="주말산책"><span class="ds-avatar__initials" aria-hidden="true">주</span></span></div>
-</header></div>
-<main class="tp-cm tp-cm--one">
-  <div class="tp-cm__main">
-    <header class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">글쓰기</h1></header>
-    <form class="tp-wform" onsubmit="return false">
-      <div class="tp-wpick"><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="w-board">게시판 <span class="ds-field__required" aria-hidden="true"></span></label></div><button type="button" class="ds-select" data-size="medium" id="w-board" aria-haspopup="listbox" aria-expanded="false"><span class="ds-select__value">자유게시판</span></button></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="w-cat">말머리</label></div><button type="button" class="ds-select" data-size="medium" id="w-cat" aria-haspopup="listbox" aria-expanded="false"><span class="ds-select__value">잡담</span></button></div></div>
-      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="w-title">제목 <span class="ds-field__required" aria-hidden="true"></span></label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="w-title" placeholder="제목을 적어 주세요" maxlength="60"></div></div>
-      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="w-body">본문 <span class="ds-field__required" aria-hidden="true"></span></label></div>
-        <div class="tp-editor"><div class="tp-editor__bar" role="toolbar" aria-label="글 꾸미기"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="기울이기"><i class="ds-icon ds-icon--italic" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="링크 넣기"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="목록"><i class="ds-icon ds-icon--list" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="사진 넣기"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="파일 붙이기"><i class="ds-icon ds-icon--paperclip" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="투표 넣기"><i class="ds-icon ds-icon--chart-column" aria-hidden="true"></i></button></div><textarea class="ds-textarea" id="w-body" placeholder="이야기를 나눠 주세요. 다른 멤버를 존중하는 글을 써 주세요."></textarea></div>
-      </div>
-      <div class="ds-field"><div class="ds-field__header"><span class="ds-field__label">사진</span></div>
-        <div class="ds-fileattach"><div class="ds-fileattach__items"><label class="ds-fileattach__trigger"><input type="file" class="ds-fileattach__input" multiple accept="image/*" aria-label="사진 추가"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i><span class="ds-fileattach__count"><b>3</b>/10</span></label><div class="ds-fileitem" data-type="image"><img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=240&q=70" alt="산 사진"><span class="ds-fileitem__badge">대표</span><button type="button" class="ds-fileitem__remove" aria-label="산 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div><div class="ds-fileitem" data-type="image"><img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=240&q=70" alt="바다 사진"><button type="button" class="ds-fileitem__remove" aria-label="바다 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div><div class="ds-fileitem" data-type="image"><img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=240&q=70" alt="공원 사진"><button type="button" class="ds-fileitem__remove" aria-label="공원 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div></div>
-      </div>
-      <div class="tp-opts">
-        <label><span class="tp-stack"><span class="tp-h4">댓글 허용</span></span><label class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" aria-label="댓글 허용" checked></label></label>
-        <label><span class="tp-stack"><span class="tp-h4">이름 숨기기</span></span><label class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" aria-label="이름 숨기기"></label></label>
-      </div>
-      
-    </form>
-  </div>
+<div class="tp-app">
+<header class="tp-wtop"><button type="button" class="ds-btn" data-variant="ghost" data-size="medium" data-layout="iconOnly" aria-label="뒤로"><i class="ds-icon ds-icon--arrow-left" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="brandSolid" data-size="medium">등록</button></header>
+<main>
+  <form class="tp-wform" onsubmit="return false">
+    <h1 class="tp-sr">글쓰기</h1>
+    <div class="tp-row"><button type="button" class="ds-select" data-size="medium" id="w-board" aria-haspopup="listbox" aria-expanded="false" aria-label="게시판"><span class="ds-select__value">자유게시판</span></button><button type="button" class="ds-select" data-size="medium" id="w-cat" aria-haspopup="listbox" aria-expanded="false" aria-label="말머리"><span class="ds-select__value">잡담</span></button></div>
+    <input class="tp-wtitle" id="w-title" placeholder="제목" aria-label="제목" maxlength="60">
+    <div class="tp-row" role="toolbar" aria-label="글 꾸미기"><button type="button" class="ds-btn" data-variant="ghost" data-size="medium" data-layout="iconOnly" aria-label="사진 넣기"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="medium" data-layout="iconOnly" aria-label="영상 넣기"><i class="ds-icon ds-icon--video" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="medium" data-layout="iconOnly" aria-label="목록"><i class="ds-icon ds-icon--list" aria-hidden="true"></i></button></div>
+    <textarea class="ds-textarea" id="w-body" placeholder="내용" aria-label="내용"></textarea>
+  </form>
 </main>
-<div class="tp-wbar"><div class="tp-wbar__in"><span class="tp-caption">자동 저장 14:32</span><div class="tp-row"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium">임시 저장</button><button type="button" class="ds-btn" data-variant="brandSolid" data-size="medium">등록</button></div></div></div>
 </div>
 </body>
 </html>
