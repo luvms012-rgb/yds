@@ -32,7 +32,7 @@ function parse(html) {
 const attr = (n, name) => { const m = (n.attrs || '').match(new RegExp(`\\b${name}="([^"]*)"`)); return m ? decode(m[1]) : ''; };
 // 숨긴 칸이라도 코드 칸(예시 코드, 코드 탭의 둘째 칸)은 마크다운에 넣는다
 // 버튼은 빼되, 아이콘 이름 복사 버튼(site-icon-name)은 이름이 내용이라 넣는다 (2026-11-04, 전에는 아이콘 표의 이름 칸이 비었다)
-const skip = (n) => n.tag && (SKIP_TAG.has(n.tag) && !(n.tag === 'button' && /\bsite-icon-name\b/.test(attr(n, 'class'))) ||SKIP_CLASS.test(attr(n, 'class')) || /\bhidden\b/.test(n.attrs) && !/site-example__code|site-codetabs__panel/.test(attr(n, 'class')) || attr(n, 'aria-hidden') === 'true');
+const skip = (n) => n.tag && (SKIP_TAG.has(n.tag) && !(n.tag === 'button' && /\bsite-icon-name\b/.test(attr(n, 'class'))) ||SKIP_CLASS.test(attr(n, 'class')) || /\bhidden\b/.test(n.attrs) && !/site-example__code|site-codetabs__panel|site-gs__panel/.test(attr(n, 'class')) || attr(n, 'aria-hidden') === 'true');
 const textOf = (n) => n.text !== undefined ? decode(n.text) : (n.kids || []).map(textOf).join('');
 
 function inline(n, ctx) {

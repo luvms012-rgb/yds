@@ -533,6 +533,14 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-codetabs__bar { --ds-ct-height: 28px; --ds-ct-padding-x: var(--ds-space-x3); --ds-ct-min-width: 0; padding-inline: 0; }
 .site-codetabs__bar .ds-chiptabs__trigger { font-size: var(--ds-font-size-t03); }
 .site-codetabs__panel[hidden] { display: none; }
+/* Get Started 시작하기 (11-09): 세그먼트 아래 고른 칸의 요청 글 상자 하나 */
+.site-gs__seg { width: 100%; max-width: 560px; }
+.site-gs__panel { margin-top: var(--ds-space-x4); }
+.site-gs__panel[hidden] { display: none; }
+.site-gs__panel .ds-codeblock { margin: 0; }
+.site-gs__more { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); margin-top: var(--ds-space-x3); }
+.site-gs__files td:first-child a { white-space: nowrap; }
+@media (min-width: 768px) { .site-gs__files th:first-child { width: 34%; } .site-gs__files th:nth-child(2) { width: 30%; } }
 /* 코드 글자 색 (11-04 사용자 "코드뷰 컬러로 개선, seed 참조"): 레퍼런스 B 의 GitHub 테마 규칙을 DS 팔레트로. 팔레트라 다크 모드에서 같이 뒤집힌다 */
 .ds-codeblock .hl-k, .site-lib__code .hl-k { color: var(--ds-color-palette-red-700); }     /* 키워드, @media */
 .ds-codeblock .hl-s, .site-lib__code .hl-s { color: var(--ds-color-palette-blue-900); }    /* 문자열, 속성 값 */

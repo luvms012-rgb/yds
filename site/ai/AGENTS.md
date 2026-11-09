@@ -18,6 +18,7 @@
 - 컴포넌트: 목록(https://luvms012-rgb.github.io/yds/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(https://raw.githubusercontent.com/luvms012-rgb/yds/main/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
 - 아이콘: 목록(https://luvms012-rgb.github.io/yds/site/ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
+- 원본: yds 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. yds 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드 컬러: 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 덮어쓴다. 받은 색을 600 단계로 두고, 다크(:root[data-theme="dark"])는 같은 단계를 뒤집어 넣는다.
 - 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.

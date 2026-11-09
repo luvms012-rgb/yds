@@ -366,46 +366,40 @@ const write = (o) => written.push(page(o));
 /* ---------------------------------------------------------------- Get Started */
 const CSS_LINK = `<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>`;
-// AI 요청 글 (11-04 사용자 "프롬프트가 너무 디테일", "좀 더 다듬어"): 네 개 모두 같은 세 줄 틀 - 할 일 / 문서 주소 / 조건 한 가지
-// 지킬 규칙은 llms.txt 머리(LLMS_RULES)에 두고 요청 글에는 쓰지 않는다
+// 첫 화면 요청 글 (11-09 사용자 "프롬프팅과 단계를 최소화", "아주 조금만 친절하게"): 할 일마다 글 하나. 순서와 점검은 llms.txt 머리(LLMS_RULES)가 맡는다
+// 틀: 하고 싶은 것 / 문서 먼저 익히기 / [채울 값 줄] / 바라는 방식. 채울 값은 "이름: [값]" 따로 줄
 const DOC_LINE = `문서: ${SITE_URL}llms.txt`;
-const prompts = [
-  ['yds 넣기', '지금 만드는 프로젝트에 yds를 넣습니다.',
-    `이 프로젝트에 yds를 넣어 줘.
+const START = [
+  ['migrate', '내 사이트에 넣기', `지금 운영 중인 이 사이트에 yds 디자인 시스템을 입히고 싶어.
+먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
-문서의 '지킬 것'을 먼저 읽고 그대로 따라 줘.`],
-  ['화면 만들기', '대괄호 안에 만들 화면을 적습니다.',
-    `yds로 화면을 만들어 줘.
-만들 화면: [회원 목록]
+
+운영 중인 사이트라서 한 번에 바꾸지 말고, 사이트를 먼저 살펴본 뒤 어떤 순서로 바꿀지 알려 줘.
+화면은 하나씩 바꾸고, 바꿀 때마다 전후 화면을 보여 주면 내가 확인할게.
+원래 되던 기능은 그대로 동작해야 하고, 애매한 부분은 혼자 정하지 말고 물어봐 줘.`],
+  ['start', '새 프로젝트', `새 프로젝트를 yds 디자인 시스템으로 시작하려고 해.
+먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
-비슷한 화면이 Templates에 있으면 그 템플릿 HTML을 바탕으로 만들어 줘.`],
-  ['규칙 점검하기', '이미 만든 화면을 점검합니다. 대괄호 안에 파일이나 폴더를 적습니다.',
-    `yds 규칙을 지키는지 점검하고 고쳐 줘.
-점검할 곳: [파일이나 폴더]
-${DOC_LINE}
-검사 스크립트를 먼저 돌리고, 고친 곳은 목록으로 알려 줘.`],
-  ['브랜드 컬러 입히기', '서비스에 쓸 때 이어서 붙여 넣습니다. 대괄호 안에 브랜드 컬러를 넣습니다.',
-    `이 서비스에 브랜드 컬러를 입혀 줘.
+
+브랜드 컬러: [#12a150]
+첫 화면: [회원 목록]
+
+yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Templates에 있으면 거기서 시작해 줘.
+다 만들면 규칙을 지켰는지 점검하고, 고친 곳을 알려 줘.`],
+  ['draft', '화면 시안', `첨부한 llms-full.txt는 yds 디자인 시스템 문서야. 먼저 읽고 익혀 줘.
+
+이 디자인 시스템으로 화면 시안을 만들고 싶어.
+만들 화면: [이벤트 신청 페이지]
+들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
+
+yds에 있는 부품과 색만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
+정할 것이 있으면 만들기 전에 물어봐 줘.`],
+];
+// 브랜드 컬러 요청 글 (Foundations Color 페이지)
+const BRAND_PROMPT = `이 서비스에 브랜드 컬러를 입혀 줘.
 브랜드 컬러: [#12a150]
 ${DOC_LINE}
-이 색을 600 단계로 두고 나머지 단계와 다크 모드 값을 만들어 서비스 CSS에 넣어 줘.`],
-];
-// 운영 중인 사이트에 옮길 때만 쓰는 요청 글 (11-04 사용자 "내 사이트 옮기기는 다음 단계"). 브랜드 컬러와 규칙 점검은 위 prompts를 그대로 쓴다
-const MIGRATE = [
-  ['1. 사이트 살펴보기', '아직 고치지 않고, 무엇을 어떤 순서로 바꿀지 먼저 정합니다.',
-    `이 사이트에 yds를 적용하려고 해. 아직 고치지 말고 먼저 살펴봐 줘.
-${DOC_LINE}
-공통 <head>가 있는 파일, CSS 파일, 자주 쓰는 색과 부품을 정리하고 바꿀 순서를 제안해 줘.`],
-  ['2. yds 넣기', '공통 <head>에 넣습니다. 기존 CSS가 yds보다 우선해서 지금 화면은 거의 그대로입니다.',
-    `이 사이트의 공통 <head>에 yds를 넣어 줘.
-${DOC_LINE}
-넣은 뒤 지금 화면에서 달라진 곳이 있으면 알려 줘.`],
-  ['3. 화면 하나씩 바꾸기', '화면마다 대괄호 안만 바꿔 붙여 넣습니다.',
-    `이 화면을 yds 컴포넌트로 바꿔 줘.
-바꿀 화면: [회원 정보 수정]
-${DOC_LINE}
-서버 코드와 스크립트가 쓰는 class, id, name은 그대로 두고, 바꾸기 전후 화면을 비교해서 보여 줘.`],
-];
+이 색을 600 단계로 두고 나머지 단계와 다크 모드 값을 만들어 서비스 CSS에 넣어 줘.`;
 // llms.txt 머리에 붙는 규칙 (AI가 요청 글 대신 여기서 읽는다)
 const LLMS_RULES = `## 지킬 것
 
@@ -414,6 +408,7 @@ const LLMS_RULES = `## 지킬 것
 - 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
 - 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
+- 원본: yds 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. yds 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드 컬러: 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 덮어쓴다. 받은 색을 600 단계로 두고, 다크(:root[data-theme="dark"])는 같은 단계를 뒤집어 넣는다.
 - 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.
@@ -441,63 +436,43 @@ write({
   ${metaLinks({ figma: LINKS.figmaUrl('2608:2'), code: GITHUB })}
 </header>
 
-<h2 id="system">시스템 이해하기</h2>
+<h2 id="ai">시작하기</h2>
+<div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
+  ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
+</div>
+${START.map(([k, l, p], i) => {
+  // 칸 이름은 화면에서는 세그먼트가 보여 주고, 읽어 주기와 마크다운에는 숨은 제목으로 남긴다
+  const tabs = [['AI 요청', codeblock(p, 'text', ' data-wrap')]];
+  if (k === 'migrate') tabs.push([`HTML v${VERSION}`, codeblock(CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`))]);
+  if (k === 'start') tabs.push(['HTML', codeblock(`${CSS_LINK}
+
+<!-- 다크 모드 -->
+<html lang="ko" data-theme="dark">
+
+<!-- 기기 설정을 따를 때: <head> 맨 위 -->
+<script>
+  if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
+</script>`)]);
+  const extra = k === 'draft' ? `<div class="site-gs__more"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="llms-full.txt" download><i class="ds-icon ds-icon--download ds-icon--sm" aria-hidden="true"></i>llms-full.txt 받기</a></div>` : '';
+  return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}${extra}</div>`;
+}).join('\n')}
+
+<h2 id="system">둘러보기</h2>
 <div class="site-grid site-grid--hub site-grid--hub3">
   ${hubCard('foundations/color.html', 'Foundations', '색, 글자, 간격, 모서리, 그림자, 움직임처럼 화면의 바탕이 되는 토큰입니다.')}
   ${hubCard('components/index.html', 'Components', '버튼, 입력칸, 목록처럼 화면을 이루는 부품입니다.')}
   ${hubCard('templates/index.html', 'Templates', '자주 만드는 화면을 부품으로 미리 조립해 둔 예시입니다.')}
 </div>
 
-<h2 id="ai">AI로 시작하기</h2>
-<p>아래 글을 AI 코딩 도구(ChatGPT, Claude, Cursor 등)에 붙여 넣으면 됩니다.</p>
-<h3>${prompts[0][0]}</h3>
-<p>${prompts[0][1]}</p>
-${codeblock(prompts[0][2], 'text', ' data-wrap')}
-<h3>${prompts[3][0]}</h3>
-<p>${prompts[3][1]}</p>
-${codeblock(prompts[3][2], 'text', ' data-wrap')}
-<h3>${prompts[1][0]}</h3>
-<p>${prompts[1][1]}</p>
-${codeblock(prompts[1][2], 'text', ' data-wrap')}
-<h3>${prompts[2][0]}</h3>
-<p>${prompts[2][1]}</p>
-${codeblock(prompts[2][2], 'text', ' data-wrap')}
-
-<h2 id="start">직접 시작하기</h2>
-<p><code>&lt;head&gt;</code>에 두 줄을 넣으면 글꼴, 토큰, 아이콘, 컴포넌트가 함께 들어옵니다. 쓰는 법은 <a class="ds-link" href="components/index.html">Components</a>에 있습니다.</p>
-${codeTabs([['최신 버전', codeblock(CSS_LINK)], [`버전 고정 v${VERSION}`, codeblock(CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`))]])}
-
-<h2 id="migrate">내 사이트에 적용해보기</h2>
-<p>운영 중인 사이트는 한 번에 바꾸지 않고 아래 순서대로 적용합니다. 브랜드 컬러와 규칙 점검은 위 <a class="ds-link" href="#ai">AI로 시작하기</a>의 글을 그대로 씁니다.</p>
-${MIGRATE.map(([t, d, p]) => `<h3>${esc(t)}</h3>\n<p>${esc(d)}</p>\n${codeblock(p, 'text', ' data-wrap')}`).join('\n')}
-
-<h2 id="theme">다크 모드</h2>
-<p><code>html</code>에 속성 하나를 붙이면 모든 색이 어두운 화면용으로 바뀝니다. 색을 토큰으로만 썼다면 따로 고칠 것이 없습니다.</p>
-${codeTabs([
-  ['AI 요청', codeblock(`이 사이트에 yds 다크 모드를 넣어 줘.\n${DOC_LINE}\n라이트, 다크 전환 버튼을 만들고, 처음에는 기기 설정을 따르게 해 줘.`, 'text', ' data-wrap')],
-  ['HTML', codeblock(`<!-- 다크 모드 -->\n<html lang="ko" data-theme="dark">\n\n<!-- 기기 설정을 따를 때: <head> 맨 위 -->\n<script>\n  if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';\n</script>`)],
-])}
-
-<h2 id="files">AI가 읽는 파일</h2>
-<h3>디자이너</h3>
-${table(['파일', '이럴 때 씁니다'], [
-  [`<a class="ds-link" href="${LINKS.figmaUrl('2608:2')}" target="_blank" rel="noopener">Figma 라이브러리</a>`, '컴포넌트와 변수로 화면을 그릴 때. 변수 이름이 CSS 토큰과 같습니다.'],
-  [`<a class="ds-link" href="llms-full.txt" target="_blank" rel="noopener">llms-full.txt</a>`, 'AI 대화창(ChatGPT, Claude 등)에 첨부해 yds 기준으로 물어볼 때.'],
-])}
-<h3>개발자</h3>
-${table(['파일', '이럴 때 씁니다'], [
-  [`<a class="ds-link" href="ai/AGENTS.md" target="_blank" rel="noopener">AGENTS.md</a>`, '프로젝트 맨 위 폴더에 두면 AI 코딩 도구가 늘 yds 규칙을 읽습니다. Claude는 ' + `<a class="ds-link" href="ai/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>` + ', Cursor는 ' + `<a class="ds-link" href="ai/yds.mdc" target="_blank" rel="noopener">yds.mdc</a>` + '로 둡니다.'],
-  [`<a class="ds-link" href="llms.txt" target="_blank" rel="noopener">llms.txt</a>`, 'AI에 주소를 알려 줄 때. 컴포넌트 목록, 토큰, 아이콘 같은 나머지 파일 주소도 여기에 있습니다.'],
-  [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, '만든 화면이 규칙을 지키는지 볼 때. <code>node yds-check.mjs 폴더</code>로 돌립니다.'],
-  ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스입니다.']] : []),
-])}
-<h3>기획자, 마케터</h3>
-${codeblock(`첨부한 llms-full.txt 의 yds 기준으로 화면 시안을 만들어 줘.\n만들 화면: [이벤트 신청 페이지]\n들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]\n결과는 브라우저에서 바로 열 수 있는 HTML 파일 하나로 줘.`, 'text', ' data-wrap')}
-${table(['파일', '이럴 때 씁니다'], [
-  [`<a class="ds-link" href="llms-full.txt" target="_blank" rel="noopener">llms-full.txt</a>`, '내려받아 AI 대화창(ChatGPT, Claude 등)에 첨부합니다. 기획안, 이벤트 페이지, 설문 화면 시안을 만들 때.'],
-  [`<a class="ds-link" href="templates/index.html">Templates</a>`, '비슷한 화면을 골라 그 주소를 AI에 알려 주고 문구만 바꿔 달라고 할 때.'],
-  ['화면 캡처', '지금 쓰는 화면을 캡처해 함께 올리고 yds로 다시 그려 달라고 할 때. 바꾸기 전후를 나란히 비교해 볼 수 있습니다.'],
-])}
+<h2 id="files">파일</h2>
+${table(['파일', '무엇인가요', '언제 쓰나요'], [
+  [`<a class="ds-link" href="llms.txt" target="_blank" rel="noopener">llms.txt</a>`, 'AI용 yds 안내서', 'AI에 yds를 알려 줄 때'],
+  [`<a class="ds-link" href="llms-full.txt" download>llms-full.txt</a>`, 'yds 문서 전체를 모은 파일 하나', '주소를 열지 못하는 AI 대화창에 첨부할 때'],
+  [['AGENTS.md', 'CLAUDE.md', 'yds.mdc'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join(' / '), 'AI 코딩 도구용 yds 규칙 파일', 'AI 코딩 도구가 늘 yds 규칙을 지키게 할 때'],
+  [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'yds 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
+  [`<a class="ds-link" href="${LINKS.figmaUrl('2608:2')}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'yds 컴포넌트와 변수가 든 Figma 파일', 'Figma로 화면을 그릴 때'],
+  ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 고를 때']] : []),
+]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
 
 ${SHOW_THEMES ? `<h2 id="custom-theme">테마</h2>
 <p>테마는 브랜드 색, 바탕색, 모서리 곡률을 한 번에 바꿉니다. DS 다음에 테마 파일을 붙이고 html에 테마 이름을 적으면 됩니다. 고를 수 있는 테마는 <a class="ds-link" data-size="small" href="themes/index.html">Themes</a>에 있습니다.</p>
@@ -555,7 +530,7 @@ const foundPages = {
 ${codeblock(`.my-card {\n  background: var(--ds-color-bg-layer-default);\n  color: var(--ds-color-fg-neutral);\n  border: 1px solid var(--ds-color-stroke-neutral-muted);\n}`, 'css')}
 <h3>브랜드 컬러 바꾸기</h3>
 <p>브랜드 컬러 하나만 있으면 됩니다. 아래 글의 대괄호에 그 색을 넣어 AI에 붙여 넣으면, 나머지 단계와 다크 모드 값을 만들어 넣습니다.</p>
-${codeblock(prompts[3][2], 'text', ' data-wrap')}
+${codeblock(BRAND_PROMPT, 'text', ' data-wrap')}
 <p>직접 넣을 때는 대표 색을 <code>brand-600</code>에 두고, 나머지 단계를 같은 색의 진하기로 채웁니다.</p>
 ${codeblock(`/* 서비스 CSS - DS 다음에 불러온다 */\n:root {\n  --ds-color-palette-brand-600: #12a150;  /* 대표 색: 주 버튼, 링크 */\n  --ds-color-palette-brand-700: #0d7d3e;  /* 한 단계 진하게: 눌림 */\n  --ds-color-palette-brand-100: #e6f6ee;  /* 아주 옅게: 옅은 배경 */\n  /* 나머지 단계도 같은 색으로 채운다 */\n}`, 'css')}
 <h2 id="practices">사용 지침</h2>
@@ -1070,7 +1045,7 @@ ${used.length ? `<h2 id="components">쓴 컴포넌트</h2><div class="site-links
 /* ---------------------------------------------------------------- AI & Tools */
 // 11-04 사용자 "시작하기에 합치기": 요청 글과 AI가 읽는 파일은 Get Started로 옮겼다. 예전 주소는 그 절로 넘긴다
 fs.writeFileSync(path.join(SITE, 'get-started/ai.html'), `<!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><title>Get Started - yds</title><script>location.replace('../index.html' + (location.hash === '#files' || location.hash === '#llms' ? '#files' : '#ai'));</script><meta http-equiv="refresh" content="0; url=../index.html#ai"></head><body><a href="../index.html#ai">AI로 시작하기</a></body></html>
+<html lang="ko"><head><meta charset="utf-8"><title>Get Started - yds</title><script>location.replace('../index.html' + (location.hash === '#files' || location.hash === '#llms' ? '#files' : '#ai'));</script><meta http-equiv="refresh" content="0; url=../index.html#ai"></head><body><a href="../index.html#ai">시작하기</a></body></html>
 `);
 fs.rmSync(path.join(SITE, 'get-started/ai.md'), { force: true });
 

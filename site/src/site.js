@@ -65,6 +65,10 @@
     if (t.closest("[data-site-close]")) { document.body.removeAttribute("data-side-open"); return; }
 
 
+    // Get Started 시작하기: 세그먼트로 칸 하나만 보인다 (움직임과 aria-pressed 는 ybm-ds.js)
+    var gs = t.closest("[data-site-gs]");
+    if (gs) { showGs(gs.getAttribute("data-site-gs")); return; }
+
     // 코드 탭 (Get Started 다크 모드: AI 요청 / HTML). 탭 줄은 상자마다 있고 고른 표시가 이미 맞으니 상자만 바꾼다
     var tab = t.closest("[data-site-tab]");
     if (tab) {
@@ -548,6 +552,18 @@
     Object.keys(map).forEach(function (id) { var h = document.getElementById(id); if (h) io.observe(h); });
   }
 
+  // 예전 절 주소(#migrate, #start, #theme, #draft)로 들어오면 그 칸을 연다
+  function showGs(k) {
+    var panels = document.querySelectorAll("[data-site-gs-panel]");
+    if (!panels.length) return;
+    if (k === "theme") k = "start";
+    if (!document.querySelector('[data-site-gs-panel="' + k + '"]')) return;
+    panels.forEach(function (p) { p.hidden = p.getAttribute("data-site-gs-panel") !== k; });
+    document.querySelectorAll("[data-site-gs]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-site-gs") === k)); });
+  }
+  function gsHash() { var k = location.hash.slice(1); if (/^(migrate|start|theme|draft)$/.test(k)) { showGs(k); var h = document.getElementById("ai"); if (h) h.scrollIntoView(); } }
+  addEventListener("hashchange", gsHash);
+
   document.addEventListener("DOMContentLoaded", function () {
     setTheme(root.dataset.theme === "dark" ? "dark" : "light");
     restoreNav();
@@ -558,6 +574,7 @@
     fitTiles();
     libInit();
     spy();
+    gsHash();
     // 왼쪽 메뉴: 지금 페이지 항목이 안 보이면 보이는 곳까지 내린다
     var side = document.querySelector(".site-side");
     var cur = side && side.querySelector(".site-nav:not(.site-side__mobile .site-nav) [aria-current='page']");
