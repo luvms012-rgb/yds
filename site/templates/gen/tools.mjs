@@ -202,7 +202,7 @@ const pageEditor = () => {
   <main class="tp-pane tp-pane--main"><div class="tp-canvas"><div class="tp-page">
     <div class="tp-between"><span class="tp-h2">내 가계부</span>${btn('내보내기', { ic: 'download' })}</div>
     <div class="tp-g3">${[['이번 달 수입', '320만원'], ['이번 달 지출', '158만원'], ['남은 예산', '42만원']].map(([l, v]) => K.kpi(l, v)).join('')}</div>
-    <div class="tp-picked">${card(`<div class="tp-between"><div class="tp-stack"><h3 class="tp-h3">최근 결제</h3><span class="tp-sub">최근 계좌 활동이에요.</span></div>${btn('전체 보기')}</div>${K.table(['내역', '분류', '날짜', ['금액', 'end']], tx.map(([n, c, d, a]) => [n, badge(c), T(d), T(a)]))}`)}</div>
+    <div class="tp-picked">${card(`<div class="tp-between"><div class="tp-stack"><h3 class="tp-h3">최근 결제</h3></div>${btn('전체 보기')}</div>${K.table(['내역', '분류', '날짜', ['금액', 'end']], tx.map(([n, c, d, a]) => [n, badge(c), T(d), T(a)]))}`)}</div>
   </div></div></main>
   <aside class="tp-pane tp-pane--right" aria-label="속성"><div class="tp-between"><span class="tp-h4">최근 결제 표</span>${iconBtn('trash', '블록 지우기', { size: 'xsmall' })}</div>${field('pe-t', '제목', inp('pe-t', '최근 결제', '제목'))}${field('pe-n', '보여 줄 행 수', select('5개', { id: 'pe-n', size: 'small' }))}<label class="tp-between"><span class="tp-sub">전체 보기 버튼</span>${K.sw('전체 보기 버튼', true)}</label><label class="tp-between"><span class="tp-sub">분류 배지</span>${K.sw('분류 배지', true)}</label>${field('pe-pad', '안쪽 여백', segmented(['좁게', '보통', '넓게'], 1, '안쪽 여백'))}</aside>
 </div>

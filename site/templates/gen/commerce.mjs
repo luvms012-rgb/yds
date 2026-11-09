@@ -152,7 +152,7 @@ const cartEmpty = () => {
   ${tabs(['일반 배송 0', '정기 배송 0'], 0, '배송 종류')}
   <div class="tp-cart-empty">${K.empty('장바구니가 비어 있어요', '마음에 드는 상품을 담아 보세요. 찜한 상품에서 바로 담을 수도 있어요.', 'shopping-cart', `${btn('찜한 상품 보기')}${btn('쇼핑 계속하기', { variant: 'neutralSolid' })}`)}</div>
   <ul class="tp-notes">${NOTES.slice(0, 2).map((t) => `<li>${t}</li>`).join('')}</ul>
-  <section class="tp-sec" aria-labelledby="recs">${secHead('이런 상품은 어때요', { id: 'recs', cls: 'tp-h2', sub: '최근 본 상품과 비슷해요' })}<div class="tp-recs">${RECS.map(rec).join('')}</div></section>
+  <section class="tp-sec" aria-labelledby="recs">${secHead('이런 상품은 어때요', { id: 'recs', cls: 'tp-h2' })}<div class="tp-recs">${RECS.map(rec).join('')}</div></section>
 </main>
 </div>`;
   return { slug: 'cart-empty', en: 'Empty Cart', name: '빈 장바구니', group: 'Commerce', desc: '담은 상품이 없을 때의 장바구니입니다. 추천 상품을 보여 주어 쇼핑을 이어 가게 합니다.', css, body };

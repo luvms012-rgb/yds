@@ -32,7 +32,7 @@ const collapsible = () => {
   .tp-coll__total { margin-left: auto; font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
 `;
   const body = `<div class="tp-app">
-${head('연결된 계좌', { sub: '13개 계좌의 순자산 7억 6,840만원', tools: `${btn('계좌 연결', { variant: 'neutralSolid', ic: 'plus' })}${segmented(['1개월', '3개월', '6개월', '1년', '전체'], 2, '기간')}` })}
+${head('연결된 계좌', { tools: `${btn('계좌 연결', { variant: 'neutralSolid', ic: 'plus' })}${segmented(['1개월', '3개월', '6개월', '1년', '전체'], 2, '기간')}` })}
 <main class="tp-content" style="gap: var(--ds-space-x3)">
   ${groups.map(([g, n, tot, cols, rows], gi) => card(`<details class="tp-coll"${gi < 3 ? ' open' : ''}><summary>${icon('chevron-down', 'sm')}<h2 class="tp-h3">${g}</h2>${badge(n + '개')}<span class="tp-coll__total">${tot}</span></summary><div class="ds-table-wrap"><table class="ds-table" data-density="compact">${thead(['', ...cols])}<tbody>${rows.map((r) => `<tr><td style="width:40px"><button type="button" class="ds-btn tp-caret" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-expanded="false" aria-label="${esc(r[0])} 자세히">${icon('chevron-right', 'sm')}</button></td>${r.map((c, i) => `<td${Array.isArray(cols[i]) ? ` data-align="${cols[i][1]}"` : ''}>${i === 0 ? `<span class="ds-table__stack"><span>${c}</span><span>${r[1]}</span></span>`.replace(`<span>${r[1]}</span></span>`, `<span>${r[1].split(' **** ')[1] ? '**** ' + r[1].split(' **** ')[1] : ''}</span></span>`) : (i === 1 ? String(c).split(' **** ')[0] : String(c).replace('@end', ''))}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`)).join('')}
 </main>
@@ -48,7 +48,7 @@ const filter = () => {
 `;
   const body = `<div class="tp-app">
 <main class="tp-content tp-tpage" aria-label="현장 작업">
-  <header class="tp-tpage__head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">현장 작업</h1><p class="tp-sub">지점 3곳의 수리와 점검 작업을 한곳에서 봐요.</p></div><div class="tp-row">${btn('내보내기', { ic: 'download' })}${btn('작업 만들기', { variant: 'neutralSolid', ic: 'plus' })}</div></header>
+  <header class="tp-tpage__head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">현장 작업</h1></div><div class="tp-row">${btn('내보내기', { ic: 'download' })}${btn('작업 만들기', { variant: 'neutralSolid', ic: 'plus' })}</div></header>
   <div class="tp-stack" style="gap: var(--ds-space-x3)">
     ${K.chiptabs(['전체 55', '예정 18', '진행 21', '완료 12', '대기 4'], 0, '상태')}
     <div class="tp-ttools"><span class="tp-sub">작업 ${T('55')}개 / ${link('조건 지우기')}</span><div class="tp-ttools__end">${K.even(select('모든 우선순위', { aria: '우선순위' }) + select('모든 담당자', { aria: '담당자' }) + select('지점 3곳', { aria: '지점' }) + select('이번 주', { aria: '기간' }) + search('q', '작업 찾기'))}</div></div>
@@ -69,7 +69,7 @@ const grouped = () => {
   const n = groups.reduce((a, g) => a + g[2].length, 0);
   const body = `<div class="tp-app">
 <main class="tp-content tp-tpage" aria-label="모든 이슈">
-  <header class="tp-tpage__head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">모든 이슈</h1><p class="tp-sub">이번 분기 이슈를 상태별로 묶어 봐요.</p></div>${btn('새 이슈', { variant: 'neutralSolid', ic: 'plus' })}</header>
+  <header class="tp-tpage__head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">모든 이슈</h1></div>${btn('새 이슈', { variant: 'neutralSolid', ic: 'plus' })}</header>
   <div class="tp-stack" style="gap: var(--ds-space-x3)">
     ${K.chiptabs(['전체 ' + n, ...groups.map(([g, , rows]) => g + ' ' + rows.length)], 0, '상태')}
     <div class="tp-ttools"><span class="tp-sub">이슈 ${T(String(n))}개</span><div class="tp-ttools__end">${K.even(select('모든 담당자', { aria: '담당자' }) + select('마감 빠른 순', { aria: '정렬' }) + search('q', '이슈 찾기'))}</div></div>
@@ -184,7 +184,7 @@ const tree = () => {
 </main>
 <aside class="tp-repo__side tp-about" aria-labelledby="s-about">
   <h2 class="tp-h3" id="s-about">정보</h2>
-  <p class="tp-sub">웹 페이지에 넣어 쓰는 작은 벡터 캔버스. 도형 그리기, 묶기, 내보내기.</p>
+  
   <div class="tp-row" style="flex-wrap: wrap">${['canvas', 'vector', 'editor', 'typescript'].map((t) => badge(t, 'brand')).join('')}</div>
   <dl><dt>별</dt><dd class="tp-num">248</dd><dt>지켜보는 사람</dt><dd class="tp-num">19</dd><dt>포크</dt><dd class="tp-num">12</dd><dt>최근 릴리스</dt><dd>v1.4.0 / 4일 전</dd><dt>라이선스</dt><dd>MIT</dd></dl>
   ${divider()}

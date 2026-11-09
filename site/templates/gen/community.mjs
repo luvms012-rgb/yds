@@ -17,12 +17,12 @@ const CSS = FRAME_CSS + `
   @media (min-width: 768px) { .tp-cm { padding: var(--ds-space-x8) var(--ds-space-x6) var(--ds-space-x16); } }
   @media (min-width: 1024px) {
     .tp-cm:not(.tp-cm--one) { grid-template-columns: 220px minmax(0, 1fr); gap: var(--ds-space-x8); }
-    .tp-cm__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; }
+    .tp-cm__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; max-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); overflow-y: auto; scrollbar-width: none; }
     .tp-cm__chips { display: none; }
   }
   @media (min-width: 1280px) {
-    .tp-cm--aside { grid-template-columns: 220px minmax(0, 1fr) 300px; }
-    .tp-cm__aside { display: flex; flex-direction: column; gap: var(--ds-space-x6); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; }
+    .tp-cm.tp-cm--aside:not(.tp-cm--one) { grid-template-columns: 220px minmax(0, 1fr) 300px; }  /* 위 2단 규칙보다 세야 3단이 된다 */
+    .tp-cm__aside { display: flex; flex-direction: column; gap: var(--ds-space-x6); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; max-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); overflow-y: auto; scrollbar-width: none; }
   }
   /* 게시판 메뉴: 옆 메뉴 부품을 칸 폭에 맞춰 쓴다 */
   .tp-cm__nav .ds-sidenav { width: auto; height: auto; background: none; }
@@ -76,7 +76,7 @@ const home = () => {
   ${leftNav(0)}
   <main class="tp-cm__main">
     ${mobileBoards(0)}
-    <section class="tp-sec">${secHead('지금 뜨는 글', { sub: '최근 24시간', tools: link('더 보기') })}
+    <section class="tp-sec">${secHead('지금 뜨는 글', { tools: link('더 보기') })}
       <div class="tp-g3">${hot(1, '새벽 산에서 본 구름바다, 사진 남겨요', '하늘바라기', 42)}${hot(4, '바닷가 캠핑장 세 곳 다녀온 비교 후기', '캠핑초보', 31)}${hot(6, '동네 공원 산책 코스 지도로 정리했어요', '초록손', 28)}</div>
     </section>
     <section class="tp-sec">${secHead('새 글', { tools: segmented(['추천순', '최신순'], 1, '정렬') })}
@@ -87,7 +87,7 @@ const home = () => {
   <aside class="tp-cm__aside" aria-label="인기글과 소식">
     ${card(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><span class="tp-h3">실시간 인기글</span>${rank(HOT)}</div>`)}
     ${card(`<div class="tp-stack" style="gap: var(--ds-space-x3)"><span class="tp-h3">이번 주 활발한 멤버</span>${avatars(['하늘바라기', '커피한잔', '캠핑초보', '초록손', '책읽는밤'], 32, 12)}<span class="tp-caption">글과 댓글을 많이 남긴 멤버예요.</span></div>`)}
-    ${callout('커뮤니티 이용 규칙이 바뀌었어요', '광고 글과 개인 정보가 담긴 글은 알림 없이 숨겨질 수 있어요.', 'informative')}
+    
   </aside>
 </div></div>`;
   return { slug: 'community-home', en: 'Community Home', name: '커뮤니티 홈', group: 'Community', desc: '게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.', css, body };
@@ -183,7 +183,7 @@ const post = () => {
         <p>그라인더를 먼저 사고 드리퍼는 싼 것으로 시작할지, 아니면 둘 다 중간 가격으로 맞출지 고민이에요. 처음 시작할 때 어떻게 하셨는지 궁금해요.</p>
         ${thumb('16:9', '', K.photo('food', 3, 960), 'lg')}
       </div>
-      ${card(`<div class="tp-between"><span class="tp-h4">투표</span><span class="tp-caption">${T('36')}명 참여 / 여러 개 고를 수 있어요</span></div>${meter('그라인더에 먼저 투자', 58, '58%')}${meter('둘 다 중간 가격', 31, '31%')}${meter('일단 원두를 사서 갈아 달라고 하기', 11, '11%')}`)}
+      ${card(`<div class="tp-between"><span class="tp-h4">투표</span><span class="tp-caption">${T('36')}명 참여</span></div>${meter('그라인더에 먼저 투자', 58, '58%')}${meter('둘 다 중간 가격', 31, '31%')}${meter('일단 원두를 사서 갈아 달라고 하기', 11, '11%')}`)}
       <div class="tp-acts">${btn('좋아요 36', { variant: 'neutralOutline', ic: 'thumbs-up' })}${btn('스크랩', { variant: 'neutralOutline', ic: 'bookmark' })}<div class="tp-acts__end">${iconBtn('share', '공유하기')}${iconBtn('flag', '신고하기')}</div></div>
     </article>
     <section class="tp-sec" aria-labelledby="c-title">${secHead(`댓글 ${T('18')}`, { id: 'c-title', cls: 'tp-h3', tools: segmented(['등록순', '최신순'], 0, '댓글 정렬') })}
@@ -226,10 +226,10 @@ const write = () => {
   const body = `<div class="tp-app">${topbar(MENU, 1, END)}
 <main class="tp-cm tp-cm--one">
   <div class="tp-cm__main">
-    <header class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">글쓰기</h1><p class="tp-sub">사진은 10장까지 올릴 수 있어요.</p></header>
+    <header class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">글쓰기</h1></header>
     <form class="tp-wform" onsubmit="return false">
       <div class="tp-wpick">${field('w-board', '게시판', select('자유게시판', { id: 'w-board' }), { required: true })}${field('w-cat', '말머리', select('잡담', { id: 'w-cat' }))}</div>
-      ${field('w-title', '제목', input('w-title', 'placeholder="제목을 적어 주세요" maxlength="60"'), { required: true, help: '60자까지 쓸 수 있어요.' })}
+      ${field('w-title', '제목', input('w-title', 'placeholder="제목을 적어 주세요" maxlength="60"'), { required: true })}
       <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="w-body">본문 <span class="ds-field__required" aria-hidden="true"></span></label></div>
         <div class="tp-editor"><div class="tp-editor__bar" role="toolbar" aria-label="글 꾸미기">${iconBtn('italic', '기울이기', { size: 'xsmall' })}${iconBtn('link', '링크 넣기', { size: 'xsmall' })}${iconBtn('list', '목록', { size: 'xsmall' })}${iconBtn('image', '사진 넣기', { size: 'xsmall' })}${iconBtn('paperclip', '파일 붙이기', { size: 'xsmall' })}${iconBtn('chart-column', '투표 넣기', { size: 'xsmall' })}</div><textarea class="ds-textarea" id="w-body" placeholder="이야기를 나눠 주세요. 다른 멤버를 존중하는 글을 써 주세요."></textarea></div>
       </div>
@@ -240,7 +240,7 @@ const write = () => {
         <label><span class="tp-stack"><span class="tp-h4">댓글 허용</span><span class="tp-caption">끄면 아무도 댓글을 달 수 없어요.</span></span>${sw('댓글 허용', true)}</label>
         <label><span class="tp-stack"><span class="tp-h4">이름 숨기기</span><span class="tp-caption">글쓴이 이름 대신 익명으로 보여요.</span></span>${sw('이름 숨기기')}</label>
       </div>
-      ${callout('', '광고, 욕설, 다른 사람의 개인 정보가 담긴 글은 알림 없이 숨겨질 수 있어요.', 'informative')}
+      
     </form>
   </div>
 </main>

@@ -94,13 +94,13 @@ const home = () => {
       <div class="tp-prof"><div class="tp-prof__who">${avatar('와이비엠', 56)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-h2">와이비엠 님</span>${badge('일반 회원')}</span><span class="tp-caption">ybm@example.com</span></div></div>${btn('내 정보 수정', { icEnd: 'chevron-right' })}</div>
       <div class="tp-stats" style="--n: 4">${[['포인트', '3,200P'], ['쿠폰', '4장'], ['찜한 상품', '12개'], ['쓸 수 있는 리뷰', '2개']].map(([l, v]) => `<a class="tp-stat-link" href="#"><span class="tp-caption">${l}</span><span class="tp-mid">${v}</span></a>`).join('')}</div>
     </div>`, { size: '' })}</section>
-    <section class="tp-sec">${secHead('주문 현황', { sub: '최근 1개월', tools: link('전체 보기') })}
+    <section class="tp-sec">${secHead('주문 현황', { tools: link('전체 보기') })}
       <div class="tp-flow">${flow.map(([l, n], i) => `<a href="#"${n ? ' data-on' : ''}>${i ? `<i class="ds-icon ds-icon--chevron-right tp-flow__arrow" aria-hidden="true"></i>` : ''}<span class="tp-mid">${T(n)}</span><span>${l}</span></a>`).join('')}</div>
     </section>
     <section class="tp-sec">${secHead('최근 주문', { tools: link('전체 보기') })}
       <div class="tp-rows">${ITEMS.slice(0, 3).map(oitem).join('')}</div>
     </section>
-    <section class="tp-sec">${secHead('찜한 상품', { sub: '12개', tools: link('전체 보기') })}
+    <section class="tp-sec">${secHead('찜한 상품', { tools: link('전체 보기') })}
       <div class="tp-wish">${wish.map(([th, i, n, p]) => `<a href="#">${thumb('1:1', '', K.photo(th, i, 400), 'lg')}<span class="tp-stack" style="gap: 2px"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></span></a>`).join('')}</div>
     </section>`);
   return { slug: 'mypage-home', en: 'My Page Home', name: '마이페이지 홈', group: 'My Page', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
@@ -109,7 +109,7 @@ const home = () => {
 /* 2. 주문 내역 --------------------------------------------------- */
 const orders = () => {
   const groups = [['2026.11.01', '20261101-0042', [ITEMS[0], ITEMS[3]]], ['2026.10.24', '20261024-0918', [ITEMS[1]]], ['2026.10.12', '20261012-1377', [ITEMS[2]]]];
-  const body = shell('주문 내역', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">주문 내역</h1><p class="tp-sub">주문한 상품의 배송 상태를 보고 취소, 교환, 반품을 신청할 수 있어요.</p></div></header>
+  const body = shell('주문 내역', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">주문 내역</h1></div></header>
     <div class="tp-stack" style="gap: var(--ds-space-x3)">
       <div class="tp-ttools">${chiptabs(['전체 6', '결제 완료 0', '배송 중 1', '배송 완료 3', '취소, 반품 2'], 0, '주문 상태', { size: 'large' })}<div class="tp-ttools__end">${K.even(segmented(['1개월', '3개월', '6개월', '1년'], 1, '기간') + K.search('od-q', '상품 이름으로 찾기'), true)}</div></div>
     </div>
@@ -123,7 +123,7 @@ const profile = () => {
   const row = (label, desc, end) => `<div class="tp-setrow"><div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-h4">${label}</span>${desc ? `<span class="tp-caption">${desc}</span>` : ''}</div><div class="tp-setrow__end">${end}</div></div>`;
   const val = (v, b = '변경') => `<span class="tp-setrow__val">${v}</span>${btn(b)}`;
   const sec = (title, rows) => `<section class="tp-sec" style="gap: var(--ds-space-x2)"><h2 class="tp-h2">${title}</h2><div class="tp-rows">${rows.join('')}</div></section>`;
-  const body = shell('내 정보', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">내 정보</h1><p class="tp-sub">로그인 정보와 연락처, 배송지, 알림을 바꿀 수 있어요.</p></div></header>
+  const body = shell('내 정보', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">내 정보</h1></div></header>
     ${sec('로그인 정보', [row('이메일', '로그인과 주문 안내에 써요.', val('ybm@example.com')), row('비밀번호', '마지막으로 바꾼 날 2026.06.14', val('••••••••')), row('간편 로그인', '연결한 계정으로 바로 로그인해요.', `<span class="tp-setrow__val">2개 연결</span>${btn('관리')}`)])}
     ${sec('개인 정보', [row('이름', '', val('와이비엠')), row('휴대폰', '본인 확인과 배송 연락에 써요.', val('010-1234-5678')), row('생년월일', '생일 쿠폰을 보내 드려요.', val('2001.04.12', '입력'))])}
     <section class="tp-sec" style="gap: var(--ds-space-x2)"><div class="tp-between"><h2 class="tp-h2">배송지</h2>${btn('새 배송지', { variant: 'ghost', ic: 'plus' })}</div><div class="tp-rows">

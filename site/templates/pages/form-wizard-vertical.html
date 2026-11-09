@@ -148,7 +148,7 @@
   .tp-item { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--ds-space-x3); align-items: start; }
 
   .tp-vw { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr) 320px; } }
+  @media (min-width: 1024px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr); } }
   .tp-vw__steps { padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 1024px) { .tp-vw__steps { padding: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-vw__steps .ds-stepper { position: sticky; top: var(--ds-space-x6); } }
   .tp-vw__main { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--tp-gutter) var(--ds-space-x12); }
@@ -163,24 +163,19 @@
 <div class="tp-vw">
   <nav class="tp-vw__steps" aria-label="출판 단계"><ol class="ds-stepper" data-orientation="vertical" aria-label="출판 단계"><li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">저자 정보</span></li><li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">책 정보</span></li><li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">표지와 샘플</span></li><li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">오디오 파일</span></li><li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">가격과 판매</span></li><li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">검토와 출판</span></li></ol></nav>
   <main class="tp-vw__main">
-    <div class="tp-stack"><h1 class="tp-h1">책 정보</h1><p class="tp-sub">독자가 책을 찾는 데 도움이 되는 정보를 넣어 주세요.</p><p class="tp-caption">필수 칸을 채워야 다음으로 넘어갈 수 있어요.</p></div>
+    <div class="tp-stack"><h1 class="tp-h1">책 정보</h1></div>
     <div class="tp-form">
-      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-title">책 제목 <span class="ds-field__required" aria-hidden="true"></span></label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-title" placeholder="" value="한 달 만에 끝내는 비즈니스 영어"></div><div class="ds-field__footer"><p class="ds-field__help">서점에 보일 그대로 적어 주세요.</p></div></div>
+      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-title">책 제목 <span class="ds-field__required" aria-hidden="true"></span></label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-title" placeholder="" value="한 달 만에 끝내는 비즈니스 영어"></div></div>
       <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-sub">부제</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-sub" placeholder="선택 사항" ></div></div>
       <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-author">지은이 <span class="ds-field__required" aria-hidden="true"></span></label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-author" placeholder="" value="와이비엠"></div></div>
       <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-narr">읽은 사람</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-narr" placeholder="성우 이름" ></div></div>
       <div class="tp-pair"><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-ed">판</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-ed" placeholder="2판" ></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-lang">언어</label></div><button type="button" class="ds-select" data-size="medium" id="b-lang" aria-haspopup="listbox" aria-expanded="false"><span class="ds-select__value">한국어</span></button></div></div>
-      <div class="tp-pair"><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-series">시리즈</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-series" placeholder="시리즈 이름" ></div><div class="ds-field__footer"><p class="ds-field__help">없는 시리즈면 새로 만들어요.</p></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-no">시리즈 순서</label></div><div class="tp-num-input"><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-no" placeholder="1" type="number" min="1"></div></div><div class="ds-field__footer"><p class="ds-field__help">읽는 순서에서 몇 번째인지 적어요.</p></div></div></div>
-      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-desc">소개 <span class="ds-field__required" aria-hidden="true"></span></label></div><textarea class="ds-textarea" id="b-desc" rows="5" placeholder="장르보다 이 책만의 매력을 먼저 적어 주세요"></textarea><div class="ds-field__footer"><p class="ds-field__help">독자가 맨 먼저 읽는 글이에요.</p></div></div>
+      <div class="tp-pair"><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-series">시리즈</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-series" placeholder="시리즈 이름" ></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-no">시리즈 순서</label></div><div class="tp-num-input"><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="b-no" placeholder="1" type="number" min="1"></div></div></div></div>
+      <div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="b-desc">소개 <span class="ds-field__required" aria-hidden="true"></span></label></div><textarea class="ds-textarea" id="b-desc" rows="5" placeholder="장르보다 이 책만의 매력을 먼저 적어 주세요"></textarea></div>
     </div>
     <div class="tp-between"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i>이전</button><button type="button" class="ds-btn" data-variant="brandSolid" data-size="medium">다음<i class="ds-icon ds-icon--arrow-right" aria-hidden="true"></i></button></div>
   </main>
-  <aside class="tp-vw__help" aria-labelledby="h-t">
-    <h2 class="tp-h4" id="h-t"><i class="ds-icon ds-icon--lightbulb ds-icon--sm" aria-hidden="true"></i> 책 제목 짓는 법</h2>
-    <p class="tp-sub">표지에 적힌 제목과 똑같이 적어 주세요. 홍보 문구나 할인 정보를 제목에 넣으면 심사에서 돌려보낼 수 있어요.</p>
-    <div class="ds-callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content"><strong class="ds-callout__title">예시</strong>  좋음: 한 달 만에 끝내는 비즈니스 영어 / 나쁨: [50% 할인] 비즈니스 영어 최고의 책</p></div>
-    <p class="tp-caption">입력칸을 옮겨 가면 이 안내도 그 칸에 맞게 바뀌어요.</p>
-  </aside>
+  
 </div>
 </div>
 </body>

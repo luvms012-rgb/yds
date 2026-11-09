@@ -34,9 +34,9 @@ const payment = () => {
   const body = `<div class="tp-app"><main class="tp-content">
   <div class="tp-pay">
     <div class="tp-form">
-      <div class="tp-stack"><h1 class="tp-h1">결제 요청</h1><p class="tp-sub">주문 내용을 확인하고 결제를 끝내 주세요. 모든 결제는 암호화되어 안전하게 처리돼요.</p></div>
+      <div class="tp-stack"><h1 class="tp-h1">결제 요청</h1></div>
       ${divider()}
-      ${card(`<div class="tp-between"><span class="tp-h4">로그인하고 결제하기</span>${btn('로그인')}</div><p class="tp-sub">로그인하면 주문을 추적하고 정보를 저장해 다음에 더 빨리 결제할 수 있어요.</p>`)}
+      ${card(`<div class="tp-between"><span class="tp-h4">로그인하고 결제하기</span>${btn('로그인')}</div>`)}
       <h2 class="tp-legend-t">연락처</h2>
       ${req('f-mail', '이메일', inp('f-mail', 'you@example.com', 'type="email"'))}
       ${checkbox('새 소식과 혜택을 이메일로 받기')}
@@ -54,7 +54,6 @@ const payment = () => {
     <aside class="tp-pay__aside tp-stack" style="gap: var(--ds-space-x4)">
       ${summary(ITEMS, [['상품 금액', '59,000원'], ['배송비', '3,000원'], ['할인', '-5,000원']], '57,000원')}
       ${btn('57,000원 결제하기', { variant: 'brandSolid', size: 'large', fill: true })}
-      <p class="tp-caption" style="text-align:center">${icon('lock', 'sm')} 결제 정보는 저장하지 않아요</p>
     </aside>
   </div>
 </main></div>`;
@@ -99,8 +98,7 @@ const contact = () => {
   const reasons = [['rocket', '빠르게 움직여요', '군더더기 없이 바로 일을 시작해요.'], ['users', '한 팀처럼 일해요', '담당자 한 명이 처음부터 끝까지 함께해요.'], ['shield-check', '결과로 말해요', '약속한 일정과 품질을 지켜요.']];
   const goals = ['단체 수강', '시험 접수 대행', '사내 어학 교육', '레벨 테스트', '교재 납품', '맞춤 강좌 제작', '학습 플랫폼 도입', '제휴', '기타'];
   const body = `<div class="tp-app"><main class="tp-content"><div class="tp-contact">
-  <div class="tp-stack" style="gap: var(--ds-space-x3); text-align: center; align-items: center"><span class="tp-hero-t">도입 문의</span><span class="tp-sub" style="max-width: 520px">준비 중인 일을 간단히 알려 주면 담당자가 하루 안에 연락해 드려요.</span></div>
-  <div class="tp-g3">${reasons.map(([ic, t, d]) => card(`<div class="tp-why">${icon(ic, 'lg')}<span class="tp-h4">${t}</span><span class="tp-sub">${d}</span></div>`)).join('')}</div>
+  <div class="tp-stack" style="gap: var(--ds-space-x3); text-align: center; align-items: center"><span class="tp-hero-t">도입 문의</span></div>
   <form class="tp-form" onsubmit="return false">
     <div class="tp-pair">${req('c-name', '이름', inp('c-name', '이름'))}${req('c-mail', '이메일', inp('c-mail', 'you@company.com', 'type="email"'))}</div>
     <div class="tp-pair">${field('c-com', '회사', inp('c-com', '회사 이름'))}${field('c-tel', '연락처', inp('c-tel', '전화번호', 'type="tel"'))}</div>
@@ -111,7 +109,7 @@ const contact = () => {
     ${field('c-msg', '더 하고 싶은 말', textarea('c-msg', 'rows="4" placeholder="무엇이든 편하게 적어 주세요"'))}
     ${checkbox('예산 결정 권한이 있어요')}
     ${btn('보내기', { variant: 'brandSolid', size: 'large', fill: true, attrs: 'type="submit"' }).replace('type="button" ', '')}
-    <p class="tp-caption" style="text-align:center">보내면 ${link('개인정보 처리방침')}에 동의한 것으로 봐요.</p>
+    
   </form>
 </div></main></div>`;
   return { slug: 'contact-form', en: 'Contact Form', name: '문의 폼', group: 'Form', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
@@ -130,7 +128,7 @@ const dialogWizard = () => {
 `;
   const secs = [['핵심 요약', '주요 숫자와 지난주 대비 변화', 1], ['파이프라인 단계', '단계별 건수와 금액', 1], ['새로 생긴 기회', '이번 주 새로 들어온 건', 0], ['잃은 기회', '사유와 금액', 0], ['담당자별 순위', '담당자별 성과', 1]];
   const body = `<div class="tp-app">
-<div class="tp-under" aria-hidden="true">${head('리포트', { sub: '정기 리포트 4개', tools: btn('리포트 예약', { variant: 'neutralSolid', ic: 'plus' }) })}<main class="tp-content"><div class="tp-g3">${['주간 수강 현황', '월간 매출', '기업 고객 리포트'].map((t) => card(`<span class="tp-h4">${t}</span><span class="tp-sub">매주 월요일 오전 9시</span>`)).join('')}</div></main></div>
+<div class="tp-under" aria-hidden="true">${head('리포트', { tools: btn('리포트 예약', { variant: 'neutralSolid', ic: 'plus' }) })}<main class="tp-content"><div class="tp-g3">${['주간 수강 현황', '월간 매출', '기업 고객 리포트'].map((t) => card(`<span class="tp-h4">${t}</span><span class="tp-sub">매주 월요일 오전 9시</span>`)).join('')}</div></main></div>
 <div class="tp-modal">
   <div class="ds-dialog" open role="dialog" aria-modal="true" aria-labelledby="dlg-t">
     <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="dlg-t">리포트 예약</h2><button type="button" class="ds-dialog__close" aria-label="닫기"></button></div>
@@ -157,11 +155,11 @@ const wizard = () => {
   const body = `<div class="tp-app" style="min-height: 100vh">
 <header class="tp-wz-head"><div class="tp-between"><h1 class="tp-h1">워크스페이스 만들기</h1>${btn('나가기', { variant: 'ghost', ic: 'x' })}</div>${stepper(['워크스페이스', '팀원 초대', '요금제', '확인'], 0, '워크스페이스 만들기 단계')}</header>
 <main class="tp-content"><div class="tp-wz">
-  <div class="tp-stack"><h2 class="tp-h2">워크스페이스 정보</h2><p class="tp-sub">이름을 정하고 데이터를 둘 지역을 고르세요. 지역은 나중에 바꿀 수 없어요.</p></div>
+  <div class="tp-stack"><h2 class="tp-h2">워크스페이스 정보</h2></div>
   <div class="tp-form">
     ${req('w-name', '워크스페이스 이름', inp('w-name', '가나다 학원'))}
     ${req('w-url', '워크스페이스 주소', inp('w-url', 'ganada').replace('<input', '<span class="ds-input__prefix">ybm.app/</span><input'), '영문 소문자, 숫자, 하이픈만 쓸 수 있어요.')}
-    ${field('w-region', '데이터 지역', sel('w-region', '대한민국 (서울)'), { help: '강좌, 파일, 기록이 저장되는 곳이에요.' })}
+    ${field('w-region', '데이터 지역', sel('w-region', '대한민국 (서울)'))}
     <fieldset class="ds-field" style="border:0;padding:0;margin:0"><legend class="ds-field__label">참여할 수 있는 사람</legend>${[['초대한 사람만', '관리자가 초대해야 들어올 수 있어요.', 1], ['회사 이메일이 있는 사람', '@ganada.kr 이메일이면 바로 들어와요.', 0], ['링크가 있는 사람', '초대 링크를 아는 사람은 누구나 들어와요.', 0]].map(([t, d, c]) => opt(t, d, !!c, 'radio', 'join')).join('')}</fieldset>
   </div>
 </div></main>
@@ -186,9 +184,9 @@ const inlineWizard = () => {
   .tp-step__head { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); min-height: 28px; }
 `;
   const steps = [['저장소', 'done', '가나다/학습-웹 / main 브랜치'], ['실행 조건', 'current', ''], ['빌드 환경', '', ''], ['테스트', '', ''], ['배포 대상', '', ''], ['알림', '', ''], ['확인', '', '']];
-  const cur = `<div class="tp-form">${field('ci-ev', '파이프라인을 돌릴 때', `<div>${[['풀 리퀘스트', '열린 풀 리퀘스트가 있는 브랜치에 올릴 때마다', 1], ['기본 브랜치에 올릴 때', 'main 브랜치에 합쳐질 때', 1], ['태그를 만들 때', 'v로 시작하는 태그를 만들 때', 0], ['정해진 시간', '매일 새벽 3시', 0]].map(([t, d, c]) => opt(t, d, !!c)).join('')}</div>`, { help: '고르는 일마다 빌드 시간이 들어요. 꼭 필요한 것부터 고르세요.' })}<div>${btn('다음', { variant: 'brandSolid', size: 'medium' })}</div></div>`;
+  const cur = `<div class="tp-form">${field('ci-ev', '파이프라인을 돌릴 때', `<div>${[['풀 리퀘스트', '열린 풀 리퀘스트가 있는 브랜치에 올릴 때마다', 1], ['기본 브랜치에 올릴 때', 'main 브랜치에 합쳐질 때', 1], ['태그를 만들 때', 'v로 시작하는 태그를 만들 때', 0], ['정해진 시간', '매일 새벽 3시', 0]].map(([t, d, c]) => opt(t, d, !!c)).join('')}</div>`)}<div>${btn('다음', { variant: 'brandSolid', size: 'medium' })}</div></div>`;
   const body = `<div class="tp-app">
-${head('자동 빌드 설정', { sub: '앞의 두 단계만 답하면 나머지는 알아서 채워져요.' })}
+${head('자동 빌드 설정')}
 <main class="tp-content"><div class="tp-iw"><ol class="tp-steps" aria-label="자동 빌드 설정 단계">${steps.map(([t, st, res], i) => `<li class="tp-step" data-state="${st}"${st === 'current' ? ' aria-current="step"' : ''}><div class="tp-step__rail"><span class="tp-step__no">${st === 'done' ? icon('check', 'sm') : i + 1}</span></div><div class="tp-step__main"><div class="tp-step__head"><span class="tp-stack"><span class="tp-h4"${st ? '' : ' style="color: var(--ds-color-fg-neutral-muted)"'}>${t}</span>${res ? `<span class="tp-caption">${res}</span>` : ''}</span>${st === 'done' ? btn('고치기', { variant: 'ghost', size: 'xsmall', ic: 'pencil' }) : ''}</div>${st === 'current' ? cur : ''}</div></li>`).join('')}</ol></div></main>
 </div>`;
   return { slug: 'form-wizard-inline', en: 'Inline Wizard', name: '펼치는 단계 폼', group: 'Form', desc: '모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.', css, body };
@@ -204,7 +202,7 @@ const twoColumn = () => {
 `;
   const topics = ['단체 수강', '시험 접수', '사내 교육', '맞춤 강좌', '학습 플랫폼', '제휴', '취재', '기타'];
   const body = `<div class="tp-app"><main class="tp-content"><div class="tp-tc">
-  <div class="tp-tc__top"><div class="tp-stack" style="gap: var(--ds-space-x3)"><h1 class="tp-hero-t">무엇을 도와드릴까요?</h1><p class="tp-sub">하고 있는 일과 궁금한 점을 남겨 주면 1영업일 안에 답해 드려요.</p></div>${thumb('16:9', '', K.photo('work', 2, 1200), 'xl')}</div>
+  <div class="tp-tc__top"><div class="tp-stack" style="gap: var(--ds-space-x3)"><h1 class="tp-hero-t">무엇을 도와드릴까요?</h1></div>${thumb('16:9', '', K.photo('work', 2, 1200), 'xl')}</div>
   <div class="tp-g2" style="align-items:start">
     ${card(`<h2 class="tp-h3">내 정보</h2><div class="tp-form">${req('t-name', '이름', inp('t-name', '이름'))}<div class="tp-pair">${req('t-mail', '이메일', inp('t-mail', '이메일', 'type="email"'))}${field('t-com', '회사', inp('t-com', '회사 이름'))}</div><div class="tp-pair">${field('t-job', '직함', inp('t-job', '직함'))}${field('t-tel', '연락처', inp('t-tel', '전화번호', 'type="tel"'))}</div></div>`, { size: '' })}
     ${card(`<h2 class="tp-h3">문의 내용</h2><div class="tp-form"><fieldset class="tp-stack" style="border:0;padding:0;margin:0;gap:var(--ds-space-x2)"><legend class="ds-field__label" style="margin-bottom:var(--ds-space-x2)">무엇에 관한 문의인가요?</legend><div class="tp-chips">${topics.map((t, i) => chip(t, { on: i === 0 })).join('')}</div></fieldset>${field('t-budget', '예산 범위', sel('t-budget', '1,000만원 미만'))}${req('t-msg', '자세한 내용', textarea('t-msg', 'rows="5" placeholder="일정, 인원, 바라는 결과를 적어 주세요"'))}${btn('보내기', { variant: 'brandSolid', size: 'large', fill: true })}</div>`, { size: '' })}
@@ -219,7 +217,7 @@ const twoColumn = () => {
 const vertical = () => {
   const css = FORM_CSS + `
   .tp-vw { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr) 320px; } }
+  @media (min-width: 1024px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr); } }
   .tp-vw__steps { padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 1024px) { .tp-vw__steps { padding: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-vw__steps .ds-stepper { position: sticky; top: var(--ds-space-x6); } }
   .tp-vw__main { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--tp-gutter) var(--ds-space-x12); }
@@ -232,22 +230,22 @@ const vertical = () => {
 <div class="tp-vw">
   <nav class="tp-vw__steps" aria-label="출판 단계">${stepper(['저자 정보', '책 정보', '표지와 샘플', '오디오 파일', '가격과 판매', '검토와 출판'], 1, '출판 단계').replace('class="ds-stepper"', 'class="ds-stepper" data-orientation="vertical"')}</nav>
   <main class="tp-vw__main">
-    <div class="tp-stack"><h1 class="tp-h1">책 정보</h1><p class="tp-sub">독자가 책을 찾는 데 도움이 되는 정보를 넣어 주세요.</p><p class="tp-caption">필수 칸을 채워야 다음으로 넘어갈 수 있어요.</p></div>
+    <div class="tp-stack"><h1 class="tp-h1">책 정보</h1><p class="tp-caption">필수 칸을 채워야 다음으로 넘어갈 수 있어요.</p></div>
     <div class="tp-form">
       ${req('b-title', '책 제목', inp('b-title', '', 'value="한 달 만에 끝내는 비즈니스 영어"'), '서점에 보일 그대로 적어 주세요.')}
       ${field('b-sub', '부제', inp('b-sub', '선택 사항'))}
       ${req('b-author', '지은이', inp('b-author', '', 'value="와이비엠"'))}
       ${field('b-narr', '읽은 사람', inp('b-narr', '성우 이름'))}
       <div class="tp-pair">${field('b-ed', '판', inp('b-ed', '2판'))}${field('b-lang', '언어', sel('b-lang', '한국어'))}</div>
-      <div class="tp-pair">${field('b-series', '시리즈', inp('b-series', '시리즈 이름'), { help: '없는 시리즈면 새로 만들어요.' })}${field('b-no', '시리즈 순서', `<div class="tp-num-input">${inp('b-no', '1', 'type="number" min="1"')}</div>`, { help: '읽는 순서에서 몇 번째인지 적어요.' })}</div>
+      <div class="tp-pair">${field('b-series', '시리즈', inp('b-series', '시리즈 이름'))}${field('b-no', '시리즈 순서', `<div class="tp-num-input">${inp('b-no', '1', 'type="number" min="1"')}</div>`)}</div>
       ${req('b-desc', '소개', textarea('b-desc', 'rows="5" placeholder="장르보다 이 책만의 매력을 먼저 적어 주세요"'), '독자가 맨 먼저 읽는 글이에요.')}
     </div>
     <div class="tp-between">${btn('이전', { size: 'medium', ic: 'chevron-left' })}${btn('다음', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div>
   </main>
   <aside class="tp-vw__help" aria-labelledby="h-t">
     <h2 class="tp-h4" id="h-t">${icon('lightbulb', 'sm')} 책 제목 짓는 법</h2>
-    <p class="tp-sub">표지에 적힌 제목과 똑같이 적어 주세요. 홍보 문구나 할인 정보를 제목에 넣으면 심사에서 돌려보낼 수 있어요.</p>
-    ${K.callout('예시', '좋음: 한 달 만에 끝내는 비즈니스 영어 / 나쁨: [50% 할인] 비즈니스 영어 최고의 책', 'informative', 'info-solid')}
+    
+    
     <p class="tp-caption">입력칸을 옮겨 가면 이 안내도 그 칸에 맞게 바뀌어요.</p>
   </aside>
 </div>

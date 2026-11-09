@@ -17,7 +17,7 @@ const CSS = `
   .tp-pw-head { display: flex; justify-content: space-between; align-items: baseline; }
 `;
 const brand = `<div class="tp-auth__brand"><span class="tp-logo">로고</span></div>`;
-const legal = `<p class="tp-caption tp-legal">계속하면 ${link('이용약관')}과 ${link('개인정보 처리방침')}에 동의한 것으로 봐요.</p>`;
+const legal = '';
 const pw = (id) => `<div class="ds-field"><div class="ds-field__header tp-pw-head"><label class="ds-field__label" for="${id}">비밀번호</label>${link('비밀번호를 잊으셨나요?')}</div>${inp(id, '비밀번호를 입력하세요', 'type="password"')}</div>`;
 const alt = `<div class="tp-auth__alt">${btn('카카오', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'message-circle' })}${btn('네이버', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'globe' })}</div>`;
 
@@ -26,12 +26,12 @@ const loginCard = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${brand}
   <div class="tp-auth__card">
-    <div class="tp-auth__title"><h1 class="tp-h2">다시 오셨네요</h1><p class="tp-sub">계정에 로그인하세요</p></div>
+    <div class="tp-auth__title"><h1 class="tp-h2">다시 오셨네요</h1></div>
     <div class="tp-auth__fields">${field('lc-mail', '이메일', inp('lc-mail', 'name@company.com', 'type="email" autocomplete="email"'))}${pw('lc-pw')}</div>
     ${btn('로그인', { variant: 'brandSolid', size: 'large', fill: true })}
     <div class="tp-or">또는</div>
     ${alt}
-    <p class="tp-sub tp-auth__foot">계정이 없으신가요? ${link('가입하기')}</p>
+    <p class="tp-sub tp-auth__foot">${link('가입하기')}</p>
   </div>
   ${legal}
 </div></main>`;
@@ -53,13 +53,13 @@ const loginSplit = () => {
     <div class="tp-split-card__form">
       ${brand.replace('tp-auth__brand', 'tp-auth__brand" style="align-self:flex-start')}
       <div class="tp-split-card__inner">
-        <div class="tp-auth__title" style="text-align:left"><h1 class="tp-h2">다시 오셨네요</h1><p class="tp-sub">서비스 계정으로 로그인하세요</p></div>
+        <div class="tp-auth__title" style="text-align:left"><h1 class="tp-h2">다시 오셨네요</h1></div>
         <div class="tp-auth__fields">${field('ls-mail', '이메일', inp('ls-mail', 'name@company.com', 'type="email"'))}${pw('ls-pw')}</div>
         ${btn('로그인', { variant: 'brandSolid', size: 'large', fill: true })}
         <div class="tp-or">또는</div>
         ${alt}
       </div>
-      <p class="tp-sub">계정이 없으신가요? ${link('가입하기')}</p>
+      <p class="tp-sub">${link('가입하기')}</p>
     </div>
     <div class="tp-split-card__media">${thumb('3:4', '', K.photo('work', 1, 1000), 'none')}</div>
   </div>
@@ -73,13 +73,13 @@ const loginSso = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${brand}
   <div class="tp-auth__card">
-    <div class="tp-auth__title"><h1 class="tp-h2">다시 오셨네요</h1><p class="tp-sub">회사 이메일을 넣으면 회사 로그인으로 이어져요</p></div>
-    <div class="tp-auth__fields">${field('sso-mail', '회사 이메일', inp('sso-mail', 'you@company.com', 'type="email" autocomplete="email"'), { help: '회사가 등록돼 있으면 회사 로그인 화면으로 바로 넘어가요.' })}${field('sso-pw', '비밀번호', inp('sso-pw', '비밀번호', 'type="password"'))}</div>
+    <div class="tp-auth__title"><h1 class="tp-h2">다시 오셨네요</h1></div>
+    <div class="tp-auth__fields">${field('sso-mail', '회사 이메일', inp('sso-mail', 'you@company.com', 'type="email" autocomplete="email"'))}${field('sso-pw', '비밀번호', inp('sso-pw', '비밀번호', 'type="password"'))}</div>
     ${link('로그인이 안 되나요?')}
     ${btn('계속', { variant: 'brandSolid', size: 'large', fill: true })}
     <div class="tp-or">또는</div>
     ${btn('회사 계정(SSO)으로 로그인', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'key-round' })}
-    <p class="tp-sub tp-auth__foot">계정이 없으신가요? ${link('사용 요청')}</p>
+    <p class="tp-sub tp-auth__foot">${link('사용 요청')}</p>
   </div>
 </div></main>`;
   return { slug: 'login-sso', en: 'Login SSO', name: '로그인 (SSO)', group: 'Login', desc: '이메일을 먼저 받고 회사 계정 로그인으로 이어 주는 화면입니다. 회사 계정이 없으면 비밀번호로 로그인합니다.', css: CSS, body };

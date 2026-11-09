@@ -192,7 +192,7 @@
   <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
 </header></div>
 <header class="tp-head">
-  <div class="tp-head__texts"><h1 class="tp-h1">내 시험</h1><p class="tp-sub">접수한 시험과 성적을 한곳에서 봐요.</p></div>
+  <div class="tp-head__texts"><h1 class="tp-h1">내 시험</h1></div>
   <div class="tp-head__tools"><button type="button" class="ds-btn" data-variant="brandSolid" data-size="small"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>시험 접수하기</button></div>
 </header>
 <main class="tp-content">
@@ -205,54 +205,8 @@
     <section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-rows"><div class="tp-hist"><div class="tp-stack"><span class="tp-item-title">영어 말하기 시험</span><span class="ds-tag-group"><span>11월 18일 (수) 13:00</span><span>강남 시험장</span></span></div><div class="tp-row"><span class="ds-badge" data-tone="informative">접수 완료</span><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">수험표</button></div></div><div class="tp-hist"><div class="tp-stack"><span class="tp-item-title">영어 읽기 듣기 시험</span><span class="ds-tag-group"><span>10월 12일 (일) 09:30</span><span>종로 시험장</span></span></div><div class="tp-row"><span class="ds-badge" data-tone="positive">응시 완료</span><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">성적 보기</button></div></div><div class="tp-hist"><div class="tp-stack"><span class="tp-item-title">영어 읽기 듣기 시험</span><span class="ds-tag-group"><span>9월 7일 (일) 09:30</span><span>신촌 시험장</span></span></div><div class="tp-row"><span class="ds-badge" data-tone="positive">응시 완료</span><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">성적 보기</button></div></div><div class="tp-hist"><div class="tp-stack"><span class="tp-item-title">영어 쓰기 시험</span><span class="ds-tag-group"><span>8월 23일 (토) 14:00</span><span>강남 시험장</span></span></div><div class="tp-row"><span class="ds-badge" data-tone="">취소</span><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">환불 내역</button></div></div></div></section>
   </section>
   <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">혜택</h2></div></div>
-    <div class="tp-g2"><section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-row" style="align-items:flex-start; gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--tag ds-icon--lg" aria-hidden="true"></i><div class="tp-stack" style="flex:1"><span class="tp-h4">다시 보면 10% 할인</span><span class="tp-sub">12월 31일까지 같은 시험을 다시 신청하면 써요.</span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">쿠폰 받기</button></div></section><section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-row" style="align-items:flex-start; gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--book-open ds-icon--lg" aria-hidden="true"></i><div class="tp-stack" style="flex:1"><span class="tp-h4">말하기 모의 시험 무료</span><span class="tp-sub">시험 전에 실제와 같은 화면으로 연습해 봐요.</span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">연습하기</button></div></section></div>
+    <div class="tp-g2"><section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-row" style="align-items:flex-start; gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--tag ds-icon--lg" aria-hidden="true"></i><div class="tp-stack" style="flex:1"><span class="tp-h4">다시 보면 10% 할인</span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">쿠폰 받기</button></div></section><section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-row" style="align-items:flex-start; gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--book-open ds-icon--lg" aria-hidden="true"></i><div class="tp-stack" style="flex:1"><span class="tp-h4">말하기 모의 시험 무료</span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall">연습하기</button></div></section></div>
   </section>
 </main></div>
-<script>
-(function () {
-  var tip = document.createElement('div'); tip.className = 'tp-tip'; tip.setAttribute('role', 'status'); document.body.appendChild(tip);
-  var nf = function (v, u) { return (typeof v === 'number' ? v.toLocaleString('ko-KR') : v) + (u || ''); };
-  var show = function (title, rows, cx, cy) {
-    tip.innerHTML = (title ? '<span class="tp-tip__t">' + title + '</span>' : '') + rows.map(function (r) { return '<span class="tp-tip__r">' + (r.c ? '<i style="--c:' + r.c + '"></i>' : '') + (r.n || '') + '<b>' + r.v + '</b></span>'; }).join('');
-    tip.classList.add('is-on');
-    var tw = tip.offsetWidth, th = tip.offsetHeight, x = cx + 14, y = cy - th - 10;
-    if (x + tw > innerWidth - 8) x = cx - tw - 14; if (y < 8) y = cy + 14;
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
-  };
-  var hide = function (svg) { tip.classList.remove('is-on'); svg.classList.remove('is-hover'); svg.querySelectorAll('.is-on').forEach(function (e) { e.classList.remove('is-on'); }); };
-  document.querySelectorAll('[data-tip]').forEach(function (el) {
-    el.addEventListener('pointermove', function (e) { var p = el.getAttribute('data-tip').split('|'); show(p[0], p[1] ? [{ n: '', v: p[1] }] : [], e.clientX, e.clientY); });
-    el.addEventListener('pointerleave', function () { tip.classList.remove('is-on'); });
-  });
-  document.querySelectorAll('svg[data-tp]').forEach(function (svg) {
-    var d = JSON.parse(svg.getAttribute('data-tp'));
-    var guide = svg.querySelector('.tp-guide'), dots = svg.querySelectorAll('.tp-dot');
-    svg.addEventListener('pointerleave', function () { hide(svg); });
-    svg.addEventListener('pointermove', function (e) {
-      var rc = svg.getBoundingClientRect();
-      if (d.t === 'pie') {
-        var t = e.target.closest('[data-i]'); if (!t) { hide(svg); return; }
-        var p = d.s[+t.getAttribute('data-i')];
-        svg.classList.add('is-hover'); svg.querySelectorAll('[data-i]').forEach(function (a) { a.classList.toggle('is-on', a === t); });
-        show(p.n, [{ c: p.c, n: '', v: nf(p.v, d.u) + ' / ' + p.p + '%' }], e.clientX, e.clientY); return;
-      }
-      var vx = (e.clientX - rc.left) / rc.width * d.w;
-      var i = d.t === 'bar' ? Math.floor((vx - d.pl) / (d.iw / d.n)) : Math.round((vx - d.pl) / d.iw * (d.n - 1));
-      if (i < 0 || i >= d.n) { hide(svg); return; }
-      svg.classList.add('is-hover');
-      var top = rc.top + rc.height;
-      if (d.t === 'line') {
-        var gx = d.pl + d.iw * i / Math.max(1, d.n - 1);
-        if (guide) { guide.setAttribute('x1', gx); guide.setAttribute('x2', gx); }
-        d.s.forEach(function (s, k) { if (dots[k]) { dots[k].setAttribute('cx', gx); dots[k].setAttribute('cy', s.y[i]); } top = Math.min(top, rc.top + s.y[i] / d.h * rc.height); });
-        show(d.x[i] || '', d.s.map(function (s) { return { c: d.s.length > 1 ? s.c : '', n: s.n, v: nf(s.v[i], d.u) }; }), rc.left + gx / d.w * rc.width, top);
-      } else {
-        svg.querySelectorAll('g[data-i]').forEach(function (g) { g.classList.toggle('is-on', +g.getAttribute('data-i') === i); });
-        show(d.x[i] || '', d.s.map(function (s) { return { c: d.s.length > 1 ? s.c : '', n: s.n, v: nf(s.v[i], d.u) }; }), e.clientX, e.clientY);
-      }
-    });
-  });
-})();
-</script>
 </body>
 </html>

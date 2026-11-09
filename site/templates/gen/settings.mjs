@@ -32,12 +32,12 @@ const dialog = () => {
 `;
   const groups = [['계정', [['프로필', 'user'], ['로그인과 보안', 'lock'], ['연결된 계정', 'link-2']]], ['환경', [['화면', 'sun'], ['언어와 지역', 'globe'], ['접근성', 'eye']]], ['알림', [['이메일', 'mail'], ['앱 푸시', 'bell']]], ['워크스페이스', [['멤버', 'users'], ['결제', 'credit-card']]]];
   const body = `<div class="tp-app">
-<div class="tp-under" aria-hidden="true">${K.head('홈', { sub: '오늘 할 일 4개' })}<main class="tp-content"><div class="tp-g3">${['오늘 수업', '과제', '공지'].map((t) => card(`<span class="tp-h4">${t}</span><span class="tp-sub">내용 자리</span>`)).join('')}</div></main></div>
+<div class="tp-under" aria-hidden="true">${K.head('홈')}<main class="tp-content"><div class="tp-g3">${['오늘 수업', '과제', '공지'].map((t) => card(`<span class="tp-h4">${t}</span><span class="tp-sub">내용 자리</span>`)).join('')}</div></main></div>
 <div class="tp-modal"><div class="tp-sdlg" role="dialog" aria-modal="true" aria-labelledby="sd-t">
   <aside class="tp-sdlg__side"><h2 class="tp-h4" style="padding-inline: var(--ds-space-x2)">설정</h2>${search('sq', '설정 찾기', 'small')}${nav(groups, '프로필')}</aside>
   <div class="tp-sdlg__main">
     <span class="tp-sdlg__close">${iconBtn('x', '닫기')}</span>
-    <div class="tp-stack"><h2 class="tp-h2" id="sd-t">프로필</h2><p class="tp-sub">워크스페이스의 다른 사람에게 보이는 내 모습이에요.</p></div>
+    <div class="tp-stack"><h2 class="tp-h2" id="sd-t">프로필</h2></div>
     <span class="tp-caption">기본 정보</span>
     ${card(`<div>${row('user', '표시 이름', '글, 댓글, 멘션에 보여요.', inp('d-name', '와이비엠', 'aria-label="표시 이름"'))}${row('id-card', '직함', '프로필 카드에 이름과 함께 보여요.', inp('d-job', '교육 운영 매니저', 'aria-label="직함"'))}${row('at-sign', '아이디', '멘션할 때 쓰는 이름이에요.', inp('d-id', 'ybm', 'aria-label="아이디"'))}${row('image', '프로필 사진', '정사각형 사진이 가장 잘 보여요.', `<div class="tp-row">${avatar('와이비엠', 48)}${btn('사진 바꾸기')}${btn('지우기', { variant: 'ghost' })}</div>`)}</div>`)}
     <span class="tp-caption">표시</span>
@@ -72,7 +72,7 @@ const form = () => {
   <main class="tp-content">
     ${sec('기본 정보', '내 정보와 계정 정보를 보고 바꿀 수 있어요.', `${field('u-id', '아이디', inp('u-id', 'ybm'))}${field('u-name', '이름', inp('u-name', '와이비엠'))}${field('u-mail', '이메일', inp('u-mail', 'ybm@example.com', 'type="email"'))}${field('u-tel', '휴대폰', inp('u-tel', '010-1234-5678', 'type="tel"'))}${field('u-lang', '언어', sel('u-lang', '한국어'))}`, '저장')}
     ${K.divider()}
-    ${sec('비밀번호 변경', '계정을 안전하게 지키려면 비밀번호를 주기적으로 바꿔 주세요.', `${field('p-cur', '지금 비밀번호', input('p-cur', 'type="password"'))}${field('p-new', '새 비밀번호', input('p-new', 'type="password"'), { help: '8자 이상, 영문과 숫자를 섞어 주세요.' })}${field('p-new2', '새 비밀번호 확인', input('p-new2', 'type="password"'))}`, '비밀번호 변경')}
+    ${sec('비밀번호 변경', '계정을 안전하게 지키려면 비밀번호를 주기적으로 바꿔 주세요.', `${field('p-cur', '지금 비밀번호', input('p-cur', 'type="password"'))}${field('p-new', '새 비밀번호', input('p-new', 'type="password"'))}${field('p-new2', '새 비밀번호 확인', input('p-new2', 'type="password"'))}`, '비밀번호 변경')}
     ${K.divider()}
     ${sec('고급 설정', '계정의 자세한 설정과 보안 옵션이에요.', `${cb('데이터 내보내기 허용', '내 학습 기록과 백업을 내려받을 수 있어요.', 1)}${cb('2단계 인증', '로그인할 때 휴대폰으로 한 번 더 확인해요.', 1)}${cb('새 기기 로그인 알림', '처음 쓰는 기기에서 로그인하면 알려 드려요.', 0)}${cb('검색 엔진에 프로필 숨기기', '공개 프로필이 검색 결과에 나오지 않아요.', 0)}`, '설정 저장')}
   </main>
@@ -101,7 +101,7 @@ const panels = () => {
   <main class="tp-sp__main">
     <h1 class="tp-h1">개인 정보</h1>
     <div>${info.map(([k, v, e]) => `<div class="tp-info"><div class="tp-stack"><span class="tp-h4">${k}</span><span class="tp-info__v">${v}</span></div>${e ? btn('수정', { variant: 'neutralWeak', size: 'xsmall' }) : ''}</div>`).join('')}</div>
-    ${card(`<div class="tp-row" style="align-items:flex-start">${icon('info', 'sm')}<div class="tp-stack"><span class="tp-h4">일부 정보가 보이지 않는 이유</span><span class="tp-sub">본인 확인을 위해 일부 정보는 가려서 보여 드려요. 가린 정보는 고치기를 누른 뒤 본인 인증을 하면 볼 수 있어요.</span></div></div>`)}
+    ${card(`<div class="tp-row" style="align-items:flex-start">${icon('info', 'sm')}<div class="tp-stack"><span class="tp-h4">일부 정보가 보이지 않는 이유</span></div></div>`)}
   </main>
 </div>
 </div>`;

@@ -41,7 +41,7 @@ const catalog = () => {
   a.ds-card:hover { box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-contrast); }
 `;
   const body = `<div class="tp-app"><main class="tp-content">
-  <div class="tp-cat-hero"><span class="tp-doc-title">YDS 둘러보기</span><p class="tp-sub" style="max-width: 560px">화면을 빠르게 만들 수 있도록 부품, 토큰, 템플릿을 한곳에 모았어요. 필요한 묶음을 골라 들어가세요.</p>${btn('시작하기', { variant: 'neutralSolid', icEnd: 'arrow-right' })}</div>
+  <div class="tp-cat-hero"><span class="tp-doc-title">YDS 둘러보기</span>${btn('시작하기', { variant: 'neutralSolid', icEnd: 'arrow-right' })}</div>
   ${sections.map(([s, items]) => `<section class="tp-sec" aria-labelledby="c-${esc(s)}"><h2 class="tp-h2" id="c-${esc(s)}">${s}</h2><div class="tp-g4">${items.map(([t, d]) => `<a class="ds-card tp-card" data-size="small" href="#"><span class="tp-cat-card"><span class="tp-h4">${t}</span><span class="tp-sub">${d}</span></span></a>`).join('')}</div></section>`).join('')}
 </main></div>`;
   return { slug: 'documentation', en: 'Documentation Catalog', name: '문서 목록', group: 'Content', desc: '문서 사이트의 첫 화면입니다. 분류별 카드로 원하는 문서에 바로 들어갑니다.', css, body };
@@ -62,7 +62,7 @@ const docDesign = () => {
   <h3 class="tp-h3">이렇게 쓰세요</h3>${table(['구분', '내용'], dos.map(([k, v]) => [badge(k, k === 'Do' ? 'positive' : 'critical'), v]))}</section>
   ${divider()}
   <section class="tp-sec"><h2 class="tp-h2">예시</h2><p>자주 쓰는 모양, 크기, 상태를 모았어요.</p>
-  ${[['의미', [['brandSolid', '강조'], ['neutralSolid', '중립 강조'], ['neutralWeak', '기본'], ['ghost', '가볍게']]], ['크기', [['neutralWeak', 'xsmall', 'xsmall'], ['neutralWeak', 'small', 'small'], ['neutralWeak', 'medium', 'medium'], ['neutralWeak', 'large', 'large']]]].map(([t, bs]) => card(`<div class="tp-ex"><div class="tp-ex__bar"><span class="tp-h4">${t}</span><div class="tp-row">${btn('코드 복사', { variant: 'ghost', ic: 'copy', size: 'xsmall' })}${btn('새 창', { variant: 'ghost', ic: 'external-link', size: 'xsmall' })}</div></div><div class="tp-demo"><div class="tp-demo__row">${bs.map(([v, l, sz]) => btn(l, { variant: v, size: sz || 'medium' })).join('')}</div></div>${tabs(['미리 보기', '코드'], 0, t + ' 보기')}<p class="tp-sub">강조 버튼은 화면에서 가장 중요한 한 가지 일에만 씁니다.</p></div>`)).join('')}</section>
+  ${[['의미', [['brandSolid', '강조'], ['neutralSolid', '중립 강조'], ['neutralWeak', '기본'], ['ghost', '가볍게']]], ['크기', [['neutralWeak', 'xsmall', 'xsmall'], ['neutralWeak', 'small', 'small'], ['neutralWeak', 'medium', 'medium'], ['neutralWeak', 'large', 'large']]]].map(([t, bs]) => card(`<div class="tp-ex"><div class="tp-ex__bar"><span class="tp-h4">${t}</span><div class="tp-row">${btn('코드 복사', { variant: 'ghost', ic: 'copy', size: 'xsmall' })}${btn('새 창', { variant: 'ghost', ic: 'external-link', size: 'xsmall' })}</div></div><div class="tp-demo"><div class="tp-demo__row">${bs.map(([v, l, sz]) => btn(l, { variant: v, size: sz || 'medium' })).join('')}</div></div>${tabs(['미리 보기', '코드'], 0, t + ' 보기')}</div>`)).join('')}</section>
   ${divider()}
   <section class="tp-sec"><h2 class="tp-h2">속성</h2>${table(['이름', '값', '기본값'], props.map(([n, v, d]) => [`<code>${n}</code>`, v, `<code>${d}</code>`]))}</section>
   <section class="tp-sec"><h2 class="tp-h2">코드</h2>${codeblock('html', '<button class="ds-btn" data-variant="brandSolid" data-size="medium">저장</button>')}</section>
@@ -122,7 +122,7 @@ const orderDetail = () => {
     <section class="tp-sec">${secHead('활동')}<ol class="tp-tl">${acts.map(([t, d, w]) => `<li><div class="tp-stack"><span class="tp-h4">${t}</span><span class="tp-sub">${d}</span><span class="tp-caption">${w}</span></div></li>`).join('')}</ol></section>
   </main>
   <aside class="tp-panel">
-    ${accordion([['메모', '<p class="tp-sub">이번 분기 세 번째 주문인 단골 고객이에요. 선물 포장을 좋아하세요.</p>', true], ['고객', `<div class="tp-row">${avatar('와이비엠', 42)}<div class="tp-stack"><span>와이비엠</span><span class="tp-caption">ybm@example.com / 주문 12번</span></div></div>`, true], ['배송지', '<p class="tp-sub">서울시 종로구 종로 104, 3층<br>010-1234-5678</p>', true], ['태그', `<div class="tp-row">${badge('단골', 'brand')}${badge('선물')}</div>`, false]], 'separated')}
+    ${accordion([['메모', '', true], ['고객', `<div class="tp-row">${avatar('와이비엠', 42)}<div class="tp-stack"><span>와이비엠</span><span class="tp-caption">ybm@example.com / 주문 12번</span></div></div>`, true], ['배송지', '<p class="tp-sub">서울시 종로구 종로 104, 3층<br>010-1234-5678</p>', true], ['태그', `<div class="tp-row">${badge('단골', 'brand')}${badge('선물')}</div>`, false]], 'separated')}
   </aside>
 </div>
 </div>`;
@@ -150,13 +150,13 @@ const productDetail = () => {
   <div class="tp-pd__info">
     <div class="tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-h1">TOEIC 실전 모의고사 1000제 세트</h1><span class="ds-rating" data-size="small" style="--ds-rating-value: 4.3" role="img" aria-label="5점 만점에 4.3점, 후기 128개"><span class="ds-rating__stars"></span><span class="ds-rating__value">4.3</span><span class="ds-rating__count">(128)</span></span></div>
     <div class="tp-price"><b class="tp-num">38,000원</b><s class="tp-num">48,000원</s>${badge('할인', 'critical')}</div>
-    <p class="tp-sub">최신 출제 경향을 담은 모의고사 10회분과 해설집을 한 세트로 묶었어요. 회차마다 점수 환산표와 영역별 분석표가 들어 있어요.</p>
+    
     <div class="tp-opt"><span class="tp-h4">구성</span>${segmented(['문제집만', '문제집 + 해설', '전체 세트'], 2, '구성', 'medium')}</div>
     <div class="tp-opt"><span class="tp-h4">음원</span>${segmented(['QR 스트리밍', 'MP3 다운로드'], 0, '음원', 'medium')}</div>
     <div class="tp-opt"><span class="tp-h4">수량</span><div class="ds-quantity"><button type="button" class="ds-quantity__btn" aria-label="수량 줄이기">${icon('minus')}</button><input class="ds-quantity__value" inputmode="numeric" value="1" aria-label="수량"><button type="button" class="ds-quantity__btn" aria-label="수량 늘리기">${icon('plus')}</button></div></div>
     <div class="tp-pd__btns">${btn('장바구니 담기', { variant: 'brandSolid', size: 'large', fill: true })}${btn('', { size: 'large', ic: 'heart', aria: '찜하기' })}</div>
     ${btn('바로 구매', { variant: 'neutralOutline', size: 'large', fill: true })}
-    <div>${divider()}${accordion([['상세 정보', '<p class="tp-sub">문제집 2권, 해설집 1권, 음원 QR 카드. 판형 188×257mm, 총 920쪽.</p>', true], ['배송', '<p class="tp-sub">오후 2시 전 주문은 오늘 출발해요. 3만원 이상 무료 배송.</p>'], ['교환과 환불', '<p class="tp-sub">받은 날부터 7일 안에, 포장을 뜯지 않았으면 교환과 환불이 돼요.</p>']])}</div>
+    <div>${divider()}${accordion([['상세 정보', '', true], ['배송', ''], ['교환과 환불', '']])}</div>
   </div>
 </div></main></div>`;
   return { slug: 'product-detail', en: 'Product Detail', name: '상품 상세', group: 'Content', desc: '상품 하나를 자세히 보고 바로 구매하는 화면입니다.', css, body };
@@ -190,7 +190,7 @@ const workItem = () => {
 </header>
 <div class="tp-wi">
   <main class="tp-content">
-    <section class="tp-sec"><h2 class="tp-h3">설명</h2><p class="tp-sub">계정을 만든 뒤 첫 수업을 듣기까지 빠져나가는 사람을 줄여요. 단계를 짧게 하고, 새 워크스페이스마다 샘플 강좌를 미리 넣어 바로 시작하게 해요.</p><h3 class="tp-h4">성공 기준</h3>${list(['가입 7일 뒤 활성화율 42% → 55%', '첫 수업까지 걸리는 시간 절반으로', '가입 중 이탈 30% 줄이기'].map((t) => listItem(t, { prefix: icon('check', 'sm'), size: 'small' })))}</section>
+    <section class="tp-sec"><h2 class="tp-h3">설명</h2><h3 class="tp-h4">성공 기준</h3>${list(['가입 7일 뒤 활성화율 42% → 55%', '첫 수업까지 걸리는 시간 절반으로', '가입 중 이탈 30% 줄이기'].map((t) => listItem(t, { prefix: icon('check', 'sm'), size: 'small' })))}</section>
     <section class="tp-sec"><div class="tp-between"><span class="tp-row"><h2 class="tp-h3">하위 할 일</h2>${btn('추가', { variant: 'ghost', ic: 'plus', size: 'xsmall' })}</span><span class="tp-row" style="min-width: 200px"><span class="tp-caption tp-num">5개 중 2개 끝</span>${progress(40, { label: '하위 할 일 진행' })}</span></div><div>${subs.map(([t, d, m]) => `<div class="tp-sub-item">${checkbox(t, { checked: !!d })}<span class="tp-caption" style="white-space:nowrap">${m}</span></div>`).join('')}</div></section>
     <section class="tp-sec"><h2 class="tp-h3">첨부 파일</h2><div class="tp-files">${[['file-text', '가입 흐름 분석.pdf'], ['image', '새 화면 시안.png'], ['file', '측정 계획.xlsx']].map(([ic, n]) => `<span class="tp-file">${icon(ic, 'sm')}${n}</span>`).join('')}</div></section>
     <section class="tp-sec"><h2 class="tp-h3">댓글</h2>${[['이준호', '어제', '샘플 강좌는 토익 입문 1강으로 넣으면 어떨까요? 완강률이 가장 높아요.'], ['와이비엠', '2시간 전', '좋아요. 그걸로 갈게요. 디자인 시안은 금요일까지 올릴게요.']].map(([w, t, c]) => `<div class="tp-comment">${avatar(w, 24)}<div class="tp-stack"><span class="tp-row"><b>${w}</b><span class="tp-caption">${t}</span></span><p class="tp-sub">${c}</p></div></div>`).join('')}${K.textarea('cm', 'rows="3" placeholder="댓글을 남기세요" aria-label="댓글"')}<div>${btn('댓글 달기', { variant: 'neutralSolid' })}</div></section>

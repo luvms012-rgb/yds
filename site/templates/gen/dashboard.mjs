@@ -24,7 +24,7 @@ const analytics = () => {
     ${secHead('활성 사용자', { id: 's-users', tools: btn('새로 고침', { ic: 'rotate-ccw' }) })}
     ${card(`${lineChart(users, { w: 1100, h: 240, x: ['10.01', '10.08', '10.15', '10.22', '10.29'], label: '활성 사용자 추이' })}${legend(users.map((s, i) => [s.name, i]))}`)}
   </section>
-  <div class="tp-g4">${tiles.map(([l, v, d, s], i) => kpi(l, v, { d, note: '지난 30일, 이전 기간 대비', chart: spark(walk(s, 30, 50, 12, { min: 10 }), C(0), { label: l + ' 추이' }) })).join('')}</div>
+  <div class="tp-g4">${tiles.map(([l, v, d, s], i) => kpi(l, v, { d, chart: spark(walk(s, 30, 50, 12, { min: 10 }), C(0), { label: l + ' 추이' }) })).join('')}</div>
   ${divider()}
   <section class="tp-sec" aria-labelledby="s-demo">
     ${secHead('사용자 구성', { id: 's-demo', tools: btn('더 보기') })}
@@ -50,9 +50,9 @@ const progressDash = () => {
   const W = 1100, today = 46;
   const gantt = `<svg class="tp-chart" viewBox="0 0 ${W} ${ms.length * 36 + 30}" role="img" aria-label="마일스톤 일정">${[0, 15, 30, 45, 60, 75, 90].map((d) => `<line class="tp-grid-line" x1="${180 + (d / 90) * (W - 190)}" x2="${180 + (d / 90) * (W - 190)}" y1="0" y2="${ms.length * 36}"/><text x="${180 + (d / 90) * (W - 190)}" y="${ms.length * 36 + 20}" text-anchor="middle">${d}일</text>`).join('')}${ms.map(([n, a, b, t], i) => `<text x="0" y="${i * 36 + 23}" style="fill:var(--ds-color-fg-neutral);font-size:var(--ds-font-size-t03)">${n}</text><rect x="${180 + (a / 90) * (W - 190)}" y="${i * 36 + 8}" width="${((b - a) / 90) * (W - 190)}" height="20" rx="4" fill="var(--ds-color-fg-${t === 'neutral' ? 'neutral-subtle' : t})" data-tip="${n}|${a}일 ~ ${b}일"/>`).join('')}<line x1="${180 + (today / 90) * (W - 190)}" x2="${180 + (today / 90) * (W - 190)}" y1="0" y2="${ms.length * 36}" stroke="var(--ds-color-fg-neutral)" stroke-dasharray="4 4"/></svg>`;
   const body = `<div class="tp-app">
-${head('새 학습 앱 출시', { sub: `목표 출시일 2026년 6월 30일 / ${badge('막힘 1건', 'critical')}`, tools: `${segmented(['기획', '개발', '검증', '출시'], 1, '진행 단계')}${btn('보고서', { ic: 'file-text' })}` })}
+${head('새 학습 앱 출시', { tools: `${segmented(['기획', '개발', '검증', '출시'], 1, '진행 단계')}${btn('보고서', { ic: 'file-text' })}` })}
 <main class="tp-content">
-  <section class="tp-sec" aria-labelledby="s-ms">${secHead('마일스톤 일정', { id: 's-ms', sub: '프로젝트 0~90일 / 점선이 오늘' })}
+  <section class="tp-sec" aria-labelledby="s-ms">${secHead('마일스톤 일정', { id: 's-ms' })}
     ${card(`<div class="tp-scroll-x">${gantt}</div>${legend([['순항', 'var(--ds-color-fg-positive)'], ['위험', 'var(--ds-color-fg-warning)'], ['막힘', 'var(--ds-color-fg-critical)'], ['예정', 'var(--ds-color-fg-informative)']])}`)}
   </section>
   <div class="tp-g3">
@@ -87,7 +87,7 @@ const monitoring = () => {
   .tp-alert__end { display: flex; flex-direction: column; align-items: flex-end; gap: var(--ds-space-x1); }
 `;
   const body = `<div class="tp-app">
-${head('서비스 상태', { sub: `<span class="tp-row">${dot('positive', '실시간')}11월 1일 오후 6:15 업데이트</span>`, tools: `${segmented(['1시간', '1일', '7일'], 1, '시간 범위')}${select('운영', { id: 'f-env', aria: '환경' })}${select('모든 지역', { id: 'f-region', aria: '지역' })}` })}
+${head('서비스 상태', { tools: `${segmented(['1시간', '1일', '7일'], 1, '시간 범위')}${select('운영', { id: 'f-env', aria: '환경' })}${select('모든 지역', { id: 'f-region', aria: '지역' })}` })}
 <div class="tp-body tp-body--panel">
 <main class="tp-content">
   <div class="tp-g4">${tiles.map(([t, l, v, d], i) => kpi(l, v, { d, lead: dot(t, l), chart: spark(walk(160 + i, 48, 40, 10, { min: 5 }), `var(--ds-color-fg-${t})`, { h: 36, label: l + ' 추이' }) })).join('')}</div>
@@ -96,7 +96,7 @@ ${head('서비스 상태', { sub: `<span class="tp-row">${dot('positive', '실�
     ${card(`<div class="tp-stack"><h2 class="tp-h3">지역별 요청량</h2><span class="tp-sub">분당 요청 수 (rpm)</span></div>${lineChart(vol, { w: 520, h: 220, x: ['00:00', '06:00', '12:00', '18:00', '23:50'], label: '지역별 요청량 추이' })}${legend(vol.map((s, i) => [s.name, i]))}`)}
   </div>
   ${divider()}
-  <section class="tp-sec" aria-labelledby="s-all">${secHead('모든 서비스', { id: 's-all', sub: '최근 90일 일별 가동 / 운영 / 모든 지역', tools: legend([['정상', 'var(--ds-color-bg-positive-solid)'], ['저하', 'var(--ds-color-bg-warning-solid)'], ['중단', 'var(--ds-color-bg-critical-solid)']]) })}
+  <section class="tp-sec" aria-labelledby="s-all">${secHead('모든 서비스', { id: 's-all', tools: legend([['정상', 'var(--ds-color-bg-positive-solid)'], ['저하', 'var(--ds-color-bg-warning-solid)'], ['중단', 'var(--ds-color-bg-critical-solid)']]) })}
     ${card(svc.map(([t, n, u, b], i) => `<div class="tp-svc"><div class="tp-between"><span class="tp-row">${dot(t, n)}<h3 class="tp-h4">${n}</h3></span><span class="tp-sub tp-num">가동률 ${u}</span></div>${strip(170 + i, b)}</div>`).join(''))}
   </section>
 </main>

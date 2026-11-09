@@ -75,7 +75,7 @@ const plans = () => {
   <div class="tp-pr-wrap tp-stack" style="gap: var(--ds-space-x10)">
     <header class="tp-pr-hero">
       <h1 class="tp-h1">나에게 맞는 요금제를 골라 보세요</h1>
-      <p class="tp-sub">무료로 시작하고 필요할 때 올리세요. 언제든 바꾸거나 해지할 수 있어요.</p>
+      
       <div class="tp-pr-period"><div class="ds-segmented" role="group" aria-label="결제 주기" data-size="medium"><button type="button" class="ds-segmented__item" aria-pressed="true" data-period="m">월 결제</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-period="y">연 결제</button></div>${badge('연 결제 20% 할인', 'positive')}</div>
     </header>
     <div class="tp-plans">${P.map(planCard).join('')}</div>
@@ -85,7 +85,6 @@ const plans = () => {
     <section class="tp-sec" aria-labelledby="faq">${secHead('자주 묻는 질문', { id: 'faq' })}
       <div>${K.accordion(faq)}</div>
     </section>
-    ${card(`<div class="tp-between"><div class="tp-stack"><h2 class="tp-h3">50명이 넘는 팀인가요?</h2><p class="tp-sub">쓰는 인원과 필요한 기능에 맞춰 요금을 따로 안내해 드려요.</p></div>${btn('도입 문의하기', { size: 'medium', icEnd: 'arrow-right' })}</div>`)}
   </div>
 </main></div>
 <script>
@@ -111,7 +110,7 @@ const checkout = () => {
   const body = `<div class="tp-app"><main class="tp-content">
   <div class="tp-pr-wrap tp-sub-pay">
     <div class="tp-sub-form">
-      <div class="tp-stack" style="gap: var(--ds-space-x3)">${link('요금제 다시 고르기')}<h1 class="tp-h1">프로 요금제 시작하기</h1><p class="tp-sub">첫 7일은 무료예요. 무료 기간이 끝나기 하루 전에 알려 드려요.</p></div>
+      <div class="tp-stack" style="gap: var(--ds-space-x3)">${link('요금제 다시 고르기')}<h1 class="tp-h1">프로 요금제 시작하기</h1></div>
       ${divider()}
       <h2 class="tp-h3">결제 주기</h2>
       ${selectbox('cycle', [[`연 결제 ${badge('20% 할인', 'positive')}`, '월 7,900원, 1년치 94,800원을 한 번에 결제해요'], ['월 결제', '월 9,900원, 매달 같은 날 결제해요']], 0)}
@@ -136,7 +135,6 @@ const checkout = () => {
       <div class="tp-between"><span class="tp-h4">오늘 결제할 금액</span><span class="tp-mid">${T('0원')}</span></div>
       <p class="tp-caption">무료 기간이 끝나면 94,800원이 결제돼요.</p>`)}
       ${btn('7일 무료로 시작하기', { variant: 'brandSolid', size: 'large', fill: true })}
-      <p class="tp-caption" style="text-align:center">${icon('lock', 'sm')} 무료 기간 안에 해지하면 결제되지 않아요</p>
     </aside>
   </div>
 </main></div>`;
@@ -158,7 +156,7 @@ const manage = () => {
     ['2025.07.09', '베이직 월 결제', '5,900원', badge('결제 완료', 'positive')],
   ].map(([d, n, p, s]) => [T(d), n, T(p), s, iconBtn('download', '영수증 내려받기', { size: 'xsmall' })]);
   const body = `<div class="tp-app">
-  ${head('구독과 결제', { sub: '지금 쓰는 요금제와 결제 정보를 확인하고 바꿀 수 있어요.' })}
+  ${head('구독과 결제')}
   <main class="tp-content">
     <div class="tp-manage">
       ${card(`<div class="tp-between"><div class="tp-row">${badge('이용 중', 'positive')}<span class="tp-sub">연 결제</span></div>${link('요금제 비교하기')}</div>
@@ -180,7 +178,7 @@ const manage = () => {
       <div class="tp-scroll-x">${K.table(['결제일', '내용', ['금액', 'right'], '상태', ['영수증', 'center']], hist, { caption: '결제 내역' })}</div>
     </section>
     ${divider()}
-    <div class="tp-between"><div class="tp-stack"><span class="tp-h4">구독 해지</span><span class="tp-sub">해지해도 2027.10.09까지는 프로 요금제를 그대로 쓸 수 있어요.</span></div>${btn('구독 해지하기', { variant: 'ghost' })}</div>
+    <div class="tp-between"><div class="tp-stack"><span class="tp-h4">구독 해지</span></div>${btn('구독 해지하기', { variant: 'ghost' })}</div>
   </main>
 </div>`;
   return { slug: 'subscription-settings', en: 'Subscription Settings', name: '내 구독', group: 'Pricing', desc: '지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.', css, body };
@@ -205,23 +203,13 @@ const cancel = () => {
   ];
   const body = `<div class="tp-app"><main class="tp-content">
   <div class="tp-pr-narrow tp-cancel">
-    <div class="tp-stack" style="gap: var(--ds-space-x3)">${link('내 구독으로 돌아가기')}<h1 class="tp-h1">구독을 해지하기 전에 확인해 주세요</h1><p class="tp-sub">지금 프로 요금제를 쓰고 있어요. 해지하면 2027.10.09에 무료 요금제로 바뀌어요.</p></div>
+    <div class="tp-stack" style="gap: var(--ds-space-x3)">${link('내 구독으로 돌아가기')}<h1 class="tp-h1">구독을 해지하기 전에 확인해 주세요</h1></div>
     <section class="tp-sec" aria-labelledby="lose"><h2 class="tp-h3" id="lose">해지하면 이런 혜택을 쓸 수 없어요</h2>
       <div class="tp-keep">${keep.map(([ic, t, d]) => `<div class="tp-keep__item">${icon(ic)}<span class="tp-h4">${t}</span><span class="tp-sub">${d}</span></div>`).join('')}</div>
     </section>
     <section class="tp-sec" aria-labelledby="why"><h2 class="tp-h3" id="why">해지하는 이유를 알려 주세요</h2>
       ${radios('why', ['요금이 부담돼요', '자주 쓰지 않아요', '필요한 기능이 없어요', '다른 서비스로 옮겨요', '기타'], 0)}
       ${field('why-more', '더 알려 주실 내용 (선택)', textarea('why-more', 'rows="3" placeholder="더 나은 서비스를 만드는 데 쓸게요"'))}
-    </section>
-    ${card(`<div class="tp-row" style="align-items: flex-start; gap: var(--ds-space-x3)">${icon('sparkles', 'lg')}<div class="tp-stack" style="gap: var(--ds-space-x2)"><h2 class="tp-h3">3개월 동안 40% 할인받고 계속 쓰기</h2><p class="tp-sub">요금이 부담된다면 다음 3개월은 월 4,740원에 쓸 수 있어요. 할인이 끝나면 원래 요금으로 돌아가요.</p></div></div>
-    <div>${btn('할인받고 계속 쓰기', { variant: 'neutralSolid', size: 'medium' })}</div>`, { cls: 'tp-offer' })}
-    <section class="tp-sec" aria-labelledby="note"><h2 class="tp-h3" id="note">해지 전에 알아 두세요</h2>
-      <ul class="tp-notes">
-        <li>해지해도 남은 기간까지는 지금 요금제를 그대로 쓸 수 있어요.</li>
-        <li>해지를 신청하면 다음 결제가 멈추고, 남은 기간 안에는 언제든 해지를 취소할 수 있어요.</li>
-        <li>결제한 지 7일 안에 쓰지 않았다면 전액 환불받을 수 있어요.</li>
-        <li>연 결제를 중간에 해지하면 쓴 기간을 뺀 금액을 환불해요.</li>
-      </ul>
     </section>
     ${divider()}
     <div class="tp-cancel-acts">${btn('해지 신청하기', { variant: 'neutralWeak', size: 'large' })}${btn('구독 유지하기', { variant: 'brandSolid', size: 'large' })}</div>

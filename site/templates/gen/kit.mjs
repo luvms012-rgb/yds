@@ -123,6 +123,35 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
 `;
 
 /* ------------------------------------------------------------ 페이지 */
+// 템플릿에는 홍보 문구, 설명 글, 안내 상자, 보조 라벨을 넣지 않는다 (사용자 2026-11-09 "글을 빼고 배치로 해결").
+// 생성기 자료에 문장이 남아 있어도 화면에는 나오지 않는다. 글이나 댓글, 문서 본문처럼 화면의 내용 자체는 COPY_KEEP 안에서 그대로 둔다
+const COPY_ALWAYS = /(^| )(ds-callout|ds-field__help|ds-selectbox__desc|ds-empty__desc|tp-notes|tp-tip|tp-lead|tp-vw__help)( |$)/;
+const COPY_SENTENCE = /(^| )(tp-sub|tp-caption)( |$)/;
+const COPY_KEEP = /(^| )(tp-post__body|ds-accordion__content|tp-stepdoc|tp-ex|tp-cmt|tp-article|ds-markdown|tp-doc|tp-inbox__row)( |$)/;
+const SENTENCE = /[요다니까][.?!]?$|[.?!]$/;
+const VOID_TAG = /^(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)$/i;
+export const stripCopy = (html) => {
+  const re = /<(\/?)([a-zA-Z][\w-]*)((?:[^>"']|"[^"]*"|'[^']*')*)>/g;
+  const stack = [], cuts = [];
+  for (let m; (m = re.exec(html));) {
+    const [, close, tag, attr] = m;
+    if (!close) {
+      if (!VOID_TAG.test(tag) && !attr.endsWith('/')) stack.push({ tag, cls: (attr.match(/class="([^"]*)"/) || [])[1] || '', start: m.index, inner: re.lastIndex });
+      continue;
+    }
+    while (stack.length && stack[stack.length - 1].tag !== tag) stack.pop();
+    const el = stack.pop();
+    if (!el || stack.some((a) => COPY_KEEP.test(a.cls))) continue;
+    const inner = html.slice(el.inner, m.index).trim();
+    const sentence = COPY_SENTENCE.test(el.cls) && !inner.includes('<') && inner.length >= 6 && SENTENCE.test(inner);
+    const footer = /(^| )ds-field__footer( |$)/.test(el.cls) && inner.includes('ds-field__help');
+    if (COPY_ALWAYS.test(el.cls) || sentence || footer) cuts.push([el.start, re.lastIndex]);
+  }
+  let out = '', at = 0;
+  for (const [a, b] of cuts.sort((x, y) => x[0] - y[0])) { if (a < at) continue; out += html.slice(at, a); at = b; }
+  return out + html.slice(at);
+};
+
 // 템플릿 정의 (사용자 2026-11-09): 모든 템플릿 HTML 머리에 그대로 들어간다. 템플릿을 만들고 고칠 때의 기준이다
 export const PRINCIPLE = `세 사람 모두에게 좋아져야 해
 무엇을 결정하든 아래 셋이 동시에 좋아지는 방향으로 해줘.
@@ -145,7 +174,7 @@ ${PRINCIPLE}
 ${BASE_CSS}${css}</style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
-${body}${/data-tp=|data-tip=/.test(body) ? `\n<script>\n${CHART_JS}\n</script>` : ''}
+${stripCopy(body)}
 </body>
 </html>
 `;
@@ -172,7 +201,7 @@ export const select = (value, { id = '', aria = '', size = 'medium' } = {}) => `
 export const selField = (label, value, id) => `<div class="ds-field tp-selfield"><div class="ds-field__header"><label class="ds-field__label" for="${id}">${label}</label></div>${select(value, { id })}</div>`;
 export const input = (id, attrs = '', { size = 'medium', ic = '' } = {}) => `<div class="ds-input" data-variant="outline" data-size="${field40(size)}">${ic ? `<i class="ds-icon ds-icon--${ic} ds-input__icon" aria-hidden="true"></i>` : ''}<input class="ds-input__control" id="${id}" ${attrs}></div>`;
 export const search = (id, ph, size = 'medium') => input(id, `type="search" placeholder="${esc(ph)}" aria-label="${esc(ph)}"`, { size, ic: 'search' });
-export const field = (id, label, control, { help = '', required = false } = {}) => `<div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="${id}">${label}${required ? ' <span class="ds-field__required" aria-hidden="true"></span>' : ''}</label></div>${control}${help ? `<div class="ds-field__footer"><p class="ds-field__help">${help}</p></div>` : ''}</div>`;
+export const field = (id, label, control, { required = false } = {}) => `<div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="${id}">${label}${required ? ' <span class="ds-field__required" aria-hidden="true"></span>' : ''}</label></div>${control}</div>`;
 export const textarea = (id, attrs = '') => `<textarea class="ds-textarea" id="${id}" ${attrs}></textarea>`;
 export const checkbox = (label, { checked = false, name = '', size = '' } = {}) => `<label class="ds-checkbox"${size ? ` data-size="${size}"` : ''}><input type="checkbox" class="ds-checkbox__control"${name ? ` name="${name}"` : ''}${checked ? ' checked' : ''}>${label ? `<span class="ds-checkbox__label">${label}</span>` : ''}</label>`;
 export const checkOnly = (aria, checked = false) => `<label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="${esc(aria)}"${checked ? ' checked' : ''}></label>`;
@@ -215,13 +244,13 @@ export const kbd = (t) => `<kbd class="tp-kbd">${t}</kbd>`;
 export const logo = (label = '서비스 이름 홈') => `<a class="tp-brand" href="#" aria-label="${esc(label)}"><span class="tp-logo">로고</span></a>`;
 
 /* ------------------------------------------------------------ 머리글과 KPI */
-export const head = (title, { sub = '', tools = '', eyebrow = '', level = 1 } = {}) => `<header class="tp-head">
-  <div class="tp-head__texts">${eyebrow}<h${level} class="tp-h1">${title}</h${level}>${sub ? `<p class="tp-sub">${sub}</p>` : ''}</div>
+export const head = (title, { tools = '', level = 1 } = {}) => `<header class="tp-head">
+  <div class="tp-head__texts"><h${level} class="tp-h1">${title}</h${level}></div>
   ${tools ? `<div class="tp-head__tools">${even(tools)}</div>` : ''}
 </header>`;
-export const secHead = (title, { sub = '', tools = '', level = 2, cls = 'tp-h2', id = '' } = {}) => `<div class="tp-sec-head"><div class="tp-sec-head__texts"><h${level} class="${cls}"${id ? ` id="${id}"` : ''}>${title}</h${level}>${sub ? `<span class="tp-sub">${sub}</span>` : ''}</div>${tools ? `<div class="tp-row">${even(tools)}</div>` : ''}</div>`;
+export const secHead = (title, { tools = '', level = 2, cls = 'tp-h2', id = '' } = {}) => `<div class="tp-sec-head"><div class="tp-sec-head__texts"><h${level} class="${cls}"${id ? ` id="${id}"` : ''}>${title}</h${level}></div>${tools ? `<div class="tp-row">${even(tools)}</div>` : ''}</div>`;
 export const delta = (v, tone = v.startsWith('-') ? 'down' : v.startsWith('+') ? 'up' : 'flat') => `<span class="tp-delta" data-tone="${tone}">${tone === 'flat' ? '' : `<i class="ds-icon ds-icon--arrow-up ds-icon--sm" aria-hidden="true"${tone === 'down' ? ' style="transform: rotate(180deg)"' : ''}></i>`}${v}</span>`;
-export const kpi = (label, value, { d = '', note = '', chart = '', lead = '' } = {}) => card(`<div class="tp-stack">${lead ? `<div class="tp-row">${lead}<span class="tp-kpi__label">${label}</span></div>` : `<span class="tp-kpi__label">${label}</span>`}<div class="tp-row" style="align-items: baseline; flex-wrap: wrap"><span class="tp-kpi__value">${value}</span>${d ? delta(d) : ''}</div>${note ? `<span class="tp-caption">${note}</span>` : ''}</div>${chart}`);
+export const kpi = (label, value, { d = '', chart = '', lead = '' } = {}) => card(`<div class="tp-stack">${lead ? `<div class="tp-row">${lead}<span class="tp-kpi__label">${label}</span></div>` : `<span class="tp-kpi__label">${label}</span>`}<div class="tp-row" style="align-items: baseline; flex-wrap: wrap"><span class="tp-kpi__value">${value}</span>${d ? delta(d) : ''}</div></div>${chart}`);
 
 /* ------------------------------------------------------------ 데이터와 차트 */
 export const rnd = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };

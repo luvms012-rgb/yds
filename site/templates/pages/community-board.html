@@ -181,12 +181,12 @@
   @media (min-width: 768px) { .tp-cm { padding: var(--ds-space-x8) var(--ds-space-x6) var(--ds-space-x16); } }
   @media (min-width: 1024px) {
     .tp-cm:not(.tp-cm--one) { grid-template-columns: 220px minmax(0, 1fr); gap: var(--ds-space-x8); }
-    .tp-cm__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; }
+    .tp-cm__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; max-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); overflow-y: auto; scrollbar-width: none; }
     .tp-cm__chips { display: none; }
   }
   @media (min-width: 1280px) {
-    .tp-cm--aside { grid-template-columns: 220px minmax(0, 1fr) 300px; }
-    .tp-cm__aside { display: flex; flex-direction: column; gap: var(--ds-space-x6); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; }
+    .tp-cm.tp-cm--aside:not(.tp-cm--one) { grid-template-columns: 220px minmax(0, 1fr) 300px; }  /* 위 2단 규칙보다 세야 3단이 된다 */
+    .tp-cm__aside { display: flex; flex-direction: column; gap: var(--ds-space-x6); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; max-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); overflow-y: auto; scrollbar-width: none; }
   }
   /* 게시판 메뉴: 옆 메뉴 부품을 칸 폭에 맞춰 쓴다 */
   .tp-cm__nav .ds-sidenav { width: auto; height: auto; background: none; }
