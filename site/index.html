@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../dist/ybm-ds.css">
-<link rel="stylesheet" href="assets/site.css?v=8b95bef1">
+<link rel="stylesheet" href="assets/site.css?v=15dca967">
 <script src="../dist/ybm-ds.js" defer></script>
-<script src="assets/site.js?v=8b95bef1" defer></script>
+<script src="assets/site.js?v=15dca967" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -138,45 +138,15 @@ yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어
 정할 것이 있으면 만들기 전에 물어봐 줘.</code></pre>
 </figure></div></div></div>
 
-<h3 id="brand">브랜드 파일</h3>
-<p>브랜드 파일에는 yds와 다른 값만 적습니다. 적지 않은 값은 yds를 그대로 사용하므로, yds가 업데이트되어도 브랜드를 다시 만들 필요가 없습니다. 컴포넌트 구조, 간격, 글자 크기, 접근성 규칙은 모든 브랜드에 똑같이 적용됩니다.</p>
-<div class="ds-table-wrap"><table class="ds-table" data-density="compact">
-<thead><tr><th scope="col">항목</th><th scope="col">이름</th><th scope="col">설명</th></tr></thead>
-<tbody><tr><td>브랜드 색</td><td><code>color</code></td><td>대표 색 하나로 나머지 단계와 다크 모드 색을 만듭니다.</td></tr>
-<tr><td>모서리</td><td><code>shapeScale</code></td><td>모든 모서리를 같은 비율로 키우거나 줄입니다.</td></tr>
-<tr><td>글꼴</td><td><code>font</code></td><td>기본 글꼴 대신 사용할 글꼴입니다.</td></tr></tbody></table></div>
-<figure class="ds-codeblock" data-lang="json">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">json</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>{
-  <span class="hl-s">&quot;name&quot;</span>: <span class="hl-s">&quot;우리 브랜드&quot;</span>,
-  <span class="hl-s">&quot;color&quot;</span>: <span class="hl-s">&quot;#0f7a3f&quot;</span>,
-  <span class="hl-s">&quot;shapeScale&quot;</span>: <span class="hl-c">1.25</span>
-}</code></pre>
-</figure>
 
 <h2 id="figma">Figma로 시작하기<a class="site-anchor" href="#figma" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2>
 <p>Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2274-1143" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색과 간격은 yds 변수로 지정합니다.</span></li>
-  <li><strong>구현 요청하기</strong><span>완성한 프레임 주소를 아래 요청 글에 넣어 AI에 전달합니다.</span></li>
+  <li><strong>개발에 전달하기</strong><span>완성한 프레임 주소를 개발자에게 전달합니다. 변수 이름이 코드의 토큰 이름과 같아 그대로 구현할 수 있습니다.</span></li>
 </ol>
-<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 파일의 값이 적용됩니다.</p>
-<div class="site-codetabs"><div class="site-codetabs__panel"><figure class="ds-codeblock" data-lang="text" data-wrap>
-  <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="0">AI 요청</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>이 Figma 화면을 yds 디자인 시스템 기반의 우리 브랜드로 구현해 줘.
-먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
-문서: https://luvms012-rgb.github.io/yds/site/yds.txt
-
-Figma: [프레임 주소]
-브랜드 이름: [my-brand]
-브랜드 컬러: [#0f7a3f]
-모서리: [yds 그대로]
-글꼴: [yds 그대로]
-
-브랜드 파일이 아직 없으면 yds와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 고칠 색을 제안해 줘.
-Figma에 쓰인 컴포넌트와 변수에 맞는 yds 컴포넌트와 토큰을 쓰고, 맞는 것이 없으면 만들기 전에 물어봐 줘.</code></pre>
-</figure></div></div>
+<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 값이 적용됩니다.</p>
 
 <h2 id="files">파일<a class="site-anchor" href="#files" aria-label="이 제목 링크"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2>
 <div class="ds-table-wrap"><table class="ds-table site-gs__files" data-density="compact">

@@ -592,7 +592,7 @@
     panels.forEach(function (p) { p.hidden = p.getAttribute("data-site-gs-panel") !== k; });
     document.querySelectorAll("[data-site-gs]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-site-gs") === k)); });
   }
-  function gsHash() { var k = location.hash.slice(1); if (/^(migrate|start|theme|draft)$/.test(k)) { showGs(k); var h = document.getElementById("ai"); if (h) h.scrollIntoView(); } }
+  function gsHash() { var k = location.hash.slice(1); if (k === "brand") { var b = document.getElementById("ai"); if (b) b.scrollIntoView(); return; } /* 지운 브랜드 파일 절의 예전 주소 */ if (/^(migrate|start|theme|draft)$/.test(k)) { showGs(k); var h = document.getElementById("ai"); if (h) h.scrollIntoView(); } }
   addEventListener("hashchange", gsHash);
 
   document.addEventListener("DOMContentLoaded", function () {

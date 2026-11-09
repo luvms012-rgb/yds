@@ -413,20 +413,6 @@ yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어
 정할 것이 있으면 만들기 전에 물어봐 줘.`],
 ];
 // 브랜드 만들기 (11-09 사용자 "yds를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
-const FIGMA_PROMPT = `이 Figma 화면을 yds 디자인 시스템 기반의 우리 브랜드로 구현해 줘.
-먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
-${DOC_LINE}
-
-Figma: [프레임 주소]
-${BRAND_LINES}
-
-${BRAND_ASK}
-Figma에 쓰인 컴포넌트와 변수에 맞는 yds 컴포넌트와 토큰을 쓰고, 맞는 것이 없으면 만들기 전에 물어봐 줘.`;
-const BRAND_JSON = `{
-  "name": "우리 브랜드",
-  "color": "#0f7a3f",
-  "shapeScale": 1.25
-}`;
 const BRAND_HTML = `<!-- 브랜드: yds 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
 
@@ -502,24 +488,15 @@ ${BRAND_HTML}
   return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}</div>`;
 }).join('\n')}
 
-<h3 id="brand">브랜드 파일</h3>
-<p>브랜드 파일에는 yds와 다른 값만 적습니다. 적지 않은 값은 yds를 그대로 사용하므로, yds가 업데이트되어도 브랜드를 다시 만들 필요가 없습니다. 컴포넌트 구조, 간격, 글자 크기, 접근성 규칙은 모든 브랜드에 똑같이 적용됩니다.</p>
-${table(['항목', '이름', '설명'], [
-  ['브랜드 색', '<code>color</code>', '대표 색 하나로 나머지 단계와 다크 모드 색을 만듭니다.'],
-  ['모서리', '<code>shapeScale</code>', '모든 모서리를 같은 비율로 키우거나 줄입니다.'],
-  ['글꼴', '<code>font</code>', '기본 글꼴 대신 사용할 글꼴입니다.'],
-])}
-${codeblock(BRAND_JSON, 'json')}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <p>Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${LINKS.figmaUrl('2274:1143')}" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색과 간격은 yds 변수로 지정합니다.</span></li>
-  <li><strong>구현 요청하기</strong><span>완성한 프레임 주소를 아래 요청 글에 넣어 AI에 전달합니다.</span></li>
+  <li><strong>개발에 전달하기</strong><span>완성한 프레임 주소를 개발자에게 전달합니다. 변수 이름이 코드의 토큰 이름과 같아 그대로 구현할 수 있습니다.</span></li>
 </ol>
-<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 파일의 값이 적용됩니다.</p>
-${codeTabs([['AI 요청', codeblock(FIGMA_PROMPT, 'text', ' data-wrap')]])}
+<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 값이 적용됩니다.</p>
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
@@ -587,7 +564,7 @@ const foundPages = {
 <h2 id="code">코드에서 쓰기</h2>
 ${codeblock(`.my-card {\n  background: var(--ds-color-bg-layer-default);\n  color: var(--ds-color-fg-neutral);\n  border: 1px solid var(--ds-color-stroke-neutral-muted);\n}`, 'css')}
 <h3>브랜드 컬러 바꾸기</h3>
-<p>브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 적습니다. 대표색 하나면 나머지 단계와 다크 모드 값이 만들어집니다. <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 만들기</a></p>
+<p>브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 적습니다. 대표색 하나면 나머지 단계와 다크 모드 값이 만들어집니다. <a class="ds-link" data-size="small" href="../index.html#ai">브랜드 만들기</a></p>
 <h2 id="practices">사용 지침</h2>
 ${practices([
   [true, '역할에 맞는 색을 고릅니다. 오류는 critical, 성공은 positive입니다.'],
@@ -600,7 +577,7 @@ ${practices([
   typography: {
     title: '글자', lead: '타이포그래피는 정보의 위계를 구분하고 글을 읽기 쉽게 만듭니다.',
     body: `<h2 id="overview">개요</h2>
-<p>기본 글꼴은 Pretendard입니다. 다른 글꼴은 <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 파일</a>에서 정합니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
+<p>기본 글꼴은 Pretendard입니다. 다른 글꼴은 <a class="ds-link" data-size="small" href="../index.html#ai">브랜드 파일</a>에서 정합니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
 <h2 id="size">크기</h2>
 ${table(['토큰', '크기 / 줄 높이 (px)', '보기'], tokRe(/--ds-font-size-(t\d\d): (\d+)px/g).map((m) => [`<code>${m[1]}</code>`, `${m[2]} / ${(LIGHT[`--ds-line-height-${m[1]}`] || '').replace('px', '')}`, `<span class="site-sample" style="font-size: var(--ds-font-size-${m[1]}); line-height: var(--ds-line-height-${m[1]}); font-weight: var(--ds-font-weight-bold)">가나다 Aa 123</span>`]))}
 <h2 id="weight">굵기</h2>
@@ -669,7 +646,7 @@ ${table(['토큰', '값', '보기'], [...new Set(tokRe(/--ds-shape-base-([a-z0-9
 <h2 id="code">코드에서 쓰기</h2>
 <p>어떤 영역에 <code>--ds-shape-scale</code>을 0과 1 사이 값으로 덮어쓰면 그 안의 모서리만 덜 둥글게 바뀝니다.</p>
 ${codeblock(`.my-card {\n  border-radius: var(--ds-shape-lg);\n}\n.admin-area {\n  --ds-shape-scale: 0.5;  /*이 영역 안의 모서리를 절반으로 */\n}`, 'css')}
-<p>브랜드 전체의 모서리는 <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 파일</a>의 <code>shapeScale</code>로 정합니다.</p>
+<p>브랜드 전체의 모서리는 <a class="ds-link" data-size="small" href="../index.html#ai">브랜드 파일</a>의 <code>shapeScale</code>로 정합니다.</p>
 <h2 id="practices">사용 지침</h2>
 ${practices([
   [true, '안쪽 요소의 모서리는 바깥 요소보다 작게 둡니다.'],
