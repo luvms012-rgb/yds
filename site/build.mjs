@@ -494,9 +494,8 @@ ${BRAND_HTML}
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${LINKS.figmaUrl('2274:1143')}" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색과 간격은 yds 변수로 지정합니다.</span></li>
-  <li><strong>개발에 전달하기</strong><span>완성한 프레임 주소를 개발자에게 전달합니다. 변수 이름이 코드의 토큰 이름과 같아 그대로 구현할 수 있습니다.</span></li>
 </ol>
-<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 값이 적용됩니다.</p>
+<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다.</p>
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
