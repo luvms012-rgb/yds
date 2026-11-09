@@ -657,3 +657,9 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-pal__name { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
 .site-lib__codehead { line-height: var(--ds-line-height-t02); }
 .site-lib__name { line-height: var(--ds-line-height-t04); }
+
+/* 새 소식 점: 글자 오른쪽 위에 붙이고 메뉴 폭은 그대로 둔다 */
+.site-newdot { margin-left: 2px; margin-right: calc((var(--ds-space-x2) + 2px) * -1); transform: translateY(-7px); }
+.site-nav__item:has(.site-newdot) { gap: 0; }
+.site-menu-btn { position: relative; }
+.site-menu-btn .site-newdot { position: absolute; top: 4px; right: 4px; margin: 0; transform: none; }

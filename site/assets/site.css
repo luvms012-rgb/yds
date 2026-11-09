@@ -658,6 +658,12 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-lib__codehead { line-height: var(--ds-line-height-t02); }
 .site-lib__name { line-height: var(--ds-line-height-t04); }
 
+/* 새 소식 점: 글자 오른쪽 위에 붙이고 메뉴 폭은 그대로 둔다 */
+.site-newdot { margin-left: 2px; margin-right: calc((var(--ds-space-x2) + 2px) * -1); transform: translateY(-7px); }
+.site-nav__item:has(.site-newdot) { gap: 0; }
+.site-menu-btn { position: relative; }
+.site-menu-btn .site-newdot { position: absolute; top: 4px; right: 4px; margin: 0; transform: none; }
+
 /* 가이드는 브랜드 색 없이 모노톤으로 보여 준다 (2026-11-02 사용자 "가이드에 브랜드 컬러 적용 X").
    브랜드 역할 색을 같은 자리의 neutral 색으로 바꾼다. 서비스는 palette/brand 를 바꿔 자기 브랜드 색을 쓴다(Color 페이지).
    site.css 끝에 붙고, 템플릿 미리보기 iframe 에는 site.js 가 assets/brand-mono.css 로 넣는다.

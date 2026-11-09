@@ -723,4 +723,31 @@
   })();
 
 
+  /* 새 소식 표시: 맨 위 소식이 마지막으로 본 것과 다르면 Updates 메뉴에 점을 띄운다. 처음 온 사람에게는 띄우지 않는다 */
+  (function () {
+    var UPDATES_KEY = "ybm-site-updates-seen";
+    var top = document.querySelector("[data-site-latest]");
+    if (!top) return;
+    var latest = top.getAttribute("data-site-latest");
+    function clear() { document.querySelectorAll(".site-newdot, .site-newdot-text").forEach(function (n) { n.remove(); }); }
+    function dot(el, text) {
+      var d = document.createElement("span"); d.className = "ds-statusdot site-newdot"; d.setAttribute("data-tone", "critical"); d.setAttribute("aria-hidden", "true"); el.appendChild(d);
+      if (text) { var s = document.createElement("span"); s.className = "ds-sr-only site-newdot-text"; s.textContent = "새 소식 있음"; el.appendChild(s); }
+    }
+    function sync() {
+      var seen = null;
+      try {
+        seen = localStorage.getItem(UPDATES_KEY);
+        if (seen === null || document.querySelector('.site-topnav__item[data-site-updates][aria-current="page"]')) { localStorage.setItem(UPDATES_KEY, latest); seen = latest; }
+      } catch (e) { seen = latest; }
+      clear();
+      if (seen === latest) return;
+      document.querySelectorAll("[data-site-updates]").forEach(function (a) { dot(a, true); });
+      document.querySelectorAll(".site-menu-btn").forEach(function (b) { dot(b, false); });
+    }
+    sync();
+    window.addEventListener("pageshow", sync);  // 뒤로 가기로 돌아온 페이지에도 본 상태를 맞춘다
+  })();
+
+
 })();

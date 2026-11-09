@@ -230,6 +230,8 @@ const FEEDBACK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnz
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
 // 파운데이션: 항목마다 한 페이지 (슬러그, 영문 이름)
 const FOUND = az([['color', 'Color'], ['typography', 'Typography'], ['spacing', 'Spacing'], ['shape', 'Radius'], ['elevation', 'Elevation'], ['motion', 'Motion'], ['icons', 'Iconography'], ['breakpoint', 'Breakpoint']]);
+// 새 소식 표시 (11-09): 맨 위 소식의 날짜와 내용으로 만든 값. 사용자가 마지막으로 본 값과 다르면 site.js 가 Updates 메뉴에 점을 띄운다. 버전 번호만 붙을 때는 바뀌지 않는다
+const LATEST_UPDATE = (() => { const { date, sections } = readJson('site/src/updates.json').releases[0]; return crypto.createHash('sha1').update(JSON.stringify({ date, sections })).digest('hex').slice(0, 10); })();
 const NAV = [['get-started', 'Get Started', 'index.html'], ['foundations', 'Foundations', `foundations/${FOUND[0][0]}.html`], ['components', 'Components', 'components/index.html'], ['templates', 'Templates', 'templates/index.html'], ['updates', 'Updates', 'updates.html']];
 // Get Started 문서 (왼쪽 메뉴 없음): 첫 화면 하나 (AI & Tools는 11-04 합침)
 const GS_ORDER = [['index.html', 'Get Started']];
@@ -260,7 +262,7 @@ function sideNav(section, file, root) {
     // 11-05 사용자: 목록은 메뉴 없이 분류 탭, 상세는 탭과 같은 분류 묶음(묶음 안은 가나다 순)
     for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => (TPL_GROUP_KO[x] || x).localeCompare(TPL_GROUP_KO[y] || y, 'ko'))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort((x, y) => x.name.localeCompare(y.name, 'ko')).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
   }
-  const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
+  const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
   // 컴포넌트 메뉴 맨 위 찾기 칸 (높이 32, 모서리 12, 1px 테두리) - 메뉴 항목과 목록 카드를 함께 거른다
   const search = section === 'components' ? `<div class="site-side__searchbar"><div class="ds-input site-side__search" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" placeholder="컴포넌트 찾기" aria-label="컴포넌트 찾기" data-site-search><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></div>` : '';
   return `<aside class="site-side" id="site-side" aria-label="페이지 목록">
@@ -328,10 +330,10 @@ ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성�
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
-<header class="site-top">
+<header class="site-top" data-site-latest="${LATEST_UPDATE}">
   <a class="site-logo" href="${root}index.html"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
   <nav class="site-topnav" aria-label="주요 메뉴">
-    ${NAV.map(([k, l, h]) => `<a class="site-topnav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}>${l}</a>`).join('\n    ')}
+    ${NAV.map(([k, l, h]) => `<a class="site-topnav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('\n    ')}
   </nav>
   <div class="site-top__end">
     ${iconBtn('data-site-theme-toggle', '화면 모드 바꾸기', '<i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-theme-btn"')}
