@@ -224,7 +224,7 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 // 테마는 11-03 사용자 "우선 숨김, 처음부터 다시": 메뉴, Usage 테마 절, AI 목록, yds.txt에서 뺀다. 다시 열 때 true
 // 11-04 집, 사용자 "테스트용 테마 10개": Themes 페이지는 다시 켜되 상단 메뉴는 다섯 개 그대로(Templates 머리말과 푸터 더 보기에서 간다)
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
-// 의견 보내기 (11-09 사용자 "yds 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기): 폼 주소가 비어 있으면 입구를 만들지 않는다
+// 의견 보내기 (11-09 사용자 "yds 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기, "푸터로 통일"): 입구는 푸터 더 보기 하나. 폼 주소가 비어 있으면 만들지 않는다
 const FEEDBACK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
@@ -348,7 +348,6 @@ ${sideNav(section, file, root)}
 <main class="site-main" id="main">
 <article class="site-doc">
 ${body}
-${layout === 'doc' && FEEDBACK_FORM ? `<p class="site-feedback"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="${FEEDBACK_FORM}" target="_blank" rel="noopener"><i class="ds-icon ds-icon--message-circle ds-icon--sm" aria-hidden="true"></i>의견 보내기</a></p>` : ''}
 ${pagerHtml}
 ${footer}
 </article>
@@ -443,6 +442,7 @@ const LLMS_RULES = `## 지킬 것
 - 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓴다.
 - 규칙 파일: 설치할 때 규칙 파일(${SITE_URL}ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다.
 - 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
+- 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다.
 - 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 원본: yds 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. yds 자체를 바꿔야 하면 담당자에게 요청한다.
@@ -485,7 +485,7 @@ write({
   <li><strong>서비스</strong><span>yds와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
-<h2 id="ai">서비스 시작하기</h2>
+<h2 id="ai">AI로 시작하기</h2>
 <p>상황을 선택하고 요청 글을 AI에 붙여 넣으세요. 대괄호 안은 내 서비스에 맞게 바꿉니다.</p>
 <div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
   ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
@@ -531,7 +531,7 @@ ${table(['파일', '무엇인가요', '언제 쓰나요'], [
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
 
 ${SHOW_THEMES ? `<h2 id="custom-theme">테마</h2>
-<p>테마는 브랜드 색, 바탕색, 모서리 곡률을 한 번에 바꿉니다. DS 다음에 테마 파일을 붙이고 html에 테마 이름을 적으면 됩니다. 고를 수 있는 테마는 <a class="ds-link" data-size="small" href="themes/index.html">Themes</a>에 있습니다.</p>
+<p>테마는 브랜드 색, 바탕색, 모서리 곡률을 한 번에 바꿉니다. DS 다음에 테마 파일을 붙이고 html에 테마 이름을 적으면 됩니다. 고를 수 있는 테마는 <a class="ds-link" href="themes/index.html">Themes</a>에 있습니다.</p>
 ${(() => { const t = readJson('site/src/themes.json').themes[0].slug; return codeblock(`<html lang="ko" data-ds-theme="${t}">
 <link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <link rel="stylesheet" href="${PUBLIC}/dist/themes/${t}.css">`); })()}
@@ -585,7 +585,7 @@ const foundPages = {
 <h2 id="code">코드에서 쓰기</h2>
 ${codeblock(`.my-card {\n  background: var(--ds-color-bg-layer-default);\n  color: var(--ds-color-fg-neutral);\n  border: 1px solid var(--ds-color-stroke-neutral-muted);\n}`, 'css')}
 <h3>브랜드 컬러 바꾸기</h3>
-<p>브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 적습니다. 대표색 하나면 나머지 단계와 다크 모드 값이 만들어집니다. <a class="ds-link" data-size="small" href="../index.html#ai">브랜드 만들기</a></p>
+<p>브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 적습니다. 대표색 하나면 나머지 단계와 다크 모드 값이 만들어집니다. <a class="ds-link" href="../index.html#ai">브랜드 만들기</a></p>
 <h2 id="practices">사용 지침</h2>
 ${practices([
   [true, '역할에 맞는 색을 고릅니다. 오류는 critical, 성공은 positive입니다.'],
@@ -598,7 +598,7 @@ ${practices([
   typography: {
     title: '글자', lead: '타이포그래피는 정보의 위계를 구분하고 글을 읽기 쉽게 만듭니다.',
     body: `<h2 id="overview">개요</h2>
-<p>기본 글꼴은 Pretendard입니다. 다른 글꼴은 <a class="ds-link" data-size="small" href="../index.html#ai">브랜드 파일</a>에서 정합니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
+<p>기본 글꼴은 Pretendard입니다. 다른 글꼴은 <a class="ds-link" href="../index.html#ai">브랜드 파일</a>에서 정합니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
 <h2 id="size">크기</h2>
 ${table(['토큰', '크기 / 줄 높이 (px)', '보기'], tokRe(/--ds-font-size-(t\d\d): (\d+)px/g).map((m) => [`<code>${m[1]}</code>`, `${m[2]} / ${(LIGHT[`--ds-line-height-${m[1]}`] || '').replace('px', '')}`, `<span class="site-sample" style="font-size: var(--ds-font-size-${m[1]}); line-height: var(--ds-line-height-${m[1]}); font-weight: var(--ds-font-weight-bold)">가나다 Aa 123</span>`]))}
 <h2 id="weight">굵기</h2>
@@ -667,7 +667,7 @@ ${table(['토큰', '값', '보기'], [...new Set(tokRe(/--ds-shape-base-([a-z0-9
 <h2 id="code">코드에서 쓰기</h2>
 <p>어떤 영역에 <code>--ds-shape-scale</code>을 0과 1 사이 값으로 덮어쓰면 그 안의 모서리만 덜 둥글게 바뀝니다.</p>
 ${codeblock(`.my-card {\n  border-radius: var(--ds-shape-lg);\n}\n.admin-area {\n  --ds-shape-scale: 0.5;  /*이 영역 안의 모서리를 절반으로 */\n}`, 'css')}
-<p>브랜드 전체의 모서리는 <a class="ds-link" data-size="small" href="../index.html#ai">브랜드 파일</a>의 <code>shapeScale</code>로 정합니다.</p>
+<p>브랜드 전체의 모서리는 <a class="ds-link" href="../index.html#ai">브랜드 파일</a>의 <code>shapeScale</code>로 정합니다.</p>
 <h2 id="practices">사용 지침</h2>
 ${practices([
   [true, '안쪽 요소의 모서리는 바깥 요소보다 작게 둡니다.'],

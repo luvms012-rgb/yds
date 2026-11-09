@@ -332,7 +332,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | # | 컴포넌트 | CSS | Figma COMPONENT_SET (ID, 변형 수) | 주요 속성 / 컴포넌트 변수 |
 |---|---|---|---|---|
 | 01 | Action Button | `.ds-btn` | `24:354`, 168 | variant `brandSolid/brandOutline/neutralSolid/neutralWeak/neutralOutline/criticalSolid/ghost`, size `xsmall/small/medium/large`, layout `iconOnly`, width `fill` |
-| 02 | Text Link | `.ds-link` | `2493:324`, 2 | size `small`(2026-11-03), `--ds-link-color(-hover)`, Figma state `enabled/hover` |
+| 02 | Text Link | `.ds-link` | `2493:324`, 2 | size `small`(2026-11-03), 문장 안(p, li)에서는 주변 글자 크기를 따름(2026-11-09), `--ds-link-color(-hover)`, Figma state `enabled/hover` |
 | 03 | Field Label | `.ds-field` (`__header/label/indicator/required/footer/help/error/count`) | `109:1367`, 2 | label-weight `bold` |
 | 04 | Text Field Input | `.ds-input` (`__control/prefix/suffix/icon/clear`) | `108:1325`, 40 | variant `outline/underline`, size |
 | 05 | Text Field Textarea | `.ds-textarea` | `114:1496`, 40 | variant, size |

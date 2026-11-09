@@ -175,6 +175,7 @@
 /* --------------------------------------------------------------------------
    02 Text Link — CTA 위/아래 보조 링크 (Figma Text Link 2493:324, state enabled/hover)
    size: medium(기본, t05) · small(t03, 본문 옆이나 표, 칸 머리처럼 보조 자리) (2026-11-03 추가)
+   문장 안(p, li): size 와 상관없이 주변 글자 크기를 따른다 (2026-11-09)
      <a class="ds-link" href="…" [data-size="small"]>비밀번호를 잊으셨나요?</a>
    -------------------------------------------------------------------------- */
 .ds-link {
@@ -190,6 +191,9 @@
 }
 .ds-link:hover { color: var(--ds-link-color-hover); }
 .ds-link[data-size="small"] { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); text-underline-offset: 2px; }
+/* 문장 안(p, li)의 링크는 size 와 상관없이 주변 글자 크기를 따른다 (2026-11-09) */
+:is(p, li) .ds-link,
+:is(p, li) .ds-link[data-size] { font-size: inherit; line-height: inherit; }
 
 
 /* --------------------------------------------------------------------------
