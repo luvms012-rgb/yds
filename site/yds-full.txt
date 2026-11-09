@@ -166,7 +166,7 @@ https://luvms012-rgb.github.io/yds/site/yds-full.txt
 
 Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.
 
-1. **라이브러리 켜기**Figma의 Assets 패널에서 [yds 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2274-1143)를 켭니다.
+1. **라이브러리 켜기**Figma의 Assets 패널에서 [yds 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-74)를 켭니다.
 2. **화면 그리기**yds 컴포넌트를 놓고, 색, 간격, 모서리는 yds 변수로, 글자는 yds 텍스트 스타일로 지정합니다.
 
 브랜드 색은 Figma에서 바꾸지 않아도 됩니다.
@@ -180,7 +180,7 @@ Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다
 | [AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) / [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md) / [yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc) | AI 코딩 도구용 yds 규칙 파일 | AI 코딩 도구가 늘 yds 규칙을 지키게 할 때 |
 | [yds-check.mjs](https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs) | yds 규칙 검사 스크립트 | 다 만든 화면을 점검할 때 |
 | [brands](https://github.com/luvms012-rgb/yds/tree/main/brands) | 등록된 브랜드 파일 | 내 브랜드 값을 확인할 때 |
-| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2274-1143) | yds 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |
+| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-74) | yds 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |
 
 
 ---

@@ -22,6 +22,7 @@ const PUBLIC = 'https://luvms012-rgb.github.io/yds';
 const GITHUB = 'https://github.com/luvms012-rgb/yds';
 const RAW = 'https://raw.githubusercontent.com/luvms012-rgb/yds/main';
 const FIGMA = 'https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=';
+const FIGMA_COVER = FIGMA + '3059-74'; // Figma Cover 페이지: 파일 전체로 가는 링크는 모두 여기로
 const SITE_URL = PUBLIC + '/site/';
 // 버전 (저장소 VERSION, node sync.mjs release 가 올린다). 버전 고정 주소는 jsDelivr 가 GitHub 태그를 그대로 내준다
 const VERSION = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'VERSION'), 'utf8').trim();
@@ -301,7 +302,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA}2608-2" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_COVER}" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
@@ -337,7 +338,7 @@ ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성�
   </nav>
   <div class="site-top__end">
     ${iconBtn('data-site-theme-toggle', '화면 모드 바꾸기', '<i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-theme-btn"')}
-    ${iconLink(FIGMA + '2608-2', 'Figma 파일', 'site-i--figma', ' site-only-wide')}
+    ${iconLink(FIGMA_COVER, 'Figma 파일', 'site-i--figma', ' site-only-wide')}
     ${iconLink(GITHUB, 'GitHub 저장소', 'site-i--github', ' site-only-wide')}
     ${iconBtn('data-site-menu aria-controls="site-side" aria-expanded="false"', '메뉴 열기', '<i class="ds-icon ds-icon--menu" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-menu-btn"')}
   </div>
@@ -474,7 +475,7 @@ write({
   body: `<header>
   <h1 class="site-h1">Get Started</h1>
   <p class="site-lead">yds는 여러 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다. 컴포넌트와 규칙은 함께 쓰고, 색과 모서리, 글꼴만 브랜드에 맞게 바꿉니다.</p>
-  ${metaLinks({ figma: LINKS.figmaUrl('2274:1143'), code: GITHUB })}
+  ${metaLinks({ figma: FIGMA_COVER, code: GITHUB })}
 </header>
 
 <h2 id="structure">구조</h2>
@@ -514,7 +515,7 @@ ${BRAND_HTML}
 <h2 id="figma">Figma로 시작하기</h2>
 <p>Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.</p>
 <ol class="site-gs__layers">
-  <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${LINKS.figmaUrl('2274:1143')}" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
+  <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_COVER}" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색, 간격, 모서리는 yds 변수로, 글자는 yds 텍스트 스타일로 지정합니다.</span></li>
 </ol>
 <p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다.</p>
@@ -526,7 +527,7 @@ ${table(['파일', '무엇인가요', '언제 쓰나요'], [
   [['AGENTS.md', 'CLAUDE.md', 'yds.mdc'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join(' / '), 'AI 코딩 도구용 yds 규칙 파일', 'AI 코딩 도구가 늘 yds 규칙을 지키게 할 때'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'yds 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
   [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 브랜드 값을 확인할 때'],
-  [`<a class="ds-link" href="${LINKS.figmaUrl('2274:1143')}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'yds 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],
+  [`<a class="ds-link" href="${FIGMA_COVER}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'yds 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
 
