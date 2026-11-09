@@ -225,9 +225,7 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 // 11-04 집, 사용자 "테스트용 테마 10개": Themes 페이지는 다시 켜되 상단 메뉴는 다섯 개 그대로(Templates 머리말과 푸터 더 보기에서 간다)
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "yds 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기): 폼 주소가 비어 있으면 입구를 만들지 않는다
-// form = 구글 폼 .../viewform 주소, pageEntry = 미리 채운 링크에서 "보낸 페이지" 칸의 entry.숫자
-const FEEDBACK = { form: 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform', pageEntry: 'entry.820804771' };
-const feedbackUrl = (file) => FEEDBACK.form ? esc(`${FEEDBACK.form}?usp=pp_url&${FEEDBACK.pageEntry}=${encodeURIComponent(SITE_URL + file)}`) : '';
+const FEEDBACK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
 // 파운데이션: 항목마다 한 페이지 (슬러그, 영문 이름)
@@ -301,7 +299,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA}2608-2" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${feedbackUrl(file) ? `<a href="${feedbackUrl(file)}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA}2608-2" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
@@ -348,7 +346,7 @@ ${sideNav(section, file, root)}
 <main class="site-main" id="main">
 <article class="site-doc">
 ${body}
-${layout === 'doc' && feedbackUrl(file) ? `<p class="site-feedback"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="${feedbackUrl(file)}" target="_blank" rel="noopener"><i class="ds-icon ds-icon--message-circle ds-icon--sm" aria-hidden="true"></i>의견 보내기</a></p>` : ''}
+${layout === 'doc' && FEEDBACK_FORM ? `<p class="site-feedback"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="${FEEDBACK_FORM}" target="_blank" rel="noopener"><i class="ds-icon ds-icon--message-circle ds-icon--sm" aria-hidden="true"></i>의견 보내기</a></p>` : ''}
 ${pagerHtml}
 ${footer}
 </article>
