@@ -226,7 +226,7 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "yds 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기): 폼 주소가 비어 있으면 입구를 만들지 않는다
 // form = 구글 폼 .../viewform 주소, pageEntry = 미리 채운 링크에서 "보낸 페이지" 칸의 entry.숫자
-const FEEDBACK = { form: '', pageEntry: '' };
+const FEEDBACK = { form: 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform', pageEntry: 'entry.820804771' };
 const feedbackUrl = (file) => FEEDBACK.form ? esc(`${FEEDBACK.form}?usp=pp_url&${FEEDBACK.pageEntry}=${encodeURIComponent(SITE_URL + file)}`) : '';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
