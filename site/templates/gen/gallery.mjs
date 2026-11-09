@@ -28,13 +28,13 @@ const HERO = {
 
 const centered = () => ({ slug: 'centered-hero', en: 'Centered Hero', name: '가운데 히어로', group: 'Gallery', desc: '큰 제목과 버튼을 가운데 두고 아래에 넓은 사진을 놓은 첫 화면입니다.', css: CSS, body: wrap(`${heroText(...HERO.centered)}${ph('21:9', 0)}`) });
 
-const classic = () => ({ slug: 'classic-gallery', en: 'Classic Gallery', name: '바둑판 갤러리', group: 'Gallery', desc: '같은 비율의 사진을 바둑판처럼 늘어놓은 갤러리입니다. 분류 탭으로 바로 걸러 봅니다.', css: CSS + `
+const classic = () => ({ slug: 'classic-gallery', en: 'Classic Gallery', name: '바둑판 갤러리', group: 'Gallery', desc: '같은 비율의 사진을 바둑판처럼 배치한 갤러리입니다. 분류 탭으로 원하는 사진만 볼 수 있습니다.', css: CSS + `
   .tp-grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-grid4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-x4); } }
   .tp-tabs-center { display: flex; justify-content: center; }
 `, body: wrap(`${heroText(...HERO.classic, false)}<div class="tp-tabs-center">${tabs(['전체', '풍경', '도시', '사람', '음식'], 0, '사진 분류')}</div><div class="tp-grid4">${Array.from({ length: 12 }, (_, i) => ph('1:1', i)).join('')}</div>`) });
 
-const galleryHero = () => ({ slug: 'gallery-hero', en: 'Gallery Hero', name: '사진 히어로', group: 'Gallery', desc: '제목 아래에 사진 여러 장을 모아 놓은 첫 화면입니다. 다양한 장면을 한 번에 보여 줄 때 씁니다.', css: CSS + `
+const galleryHero = () => ({ slug: 'gallery-hero', en: 'Gallery Hero', name: '사진 히어로', group: 'Gallery', desc: '제목 아래에 사진 여러 장을 모아 놓은 첫 화면입니다. 다양한 장면을 한 번에 보여 줄 때 사용합니다.', css: CSS + `
   .tp-mosaic { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 200px 200px; gap: var(--ds-space-x4); } .tp-mosaic > :first-child { grid-column: span 2; grid-row: span 2; } .tp-mosaic .ds-imageframe { aspect-ratio: auto; height: 100%; } }
 `, body: wrap(`${heroText(...HERO.hero)}<div class="tp-mosaic">${[0, 1, 2, 3, 4].map((i) => ph('4:3', i)).join('')}</div>`) });
@@ -45,7 +45,7 @@ const mixed = () => ({ slug: 'mixed-gallery', en: 'Mixed Gallery', name: '벽돌
   .tp-masonry figure { break-inside: avoid; margin: 0 0 var(--ds-space-x4); display: flex; flex-direction: column; gap: var(--ds-space-x2); }
 `, body: wrap(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><h1 class="tp-hero-t">${HERO.mixed[0]}</h1><p class="tp-lead" style="max-width: 720px">${HERO.mixed[1]}</p></div><div class="tp-masonry">${[['3:4', '이른 아침 바닷가'], ['1:1', '창가의 화분'], ['4:3', '골목 끝 작은 카페'], ['3:4', '비 오는 날의 우산'], ['4:3', '주말 시장 풍경'], ['1:1', '오후의 책상'], ['3:4', '가을 산책길'], ['4:3', '노을 지는 다리'], ['1:1', '손으로 만든 머그']].map(([r, c], i) => `<figure>${ph(r, i)}<figcaption class="tp-sub">${c}</figcaption></figure>`).join('')}</div>`) });
 
-const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 갤러리', group: 'Gallery', desc: '같은 모양의 상품 카드를 늘어놓은 갤러리입니다. 구성이 단순해 둘러보며 고르기 쉽습니다.', css: CSS + `
+const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 갤러리', group: 'Gallery', desc: '같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.', css: CSS + `
   .tp-pg-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); align-items: end; }
   @media (min-width: 1024px) { .tp-pg-head { grid-template-columns: 2fr 1fr; } .tp-pg-head > :last-child { justify-self: end; } }
   .tp-grid3 { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: var(--ds-space-x6); }

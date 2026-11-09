@@ -2,7 +2,7 @@
 
 # Color
 
-색은 정보의 위계와 상태, 브랜드를 구분해 보여 줍니다.
+색은 정보의 위계와 상태, 브랜드를 구분해 전달합니다.
 
 ## 개요
 
@@ -18,9 +18,9 @@ yds의 색은 역할 색과 팔레트 색 두 층입니다. 화면에는 역할 
 
 ## 관련 문서
 
-- [역할 색](https://luvms012-rgb.github.io/yds/site/foundations/color-roles.md): 역할 색의 규칙과 전체 토큰.
+- [역할 색](https://luvms012-rgb.github.io/yds/site/foundations/color-roles.md): 역할 색의 규칙과 전체 토큰을 확인합니다.
 
-- [팔레트 색](https://luvms012-rgb.github.io/yds/site/foundations/color-palette.md): 팔레트 색의 단계와 전체 토큰.
+- [팔레트 색](https://luvms012-rgb.github.io/yds/site/foundations/color-palette.md): 팔레트 색의 단계와 전체 토큰을 확인합니다.
 
 ## 코드에서 쓰기
 

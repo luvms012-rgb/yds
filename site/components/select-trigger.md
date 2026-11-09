@@ -2,7 +2,7 @@
 
 # Select Trigger
 
-목록에서 값 하나를 고르는 칸입니다. 누르면 Select Content가 열립니다.
+목록에서 값 하나를 선택하는 컴포넌트입니다. 누르면 Select Content가 열립니다.
 
 ## 사용법
 

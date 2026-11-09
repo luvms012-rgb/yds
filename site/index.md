@@ -2,30 +2,30 @@
 
 # Get Started
 
-yds는 모든 서비스가 함께 쓰는 뿌리입니다. 브랜드는 다른 값만 얹고, 나머지는 yds를 따라갑니다.
+yds는 여러 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다. 컴포넌트와 규칙은 함께 쓰고, 색과 모서리, 글꼴만 브랜드에 맞게 바꿉니다.
 
 ## 구조
 
-1. **yds**모든 브랜드가 함께 쓰는 부품, 토큰, 규칙입니다. 담당자만 고칩니다.
-2. **브랜드**색, 모서리, 글꼴처럼 yds와 다른 값만 담은 파일 하나입니다.
-3. **서비스**yds와 브랜드를 불러와 화면을 만듭니다.
+서비스 화면은 yds 위에 브랜드 값을 더해 만들어집니다.
+
+1. **yds**모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.
+2. **브랜드**색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.
+3. **서비스**yds와 브랜드 파일을 불러와 실제 화면을 만듭니다.
 
 ## 브랜드 만들기
 
-적지 않은 값은 yds를 따라가므로 yds가 바뀌면 브랜드도 함께 바뀝니다. 부품 구조, 간격, 글자 크기, 접근성 규칙은 브랜드에서 바꾸지 않습니다.
+브랜드 파일에는 yds와 다른 값만 적습니다. 적지 않은 값은 yds를 그대로 사용하므로, yds가 업데이트되어도 브랜드를 다시 만들 필요가 없습니다. 컴포넌트 구조, 간격, 글자 크기, 접근성 규칙은 모든 브랜드에 똑같이 적용됩니다.
 
 | 바꿀 수 있는 값 | 파일에 적는 이름 | 설명 |
 | --- | --- | --- |
-| 브랜드 색 | `color` | 대표색 하나로 나머지 단계와 다크 모드 값을 만듭니다. |
-| 버튼 위 글자색 | `onBrandSolid` | 브랜드 색이 밝아서 흰 글자가 잘 보이지 않을 때 적습니다. |
-| 바탕과 면 색 | `canvas`, `layerDefault`, `layerFloating` | 화면 바탕과 카드, 창의 색입니다. |
+| 브랜드 색 | `color` | 대표 색 하나로 나머지 단계와 다크 모드 색을 만듭니다. |
 | 모서리 | `shapeScale` | 모든 모서리를 같은 비율로 키우거나 줄입니다. |
-| 글꼴 | `font` | 기본 글꼴 대신 쓸 글꼴입니다. |
+| 글꼴 | `font` | 기본 글꼴 대신 사용할 글꼴입니다. |
 
 **AI 요청**
 
 ```text
-yds 디자인 시스템 위에 우리 브랜드를 만들고 싶어.
+yds 디자인 시스템 기반으로 우리 브랜드를 만들고 싶어.
 먼저 아래 문서를 읽고 브랜드 규칙을 익혀 줘.
 문서: https://luvms012-rgb.github.io/yds/site/yds.txt
 
@@ -58,16 +58,16 @@ yds 원본은 고치지 말고, 글자 대비가 모자라면 고칠 색을 제�
 <html lang="ko" data-ds-brand="my-brand">
 ```
 
-[담당자에게 브랜드 등록 요청](https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform)
-
 ## 서비스 시작하기
 
-### 내 사이트에 넣기
+브랜드가 정해지면 상황에 맞는 요청 글을 AI에 붙여 넣어 시작합니다.
+
+### 운영 중인 사이트
 
 **AI 요청**
 
 ```text
-지금 운영 중인 이 사이트에 yds 디자인 시스템을 입히고 싶어.
+운영 중인 이 사이트를 우리 브랜드의 yds 디자인 시스템으로 바꾸고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 문서: https://luvms012-rgb.github.io/yds/site/yds.txt
 
@@ -91,12 +91,12 @@ yds 원본은 고치지 말고, 글자 대비가 모자라면 고칠 색을 제�
 <html lang="ko" data-ds-brand="my-brand">
 ```
 
-### 새 프로젝트
+### 새 서비스
 
 **AI 요청**
 
 ```text
-새 프로젝트를 yds 디자인 시스템으로 시작하려고 해.
+우리 브랜드의 새 서비스를 yds 디자인 시스템으로 시작하려고 해.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 문서: https://luvms012-rgb.github.io/yds/site/yds.txt
 
@@ -133,7 +133,7 @@ yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Tem
 **AI 요청**
 
 ```text
-yds 디자인 시스템으로 화면 시안을 만들고 싶어.
+우리 브랜드의 화면 시안을 yds 디자인 시스템으로 만들고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 문서: https://luvms012-rgb.github.io/yds/site/yds-full.txt
 
@@ -141,25 +141,40 @@ yds 디자인 시스템으로 화면 시안을 만들고 싶어.
 만들 화면: [이벤트 신청 페이지]
 들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
 
-yds에 있는 부품과 색만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
+yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
 정할 것이 있으면 만들기 전에 물어봐 줘.
 ```
 
-## 둘러보기
+## Figma로 시작하기
 
-- [Foundations](https://luvms012-rgb.github.io/yds/site/foundations/color.md): 색, 글자, 간격, 모서리, 그림자, 움직임처럼 화면의 바탕이 되는 토큰입니다.
+Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.
 
-- [Components](https://luvms012-rgb.github.io/yds/site/components/index.md): 버튼, 입력칸, 목록처럼 화면을 이루는 부품입니다.
+1. **라이브러리 켜기**Figma의 Assets 패널에서 [yds 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2274-1143)를 켭니다.
+2. **화면 그리기**yds 컴포넌트를 놓고, 색과 간격은 yds 변수로 지정합니다.
+3. **구현 요청하기**완성한 프레임 주소를 아래 요청 글에 넣어 AI에 전달합니다.
 
-- [Templates](https://luvms012-rgb.github.io/yds/site/templates/index.html): 자주 만드는 화면을 부품으로 미리 조립해 둔 예시입니다.
+브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 파일의 값이 적용됩니다.
+
+**AI 요청**
+
+```text
+이 Figma 화면을 우리 브랜드의 yds 디자인 시스템으로 구현해 줘.
+먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
+문서: https://luvms012-rgb.github.io/yds/site/yds.txt
+
+Figma: [프레임 주소]
+브랜드: [my-brand]
+
+Figma에 쓰인 컴포넌트와 변수에 맞는 yds 컴포넌트와 토큰을 쓰고, 맞는 것이 없으면 만들기 전에 물어봐 줘.
+```
 
 ## 파일
 
 | 파일 | 무엇인가요 | 언제 쓰나요 |
 | --- | --- | --- |
 | [yds.txt](https://luvms012-rgb.github.io/yds/site/yds.txt) | AI용 yds 안내서 | AI에 yds를 알려 줄 때 |
-| [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) | yds 문서 전체를 모은 파일 하나 | 주소를 열지 못하는 AI 대화창에 첨부할 때 |
+| [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) | 컴포넌트 사용법과 규칙을 모은 파일 하나 | 주소를 열지 못하는 AI 대화창에 첨부할 때 |
 | [AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) / [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md) / [yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc) | AI 코딩 도구용 yds 규칙 파일 | AI 코딩 도구가 늘 yds 규칙을 지키게 할 때 |
 | [yds-check.mjs](https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs) | yds 규칙 검사 스크립트 | 다 만든 화면을 점검할 때 |
 | [brands](https://github.com/luvms012-rgb/yds/tree/main/brands) | 등록된 브랜드 파일 | 내 브랜드 값을 확인할 때 |
-| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2608-2) | yds 컴포넌트와 변수가 든 Figma 파일 | Figma로 화면을 그릴 때 |
+| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2274-1143) | yds 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |

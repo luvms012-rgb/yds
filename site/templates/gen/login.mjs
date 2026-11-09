@@ -65,7 +65,7 @@ const loginSplit = () => {
   </div>
   ${legal}
 </div></main>`;
-  return { slug: 'login-split', en: 'Login Split', name: '로그인 (화면 분할)', group: 'Login', desc: '한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 씁니다.', css, body };
+  return { slug: 'login-split', en: 'Login Split', name: '로그인 (화면 분할)', group: 'Login', desc: '한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 사용합니다.', css, body };
 };
 
 /* 3. 로그인 SSO -------------------------------------------------- */

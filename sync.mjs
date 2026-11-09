@@ -249,14 +249,8 @@ ${fs.readFileSync(path.join(DS, 'tokens', 'figma-docs.template.js'), 'utf8')}`, 
 // 자료: tokens/.figma-docs.json (node site/build.mjs). 클래스 → Figma 컴포넌트 세트는 components.json 의 classes, figma 로 잇는다
 // 안내 페이지(Get Started, Foundations): 사이트 .md 를 블록으로 나눠 넘긴다 (2026-11-05)
 //   h2 → 섹션, h3 → 소제목 묶음, 문단, 굵은 한 줄(라벨), 코드(text 는 "요청 글"), 표, "- [제목](주소): 설명" 줄 → 카드
-const PAGE_DOCS = { 'get-started': { md: 'site/index.md', frame: '2608:2', category: 'Get Started', docs: 'https://luvms012-rgb.github.io/yds/site/index.html', code: 'https://github.com/luvms012-rgb/yds' },
-  // Updates (2026-11-06): site/src/updates.json 을 사이트 Updates 쪽과 같은 순서의 글로 바꿔 그린다. 소식을 더할 때마다 다시 그린다
-  updates: { json: 'site/src/updates.json', frame: '2701:3', category: 'Updates', docs: 'https://luvms012-rgb.github.io/yds/site/updates.html', code: 'https://github.com/luvms012-rgb/yds/commits/main' } };
-function updatesMd(file) {
-  const j = JSON.parse(read(file));
-  const d = (x) => { const [y, m, dd] = x.split('-').map(Number); return `${y}. ${m}. ${dd}`; };
-  return ['# Updates', 'yds 업데이트 소식과 변경 기록입니다.', ...j.releases.flatMap((r) => [`## ${r.version ? 'v' + r.version + ' ' : ''}${d(r.date)}`, ...r.sections.flatMap((x) => [`**${x.type}**`, ...x.items.map(([a, t]) => `- [${a}] ${t}`)])])].join('\n');
-}
+// 11-09 Figma 는 Foundations 와 컴포넌트 페이지만 둔다 (Get Started, Updates 페이지 삭제). 아래에서 Foundations 쪽만 채운다
+const PAGE_DOCS = {};
 function mdBlocks(md) {
   const inl = (s) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/`([^`]+)`/g, '$1').trim();
   const lines = md.replace(/^<!--[^\n]*-->\n/, '').split('\n');
@@ -398,7 +392,7 @@ function docpageScript(slug, mode) {
   if (PAGE_DOCS[slug]) {
     const pg = PAGE_DOCS[slug];
     const reg0 = JSON.parse(read('components.json'));
-    const { title, lead, blocks } = mdBlocks(pg.json ? updatesMd(pg.json) : read(pg.md));
+    const { title, lead, blocks } = mdBlocks(read(pg.md));
     // Figma 파일에만 있는 안내: 이 파일의 페이지 (사이트 메뉴와 같은 순서)
     const figmaPages = pg.keepVisuals || pg.json ? null : [['Get Started', 'yds 소개와 시작하는 방법'], ['Foundations', '색, 글자, 간격, 모서리, 그림자, 움직임, 기준점'], ['Iconography', 'Lucide 아이콘 라이브러리와 쓰는 법'], ['Action ~ Table & List', `컴포넌트 ${d.components.length}종. 사이트 Components 와 같은 분류 페이지`], ['Updates', 'yds 업데이트 소식. 사이트 Updates 와 같은 글']];
     // 견본을 남기는 쪽(Foundations)은 '보기' 칸이 있는 토큰 표를 빼고 Figma 견본으로 보여 준다

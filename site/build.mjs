@@ -258,7 +258,7 @@ function sideNav(section, file, root) {
   if (section === 'templates') {
     parts.push(item('templates/index.html', 'Overview'));
     // 11-05 사용자: 목록은 메뉴 없이 분류 탭, 상세는 탭과 같은 분류 묶음(묶음 안은 가나다 순)
-    for (const g of [...new Set(templates.map((t) => t.group))]) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort((x, y) => x.name.localeCompare(y.name, 'ko')).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
+    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => (TPL_GROUP_KO[x] || x).localeCompare(TPL_GROUP_KO[y] || y, 'ko'))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort((x, y) => x.name.localeCompare(y.name, 'ko')).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
   }
   const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
   // 컴포넌트 메뉴 맨 위 찾기 칸 (높이 32, 모서리 12, 1px 테두리) - 메뉴 항목과 목록 카드를 함께 거른다
@@ -373,7 +373,7 @@ const CSS_LINK = `<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 // 틀: 하고 싶은 것 / 문서 먼저 익히기 / [채울 값 줄] / 바라는 방식. 채울 값은 "이름: [값]" 따로 줄
 const DOC_LINE = `문서: ${SITE_URL}yds.txt`;
 const START = [
-  ['migrate', '내 사이트에 넣기', `지금 운영 중인 이 사이트에 yds 디자인 시스템을 입히고 싶어.
+  ['migrate', '운영 중인 사이트', `운영 중인 이 사이트를 우리 브랜드의 yds 디자인 시스템으로 바꾸고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
 
@@ -382,7 +382,7 @@ ${DOC_LINE}
 운영 중인 사이트라서 한 번에 바꾸지 말고, 사이트를 먼저 살펴본 뒤 어떤 순서로 바꿀지 알려 줘.
 화면은 하나씩 바꾸고, 바꿀 때마다 전후 화면을 보여 주면 내가 확인할게.
 원래 되던 기능은 그대로 동작해야 하고, 애매한 부분은 혼자 정하지 말고 물어봐 줘.`],
-  ['start', '새 프로젝트', `새 프로젝트를 yds 디자인 시스템으로 시작하려고 해.
+  ['start', '새 서비스', `우리 브랜드의 새 서비스를 yds 디자인 시스템으로 시작하려고 해.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 ${DOC_LINE}
 
@@ -391,7 +391,7 @@ ${DOC_LINE}
 
 yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Templates에 있으면 거기서 시작해 줘.
 다 만들면 규칙을 지켰는지 점검하고, 고친 곳을 알려 줘.`],
-  ['draft', '화면 시안', `yds 디자인 시스템으로 화면 시안을 만들고 싶어.
+  ['draft', '화면 시안', `우리 브랜드의 화면 시안을 yds 디자인 시스템으로 만들고 싶어.
 먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
 문서: ${SITE_URL}yds-full.txt
 
@@ -399,11 +399,11 @@ yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Tem
 만들 화면: [이벤트 신청 페이지]
 들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
 
-yds에 있는 부품과 색만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
+yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
 정할 것이 있으면 만들기 전에 물어봐 줘.`],
 ];
 // 브랜드 만들기 (11-09 사용자 "yds를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
-const BRAND_PROMPT = `yds 디자인 시스템 위에 우리 브랜드를 만들고 싶어.
+const BRAND_PROMPT = `yds 디자인 시스템 기반으로 우리 브랜드를 만들고 싶어.
 먼저 아래 문서를 읽고 브랜드 규칙을 익혀 줘.
 ${DOC_LINE}
 
@@ -414,6 +414,14 @@ ${DOC_LINE}
 
 yds와 다른 값만 담은 브랜드 파일을 JSON으로 만들어 줘.
 yds 원본은 고치지 말고, 글자 대비가 모자라면 고칠 색을 제안해 줘.`;
+const FIGMA_PROMPT = `이 Figma 화면을 우리 브랜드의 yds 디자인 시스템으로 구현해 줘.
+먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
+${DOC_LINE}
+
+Figma: [프레임 주소]
+브랜드: [my-brand]
+
+Figma에 쓰인 컴포넌트와 변수에 맞는 yds 컴포넌트와 토큰을 쓰고, 맞는 것이 없으면 만들기 전에 물어봐 줘.`;
 const BRAND_JSON = `{
   "name": "우리 브랜드",
   "color": "#0f7a3f",
@@ -435,7 +443,7 @@ const LLMS_RULES = `## 지킬 것
 - 원본: yds 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. yds 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드: 브랜드 파일(${PUBLIC}/dist/brands/브랜드이름.css)을 yds CSS 다음, 서비스 CSS 앞에 불러오고 <html>에 data-ds-brand="브랜드이름"을 단다. 브랜드 값을 서비스 CSS에 따로 적지 않는다.
-- 새 브랜드: 브랜드 파일(JSON)에는 yds와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), onBrandSolid(브랜드 버튼 위 글자색), canvas, layerDefault, layerFloating(바탕과 면), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
+- 새 브랜드: 브랜드 파일(JSON)에는 yds와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
 - 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.
 - 글자: 한국어. 제목 Bold, 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
 - 점검: 끝내기 전에 검사 스크립트(${SITE_URL}ai/yds-check.mjs)를 받아 node로 돌리고, 나온 문제를 모두 고친다.
@@ -454,33 +462,32 @@ const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-chiptabs site-
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
 const hubCard = (href, title, desc, out = false) => `<a class="site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="site-hub__desc">${esc(desc)}</span></a>`;
 write({
-  file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'yds는 같은 화면을 만들게 돕는 디자인 시스템입니다.', layout: 'page',
+  file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'yds는 여러 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.', layout: 'page',
   body: `<header>
   <h1 class="site-h1">Get Started</h1>
-  <p class="site-lead">yds는 모든 서비스가 함께 쓰는 뿌리입니다. 브랜드는 다른 값만 얹고, 나머지는 yds를 따라갑니다.</p>
-  ${metaLinks({ figma: LINKS.figmaUrl('2608:2'), code: GITHUB })}
+  <p class="site-lead">yds는 여러 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다. 컴포넌트와 규칙은 함께 쓰고, 색과 모서리, 글꼴만 브랜드에 맞게 바꿉니다.</p>
+  ${metaLinks({ figma: LINKS.figmaUrl('2274:1143'), code: GITHUB })}
 </header>
 
 <h2 id="structure">구조</h2>
+<p>서비스 화면은 yds 위에 브랜드 값을 더해 만들어집니다.</p>
 <ol class="site-gs__layers">
-  <li><strong>yds</strong><span>모든 브랜드가 함께 쓰는 부품, 토큰, 규칙입니다. 담당자만 고칩니다.</span></li>
-  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 yds와 다른 값만 담은 파일 하나입니다.</span></li>
-  <li><strong>서비스</strong><span>yds와 브랜드를 불러와 화면을 만듭니다.</span></li>
+  <li><strong>yds</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
+  <li><strong>서비스</strong><span>yds와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
 <h2 id="brand">브랜드 만들기</h2>
-<p>적지 않은 값은 yds를 따라가므로 yds가 바뀌면 브랜드도 함께 바뀝니다. 부품 구조, 간격, 글자 크기, 접근성 규칙은 브랜드에서 바꾸지 않습니다.</p>
+<p>브랜드 파일에는 yds와 다른 값만 적습니다. 적지 않은 값은 yds를 그대로 사용하므로, yds가 업데이트되어도 브랜드를 다시 만들 필요가 없습니다. 컴포넌트 구조, 간격, 글자 크기, 접근성 규칙은 모든 브랜드에 똑같이 적용됩니다.</p>
 ${table(['바꿀 수 있는 값', '파일에 적는 이름', '설명'], [
-  ['브랜드 색', '<code>color</code>', '대표색 하나로 나머지 단계와 다크 모드 값을 만듭니다.'],
-  ['버튼 위 글자색', '<code>onBrandSolid</code>', '브랜드 색이 밝아서 흰 글자가 잘 보이지 않을 때 적습니다.'],
-  ['바탕과 면 색', '<code>canvas</code>, <code>layerDefault</code>, <code>layerFloating</code>', '화면 바탕과 카드, 창의 색입니다.'],
+  ['브랜드 색', '<code>color</code>', '대표 색 하나로 나머지 단계와 다크 모드 색을 만듭니다.'],
   ['모서리', '<code>shapeScale</code>', '모든 모서리를 같은 비율로 키우거나 줄입니다.'],
-  ['글꼴', '<code>font</code>', '기본 글꼴 대신 쓸 글꼴입니다.'],
+  ['글꼴', '<code>font</code>', '기본 글꼴 대신 사용할 글꼴입니다.'],
 ])}
 ${codeTabs([['AI 요청', codeblock(BRAND_PROMPT, 'text', ' data-wrap')], ['브랜드 파일', codeblock(BRAND_JSON, 'json')], ['HTML', codeblock(BRAND_HTML)]])}
-${FEEDBACK_FORM ? `<p class="site-gs__send"><a class="ds-btn" data-variant="neutralWeak" data-size="small" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">담당자에게 브랜드 등록 요청</a></p>` : ''}
 
 <h2 id="ai">서비스 시작하기</h2>
+<p>브랜드가 정해지면 상황에 맞는 요청 글을 AI에 붙여 넣어 시작합니다.</p>
 <div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
   ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
 </div>
@@ -504,21 +511,24 @@ ${BRAND_HTML}
   return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}</div>`;
 }).join('\n')}
 
-<h2 id="system">둘러보기</h2>
-<div class="site-grid site-grid--hub site-grid--hub3">
-  ${hubCard('foundations/color.html', 'Foundations', '색, 글자, 간격, 모서리, 그림자, 움직임처럼 화면의 바탕이 되는 토큰입니다.')}
-  ${hubCard('components/index.html', 'Components', '버튼, 입력칸, 목록처럼 화면을 이루는 부품입니다.')}
-  ${hubCard('templates/index.html', 'Templates', '자주 만드는 화면을 부품으로 미리 조립해 둔 예시입니다.')}
-</div>
+<h2 id="figma">Figma로 시작하기</h2>
+<p>Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.</p>
+<ol class="site-gs__layers">
+  <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${LINKS.figmaUrl('2274:1143')}" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
+  <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색과 간격은 yds 변수로 지정합니다.</span></li>
+  <li><strong>구현 요청하기</strong><span>완성한 프레임 주소를 아래 요청 글에 넣어 AI에 전달합니다.</span></li>
+</ol>
+<p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다. 구현할 때 브랜드 파일의 값이 적용됩니다.</p>
+${codeTabs([['AI 요청', codeblock(FIGMA_PROMPT, 'text', ' data-wrap')]])}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
   [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'AI용 yds 안내서', 'AI에 yds를 알려 줄 때'],
-  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, 'yds 문서 전체를 모은 파일 하나', '주소를 열지 못하는 AI 대화창에 첨부할 때'],
+  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', '주소를 열지 못하는 AI 대화창에 첨부할 때'],
   [['AGENTS.md', 'CLAUDE.md', 'yds.mdc'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join(' / '), 'AI 코딩 도구용 yds 규칙 파일', 'AI 코딩 도구가 늘 yds 규칙을 지키게 할 때'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'yds 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
   [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 브랜드 값을 확인할 때'],
-  [`<a class="ds-link" href="${LINKS.figmaUrl('2608:2')}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'yds 컴포넌트와 변수가 든 Figma 파일', 'Figma로 화면을 그릴 때'],
+  [`<a class="ds-link" href="${LINKS.figmaUrl('2274:1143')}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'yds 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 고를 때']] : []),
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
 
@@ -562,7 +572,7 @@ const foundName = Object.fromEntries(FOUND);
 fs.mkdirSync(path.join(SITE, 'foundations'), { recursive: true });
 const foundPages = {
   color: {
-    title: '색', lead: '색은 정보의 위계와 상태, 브랜드를 구분해 보여 줍니다.', tabs: 'color',
+    title: '색', lead: '색은 정보의 위계와 상태, 브랜드를 구분해 전달합니다.', tabs: 'color',
     body: `<h2 id="overview">개요</h2>
 <p>yds의 색은 역할 색과 팔레트 색 두 층입니다. 화면에는 역할 색만 쓰고, 팔레트 색은 역할 색의 원료로 둡니다. 그래서 어느 화면에서나 대비가 충분하고 뜻이 같습니다.</p>
 <h2 id="role-based">역할 색</h2>
@@ -571,8 +581,8 @@ const foundPages = {
 <p>팔레트 색은 회색과 일곱 가지 색을 100 ~ 1000 단계로 나눈 원료입니다. 역할 색으로 나타내기 어려울 때만 화면에 씁니다. 다크 모드에서도 같은 단계 번호를 그대로 쓰면 됩니다. 전체 목록은 <a class="ds-link" href="color-palette.html">Palette</a>에 있습니다.</p>
 <h2 id="related">관련 문서</h2>
 <div class="site-grid site-grid--hub">
-  ${hubCard('color-roles.html', '역할 색', '역할 색의 규칙과 전체 토큰.')}
-  ${hubCard('color-palette.html', '팔레트 색', '팔레트 색의 단계와 전체 토큰.')}
+  ${hubCard('color-roles.html', '역할 색', '역할 색의 규칙과 전체 토큰을 확인합니다.')}
+  ${hubCard('color-palette.html', '팔레트 색', '팔레트 색의 단계와 전체 토큰을 확인합니다.')}
 </div>
 <h2 id="code">코드에서 쓰기</h2>
 ${codeblock(`.my-card {\n  background: var(--ds-color-bg-layer-default);\n  color: var(--ds-color-fg-neutral);\n  border: 1px solid var(--ds-color-stroke-neutral-muted);\n}`, 'css')}
@@ -588,7 +598,7 @@ ${practices([
 ])}`,
   },
   typography: {
-    title: '글자', lead: '타이포그래피는 글을 분명하고 읽기 쉽게 전합니다.',
+    title: '글자', lead: '타이포그래피는 정보의 위계를 구분하고 글을 읽기 쉽게 만듭니다.',
     body: `<h2 id="overview">개요</h2>
 <p>기본 글꼴은 Pretendard입니다. 다른 글꼴은 <a class="ds-link" data-size="small" href="../index.html#brand">브랜드 파일</a>에서 정합니다. 크기는 <code>--ds-font-size-t01</code> ~ <code>t17</code>, 줄 높이는 같은 번호의 <code>--ds-line-height-*</code>를 짝으로 씁니다.</p>
 <h2 id="size">크기</h2>
@@ -608,7 +618,7 @@ ${practices([
 ])}`,
   },
   spacing: {
-    title: '간격', lead: '간격은 요소 사이의 거리로 무엇이 한 묶음인지 보여 줍니다.',
+    title: '간격', lead: '간격은 요소 사이의 거리로 관계와 묶음을 나타냅니다.',
     body: `<h2 id="overview">개요</h2>
 <p>4px 단위가 기본이고 작은 간격은 2px 단위도 씁니다. 이름의 숫자에 4를 곱하면 값입니다. 화면 좌우 여백은 <code>--ds-space-x-global-gutter</code>입니다.</p>
 <h2 id="tokens">토큰</h2>
@@ -623,7 +633,7 @@ ${practices([
 ])}`,
   },
   breakpoint: {
-    title: '기준점', lead: '기준점은 화면 폭에 따라 배치를 바꾸는 지점입니다.',
+    title: '기준점', lead: '기준점은 화면 너비에 따라 레이아웃이 바뀌는 지점입니다.',
     body: `<h2 id="overview">개요</h2>
 <p>작은 화면부터 만들고 폭이 넓어질 때 배치를 더합니다. <code>@media</code> 안에서는 CSS 변수를 쓸 수 없어 숫자를 직접 씁니다.</p>
 <h2 id="tokens">토큰</h2>
@@ -648,7 +658,7 @@ ${practices([
 ])}`,
   },
   shape: {
-    title: '모서리', lead: '모서리는 요소의 둥글기를 정해 화면의 인상을 맞춥니다.',
+    title: '모서리', lead: '모서리는 요소의 둥글기를 정해 일관된 인상을 만듭니다.',
     body: `<h2 id="overview">개요</h2>
 <p>모서리는 크기 이름으로 씁니다. 작은 요소일수록 덜 둥글고 큰 면일수록 더 둥급니다. 칩과 배지처럼 양 끝이 둥근 요소는 <code>pill</code>을 씁니다.</p>
 <h2 id="tokens">토큰</h2>
@@ -667,7 +677,7 @@ ${practices([
 ])}`,
   },
   elevation: {
-    title: '그림자', lead: '그림자와 겹침 순서는 요소가 얼마나 떠 있는지, 무엇이 위에 있는지 보여 줍니다.',
+    title: '그림자', lead: '그림자와 겹침 순서는 요소의 높낮이와 앞뒤 관계를 나타냅니다.',
     body: `<h2 id="overview">개요</h2>
 <p>위에 떠 있는 면일수록 지금 더 중요합니다. 그림자는 숫자 대신 쓰임 이름으로 씁니다. 다크 모드에서는 떠 있는 면을 <code>bg-layer-floating</code>으로 한 단계 밝게 칠합니다.</p>
 <h2 id="shadow">그림자</h2>
@@ -684,7 +694,7 @@ ${practices([
 ])}`,
   },
   motion: {
-    title: '움직임', lead: '움직임은 화면이 바뀌는 과정을 자연스럽게 이어 줍니다.',
+    title: '움직임', lead: '움직임은 화면의 변화를 자연스럽게 이어 줍니다.',
     body: `<h2 id="overview">개요</h2>
 <p>버튼 색처럼 작은 반응은 짧게, 시트처럼 화면이 크게 바뀌는 움직임은 조금 길게 씁니다. 들어오는 요소는 <code>enter</code>, 나가는 요소는 <code>exit</code> 곡선을 씁니다.</p>
 <h2 id="duration">길이</h2>
@@ -804,7 +814,7 @@ const iconNames = [...new Set([...iconsCss.matchAll(/\.ds-icon--([a-z0-9-]+)\s*\
 // Lucide 전체 목록 - site/src/lucide-icons.json (site/lucide-update.mjs로 만든다). 화면에는 site.js가 그린다
 const lucide = JSON.parse(fs.readFileSync(path.join(SITE, 'src/lucide-icons.json'), 'utf8'));
 const lucideCount = Object.keys(lucide.icons).length;
-const ICON_LEAD = '아이콘은 정보와 기능을 빠르게 알아보도록 돕습니다.';
+const ICON_LEAD = '아이콘은 정보와 기능을 빠르게 인식하도록 돕습니다.';
 const ICON_PRACTICES = [
   [true, '같은 뜻에는 늘 같은 아이콘을 씁니다. 닫기는 x, 더 보기는 ellipsis입니다.'],
   [true, '아이콘만 있는 버튼에는 aria-label을 붙입니다.'],
@@ -923,7 +933,7 @@ const coverThumb = (c) => cardThumb(c).replace('class="site-tile__thumb"', 'clas
 const hero = (title, lead) => `<header class="site-hero"><h1 class="site-h1">${esc(title)}</h1><p class="site-lead">${esc(lead)}</p></header>`;
 write({
   file: 'components/index.html', section: 'components', title: 'Components', layout: 'wide',
-  body: `<header><h1 class="site-h1">Components</h1><p class="site-lead">화면을 만드는 데 쓰는 컴포넌트 ${comps.length}종입니다.</p></header>
+  body: `<header><h1 class="site-h1">Components</h1><p class="site-lead">화면을 구성하는 yds 컴포넌트입니다.</p></header>
 ${COMP_CATS.map((cat) => { const list = compsAZ.filter((c) => (REG_CAT[c.no] || 'Etc') === cat); return list.length ? `<section class="site-group site-comp-group"><h2 class="site-group__title">${esc(cat)}</h2>
 <div class="site-tiles">${list.map((c) => `<a class="site-tile" href="${c.slug}.html" data-site-item="${esc((c.name + ' ' + koKeys(c.name.split(' · ')[0]) + ' ' + cat).toLowerCase())}">${cardThumb(c)}<p class="site-tile__name">${esc(c.name.split(' · ')[0])}</p></a>`).join('\n')}</div></section>` : ''; }).join('\n')}
 <div class="ds-empty site-empty-result" hidden><span class="ds-empty__media"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></span><p class="ds-empty__title">찾는 컴포넌트가 없어요</p><p class="ds-empty__desc">다른 이름으로 찾아보세요.</p></div>`,
@@ -1040,9 +1050,11 @@ ${sections.join('\n')}`,
 const tplGroups = [...new Set(templates.map((t) => t.group))];
 // 분류 칩에 보이는 이름 (값은 templates.json의 영어 group)
 const TPL_GROUP_KO = { Dashboard: '대시보드', Table: '표', Form: '입력 폼', Settings: '설정', Login: '로그인', Tools: '도구', Content: '콘텐츠', 'AI Chat': 'AI 채팅', Gallery: '갤러리', Community: '커뮤니티', Pricing: '요금제', 'My Page': '마이페이지', Commerce: '쇼핑', Exam: '시험 접수', 'Exam B2B': '단체 시험', 'Learning B2B': '기업 러닝' };
+// 분류 탭은 보이는 한글 이름의 가나다 순 (11-09 사용자)
+tplGroups.sort((x, y) => (TPL_GROUP_KO[x] || x).localeCompare(TPL_GROUP_KO[y] || y, 'ko'));
 write({
   file: 'templates/index.html', section: 'templates', title: 'Templates', layout: 'full',  // 11-05 사용자: 목록은 왼쪽 메뉴 없이 분류 탭으로
-  body: `${hero('Templates', '자주 만드는 화면을 DS 컴포넌트로 미리 조립해 두었습니다.').replace(' class="site-hero"', '')  /* 11-05 사용자: 다른 화면처럼 왼쪽 정렬 */.replace('</p></header>', (SHOW_THEMES ? ' 테마를 입힌 실제 사이트 예시는 <a class="ds-link" href="../themes/index.html">Themes</a>에 있습니다.' : '') + '</p></header>')}
+  body: `${hero('Templates', '자주 만드는 화면을 yds 컴포넌트로 미리 구성했습니다.').replace(' class="site-hero"', '')  /* 11-05 사용자: 다른 화면처럼 왼쪽 정렬 */.replace('</p></header>', (SHOW_THEMES ? ' 테마를 입힌 실제 사이트 예시는 <a class="ds-link" href="../themes/index.html">Themes</a>에 있습니다.' : '') + '</p></header>')}
 <div class="site-toolbar site-toolbar--wrap">
   <div class="ds-chiptabs" role="tablist" aria-label="분류">
     <button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-filter="">전체</button>
@@ -1213,7 +1225,7 @@ ${LLMS_RULES}
 - 버전: ${VERSION} (버전 고정 주소 ${PIN}/dist/ybm-ds.css)
 - CSS: ${PUBLIC}/dist/ybm-ds.css
 - JS: ${PUBLIC}/dist/ybm-ds.js
-- 전체 문서 한 파일: ${SITE_URL}yds-full.txt
+- 사용법과 규칙 모음: ${SITE_URL}yds-full.txt (예시, 규격, 구조는 각 쪽 .md에 있다)
 - 규칙 파일: ${SITE_URL}ai/AGENTS.md
 - 아이콘 목록: ${SITE_URL}ai/icons.json
 - 검사 스크립트: ${SITE_URL}ai/yds-check.mjs

@@ -78,7 +78,7 @@ const form = () => {
   </main>
 </div>
 </div>`;
-  return { slug: 'settings', en: 'Settings Form', name: '설정 폼', group: 'Settings', desc: '모든 설정을 한 페이지에 이어 놓은 가장 단순한 설정 화면입니다. 설정 항목이 많지 않을 때 씁니다.', css, body };
+  return { slug: 'settings', en: 'Settings Form', name: '설정 폼', group: 'Settings', desc: '모든 설정을 한 페이지에 이어 놓은 가장 단순한 설정 화면입니다. 설정 항목이 많지 않을 때 사용합니다.', css, body };
 };
 
 /* 3. 설정 패널 (왼쪽 메뉴로 바꾸는) ---------------------------- */

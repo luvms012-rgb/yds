@@ -461,6 +461,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 @media (max-width: 767px) { .site-anatomy-scroll { overflow-x: auto; scrollbar-width: thin; } }  /* 2026-11-05 사용자 "휴대폰도 고치기": 그림을 줄여 이름이 겹치지 않게, PC 크기 그대로 옆으로 밀어 본다 */
 .site-anatomy .site-tile__inner { padding: var(--ds-space-x16) 160px; }  /* 위아래와 좌우에 이름 자리 */
 @media (max-width: 767px) { .site-anatomy .site-tile__inner { padding: var(--ds-space-x12) 72px; } }  /* 2026-11-04: 휴대폰에서는 이름 자리를 줄여 부품을 넓게 */
+.site-anatomy .ds-searchfield[data-variant="fill"] > .ds-input { --ds-input-bg: var(--ds-color-bg-neutral); }  /* 흰 그림 상자에서도 찾기 칸이 보이게 */
+.site-anatomy .ds-input:has(.ds-input__control:not(:placeholder-shown)) .ds-input__clear { display: block; }  /* 포커스 없이도 Clear 를 보여 준다 */
 .site-anatomy .site-tile__inner { z-index: 0; }  /* 부품의 z-index(떠 있는 목록 등)가 화살표를 덮지 않게 그림 안에 가둔다 */
 .site-anatomy__layer { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .site-anatomy__layer line { stroke: var(--site-anatomy-c); stroke-width: 1; }
@@ -549,7 +551,6 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
   .site-gs__layers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .site-gs__layers li + li::before { top: calc(50% - var(--ds-space-x2)); left: calc(var(--ds-space-x6) * -1); -webkit-mask-image: var(--ds-icon-chevron-right); mask-image: var(--ds-icon-chevron-right); }
 }
-.site-gs__send { margin: var(--ds-space-x4) 0 0; }
 .site-gs__files td:first-child a { white-space: nowrap; }
 @media (min-width: 768px) { .site-gs__files th:first-child { width: 34%; } .site-gs__files th:nth-child(2) { width: 30%; } }
 /* 코드 글자 색 (11-04 사용자 "코드뷰 컬러로 개선, seed 참조"): 레퍼런스 B 의 GitHub 테마 규칙을 DS 팔레트로. 팔레트라 다크 모드에서 같이 뒤집힌다 */

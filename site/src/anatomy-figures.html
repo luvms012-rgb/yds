@@ -93,7 +93,7 @@
 </template>
 
 <template data-slug="pull-to-refresh">
-<div class="ds-ptr" data-state="refreshing" style="width: 320px">
+<div class="ds-ptr" data-state="refreshing" style="width: 320px; padding-bottom: 72px; --ds-ptr-displacement: 72px">
   <div class="ds-ptr__indicator"><span class="ds-progress-circle" role="progressbar" aria-label="새로 고침"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span></div>
   <div class="ds-ptr__content"><ul class="ds-list" data-divider><li><span class="ds-list-item"><span class="ds-list-item__content"><span class="ds-list-item__title">새 강의 2개가 올라왔어요</span><span class="ds-list-item__desc">방금 전</span></span></span></li><li><span class="ds-list-item"><span class="ds-list-item__content"><span class="ds-list-item__title">겨울 방학 특강 신청 안내</span><span class="ds-list-item__desc">어제</span></span></span></li></ul></div>
 </div>
@@ -318,13 +318,13 @@
 </template>
 
 <template data-slug="search-suggestion">
-<div class="ds-search-anchor" style="width: 360px">
+<div style="display:flex;flex-direction:column;gap:24px;width:360px"><div class="ds-search-anchor">
   <div class="ds-input" data-variant="outline" data-size="medium">
     <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
     <input class="ds-input__control" type="search" role="combobox" aria-controls="sg" aria-expanded="true" aria-autocomplete="list" value="회의" aria-label="찾기">
     <button type="button" class="ds-input__clear" aria-label="지우기" style="display: block"></button>
   </div>
-  <div class="ds-search-suggest">
+  <div class="ds-search-suggest" style="position:static;margin-top:4px">
     <div class="ds-search-suggest__heading">추천 검색어</div>
     <ul class="ds-search-suggest__list" role="listbox">
       <li role="none"><a class="ds-search-suggest__item" role="option" href="#">
@@ -338,6 +338,7 @@
     </ul>
   </div>
 </div>
+<div class="ds-search-anchor"><div class="ds-input" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" value="없는 낱말" aria-label="찾기"></div><div class="ds-search-suggest" style="position:static;margin-top:4px"><p class="ds-search-suggest__empty">검색 결과가 없어요</p></div></div></div>
 </template>
 
 <template data-slug="select-content-item">
@@ -345,8 +346,8 @@
   <div class="ds-select-content__group" role="group">
     <div class="ds-select-content__label">자주 찾는 지역</div>
     <ul class="ds-select-list">
-      <li><button class="ds-select-item" role="option" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">서울 종로구</span><span class="ds-select-item__desc">광화문, 인사동</span></span></button></li>
-      <li><button class="ds-select-item" role="option"><span class="ds-select-item__body"><span class="ds-select-item__label">서울 강남구</span><span class="ds-select-item__desc">역삼, 삼성</span></span></button></li>
+      <li><button class="ds-select-item" role="option"><span class="ds-select-item__body"><span class="ds-select-item__label">서울 종로구</span><span class="ds-select-item__desc">광화문, 인사동</span></span></button></li>
+      <li><button class="ds-select-item" role="option" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">서울 강남구</span><span class="ds-select-item__desc">역삼, 삼성</span></span></button></li>
     </ul>
   </div>
 </div>
@@ -382,7 +383,7 @@
 </template>
 
 <template data-slug="chart">
-<figure class="ds-chart" data-type="bar" style="width:360px"><figcaption class="ds-chart__header"><span class="ds-chart__title">주간 방문</span><span class="ds-chart__desc">지난 7일</span></figcaption><div class="ds-chart__plot"><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 40%"></span><span class="ds-chart__label">월</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 62%"></span><span class="ds-chart__label">화</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 55%"></span><span class="ds-chart__label">수</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 80%"></span><span class="ds-chart__label">목</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 72%"></span><span class="ds-chart__label">금</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 30%"></span><span class="ds-chart__label">토</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 24%"></span><span class="ds-chart__label">일</span></div></div></figure>
+<div style="display:grid;grid-template-columns:repeat(2,240px);gap:32px;align-items:start"><figure class="ds-chart" data-type="bar"><figcaption class="ds-chart__header"><span class="ds-chart__title">주간 방문</span><span class="ds-chart__desc">지난 7일</span></figcaption><div class="ds-chart__plot"><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 40%"></span><span class="ds-chart__label">월</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 62%"></span><span class="ds-chart__label">화</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 55%"></span><span class="ds-chart__label">수</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 80%"></span><span class="ds-chart__label">목</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 72%"></span><span class="ds-chart__label">금</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 30%"></span><span class="ds-chart__label">토</span></div><div class="ds-chart__col"><span class="ds-chart__bar" style="--ds-chart-value: 24%"></span><span class="ds-chart__label">일</span></div></div></figure><figure class="ds-chart" data-type="line"><div class="ds-chart__plot"><svg class="ds-chart__svg" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><polygon class="ds-chart__area" points="0,40 0,30 25,26 50,18 75,14 100,8 100,40"/><polyline class="ds-chart__line" points="0,30 25,26 50,18 75,14 100,8"/></svg></div><div class="ds-chart__axis"><span>1월</span><span>2월</span><span>3월</span><span>4월</span><span>5월</span></div></figure><figure class="ds-chart" data-type="donut" style="grid-column:1 / -1"><div class="ds-chart__donut" style="--ds-chart-1: 45; --ds-chart-2: 30; --ds-chart-3: 25" aria-hidden="true"><span class="ds-chart__total">1,284<small>전체 주문</small></span></div><ul class="ds-chart__legend"><li><span class="ds-chart__swatch"></span>카드</li><li><span class="ds-chart__swatch" data-series="2"></span>계좌 이체</li><li><span class="ds-chart__swatch" data-series="3"></span>간편 결제</li></ul></figure></div>
 </template>
 
 <template data-slug="description-list">
@@ -390,11 +391,11 @@
 </template>
 
 <template data-slug="toolbar">
-<div class="ds-toolbar" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small" style="width:420px"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">삭제</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
+<div class="ds-toolbar" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small" style="width:560px"><div class="ds-toolbar__start"><span class="ds-toolbar__title">주문 목록</span><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__center"><button type="button" class="ds-btn" data-variant="ghost" data-size="small">상태 변경</button></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">삭제</button><span class="ds-toolbar__separator" role="separator"></span><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
 </template>
 
 <template data-slug="tree">
-<ul class="ds-tree" role="tree" aria-label="강의 자료 폴더" style="width:280px"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 자료</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">1주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-selected="true" tabindex="0"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 계획서.docx</span></div></li><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">발표 자료.pdf</span></div></li></ul></li><li class="ds-tree__node" role="treeitem" aria-expanded="false" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">2주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">읽을거리.pdf</span></div></li></ul></li></ul></li></ul>
+<ul class="ds-tree" role="tree" aria-label="강의 자료 폴더" style="width:280px"><li class="ds-tree__node" role="treeitem" aria-expanded="true" aria-selected="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 자료</span><span class="ds-tree__suffix">12</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">1주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="0"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 계획서.docx</span></div></li><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">발표 자료.pdf</span></div></li></ul></li><li class="ds-tree__node" role="treeitem" aria-expanded="false" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">2주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">읽을거리.pdf</span></div></li></ul></li></ul></li></ul>
 </template>
 
 <template data-slug="wheel-picker">

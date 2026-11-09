@@ -20,7 +20,7 @@ Foundations 페이지 문서 프레임(왼쪽→오른쪽): Color `2486:2`, Typo
 
 > **2026-11-06 보류 풀림** - 사용자 "피그마 바로 진행". 새 컴포넌트 7종은 Action Button 문서 프레임(2481:2, docpage 로 그린 것)을 기준으로 만든다.
 
-- **Updates 자동 작성** - 배포하는 변경마다 `site/src/updates.json` 맨 위 그날 날짜에 소식 한 문장을 더하고(README §10-7), 같은 배포에서 `node sync.mjs docpage updates` 를 use_figma 로 돌려 Figma Updates 페이지(`2701:3`)도 같게 그린다.
+- **Updates 자동 작성** - 배포하는 변경마다 `site/src/updates.json` 맨 위 그날 날짜에 소식 한 문장을 더하고(README §10-7), Figma Updates 페이지는 11-09 사용자 지시로 지웠으므로 Figma 쪽 작업은 없다.
 - **양방향 자동 동기화** - 작업 시작에 `node sync.mjs figma` 점검(변수, 컴포넌트, 문서 프레임 링크). yds 를 고치면 같은 작업 안에서 Figma 를, Figma 가 바뀌었으면 yds 를 맞춘다(README §10-6). 문서 프레임 링크가 어긋나면 `node sync.mjs links`.
 - **사이트 글자 규칙 검사** - 사이트 글자는 크기마다 정한 줄높이(t01 11/17 ~ t13 40/54), 굵기 400/500/600, 자간 0(Figma 2662:26). 11-06 전 페이지 검사 스크립트 `.cache/typo/audit.js`(로컬 전용, 미리보기에서 불러 `window.__audit`). 예외: 구조 그림 이름표(.site-anatomy__name 13/16), 예시 안 DS 부품(DS 규격이 따로 있음).
 
@@ -51,6 +51,13 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
+- **인수인계 - 다음 세션은 여기부터 (2026-11-09 회사 밤, Get Started 최종 정리, 배포함)** - 시작은 "yds CLAUDE.md 읽고 이어서". 이번 항목이 11-09 의 최신이고 아래 11-09 기록의 Get Started 구성은 이것으로 바뀌었다.
+  - **Get Started**: 머리말 → 구조 → 브랜드 만들기 → 서비스 시작하기(운영 중인 사이트, 새 서비스, 화면 시안) → Figma로 시작하기(#figma) → 파일. 머리말은 "컴포넌트와 규칙은 함께 쓰고, 색과 모서리, 글꼴만 브랜드에 맞게 바꿉니다." 가 핵심이다. 둘러보기, 담당자에게 브랜드 등록 요청 버튼, "담당자만 고칩니다." 는 사용자가 지웠다. 바꿀 수 있는 값은 색, 모서리, 글꼴 세 가지만 화면과 AI 규칙에 적는다(onBrandSolid, canvas, layerDefault, layerFloating 은 tools/brands.mjs 가 아직 읽지만 안내하지 않는다).
+  - **문구**: 컴포넌트 75개, Foundations, 템플릿 10개 설명을 "선택, 표시, 사용합니다" 어조로 맞췄다. 외부 DS 이름은 저장소에 적지 않는다. Figma 컴포넌트 설명(figma-notes.json 과 짝)은 아직 예전 글이다.
+  - **AI 문서**: yds-full.txt 576KB → 186KB(md.mjs SLIM_DROP 이 예시, 규격, 구조를 뺌). llms-full.txt 도 같은 내용. 자세한 것은 쪽마다 .md.
+  - **구조 그림**: site.js pinAnatomy 를 글자와 아이콘의 실제 영역을 가리키게 고쳤고(inked), 53개 전수 검사에서 data-forced 0, 이름 누락 0, 상자 밖 0.
+  - **Figma**: Get Started(2479:3), Updates(2701:2) 페이지를 지웠다. 남은 것은 Foundations, Iconography(컴포넌트가 쓰는 아이콘 원본이라 남김), 구분선, 컴포넌트 묶음 10개. 사이트 링크는 2274:1143 으로 옮겼고 `docpage get-started`, `docpage updates` 는 없앴다. **라이브러리 다시 게시는 사용자가 한다.**
+  - **남은 일**: ① yds 소식 알리는 방법 고르기(제안: 상단 Updates 점 표시 → yds.txt 머리에 버전과 확인할 변경 → yds-check 가 새 버전과 영향 컴포넌트 알림 → 브랜드 담당자용 brand-diff 소식 → 메신저, 메일 구독). ② 브랜드 파일을 만든 사람이 어디로 보낼지(등록 버튼을 지워서 화면에 경로가 없다, AI 규칙에는 "파일은 담당자가 등록한다"). ③ Figma 컴포넌트 설명을 새 문구로 맞추기. ④ 브랜드 버전 주소가 필요하면 `node sync.mjs release`. ⑤ 사내 주소 교체는 최종 지시 대기. ⑥ 토익 적용은 이후 진행.
 - **인수인계 - 다음 세션은 여기부터 (2026-11-09 회사, Get Started 첫 화면 개편 적용, 배포함 cfe4b7d)** - 시작은 "yds CLAUDE.md 읽고 이어서".
   - **방향 (사용자)**: yds 의 본질은 ① 맡은 운영 사이트에 이식해 효율 높이기 ② 새 프로젝트를 yds 로 시작하기 ③ 개발자 말고 기획 등 다른 직군도 AI 로 쉽게. yds 원본은 담당자만 고친다. 결정마다 UX(쓰는 사람), DX(개발자), AX(AI) 셋이 함께 좋아질 것, 되던 기능은 망가뜨리지 않기, 애매하면 먼저 묻기, 글을 더하지 말고 배치로 풀기.
   - **적용한 것**: 첫 화면(site/index.html, 원본 site/build.mjs "Get Started")을 머리말 → 시작하기(세그먼트 세 칸: 내 사이트에 넣기 / 새 프로젝트 / 화면 시안, 칸마다 요청 글 하나 + [AI 요청 | HTML] 코드 탭) → 둘러보기(카드 3) → 파일(표: 파일 / 무엇인가요 / 언제 쓰나요)로 바꿈. 길이 4,958px → 약 1,700px. 요청 글은 build.mjs `START`(말투는 사용자가 준 예시의 흐름: 하고 싶은 것 → 문서 먼저 익히기 → [채울 값 줄] → 바라는 방식), 단계와 점검은 llms.txt `LLMS_RULES` 가 맡는다. 예전 요청 글 묶음(prompts, MIGRATE)과 다크 모드, 직접 시작하기, AI가 읽는 파일 절은 지움. Color 페이지 브랜드 컬러 요청 글은 `BRAND_PROMPT`. LLMS_RULES 에 "원본: yds 파일은 담당자만 고친다..." 한 줄 추가. 예전 절 주소 #ai #system #files 는 그대로, #migrate #start #theme #draft 는 site.js `gsHash` 가 그 칸을 연다. md.mjs 는 숨은 칸(site-gs__panel)도 마크다운에 넣는다. Updates 11-09 소식 2줄.

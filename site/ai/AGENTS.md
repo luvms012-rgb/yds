@@ -21,7 +21,7 @@
 - 원본: yds 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. yds 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드: 브랜드 파일(https://luvms012-rgb.github.io/yds/dist/brands/브랜드이름.css)을 yds CSS 다음, 서비스 CSS 앞에 불러오고 <html>에 data-ds-brand="브랜드이름"을 단다. 브랜드 값을 서비스 CSS에 따로 적지 않는다.
-- 새 브랜드: 브랜드 파일(JSON)에는 yds와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), onBrandSolid(브랜드 버튼 위 글자색), canvas, layerDefault, layerFloating(바탕과 면), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
+- 새 브랜드: 브랜드 파일(JSON)에는 yds와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
 - 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.
 - 글자: 한국어. 제목 Bold, 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
 - 점검: 끝내기 전에 검사 스크립트(https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs)를 받아 node로 돌리고, 나온 문제를 모두 고친다.

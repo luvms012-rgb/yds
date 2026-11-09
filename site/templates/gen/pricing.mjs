@@ -91,7 +91,7 @@ const plans = () => {
 <script>
 document.addEventListener('click', function (e) { var b = e.target.closest('[data-period]'); if (b && b.tagName === 'BUTTON') document.querySelector('.tp-pr').dataset.period = b.dataset.period; });
 </script>`;
-  return { slug: 'pricing-plans', en: 'Pricing Plans', name: '요금제 비교', group: 'Pricing', desc: '요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제를 바꿔 가며 가격을 견줘 봅니다.', css, body };
+  return { slug: 'pricing-plans', en: 'Pricing Plans', name: '요금제 비교', group: 'Pricing', desc: '요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제의 가격을 바꿔 가며 비교합니다.', css, body };
 };
 
 /* 2. 구독 결제 ---------------------------------------------------- */

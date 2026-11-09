@@ -28,7 +28,7 @@ ${head('라이브러리')}
   ${groups.map(([g, items]) => `${divider()}<section class="tp-sec" aria-labelledby="g-${esc(g)}">${secHead(g, { id: 'g-' + esc(g), sub: items.length + '개' })}<div class="tp-g4">${items.map(([t, d]) => tileCard(t, d)).join('')}</div></section>`).join('')}
 </main>
 </div>`;
-  return { slug: 'library', en: 'Card Grid', name: '카드 그리드', group: 'Content', desc: '카드를 훑어보며 원하는 항목을 찾는 목록 화면입니다. 분류 탭으로 바로 좁혀 봅니다.', css, body };
+  return { slug: 'library', en: 'Card Grid', name: '카드 그리드', group: 'Content', desc: '카드를 훑어보며 원하는 항목을 찾는 목록 화면입니다. 분류 탭으로 범위를 좁힐 수 있습니다.', css, body };
 };
 
 /* 2. 문서 목록 (카탈로그) -------------------------------------- */
@@ -67,7 +67,7 @@ const docDesign = () => {
   <section class="tp-sec"><h2 class="tp-h2">속성</h2>${table(['이름', '값', '기본값'], props.map(([n, v, d]) => [`<code>${n}</code>`, v, `<code>${d}</code>`]))}</section>
   <section class="tp-sec"><h2 class="tp-h2">코드</h2>${codeblock('html', '<button class="ds-btn" data-variant="brandSolid" data-size="medium">저장</button>')}</section>
 </article></main></div>`;
-  return { slug: 'documentation-design', en: 'Documentation Design', name: '디자인 문서', group: 'Content', desc: '설명 사이에 실제로 동작하는 예시를 넣은 디자인 문서입니다. 컴포넌트 사용법을 정리할 때 씁니다.', css, body };
+  return { slug: 'documentation-design', en: 'Documentation Design', name: '디자인 문서', group: 'Content', desc: '설명 사이에 실제로 동작하는 예시를 넣은 디자인 문서입니다. 컴포넌트 사용법을 정리할 때 사용합니다.', css, body };
 };
 
 /* 4. 기술 문서 (단계별) ---------------------------------------- */

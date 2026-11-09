@@ -79,7 +79,7 @@ const catalog = () => {
   <div class="tp-g4c">${items.map(([t, m, b], i) => course(i, t, m, { b: b ? badge(b, tone[b], true) : '', r: (4.5 + (i % 5) / 10).toFixed(1), n: String(320 + i * 137) })).join('')}</div>
   <div style="display:flex;justify-content:center">${pagination(1, 21)}</div>
 </main></div>`;
-  return { slug: 'learning-catalog', en: 'Course Catalog', name: '과정 찾기', group: 'Learning B2B', desc: '듣고 싶은 과정을 찾는 목록입니다. 분류와 수준, 학습 시간으로 걸러 봅니다.', css, body };
+  return { slug: 'learning-catalog', en: 'Course Catalog', name: '과정 찾기', group: 'Learning B2B', desc: '듣고 싶은 과정을 찾는 목록입니다. 분류, 수준, 학습 시간으로 필터링합니다.', css, body };
 };
 
 /* 3. 강의 보기 + AI 튜터 ------------------------------------------- */

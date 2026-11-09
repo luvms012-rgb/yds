@@ -176,7 +176,7 @@ const kanban = () => {
 <header class="tp-tool__bar" role="toolbar" aria-label="보드 동작">${K.even(`<h1 class="tp-h3">스프린트 보드</h1>${badge('8')}<span style="width: 160px">${select('스프린트 24', { size: 'small', aria: '스프린트' })}</span><span class="tp-spacer"></span>${iconBtn('arrow-up-down', '정렬')}${iconBtn('funnel', '거르기')}${iconBtn('users', '담당자')}${iconBtn('settings', '보드 설정')}${btn('할 일 추가', { variant: 'neutralSolid', ic: 'plus' })}`)}</header>
 <main class="tp-board">${cols.map(([tone, t, ...cards]) => `<section class="tp-lane" aria-label="${t}"><div class="tp-lane__head"><span class="tp-row">${dot(tone, t + ' 상태')}<h2 class="tp-h4">${t}</h2></span><span class="tp-row"><span class="tp-caption tp-num">${cards.length}</span>${iconBtn('plus', t + '에 추가', { size: 'xsmall' })}</span></div><div class="tp-lane__body">${cards.map(([[c, p], h, d, m, who], i) => card(`<div class="tp-between"><span class="tp-row">${badge(c)}${badge(p, p === '높음' ? 'critical' : p === '보통' ? 'warning' : 'neutral')}</span>${iconBtn('ellipsis', '할 일 동작', { size: 'xsmall' })}</div><div class="tp-stack"><h3 class="tp-h4">${h}</h3><p class="tp-sub">${d}</p></div><div class="tp-between"><span class="tp-caption">${m}</span>${avatars(who, 20)}</div>`, { cls: 'tp-kcard', tag: 'article', attrs: tone === 'informative' && i === 1 ? 'data-dragging' : '' })).join('')}</div></section>`).join('')}</main>
 </div>`;
-  return { slug: 'kanban-board', en: 'Kanban Board', name: '칸반 보드', group: 'Tools', desc: '할 일을 상태별 열에 카드로 늘어놓은 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.', css, body };
+  return { slug: 'kanban-board', en: 'Kanban Board', name: '칸반 보드', group: 'Tools', desc: '할 일을 상태별 열에 카드로 배치한 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.', css, body };
 };
 
 /* 5. 페이지 편집기 --------------------------------------------- */

@@ -132,6 +132,10 @@ export function htmlToMd(html, url, mdUrls) {
   return out.join('\n\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
 }
 
+// yds-full.txt 에서 빼는 절: 양이 가장 많고, 필요할 때 그 쪽 .md 를 읽으면 되는 것 (11-09 576KB 중 예시 316, 규격 56, 구조 23)
+const SLIM_DROP = new Set(['예시', '규격', '구조']);
+const slim = (md) => md.split(/\n(?=## )/).filter((s) => !SLIM_DROP.has((s.match(/^## (.+)/) || [])[1])).join('\n').trim() + '\n';
+
 // site 폴더의 문서(시작하기, Foundations, 컴포넌트)를 .md 로 쓰고 llms.txt 두 개를 만든다
 // extra: 두 파일 끝에 붙이는 목록(템플릿, 테마)
 export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [] }) {
@@ -148,7 +152,7 @@ export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [] }) {
       const mdFile = file.replace(/\.html$/, '.md');
       fs.writeFileSync(path.join(SITE, mdFile), `<!-- ${SITE_URL}${file} -->\n\n${md}`);
       lines.push(`- [${title}](${SITE_URL}${mdFile})${desc ? `: ${desc}` : ''}`);
-      full.push(`<!-- ${SITE_URL}${mdFile} -->\n\n${md}`);
+      full.push(`<!-- ${SITE_URL}${mdFile} -->\n\n${slim(md)}`);
       count++;
     }
     if (lines.length) index.push(`## ${g.label}\n\n${lines.join('\n')}`);

@@ -367,11 +367,38 @@
       var b = box.getBoundingClientRect(); if (!b.width) return;
       var names = (box.getAttribute("data-site-anatomy-names") || "").split("|");
       var rel = function (r) { return { l: r.left - b.left, t: r.top - b.top, r: r.right - b.left, b: r.bottom - b.top }; };
+      // 눈에 보이는 것만 부품으로 친다: 투명하거나 스크롤 틀 밖으로 잘린 항목은 가리키지 않는다 (11-09 사용자 "구조가 여전히 이상한 것들이 있어")
+      var seen = function (e) {
+        var r = e.getBoundingClientRect(); if (r.width < 1 || r.height < 1) return false;
+        var mx = (r.left + r.right) / 2, my = (r.top + r.bottom) / 2;
+        for (var a = e; a && a !== box; a = a.parentElement) {
+          var s = getComputedStyle(a);
+          if (s.visibility === "hidden" || parseFloat(s.opacity) === 0) return false;
+          if (a !== e && (s.overflowX !== "visible" || s.overflowY !== "visible")) { var c = a.getBoundingClientRect(); if (mx < c.left || mx > c.right || my < c.top || my > c.bottom) return false; }
+        }
+        return true;
+      };
+      var boxed = function (cs) {
+        var bg = cs.backgroundColor !== "rgba(0, 0, 0, 0)" && cs.backgroundColor !== "transparent";
+        var sh = cs.boxShadow !== "none" && cs.boxShadow.indexOf("rgba(0, 0, 0, 0)") !== 0;
+        return bg || sh || cs.backgroundImage !== "none" || parseFloat(cs.borderTopWidth) > 0 || parseFloat(cs.borderBottomWidth) > 0 || parseFloat(cs.borderLeftWidth) > 0;
+      };
+      // 화살표가 빈 곳을 가리키지 않게, 바탕이나 테두리가 없는 틀은 안에 실제로 보이는 글자와 부품 자리만 쓴다
+      var inked = function (el) {
+        var r = el.getBoundingClientRect();
+        if (!(el instanceof HTMLElement) || /^(IMG|INPUT|TEXTAREA|SELECT|CANVAS|VIDEO|I)$/.test(el.tagName) || boxed(getComputedStyle(el)) || getComputedStyle(el, "::after").content !== "none" || getComputedStyle(el, "::before").content !== "none") return r;
+        var u = null, add = function (q) { if (q.width < 1 || q.height < 1) return; u = u ? { left: Math.min(u.left, q.left), top: Math.min(u.top, q.top), right: Math.max(u.right, q.right), bottom: Math.max(u.bottom, q.bottom) } : { left: q.left, top: q.top, right: q.right, bottom: q.bottom }; };
+        [].forEach.call(el.childNodes, function (n) {
+          if (n.nodeType === 3 && n.textContent.trim()) { var g = document.createRange(); g.selectNodeContents(n); add(g.getBoundingClientRect()); }
+          else if (n.nodeType === 1 && seen(n)) add(inked(n));
+        });
+        return u || r;
+      };
       // 그림에 보이는 부품만 모은다
       var parts = [];
       box.getAttribute("data-site-anatomy").split(" ").forEach(function (cls, i) {
-        var el = [].slice.call(box.querySelectorAll(".site-tile__inner ." + cls)).filter(function (e) { var r = e.getBoundingClientRect(); return r.width >= 1 && r.height >= 1; })[0];
-        if (el) parts.push({ el: el, name: names[i] || cls, R: rel(el.getBoundingClientRect()) });
+        var el = [].slice.call(box.querySelectorAll(".site-tile__inner ." + cls)).filter(seen)[0];
+        if (el) parts.push({ el: el, name: names[i] || cls, R: rel(inked(el)), B: rel(el.getBoundingClientRect()) });
       });
       if (!parts.length) return;
       var inside = function (a, c) { return a.l >= c.l - 0.5 && a.r <= c.r + 0.5 && a.t >= c.t - 0.5 && a.b <= c.b + 0.5; };
@@ -401,7 +428,8 @@
           if (tr.width >= 1 && tr.height >= 1) others.push({ el: e, R: rel(tr) });
         });
       });
-      var U = parts.reduce(function (u, p) { return { l: Math.min(u.l, p.R.l), t: Math.min(u.t, p.R.t), r: Math.max(u.r, p.R.r), b: Math.max(u.b, p.R.b) }; }, { l: 1e9, t: 1e9, r: -1e9, b: -1e9 });
+      // 이름은 그림 전체 바깥에 둔다 (부품이 그림 안쪽에만 있어도 이름이 사진이나 표 위에 놓이지 않게)
+      var U = parts.map(function (p) { return p.B; }).concat([].slice.call(box.querySelector(".pv-stage").children).map(function (e) { return rel(inked(e)); })).reduce(function (u, q) { return { l: Math.min(u.l, q.l), t: Math.min(u.t, q.t), r: Math.max(u.r, q.r), b: Math.max(u.b, q.b) }; }, { l: 1e9, t: 1e9, r: -1e9, b: -1e9 });
       var svg = document.createElementNS(NS, "svg"); svg.setAttribute("class", "site-anatomy__layer");
       svg.innerHTML = "<defs><marker id=\"site-arrow\" viewBox=\"0 0 6 6\" refX=\"6\" refY=\"3\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0L6 3L0 6z\"/></marker></defs>";
       box.appendChild(svg);
@@ -474,6 +502,9 @@
           if (fix && p === fix.p) return;
           var pick = null, best = 1e9;
           for (var ci = 0; ci < p.c.length && best > 0; ci++) { var cc = p.c[ci]; if (cc.base >= best) continue; var sc = cc.base + live(cc.s, cc.L); if (sc < best) { best = sc; pick = cc; } }
+          // 고른 화살표가 길면 깨끗하면서 훨씬 짧은 자리로 바꾼다
+          var run = function (s) { return Math.abs(s.x2 - s.x1) + Math.abs(s.y2 - s.y1); };
+          if (best === 0 && run(pick.s) > 72) for (var cj = 0; cj < p.c.length; cj++) { var cd = p.c[cj]; if (cd.base === 0 && run(cd.s) < run(pick.s) * 0.6 && live(cd.s, cd.L) === 0) { pick = cd; break; } }
           segs.push(pick.s); labels.push(pick.L); res.total += best; res.picks.push({ p: p, pick: pick, best: best });
         });
         return res;

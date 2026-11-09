@@ -62,7 +62,7 @@ const apply = () => {
     </aside>
   </div>
 </main></div>`;
-  return { slug: 'exam-apply', en: 'Exam Application', name: '시험 신청', group: 'Exam', desc: '시험 종류부터 결제까지 한 화면에서 차례로 고르는 신청 화면입니다. 고른 내용과 금액은 옆 요약에 바로 나타납니다.', css, body };
+  return { slug: 'exam-apply', en: 'Exam Application', name: '시험 신청', group: 'Exam', desc: '시험 종류부터 결제까지 한 화면에서 차례로 선택하는 신청 화면입니다. 선택한 내용과 금액은 옆 요약에 바로 표시됩니다.', css, body };
 };
 
 /* 2. 내 시험 (개인 대시보드) ---------------------------------------- */
