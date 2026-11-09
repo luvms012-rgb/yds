@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../dist/ybm-ds.css">
-<link rel="stylesheet" href="assets/site.css?v=a2dfec6b">
+<link rel="stylesheet" href="assets/site.css?v=130218d2">
 <script src="../dist/ybm-ds.js" defer></script>
-<script src="assets/site.js?v=a2dfec6b" defer></script>
+<script src="assets/site.js?v=130218d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -62,10 +62,20 @@
 </div>
 <div class="site-gs__panel" id="migrate" data-site-gs-panel="migrate"><h3 class="ds-sr-only">운영 중인 사이트</h3><div class="site-codetabs"><div class="site-codetabs__panel"><figure class="ds-codeblock" data-lang="text" data-wrap>
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="0">AI 요청</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="1">HTML v1.1.0</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>운영 중인 우리 사이트에 yds 디자인 시스템을 적용하고 싶어.
-지금 사이트가 그대로 잘 돌아가도록, 화면을 하나씩 안전하게 바꿔 줘.
-방법은 아래 문서를 먼저 읽고 따라 줘.
-문서: https://luvms012-rgb.github.io/yds/site/yds.txt</code></pre>
+  <pre class="ds-codeblock__code"><code># 목표
+운영 중인 사이트에 yds 디자인 시스템을 적용해 줘.
+
+# 참고 문서
+https://luvms012-rgb.github.io/yds/site/yds.txt
+
+# 진행 방식
+1. 문서를 읽고 yds 규칙을 파악한다.
+2. 현재 사이트를 분석해 적용 범위와 순서를 제안한다.
+3. 확인받은 순서대로 화면 단위로 적용하고, 화면마다 전후 비교를 제시한다.
+
+# 원칙
+- 기존 기능과 서버 로직은 변경하지 않는다.
+- 불확실한 사항은 임의로 판단하지 않고 먼저 확인한다.</code></pre>
 </figure></div><div class="site-codetabs__panel" hidden><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="0">AI 요청</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="1">HTML v1.1.0</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css&quot;</span>&gt;
@@ -79,19 +89,21 @@
 </figure></div></div></div>
 <div class="site-gs__panel" id="start" data-site-gs-panel="start" hidden><h3 class="ds-sr-only">새 서비스</h3><div class="site-codetabs"><div class="site-codetabs__panel"><figure class="ds-codeblock" data-lang="text" data-wrap>
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="0">AI 요청</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="1">HTML</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>yds 디자인 시스템 기반으로 우리 브랜드의 새 서비스를 시작하려고 해.
-먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
-문서: https://luvms012-rgb.github.io/yds/site/yds.txt
+  <pre class="ds-codeblock__code"><code># 목표
+새로 만드는 서비스를 yds 디자인 시스템으로 구축해 줘.
 
-브랜드 이름: [my-brand]
-브랜드 컬러: [#0f7a3f]
-모서리: [yds 그대로]
-글꼴: [yds 그대로]
-첫 화면: [회원 목록]
+# 참고 문서
+https://luvms012-rgb.github.io/yds/site/yds.txt
 
-브랜드 파일이 아직 없으면 yds와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 고칠 색을 제안해 줘.
-yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Templates에 있으면 거기서 시작해 줘.
-다 만들면 규칙을 지켰는지 점검하고, 고친 곳을 알려 줘.</code></pre>
+# 진행 방식
+1. 문서를 읽고 yds 규칙을 파악한다.
+2. 서비스 범위와 화면 구성을 확인하고 구현 순서를 제안한다.
+3. 확인받은 순서대로 화면 단위로 구현한다. 비슷한 화면이 Templates에 있으면 거기서 시작한다.
+4. 완료 후 규칙 준수 여부를 점검하고 수정 내역을 보고한다.
+
+# 원칙
+- yds에 있는 컴포넌트와 토큰만 사용한다.
+- 불확실한 사항은 임의로 판단하지 않고 먼저 확인한다.</code></pre>
 </figure></div><div class="site-codetabs__panel" hidden><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="0">AI 요청</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="1">HTML</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/ybm-ds.css&quot;</span>&gt;
@@ -113,10 +125,13 @@ yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Tem
 </figure></div></div></div>
 <div class="site-gs__panel" id="draft" data-site-gs-panel="draft" hidden><h3 class="ds-sr-only">화면 시안</h3><div class="site-codetabs"><div class="site-codetabs__panel"><figure class="ds-codeblock" data-lang="text" data-wrap>
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="0">AI 요청</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>yds 디자인 시스템 기반으로 우리 브랜드의 화면 시안을 만들고 싶어.
-먼저 아래 문서를 읽고 yds 규칙을 익혀 줘.
-문서: https://luvms012-rgb.github.io/yds/site/yds-full.txt
+  <pre class="ds-codeblock__code"><code># 목표
+우리 브랜드의 화면 시안을 yds 디자인 시스템으로 제작해 줘.
 
+# 참고 문서
+https://luvms012-rgb.github.io/yds/site/yds-full.txt
+
+# 입력 값
 브랜드 이름: [my-brand]
 브랜드 컬러: [#0f7a3f]
 모서리: [yds 그대로]
@@ -124,9 +139,14 @@ yds에 있는 컴포넌트와 토큰만으로 만들고, 비슷한 화면이 Tem
 만들 화면: [이벤트 신청 페이지]
 들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
 
-브랜드 파일이 아직 없으면 yds와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 고칠 색을 제안해 줘.
-yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 만들어 줘.
-정할 것이 있으면 만들기 전에 물어봐 줘.</code></pre>
+# 진행 방식
+1. 문서를 읽고 yds 규칙을 파악한다.
+2. 정할 것이 있으면 제작 전에 확인한다.
+3. 브랜드 파일이 없으면 yds와 다른 값만 담아 먼저 만들고, 글자 대비가 모자라면 수정할 색을 제안한다.
+4. 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 제작한다.
+
+# 원칙
+- yds에 있는 컴포넌트와 토큰만 사용한다.</code></pre>
 </figure></div></div></div>
 
 
@@ -134,7 +154,7 @@ yds에 있는 컴포넌트와 토큰만 써서, 브라우저에서 바로 열어
 <p>Figma에서 화면을 먼저 그린다면 yds 라이브러리로 시작합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=2274-1143" target="_blank" rel="noopener">yds 라이브러리</a>를 켭니다.</span></li>
-  <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색과 간격은 yds 변수로 지정합니다.</span></li>
+  <li><strong>화면 그리기</strong><span>yds 컴포넌트를 놓고, 색, 간격, 모서리는 yds 변수로, 글자는 yds 텍스트 스타일로 지정합니다.</span></li>
 </ol>
 <p>브랜드 색은 Figma에서 바꾸지 않아도 됩니다.</p>
 
