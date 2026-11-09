@@ -554,7 +554,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 
 /* ==========================================================================
    글자 위계와 여백 - Figma 기준 (2026-11-05 사용자가 DS 파일 노드 2662:26 에 확정, "그대로 기억해", "사이트의 다른 부분도 모두 적용")
-   글자(크기/줄높이 굵기): 페이지 제목 48/62 700, 리드 18/28 400, 섹션 제목 28/40 700 (11-09 사용자 "한 단계 크게, 볼드로"), 소제목과 카드 제목 20/29 500,
+   글자(크기/줄높이 굵기): 페이지 제목 48/62 700, 리드 18/28 400, 섹션 제목 28/40 600 (11-09 사용자: 둘 다 한 단계 크게, 볼드는 페이지 제목만), 소제목과 카드 제목 20/29 500,
    본문 16/24 400, 상단과 왼쪽 메뉴 16/24 400 (지금 페이지 500), 표 머리 14/21 500, 표 칸과 코드 14/21 400,
    푸터 묶음 이름 14/21 600, 푸터 링크 14/21 400, 코드 상자 머리 12/18 400. 자간은 모두 0.
    여백: 제목 → 리드 8, 리드 → 버튼 28, 머리말 → 첫 섹션 80, 섹션 위 80, 섹션 제목 → 소개 글 8, 그 다음 내용 24,
@@ -577,7 +577,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 @media (min-width: 768px) { .site-doc header p.site-lead { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); } }
 .site-doc > header .site-meta { margin-top: var(--ds-space-x7); }
 /* 섹션 제목, 소제목, 본문 */
-.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x16); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-bold); letter-spacing: 0; }
+.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x16); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
 .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x10); font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }
 .site-doc > header + h2 { margin-top: var(--ds-space-x16); }
 .site-doc > h2 + * { margin-top: var(--ds-space-x4); }  /* 11-05 사용자: h2 아래 16 */
@@ -621,7 +621,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 /* 컴포넌트 목록: 분류 이름은 섹션 제목, 부품 이름은 카드 제목과 같은 굵기 */
 .site-tile__thumb { border-radius: var(--ds-shape-xl); }
 .site-doc .site-tile .site-tile__name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }
-.site-doc .site-group__title { font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-bold); letter-spacing: 0; }
+.site-doc .site-group__title { font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
 @media (min-width: 768px) { .site-doc .site-group__title { font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); } }
 /* 분류 칩: 높이 40 알약 */
 .site-toolbar--wrap .ds-chiptabs { --ds-ct-height: 40px; --ds-ct-padding-x: var(--ds-space-x4); gap: var(--ds-space-x2); }
