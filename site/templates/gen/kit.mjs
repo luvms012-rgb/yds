@@ -7,8 +7,8 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   /* 좌우 기준 (2026-11-09 사용자 "좌우를 맞춰줘, 어중간하게 하지 말고"): 가운데 놓는 화면의 내용 폭은 --tp-page 1200, 글과 입력 한 줄 화면은 --tp-narrow 720 두 가지만 쓴다 */
   :root { --tp-gutter: var(--ds-space-x4); --tp-page: 1200px; --tp-narrow: 720px; --tp-page-box: calc(var(--tp-page) + 2 * var(--tp-gutter)); --tp-narrow-box: calc(var(--tp-narrow) + 2 * var(--tp-gutter)); }
   @media (min-width: 768px) { :root { --tp-gutter: var(--ds-space-x6); } }
-  /* 스크롤바: 양옆 세로줄이 생기는 트랙을 투명하게, 손잡이만 얇게 */
-  html { scrollbar-width: thin; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
+  /* 스크롤바: 페이지 스크롤바는 폭을 차지하면 오른쪽 여백만 넓어져 좌우가 어긋난다. 숨기고, 안쪽 스크롤 영역은 트랙 없이 손잡이만 */
+  html { scrollbar-width: none; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
   /* 머리글도 내용과 같은 좌우선에 */
   .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-tc, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }

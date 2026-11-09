@@ -166,7 +166,7 @@ const kanban = () => {
   const cols = [['neutral', '할 일', [['기획', '높음'], '새 학기 수강 안내 메일 초안', '목표, 대상, 일정을 담은 짧은 안내문을 써요.', '2시간 전 고침 / 7월 8일까지', ['와이비엠']], [['리서치', '보통'], '수강생 의견 모으기', '지난 학기 설문에서 주요 의견을 정리해요.', '1일 전 고침 / 7월 11일까지', ['이준호', '박하린']]], ['informative', '진행 중', [['디자인', '높음'], '강좌 상세 화면 시안', '커리큘럼과 후기 영역을 새로 잡아요.', '30분 전 고침 / 7월 9일까지', ['박하린']], [['개발', '보통'], '결제 오류 고치기', '해외 카드 3D 인증 단계 오류', '3시간 전 고침 / 7월 10일까지', ['최민준']], [['콘텐츠', '낮음'], '모의고사 해설 영상 편집', '1~3회 해설을 10분 안으로 줄여요.', '어제 고침', ['정다은']]], ['warning', '검토', [['QA', '높음'], '앱 푸시 알림 점검', '안드로이드 14에서 알림이 늦게 와요.', '4시간 전 고침', ['한지우', '와이비엠']]], ['positive', '완료', [['운영', '보통'], '9월 정산 마감', '기업 고객 12곳 정산 끝', '2일 전 고침', ['윤도현']], [['디자인', '낮음'], '아이콘 정리', '쓰지 않는 아이콘 18개 삭제', '3일 전 고침', ['박하린']]]];
   const css = APP_CSS + `
   .tp-board { display: flex; gap: var(--ds-space-x3); flex: 1 1 auto; min-height: 0; padding: var(--ds-space-x4); overflow-x: auto; background: var(--ds-color-bg-neutral-subtle); }
-  .tp-lane { display: flex; flex-direction: column; flex: none; width: 300px; max-height: 100%; border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
+  .tp-lane { display: flex; flex-direction: column; flex: 1 0 280px; min-width: 0; max-height: 100%; border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
   .tp-lane__head { display: flex; align-items: center; justify-content: space-between; padding: var(--ds-space-x3) var(--ds-space-x3) var(--ds-space-x2); }
   .tp-lane__body { display: flex; flex-direction: column; gap: var(--ds-space-x2); padding: 0 var(--ds-space-x2) var(--ds-space-x2); overflow: auto; }
   .tp-kcard { cursor: grab; }
