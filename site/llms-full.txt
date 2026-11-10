@@ -4935,7 +4935,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="cmd-list" aria-autocomplete="list" placeholder="찾을 낱말" aria-label="명령 찾기"></div>
   <div class="ds-command__list" id="cmd-list" role="listbox" aria-label="명령">
     <div class="ds-command__group" role="group" aria-labelledby="cmd-g1"><p class="ds-command__title" id="cmd-g1">이동</p>
-      <div class="ds-command__item" role="option" id="cmd-1" aria-selected="true"><i class="ds-icon ds-icon--house" aria-hidden="true"></i><span class="ds-command__label">홈</span>[<kbd class="ds-command__kbd">G H</kbd>]</div>
+      <div class="ds-command__item" role="option" id="cmd-1" aria-selected="true"><i class="ds-icon ds-icon--house" aria-hidden="true"></i><span class="ds-command__label">홈</span>[<kbd class="ds-command__kbd">H</kbd>]</div>
     </div>
     <p class="ds-command__empty" hidden>찾는 명령이 없어요</p>
   </div>

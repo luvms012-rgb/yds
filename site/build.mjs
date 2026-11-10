@@ -191,6 +191,13 @@ const figmaDocs = () => fs.writeFileSync(path.join(DS, 'tokens', '.figma-docs.js
 }, null, 1));
 // 왼쪽 메뉴와 이전 / 다음 문서는 이름 ABC 순
 const compsAZ = [...comps].sort((a, b) => a.name.localeCompare(b.name, 'en'));
+// 새 컴포넌트 점 (2026-11-10 사용자 "신규 컴포넌트 레프트 메뉴에 신규(점) 표기"): components.css 머리말 "(날짜 추가)" 가 가장 늦은 묶음만, 그 날부터 30일 동안
+const NEW_COMPS = (() => {
+  const added = [...componentsCss.matchAll(/^   (\d{2}) .*\((\d{4}-\d{2}-\d{2}) 추가\)/gm)].map((m) => [m[1], m[2]]);
+  const last = added.map(([, d]) => d).sort().pop();
+  if (!last || (Date.now() - Date.parse(last)) / 864e5 > 30) return new Set();
+  return new Set(added.filter(([, d]) => d === last).map(([n]) => n));
+})();
 // 컴포넌트 목록 분류: Figma 페이지와 같은 이름과 순서 (components.json 의 category, 2026-11-06 사용자 "피그마 페이지와 같은 카테고리로 분리")
 const COMP_CATS = ['Action', 'Chat', 'Container', 'Content', 'Data Input', 'Feedback & Status', 'Layout', 'Navigation', 'Overlay', 'Table & List', 'Etc'];
 const REG_CAT = Object.fromEntries(JSON.parse(fs.readFileSync(path.join(DS, 'components.json'), 'utf8')).components.map((x) => [x.no, x.category]));
@@ -255,7 +262,7 @@ function sideNav(section, file, root) {
   if (section === 'foundations') parts.push(...FD_ORDER.map(([h, l]) => item(h, l)));
   if (section === 'components') {
     parts.push(item('components/index.html', 'Overview'));
-    parts.push(...compsAZ.map((c) => item(`components/${c.slug}.html`, c.name.split(' · ')[0], koKeys(c.name.split(' · ')[0]))));
+    parts.push(...compsAZ.map((c) => item(`components/${c.slug}.html`, c.name.split(' · ')[0], koKeys(c.name.split(' · ')[0])).replace(/<\/a>$/, NEW_COMPS.has(c.no) ? '<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>' : '</a>')));
   }
   if (section === 'themes') parts.push(item('themes/index.html', 'Overview'));
   if (section === 'templates') {
