@@ -448,7 +448,7 @@ write({
 <h2 id="structure">구조</h2>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
-  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span>${BRANDS.length ? `<span class="site-gs__brands">${BRANDS.map((b) => `<span class="ds-badge">${esc(b.name)}</span>`).join('')}</span>` : ''}</li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
   <li><strong>서비스</strong><span>YDS와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
