@@ -213,8 +213,8 @@ function codeblock(code, lang = 'html', extra = '') {
   <pre class="ds-codeblock__code"><code>${highlight(code, lang)}</code></pre>
 </figure>`;
 }
-function example(previewHtml, code) {
-  return `<div class="site-example">
+function example(previewHtml, code, cls = '') {
+  return `<div class="site-example${cls ? ' ' + cls : ''}">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview">${previewHtml}</div>
   <div class="site-example__code" hidden>${codeblock(code)}</div>
@@ -393,20 +393,16 @@ const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/${BRANDS[0].slug}.css">` : ''}`;
 // 요청 글은 예시 한 줄로 (11-10 사용자 "프롬프팅을 예시 정도로 중요도를 낮추고", "운영 중인 사이트, 새 서비스, 화면 시안 나눌 필요 없다", 구성은 AI와 함께 / 직접 / Figma로 / 개발 시작하기). 순서와 규칙은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
-const AI_EXAMPLE = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
-${SITE_URL}yds.txt
-
-예시)
-[새 화면 만들기]
-- 카드 제휴 이벤트 페이지 만들어 줘. 혜택 배너, 카드 혜택 3가지, 유의사항, '카드 신청하기' 버튼 순서로.
-- 로그인 후 동의 화면 만들어 줘. 필수 동의 3개(이용약관, 개인정보처리방침, 광고 문자 안내), 전체 동의 체크, 본인인증 버튼까지.
-
-[운영 중인 페이지에 적용하기]
-- 이 이벤트 페이지의 버튼, 글꼴, 색을 YDS로 바꿔 줘. 배치와 문구는 그대로 둬.
-- 첨부한 시험 접수 화면에 YDS 적용해 줘. 입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.
-
-[브랜드 만들기]
-- 우리 서비스 브랜드 파일 만들어 줘. 이름은 my-brand, 대표색은 #0f7a3f, 모서리는 YDS보다 조금 더 둥글게. 등록 전까지 임시로 쓰는 법도 알려 줘.`;
+// 11-11 사용자 "합쳐져 있는데 나눠줘, 3개로, 공통은 모두 포함, 제목은 대괄호": 묶음마다 상자 하나, 안은 [묶음 이름 예시] → 공통 글 → 예시 목록(- 줄)
+const AI_COMMON = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
+${SITE_URL}yds.txt`;
+const AI_EXAMPLES = [
+  ['새 화면 만들기', `이벤트 설문조사 화면 만들어 줘. 질문 5개, 보기는 라디오와 체크박스, 맨 아래 '제출하기' 버튼.
+로그인 후 동의 화면 만들어 줘. 필수 동의 3개(이용약관, 개인정보처리방침, 광고 문자 안내), 전체 동의 체크, 본인인증 버튼까지.`],
+  ['운영 중인 페이지에 적용하기', `이 화면의 UI를 모두 YDS 컴포넌트로 바꿔 줘. 배치와 문구는 그대로 둬.
+첨부한 시험 접수 화면에 YDS 적용해 줘. 입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.`],
+  ['브랜드 만들기', `새 과목 브랜드 만들어 줘. 이름은 my-brand, 대표색은 #0f7a3f, 모서리는 YDS보다 조금 더 둥글게. 이 브랜드로 메인 화면 시안까지 만들어 줘.`],
+];
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
@@ -462,7 +458,7 @@ write({
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기</h2>
-${codeblock(AI_EXAMPLE, "text", " data-wrap")}
+${AI_EXAMPLES.map(([name, code]) => codeblock(`[${name} 예시]\n\n${AI_COMMON}\n\n${code.split('\n').map((l) => `- ${l}`).join('\n')}`, "text", " data-wrap")).join('\n')}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <ol class="site-gs__layers">
@@ -476,16 +472,16 @@ ${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblo
 curl -O ${SITE_URL}ai/AGENTS.md
 curl -O ${SITE_URL}ai/CLAUDE.md
 curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
-${example(`<div style="display: grid; gap: var(--ds-space-x4); width: min(100%, 360px)">${FIRST_COMPONENT.replaceAll('"gs-mail"', '"gs-mail-preview"')}</div>`, FIRST_COMPONENT)}
+${example(`<div style="display: grid; gap: var(--ds-space-x4); width: min(100%, 360px)">${FIRST_COMPONENT.replaceAll('"gs-mail"', '"gs-mail-preview"')}</div>`, FIRST_COMPONENT, 'site-example--compact')}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
-  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'YDS 안내서', 'AI 요청 글에 주소를 넣을 때'],
-  [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],
-  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', '주소를 열 수 없는 대화창에 첨부할 때'],
-  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다'],
-  [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
-  [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 브랜드 값을 확인할 때'],
+  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'YDS 안내서', '가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요.'],
+  [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때 켭니다. 디자이너는 이것 하나면 됩니다.'],
+  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', 'AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다.'],
+  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 안내서 주소를 넣지 않아도 됩니다.'],
+  [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.'],
+  [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 서비스에 브랜드가 있는지, 색과 모서리 값이 무엇인지 볼 때 엽니다. 없으면 AI 요청 글의 [브랜드 만들기]로 시작합니다.'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
 

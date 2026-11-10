@@ -13,20 +13,32 @@ YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 
 ## AI와 함께 시작하기
 
 ```text
+[새 화면 만들기 예시]
+
 아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
-예시)
-[새 화면 만들기]
-- 카드 제휴 이벤트 페이지 만들어 줘. 혜택 배너, 카드 혜택 3가지, 유의사항, '카드 신청하기' 버튼 순서로.
+- 이벤트 설문조사 화면 만들어 줘. 질문 5개, 보기는 라디오와 체크박스, 맨 아래 '제출하기' 버튼.
 - 로그인 후 동의 화면 만들어 줘. 필수 동의 3개(이용약관, 개인정보처리방침, 광고 문자 안내), 전체 동의 체크, 본인인증 버튼까지.
+```
 
-[운영 중인 페이지에 적용하기]
-- 이 이벤트 페이지의 버튼, 글꼴, 색을 YDS로 바꿔 줘. 배치와 문구는 그대로 둬.
+```text
+[운영 중인 페이지에 적용하기 예시]
+
+아래 안내서를 읽고 YDS 규칙을 지켜 줘.
+https://luvms012-rgb.github.io/yds/site/yds.txt
+
+- 이 화면의 UI를 모두 YDS 컴포넌트로 바꿔 줘. 배치와 문구는 그대로 둬.
 - 첨부한 시험 접수 화면에 YDS 적용해 줘. 입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.
+```
 
-[브랜드 만들기]
-- 우리 서비스 브랜드 파일 만들어 줘. 이름은 my-brand, 대표색은 #0f7a3f, 모서리는 YDS보다 조금 더 둥글게. 등록 전까지 임시로 쓰는 법도 알려 줘.
+```text
+[브랜드 만들기 예시]
+
+아래 안내서를 읽고 YDS 규칙을 지켜 줘.
+https://luvms012-rgb.github.io/yds/site/yds.txt
+
+- 새 과목 브랜드 만들어 줘. 이름은 my-brand, 대표색은 #0f7a3f, 모서리는 YDS보다 조금 더 둥글게. 이 브랜드로 메인 화면 시안까지 만들어 줘.
 ```
 
 ## Figma로 시작하기
@@ -79,9 +91,9 @@ curl --create-dirs -o .cursor/rules/yds.mdc https://luvms012-rgb.github.io/yds/s
 
 | 파일 | 무엇인가요 | 언제 쓰나요 |
 | --- | --- | --- |
-| [yds.txt](https://luvms012-rgb.github.io/yds/site/yds.txt) | YDS 안내서 | AI 요청 글에 주소를 넣을 때 |
-| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92) | YDS 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |
-| [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) | 컴포넌트 사용법과 규칙을 모은 파일 하나 | 주소를 열 수 없는 대화창에 첨부할 때 |
-| [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md)[yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc)[AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) | 코딩 도구용 YDS 규칙 파일 | 프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다 |
-| [yds-check.mjs](https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs) | YDS 규칙 검사 스크립트 | 다 만든 화면을 점검할 때 |
-| [brands](https://github.com/luvms012-rgb/yds/tree/main/brands) | 등록된 브랜드 파일 | 내 브랜드 값을 확인할 때 |
+| [yds.txt](https://luvms012-rgb.github.io/yds/site/yds.txt) | YDS 안내서 | 가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요. |
+| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92) | YDS 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 켭니다. 디자이너는 이것 하나면 됩니다. |
+| [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) | 컴포넌트 사용법과 규칙을 모은 파일 하나 | AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다. |
+| [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md)[yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc)[AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) | 코딩 도구용 YDS 규칙 파일 | 코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 안내서 주소를 넣지 않아도 됩니다. |
+| [yds-check.mjs](https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs) | YDS 규칙 검사 스크립트 | 화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다. |
+| [brands](https://github.com/luvms012-rgb/yds/tree/main/brands) | 등록된 브랜드 파일 | 내 서비스에 브랜드가 있는지, 색과 모서리 값이 무엇인지 볼 때 엽니다. 없으면 AI 요청 글의 [브랜드 만들기]로 시작합니다. |
