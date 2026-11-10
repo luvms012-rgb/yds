@@ -660,4 +660,4 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-menu-btn { position: relative; }
 .site-menu-btn .site-newdot { position: absolute; top: 4px; right: 4px; margin: 0; transform: none; }
 /* 새 컴포넌트 점 (2026-11-10 사용자 "신규 컴포넌트 레프트 메뉴에 신규(점) 표기"): 이름 바로 뒤 작은 점 */
-.site-nav__item .site-compdot { flex: none; margin-left: var(--ds-space-x1_5); }
+.site-nav__item .site-compdot { flex: none; width: 6px; height: 6px; margin-left: calc(var(--ds-space-x1) * -1); }  /* 11-10 사용자 "점이 너무 커, 왼쪽으로 더 붙일것" */

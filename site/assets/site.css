@@ -660,7 +660,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-menu-btn { position: relative; }
 .site-menu-btn .site-newdot { position: absolute; top: 4px; right: 4px; margin: 0; transform: none; }
 /* 새 컴포넌트 점 (2026-11-10 사용자 "신규 컴포넌트 레프트 메뉴에 신규(점) 표기"): 이름 바로 뒤 작은 점 */
-.site-nav__item .site-compdot { flex: none; margin-left: var(--ds-space-x1_5); }
+.site-nav__item .site-compdot { flex: none; width: 6px; height: 6px; margin-left: calc(var(--ds-space-x1) * -1); }  /* 11-10 사용자 "점이 너무 커, 왼쪽으로 더 붙일것" */
 
 /* 가이드는 브랜드 색 없이 모노톤으로 보여 준다 (2026-11-02 사용자 "가이드에 브랜드 컬러 적용 X").
    브랜드 역할 색을 같은 자리의 neutral 색으로 바꾼다. 서비스는 palette/brand 를 바꿔 자기 브랜드 색을 쓴다(Color 페이지).
