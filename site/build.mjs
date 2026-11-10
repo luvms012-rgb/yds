@@ -469,7 +469,7 @@ ${table(['파일', '무엇인가요', '언제 쓰나요'], [
   [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'YDS 안내서', 'AI 요청 글에 주소를 넣을 때'],
   [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],
   [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', '주소를 열 수 없는 대화창에 첨부할 때'],
-  [['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('<br>'), '코딩 도구용 YDS 규칙 파일', '프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다'],
+  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
   [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 브랜드 값을 확인할 때'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),

@@ -549,6 +549,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
   .site-gs__layers li + li::before { top: calc(50% - var(--ds-space-x3)); left: calc(var(--ds-space-x7) * -1); -webkit-mask-image: var(--ds-icon-chevron-right); mask-image: var(--ds-icon-chevron-right); }
 }
 .site-doc .site-gs__callout { margin-top: var(--ds-space-x4); }  /* Figma 단계 카드 아래 안내 (11-10 밤 사용자 "Callout 로") */
+.site-gs__rules { display: flex; flex-wrap: wrap; gap: var(--ds-space-x1) var(--ds-space-x4); }  /* 규칙 파일 세 개를 가로로 (11-10 밤 사용자) */
 .site-gs__files td:first-child a { white-space: nowrap; }
 @media (min-width: 768px) { .site-gs__files th:first-child { width: 34%; } .site-gs__files th:nth-child(2) { width: 30%; } }
 /* 코드 글자 색 (11-04 사용자 "코드뷰 컬러로 개선, seed 참조"): 레퍼런스 B 의 GitHub 테마 규칙을 DS 팔레트로. 팔레트라 다크 모드에서 같이 뒤집힌다 */

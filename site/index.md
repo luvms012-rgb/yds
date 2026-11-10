@@ -61,6 +61,6 @@ Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://
 | [yds.txt](https://luvms012-rgb.github.io/yds/site/yds.txt) | YDS 안내서 | AI 요청 글에 주소를 넣을 때 |
 | [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92) | YDS 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |
 | [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) | 컴포넌트 사용법과 규칙을 모은 파일 하나 | 주소를 열 수 없는 대화창에 첨부할 때 |
-| [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md) [yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc) [AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) | 코딩 도구용 YDS 규칙 파일 | 프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다 |
+| [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md)[yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc)[AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) | 코딩 도구용 YDS 규칙 파일 | 프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다 |
 | [yds-check.mjs](https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs) | YDS 규칙 검사 스크립트 | 다 만든 화면을 점검할 때 |
 | [brands](https://github.com/luvms012-rgb/yds/tree/main/brands) | 등록된 브랜드 파일 | 내 브랜드 값을 확인할 때 |
