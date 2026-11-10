@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../dist/ybm-ds.css">
-<link rel="stylesheet" href="assets/site.css?v=ee59cc94">
+<link rel="stylesheet" href="assets/site.css?v=9e42d8ec">
 <script src="../dist/ybm-ds.js" defer></script>
-<script src="assets/site.js?v=ee59cc94" defer></script>
+<script src="assets/site.js?v=9e42d8ec" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -50,7 +50,7 @@
 <h2 id="structure">구조<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="structure"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
-  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span><span class="site-gs__brands"><span class="ds-badge">TOEIC</span></span></li>
   <li><strong>서비스</strong><span>YDS와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
@@ -59,6 +59,7 @@
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">AI 도구에 붙여 넣기</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
+브랜드: TOEIC
 
 예시)
 [새 화면 만들기]
@@ -82,12 +83,16 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="0">최신</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="1">v1.1.0 고정</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code><span class="hl-m">&lt;!-- 서비스 CSS보다 앞에 --&gt;</span>
 &lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/ybm-ds.css&quot;</span>&gt;
-&lt;<span class="hl-t">script</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/ybm-ds.js&quot;</span> <span class="hl-f">defer</span>&gt;&lt;/<span class="hl-t">script</span>&gt;</code></pre>
+&lt;<span class="hl-t">script</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/ybm-ds.js&quot;</span> <span class="hl-f">defer</span>&gt;&lt;/<span class="hl-t">script</span>&gt;
+<span class="hl-m">&lt;!-- 브랜드가 있으면 그다음에, &lt;html data-ds-brand=&quot;toeic&quot;&gt; --&gt;</span>
+&lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/brands/toeic.css&quot;</span>&gt;</code></pre>
 </figure></div><div class="site-codetabs__panel" hidden><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="0">최신</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="1">v1.1.0 고정</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code><span class="hl-m">&lt;!-- 서비스 CSS보다 앞에 --&gt;</span>
 &lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css&quot;</span>&gt;
-&lt;<span class="hl-t">script</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js&quot;</span> <span class="hl-f">defer</span>&gt;&lt;/<span class="hl-t">script</span>&gt;</code></pre>
+&lt;<span class="hl-t">script</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js&quot;</span> <span class="hl-f">defer</span>&gt;&lt;/<span class="hl-t">script</span>&gt;
+<span class="hl-m">&lt;!-- 브랜드가 있으면 그다음에, &lt;html data-ds-brand=&quot;toeic&quot;&gt; --&gt;</span>
+&lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/brands/toeic.css&quot;</span>&gt;</code></pre>
 </figure></div></div>
 
 <h2 id="files">파일<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="files"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>

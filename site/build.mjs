@@ -378,13 +378,18 @@ const write = (o) => written.push(page(o));
 
 /* ---------------------------------------------------------------- Get Started */
 // 순서 규칙은 글 대신 코드 주석으로 (11-10 밤 사용자 "3가지 적용": 복사해 가면 같이 따라간다)
+// 등록된 브랜드 (brands/*.json, 2026-11-10 사용자 "구조 보강 2가지"): 구조의 브랜드 카드에 이름 배지, 설치 코드에 브랜드 줄
+const BRANDS = fs.readdirSync(path.join(DS, 'brands')).filter((f) => f.endsWith('.json')).map((f) => ({ slug: f.replace(/\.json$/, ''), name: readJson('brands/' + f).name || f.replace(/\.json$/, '') }));
 const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
-<script src="${PUBLIC}/dist/ybm-ds.js" defer></script>`;
+<script src="${PUBLIC}/dist/ybm-ds.js" defer></script>${BRANDS.length ? `
+<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="${BRANDS[0].slug}"> -->
+<link rel="stylesheet" href="${PUBLIC}/dist/brands/${BRANDS[0].slug}.css">` : ''}`;
 // 요청 글은 예시 한 줄로 (11-10 사용자 "프롬프팅을 예시 정도로 중요도를 낮추고", "운영 중인 사이트, 새 서비스, 화면 시안 나눌 필요 없다", 구성은 AI와 함께 / 직접 / Figma로 / 개발 시작하기). 순서와 규칙은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
 const AI_EXAMPLE = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt
+브랜드: ${BRANDS[0]?.name || '(브랜드 이름, 없으면 대표색)'}
 
 예시)
 [새 화면 만들기]
@@ -444,7 +449,7 @@ write({
 <h2 id="structure">구조</h2>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
-  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span>${BRANDS.length ? `<span class="site-gs__brands">${BRANDS.map((b) => `<span class="ds-badge">${esc(b.name)}</span>`).join('')}</span>` : ''}</li>
   <li><strong>서비스</strong><span>YDS와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
@@ -459,7 +464,7 @@ ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
 <div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
-${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`)}`)]])}
+${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/ybm-ds.`, `${PIN}/dist/ybm-ds.`)}`)]])}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
