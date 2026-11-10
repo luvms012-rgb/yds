@@ -84,7 +84,7 @@ const docTech = () => {
   const body = `<div class="tp-app"><main class="tp-content"><article class="tp-doc">
   <header class="tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-doc-title">YDS 시작하기</h1><span class="tp-caption">2026년 10월 30일에 고침</span></header>
   ${card(`<div class="tp-ai"><div class="tp-between"><span class="tp-row">${icon('sparkles')}<span class="tp-h4">AI에게 맡기기</span></span><div class="tp-row">${btn('복사', { ic: 'copy', size: 'xsmall' })}${iconBtn('ellipsis', '더 보기', { size: 'xsmall' })}</div></div><p class="tp-sub">"내 프로젝트에 YDS를 붙여 줘. 필요한 파일을 불러오고 첫 화면을 DS 부품으로 바꿔 줘."</p></div>`)}
-  <section class="tp-sec"><h2 class="tp-h2">준비물</h2>${list(['Node.js 18 이상', '패키지 관리자 (npm, pnpm, yarn 가운데 하나)', 'HTML 파일 하나', '인터넷 연결'].map((t) => listItem(t, { prefix: icon('check', 'sm'), size: 'small' })))}</section>
+  <section class="tp-sec"><h2 class="tp-h2">준비물</h2>${K.checks(['Node.js 18 이상', '패키지 관리자 (npm, pnpm, yarn 가운데 하나)', 'HTML 파일 하나', '인터넷 연결'])}</section>
   ${divider()}
   <section class="tp-sec"><h2 class="tp-h2">설치하기</h2><p>아래 순서대로 하면 5분 안에 첫 화면을 볼 수 있어요.</p>
   <div class="tp-steps-doc">${steps.map(([t, d, l, c], i) => `<div class="tp-stepdoc"><span class="tp-stepdoc__n">${i + 1}</span><div class="tp-stepdoc__b"><h3 class="tp-h3">${t}</h3><p class="tp-sub">${d}</p>${codeblock(l, c)}</div></div>`).join('')}</div></section>
@@ -167,35 +167,32 @@ const workItem = () => {
   const subs = [['지금 가입 흐름을 살펴보고 불편한 점 적기', 1, '와이비엠 / 10.20'], ['첫 화면에 샘플 강좌 미리 넣기', 1, '이준호 / 10.24'], ['가입 단계 5개를 3개로 줄이기', 0, '박하린 / 11.03까지'], ['첫 수업 안내 메일 다시 쓰기', 0, '정다은 / 11.05까지'], ['7일 뒤 활성화율 측정 대시보드', 0, '한지우 / 11.08까지']];
   const fields = [['상태', badge('진행 중', 'brand')], ['담당', `<span class="tp-row">${avatar('와이비엠', 20)}와이비엠</span>`], ['우선순위', `<span class="tp-row">${K.dot('warning')}높음</span>`], ['마감', '11월 15일'], ['스프린트', '24'], ['만든 사람', '최민준 / 10월 18일'], ['지켜보는 사람', avatars(['와이비엠', '이준호', '박하린'], 24, 2)]];
   const css = `
-  .tp-wi { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-wi { grid-template-columns: minmax(0, 1fr) 320px; } }
+  /* 본문과 속성을 나눈다(2026-11-10 사용자 "좌/우 컨텐츠의 분리, 다른 레이아웃 참조"): 저장소 화면과 같은 .tp-body--panel 틀 */
   .tp-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); }
   .tp-crumb a { color: inherit; text-decoration: none; }
   .tp-wi__main { gap: var(--ds-space-x10); }
-  /* 오른쪽 속성: 선과 상자 없이 이름 / 값 두 칸 (모바일은 본문 아래) */
-  .tp-wi__side { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x10); }
+  /* 오른쪽 속성: 상자 없이 이름 / 값 두 칸 (모바일은 본문 아래) */
   .tp-props { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: var(--ds-space-x4) var(--ds-space-x3); margin: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-props dt { color: var(--ds-color-fg-neutral-subtle); }
   .tp-props dd { margin: 0; min-width: 0; }
-  @media (min-width: 1024px) { .tp-wi__side { padding: var(--ds-space-x6) var(--ds-space-x6) var(--ds-space-x10); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-sub-item { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-space-x3); padding-block: var(--ds-space-x2_5); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-files { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--ds-space-x3); }
   .tp-file { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); font-size: var(--ds-font-size-t03); }
   .tp-comment { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--ds-space-x3); }
 `;
   const body = `<div class="tp-app">
-<header class="tp-head" style="flex-direction: column; align-items: stretch">
+<div class="tp-body tp-body--panel">
+<main class="tp-content tp-wi__main">
+<header class="tp-stack" style="gap: var(--ds-space-x2)">
   <div class="tp-crumb"><a href="#">모든 할 일</a><span>/</span><span class="tp-num">PLT-247</span></div>
   <div class="tp-between"><h1 class="tp-h1">워크스페이스 가입 흐름 새로 만들기</h1><div class="tp-row">${iconBtn('link', '링크 복사')}${iconBtn('share', '공유')}${iconBtn('ellipsis', '더 보기')}</div></div>
 </header>
-<div class="tp-wi">
-  <main class="tp-content">
-    <section class="tp-sec"><h2 class="tp-h3">설명</h2><h3 class="tp-h4">성공 기준</h3>${list(['가입 7일 뒤 활성화율 42% → 55%', '첫 수업까지 걸리는 시간 절반으로', '가입 중 이탈 30% 줄이기'].map((t) => listItem(t, { prefix: icon('check', 'sm'), size: 'small' })))}</section>
+    <section class="tp-sec"><h2 class="tp-h3">설명</h2><h3 class="tp-h4">성공 기준</h3>${K.checks(['가입 7일 뒤 활성화율 42% → 55%', '첫 수업까지 걸리는 시간 절반으로', '가입 중 이탈 30% 줄이기'])}</section>
     <section class="tp-sec"><div class="tp-between"><span class="tp-row"><h2 class="tp-h3">하위 할 일</h2>${btn('추가', { variant: 'ghost', ic: 'plus', size: 'xsmall' })}</span><span class="tp-row" style="min-width: 200px"><span class="tp-caption tp-num">5개 중 2개 끝</span>${progress(40, { label: '하위 할 일 진행' })}</span></div><div>${subs.map(([t, d, m]) => `<div class="tp-sub-item">${checkbox(t, { checked: !!d })}<span class="tp-caption" style="white-space:nowrap">${m}</span></div>`).join('')}</div></section>
     <section class="tp-sec"><h2 class="tp-h3">첨부 파일</h2><div class="tp-files">${[['file-text', '가입 흐름 분석.pdf'], ['image', '새 화면 시안.png'], ['file', '측정 계획.xlsx']].map(([ic, n]) => `<span class="tp-file">${icon(ic, 'sm')}${n}</span>`).join('')}</div></section>
     <section class="tp-sec"><h2 class="tp-h3">댓글</h2>${[['이준호', '어제', '샘플 강좌는 토익 입문 1강으로 넣으면 어떨까요? 완강률이 가장 높아요.'], ['와이비엠', '2시간 전', '좋아요. 그걸로 갈게요. 디자인 시안은 금요일까지 올릴게요.']].map(([w, t, c]) => `<div class="tp-comment">${avatar(w, 24)}<div class="tp-stack"><span class="tp-row"><b>${w}</b><span class="tp-caption">${t}</span></span><p class="tp-sub">${c}</p></div></div>`).join('')}${K.textarea('cm', 'rows="3" placeholder="댓글을 남기세요" aria-label="댓글"')}<div>${btn('댓글 달기', { variant: 'neutralSolid' })}</div></section>
-  </main>
-  <aside class="tp-wi__side" aria-label="속성"><dl class="tp-props">${fields.map(([l, v]) => `<dt>${l}</dt><dd>${v}</dd>`).join('')}</dl></aside>
+</main>
+<aside class="tp-panel" aria-labelledby="s-props"><h2 class="tp-h3" id="s-props">속성</h2><dl class="tp-props">${fields.map(([l, v]) => `<dt>${l}</dt><dd>${v}</dd>`).join('')}</dl></aside>
 </div>
 </div>`;
   return { slug: 'work-item-detail', en: 'Work Item Detail', name: '할 일 상세', group: 'Content', desc: '할 일 하나를 자세히 보고 진행 상황을 공유하는 화면입니다. 하위 할 일과 댓글로 함께 일합니다.', css, body };

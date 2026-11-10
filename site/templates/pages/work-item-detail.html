@@ -42,6 +42,10 @@
   .tp-sub { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
   .tp-caption { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-regular); }
   /* 리스트 글자 위계: 항목 제목은 굵게, 상품 이름은 보통 + 가격은 굵게, 부가 정보는 13 */
+  /* 체크 목록: 누르지 않는 항목이라 List Item(이동용) 대신 글 목록, 아이콘은 첫 줄 가운데 */
+  .tp-checks { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
+  .tp-checks > li { display: flex; align-items: flex-start; gap: var(--ds-space-x2); }
+  .tp-checks .ds-icon { flex: none; --ds-icon-size: 16px; margin-block: calc((var(--ds-line-height-t05) - 16px) / 2); color: var(--ds-color-fg-neutral); }
   .tp-item-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
   .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }  /* 2026-11-10 사용자 "타이틀에 얇은 폰트를 쓰지마" */
   .tp-amount { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -107,7 +111,7 @@
   .tp-bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
   .tp-track { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 120px; }
   .tp-hide-sm { display: none; }
-  .tp-scroll-x { overflow-x: auto; }
+  .tp-scroll-x { position: relative; overflow-x: auto; } /* 안의 .tp-sr(absolute)이 페이지 폭을 넓히지 않게 */
   .tp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .tp-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t01); font-family: inherit; }
   @media (min-width: 768px) {
@@ -132,17 +136,14 @@
   }
   @media (min-width: 1280px) { .tp-g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
-  .tp-wi { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-wi { grid-template-columns: minmax(0, 1fr) 320px; } }
+  /* 본문과 속성을 나눈다(2026-11-10 사용자 "좌/우 컨텐츠의 분리, 다른 레이아웃 참조"): 저장소 화면과 같은 .tp-body--panel 틀 */
   .tp-crumb { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); }
   .tp-crumb a { color: inherit; text-decoration: none; }
   .tp-wi__main { gap: var(--ds-space-x10); }
-  /* 오른쪽 속성: 선과 상자 없이 이름 / 값 두 칸 (모바일은 본문 아래) */
-  .tp-wi__side { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x10); }
+  /* 오른쪽 속성: 상자 없이 이름 / 값 두 칸 (모바일은 본문 아래) */
   .tp-props { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: var(--ds-space-x4) var(--ds-space-x3); margin: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-props dt { color: var(--ds-color-fg-neutral-subtle); }
   .tp-props dd { margin: 0; min-width: 0; }
-  @media (min-width: 1024px) { .tp-wi__side { padding: var(--ds-space-x6) var(--ds-space-x6) var(--ds-space-x10); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-sub-item { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-space-x3); padding-block: var(--ds-space-x2_5); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-files { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--ds-space-x3); }
   .tp-file { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); font-size: var(--ds-font-size-t03); }
@@ -151,18 +152,18 @@
 </head>
 <body>
 <div class="tp-app">
-<header class="tp-head" style="flex-direction: column; align-items: stretch">
+<div class="tp-body tp-body--panel">
+<main class="tp-content tp-wi__main">
+<header class="tp-stack" style="gap: var(--ds-space-x2)">
   <div class="tp-crumb"><a href="#">모든 할 일</a><span>/</span><span class="tp-num">PLT-247</span></div>
   <div class="tp-between"><h1 class="tp-h1">워크스페이스 가입 흐름 새로 만들기</h1><div class="tp-row"><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="링크 복사"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="공유"><i class="ds-icon ds-icon--share" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="더 보기"><i class="ds-icon ds-icon--ellipsis" aria-hidden="true"></i></button></div></div>
 </header>
-<div class="tp-wi">
-  <main class="tp-content">
-    <section class="tp-sec"><h2 class="tp-h3">설명</h2><h3 class="tp-h4">성공 기준</h3><ul class="ds-list"><li><a class="ds-list-item" data-size="small" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--check ds-icon--sm" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">가입 7일 뒤 활성화율 42% → 55%</span></span></a></li><li><a class="ds-list-item" data-size="small" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--check ds-icon--sm" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">첫 수업까지 걸리는 시간 절반으로</span></span></a></li><li><a class="ds-list-item" data-size="small" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--check ds-icon--sm" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">가입 중 이탈 30% 줄이기</span></span></a></li></ul></section>
+    <section class="tp-sec"><h2 class="tp-h3">설명</h2><h3 class="tp-h4">성공 기준</h3><ul class="tp-checks"><li><i class="ds-icon ds-icon--check" aria-hidden="true"></i><span>가입 7일 뒤 활성화율 42% → 55%</span></li><li><i class="ds-icon ds-icon--check" aria-hidden="true"></i><span>첫 수업까지 걸리는 시간 절반으로</span></li><li><i class="ds-icon ds-icon--check" aria-hidden="true"></i><span>가입 중 이탈 30% 줄이기</span></li></ul></section>
     <section class="tp-sec"><div class="tp-between"><span class="tp-row"><h2 class="tp-h3">하위 할 일</h2><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>추가</button></span><span class="tp-row" style="min-width: 200px"><span class="tp-caption tp-num">5개 중 2개 끝</span><div class="ds-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="하위 할 일 진행" style="--ds-progress-value: 40%" data-size="small"></div></span></div><div><div class="tp-sub-item"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">지금 가입 흐름을 살펴보고 불편한 점 적기</span></label><span class="tp-caption" style="white-space:nowrap">와이비엠 / 10.20</span></div><div class="tp-sub-item"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">첫 화면에 샘플 강좌 미리 넣기</span></label><span class="tp-caption" style="white-space:nowrap">이준호 / 10.24</span></div><div class="tp-sub-item"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">가입 단계 5개를 3개로 줄이기</span></label><span class="tp-caption" style="white-space:nowrap">박하린 / 11.03까지</span></div><div class="tp-sub-item"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">첫 수업 안내 메일 다시 쓰기</span></label><span class="tp-caption" style="white-space:nowrap">정다은 / 11.05까지</span></div><div class="tp-sub-item"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">7일 뒤 활성화율 측정 대시보드</span></label><span class="tp-caption" style="white-space:nowrap">한지우 / 11.08까지</span></div></div></section>
     <section class="tp-sec"><h2 class="tp-h3">첨부 파일</h2><div class="tp-files"><span class="tp-file"><i class="ds-icon ds-icon--file-text ds-icon--sm" aria-hidden="true"></i>가입 흐름 분석.pdf</span><span class="tp-file"><i class="ds-icon ds-icon--image ds-icon--sm" aria-hidden="true"></i>새 화면 시안.png</span><span class="tp-file"><i class="ds-icon ds-icon--file ds-icon--sm" aria-hidden="true"></i>측정 계획.xlsx</span></div></section>
     <section class="tp-sec"><h2 class="tp-h3">댓글</h2><div class="tp-comment"><span class="ds-avatar" data-size="24" role="img" aria-label="이준호"><span class="ds-avatar__initials" aria-hidden="true">이</span></span><div class="tp-stack"><span class="tp-row"><b>이준호</b><span class="tp-caption">어제</span></span></div></div><div class="tp-comment"><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span><div class="tp-stack"><span class="tp-row"><b>와이비엠</b><span class="tp-caption">2시간 전</span></span></div></div><textarea class="ds-textarea" id="cm" rows="3" placeholder="댓글을 남기세요" aria-label="댓글"></textarea><div><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small">댓글 달기</button></div></section>
-  </main>
-  <aside class="tp-wi__side" aria-label="속성"><dl class="tp-props"><dt>상태</dt><dd><span class="ds-badge" data-tone="brand">진행 중</span></dd><dt>담당</dt><dd><span class="tp-row"><span class="ds-avatar" data-size="20" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span>와이비엠</span></dd><dt>우선순위</dt><dd><span class="tp-row"><span class="ds-statusdot" data-tone="warning" aria-hidden="true"></span>높음</span></dd><dt>마감</dt><dd>11월 15일</dd><dt>스프린트</dt><dd>24</dd><dt>만든 사람</dt><dd>최민준 / 10월 18일</dd><dt>지켜보는 사람</dt><dd><div class="ds-avatar-group" data-size="24" role="group" aria-label="참여자"><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span><span class="ds-avatar" data-size="24" role="img" aria-label="이준호"><span class="ds-avatar__initials" aria-hidden="true">이</span></span><span class="ds-avatar" data-size="24" role="img" aria-label="박하린"><span class="ds-avatar__initials" aria-hidden="true">박</span></span><span class="ds-avatar-group__overflow" role="img" aria-label="그 외 2명">+2</span></div></dd></dl></aside>
+</main>
+<aside class="tp-panel" aria-labelledby="s-props"><h2 class="tp-h3" id="s-props">속성</h2><dl class="tp-props"><dt>상태</dt><dd><span class="ds-badge" data-tone="brand">진행 중</span></dd><dt>담당</dt><dd><span class="tp-row"><span class="ds-avatar" data-size="20" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span>와이비엠</span></dd><dt>우선순위</dt><dd><span class="tp-row"><span class="ds-statusdot" data-tone="warning" aria-hidden="true"></span>높음</span></dd><dt>마감</dt><dd>11월 15일</dd><dt>스프린트</dt><dd>24</dd><dt>만든 사람</dt><dd>최민준 / 10월 18일</dd><dt>지켜보는 사람</dt><dd><div class="ds-avatar-group" data-size="24" role="group" aria-label="참여자"><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span><span class="ds-avatar" data-size="24" role="img" aria-label="이준호"><span class="ds-avatar__initials" aria-hidden="true">이</span></span><span class="ds-avatar" data-size="24" role="img" aria-label="박하린"><span class="ds-avatar__initials" aria-hidden="true">박</span></span><span class="ds-avatar-group__overflow" role="img" aria-label="그 외 2명">+2</span></div></dd></dl></aside>
 </div>
 </div>
 </body>

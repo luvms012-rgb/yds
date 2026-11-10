@@ -1047,7 +1047,7 @@ ${sections.join('\n')}`,
 /* ---------------------------------------------------------------- Templates */
 const tplGroups = [...new Set(templates.map((t) => t.group))];
 // 분류 칩에 보이는 이름 (값은 templates.json의 영어 group)
-const TPL_GROUP_KO = { Dashboard: '대시보드', Table: '표', Form: '입력 폼', Settings: '설정', Login: '로그인', Tools: '도구', Content: '콘텐츠', 'AI Chat': 'AI 채팅', Gallery: '갤러리', Community: '커뮤니티', Pricing: '요금제', 'My Page': '마이페이지', Commerce: '쇼핑', Exam: '시험 접수', 'Exam B2B': '단체 시험', 'Learning B2B': '기업 러닝' };
+const TPL_GROUP_KO = { Dashboard: '대시보드', Table: '표', Form: '입력 폼', Settings: '설정', Login: '로그인', Tools: '도구', Content: '콘텐츠', 'AI Chat': 'AI 채팅', Gallery: '갤러리', Community: '커뮤니티', Pricing: '요금제', 'My Page': '마이페이지', Commerce: '쇼핑', Exam: '시험 접수', Education: '교육 서비스', 'Exam B2B': '단체 시험', 'Learning B2B': '기업 러닝' };
 // 분류 탭은 보이는 한글 이름의 가나다 순 (11-09 사용자)
 tplGroups.sort((x, y) => (TPL_GROUP_KO[x] || x).localeCompare(TPL_GROUP_KO[y] || y, 'ko'));
 write({
@@ -1106,7 +1106,7 @@ fs.writeFileSync(path.join(SITE, 'get-started/ai.html'), `<!doctype html>
 fs.rmSync(path.join(SITE, 'get-started/ai.md'), { force: true });
 
 /* ---------------------------------------------------------------- Updates */
-// 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 종류(새 컴포넌트, 새 기능, 바뀐 것, 고친 것)별 목록. 영역 거르기 탭은 11-04 사용자 지시로 뺐다
+// 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 종류(새 기능, 변경된 부분 두 가지, 11-10 사용자)별 목록. 영역 거르기 탭은 11-04 사용자 지시로 뺐다
 // 소식은 site/src/updates.json releases 맨 위에 날짜를 더한다
 const RELEASES = readJson('site/src/updates.json').releases;
 const fmtDate = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${y}. ${m}. ${dd}`; };

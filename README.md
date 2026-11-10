@@ -501,6 +501,9 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 - 터치 타깃 40px 이상(아이콘 버튼 44×44)
 - `prefers-reduced-motion: reduce`에서 애니메이션/트랜지션 제거
 - 아이콘 전용 버튼은 `aria-label` 필수, 장식 아이콘은 `aria-hidden="true"`
+- 대비: 글자는 바탕과 4.5:1 이상, 글자 없이 쓰는 아이콘, 포커스 링, 진행 표시 선은 3:1 이상 (비활성 상태는 예외)
+- 색만으로 뜻을 전하지 않는다. Banner, Callout, Badge, Alert Dialog 는 상태를 글자로도 말한다
+- 겹쳐 열지 않는다: 창 안에 창, Popover 안에 Popover, Carousel 안에 Carousel
 
 ---
 

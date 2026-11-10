@@ -193,7 +193,8 @@ const pageEditor = () => {
   .tp-layer .tp-grow { flex: 1 1 auto; }
   .tp-canvas { flex: 1 1 auto; overflow: auto; padding: var(--ds-space-x8) var(--ds-space-x6); background: var(--ds-color-bg-neutral-subtle); }
   .tp-page { display: flex; flex-direction: column; gap: var(--ds-space-x4); width: min(100%, 880px); margin-inline: auto; padding: var(--ds-space-x6); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: 0 4px 24px var(--ds-color-palette-static-black-alpha-300); }
-  .tp-picked { outline: 2px solid var(--ds-color-stroke-brand-solid); outline-offset: 4px; border-radius: var(--ds-shape-sm); }
+  /* 고른 요소: 카드 테두리 자리에 고른 표시 한 줄만 (선 두 겹 금지) */
+  .tp-picked > .ds-card { box-shadow: inset 0 0 0 2px var(--ds-color-stroke-brand-solid); }
 `;
   const body = `<div class="tp-tool">
 <header class="tp-tool__bar"><h1 class="tp-h4">페이지 편집기</h1><span class="tp-spacer"></span>${K.even(`${segmented([icon('monitor', 'sm'), icon('panel-right', 'sm'), icon('smartphone', 'sm')], 0, '화면 크기')}${iconBtn('undo-2', '되돌리기')}${iconBtn('redo-2', '다시 하기')}${btn('미리 보기', { ic: 'eye' })}${btn('게시', { variant: 'brandSolid' })}`, true)}</header>

@@ -54,8 +54,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | Popover는 버튼 옆에 뜨는 작은 창이고, 바깥을 누르면 닫힙니다. |
 | **Do** | 화면을 막고 확인받아야 할 때는 Dialog를 사용합니다. |
+| **Don't** | Popover 안에서 다른 Popover를 열지 않습니다. |
 
 ## 예시
 
@@ -158,4 +158,5 @@ Figma: 폭 320 / padding x5 / gap x4 / shape/xl / bg/layer-floating / 1px stroke
   body t04 fg/neutral / footer 오른쪽 정렬 gap x2, Action Button small
 닫기 버튼을 숨기면 본문이나 버튼 영역에 닫는 동작을 꼭 둔다.
 고르는 법: 짧은 설명은 Tooltip, Help Bubble / 제목과 버튼이 있는 작은 작업 창은 Popover / 화면을 막아야 하면 Dialog
+알림 고르는 법(2026-11-10): 작업 결과는 Snackbar / 입력 오류는 칸 아래 안내 글 / 작업을 막는 오류와 화면 전체 상태는 Banner / 화면 안 안내는 Callout / 되돌릴 수 없는 작업 확인은 Alert Dialog
 ```

@@ -3118,6 +3118,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
      body t04 fg/neutral / footer 오른쪽 정렬 gap x2, Action Button small
    닫기 버튼을 숨기면 본문이나 버튼 영역에 닫는 동작을 꼭 둔다.
    고르는 법: 짧은 설명은 Tooltip, Help Bubble / 제목과 버튼이 있는 작은 작업 창은 Popover / 화면을 막아야 하면 Dialog
+   알림 고르는 법(2026-11-10): 작업 결과는 Snackbar / 입력 오류는 칸 아래 안내 글 / 작업을 막는 오류와 화면 전체 상태는 Banner / 화면 안 안내는 Callout / 되돌릴 수 없는 작업 확인은 Alert Dialog
    -------------------------------------------------------------------------- */
 .ds-popover-anchor { position: relative; display: inline-flex; }
 .ds-popover {

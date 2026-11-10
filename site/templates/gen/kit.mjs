@@ -30,6 +30,10 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-sub { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
   .tp-caption { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-regular); }
   /* 리스트 글자 위계: 항목 제목은 굵게, 상품 이름은 보통 + 가격은 굵게, 부가 정보는 13 */
+  /* 체크 목록: 누르지 않는 항목이라 List Item(이동용) 대신 글 목록, 아이콘은 첫 줄 가운데 */
+  .tp-checks { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
+  .tp-checks > li { display: flex; align-items: flex-start; gap: var(--ds-space-x2); }
+  .tp-checks .ds-icon { flex: none; --ds-icon-size: 16px; margin-block: calc((var(--ds-line-height-t05) - 16px) / 2); color: var(--ds-color-fg-neutral); }
   .tp-item-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
   .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }  /* 2026-11-10 사용자 "타이틀에 얇은 폰트를 쓰지마" */
   .tp-amount { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -95,7 +99,7 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
   .tp-track { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 120px; }
   .tp-hide-sm { display: none; }
-  .tp-scroll-x { overflow-x: auto; }
+  .tp-scroll-x { position: relative; overflow-x: auto; } /* 안의 .tp-sr(absolute)이 페이지 폭을 넓히지 않게 */
   .tp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .tp-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t01); font-family: inherit; }
   @media (min-width: 768px) {
@@ -236,6 +240,7 @@ export const pagination = (cur = 1, last = 12) => `<nav class="ds-pagination" ar
 export const tablePager = (total, per = 10) => `<div class="ds-tablepagination"><label class="ds-tablepagination__size"><span class="ds-tablepagination__label">페이지당 행 수</span><span class="ds-tablepagination__select"><select><option selected>${per}개</option><option>25개</option><option>50개</option></select></span></label><div class="ds-tablepagination__range"><span class="ds-tablepagination__position"><span class="ds-tablepagination__current">1-${per}</span><span class="ds-tablepagination__total">/ 총 ${total}개</span></span><nav class="ds-pagination" aria-label="표 페이지"><a class="ds-pagination__item" data-type="prev" aria-disabled="true" aria-label="이전 페이지"></a><a class="ds-pagination__item" data-type="next" href="#" aria-label="다음 페이지"></a></nav></div></div>`;
 export const table = (cols, rows, { compact = true, interactive = false, cls = '', caption = '' } = {}) => `<div class="ds-table-wrap${cls ? ' ' + cls : ''}"><table class="ds-table"${compact ? ' data-density="compact"' : ''}>${caption ? `<caption class="tp-sr">${caption}</caption>` : ''}<thead><tr>${cols.map((c) => { const [t, a] = Array.isArray(c) ? c : [c]; return `<th scope="col"${a ? ` data-align="${a}"` : ''}>${t}</th>`; }).join('')}</tr></thead><tbody>${rows.map((r) => `<tr${interactive ? ' data-interactive' : ''}>${r.map((v, i) => { const a = Array.isArray(cols[i]) ? cols[i][1] : ''; return `<td${a ? ` data-align="${a}"` : ''}>${v}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>`;
 export const listItem = (title, { sub = '', prefix = '', suffix = '', href = '#', chevron = false, current = false, size = '' } = {}) => `<li><a class="ds-list-item"${size ? ` data-size="${size}"` : ''} href="${href}"${current ? ' aria-current="page"' : ''}>${prefix ? `<span class="ds-list-item__prefix">${prefix}</span>` : ''}<span class="ds-list-item__content"><span class="ds-list-item__title">${title}</span>${sub ? `<span class="ds-list-item__desc">${sub}</span>` : ''}</span>${suffix ? `<span class="ds-list-item__suffix">${suffix}</span>` : ''}${chevron ? `<i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>` : ''}</a></li>`;
+export const checks = (items) => `<ul class="tp-checks">${items.map((t) => `<li>${icon('check')}<span>${t}</span></li>`).join('')}</ul>`;
 export const list = (items) => `<ul class="ds-list">${items.join('')}</ul>`;
 export const menu = (items) => `<div class="ds-menu" role="menu">${items.map((it) => it === '-' ? '<div class="ds-menu__divider" role="separator"></div>' : `<button class="ds-menu-item" role="menuitem"${it[2] ? ` data-tone="${it[2]}"` : ''}>${it[1] ? icon(it[1]) : ''}${it[0]}</button>`).join('')}</div>`;
 export const accordion = (items, variant = '') => items.map(([t, d, open, sub]) => `<details class="ds-accordion"${variant ? ` data-variant="${variant}"` : ''}${open ? ' open' : ''}><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">${t}</span>${sub ? `<span class="ds-accordion__desc">${sub}</span>` : ''}</span></summary><div class="ds-accordion__content">${d}</div></details>`).join('');

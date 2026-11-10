@@ -29,6 +29,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 화면의 대표 진행률은 brand, 목록 안이나 보조 진행률은 neutral을 사용합니다. |
 | **Do** | 0%일 때도 바탕 막대(track)는 보여 줍니다. 그래야 진행 막대인 줄 알 수 있습니다. |
 | **Do** | 스크린 리더가 읽도록 role="progressbar"와 aria-valuenow, aria-valuemin, aria-valuemax를 붙입니다. 라벨이 없으면 aria-label을 붙입니다. |
+| **Don't** | 바로 끝나는 동작에는 사용하지 않습니다. |
 
 ## 예시
 

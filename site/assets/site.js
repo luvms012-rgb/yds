@@ -746,7 +746,7 @@
       var r = document.querySelector(".site-release");
       if (!r || r.classList.contains("site-release--new")) return;
       r.classList.add("site-release--new");
-      var h = r.querySelector("h2"); if (h) h.appendChild(newBadge("site-release__new"));
+      var h = r.querySelector("h2 time") || r.querySelector("h2"); if (h) { var nb = newBadge("site-release__new"); if (h.tagName === "TIME") h.after(nb); else h.appendChild(nb); }  /* 날짜 바로 뒤에 둔다(제목 끝의 링크 단추 뒤로 밀리지 않게) */
     }
     function sync() {
       var seen = null, unread = false;

@@ -42,6 +42,10 @@
   .tp-sub { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
   .tp-caption { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-regular); }
   /* 리스트 글자 위계: 항목 제목은 굵게, 상품 이름은 보통 + 가격은 굵게, 부가 정보는 13 */
+  /* 체크 목록: 누르지 않는 항목이라 List Item(이동용) 대신 글 목록, 아이콘은 첫 줄 가운데 */
+  .tp-checks { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
+  .tp-checks > li { display: flex; align-items: flex-start; gap: var(--ds-space-x2); }
+  .tp-checks .ds-icon { flex: none; --ds-icon-size: 16px; margin-block: calc((var(--ds-line-height-t05) - 16px) / 2); color: var(--ds-color-fg-neutral); }
   .tp-item-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
   .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }  /* 2026-11-10 사용자 "타이틀에 얇은 폰트를 쓰지마" */
   .tp-amount { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -107,7 +111,7 @@
   .tp-bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
   .tp-track { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 120px; }
   .tp-hide-sm { display: none; }
-  .tp-scroll-x { overflow-x: auto; }
+  .tp-scroll-x { position: relative; overflow-x: auto; } /* 안의 .tp-sr(absolute)이 페이지 폭을 넓히지 않게 */
   .tp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .tp-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t01); font-family: inherit; }
   @media (min-width: 768px) {
@@ -162,7 +166,8 @@
   .tp-layer .tp-grow { flex: 1 1 auto; }
   .tp-canvas { flex: 1 1 auto; overflow: auto; padding: var(--ds-space-x8) var(--ds-space-x6); background: var(--ds-color-bg-neutral-subtle); }
   .tp-page { display: flex; flex-direction: column; gap: var(--ds-space-x4); width: min(100%, 880px); margin-inline: auto; padding: var(--ds-space-x6); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: 0 4px 24px var(--ds-color-palette-static-black-alpha-300); }
-  .tp-picked { outline: 2px solid var(--ds-color-stroke-brand-solid); outline-offset: 4px; border-radius: var(--ds-shape-sm); }
+  /* 고른 요소: 카드 테두리 자리에 고른 표시 한 줄만 (선 두 겹 금지) */
+  .tp-picked > .ds-card { box-shadow: inset 0 0 0 2px var(--ds-color-stroke-brand-solid); }
 </style>
 </head>
 <body>

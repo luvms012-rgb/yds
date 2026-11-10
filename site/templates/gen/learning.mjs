@@ -65,8 +65,13 @@ const home = () => {
 /* 2. 과정 찾기 ---------------------------------------------------- */
 const catalog = () => {
   const css = CSS + `
-  .tp-cat-head { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
-  .tp-cat-head .ds-input { max-width: 560px; }
+  /* 거르기 묶음(찾기 + 조건 + 분류)과 결과 묶음(개수 + 정렬 + 목록)으로 나눈다 */
+  .tp-cat-head { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
+  .tp-filter { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  .tp-filter__row { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
+  .tp-filter__row > :first-child { flex: 1 1 280px; max-width: 480px; }
+  .tp-filter__row > .ds-select { flex: 0 1 160px; width: auto; min-width: 140px; }
+  .tp-results { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
   .tp-g4c { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x8) var(--ds-space-x4); }
   @media (min-width: 1024px) { .tp-g4c { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-x10) var(--ds-space-x6); } }
 `;
@@ -74,9 +79,16 @@ const catalog = () => {
   const tone = { 신규: 'brand', 필수: 'critical', 인기: 'warning' };
   const body = `<div class="tp-app">${topbar(LEARN_MENU, 1, learnEnd)}
 <main class="tp-content">
-  <div class="tp-cat-head"><h1 class="tp-h1">과정 찾기</h1>${search('lc-q', '배우고 싶은 것을 찾아보세요', 'medium')}${chiptabs(['전체', 'AI/디지털', '직무', '리더십', '외국어', '법정 필수', '자기계발'], 0, '분류')}</div>
-  <div class="tp-between"><span class="tp-sub">과정 ${T('248')}개</span><div class="tp-row">${select('수준 전체', { id: 'lc-lv', aria: '수준' })}${select('학습 시간 전체', { id: 'lc-time', aria: '학습 시간' })}${select('인기순', { id: 'lc-sort', aria: '정렬' })}</div></div>
-  <div class="tp-g4c">${items.map(([t, m, b], i) => course(i, t, m, { b: b ? badge(b, tone[b], true) : '', r: (4.5 + (i % 5) / 10).toFixed(1), n: String(320 + i * 137) })).join('')}</div>
+  <div class="tp-cat-head"><h1 class="tp-h1">과정 찾기</h1>
+    <div class="tp-filter" role="search">
+      <div class="tp-filter__row">${search('lc-q', '과정 이름', 'medium')}${select('수준 전체', { id: 'lc-lv', aria: '수준' })}${select('학습 시간 전체', { id: 'lc-time', aria: '학습 시간' })}</div>
+      ${chiptabs(['전체', 'AI/디지털', '직무', '리더십', '외국어', '법정 필수', '자기계발'], 0, '분류')}
+    </div>
+  </div>
+  <section class="tp-results" aria-label="과정 목록">
+    <div class="tp-between"><span class="tp-sub">과정 ${T('248')}개</span>${select('인기순', { id: 'lc-sort', aria: '정렬' })}</div>
+    <div class="tp-g4c">${items.map(([t, m, b], i) => course(i, t, m, { b: b ? badge(b, tone[b], true) : '', r: (4.5 + (i % 5) / 10).toFixed(1), n: String(320 + i * 137) })).join('')}</div>
+  </section>
   <div style="display:flex;justify-content:center">${pagination(1, 21)}</div>
 </main></div>`;
   return { slug: 'learning-catalog', en: 'Course Catalog', name: '과정 찾기', group: 'Learning B2B', desc: '듣고 싶은 과정을 찾는 목록입니다. 분류, 수준, 학습 시간으로 필터링합니다.', css, body };
@@ -101,7 +113,7 @@ const player = () => {
   .tp-lesson { font-weight: var(--ds-font-weight-medium); }
   .tp-lesson[aria-current] { background: var(--ds-color-bg-neutral-muted); font-weight: var(--ds-font-weight-semibold); }
   .tp-lesson .ds-icon { color: var(--ds-color-fg-neutral-subtle); }
-  .tp-lesson[data-done] .ds-icon { color: var(--ds-color-fg-positive); }
+  .tp-lesson[data-done] .ds-icon { color: var(--ds-color-fg-neutral); }
   .tp-chap { padding: var(--ds-space-x4) var(--ds-space-x3) var(--ds-space-x1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-semibold); }
   .tp-tutor { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x5); border-radius: var(--ds-shape-2xl); background: var(--ds-color-bg-neutral-muted); }
   .tp-tutor ul { margin: 0; padding-inline-start: 1.2em; display: flex; flex-direction: column; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }

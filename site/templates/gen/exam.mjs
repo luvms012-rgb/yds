@@ -21,7 +21,7 @@ const apply = () => {
   @media (min-width: 1024px) { .tp-ea { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
   .tp-step-h { display: flex; align-items: center; gap: var(--ds-space-x3); }
   .tp-step-no { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); }
-  .tp-step-h .ds-icon { --ds-icon-size: 24px; color: var(--ds-color-fg-positive); }
+  .tp-step-h .ds-icon { --ds-icon-size: 24px; color: var(--ds-color-fg-neutral); }
   .tp-step-h[data-current] .tp-step-no { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
   .tp-step-h > .tp-h2 { flex: 1 1 auto; font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); }
   .tp-ds { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
@@ -72,10 +72,10 @@ const mine = () => {
   @media (min-width: 768px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }
   .tp-dday { display: inline-flex; align-self: flex-start; padding: 2px var(--ds-space-x2); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-check { display: flex; align-items: center; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
-  .tp-check .ds-icon { color: var(--ds-color-fg-positive); }
+  .tp-check .ds-icon { color: var(--ds-color-fg-neutral); }
   .tp-hist { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x1) var(--ds-space-x3); align-items: center; }
 `;
-  const hist = (t, when, st, tone, act) => `<div class="tp-hist"><div class="tp-stack"><span class="tp-item-title">${t}</span>${tags(when)}</div><div class="tp-row">${badge(st, tone)}${act ? btn(act, { size: 'xsmall' }) : ''}</div></div>`;
+  const hist = (t, when, st, tone, act) => `<div class="tp-hist"><div class="tp-stack"><span class="tp-row"><span class="tp-item-title">${t}</span>${badge(st, tone)}</span>${tags(when)}</div>${act ? btn(act, { size: 'xsmall' }) : ''}</div>`;
   const body = `<div class="tp-app">${topbar(USER_MENU, 3, userEnd)}
 ${head('내 시험', { tools: btn('시험 접수하기', { variant: 'brandSolid', ic: 'plus' }) })}
 <main class="tp-content">

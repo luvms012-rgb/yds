@@ -198,8 +198,14 @@
 - [장바구니](https://luvms012-rgb.github.io/yds/site/templates/pages/cart.html): 담은 상품을 확인하고 수량과 옵션을 바꾸는 장바구니입니다. 결제 예정 금액을 보며 바로 주문합니다.
 - [빈 장바구니](https://luvms012-rgb.github.io/yds/site/templates/pages/cart-empty.html): 담은 상품이 없을 때의 장바구니입니다. 추천 상품을 보여 주어 쇼핑을 이어 가게 합니다.
 - [시험 신청](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-apply.html): 시험 종류부터 결제까지 한 화면에서 차례로 선택하는 신청 화면입니다. 선택한 내용과 금액은 옆 요약에 바로 표시됩니다.
+- [시험 일정표](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-schedule.html): 회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.
 - [내 시험](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-my.html): 응시자가 자신의 시험 일정과 점수를 한눈에 보는 화면입니다.
 - [성적표](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-score.html): 시험 성적을 확인하는 화면입니다. 총점을 먼저 보여 주고 영역별 점수로 이어집니다.
+- [센터 찾기](https://luvms012-rgb.github.io/yds/site/templates/pages/center-finder.html): 지역과 과정으로 가까운 센터를 찾고 상담을 예약하는 화면입니다.
+- [상담 예약](https://luvms012-rgb.github.io/yds/site/templates/pages/consult-booking.html): 설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.
+- [고객센터](https://luvms012-rgb.github.io/yds/site/templates/pages/help-center.html): 자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.
+- [수업 옵션 선택](https://luvms012-rgb.github.io/yds/site/templates/pages/lesson-plan.html): 수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.
+- [교재 상세](https://luvms012-rgb.github.io/yds/site/templates/pages/textbook-detail.html): 책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.
 - [응시자 관리](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-roster.html): 단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.
 - [단체 접수](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-apply.html): 기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.
 - [단체 성적 대시보드](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-dashboard.html): 기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.
