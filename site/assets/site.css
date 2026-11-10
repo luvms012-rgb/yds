@@ -176,7 +176,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc > h3 + * { margin-top: var(--ds-space-x3); }
 .site-doc > h3 + p { margin-top: var(--ds-space-x1); }  /* 항목 제목 바로 아래 설명은 제목에 붙여 4 (11-05 사용자 "이 사이 여백을 좀 줄여줘") */
 .site-doc > p + p { margin-top: var(--ds-space-x2); }  /* 이어지는 문단은 한 덩어리로 8 */
-/* 제목 옆 링크 복사: 모양은 DS Tooltip + ghost 아이콘 버튼 그대로. 사이트는 자리와 보이는 때(제목에 마우스를 올리거나 키보드로 갔을 때)만 정한다 (11-10) */
+/* 제목 옆 링크 복사: 모양은 DS ghost 아이콘 버튼 그대로(Tooltip 은 Snackbar 와 겹쳐 11-10 밤 뺌). 사이트는 자리와 보이는 때(제목에 마우스를 올리거나 키보드로 갔을 때)만 정한다 (11-10) */
 .site-anchor { margin-left: var(--ds-space-x2); vertical-align: middle; opacity: 0; transition: opacity var(--ds-duration-fast) var(--ds-easing-standard); }
 .site-doc h2:hover .site-anchor, .site-anchor:has(:focus-visible) { opacity: 1; }
 .site-doc :is(p, li):not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); letter-spacing: 0; }  /* 본문 16/24 (11-06 Figma 2662:26, 클래스 있는 문단도) */
@@ -548,6 +548,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
   .site-gs__layers { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }  /* 카드 수만큼 폭을 나눈다 */
   .site-gs__layers li + li::before { top: calc(50% - var(--ds-space-x3)); left: calc(var(--ds-space-x7) * -1); -webkit-mask-image: var(--ds-icon-chevron-right); mask-image: var(--ds-icon-chevron-right); }
 }
+.site-doc .site-gs__callout { margin-top: var(--ds-space-x4); }  /* Figma 단계 카드 아래 안내 (11-10 밤 사용자 "Callout 로") */
 .site-gs__files td:first-child a { white-space: nowrap; }
 @media (min-width: 768px) { .site-gs__files th:first-child { width: 34%; } .site-gs__files th:nth-child(2) { width: 30%; } }
 /* 코드 글자 색 (11-04 사용자 "코드뷰 컬러로 개선, seed 참조"): 레퍼런스 B 의 GitHub 테마 규칙을 DS 팔레트로. 팔레트라 다크 모드에서 같이 뒤집힌다 */

@@ -316,8 +316,8 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   const heads = [];
   body = body.replace(/<h2 id="([^"]+)">([\s\S]*?)<\/h2>/g, (m, id, inner) => {
     heads.push([id, inner.replace(/<[^>]+>/g, '')]);
-    // 제목 옆 링크 복사 (11-10 사용자 "우리 컴포넌트를 그대로"): DS Tooltip 안에 ghost 아이콘 버튼. 누르면 site.js 가 주소를 복사하고 DS Snackbar 로 알린다
-    return `<h2 id="${id}">${inner}<span class="ds-tooltip-anchor site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" aria-describedby="site-tip-${id}" data-site-anchor="${id}"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button><span class="ds-tooltip" role="tooltip" id="site-tip-${id}">링크 복사</span></span></h2>`;
+    // 제목 옆 링크 복사 (11-10 사용자 "우리 컴포넌트를 그대로"): ghost 아이콘 버튼. 누르면 site.js 가 주소를 복사하고 DS Snackbar 로 알린다. Tooltip 은 Snackbar 와 겹쳐 보여 뺐다(11-10 밤 사용자 "둘 중 하나 제거")
+    return `<h2 id="${id}">${inner}<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="${id}"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>`;
   });
   const hasToc = layout === 'doc' && heads.length > 1;
   // 좁은 화면 목차: 브라우저 기본 select 대신 DS Select Trigger + Select Content (여닫기는 site.js)
@@ -462,6 +462,7 @@ ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
 </ol>
+<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
 <p>&lt;head&gt;에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 순서가 바뀌면 서비스 CSS가 YDS 변수를 덮어쓸 수 있습니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.</p>
