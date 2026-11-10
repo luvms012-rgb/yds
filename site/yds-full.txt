@@ -45,18 +45,36 @@
 
 YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.
 
+- [AI로 요청하기](https://luvms012-rgb.github.io/yds/site/index.md#ai): 코드를 몰라도 요청 글 하나로 시작합니다.
+
+- [Figma로 그리기](https://luvms012-rgb.github.io/yds/site/index.md#figma): YDS 라이브러리를 켜고 화면을 그립니다.
+
+- [사이트에 설치하기](https://luvms012-rgb.github.io/yds/site/index.md#dev): <head>에 두 줄만 넣으면 됩니다.
+
 ## AI와 함께 시작하기
 
-AI 코딩 도구에 YDS 안내서를 알려 주면 설치부터 컴포넌트 사용까지 안내서를 따라 진행합니다.
+Claude, ChatGPT, Cursor 같은 AI 도구에 아래 글을 붙여 넣으면 YDS 규칙대로 화면을 만듭니다. 어떤 서비스의 어떤 화면인지, 들어갈 내용 순서, 그대로 둘 부분을 적을수록 정확해집니다.
 
 ```text
 아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
 예시)
-- 이벤트 신청 화면 만들어 줘
-- 운영 중인 사이트에 YDS 적용해 줘
+[새 화면 만들기]
+- 카드 제휴 이벤트 페이지 만들어 줘.
+  혜택 배너, 카드 혜택 3가지, 유의사항, '카드 신청하기' 버튼 순서로.
+- 로그인 후 동의 화면 만들어 줘.
+  필수 동의 3개(이용약관, 개인정보처리방침, 광고 문자 안내),
+  전체 동의 체크, 본인인증 버튼까지.
+
+[운영 중인 페이지에 적용하기]
+- 이 이벤트 페이지의 버튼, 글꼴, 색을 YDS로 바꿔 줘.
+  배치와 문구는 그대로 둬.
+- 첨부한 시험 접수 화면에 YDS 적용해 줘.
+  입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.
 ```
+
+주소를 열 수 없는 도구에는 [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) 파일을 대화창에 첨부합니다. 안내서 전체가 한 파일에 들어 있습니다.
 
 ## Figma로 시작하기
 
@@ -65,9 +83,14 @@ Figma에서 작업을 시작할 때는 YDS 라이브러리를 사용합니다.
 1. **라이브러리 켜기**Figma의 Assets 패널에서 [YDS 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92)를 켭니다.
 2. **화면 그리기**컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.
 
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 색, 간격, 글자는 YDS 변수에서 선택합니다. 예: bg/brand, space/x4 |
+| **Don't** | #1A73E8 같은 색이나 13px 같은 간격을 직접 입력하지 않습니다. |
+
 ## 개발 시작하기
 
-<head>에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.
+<head>에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 순서가 바뀌면 서비스 CSS가 YDS 변수를 덮어쓸 수 있습니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.
 
 **최신**
 
@@ -83,16 +106,26 @@ Figma에서 작업을 시작할 때는 YDS 라이브러리를 사용합니다.
 <script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js" defer></script>
 ```
 
+### 운영 중인 페이지에 적용하는 순서
+
+1. 위 두 줄을 <head>에, 서비스 CSS보다 앞에 넣습니다.
+2. 버튼과 입력 폼부터 YDS 컴포넌트로 바꿉니다. 배치는 그대로 둡니다.
+3. 색과 글자 크기를 YDS 변수로 바꿉니다.
+4. `node yds-check.mjs 파일.html`로 규칙을 점검합니다.
+5. 모바일과 다크 모드를 확인한 뒤 배포합니다.
+
 ## 파일
+
+자주 쓰는 순서입니다.
 
 | 파일 | 무엇인가요 | 언제 쓰나요 |
 | --- | --- | --- |
-| [yds.txt](https://luvms012-rgb.github.io/yds/site/yds.txt) | YDS 안내서 | 요청 글에 YDS 주소를 넣을 때 |
+| [yds.txt](https://luvms012-rgb.github.io/yds/site/yds.txt) | YDS 안내서 | AI 요청 글에 주소를 넣을 때 |
+| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92) | YDS 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |
 | [yds-full.txt](https://luvms012-rgb.github.io/yds/site/yds-full.txt) | 컴포넌트 사용법과 규칙을 모은 파일 하나 | 주소를 열 수 없는 대화창에 첨부할 때 |
-| [AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) / [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md) / [yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc) | 코딩 도구용 YDS 규칙 파일 | 코딩 도구가 늘 YDS 규칙을 지키게 할 때 |
+| [CLAUDE.md](https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md) Claude Code [yds.mdc](https://luvms012-rgb.github.io/yds/site/ai/yds.mdc) Cursor [AGENTS.md](https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md) Codex 등 | 코딩 도구용 YDS 규칙 파일 | 프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다 |
 | [yds-check.mjs](https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs) | YDS 규칙 검사 스크립트 | 다 만든 화면을 점검할 때 |
 | [brands](https://github.com/luvms012-rgb/yds/tree/main/brands) | 등록된 브랜드 파일 | 내 브랜드 값을 확인할 때 |
-| [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92) | YDS 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 |
 
 
 ---
