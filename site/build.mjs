@@ -445,7 +445,6 @@ write({
 </header>
 
 <h2 id="structure">구조</h2>
-<p>서비스 화면은 YDS에 브랜드 값을 더해 만들어집니다.</p>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
   <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
@@ -453,11 +452,9 @@ write({
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기</h2>
-<p>Claude, ChatGPT, Cursor 같은 AI 도구에 아래 글을 붙여 넣으면 YDS 규칙대로 화면을 만듭니다. 어떤 서비스의 어떤 화면인지, 들어갈 내용 순서, 그대로 둘 부분을 적을수록 정확해집니다.</p>
 ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
 
 <h2 id="figma">Figma로 시작하기</h2>
-<p>Figma에서 작업을 시작할 때는 YDS 라이브러리를 사용합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
@@ -465,11 +462,9 @@ ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
 <div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
-<p>&lt;head&gt;에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 순서가 바뀌면 서비스 CSS가 YDS 변수를 덮어쓸 수 있습니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.</p>
 ${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`)}`)]])}
 
 <h2 id="files">파일</h2>
-<p>자주 쓰는 순서입니다.</p>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
   [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'YDS 안내서', 'AI 요청 글에 주소를 넣을 때'],
   [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],

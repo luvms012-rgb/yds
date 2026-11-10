@@ -9,9 +9,9 @@
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="assets/logo-ybmnet.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../dist/ybm-ds.css">
-<link rel="stylesheet" href="assets/site.css?v=8e02f223">
+<link rel="stylesheet" href="assets/site.css?v=836b2318">
 <script src="../dist/ybm-ds.js" defer></script>
-<script src="assets/site.js?v=8e02f223" defer></script>
+<script src="assets/site.js?v=836b2318" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -48,7 +48,6 @@
 </header>
 
 <h2 id="structure">구조<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="structure"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>서비스 화면은 YDS에 브랜드 값을 더해 만들어집니다.</p>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
   <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
@@ -56,7 +55,6 @@
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="ai"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>Claude, ChatGPT, Cursor 같은 AI 도구에 아래 글을 붙여 넣으면 YDS 규칙대로 화면을 만듭니다. 어떤 서비스의 어떤 화면인지, 들어갈 내용 순서, 그대로 둘 부분을 적을수록 정확해집니다.</p>
 <figure class="ds-codeblock" data-lang="text" data-wrap>
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">요청 글</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>아래 안내서를 읽고 YDS 규칙을 지켜 줘.
@@ -78,7 +76,6 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 </figure>
 
 <h2 id="figma">Figma로 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="figma"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>Figma에서 작업을 시작할 때는 YDS 라이브러리를 사용합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
@@ -86,7 +83,6 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 <div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="dev"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>&lt;head&gt;에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 순서가 바뀌면 서비스 CSS가 YDS 변수를 덮어쓸 수 있습니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.</p>
 <div class="site-codetabs"><div class="site-codetabs__panel"><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-tab="0">최신</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-tab="1">v1.1.0 고정</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">link</span> <span class="hl-f">rel</span>=<span class="hl-s">&quot;stylesheet&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/dist/ybm-ds.css&quot;</span>&gt;
@@ -98,7 +94,6 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 </figure></div></div>
 
 <h2 id="files">파일<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="files"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>자주 쓰는 순서입니다.</p>
 <div class="ds-table-wrap"><table class="ds-table site-gs__files" data-density="compact">
 <thead><tr><th scope="col">파일</th><th scope="col">무엇인가요</th><th scope="col">언제 쓰나요</th></tr></thead>
 <tbody><tr><td><a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a></td><td>YDS 안내서</td><td>AI 요청 글에 주소를 넣을 때</td></tr>
