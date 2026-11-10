@@ -103,7 +103,7 @@ const home = () => {
     <section class="tp-sec">${secHead('찜한 상품', { tools: link('전체 보기') })}
       <div class="tp-wish">${wish.map(([th, i, n, p]) => `<a href="#">${thumb('1:1', '', K.photo(th, i, 400), 'lg')}<span class="tp-stack" style="gap: 2px"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></span></a>`).join('')}</div>
     </section>`);
-  return { slug: 'mypage-home', en: 'My Page Home', name: '마이페이지 홈', group: 'My Page', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
+  return { slug: 'mypage-home', en: 'My Page Home', name: '마이페이지 홈', group: 'Account', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
 };
 
 /* 2. 주문 내역 --------------------------------------------------- */
@@ -115,7 +115,7 @@ const orders = () => {
     </div>
     <div class="tp-stack" style="gap: var(--ds-space-x10)">${groups.map(([d, no, items]) => `<section class="tp-order" aria-label="${d} 주문"><div class="tp-order__head"><span class="tp-row"><span class="tp-h3 tp-num">${d}</span><span class="tp-caption tp-num">주문 번호 ${no}</span></span>${link('주문 상세')}</div><div class="tp-rows">${items.map(oitem).join('')}</div></section>`).join('')}</div>
     <div class="tp-tfoot">${pagination(1, 3)}</div>`);
-  return { slug: 'mypage-orders', en: 'Order History', name: '주문 내역', group: 'My Page', desc: '주문을 날짜별로 모아 보는 내역 화면입니다. 배송 조회, 리뷰 쓰기처럼 상품마다 필요한 일을 바로 처리합니다.', css: CSS, body };
+  return { slug: 'mypage-orders', en: 'Order History', name: '주문 내역', group: 'Account', desc: '주문을 날짜별로 모아 보는 내역 화면입니다. 배송 조회, 리뷰 쓰기처럼 상품마다 필요한 일을 바로 처리합니다.', css: CSS, body };
 };
 
 /* 3. 내 정보 ----------------------------------------------------- */
@@ -132,7 +132,7 @@ const profile = () => {
     </div></section>
     ${sec('알림', [row('주문, 배송 알림', '결제, 출발, 도착을 알려 드려요.', sw('주문, 배송 알림', true)), row('혜택, 이벤트 알림', '받기로 한 날 2026.03.02', sw('혜택, 이벤트 알림', true)), row('이메일 소식', '받지 않기로 한 날 2026.08.11', sw('이메일 소식', false))])}
     <a class="tp-leave" href="#">회원 탈퇴</a>`);
-  return { slug: 'mypage-profile', en: 'My Info', name: '내 정보', group: 'My Page', desc: '내 정보와 알림 설정을 보고 수정하는 화면입니다.', css: CSS, body };
+  return { slug: 'mypage-profile', en: 'My Info', name: '내 정보', group: 'Account', desc: '내 정보와 알림 설정을 보고 수정하는 화면입니다.', css: CSS, body };
 };
 
 export const templates = [home, orders, profile].map((f) => f());

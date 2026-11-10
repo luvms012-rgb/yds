@@ -57,7 +57,7 @@ const payment = () => {
     </aside>
   </div>
 </main></div>`;
-  return { slug: 'payment-form', en: 'Checkout Form', name: '결제 폼', group: 'Form', desc: '결제 정보를 한 화면에서 입력하는 폼입니다. 주문 요약을 옆에 두어 합계를 보면서 결제합니다.', css, body };
+  return { slug: 'payment-form', en: 'Checkout Form', name: '결제 폼', group: 'Commerce', desc: '결제 정보를 한 화면에서 입력하는 폼입니다. 주문 요약을 옆에 두어 합계를 보면서 결제합니다.', css, body };
 };
 
 /* 2. 결제 단계 (장바구니 → 결제) -------------------------------- */
@@ -84,7 +84,7 @@ const checkoutWizard = () => {
     <aside class="tp-cw__aside">${summary(cart.map(([n, d, q, p]) => [n, d.split(' / ')[0] + ' / ' + q + '개', p]), [['상품 금액', '63,500원'], ['배송비', '3,000원'], ['할인', '-6,350원']], '60,150원')}</aside>
   </div>
 </main></div>`;
-  return { slug: 'checkout-wizard', en: 'Checkout Wizard', name: '결제 단계', group: 'Form', desc: '배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.', css, body };
+  return { slug: 'checkout-wizard', en: 'Checkout Wizard', name: '결제 단계', group: 'Commerce', desc: '배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.', css, body };
 };
 
 /* 3. 문의 폼 ----------------------------------------------------- */
@@ -112,7 +112,7 @@ const contact = () => {
     
   </form>
 </div></main></div>`;
-  return { slug: 'contact-form', en: 'Contact Form', name: '문의 폼', group: 'Form', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
+  return { slug: 'contact-form', en: 'Contact Form', name: '문의 폼', group: 'Community', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
 };
 
 /* 4. 대화상자 단계 폼 ------------------------------------------ */
@@ -142,7 +142,7 @@ const dialogWizard = () => {
   </div>
 </div>
 </div>`;
-  return { slug: 'form-wizard-dialog', en: 'Dialog Wizard', name: '대화상자 단계 폼', group: 'Form', desc: '보던 화면 위에 창을 띄워 짧은 단계를 진행하는 폼입니다. 화면을 떠나지 않고 간단한 설정을 마칠 때 사용합니다.', css, body };
+  return { slug: 'form-wizard-dialog', en: 'Dialog Wizard', name: '대화상자 단계 폼', group: 'Admin', desc: '보던 화면 위에 창을 띄워 짧은 단계를 진행하는 폼입니다. 화면을 떠나지 않고 간단한 설정을 마칠 때 사용합니다.', css, body };
 };
 
 /* 5. 단계 폼 (가로 진행) ---------------------------------------- */
@@ -165,7 +165,7 @@ const wizard = () => {
 </div></main>
 <footer class="tp-footer-bar" style="position: sticky; bottom: 0"><span class="tp-sub tp-num">4단계 중 1단계</span><div class="tp-row">${btn('이전', { size: 'medium', attrs: 'disabled' })}${btn('다음', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div></footer>
 </div>`;
-  return { slug: 'form-wizard', en: 'Form Wizard', name: '단계 폼', group: 'Form', desc: '한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.', css, body };
+  return { slug: 'form-wizard', en: 'Form Wizard', name: '단계 폼', group: 'Admin', desc: '한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.', css, body };
 };
 
 /* 6. 펼치는 단계 폼 (아코디언) ---------------------------------- */
@@ -189,7 +189,7 @@ const inlineWizard = () => {
 ${head('자동 빌드 설정')}
 <main class="tp-content"><div class="tp-iw"><ol class="tp-steps" aria-label="자동 빌드 설정 단계">${steps.map(([t, st, res], i) => `<li class="tp-step" data-state="${st}"${st === 'current' ? ' aria-current="step"' : ''}><div class="tp-step__rail"><span class="tp-step__no">${st === 'done' ? icon('check', 'sm') : i + 1}</span></div><div class="tp-step__main"><div class="tp-step__head"><span class="tp-stack"><span class="tp-h4"${st ? '' : ' style="color: var(--ds-color-fg-neutral-muted)"'}>${t}</span>${res ? `<span class="tp-caption">${res}</span>` : ''}</span>${st === 'done' ? btn('고치기', { variant: 'ghost', size: 'xsmall', ic: 'pencil' }) : ''}</div>${st === 'current' ? cur : ''}</div></li>`).join('')}</ol></div></main>
 </div>`;
-  return { slug: 'form-wizard-inline', en: 'Inline Wizard', name: '펼치는 단계 폼', group: 'Form', desc: '모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.', css, body };
+  return { slug: 'form-wizard-inline', en: 'Inline Wizard', name: '펼치는 단계 폼', group: 'Admin', desc: '모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.', css, body };
 };
 
 /* 7. 두 칸 폼 --------------------------------------------------- */
@@ -230,7 +230,7 @@ const vertical = () => {
   </aside>
 </div>
 </div>`;
-  return { slug: 'form-wizard-vertical', en: 'Vertical Wizard', name: '세로 단계 폼', group: 'Form', desc: '왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.', css, body };
+  return { slug: 'form-wizard-vertical', en: 'Vertical Wizard', name: '세로 단계 폼', group: 'Admin', desc: '왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.', css, body };
 };
 
 export const templates = [payment, checkoutWizard, contact, dialogWizard, wizard, inlineWizard, vertical].map((f) => f());

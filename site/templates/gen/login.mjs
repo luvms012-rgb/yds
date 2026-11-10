@@ -35,7 +35,7 @@ const loginCard = () => {
   </div>
   ${legal}
 </div></main>`;
-  return { slug: 'login-card', en: 'Login Card', name: '로그인 카드', group: 'Login', desc: '화면 가운데 카드 하나로 로그인하는 기본 로그인 화면입니다.', css: CSS, body };
+  return { slug: 'login-card', en: 'Login Card', name: '로그인 카드', group: 'Account', desc: '화면 가운데 카드 하나로 로그인하는 기본 로그인 화면입니다.', css: CSS, body };
 };
 
 /* 2. 로그인 (화면 분할) --------------------------------------- */
@@ -65,7 +65,7 @@ const loginSplit = () => {
   </div>
   ${legal}
 </div></main>`;
-  return { slug: 'login-split', en: 'Login Split', name: '로그인 (화면 분할)', group: 'Login', desc: '한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 사용합니다.', css, body };
+  return { slug: 'login-split', en: 'Login Split', name: '로그인 (화면 분할)', group: 'Account', desc: '한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 사용합니다.', css, body };
 };
 
 /* 3. 로그인 SSO -------------------------------------------------- */
@@ -82,7 +82,7 @@ const loginSso = () => {
     <p class="tp-sub tp-auth__foot">${link('사용 요청')}</p>
   </div>
 </div></main>`;
-  return { slug: 'login-sso', en: 'Login SSO', name: '로그인 (SSO)', group: 'Login', desc: '이메일을 먼저 받고 회사 계정 로그인으로 이어 주는 화면입니다. 회사 계정이 없으면 비밀번호로 로그인합니다.', css: CSS, body };
+  return { slug: 'login-sso', en: 'Login SSO', name: '로그인 (SSO)', group: 'Account', desc: '이메일을 먼저 받고 회사 계정 로그인으로 이어 주는 화면입니다. 회사 계정이 없으면 비밀번호로 로그인합니다.', css: CSS, body };
 };
 
 export const templates = [loginCard, loginSplit, loginSso].map((f) => f());

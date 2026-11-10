@@ -86,7 +86,7 @@ const centers = () => {
 </main>
 <div class="tp-map" role="img" aria-label="센터 위치 지도">${pins.map(([x, y, on]) => `<span class="tp-pin" style="left:${x}%;top:${y}%"${on ? ' data-on' : ''}>${icon('map-pin', 'lg')}</span>`).join('')}</div>
 </div>`);
-  return { slug: 'center-finder', en: 'Center Finder', name: '센터 찾기', group: 'Education', desc: '지역과 과정으로 가까운 센터를 찾고 상담을 예약하는 화면입니다.', css, body };
+  return { slug: 'center-finder', en: 'Center Finder', name: '센터 찾기', group: 'Learning', desc: '지역과 과정으로 가까운 센터를 찾고 상담을 예약하는 화면입니다.', css, body };
 };
 
 /* 3. 수업 옵션 선택 -------------------------------------------------- */
@@ -117,7 +117,7 @@ ${head('수업 옵션 선택')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 옵션 선택', group: 'Education', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.', css, body };
+  return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 옵션 선택', group: 'Learning', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.', css, body };
 };
 
 /* 4. 교재 상세 ------------------------------------------------------ */
@@ -153,7 +153,7 @@ const book = () => {
   <section class="tp-sec">${secHead('자료')}<div class="tp-rows">${file('정답과 해설.pdf', '4.2MB')}${file('단어장.pdf', '1.1MB')}${file('답안지.pdf', '0.3MB')}</div></section>
   <section class="tp-sec">${secHead('목차')}<div>${accordion([['Test 1', '<p>Part 1 ~ Part 7</p>', true], ['Test 2', '<p>Part 1 ~ Part 7</p>'], ['Test 3', '<p>Part 1 ~ Part 7</p>'], ['Test 4', '<p>Part 1 ~ Part 7</p>']])}</div></section>
 </main>`);
-  return { slug: 'textbook-detail', en: 'Textbook Detail', name: '교재 상세', group: 'Education', desc: '책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.', css, body };
+  return { slug: 'textbook-detail', en: 'Textbook Detail', name: '교재 상세', group: 'Learning', desc: '책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.', css, body };
 };
 
 /* 5. 상담 예약 ------------------------------------------------------ */
@@ -178,7 +178,7 @@ ${head('상담 예약')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'consult-booking', en: 'Consultation Booking', name: '상담 예약', group: 'Education', desc: '설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.', css, body };
+  return { slug: 'consult-booking', en: 'Consultation Booking', name: '상담 예약', group: 'Learning', desc: '설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.', css, body };
 };
 
 /* 6. 고객센터 홈 ---------------------------------------------------- */
@@ -205,7 +205,7 @@ ${head('고객센터')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'help-center', en: 'Help Center', name: '고객센터', group: 'Education', desc: '자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.', css, body };
+  return { slug: 'help-center', en: 'Help Center', name: '고객센터', group: 'Community', desc: '자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.', css, body };
 };
 
 export const templates = [schedule, centers, plan, book, consult, help].map((f) => f());

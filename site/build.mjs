@@ -268,7 +268,7 @@ function sideNav(section, file, root) {
   if (section === 'templates') {
     parts.push(item('templates/index.html', 'Overview'));
     // 11-05 사용자: 목록은 메뉴 없이 분류 탭, 상세는 탭과 같은 분류 묶음(묶음 안은 가나다 순)
-    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => tplRank(x) - tplRank(y))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort((x, y) => x.name.localeCompare(y.name, 'ko')).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
+    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => tplRank(x) - tplRank(y))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort(tplSort).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
   }
   const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
   // 컴포넌트 메뉴 맨 위 찾기 칸 (높이 32, 모서리 12, 1px 테두리) - 메뉴 항목과 목록 카드를 함께 거른다
@@ -1006,9 +1006,22 @@ for (const [f, to, label] of [['selection-bar', 'toolbar', 'Toolbar']]) {
 /* ---------------------------------------------------------------- Templates */
 const tplGroups = [...new Set(templates.map((t) => t.group))];
 // 분류 칩에 보이는 이름 (값은 templates.json의 영어 group)
-const TPL_GROUP_KO = { Dashboard: '대시보드', Table: '표', Form: '입력 폼', Settings: '설정', Login: '로그인', Tools: '도구', Content: '콘텐츠', 'AI Chat': 'AI 채팅', Gallery: '갤러리', Community: '커뮤니티', Pricing: '요금제', 'My Page': '마이페이지', Commerce: '쇼핑', Exam: '시험 접수', Education: '교육 서비스', 'Exam B2B': '단체 시험', 'Learning B2B': '기업 러닝' };
+// 분류 7개 (2026-11-10 사용자 "템플릿 탭이 너무 많다", YBM 사업 기준): 사업 탭 다섯 뒤에 공통 화면 둘
+const TPL_GROUP_KO = { Exam: '시험', Learning: '학습', Commerce: '쇼핑과 결제', Account: '회원', Community: '커뮤니티와 고객센터', Content: '콘텐츠', Admin: '관리자' };
 // 분류 순서: YBM 서비스(시험, 교육)와 많이 쓰는 서비스 화면이 앞 (11-10 사용자, 예전 가나다 순을 바꿈). 목록에 없는 분류는 맨 뒤
-const TPL_ORDER = ['Exam', 'Education', 'Exam B2B', 'Learning B2B', 'Login', 'My Page', 'Community', 'Commerce', 'Pricing', 'Form', 'Settings', 'Table', 'Dashboard', 'Content', 'Gallery', 'AI Chat', 'Tools'];
+const TPL_ORDER = ['Exam', 'Learning', 'Commerce', 'Account', 'Community', 'Content', 'Admin'];
+// 분류 안 순서는 많이 쓰는 화면부터 (2026-11-10 사용자). 없는 것은 뒤에 이름순
+const TPL_PRIORITY = [
+  'exam-apply', 'exam-schedule', 'exam-my', 'exam-score', 'exam-group-apply', 'exam-group-roster', 'exam-group-dashboard',
+  'learning-home', 'learning-catalog', 'learning-player', 'textbook-detail', 'lesson-plan', 'consult-booking', 'center-finder', 'learning-dashboard', 'learning-admin',
+  'cart', 'payment-form', 'checkout-wizard', 'pricing-plans', 'subscription-checkout', 'subscription-settings', 'subscription-cancel', 'cart-empty',
+  'login-card', 'mypage-home', 'mypage-orders', 'mypage-profile', 'settings', 'login-sso', 'login-split', 'settings-sidebar', 'settings-dialog',
+  'help-center', 'contact-form', 'community-home', 'community-board', 'community-post', 'community-write',
+  'detail-page', 'product-detail', 'library', 'centered-hero', 'documentation', 'product-gallery', 'classic-gallery', 'gallery-hero', 'mixed-gallery', 'side-gallery', 'documentation-design', 'documentation-technical', 'work-item-detail', 'ai-chat', 'ai-chat-landing',
+  'dashboard', 'table-filter', 'table-inbox', 'form-wizard', 'table-grouped', 'table-collapsible', 'table-tree', 'dashboard-progress', 'dashboard-alert-rail', 'form-wizard-dialog', 'form-wizard-inline', 'form-wizard-vertical', 'kanban-board', 'editor', 'file-explorer', 'canvas-editor', 'ide',
+];
+const tplPri = (s) => { const i = TPL_PRIORITY.indexOf(s); return i < 0 ? 999 : i; };
+const tplSort = (a, b) => tplRank(a.group) - tplRank(b.group) || tplPri(a.slug) - tplPri(b.slug) || a.name.localeCompare(b.name, 'ko');
 const tplRank = (g) => { const i = TPL_ORDER.indexOf(g); return i < 0 ? 99 : i; };
 tplGroups.sort((x, y) => tplRank(x) - tplRank(y));
 write({
@@ -1021,7 +1034,7 @@ write({
   </div>
 </div>
 <div class="site-tpl-grid">
-${[...templates].sort((a, b) => tplRank(a.group) - tplRank(b.group) || a.name.localeCompare(b.name, "ko")).map((t) => `<article class="site-tpl" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
+${[...templates].sort(tplSort).map((t) => `<article class="site-tpl" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
   <div class="site-tpl-thumb" aria-hidden="true"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 미리보기" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe></div>
   <div class="site-tpl__scrim">
     <div class="site-tpl__text"><h3 class="site-tpl__title"><a class="site-tpl__link" href="${t.slug}.html">${esc(t.name)}</a></h3><p class="site-tpl__desc">${esc(t.desc)}</p></div>

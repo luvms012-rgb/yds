@@ -26,28 +26,28 @@ const HERO = {
   side: ['색으로 고르는 사진', '좋아하는 색을 고르면 그 색이 담긴 사진만 모아서 보여 줘요.'],
 };
 
-const centered = () => ({ slug: 'centered-hero', en: 'Centered Hero', name: '가운데 히어로', group: 'Gallery', desc: '큰 제목과 버튼을 가운데 두고 아래에 넓은 사진을 놓은 첫 화면입니다.', css: CSS, body: wrap(`${heroText(...HERO.centered)}${ph('21:9', 0)}`) });
+const centered = () => ({ slug: 'centered-hero', en: 'Centered Hero', name: '가운데 히어로', group: 'Content', desc: '큰 제목과 버튼을 가운데 두고 아래에 넓은 사진을 놓은 첫 화면입니다.', css: CSS, body: wrap(`${heroText(...HERO.centered)}${ph('21:9', 0)}`) });
 
-const classic = () => ({ slug: 'classic-gallery', en: 'Classic Gallery', name: '바둑판 갤러리', group: 'Gallery', desc: '같은 비율의 사진을 바둑판처럼 배치한 갤러리입니다. 분류 탭으로 원하는 사진만 볼 수 있습니다.', css: CSS + `
+const classic = () => ({ slug: 'classic-gallery', en: 'Classic Gallery', name: '바둑판 갤러리', group: 'Content', desc: '같은 비율의 사진을 바둑판처럼 배치한 갤러리입니다. 분류 탭으로 원하는 사진만 볼 수 있습니다.', css: CSS + `
   .tp-grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-grid4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-x4); } }
   .tp-tabs-center { display: flex; justify-content: center; }
 `, body: wrap(`${heroText(...HERO.classic, false)}<div class="tp-tabs-center">${tabs(['전체', '풍경', '도시', '사람', '음식'], 0, '사진 분류')}</div><div class="tp-grid4">${Array.from({ length: 12 }, (_, i) => ph('1:1', i)).join('')}</div>`) });
 
-const galleryHero = () => ({ slug: 'gallery-hero', en: 'Gallery Hero', name: '사진 히어로', group: 'Gallery', desc: '제목 아래에 사진 여러 장을 모아 놓은 첫 화면입니다. 다양한 장면을 한 번에 보여 줄 때 사용합니다.', css: CSS + `
+const galleryHero = () => ({ slug: 'gallery-hero', en: 'Gallery Hero', name: '사진 히어로', group: 'Content', desc: '제목 아래에 사진 여러 장을 모아 놓은 첫 화면입니다. 다양한 장면을 한 번에 보여 줄 때 사용합니다.', css: CSS + `
   .tp-mosaic { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 200px 200px; gap: var(--ds-space-x4); } .tp-mosaic > :first-child { grid-column: span 2; grid-row: span 2; } .tp-mosaic .ds-imageframe { aspect-ratio: auto; height: 100%; } }
 `, body: wrap(`${heroText(...HERO.hero)}<div class="tp-mosaic">${[0, 1, 2, 3, 4].map((i) => ph('4:3', i)).join('')}</div>`) });
 
 // 벽돌형 갤러리 사진: [비율, 제목]. 사진을 누르면 Lightbox 로 크게 본다
 const MIXED = [['3:4', '이른 아침 바닷가'], ['1:1', '창가의 화분'], ['4:3', '골목 끝 작은 카페'], ['3:4', '비 오는 날의 우산'], ['4:3', '주말 시장 풍경'], ['1:1', '오후의 책상'], ['3:4', '가을 산책길'], ['4:3', '노을 지는 다리'], ['1:1', '손으로 만든 머그']];
-const mixed = () => ({ slug: 'mixed-gallery', en: 'Mixed Gallery', name: '벽돌형 갤러리', group: 'Gallery', desc: '높이가 다른 사진을 자르지 않고 쌓아 올린 벽돌형 갤러리입니다.', css: CSS + `
+const mixed = () => ({ slug: 'mixed-gallery', en: 'Mixed Gallery', name: '벽돌형 갤러리', group: 'Content', desc: '높이가 다른 사진을 자르지 않고 쌓아 올린 벽돌형 갤러리입니다.', css: CSS + `
   .tp-masonry { columns: 2; column-gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-masonry { columns: 3; column-gap: var(--ds-space-x4); } }
   .tp-masonry figure { break-inside: avoid; margin: 0 0 var(--ds-space-x4); display: flex; flex-direction: column; gap: var(--ds-space-x2); }
 `, body: wrap(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><h1 class="tp-hero-t">${HERO.mixed[0]}</h1><p class="tp-lead" style="max-width: 720px">${HERO.mixed[1]}</p></div><div class="tp-masonry">${MIXED.map(([r, c], i) => `<figure>${K.zoom('mg-lb', i, ph(r, i), c + ' 크게 보기')}<figcaption class="tp-sub">${c}</figcaption></figure>`).join('')}</div>${K.lightbox('mg-lb', MIXED.map(([, c], i) => [K.photo('mix', i, 1600), c, c]))}`) });
 
-const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 갤러리', group: 'Gallery', desc: '같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.', css: CSS + `
+const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 갤러리', group: 'Content', desc: '같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.', css: CSS + `
   .tp-pg-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); align-items: end; }
   @media (min-width: 1024px) { .tp-pg-head { grid-template-columns: 2fr 1fr; } .tp-pg-head > :last-child { justify-self: end; } }
   .tp-grid3 { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: var(--ds-space-x6); }
@@ -58,7 +58,7 @@ const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '
   .tp-pcard { display: flex; flex-direction: column; gap: var(--ds-space-x3); color: inherit; text-decoration: none; }
 `, body: wrap(`<div class="tp-pg-head"><div class="tp-stack" style="gap: var(--ds-space-x3)"><h1 class="tp-hero-t">${HERO.product[0]}</h1><p class="tp-lead">${HERO.product[1]}</p></div>${btn('모두 보기', { variant: 'neutralOutline', size: 'large', icEnd: 'arrow-right' })}</div><div class="tp-grid3">${[['어디든 가는 가방', '가볍고 튼튼해서 매일 들기 좋아요.', '75,000원'], ['손으로 빚은 머그', '하나씩 모양이 조금씩 달라요.', '28,000원'], ['리넨 쿠션 커버', '빨수록 부드러워지는 천이에요.', '32,000원'], ['원목 트레이', '아침상을 차리기 좋은 크기예요.', '46,000원'], ['향초 세트', '세 가지 향을 번갈아 써 보세요.', '39,000원'], ['산책용 물병', '보온과 보냉이 모두 돼요.', '24,000원']].map(([t, d, p], i) => `<a class="tp-pcard" href="#">${ph('4:3', i, '', 'product')}<span class="tp-pcard__text"><span class="tp-name">${t}</span><span class="tp-sub">${d}</span></span><span class="tp-pcard__price tp-num">${p}</span></a>`).join('')}</div>`) });
 
-const side = () => ({ slug: 'side-gallery', en: 'Side Gallery', name: '필터 갤러리', group: 'Gallery', desc: '한쪽에 제목과 설명, 반대쪽에 사진 묶음을 둔 첫 화면입니다.', css: CSS + `
+const side = () => ({ slug: 'side-gallery', en: 'Side Gallery', name: '필터 갤러리', group: 'Content', desc: '한쪽에 제목과 설명, 반대쪽에 사진 묶음을 둔 첫 화면입니다.', css: CSS + `
   .tp-side { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: center; }
   @media (min-width: 1024px) { .tp-side { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: var(--ds-space-x12); } }
   .tp-eyebrow { font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-semibold); letter-spacing: .08em; color: var(--ds-color-fg-brand); }

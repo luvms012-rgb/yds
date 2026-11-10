@@ -156,7 +156,7 @@ const groupApply = () => {
     </aside>
   </div>
 </main>`;
-  return { slug: 'exam-group-apply', en: 'Group Application', name: '단체 접수', group: 'Exam B2B', desc: '기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.', css, body: frame(orgNav(1), '단체 접수', main) };
+  return { slug: 'exam-group-apply', en: 'Group Application', name: '단체 접수', group: 'Exam', desc: '기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.', css, body: frame(orgNav(1), '단체 접수', main) };
 };
 
 /* 5. 응시자 관리 (기관) -------------------------------------------- */
@@ -171,7 +171,7 @@ const roster = () => {
     <div class="tp-scroll-x">${table([[K.checkOnly('모두 고르기')], ['이름'], ['학번'], ['학과'], ['좌석'], ['수험표'], ['상태'], ['']], rows, { interactive: true, attrs: 'data-ds-selection="ro-sel"' })}</div>${tablePager(124, 8)}`)}
 </main>
 ${K.selectionBar('ro-sel', [['수험표 보내기', 'mail'], ['내려받기', 'download']], '고른 응시자')}`;
-  return { slug: 'exam-group-roster', en: 'Candidate Roster', name: '응시자 관리', group: 'Exam B2B', desc: '단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.', css, body: frame(orgNav(2), '응시자 관리', main) };
+  return { slug: 'exam-group-roster', en: 'Candidate Roster', name: '응시자 관리', group: 'Exam', desc: '단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.', css, body: frame(orgNav(2), '응시자 관리', main) };
 };
 
 /* 6. 단체 성적 대시보드 (기관) ------------------------------------- */
@@ -197,7 +197,7 @@ const groupDash = () => {
     ${card(`<div class="tp-between"><span class="tp-h3">재응시가 필요한 학생</span>${badge('42명', 'warning')}</div><div class="tp-rows">${[['박지후', '국제통상학과', '612점'], ['정민재', '컴퓨터공학과', '598점'], ['한지아', '컴퓨터공학과', '575점']].map(([n, d, s]) => `<div class="tp-between"><div class="tp-row">${avatar(n, 28)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-amount">${s}</span></div>`).join('')}</div>${btn('안내 보내기', { variant: 'neutralSolid', ic: 'mail', fill: true })}`)}
   </div>
 </main>`;
-  return { slug: 'exam-group-dashboard', en: 'Group Score Dashboard', name: '단체 성적 대시보드', group: 'Exam B2B', desc: '기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.', css, body: frame(orgNav(3), '성적 리포트', main) };
+  return { slug: 'exam-group-dashboard', en: 'Group Score Dashboard', name: '단체 성적 대시보드', group: 'Exam', desc: '기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.', css, body: frame(orgNav(3), '성적 리포트', main) };
 };
 
 export const templates = [apply, mine, score, groupApply, roster, groupDash].map((f) => f());

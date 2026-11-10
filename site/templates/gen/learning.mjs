@@ -59,7 +59,7 @@ const home = () => {
     ${card(`<div class="tp-rows">${[['신규 입사자 온보딩 체크리스트', '인사팀 / 이서연', 128], ['고객 문의 응답 문장 모음', '고객경험팀 / 박지후', 96], ['분기 보고서 템플릿과 작성 팁', '전략기획팀 / 최하은', 74]].map(([t, w, l]) => `<div class="tp-between"><div class="tp-stack"><span class="tp-label">${t}</span><span class="tp-caption">${w}</span></div><span class="tp-row tp-caption">${icon('thumbs-up', 'sm')}${T(l)}</span></div>`).join('')}</div>`)}
   </section>
 </main></div>`;
-  return { slug: 'learning-home', en: 'Learning Home', name: '학습 홈', group: 'Learning B2B', desc: '임직원이 학습을 시작하는 첫 화면입니다. 이어서 볼 강의와 필수 교육을 먼저 보여 줍니다.', css, body };
+  return { slug: 'learning-home', en: 'Learning Home', name: '학습 홈', group: 'Learning', desc: '임직원이 학습을 시작하는 첫 화면입니다. 이어서 볼 강의와 필수 교육을 먼저 보여 줍니다.', css, body };
 };
 
 /* 2. 과정 찾기 ---------------------------------------------------- */
@@ -91,7 +91,7 @@ const catalog = () => {
   </section>
   <div style="display:flex;justify-content:center">${pagination(1, 21)}</div>
 </main></div>`;
-  return { slug: 'learning-catalog', en: 'Course Catalog', name: '과정 찾기', group: 'Learning B2B', desc: '듣고 싶은 과정을 찾는 목록입니다. 분류, 수준, 학습 시간으로 필터링합니다.', css, body };
+  return { slug: 'learning-catalog', en: 'Course Catalog', name: '과정 찾기', group: 'Learning', desc: '듣고 싶은 과정을 찾는 목록입니다. 분류, 수준, 학습 시간으로 필터링합니다.', css, body };
 };
 
 /* 3. 강의 보기 + AI 튜터 ------------------------------------------- */
@@ -142,7 +142,7 @@ const player = () => {
     </aside>
   </div>
 </div>`;
-  return { slug: 'learning-player', en: 'Course Player', name: '강의 보기', group: 'Learning B2B', desc: '강의를 들으며 AI 튜터에게 요약과 퀴즈를 받는 화면입니다.', css, body };
+  return { slug: 'learning-player', en: 'Course Player', name: '강의 보기', group: 'Learning', desc: '강의를 들으며 AI 튜터에게 요약과 퀴즈를 받는 화면입니다.', css, body };
 };
 
 /* 4. 과정 운영 (교육 담당자) ---------------------------------------- */
@@ -170,7 +170,7 @@ const admin = () => {
     </aside>
   </div>
 </main>`;
-  return { slug: 'learning-admin', en: 'Course Operations', name: '과정 운영', group: 'Learning B2B', desc: '교육 담당자가 과정과 차수를 운영하는 화면입니다.', css, body: frame(adminNav(1), '과정 운영', main) };
+  return { slug: 'learning-admin', en: 'Course Operations', name: '과정 운영', group: 'Learning', desc: '교육 담당자가 과정과 차수를 운영하는 화면입니다.', css, body: frame(adminNav(1), '과정 운영', main) };
 };
 
 /* 5. 학습 현황 대시보드 (교육 담당자) -------------------------------- */
@@ -196,7 +196,7 @@ const dash = () => {
     ${card(`<span class="tp-row tp-h3">${icon('sparkles')}AI 튜터 이용</span><div class="tp-stack" style="gap: var(--ds-space-x4)"><div class="tp-kv"><span>질문</span>${T('4,812건')}</div><div class="tp-kv"><span>요약 보기</span>${T('9,306회')}</div><div class="tp-kv"><span>퀴즈 풀이</span>${T('6,127회')}</div><div class="tp-kv"><span>답변 만족</span>${T('91%')}</div></div>`)}
   </div>
 </main>`;
-  return { slug: 'learning-dashboard', en: 'Learning Dashboard', name: '학습 현황 대시보드', group: 'Learning B2B', desc: '교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.', css, body: frame(adminNav(4), '학습 현황', main) };
+  return { slug: 'learning-dashboard', en: 'Learning Dashboard', name: '학습 현황 대시보드', group: 'Learning', desc: '교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.', css, body: frame(adminNav(4), '학습 현황', main) };
 };
 
 export const templates = [home, catalog, player, admin, dash].map((f) => f());
