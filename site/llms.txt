@@ -65,7 +65,7 @@
 - [Field Label](https://luvms012-rgb.github.io/yds/site/components/field-label.md): 입력 칸에 라벨, 안내 문구, 오류 메시지를 연결해 무엇을 입력할지 알려 주는 컴포넌트입니다.
 - [Text Field Input](https://luvms012-rgb.github.io/yds/site/components/text-field-input.md): 한 줄 텍스트를 입력받는 컴포넌트입니다.
 - [Text Field Textarea](https://luvms012-rgb.github.io/yds/site/components/text-field-textarea.md): 여러 줄의 긴 텍스트를 입력받는 컴포넌트입니다. 내용이 길어지면 높이가 함께 늘어납니다.
-- [Field Button](https://luvms012-rgb.github.io/yds/site/components/field-button.md): 직접 입력하지 않고 눌러서 값을 선택하는 입력 컴포넌트입니다. 날짜, 시간처럼 별도의 창에서 값을 받을 때 사용합니다.
+- [Field Button](https://luvms012-rgb.github.io/yds/site/components/field-button.md): 직접 입력하지 않고 눌러서 값을 선택하는 입력 컴포넌트입니다. 지역, 옵션, 날짜처럼 별도의 창에서 값을 선택할 때 사용합니다.
 - [Prefix Select](https://luvms012-rgb.github.io/yds/site/components/prefix-select.md): 입력 칸 앞에서 국가 번호, 단위 같은 기준 값을 선택하는 컴포넌트입니다.
 - [Select Trigger](https://luvms012-rgb.github.io/yds/site/components/select-trigger.md): 목록에서 값 하나를 선택하는 컴포넌트입니다. 누르면 Select Content가 열립니다.
 - [Select Content](https://luvms012-rgb.github.io/yds/site/components/select-content-item.md): Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.

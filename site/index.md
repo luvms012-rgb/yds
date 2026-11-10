@@ -134,7 +134,7 @@ https://luvms012-rgb.github.io/yds/site/yds-full.txt
 Figma로 먼저 시작한다면 YDS 라이브러리로 시작합니다.
 
 1. **라이브러리 켜기**Figma의 Assets 패널에서 [YDS 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92)를 켭니다.
-2. **화면 그리기**YDS 컴포넌트를 놓고, 색, 간격, 모서리는 YDS 변수로, 글자는 YDS 텍스트 스타일로 지정합니다.
+2. **화면 그리기**컴포넌트를 끌어다 놓고, 색, 간격, 글자는 숫자를 직접 넣지 않고 YDS에 있는 값에서 선택합니다.
 
 ## 파일
 

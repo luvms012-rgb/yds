@@ -523,7 +523,7 @@ ${BRAND_HTML}
 <p>Figma로 먼저 시작한다면 YDS 라이브러리로 시작합니다.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
-  <li><strong>화면 그리기</strong><span>YDS 컴포넌트를 놓고, 색, 간격, 모서리는 YDS 변수로, 글자는 YDS 텍스트 스타일로 지정합니다.</span></li>
+  <li><strong>화면 그리기</strong><span>컴포넌트를 끌어다 놓고, 색, 간격, 글자는 숫자를 직접 넣지 않고 YDS에 있는 값에서 선택합니다.</span></li>
 </ol>
 
 <h2 id="files">파일</h2>

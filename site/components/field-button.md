@@ -2,7 +2,7 @@
 
 # Field Button
 
-직접 입력하지 않고 눌러서 값을 선택하는 입력 컴포넌트입니다. 날짜, 시간처럼 별도의 창에서 값을 받을 때 사용합니다.
+직접 입력하지 않고 눌러서 값을 선택하는 입력 컴포넌트입니다. 지역, 옵션, 날짜처럼 별도의 창에서 값을 선택할 때 사용합니다.
 
 ## 사용법
 
@@ -118,16 +118,16 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
   <div class="ds-field__header">
-    <label class="ds-field__label" for="field-button-ex3-field">생년월일</label>
+    <label class="ds-field__label" for="field-button-ex3-field">관심 분야</label>
     <span class="ds-field__required" aria-hidden="true"></span>
   </div>
   <button type="button" class="ds-fieldbutton" id="field-button-ex3-field" aria-invalid="true" aria-describedby="field-button-ex3-error">
-    <span class="ds-fieldbutton__value" data-placeholder="날짜를 골라 주세요"></span>
-    <i class="ds-icon ds-icon--calendar" aria-hidden="true"></i>
+    <span class="ds-fieldbutton__value" data-placeholder="분야를 골라 주세요"></span>
+    <i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i>
   </button>
   <div class="ds-field__footer">
-    <p class="ds-field__help">신분증에 적힌 날짜로 골라 주세요.</p>
-    <p class="ds-field__error" id="field-button-ex3-error">생년월일을 골라야 다음으로 넘어갈 수 있어요.</p>
+    <p class="ds-field__help">맞춤 강의를 추천할 때 사용해요.</p>
+    <p class="ds-field__error" id="field-button-ex3-error">관심 분야를 골라야 다음으로 넘어갈 수 있어요.</p>
   </div>
 </div>
 ```
