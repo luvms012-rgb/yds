@@ -397,9 +397,6 @@ ${SITE_URL}yds.txt
   배치와 문구는 그대로 둬.
 - 첨부한 시험 접수 화면에 YDS 적용해 줘.
   입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.`;
-// 역할별 입구 (11-10 사용자 시안): 기획과 운영은 AI, 디자이너는 Figma, 퍼블리싱과 개발은 설치로
-const GS_ROLES = [['#ai', '기획, 운영', 'AI로 요청하기', '코드를 몰라도 요청 글 하나로 시작합니다.'], ['#figma', '디자이너', 'Figma로 그리기', 'YDS 라이브러리를 켜고 화면을 그립니다.'], ['#dev', '퍼블리싱, 개발', '사이트에 설치하기', '<head>에 두 줄만 넣으면 됩니다.']];
-const roleCards = () => `<div class="site-gs__roles">${GS_ROLES.map(([href, role, title, desc]) => `<a class="site-hub" href="${href}"><span class="site-gs__role">${esc(role)}</span><span class="site-hub__title">${esc(title)}<i class="ds-icon ds-icon--arrow-down ds-icon--sm" aria-hidden="true"></i></span><span class="site-hub__desc">${esc(desc)}</span></a>`).join('')}</div>`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
@@ -446,7 +443,6 @@ write({
   <p class="site-lead">YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
   ${metaLinks({ figma: FIGMA_HOME, code: GITHUB })}
 </header>
-${roleCards()}
 
 <h2 id="structure">구조</h2>
 <p>서비스 화면은 YDS에 브랜드 값을 더해 만들어집니다.</p>
@@ -459,7 +455,6 @@ ${roleCards()}
 <h2 id="ai">AI와 함께 시작하기</h2>
 <p>Claude, ChatGPT, Cursor 같은 AI 도구에 아래 글을 붙여 넣으면 YDS 규칙대로 화면을 만듭니다. 어떤 서비스의 어떤 화면인지, 들어갈 내용 순서, 그대로 둘 부분을 적을수록 정확해집니다.</p>
 ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
-<p>주소를 열 수 없는 도구에는 <a class="ds-link" href="yds-full.txt" download>yds-full.txt</a> 파일을 대화창에 첨부합니다. 안내서 전체가 한 파일에 들어 있습니다.</p>
 
 <h2 id="figma">Figma로 시작하기</h2>
 <p>Figma에서 작업을 시작할 때는 YDS 라이브러리를 사용합니다.</p>
@@ -467,19 +462,10 @@ ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
 </ol>
-${practices([[true, '색, 간격, 글자는 YDS 변수에서 선택합니다. 예: bg/brand, space/x4'], [false, '#1A73E8 같은 색이나 13px 같은 간격을 직접 입력하지 않습니다.']])}
 
 <h2 id="dev">개발 시작하기</h2>
 <p>&lt;head&gt;에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 순서가 바뀌면 서비스 CSS가 YDS 변수를 덮어쓸 수 있습니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.</p>
 ${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`)}`)]])}
-<h3 id="migrate-steps">운영 중인 페이지에 적용하는 순서</h3>
-<ol class="site-steps">
-  <li>위 두 줄을 &lt;head&gt;에, 서비스 CSS보다 앞에 넣습니다.</li>
-  <li>버튼과 입력 폼부터 YDS 컴포넌트로 바꿉니다. 배치는 그대로 둡니다.</li>
-  <li>색과 글자 크기를 YDS 변수로 바꿉니다.</li>
-  <li><code>node yds-check.mjs 파일.html</code>로 규칙을 점검합니다.</li>
-  <li>모바일과 다크 모드를 확인한 뒤 배포합니다.</li>
-</ol>
 
 <h2 id="files">파일</h2>
 <p>자주 쓰는 순서입니다.</p>
@@ -487,7 +473,7 @@ ${table(['파일', '무엇인가요', '언제 쓰나요'], [
   [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'YDS 안내서', 'AI 요청 글에 주소를 넣을 때'],
   [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때'],
   [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', '주소를 열 수 없는 대화창에 첨부할 때'],
-  [[['CLAUDE.md', 'Claude Code'], ['yds.mdc', 'Cursor'], ['AGENTS.md', 'Codex 등']].map(([f, t]) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a> <span class="site-gs__tool">${t}</span>`).join('<br>'), '코딩 도구용 YDS 규칙 파일', '프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다'],
+  [['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('<br>'), '코딩 도구용 YDS 규칙 파일', '프로젝트 맨 위 폴더에 두면 도구가 늘 YDS 규칙을 지킵니다'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '다 만든 화면을 점검할 때'],
   [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 브랜드 값을 확인할 때'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),
