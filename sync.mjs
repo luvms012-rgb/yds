@@ -158,7 +158,7 @@ function plan() { try { return linkPlan(DS); } catch (e) { die(e.message); } }
 function linksJs(apply) {
   const p = plan();
   const tpl = JSON.parse(read('site/src/templates.json'));
-  const templates = tpl.templates.filter((t) => t.figma).map((t) => ({ slug: t.slug, ids: [t.figma.pc, t.figma.mobile] }));
+  const templates = tpl.templates.filter((t) => t.figma).map((t) => ({ slug: t.slug, ids: [t.figma.pc, t.figma.mobile].filter(Boolean) }));
   const small = { templates, extra: [tpl.figmaHeader, ...Object.values(JSON.parse(read('components.json')).figmaDocs || {})].filter(Boolean), entries: p.entries.map(({ no, ids, doc, slug, start, end }) => ({ no, ids, doc, slug, start, end })), fixed: p.fixed.filter((f) => f.frame).map(({ frame, doc, code }) => ({ frame, doc, code })), about: p.about, site: p.site, src: p.src };
   return `const PLAN = ${JSON.stringify(small)};
 const APPLY = ${apply};
@@ -195,9 +195,10 @@ const setLink = async (t, url, label, setText) => {
   t.hyperlink = { type: 'URL', value: url };
   res.changed.push(label);
 };
+for (const t of targets) t.frame.findAll(() => false);  // 처음 훑을 때 인스턴스 안 글자가 안 보일 때가 있어 한 번 미리 훑는다 (11-10)
 for (const t of targets) {
   for (const [name, url] of [['Documentation', t.doc], ['Code', t.code]]) {
-    const node = t.frame.findOne((n) => n.type === 'TEXT' && n.name === name);
+    const node = t.frame.findAll((n) => n.type === 'TEXT' && n.name === name)[0];  // findOne 이 인스턴스 안 글자를 놓칠 때가 있다 (11-10)
     if (!node) { res.missing.push(t.frame.name + ' ' + t.frame.id + ' / ' + name); continue; }
     await setLink(node, url, t.frame.name + ' / ' + (name === 'Code' ? '코드' : '문서'), false);
   }
@@ -277,7 +278,7 @@ function mdBlocks(md) {
 const hostOf = (s) => (s ? Object.fromEntries(Object.entries(s).filter(([k]) => ['d', 'fd', 'gap', 'p', 'jc', 'ai'].includes(k))) : null);
 function prepStyled(P, SETS, TPL = false) {
   const isEl = (n) => n && typeof n === 'object';
-  const setOf = (el) => (el.cls || []).find((c) => SETS[c] && c !== 'ds-list-item');
+  const setOf = (el) => { const l = (el.cls || []).filter((c) => SETS[c] && c !== 'ds-list-item'); return l.find((c) => c !== 'ds-input') || l[0]; };  // ds-input ds-datefield 처럼 둘이면 좁은 부품 (2026-11-10)
   const deep = (el) => (typeof el === 'string' ? el : (el.c || []).map(deep).join(' ')).replace(/\s+/g, ' ').trim();
   const hasPart = (el) => isEl(el) && (el.c || []).some((x) => isEl(x) && ((x.cls || []).some((c) => /^ds-[a-z-]+__[a-z-]+$/.test(c)) || hasPart(x)));
   const hasSet = (el) => isEl(el) && (setOf(el) || (el.c || []).some(hasSet));
@@ -321,6 +322,14 @@ function prepStyled(P, SETS, TPL = false) {
       s.flags = { prefixicon: !!pre, suffixicon: !!suf, prefixtext: !!part(el, 'prefix'), suffixtext: !!part(el, 'suffix') };
       s.icons = {}; if (pre) s.icons.prefix = nm(pre[0]); if (suf) s.icons.suffix = nm(suf[0]);
     }
+    if (kind === 'ds-datefield') { const ctl = ctlOf(el) || {}; const ca = ctl.a || {}; s.a.picker = sub(el, 'picker') ? 'true' : 'false'; if (ca['aria-invalid'] === 'true') s.a.state = 'invalid'; }
+    if (kind === 'ds-segmentinput') {  // 85 (2026-11-10): 구간 수로 type, 값 유무, 상태, 끝 로고 자리
+      const segs = []; const f = (n) => { if (!isEl(n)) return; if ((n.cls || []).includes('ds-segmentinput__segment')) segs.push(n); else (n.c || []).forEach(f); }; (el.c || []).forEach(f);
+      const A = (n) => n.a || {};
+      s.a.type = segs.length > 2 ? 'cardNumber' : 'residentNumber';
+      if (segs.some((x) => A(x)['aria-invalid'] === 'true')) s.a.state = 'invalid'; else if (segs.some((x) => A(x).disabled !== undefined)) s.a.state = 'disabled'; else if (segs.some((x) => A(x).readonly !== undefined)) s.a.state = 'readOnly';
+      s.flags = { value: segs.some((x) => A(x).value), suffix: !!part(el, 'suffix') };
+    }
     if (kind === 'ds-field') {
       const inv = JSON.stringify(el).includes('"aria-invalid":"true"');
       s.flags = { required: !!sub(el, 'required'), indicator: !!sub(el, 'indicator'), showerror: inv && !!sub(el, 'error'), charactercount: !!sub(el, 'count'), showdescription: !!sub(el, 'help') && !inv, showlabel: !!sub(el, 'label') };
@@ -339,6 +348,7 @@ function prepStyled(P, SETS, TPL = false) {
       const pt = (n.cls || []).map((c) => c.match(/^ds-[a-z-]+__([a-z-]+)$/)).find(Boolean);
       if (n.tag === 'input' || n.tag === 'textarea') { if (n.a.placeholder) push('placeholder', n.a.placeholder); if (n.a.value) push('value', n.a.value); }
       const leaf = pt && !hasSet(n) && !hasPart(n);
+      if (pt && pt[1] === 'label' && !leaf) { const own = (n.c || []).filter((x) => typeof x === 'string').join(' ').replace(/\s+/g, ' ').trim(); if (own) push('label', own); }  // 필수 표시가 든 라벨도 글은 넣는다 (2026-11-10)
       if (leaf && deep(n)) push(pt[1], deep(n));
       else if (leaf && n.a && n.a['data-placeholder']) push('placeholder', n.a['data-placeholder']);
       else if (!pt && !(n.cls || []).some((c) => /^ds-/.test(c)) && ['h1', 'h2', 'h3', 'h4', 'p', 'ul', 'ol', 'blockquote', 'th', 'td', 'dt', 'dd', 'li'].includes(n.tag) && !hasSet(n) && deep(n)) push(n.tag, n.tag === 'ul' || n.tag === 'ol' ? (n.c || []).filter(isEl).map((li, i) => (n.tag === 'ul' ? '•  ' : i + 1 + '. ') + deep(li)).join('\n') : deep(n));

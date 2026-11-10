@@ -1490,7 +1490,7 @@
         {
           "id": "2717:624",
           "type": "COMPONENT_SET",
-          "variants": 4
+          "variants": 5
         }
       ],
       "props": "size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, `__clear`, 표에 `data-ds-selection`",
@@ -1625,9 +1625,16 @@
       "classes": [
         ".ds-segmentinput"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3230:4375",
+          "type": "COMPONENT_SET",
+          "variants": 20
+        }
+      ],
       "props": "size `large/medium`(medium 은 PC 전용), 가린 구간 `data-masked`, `aria-invalid`, disabled, readonly, 구간마다 maxlength",
-      "category": "Data Input"
+      "category": "Data Input",
+      "doc": "3230:3474"
     }
   ]
 }

@@ -148,7 +148,7 @@ const TCOLOR = (cls) => cls.includes('ds-fg-muted') ? 'fg/neutral-muted' : cls.i
 async function render(el, parent, ctx) {
   if (typeof el === 'string') { const s = TSTYLE(ctx.cls || []); await figma.loadFontAsync(s.fontName); add(parent, text(el.trim(), s, TCOLOR(ctx.cls || []))); return; }
   if (((ctx.shape && !el.sp) || el.fb) && el.s) return renderS(el, parent, true);  // 부품 속성으로 못 나타내는 것은 사이트 모양 그대로 (sync.mjs SHAPE, 2026-11-07)
-  const setCls = el.cls.find((c) => SET[c] && c !== 'ds-list-item');
+  const setCls = (() => { const l = el.cls.filter((c) => SET[c] && c !== 'ds-list-item'); return l.find((c) => c !== 'ds-input') || l[0]; })();  // ds-input ds-datefield 처럼 둘이면 좁은 부품 (2026-11-10)
   if (setCls) return setNode(el, setCls, parent);
   if (el.s) return renderS(el, parent);
   if (el.cls.includes('ds-list')) {

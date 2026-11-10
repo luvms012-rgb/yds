@@ -405,7 +405,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 73 | Code Input | `.ds-codeinput` (`__cell`) | `2714:1564`, 8 | size `large/medium`, `aria-invalid`, 다 채우면 `ds-code-complete` |
 | 74 | Chart | `.ds-chart` (`__header/title/desc/plot/col/bar/label/svg/line/area/axis/donut/total/legend/swatch`) | `2715:1115`, 3 | type `bar/line/donut`, `data-series` 1~5, `--ds-chart-value`, `--ds-chart-height`, `--ds-chart-size` |
 | 75 | Description List | `.ds-desclist` (`__item/label/value`) | `2716:376`, 4 | layout `start/top`, columns `2/3`, align `end`, `data-divider`, `--ds-desclist-label-width` |
-| 76 | Toolbar | `.ds-toolbar` (`__start/center/end/title/count/separator/clear`) | `2717:624`, 4 | size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, 표에 `data-ds-selection`, 좌우 화살표 이동 |
+| 76 | Toolbar | `.ds-toolbar` (`__start/center/end/title/count/separator/clear`) | `2717:624`, 5 | size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, 표에 `data-ds-selection`, 좌우 화살표 이동 |
 | 77 | Tree | `.ds-tree` (`__node/row/toggle/icon/label/suffix/group`) | `2716:594`, 2 / Item `2716:495`, 12 | size `medium/small`, guides `none`, `aria-expanded`, `aria-selected`, 화살표 키 |
 | 78 | Wheel Picker | `.ds-wheelpicker` (`__column/option`) | `2714:1665`, 2 | Time Picker 와 같은 휠, 열 여러 개, `aria-selected`, change |
 | 79 | Search Field | `.ds-searchfield` (`__cancel`, 칸은 `.ds-input`) | `2714:1744`, 4 | variant `outline/fill`, 칸은 Text Field, cancel |
@@ -413,7 +413,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 81 | Lightbox | `.ds-lightbox` (`__bar/count/close/slide/img/caption/nav`) | `3144:1195` | `data-ds-open` + `data-ds-index`, 좌우 화살표 키, 늘 어두운 바탕 |
 | 83 | Mega Menu | `.ds-megamenu` (`__inner/group/title/list/link/aside`) | `3143:2639` | 트리거 `data-ds-megamenu` + `aria-expanded`, 768 이상에서만 |
 | 84 | Command Palette | `.ds-command` (`__search/input/list/group/title/item/label/kbd/empty`) | `3144:1210` | `data-ds-hotkey="k"`, 거르기, 위아래 화살표와 Enter |
-| 85 | Segmented Text Input | `.ds-segmentinput` (`__segment/separator/dots/suffix`, 틀은 `.ds-input`) | Figma 없음(최종 검토 때) | size `large/medium`, 가린 구간 `data-masked`, 자리 수를 채우면 다음 구간, 붙여 넣기는 가린 구간 앞에서 멈춤 |
+| 85 | Segmented Text Input | `.ds-segmentinput` (`__segment/separator/dots/suffix`, 틀은 `.ds-input`) | `3230:4375`, 20 | size `large/medium`, 가린 구간 `data-masked`, 자리 수를 채우면 다음 구간, 붙여 넣기는 가린 구간 앞에서 멈춤 |
 
 목록의 기계용 사본이 `components.json`이다. 컴포넌트를 추가/변경하면 이 표와 `components.json`을 함께 고친다(sync가 Figma/CSS와 대조).
 
