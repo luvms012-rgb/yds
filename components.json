@@ -1560,9 +1560,16 @@
       "classes": [
         ".ds-datefield"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3141:3257",
+          "type": "COMPONENT_SET",
+          "variants": 4
+        }
+      ],
       "props": "칸은 Text Field(size, `aria-invalid`), 숫자를 넣으면 점 자동, 달력 버튼(선택)",
-      "category": "Data Input"
+      "category": "Data Input",
+      "doc": "3141:3160"
     },
     {
       "no": "81",
@@ -1570,9 +1577,15 @@
       "classes": [
         ".ds-lightbox"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3144:1195",
+          "type": "COMPONENT"
+        }
+      ],
       "props": "`data-ds-open` + `data-ds-index`, 좌우 화살표 키, 사진 개수 표시",
-      "category": "Overlay"
+      "category": "Overlay",
+      "doc": "3144:1250"
     },
     {
       "no": "82",
@@ -1580,9 +1593,16 @@
       "classes": [
         ".ds-selectionbar"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3143:1017",
+          "type": "COMPONENT_SET",
+          "variants": 2
+        }
+      ],
       "props": "position `floating`, 표에 `data-ds-selection`, `data-count-format`",
-      "category": "Table & List"
+      "category": "Table & List",
+      "doc": "3143:920"
     },
     {
       "no": "83",
@@ -1590,9 +1610,15 @@
       "classes": [
         ".ds-megamenu"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3143:2639",
+          "type": "COMPONENT"
+        }
+      ],
       "props": "트리거 `data-ds-megamenu` + `aria-expanded`, 묶음 4개까지, aside(선택)",
-      "category": "Navigation"
+      "category": "Navigation",
+      "doc": "3143:2667"
     },
     {
       "no": "84",
@@ -1600,9 +1626,15 @@
       "classes": [
         ".ds-command"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3144:1210",
+          "type": "COMPONENT"
+        }
+      ],
       "props": "`data-ds-hotkey=\"k\"`, 거르기, 위아래 화살표와 Enter, 묶음과 단축키 표시",
-      "category": "Overlay"
+      "category": "Overlay",
+      "doc": "3144:1347"
     }
   ]
 }
