@@ -209,7 +209,7 @@ const templates = fs.existsSync(path.join(SITE, 'src/templates.json')) ? JSON.pa
 /* ---------------------------------------------------------------- 공통 조각 */
 function codeblock(code, lang = 'html', extra = '') {
   return `<figure class="ds-codeblock" data-lang="${esc(lang)}"${extra}>
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">${esc(lang === 'text' ? '요청 글' : lang)}</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
+  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">${esc(lang === 'text' ? 'AI 도구에 붙여 넣기' : lang)}</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>${highlight(code, lang)}</code></pre>
 </figure>`;
 }
@@ -377,7 +377,9 @@ const written = [];
 const write = (o) => written.push(page(o));
 
 /* ---------------------------------------------------------------- Get Started */
-const CSS_LINK = `<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
+// 순서 규칙은 글 대신 코드 주석으로 (11-10 밤 사용자 "3가지 적용": 복사해 가면 같이 따라간다)
+const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
+<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>`;
 // 요청 글은 예시 한 줄로 (11-10 사용자 "프롬프팅을 예시 정도로 중요도를 낮추고", "운영 중인 사이트, 새 서비스, 화면 시안 나눌 필요 없다", 구성은 AI와 함께 / 직접 / Figma로 / 개발 시작하기). 순서와 규칙은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
@@ -447,7 +449,7 @@ write({
 <h2 id="structure">구조</h2>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
-  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
+  <li><a class="site-gs__layer-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener"><strong>브랜드<i class="ds-icon ds-icon--external-link ds-icon--sm" aria-hidden="true"></i></strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></a></li>
   <li><strong>서비스</strong><span>YDS와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 

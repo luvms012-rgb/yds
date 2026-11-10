@@ -78,6 +78,7 @@ Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://
 **최신**
 
 ```html
+<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/ybm-ds.css">
 <script src="https://luvms012-rgb.github.io/yds/dist/ybm-ds.js" defer></script>
 ```
@@ -85,6 +86,7 @@ Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://
 **v1.1.0 고정**
 
 ```html
+<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css">
 <script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js" defer></script>
 ```
