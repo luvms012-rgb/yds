@@ -18,7 +18,10 @@
       "en": "Project Status Dashboard",
       "group": "Dashboard",
       "desc": "프로젝트가 어디까지 왔는지 일정과 진행률로 보여 주는 대시보드입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:1259"
+      }
     },
     {
       "slug": "dashboard-alert-rail",
@@ -26,7 +29,10 @@
       "en": "Service Monitoring Dashboard",
       "group": "Dashboard",
       "desc": "서비스 상태를 지켜보며 문제를 바로 알아채는 모니터링 화면입니다. 알림은 오른쪽에 따로 모아 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:1836"
+      }
     },
     {
       "slug": "table-collapsible",
@@ -34,7 +40,10 @@
       "en": "Collapsible Table",
       "group": "Table",
       "desc": "열 구성이 다른 표 여러 개를 접고 펼치며 보는 화면입니다. 표 하나로 합치면 빈칸이 많아질 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:2818"
+      }
     },
     {
       "slug": "table-filter",
@@ -42,7 +51,10 @@
       "en": "Filterable Table",
       "group": "Table",
       "desc": "검색과 조건으로 필요한 행만 보여 주는 표입니다. 행이 많고 필터 기준이 여러 개일 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:3490"
+      }
     },
     {
       "slug": "table-grouped",
@@ -50,7 +62,10 @@
       "en": "Grouped Table",
       "group": "Table",
       "desc": "행을 상태별로 묶어 보여 주는 표입니다. 긴 목록을 몇 덩어리로 나눠 읽을 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:4204"
+      }
     },
     {
       "slug": "table-inbox",
@@ -58,7 +73,10 @@
       "en": "Inbox Table",
       "group": "Table",
       "desc": "왼쪽 목록에서 선택한 항목을 오른쪽에서 바로 읽는 받은 편지함입니다. 메일이나 문의처럼 하나씩 열어 처리할 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:4915"
+      }
     },
     {
       "slug": "table-tree",
@@ -66,7 +84,10 @@
       "en": "Tree Table",
       "group": "Table",
       "desc": "상위 행을 펼치면 하위 행이 나오는 계층 표입니다. 폴더처럼 단계가 있는 목록에 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3123:5360"
+      }
     },
     {
       "slug": "payment-form",
@@ -74,7 +95,10 @@
       "en": "Checkout Form",
       "group": "Form",
       "desc": "결제 정보를 한 화면에서 입력하는 폼입니다. 주문 요약을 옆에 두어 합계를 보면서 결제합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:482"
+      }
     },
     {
       "slug": "checkout-wizard",
@@ -82,7 +106,10 @@
       "en": "Checkout Wizard",
       "group": "Form",
       "desc": "배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:737"
+      }
     },
     {
       "slug": "contact-form",
@@ -90,7 +117,10 @@
       "en": "Contact Form",
       "group": "Form",
       "desc": "문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:1060"
+      }
     },
     {
       "slug": "form-wizard-dialog",
@@ -98,7 +128,10 @@
       "en": "Dialog Wizard",
       "group": "Form",
       "desc": "보던 화면 위에 창을 띄워 짧은 단계를 진행하는 폼입니다. 화면을 떠나지 않고 간단한 설정을 마칠 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:1229"
+      }
     },
     {
       "slug": "form-wizard",
@@ -106,7 +139,10 @@
       "en": "Form Wizard",
       "group": "Form",
       "desc": "한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:1405"
+      }
     },
     {
       "slug": "form-wizard-inline",
@@ -114,7 +150,10 @@
       "en": "Inline Wizard",
       "group": "Form",
       "desc": "모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:1527"
+      }
     },
     {
       "slug": "form-wizard-vertical",
@@ -122,7 +161,10 @@
       "en": "Vertical Wizard",
       "group": "Form",
       "desc": "왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:1674"
+      }
     },
     {
       "slug": "settings-dialog",
@@ -130,7 +172,10 @@
       "en": "Settings Dialog",
       "group": "Settings",
       "desc": "보던 화면을 떠나지 않고 창 안에서 설정을 바꾸는 화면입니다. 바꾼 값은 바로 적용됩니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:1842"
+      }
     },
     {
       "slug": "settings",
@@ -149,7 +194,10 @@
       "en": "Settings Panels",
       "group": "Settings",
       "desc": "왼쪽 메뉴로 설정 묶음을 오가는 설정 화면입니다. 항목은 그 자리에서 바로 수정합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:2262"
+      }
     },
     {
       "slug": "login-card",
@@ -168,7 +216,10 @@
       "en": "Login Split",
       "group": "Login",
       "desc": "한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3125:2492"
+      }
     },
     {
       "slug": "login-sso",
@@ -176,7 +227,10 @@
       "en": "Login SSO",
       "group": "Login",
       "desc": "이메일을 먼저 받고 회사 계정 로그인으로 이어 주는 화면입니다. 회사 계정이 없으면 비밀번호로 로그인합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:314"
+      }
     },
     {
       "slug": "canvas-editor",
@@ -184,7 +238,10 @@
       "en": "Canvas Editor",
       "group": "Tools",
       "desc": "정해진 크기의 화면 위에서 디자인하는 편집기입니다. 레이어와 속성을 양옆에 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:366"
+      }
     },
     {
       "slug": "file-explorer",
@@ -192,7 +249,10 @@
       "en": "File Explorer",
       "group": "Tools",
       "desc": "폴더를 열 때마다 옆 칸에 이어 보여 주는 파일 탐색기입니다. 깊은 폴더도 경로를 놓치지 않고 찾아갑니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:687"
+      }
     },
     {
       "slug": "ide",
@@ -200,7 +260,10 @@
       "en": "IDE",
       "group": "Tools",
       "desc": "파일 목록, 편집 창, 터미널을 한 화면에 둔 코드 편집기입니다. 칸마다 크기를 바꾸고 접을 수 있습니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:1084"
+      }
     },
     {
       "slug": "kanban-board",
@@ -208,7 +271,10 @@
       "en": "Kanban Board",
       "group": "Tools",
       "desc": "할 일을 상태별 열에 카드로 배치한 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:1370"
+      }
     },
     {
       "slug": "editor",
@@ -216,7 +282,10 @@
       "en": "Page Editor",
       "group": "Tools",
       "desc": "블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 선택한 블록의 속성은 오른쪽에서 바꿉니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:1839"
+      }
     },
     {
       "slug": "library",
@@ -224,7 +293,10 @@
       "en": "Card Grid",
       "group": "Content",
       "desc": "카드를 훑어보며 원하는 항목을 찾는 목록 화면입니다. 분류 탭으로 범위를 좁힐 수 있습니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:2368"
+      }
     },
     {
       "slug": "documentation",
@@ -232,7 +304,10 @@
       "en": "Documentation Catalog",
       "group": "Content",
       "desc": "문서 사이트의 첫 화면입니다. 분류별 카드로 원하는 문서에 바로 들어갑니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:2898"
+      }
     },
     {
       "slug": "documentation-design",
@@ -240,7 +315,10 @@
       "en": "Documentation Design",
       "group": "Content",
       "desc": "설명 사이에 실제로 동작하는 예시를 넣은 디자인 문서입니다. 컴포넌트 사용법을 정리할 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:3068"
+      }
     },
     {
       "slug": "documentation-technical",
@@ -248,7 +326,10 @@
       "en": "Documentation Technical",
       "group": "Content",
       "desc": "단계마다 번호와 코드를 붙인 따라 하기 문서입니다. 처음부터 끝까지 순서대로 따라가게 합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:3415"
+      }
     },
     {
       "slug": "detail-page",
@@ -256,7 +337,10 @@
       "en": "Order Detail",
       "group": "Content",
       "desc": "주문 한 건을 자세히 보고 처리하는 화면입니다. 상품과 진행 기록, 고객 정보를 한곳에서 확인합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:3635"
+      }
     },
     {
       "slug": "product-detail",
@@ -264,7 +348,10 @@
       "en": "Product Detail",
       "group": "Content",
       "desc": "상품 하나를 자세히 보고 바로 구매하는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3127:3941"
+      }
     },
     {
       "slug": "work-item-detail",
@@ -272,7 +359,10 @@
       "en": "Work Item Detail",
       "group": "Content",
       "desc": "할 일 하나를 자세히 보고 진행 상황을 공유하는 화면입니다. 하위 할 일과 댓글로 함께 일합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:314"
+      }
     },
     {
       "slug": "ai-chat",
@@ -280,7 +370,10 @@
       "en": "AI Chat Conversation",
       "group": "AI Chat",
       "desc": "AI와 주고받은 대화와 결과물을 함께 보는 화면입니다. 결과물은 옆 패널에서 따로 엽니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:543"
+      }
     },
     {
       "slug": "ai-chat-landing",
@@ -288,7 +381,10 @@
       "en": "AI Chat Landing",
       "group": "AI Chat",
       "desc": "대화를 시작하기 전에 보여 주는 AI 첫 화면입니다. 입력창과 추천 버튼으로 바로 시작합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:803"
+      }
     },
     {
       "slug": "centered-hero",
@@ -296,7 +392,10 @@
       "en": "Centered Hero",
       "group": "Gallery",
       "desc": "큰 제목과 버튼을 가운데 두고 아래에 넓은 사진을 놓은 첫 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:928"
+      }
     },
     {
       "slug": "classic-gallery",
@@ -304,7 +403,10 @@
       "en": "Classic Gallery",
       "group": "Gallery",
       "desc": "같은 비율의 사진을 바둑판처럼 배치한 갤러리입니다. 분류 탭으로 원하는 사진만 볼 수 있습니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:952"
+      }
     },
     {
       "slug": "gallery-hero",
@@ -312,7 +414,10 @@
       "en": "Gallery Hero",
       "group": "Gallery",
       "desc": "제목 아래에 사진 여러 장을 모아 놓은 첫 화면입니다. 다양한 장면을 한 번에 보여 줄 때 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:1076"
+      }
     },
     {
       "slug": "mixed-gallery",
@@ -320,7 +425,10 @@
       "en": "Mixed Gallery",
       "group": "Gallery",
       "desc": "높이가 다른 사진을 자르지 않고 쌓아 올린 벽돌형 갤러리입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:1133"
+      }
     },
     {
       "slug": "product-gallery",
@@ -328,7 +436,10 @@
       "en": "Product Gallery",
       "group": "Gallery",
       "desc": "같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:1233"
+      }
     },
     {
       "slug": "side-gallery",
@@ -336,7 +447,10 @@
       "en": "Side Gallery",
       "group": "Gallery",
       "desc": "한쪽에 제목과 설명, 반대쪽에 사진 묶음을 둔 첫 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:1334"
+      }
     },
     {
       "slug": "community-board",
@@ -355,7 +469,10 @@
       "en": "Community Home",
       "group": "Community",
       "desc": "게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:2019"
+      }
     },
     {
       "slug": "community-post",
@@ -363,7 +480,10 @@
       "en": "Post Detail",
       "group": "Community",
       "desc": "게시글 하나를 읽고 댓글로 이야기를 나누는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3129:2643"
+      }
     },
     {
       "slug": "community-write",
@@ -371,7 +491,10 @@
       "en": "Write Post",
       "group": "Community",
       "desc": "커뮤니티에 새 글을 작성하는 화면입니다. 게시판을 고른 뒤 제목과 본문을 씁니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:260"
+      }
     },
     {
       "slug": "subscription-cancel",
@@ -379,7 +502,10 @@
       "en": "Cancel Subscription",
       "group": "Pricing",
       "desc": "구독을 해지하기 전에 잃게 되는 혜택을 알려 주는 화면입니다. 할인을 한 번 더 권하고, 해지 여부는 사용자가 정합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:330"
+      }
     },
     {
       "slug": "pricing-plans",
@@ -398,7 +524,10 @@
       "en": "Subscription Checkout",
       "group": "Pricing",
       "desc": "선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:1049"
+      }
     },
     {
       "slug": "subscription-settings",
@@ -406,7 +535,10 @@
       "en": "Subscription Settings",
       "group": "Pricing",
       "desc": "지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:1230"
+      }
     },
     {
       "slug": "mypage-profile",
@@ -414,7 +546,10 @@
       "en": "My Info",
       "group": "My Page",
       "desc": "내 정보와 알림 설정을 보고 수정하는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:1654"
+      }
     },
     {
       "slug": "mypage-home",
@@ -433,7 +568,10 @@
       "en": "Order History",
       "group": "My Page",
       "desc": "주문을 날짜별로 모아 보는 내역 화면입니다. 배송 조회, 리뷰 쓰기처럼 상품마다 필요한 일을 바로 처리합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:2386"
+      }
     },
     {
       "slug": "cart",
@@ -441,7 +579,10 @@
       "en": "Cart",
       "group": "Commerce",
       "desc": "담은 상품을 확인하고 수량과 옵션을 바꾸는 장바구니입니다. 결제 예정 금액을 보며 바로 주문합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:2742"
+      }
     },
     {
       "slug": "cart-empty",
@@ -449,7 +590,10 @@
       "en": "Empty Cart",
       "group": "Commerce",
       "desc": "담은 상품이 없을 때의 장바구니입니다. 추천 상품을 보여 주어 쇼핑을 이어 가게 합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3119:785"
+      }
     },
     {
       "slug": "exam-apply",
@@ -468,7 +612,10 @@
       "en": "Exam Schedule",
       "group": "Exam",
       "desc": "회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3113:816"
+      }
     },
     {
       "slug": "exam-my",
@@ -476,7 +623,10 @@
       "en": "My Exams",
       "group": "Exam",
       "desc": "응시자가 자신의 시험 일정과 점수를 한눈에 보는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3131:4580"
+      }
     },
     {
       "slug": "exam-score",
@@ -484,7 +634,10 @@
       "en": "Score Report",
       "group": "Exam",
       "desc": "시험 성적을 확인하는 화면입니다. 총점을 먼저 보여 주고 영역별 점수로 이어집니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:114"
+      }
     },
     {
       "slug": "center-finder",
@@ -492,7 +645,10 @@
       "en": "Center Finder",
       "group": "Education",
       "desc": "지역과 과정으로 가까운 센터를 찾고 상담을 예약하는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:489"
+      }
     },
     {
       "slug": "consult-booking",
@@ -500,7 +656,10 @@
       "en": "Consultation Booking",
       "group": "Education",
       "desc": "설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:819"
+      }
     },
     {
       "slug": "help-center",
@@ -508,7 +667,10 @@
       "en": "Help Center",
       "group": "Education",
       "desc": "자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:1031"
+      }
     },
     {
       "slug": "lesson-plan",
@@ -516,7 +678,10 @@
       "en": "Lesson Plan Picker",
       "group": "Education",
       "desc": "수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:1264"
+      }
     },
     {
       "slug": "textbook-detail",
@@ -524,7 +689,10 @@
       "en": "Textbook Detail",
       "group": "Education",
       "desc": "책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:1520"
+      }
     },
     {
       "slug": "exam-group-roster",
@@ -532,7 +700,10 @@
       "en": "Candidate Roster",
       "group": "Exam B2B",
       "desc": "단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:1906"
+      }
     },
     {
       "slug": "exam-group-apply",
@@ -540,7 +711,10 @@
       "en": "Group Application",
       "group": "Exam B2B",
       "desc": "기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:2733"
+      }
     },
     {
       "slug": "exam-group-dashboard",
@@ -548,7 +722,10 @@
       "en": "Group Score Dashboard",
       "group": "Exam B2B",
       "desc": "기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:3307"
+      }
     },
     {
       "slug": "learning-catalog",
@@ -556,7 +733,10 @@
       "en": "Course Catalog",
       "group": "Learning B2B",
       "desc": "듣고 싶은 과정을 찾는 목록입니다. 분류, 수준, 학습 시간으로 필터링합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:3821"
+      }
     },
     {
       "slug": "learning-admin",
@@ -564,7 +744,10 @@
       "en": "Course Operations",
       "group": "Learning B2B",
       "desc": "교육 담당자가 과정과 차수를 운영하는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:4342"
+      }
     },
     {
       "slug": "learning-player",
@@ -572,7 +755,10 @@
       "en": "Course Player",
       "group": "Learning B2B",
       "desc": "강의를 들으며 AI 튜터에게 요약과 퀴즈를 받는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:4967"
+      }
     },
     {
       "slug": "learning-dashboard",
@@ -580,7 +766,10 @@
       "en": "Learning Dashboard",
       "group": "Learning B2B",
       "desc": "교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3133:5169"
+      }
     },
     {
       "slug": "learning-home",
