@@ -388,17 +388,12 @@ ${SITE_URL}yds.txt
 
 예시)
 [새 화면 만들기]
-- 카드 제휴 이벤트 페이지 만들어 줘.
-  혜택 배너, 카드 혜택 3가지, 유의사항, '카드 신청하기' 버튼 순서로.
-- 로그인 후 동의 화면 만들어 줘.
-  필수 동의 3개(이용약관, 개인정보처리방침, 광고 문자 안내),
-  전체 동의 체크, 본인인증 버튼까지.
+- 카드 제휴 이벤트 페이지 만들어 줘. 혜택 배너, 카드 혜택 3가지, 유의사항, '카드 신청하기' 버튼 순서로.
+- 로그인 후 동의 화면 만들어 줘. 필수 동의 3개(이용약관, 개인정보처리방침, 광고 문자 안내), 전체 동의 체크, 본인인증 버튼까지.
 
 [운영 중인 페이지에 적용하기]
-- 이 이벤트 페이지의 버튼, 글꼴, 색을 YDS로 바꿔 줘.
-  배치와 문구는 그대로 둬.
-- 첨부한 시험 접수 화면에 YDS 적용해 줘.
-  입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.`;
+- 이 이벤트 페이지의 버튼, 글꼴, 색을 YDS로 바꿔 줘. 배치와 문구는 그대로 둬.
+- 첨부한 시험 접수 화면에 YDS 적용해 줘. 입력 폼과 버튼만 바꾸고, 바꾼 부분을 알려 줘.`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
@@ -449,7 +444,7 @@ write({
 <h2 id="structure">구조</h2>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
-  <li><a class="site-gs__layer-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener"><strong>브랜드<i class="ds-icon ds-icon--external-link ds-icon--sm" aria-hidden="true"></i></strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></a></li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 브랜드마다 달라지는 값만 담은 파일입니다.</span></li>
   <li><strong>서비스</strong><span>YDS와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 

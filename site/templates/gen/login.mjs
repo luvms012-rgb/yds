@@ -7,7 +7,6 @@ const CSS = `
   .tp-auth__wrap { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x6); width: min(100%, 400px); }
   .tp-auth__brand { display: flex; align-items: center; gap: var(--ds-space-x2); font-weight: var(--ds-font-weight-semibold); }
   .tp-auth__card { display: flex; flex-direction: column; gap: var(--ds-space-x5); width: 100%; padding: var(--ds-space-x6); border-radius: var(--ds-shape-2xl); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak), 0 1px 2px var(--ds-color-palette-static-black-alpha-200), 0 8px 24px var(--ds-color-palette-static-black-alpha-300); }
-  .tp-auth__title { display: flex; flex-direction: column; gap: var(--ds-space-x1); text-align: center; }
   .tp-auth__fields { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
   .tp-or { display: flex; align-items: center; gap: var(--ds-space-x3); color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); }
   .tp-or::before, .tp-or::after { content: ""; flex: 1 1 auto; height: 1px; background: var(--ds-color-stroke-neutral-muted); }
@@ -19,6 +18,7 @@ const CSS = `
 const brand = `<div class="tp-auth__brand"><span class="tp-logo">로고</span></div>`;
 const legal = '';
 const pw = (id) => `<div class="ds-field"><div class="ds-field__header tp-pw-head"><label class="ds-field__label" for="${id}">비밀번호</label>${link('비밀번호를 잊으셨나요?')}</div>${inp(id, '비밀번호를 입력하세요', 'type="password"')}</div>`;
+const remember = (id) => `<label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="${id}" checked><span class="ds-checkbox__label">아이디 저장</span></label>`;
 const alt = `<div class="tp-auth__alt">${btn('카카오', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'message-circle' })}${btn('네이버', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'globe' })}</div>`;
 
 /* 1. 로그인 카드 ------------------------------------------------- */
@@ -26,8 +26,9 @@ const loginCard = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${brand}
   <div class="tp-auth__card">
-    <div class="tp-auth__title"><h1 class="tp-h2">다시 오셨네요</h1></div>
+    <h1 class="tp-sr">로그인</h1>
     <div class="tp-auth__fields">${field('lc-mail', '이메일', inp('lc-mail', 'name@company.com', 'type="email" autocomplete="email"'))}${pw('lc-pw')}</div>
+    ${remember('lc-save')}
     ${btn('로그인', { variant: 'brandSolid', size: 'large', fill: true })}
     <div class="tp-or">또는</div>
     ${alt}
@@ -53,8 +54,9 @@ const loginSplit = () => {
     <div class="tp-split-card__form">
       ${brand.replace('tp-auth__brand', 'tp-auth__brand" style="align-self:flex-start')}
       <div class="tp-split-card__inner">
-        <div class="tp-auth__title" style="text-align:left"><h1 class="tp-h2">다시 오셨네요</h1></div>
+        <h1 class="tp-sr">로그인</h1>
         <div class="tp-auth__fields">${field('ls-mail', '이메일', inp('ls-mail', 'name@company.com', 'type="email"'))}${pw('ls-pw')}</div>
+        ${remember('ls-save')}
         ${btn('로그인', { variant: 'brandSolid', size: 'large', fill: true })}
         <div class="tp-or">또는</div>
         ${alt}
@@ -73,8 +75,9 @@ const loginSso = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${brand}
   <div class="tp-auth__card">
-    <div class="tp-auth__title"><h1 class="tp-h2">다시 오셨네요</h1></div>
+    <h1 class="tp-sr">로그인</h1>
     <div class="tp-auth__fields">${field('sso-mail', '회사 이메일', inp('sso-mail', 'you@company.com', 'type="email" autocomplete="email"'))}${field('sso-pw', '비밀번호', inp('sso-pw', '비밀번호', 'type="password"'))}</div>
+    ${remember('sso-save')}
     ${link('로그인이 안 되나요?')}
     ${btn('계속', { variant: 'brandSolid', size: 'large', fill: true })}
     <div class="tp-or">또는</div>

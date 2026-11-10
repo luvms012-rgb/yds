@@ -543,9 +543,6 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-gs__layers li { position: relative; display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: var(--ds-space-x6); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
 .site-gs__layers strong { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-semibold); }
 .site-gs__layers span { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; }
-.site-gs__layer-link { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: calc(var(--ds-space-x6) * -1); padding: var(--ds-space-x6); border-radius: inherit; color: inherit; text-decoration: none; }  /* 브랜드 카드 전체가 등록된 브랜드 목록으로 가는 링크 (11-10 밤) */
-.site-gs__layer-link:hover { background: var(--ds-color-bg-neutral-weak-pressed); }
-.site-gs__layer-link strong { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); }
 .site-gs__layers li + li::before { content: ""; position: absolute; top: calc(var(--ds-space-x7) * -1); left: calc(50% - var(--ds-space-x3)); width: var(--ds-space-x6); height: var(--ds-space-x6); background: var(--ds-color-fg-neutral-subtle); -webkit-mask: var(--ds-icon-chevron-down) center / contain no-repeat; mask: var(--ds-icon-chevron-down) center / contain no-repeat; }
 @media (min-width: 768px) {
   .site-gs__layers { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }  /* 카드 수만큼 폭을 나눈다 */
