@@ -389,7 +389,6 @@ const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
 const AI_EXAMPLE = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt
-브랜드: ${BRANDS[0]?.name || '(브랜드 이름, 없으면 대표색)'}
 
 예시)
 [새 화면 만들기]

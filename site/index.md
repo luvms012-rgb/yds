@@ -15,7 +15,6 @@ YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 
 ```text
 아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
-브랜드: TOEIC
 
 예시)
 [새 화면 만들기]
