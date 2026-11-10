@@ -205,7 +205,7 @@ ${head('고객센터')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'help-center', en: 'Help Center', name: '고객센터', group: 'Community', desc: '자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.', css, body };
+  return { slug: 'help-center', en: 'Help Center', name: '고객센터', group: 'Support', desc: '자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.', css, body };
 };
 
 export const templates = [schedule, centers, plan, book, consult, help].map((f) => f());

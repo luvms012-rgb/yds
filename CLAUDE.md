@@ -3,7 +3,7 @@
 집(**Mac**)과 회사(**Windows**) 두 PC 에서 같은 저장소로 작업한다. 이 파일은 저장소에 같이 올라가므로 어느 PC 에서든 Claude 가 먼저 읽는다.
 PC 마다 따로 쌓이는 Claude 메모리는 서로 보이지 않는다 - 두 PC 가 함께 알아야 할 것은 여기에 적는다.
 
-- 최종 갱신: 2026-11-09 (집 Mac, 템플릿 정리까지 배포)
+- 최종 갱신: 2026-11-10 밤 (집 Mac, 시작하기 정리와 템플릿 분류 9개까지 배포)
 
 ## 1. 기준 주소
 
@@ -51,7 +51,14 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
-- **인수인계 - 다음 세션은 여기부터 (2026-11-09 집 Mac 마무리, 템플릿 정리, 배포함)** - 시작은 "YDS CLAUDE.md 읽고 이어서". 시작할 때 `git pull`. 이번 항목이 최신이고, Figma 쪽 상태는 바로 아래 항목을 본다.
+- **인수인계 - 다음 세션은 여기부터 (2026-11-10 밤 집 Mac, 시작하기 정리와 템플릿 분류, 배포함)** - 시작은 "YDS CLAUDE.md 읽고 이어서". 시작할 때 `git pull`. 이번 항목이 최신이고, 회사 PC 11-10 낮 작업과 Figma 상태는 바로 아래 항목들을 본다.
+  - **시작하기(Get Started)**: 사용자가 준 시안(yds-start.html)을 넣었다가 사용자 지시로 대부분 뺐다. 지금 남은 것 = 머리말 리드 한 문장 + 구조 카드 3개(브랜드 카드는 GitHub brands 폴더 링크) + AI 요청 글 상자(라벨 "AI 도구에 붙여 넣기", 예시는 [새 화면 만들기] / [운영 중인 페이지에 적용하기]) + Figma 단계 카드 2개와 Callout("Assets에 YDS 라이브러리가 보이지 않으면 의견 보내기로 팀 초대를 요청하세요") + 개발 설치 코드(첫 줄 주석 `<!-- 서비스 CSS보다 앞에 -->`, 최신 / 고정 탭) + 파일 표(규칙 파일 세 개 가로). **절 제목 아래 설명 문장은 모두 뺐다**(사용자 "이런 디스크립션 모두 삭제"). 뺀 것(다시 제안하지 않기): 역할별 입구 카드, yds-full.txt 첨부 안내 문장, 규칙 파일 옆 도구 이름, "운영 중인 페이지에 적용하는 순서" 5단계, Figma Do/Don't 표. 자세한 것은 site/CLAUDE.md "Get Started 보강".
+  - **타팀 Figma 라이브러리**: 사용자 질문에 답한 내용 = 다른 팀은 YDS 팀에 "can view" 로 초대하면 무료로 라이브러리를 켤 수 있다. 의견 보내기 폼으로 초대 요청이 오면 뷰어로 초대한다(편집 권한은 과금).
+  - **제목 옆 링크 복사**: Tooltip 을 빼고 Snackbar 만 남겼다(둘이 겹쳐 보여서).
+  - **템플릿 분류 9개** (사용자 "탭이 너무 많다, YBM 사업에 최적화", 7개로 묶었다가 "잇지 말고 전부 분리"): 시험, 학습, 쇼핑, 결제, 회원, 커뮤니티, 고객센터, 콘텐츠, 관리자. 영어 group 값과 개수는 site/CLAUDE.md "템플릿 분류는 9개". 분류 안 순서는 많이 쓰는 화면부터(build.mjs `TPL_PRIORITY`, 목록과 왼쪽 메뉴 같은 순서). 새 템플릿은 9개 중 하나에 넣고 `TPL_PRIORITY` 에 자리도 정한다. **Figma Templates 페이지(3059:965)의 분류 섹션은 예전 17개 이름 그대로**라 사이트와 다르다. 사용자가 말하면 Figma 섹션도 9개로 다시 묶는다.
+  - **사용자 평가 요청에 답한 것**: 시작하기를 사업부에 배포했을 때 디자이너는 충분, 개발자와 기획은 설명을 뺀 뒤 약해졌다고 보고 글 없이 세 가지(코드 주석, 상자 라벨, 브랜드 카드 링크)로 보완했다. 사업부 기획 1, 디자인 1, 개발 1명에게 5분 테스트를 권했다(사용자가 할 일).
+  - **남은 일**: ① Figma Templates 분류 섹션 9개로 ② 템플릿 UI 전체 개선(사용자 방향 대기) ③ 아래 항목들의 남은 일.
+- **(지난 인수인계) 2026-11-09 집 Mac 마무리, 템플릿 정리, 배포함** - Figma 쪽 상태는 바로 아래 항목을 본다.
   - **2026-11-10 저녁 회사 PC (배포함)**: 사용자 "컴포넌트는 제안 5가지 더 추가 후 최종 배포 - 피그마 씽크 - 완료". 새 컴포넌트 80 Date Field(.ds-datefield, 숫자를 넣으면 점 자동), 81 Lightbox(dialog.ds-lightbox, data-ds-index, 좌우 키), 82 Selection Bar(.ds-selectionbar, 표에 data-ds-selection, floating), 83 Mega Menu(.ds-megamenu, 트리거 data-ds-megamenu, 768 이상), 84 Command Palette(dialog.ds-command, data-ds-hotkey="k", 거르기와 화살표). 등록 9곳 모두(CSS, ybm-ds.js, components.json, README 6.1, index.html, covers, search-ko, figma-notes, part5 예시, anatomy-ko). 컴포넌트 83쪽, 사이트 169쪽. 중립 Badge 반투명은 사용자 "투명으로 하지 말라" 로 되돌림(회색 위 배지는 그 자리에서 --ds-badge-bg 를 layer-default 로). 사용자 지적 수정: 센터 찾기 지도 오른쪽 채움(1024 이상 sticky), 받은함 탭 위 여백과 표 위 진한 선 제거, 순위 목록 글자 굵기, Updates 날짜 진하게, Breakpoints/Updates 리드 문구, 템플릿 전체 보기 가나다 순. Figma 싱크 끝: 새 5종 세트(Date Field 3141:3257 size×picker 4, Lightbox 3144:1195, Selection Bar 3143:1017 position 2, Mega Menu 3143:2639, Command Palette 3144:1210)와 문서 프레임(3141:3160, 3144:1250, 3143:920, 3143:2667, 3144:1347)을 docpage 로 사이트와 같게 그림(그리기 코드가 50KB 를 넘어 공유 데이터 두 조각에 넣고 불러 씀, 끝나고 비움). 고쳐 넣은 곳: Date Field 달력 칸은 Text Field 대신 Date Field 세트로, Lightbox 대표 그림은 원래 크기 인스턴스 축소, Selection Bar 대표 그림 폭 맞춤, Mega Menu, Command Palette 대표 그림 글 순서. 넘침/잘림 0, 변수 359 같음, 세트 117 같음, 코드 링크 줄 번호 72곳 고침.
     - 11-10 밤: 사용자 "Selection Bar 와 Toolbar 비교, 중복이면 하나로 통합". 82 Selection Bar 를 76 Toolbar 로 합침(번호 82 는 비움). Toolbar 에 data-position="floating", __clear, data-ds-selection(ybm-ds.js syncSelection), 버튼 묶음 줄바꿈을 옮기고 예시 "떠 있는 막대"를 toolbar 끝에 둠. Updates 11-10 에 변경 한 줄. Figma 는 아직(Selection Bar 세트 3143:1017, 문서 프레임 3143:920 정리와 Toolbar 에 floating 반영 남음), 미배포.
     - 11-10 밤 (이어서): 새 컴포넌트 85 Segmented Text Input(.ds-segmentinput, 틀은 .ds-input outline, __segment/separator/dots/suffix). 주민등록번호, 카드번호처럼 일부를 가리는 값을 구간마다 받는다. 가린 구간(data-masked)은 글자를 투명하게 두고 입력한 글자 수(--ds-segmentinput-filled, ybm-ds.js)만큼 지름 7 점을 바탕에 그린다(dots 와 같은 모양). ybm-ds.js: 자리 수를 채우면 다음 구간, 빈 구간 Backspace 는 앞 구간 끝 글자 지우기, 좌우 화살표, 붙여 넣기는 가린 구간 앞에서 멈춤, 한글 조합 중에는 옮기지 않음, 가린 구간 복사 막음. 등록 9곳 + anatomy-figures + compare.json(Text Field 쪽에도 비교 표) + Updates 11-10 새 기능 한 줄. Figma 는 아직(세트와 문서 프레임 없음, components.json figma 빈 칸), 미배포.

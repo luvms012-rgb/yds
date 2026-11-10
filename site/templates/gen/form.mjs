@@ -57,7 +57,7 @@ const payment = () => {
     </aside>
   </div>
 </main></div>`;
-  return { slug: 'payment-form', en: 'Checkout Form', name: '결제 폼', group: 'Commerce', desc: '결제 정보를 한 화면에서 입력하는 폼입니다. 주문 요약을 옆에 두어 합계를 보면서 결제합니다.', css, body };
+  return { slug: 'payment-form', en: 'Checkout Form', name: '결제 폼', group: 'Payment', desc: '결제 정보를 한 화면에서 입력하는 폼입니다. 주문 요약을 옆에 두어 합계를 보면서 결제합니다.', css, body };
 };
 
 /* 2. 결제 단계 (장바구니 → 결제) -------------------------------- */
@@ -84,7 +84,7 @@ const checkoutWizard = () => {
     <aside class="tp-cw__aside">${summary(cart.map(([n, d, q, p]) => [n, d.split(' / ')[0] + ' / ' + q + '개', p]), [['상품 금액', '63,500원'], ['배송비', '3,000원'], ['할인', '-6,350원']], '60,150원')}</aside>
   </div>
 </main></div>`;
-  return { slug: 'checkout-wizard', en: 'Checkout Wizard', name: '결제 단계', group: 'Commerce', desc: '배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.', css, body };
+  return { slug: 'checkout-wizard', en: 'Checkout Wizard', name: '결제 단계', group: 'Payment', desc: '배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.', css, body };
 };
 
 /* 3. 문의 폼 ----------------------------------------------------- */
@@ -112,7 +112,7 @@ const contact = () => {
     
   </form>
 </div></main></div>`;
-  return { slug: 'contact-form', en: 'Contact Form', name: '문의 폼', group: 'Community', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
+  return { slug: 'contact-form', en: 'Contact Form', name: '문의 폼', group: 'Support', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
 };
 
 /* 4. 대화상자 단계 폼 ------------------------------------------ */

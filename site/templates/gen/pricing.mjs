@@ -142,7 +142,7 @@ const checkout = () => {
     </aside>
   </div>
 </main></div>`;
-  return { slug: 'subscription-checkout', en: 'Subscription Checkout', name: '구독 결제', group: 'Commerce', desc: '선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.', css, body };
+  return { slug: 'subscription-checkout', en: 'Subscription Checkout', name: '구독 결제', group: 'Payment', desc: '선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.', css, body };
 };
 
 /* 3. 내 구독 ------------------------------------------------------ */
@@ -184,7 +184,7 @@ const manage = () => {
     <div class="tp-between"><div class="tp-stack"><span class="tp-h4">구독 해지</span></div>${btn('구독 해지하기', { variant: 'ghost' })}</div>
   </main>
 </div>`;
-  return { slug: 'subscription-settings', en: 'Subscription Settings', name: '내 구독', group: 'Commerce', desc: '지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.', css, body };
+  return { slug: 'subscription-settings', en: 'Subscription Settings', name: '내 구독', group: 'Payment', desc: '지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.', css, body };
 };
 
 /* 4. 구독 해지 ---------------------------------------------------- */
@@ -218,7 +218,7 @@ const cancel = () => {
     <div class="tp-cancel-acts">${btn('해지 신청하기', { variant: 'neutralWeak', size: 'large' })}${btn('구독 유지하기', { variant: 'brandSolid', size: 'large' })}</div>
   </div>
 </main></div>`;
-  return { slug: 'subscription-cancel', en: 'Cancel Subscription', name: '구독 해지', group: 'Commerce', desc: '구독을 해지하기 전에 잃게 되는 혜택을 알려 주는 화면입니다. 할인을 한 번 더 권하고, 해지 여부는 사용자가 정합니다.', css, body };
+  return { slug: 'subscription-cancel', en: 'Cancel Subscription', name: '구독 해지', group: 'Payment', desc: '구독을 해지하기 전에 잃게 되는 혜택을 알려 주는 화면입니다. 할인을 한 번 더 권하고, 해지 여부는 사용자가 정합니다.', css, body };
 };
 
 export const templates = [plans, checkout, manage, cancel].map((f) => f());
