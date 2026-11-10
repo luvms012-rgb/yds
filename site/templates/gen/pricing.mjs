@@ -159,8 +159,7 @@ const manage = () => {
   ${head('구독과 결제')}
   <main class="tp-content">
     <div class="tp-manage">
-      ${card(`<div class="tp-between"><div class="tp-row">${badge('이용 중', 'positive')}<span class="tp-sub">연 결제</span></div>${link('요금제 비교하기')}</div>
-      <div class="tp-stack"><h2 class="tp-h2">프로</h2><div class="tp-price"><span class="tp-mid">${T('7,900원')}</span><span class="tp-sub">/ 월, 1년 94,800원</span></div></div>
+      ${card(`<div class="tp-stack"><div class="tp-between"><span class="tp-row"><h2 class="tp-h2">프로</h2>${badge('이용 중', 'positive')}</span>${link('요금제 비교하기')}</div><div class="tp-price"><span class="tp-mid">${T('7,900원')}</span><span class="tp-sub">/ 월, 연 결제 ${T('94,800원')}</span></div></div>
       <div class="tp-rows">
         <div class="tp-kv"><span>다음 결제일</span>${T('2027.10.09')}</div>
         <div class="tp-kv"><span>다음 결제 금액</span>${T('94,800원')}</div>

@@ -29,7 +29,7 @@ yds/                         ← 저장소 루트 (2026-11-04 저장소 이름 y
 │  ├─ components.css         컴포넌트 48종 .ds-*
 │  ├─ utilities.css          .ds-t01~t17, .ds-fw-*, .ds-fg-*, .u-*
 │  ├─ ybm-ds.js              공통 인터랙션 (의존성 없음)
-│  └─ fonts/                 Pretendard woff2 (Thin~Black 9종, CSS는 400/500/600/700 사용)
+│  └─ fonts/                 Pretendard woff2 (CSS 가 쓰는 400/500/600/700 4종만)
 ├─ tokens/                   ← 토큰 소스와 파생물
 │  ├─ figma-variables.json   Figma 변수 전집 스냅샷 = source of truth
 │  ├─ build.mjs              스냅샷 → tokens.css + 파생 3종 생성 (Node - Python 불필요)

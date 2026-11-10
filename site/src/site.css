@@ -526,11 +526,9 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc .site-release h2:not(.pv-stage *) { margin-top: 0; font-size: var(--ds-font-size-t07); line-height: 28px; }
 .site-doc .site-release__ver { margin-right: var(--ds-space-x2); }  /* 버전 번호 다음 날짜 */
 .site-doc .site-release h2 time { color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-medium); }
-.site-release__group { margin-top: var(--ds-space-x4); }
-.site-doc .site-release__type { margin: 0; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: 20px; font-weight: var(--ds-font-weight-medium); }
 .site-doc .site-release ul.site-list { margin-top: var(--ds-space-x2); }
 .site-release li .ds-badge { margin-right: var(--ds-space-x1); vertical-align: 2px; }
-.site-release[hidden], .site-release__group[hidden] { display: none; }
+.site-release[hidden] { display: none; }
 /* 코드 탭: 코드 상자 머리의 언어 이름 자리에 작은 Chip Tabs (11-04 사용자 "탭을 이 안으로") */
 .site-codetabs__bar { --ds-ct-height: 28px; --ds-ct-padding-x: var(--ds-space-x3); --ds-ct-min-width: 0; padding-inline: 0; }
 .site-codetabs__bar .ds-chiptabs__trigger { font-size: var(--ds-font-size-t03); }
@@ -644,9 +642,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-pager b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }
 .site-doc .site-footer p.site-footer__title { margin: 0; color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
 .site-footer__nav a { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-regular); letter-spacing: 0; }
-/* Updates: 소식 제목은 소제목 위계, 종류는 표 머리 위계 */
+/* Updates: 소식 제목은 소제목 위계 */
 .site-doc .site-release h2:not(.pv-stage *) { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-medium); }
-.site-doc .site-release p.site-release__type { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }
 /* 11-06 전수 검사: 남은 사이트 글자를 Figma 2662:26 규칙(크기마다 정한 줄높이, 굵기 400/500/600, 자간 0)에 맞춤 */
 .site-side__top b, .site-anatomy__part b, .site-lib__name b { font-weight: var(--ds-font-weight-semibold); }
 .site-card__no { line-height: var(--ds-line-height-t03); }

@@ -1106,7 +1106,7 @@ fs.writeFileSync(path.join(SITE, 'get-started/ai.html'), `<!doctype html>
 fs.rmSync(path.join(SITE, 'get-started/ai.md'), { force: true });
 
 /* ---------------------------------------------------------------- Updates */
-// 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 종류(새 기능, 변경된 부분 두 가지, 11-10 사용자)별 목록. 영역 거르기 탭은 11-04 사용자 지시로 뺐다
+// 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 목록 하나. 종류 이름(새 기능, 변경된 부분)은 순서만 정하고 화면에 쓰지 않는다(11-10 사용자 "타이틀 완전 제거"). 영역 거르기 탭은 11-04 사용자 지시로 뺐다
 // 소식은 site/src/updates.json releases 맨 위에 날짜를 더한다
 const RELEASES = readJson('site/src/updates.json').releases;
 const fmtDate = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${y}. ${m}. ${dd}`; };
@@ -1115,7 +1115,7 @@ write({
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS 업데이트 소식과 변경 기록입니다.</p></header>
 ${RELEASES.map((r) => `<section class="site-group site-release">
 <h2 id="${r.version ? 'v' + r.version : 'd-' + r.date}">${r.version ? `<span class="site-release__ver">v${esc(r.version)}</span> ` : ''}<time datetime="${r.date}">${fmtDate(r.date)}</time></h2>
-${r.sections.map((s) => `<div class="site-group site-release__group"><p class="site-release__type">${esc(s.type)}</p><ul class="site-list">${s.items.map(([a, t]) => `<li><span class="ds-badge" data-size="medium">${esc(a)}</span> ${inline(t)}</li>`).join('')}</ul></div>`).join('\n')}
+<ul class="site-list">${r.sections.flatMap((s) => s.items).map(([a, t]) => `<li><span class="ds-badge" data-size="medium">${esc(a)}</span> ${inline(t)}</li>`).join('')}</ul>
 </section>`).join('\n')}
 <p class="site-note">자세한 변경 기록은 <a class="ds-link" href="${GITHUB}/commits/main" target="_blank" rel="noopener">GitHub</a>에 있습니다.</p>`,
 });
