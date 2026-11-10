@@ -1618,6 +1618,16 @@
       "props": "`data-ds-hotkey=\"k\"`, 거르기, 위아래 화살표와 Enter, 묶음과 단축키 표시",
       "category": "Overlay",
       "doc": "3144:1347"
+    },
+    {
+      "no": "85",
+      "name": "Segmented Text Input",
+      "classes": [
+        ".ds-segmentinput"
+      ],
+      "figma": [],
+      "props": "size `large/medium`(medium 은 PC 전용), 가린 구간 `data-masked`, `aria-invalid`, disabled, readonly, 구간마다 maxlength",
+      "category": "Data Input"
     }
   ]
 }

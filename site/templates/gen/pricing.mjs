@@ -107,6 +107,10 @@ const checkout = () => {
   .tp-agree { display: flex; flex-direction: column; gap: var(--ds-space-x1); padding-inline-start: var(--ds-space-x7); }
 `;
   const inp = (id, ph, attrs = '') => input(id, `placeholder="${esc(ph)}" ${attrs}`);
+  // 카드 번호: 85 Segmented Text Input. 가운데 두 구간은 가린다, 옆 칸과 높이를 맞춰 medium
+  const seg = (n, masked = false) => `<input class="ds-segmentinput__segment"${n === 1 ? ' id="c-no"' : ''} inputmode="numeric" maxlength="4" autocomplete="off" aria-label="${n}번째 4자리"${masked ? ' data-masked' : ''}>`;
+  const sep = '<span class="ds-segmentinput__separator" aria-hidden="true">-</span>';
+  const cardNo = `<div class="ds-field"><div class="ds-field__header"><span class="ds-field__label" id="c-no-label">카드 번호 <span class="ds-field__required" aria-hidden="true"></span></span></div><div class="ds-input ds-segmentinput" data-variant="outline" data-size="medium" role="group" aria-labelledby="c-no-label">${[seg(1), seg(2, true), seg(3, true), seg(4)].join(sep)}<span class="ds-segmentinput__suffix">${icon('credit-card')}</span></div></div>`;
   const body = `<div class="tp-app"><main class="tp-content">
   <div class="tp-pr-wrap tp-sub-pay">
     <div class="tp-sub-form">
@@ -116,7 +120,7 @@ const checkout = () => {
       ${selectbox('cycle', [[`연 결제 ${badge('20% 할인', 'positive')}`, '월 7,900원, 1년치 94,800원을 한 번에 결제해요'], ['월 결제', '월 9,900원, 매달 같은 날 결제해요']], 0)}
       <h2 class="tp-h3">결제 수단</h2>
       ${radios('pay', ['신용, 체크 카드', '간편 결제', '계좌 이체'], 0)}
-      <div class="tp-pair">${field('c-no', '카드 번호', inp('c-no', '0000 0000 0000 0000', 'inputmode="numeric"'), { required: true })}<div class="tp-pair">${field('c-exp', '유효 기간', inp('c-exp', 'MM/YY'), { required: true })}${field('c-birth', '생년월일 6자리', inp('c-birth', '000000', 'inputmode="numeric"'), { required: true })}</div></div>
+      <div class="tp-pair">${cardNo}<div class="tp-pair">${field('c-exp', '유효 기간', inp('c-exp', 'MM/YY'), { required: true })}${field('c-birth', '생년월일 6자리', inp('c-birth', '000000', 'inputmode="numeric"'), { required: true })}</div></div>
       ${field('c-coupon', '할인 코드', `<div class="tp-coupon">${K.even(inp('c-coupon', '코드를 넣어 주세요') + btn('적용'))}</div>`)}
       <h2 class="tp-h3">약관 동의</h2>
       <div class="tp-stack" style="gap: var(--ds-space-x2)">${checkbox('모두 동의해요', { checked: true })}

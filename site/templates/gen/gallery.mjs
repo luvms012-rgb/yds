@@ -39,11 +39,13 @@ const galleryHero = () => ({ slug: 'gallery-hero', en: 'Gallery Hero', name: '�
   @media (min-width: 1024px) { .tp-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 200px 200px; gap: var(--ds-space-x4); } .tp-mosaic > :first-child { grid-column: span 2; grid-row: span 2; } .tp-mosaic .ds-imageframe { aspect-ratio: auto; height: 100%; } }
 `, body: wrap(`${heroText(...HERO.hero)}<div class="tp-mosaic">${[0, 1, 2, 3, 4].map((i) => ph('4:3', i)).join('')}</div>`) });
 
+// 벽돌형 갤러리 사진: [비율, 제목]. 사진을 누르면 Lightbox 로 크게 본다
+const MIXED = [['3:4', '이른 아침 바닷가'], ['1:1', '창가의 화분'], ['4:3', '골목 끝 작은 카페'], ['3:4', '비 오는 날의 우산'], ['4:3', '주말 시장 풍경'], ['1:1', '오후의 책상'], ['3:4', '가을 산책길'], ['4:3', '노을 지는 다리'], ['1:1', '손으로 만든 머그']];
 const mixed = () => ({ slug: 'mixed-gallery', en: 'Mixed Gallery', name: '벽돌형 갤러리', group: 'Gallery', desc: '높이가 다른 사진을 자르지 않고 쌓아 올린 벽돌형 갤러리입니다.', css: CSS + `
   .tp-masonry { columns: 2; column-gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-masonry { columns: 3; column-gap: var(--ds-space-x4); } }
   .tp-masonry figure { break-inside: avoid; margin: 0 0 var(--ds-space-x4); display: flex; flex-direction: column; gap: var(--ds-space-x2); }
-`, body: wrap(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><h1 class="tp-hero-t">${HERO.mixed[0]}</h1><p class="tp-lead" style="max-width: 720px">${HERO.mixed[1]}</p></div><div class="tp-masonry">${[['3:4', '이른 아침 바닷가'], ['1:1', '창가의 화분'], ['4:3', '골목 끝 작은 카페'], ['3:4', '비 오는 날의 우산'], ['4:3', '주말 시장 풍경'], ['1:1', '오후의 책상'], ['3:4', '가을 산책길'], ['4:3', '노을 지는 다리'], ['1:1', '손으로 만든 머그']].map(([r, c], i) => `<figure>${ph(r, i)}<figcaption class="tp-sub">${c}</figcaption></figure>`).join('')}</div>`) });
+`, body: wrap(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><h1 class="tp-hero-t">${HERO.mixed[0]}</h1><p class="tp-lead" style="max-width: 720px">${HERO.mixed[1]}</p></div><div class="tp-masonry">${MIXED.map(([r, c], i) => `<figure>${K.zoom('mg-lb', i, ph(r, i), c + ' 크게 보기')}<figcaption class="tp-sub">${c}</figcaption></figure>`).join('')}</div>${K.lightbox('mg-lb', MIXED.map(([, c], i) => [K.photo('mix', i, 1600), c, c]))}`) });
 
 const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 갤러리', group: 'Gallery', desc: '같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.', css: CSS + `
   .tp-pg-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); align-items: end; }

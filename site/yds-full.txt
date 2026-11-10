@@ -45,121 +45,17 @@
 
 YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.
 
-## AI로 시작하기
+## AI와 함께 시작하기
 
-상황을 선택하고 요청 글을 AI에 붙여 넣으세요. 대괄호 안은 내 서비스에 맞게 바꾸세요.
-
-### 운영 중인 사이트
-
-**AI 요청**
+AI 코딩 도구에 YDS 안내서를 알려 주면 설치부터 컴포넌트 사용까지 안내서를 따라 진행합니다.
 
 ```text
-# 목표
-운영 중인 사이트에 YDS 디자인 시스템을 적용해 줘.
-
-# 참고 문서
+아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
-# 진행 방식
-1. 문서를 읽고 YDS 규칙을 파악한다.
-2. 현재 사이트를 분석해 적용 범위와 순서를 제안한다.
-3. 확인받은 순서대로 화면 단위로 적용하고, 화면마다 전후 비교를 제시한다.
-
-# 원칙
-- 기존 기능과 서버 로직은 변경하지 않는다.
-- 불확실한 사항은 임의로 판단하지 않고 먼저 확인한다.
-```
-
-**HTML v1.1.0**
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css">
-<script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js" defer></script>
-
-<!-- 브랜드: YDS 다음에 불러온다 -->
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/my-brand.css">
-
-<!-- <html>에 브랜드 이름을 적는다 -->
-<html lang="ko" data-ds-brand="my-brand">
-```
-
-### 새 서비스
-
-**AI 요청**
-
-```text
-# 목표
-새로 만드는 서비스를 YDS 디자인 시스템으로 구축해 줘.
-
-# 참고 문서
-https://luvms012-rgb.github.io/yds/site/yds.txt
-
-# 입력 값
-브랜드 이름: [my-brand]
-브랜드 컬러: [#0f7a3f]
-모서리: [YDS 그대로]
-글꼴: [YDS 그대로]
-
-# 진행 방식
-1. 문서를 읽고 YDS 규칙을 파악한다.
-2. 서비스 목적과 필요한 화면을 질문으로 확인하고, 구현 순서를 제안한다.
-3. 프로젝트에 YDS를 설치하고, 입력 값으로 브랜드 파일을 만든다. 글자 대비 수치가 부족하면 수정할 색을 제안한다.
-4. 확인받은 순서대로 화면 단위로 구현한다. 비슷한 화면이 Templates에 있으면 거기서 시작한다.
-5. 완료 후 규칙 준수 여부를 점검하고 수정 내역을 보고한다.
-
-# 원칙
-- YDS에 있는 컴포넌트와 토큰만 사용한다.
-- 불확실한 사항은 임의로 판단하지 않고 먼저 확인한다.
-```
-
-**HTML**
-
-```html
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/ybm-ds.css">
-<script src="https://luvms012-rgb.github.io/yds/dist/ybm-ds.js" defer></script>
-
-<!-- 브랜드: YDS 다음에 불러온다 -->
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/my-brand.css">
-
-<!-- <html>에 브랜드 이름을 적는다 -->
-<html lang="ko" data-ds-brand="my-brand">
-
-<!-- 다크 모드 -->
-<html lang="ko" data-theme="dark">
-
-<!-- 기기 설정을 따를 때: <head> 맨 위 -->
-<script>
-  if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
-</script>
-```
-
-### 화면 시안
-
-**AI 요청**
-
-```text
-# 목표
-우리 브랜드의 화면 시안을 YDS 디자인 시스템으로 제작해 줘.
-
-# 참고 문서
-https://luvms012-rgb.github.io/yds/site/yds-full.txt
-
-# 입력 값
-브랜드 이름: [my-brand]
-브랜드 컬러: [#0f7a3f]
-모서리: [YDS 그대로]
-글꼴: [YDS 그대로]
-만들 화면: [이벤트 신청 페이지]
-들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
-
-# 진행 방식
-1. 문서를 읽고 YDS 규칙을 파악한다.
-2. 정할 것이 있으면 제작 전에 확인한다.
-3. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 수정할 색을 제안한다.
-4. 비슷한 화면이 Templates에 있으면 거기서 시작해, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 제작한다.
-
-# 원칙
-- YDS에 있는 컴포넌트와 토큰만 사용한다.
+예시)
+- 이벤트 신청 화면 만들어 줘
+- 운영 중인 사이트에 YDS 적용해 줘
 ```
 
 ## Figma로 시작하기
@@ -168,6 +64,24 @@ Figma에서 작업을 시작할 때는 YDS 라이브러리를 사용합니다.
 
 1. **라이브러리 켜기**Figma의 Assets 패널에서 [YDS 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92)를 켭니다.
 2. **화면 그리기**컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.
+
+## 개발 시작하기
+
+<head>에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.
+
+**최신**
+
+```html
+<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/ybm-ds.css">
+<script src="https://luvms012-rgb.github.io/yds/dist/ybm-ds.js" defer></script>
+```
+
+**v1.1.0 고정**
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css">
+<script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js" defer></script>
+```
 
 ## 파일
 
@@ -1373,6 +1287,8 @@ Purple
 
 - [Search Suggestion](https://luvms012-rgb.github.io/yds/site/components/search-suggestion.md)
 
+- [Segmented Text Input](https://luvms012-rgb.github.io/yds/site/components/segmented-text-input.md)
+
 - [Select Content](https://luvms012-rgb.github.io/yds/site/components/select-content-item.md)
 
 - [Select Trigger](https://luvms012-rgb.github.io/yds/site/components/select-trigger.md)
@@ -1639,6 +1555,18 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 오류 메시지에는 무엇이 틀렸는지와 고치는 방법을 함께 작성합니다. |
 | **Do** | 이메일, 전화번호, 숫자 입력 필드는 type을 지정해 알맞은 키보드가 나타나게 합니다. |
 | **Do** | 입력할 수 없는 이유는 Tooltip이 아니라 입력 필드 아래 안내 글로 알립니다. 비활성 필드는 포커스를 받지 않습니다. |
+
+## Segmented Text Input과 비교
+
+전화번호, 이메일, 유효기간처럼 형식만 정해진 값은 Text Field 하나로 받습니다. 주민등록번호, 카드번호처럼 일부 자리를 가려야 할 때만 Segmented Text Input을 사용합니다.
+
+| 항목 | Text Field | Segmented Text Input |
+| --- | --- | --- |
+| 사용 맥락 | 전화번호, 이메일, 유효기간, 그 밖의 한 줄 값 | 주민등록번호, 카드번호 |
+| 입력 칸 | 입력 칸 하나 | 구간마다 입력 칸 하나 |
+| 가리기 | 가리지 않음 | 가린 구간은 점으로 표시, 받지 않는 자리도 점으로 표시 |
+| 구간 이동 | 없음 | 자리 수를 채우면 다음 구간으로 이동 |
+| 붙여 넣기 | 그대로 입력 | 구분자를 빼고 차례로 채우되 가린 구간 앞에서 멈춤 |
 
 
 ---
@@ -4939,6 +4867,69 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 항목 이름은 동사나 화면 이름으로 짧게 작성합니다. |
 | **Do** | 검색 결과가 없으면 그 이유를 안내합니다. |
 | **Don't** | 주요 동작을 Command Palette에만 두지 않습니다. 화면에도 버튼으로 제공합니다. |
+
+
+---
+
+<!-- https://luvms012-rgb.github.io/yds/site/components/segmented-text-input.md -->
+
+# Segmented Text Input
+
+주민등록번호, 카드번호처럼 일부를 가려야 하는 값을 구간마다 나눠 받는 입력 칸입니다.
+
+## 사용법
+
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+
+```html
+<div class="ds-input ds-segmentinput" data-variant="outline" data-size="large" role="group" aria-labelledby="라벨 id">
+  <input class="ds-segmentinput__segment" inputmode="numeric" maxlength="6" aria-label="앞 6자리">
+  <span class="ds-segmentinput__separator" aria-hidden="true">-</span>
+  <input class="ds-segmentinput__segment" inputmode="numeric" maxlength="1" aria-label="뒤 첫 자리" [data-masked]>
+  [<span class="ds-segmentinput__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>]
+  [<span class="ds-segmentinput__suffix"><img src="…" alt="카드사 이름"></span>]
+</div>
+```
+
+## 속성
+
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
+
+| 속성 | 값 |
+| --- | --- |
+| `size` | large medium medium 은 PC 전용 |
+| 켜고 끄는 속성 | `disabled` `readonly` |
+
+그 밖에: 가린 구간 `data-masked`, `aria-invalid`, 구간마다 maxlength
+
+## 동작
+
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
+
+- 자리 수를 채우면 다음 구간, 빈 구간에서 Backspace 는 앞 구간 마지막 글자 지우기, 끝과 처음에서 좌우 화살표로 옆 구간, 붙여 넣으면 구분자를 빼고 차례로 채우되 가린 구간 앞에서 멈춤, 한글 조합 중에는 옮기지 않음
+
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 주민등록번호, 카드번호처럼 일부 자리를 가려야 하는 값에만 사용합니다. |
+| **Do** | 형식만 정해진 값(전화번호, 이메일, 유효기간)은 Text Field 하나로 받습니다. |
+| **Do** | 구간마다 `maxlength`와 자리를 알리는 `aria-label`을 넣고, 숫자만 받는 구간에는 `inputmode="numeric"`을 넣습니다. |
+| **Do** | 받지 않는 자리는 점(dots)으로 표시해 전체 자리 수를 알립니다. |
+| **Do** | 틀린 구간에 `aria-invalid="true"`를 붙이고, 입력 필드 아래 안내 글로 고치는 방법을 알립니다. |
+| **Don't** | 인증번호를 한 칸에 한 글자씩 받을 때는 사용하지 않습니다. Code Input을 사용합니다. |
+
+## Text Field와 비교
+
+일부 자리를 가려야 하는 값에만 Segmented Text Input을 사용합니다. 전화번호, 이메일, 유효기간처럼 형식만 정해진 값은 Text Field 하나로 받고, 인증번호를 한 칸에 한 글자씩 받을 때는 Code Input을 사용합니다.
+
+| 항목 | Segmented Text Input | Text Field |
+| --- | --- | --- |
+| 사용 맥락 | 주민등록번호, 카드번호 | 전화번호, 이메일, 유효기간, 그 밖의 한 줄 값 |
+| 입력 칸 | 구간마다 입력 칸 하나 | 입력 칸 하나 |
+| 가리기 | 가린 구간은 점으로 표시, 받지 않는 자리도 점으로 표시 | 가리지 않음 |
+| 구간 이동 | 자리 수를 채우면 다음 구간으로 이동 | 없음 |
+| 붙여 넣기 | 구분자를 빼고 차례로 채우되 가린 구간 앞에서 멈춤 | 그대로 입력 |
 
 
 ---

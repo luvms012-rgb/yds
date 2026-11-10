@@ -268,7 +268,7 @@ function sideNav(section, file, root) {
   if (section === 'templates') {
     parts.push(item('templates/index.html', 'Overview'));
     // 11-05 사용자: 목록은 메뉴 없이 분류 탭, 상세는 탭과 같은 분류 묶음(묶음 안은 가나다 순)
-    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => (TPL_GROUP_KO[x] || x).localeCompare(TPL_GROUP_KO[y] || y, 'ko'))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort((x, y) => x.name.localeCompare(y.name, 'ko')).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
+    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => tplRank(x) - tplRank(y))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort((x, y) => x.name.localeCompare(y.name, 'ko')).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
   }
   const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
   // 컴포넌트 메뉴 맨 위 찾기 칸 (높이 32, 모서리 12, 1px 테두리) - 메뉴 항목과 목록 카드를 함께 거른다
@@ -316,7 +316,8 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   const heads = [];
   body = body.replace(/<h2 id="([^"]+)">([\s\S]*?)<\/h2>/g, (m, id, inner) => {
     heads.push([id, inner.replace(/<[^>]+>/g, '')]);
-    return `<h2 id="${id}">${inner}<a class="site-anchor" href="#${id}" aria-label="이 제목 링크 복사"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i></a></h2>`;
+    // 제목 옆 링크 복사 (11-10 사용자 "우리 컴포넌트를 그대로"): DS Tooltip 안에 ghost 아이콘 버튼. 누르면 site.js 가 주소를 복사하고 DS Snackbar 로 알린다
+    return `<h2 id="${id}">${inner}<span class="ds-tooltip-anchor site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" aria-describedby="site-tip-${id}" data-site-anchor="${id}"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button><span class="ds-tooltip" role="tooltip" id="site-tip-${id}">링크 복사</span></span></h2>`;
   });
   const hasToc = layout === 'doc' && heads.length > 1;
   // 좁은 화면 목차: 브라우저 기본 select 대신 DS Select Trigger + Select Content (여닫기는 site.js)
@@ -378,66 +379,13 @@ const write = (o) => written.push(page(o));
 /* ---------------------------------------------------------------- Get Started */
 const CSS_LINK = `<link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>`;
-// 첫 화면 요청 글 (11-09 사용자 "프롬프팅과 단계를 최소화", "아주 조금만 친절하게"): 할 일마다 글 하나. 순서와 점검은 yds.txt 머리(LLMS_RULES)가 맡는다
-// 틀: 하고 싶은 것 / 문서 먼저 익히기 / [채울 값 줄] / 바라는 방식. 채울 값은 "이름: [값]" 따로 줄
-const BRAND_LINES = `브랜드 이름: [my-brand]
-브랜드 컬러: [#0f7a3f]
-모서리: [YDS 그대로]
-글꼴: [YDS 그대로]`;
-const START = [
-  ['migrate', '운영 중인 사이트', `# 목표
-운영 중인 사이트에 YDS 디자인 시스템을 적용해 줘.
-
-# 참고 문서
+// 요청 글은 예시 한 줄로 (11-10 사용자 "프롬프팅을 예시 정도로 중요도를 낮추고", "운영 중인 사이트, 새 서비스, 화면 시안 나눌 필요 없다", 구성은 AI와 함께 / 직접 / Figma로 / 개발 시작하기). 순서와 규칙은 yds.txt 머리(LLMS_RULES)가 맡는다
+const AI_EXAMPLE = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt
 
-# 진행 방식
-1. 문서를 읽고 YDS 규칙을 파악한다.
-2. 현재 사이트를 분석해 적용 범위와 순서를 제안한다.
-3. 확인받은 순서대로 화면 단위로 적용하고, 화면마다 전후 비교를 제시한다.
-
-# 원칙
-- 기존 기능과 서버 로직은 변경하지 않는다.
-- 불확실한 사항은 임의로 판단하지 않고 먼저 확인한다.`],
-  ['start', '새 서비스', `# 목표
-새로 만드는 서비스를 YDS 디자인 시스템으로 구축해 줘.
-
-# 참고 문서
-${SITE_URL}yds.txt
-
-# 입력 값
-${BRAND_LINES}
-
-# 진행 방식
-1. 문서를 읽고 YDS 규칙을 파악한다.
-2. 서비스 목적과 필요한 화면을 질문으로 확인하고, 구현 순서를 제안한다.
-3. 프로젝트에 YDS를 설치하고, 입력 값으로 브랜드 파일을 만든다. 글자 대비 수치가 부족하면 수정할 색을 제안한다.
-4. 확인받은 순서대로 화면 단위로 구현한다. 비슷한 화면이 Templates에 있으면 거기서 시작한다.
-5. 완료 후 규칙 준수 여부를 점검하고 수정 내역을 보고한다.
-
-# 원칙
-- YDS에 있는 컴포넌트와 토큰만 사용한다.
-- 불확실한 사항은 임의로 판단하지 않고 먼저 확인한다.`],
-  ['draft', '화면 시안', `# 목표
-우리 브랜드의 화면 시안을 YDS 디자인 시스템으로 제작해 줘.
-
-# 참고 문서
-${SITE_URL}yds-full.txt
-
-# 입력 값
-${BRAND_LINES}
-만들 화면: [이벤트 신청 페이지]
-들어갈 내용: [제목, 기간, 안내 글, 신청 버튼]
-
-# 진행 방식
-1. 문서를 읽고 YDS 규칙을 파악한다.
-2. 정할 것이 있으면 제작 전에 확인한다.
-3. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 수정할 색을 제안한다.
-4. 비슷한 화면이 Templates에 있으면 거기서 시작해, 브라우저에서 바로 열어 볼 수 있는 HTML 파일 하나로 제작한다.
-
-# 원칙
-- YDS에 있는 컴포넌트와 토큰만 사용한다.`],
-];
+예시)
+- 이벤트 신청 화면 만들어 줘
+- 운영 중인 사이트에 YDS 적용해 줘`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
@@ -493,30 +441,9 @@ write({
   <li><strong>서비스</strong><span>YDS와 브랜드 파일을 불러와 실제 화면을 만듭니다.</span></li>
 </ol>
 
-<h2 id="ai">AI로 시작하기</h2>
-<p>상황을 선택하고 요청 글을 AI에 붙여 넣으세요. 대괄호 안은 내 서비스에 맞게 바꾸세요.</p>
-<div class="ds-segmented site-gs__seg" role="group" aria-label="시작 방법" data-size="medium" data-layout="fill">
-  ${START.map(([k, l], i) => `<button type="button" class="ds-segmented__item" aria-pressed="${i === 0}" data-site-gs="${k}">${esc(l)}</button>`).join('')}
-</div>
-${START.map(([k, l, p], i) => {
-  // 칸 이름은 화면에서는 세그먼트가 보여 주고, 읽어 주기와 마크다운에는 숨은 제목으로 남긴다
-  const tabs = [['AI 요청', codeblock(p, 'text', ' data-wrap')]];
-  if (k === 'migrate') tabs.push([`HTML v${VERSION}`, codeblock(`${CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`)}
-
-${BRAND_HTML}`)]);
-  if (k === 'start') tabs.push(['HTML', codeblock(`${CSS_LINK}
-
-${BRAND_HTML}
-
-<!-- 다크 모드 -->
-<html lang="ko" data-theme="dark">
-
-<!-- 기기 설정을 따를 때: <head> 맨 위 -->
-<script>
-  if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark';
-</script>`)]);
-  return `<div class="site-gs__panel" id="${k}" data-site-gs-panel="${k}"${i ? ' hidden' : ''}><h3 class="ds-sr-only">${esc(l)}</h3>${codeTabs(tabs)}</div>`;
-}).join('\n')}
+<h2 id="ai">AI와 함께 시작하기</h2>
+<p>AI 코딩 도구에 YDS 안내서를 알려 주면 설치부터 컴포넌트 사용까지 안내서를 따라 진행합니다.</p>
+${codeblock(AI_EXAMPLE, "text", " data-wrap")}
 
 
 <h2 id="figma">Figma로 시작하기</h2>
@@ -525,6 +452,10 @@ ${BRAND_HTML}
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
 </ol>
+
+<h2 id="dev">개발 시작하기</h2>
+<p>&lt;head&gt;에 두 줄을 넣고, 서비스 CSS는 그다음에 불러옵니다. 운영 중인 서비스는 버전을 고정한 주소를 사용합니다.</p>
+${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.split(`${PUBLIC}/dist/`).join(`${PIN}/dist/`)}`)]])}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
@@ -722,7 +653,8 @@ const FD_TABS = {
   color: [['color.html', 'Overview'], ['color-roles.html', 'Roles'], ['color-palette.html', 'Palette']],
   icons: [['icons.html', 'Overview'], ['icons-library.html', 'Library']],
 };
-const fdTabs = (key, file) => `<nav class="site-pagetabs" aria-label="${esc(foundName[key])} 문서">${FD_TABS[key].map(([f, l]) => `<a href="${f}"${'foundations/' + f === file ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>`;
+// 탭마다 한 쪽: DS Tabs(hug, 안쪽 여백 없음) 모양 그대로, 트리거는 그 쪽으로 가는 링크 (11-10 사용자 "컴포넌트 1순위")
+const fdTabs = (key, file) => `<nav class="site-pagetabs" aria-label="${esc(foundName[key])} 문서"><div class="ds-tabs" role="tablist" data-layout="hug" data-inset="none">${FD_TABS[key].map(([f, l]) => { const on = 'foundations/' + f === file; return `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${on}"${on ? ' aria-current="page"' : ''}>${l}</a>`; }).join('')}</div></nav>`;
 const fdHead = (slug, lead) => `<header><h1 class="site-h1">${esc(foundName[slug])}</h1><p class="site-lead">${esc(lead)}</p>${metaLinks(linkBySlug[slug])}</header>`;
 for (const [slug, p] of Object.entries(foundPages)) {
   write({
@@ -847,7 +779,9 @@ const ICON_GROUPS = [
   if (extra.length) { console.log('  ! 아이콘 용도가 없는 아이콘(build.mjs ICON_GROUPS에 적기):', extra.join(', ')); ICON_GROUPS.push(['용도 미정', Object.fromEntries(extra.map((n) => [n, '']))]); }
   if (gone.length) console.log('  ! icons.css에 없는 아이콘이 ICON_GROUPS에 있음:', gone.join(', '));
 }
-const iconRow = (n, usage) => [`<button type="button" class="site-icon-name" data-site-copy="ds-icon--${n}" title="클래스 이름 복사"><i class="ds-icon ds-icon--${n}" aria-hidden="true"></i><code>${n}</code></button>`, esc(usage)];
+// 이름을 누르면 클래스 복사. 하는 일 안내는 브라우저 title 대신 DS Tooltip (11-10, 표 상자 밖으로 잘리지 않게 오른쪽)
+let iconTip = 0;
+const iconRow = (n, usage) => { const id = `site-tip-icon-${++iconTip}`; return [`<span class="ds-tooltip-anchor"><button type="button" class="site-icon-name" data-site-copy="ds-icon--${n}" aria-describedby="${id}"><i class="ds-icon ds-icon--${n}" aria-hidden="true"></i><code>${n}</code></button><span class="ds-tooltip" role="tooltip" id="${id}" data-placement="right">클래스 이름 복사</span></span>`, esc(usage)]; };
 write({
   file: 'foundations/icons.html', section: 'foundations', title: 'Iconography', pager: fdPager('foundations/icons.html'),
   body: `<header><h1 class="site-h1">Iconography</h1><p class="site-lead">${ICON_LEAD}</p>${metaLinks(linkBySlug.icons)}</header>
@@ -1064,8 +998,10 @@ for (const [f, to, label] of [['selection-bar', 'toolbar', 'Toolbar']]) {
 const tplGroups = [...new Set(templates.map((t) => t.group))];
 // 분류 칩에 보이는 이름 (값은 templates.json의 영어 group)
 const TPL_GROUP_KO = { Dashboard: '대시보드', Table: '표', Form: '입력 폼', Settings: '설정', Login: '로그인', Tools: '도구', Content: '콘텐츠', 'AI Chat': 'AI 채팅', Gallery: '갤러리', Community: '커뮤니티', Pricing: '요금제', 'My Page': '마이페이지', Commerce: '쇼핑', Exam: '시험 접수', Education: '교육 서비스', 'Exam B2B': '단체 시험', 'Learning B2B': '기업 러닝' };
-// 분류 탭은 보이는 한글 이름의 가나다 순 (11-09 사용자)
-tplGroups.sort((x, y) => (TPL_GROUP_KO[x] || x).localeCompare(TPL_GROUP_KO[y] || y, 'ko'));
+// 분류 순서: YBM 서비스(시험, 교육)와 많이 쓰는 서비스 화면이 앞 (11-10 사용자, 예전 가나다 순을 바꿈). 목록에 없는 분류는 맨 뒤
+const TPL_ORDER = ['Exam', 'Education', 'Exam B2B', 'Learning B2B', 'Login', 'My Page', 'Community', 'Commerce', 'Pricing', 'Form', 'Settings', 'Table', 'Dashboard', 'Content', 'Gallery', 'AI Chat', 'Tools'];
+const tplRank = (g) => { const i = TPL_ORDER.indexOf(g); return i < 0 ? 99 : i; };
+tplGroups.sort((x, y) => tplRank(x) - tplRank(y));
 write({
   file: 'templates/index.html', section: 'templates', title: 'Templates', layout: 'full',  // 11-05 사용자: 목록은 왼쪽 메뉴 없이 분류 탭으로
   body: `${hero('Templates', '자주 만드는 화면을 YDS 컴포넌트로 미리 구성했습니다.').replace(' class="site-hero"', '')  /* 11-05 사용자: 다른 화면처럼 왼쪽 정렬 */.replace('</p></header>', (SHOW_THEMES ? ' 테마를 입힌 실제 사이트 예시는 <a class="ds-link" href="../themes/index.html">Themes</a>에 있습니다.' : '') + '</p></header>')}
@@ -1076,7 +1012,7 @@ write({
   </div>
 </div>
 <div class="site-tpl-grid">
-${[...templates].sort((a, b) => a.name.localeCompare(b.name, "ko")).map((t) => `<article class="site-tpl" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
+${[...templates].sort((a, b) => tplRank(a.group) - tplRank(b.group) || a.name.localeCompare(b.name, "ko")).map((t) => `<article class="site-tpl" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
   <div class="site-tpl-thumb" aria-hidden="true"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 미리보기" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe></div>
   <div class="site-tpl__scrim">
     <div class="site-tpl__text"><h3 class="site-tpl__title"><a class="site-tpl__link" href="${t.slug}.html">${esc(t.name)}</a></h3><p class="site-tpl__desc">${esc(t.desc)}</p></div>

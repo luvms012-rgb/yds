@@ -86,6 +86,8 @@
 
 - [Search Suggestion](https://luvms012-rgb.github.io/yds/site/components/search-suggestion.md)
 
+- [Segmented Text Input](https://luvms012-rgb.github.io/yds/site/components/segmented-text-input.md)
+
 - [Select Content](https://luvms012-rgb.github.io/yds/site/components/select-content-item.md)
 
 - [Select Trigger](https://luvms012-rgb.github.io/yds/site/components/select-trigger.md)

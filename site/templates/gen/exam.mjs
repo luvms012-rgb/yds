@@ -168,8 +168,9 @@ const roster = () => {
 <main class="tp-content">
   ${card(`<div class="tp-stats"><div><span class="tp-sub">접수</span><span class="tp-mid">${T('124명')}</span></div><div><span class="tp-sub">수험표 보냄</span><span class="tp-mid">${T('118명')}</span></div><div><span class="tp-sub">수험표 안 보냄</span><span class="tp-mid">${T('6명')}</span></div><div><span class="tp-sub">취소</span><span class="tp-mid">${T('2명')}</span></div></div>`)}
   ${card(`<div class="tp-between"><div class="tp-row" style="flex-wrap:wrap">${search('ro-q', '이름, 학번 찾기')}${select('학과 전체', { id: 'ro-dep', aria: '학과' })}${select('상태 전체', { id: 'ro-st', aria: '상태' })}</div>${chiptabs(['전체', '안 보냄 6', '취소 2'], 0, '빠른 거르기')}</div>
-    <div class="tp-scroll-x">${table([[K.checkOnly('모두 고르기')], ['이름'], ['학번'], ['학과'], ['좌석'], ['수험표'], ['상태'], ['']], rows, { interactive: true })}</div>${tablePager(124, 8)}`)}
-</main>`;
+    <div class="tp-scroll-x">${table([[K.checkOnly('모두 고르기')], ['이름'], ['학번'], ['학과'], ['좌석'], ['수험표'], ['상태'], ['']], rows, { interactive: true, attrs: 'data-ds-selection="ro-sel"' })}</div>${tablePager(124, 8)}`)}
+</main>
+${K.selectionBar('ro-sel', [['수험표 보내기', 'mail'], ['내려받기', 'download']], '고른 응시자')}`;
   return { slug: 'exam-group-roster', en: 'Candidate Roster', name: '응시자 관리', group: 'Exam B2B', desc: '단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.', css, body: frame(orgNav(2), '응시자 관리', main) };
 };
 

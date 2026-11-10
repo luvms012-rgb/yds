@@ -192,7 +192,8 @@
   function libTile(n) {
     var inDs = (window.YBM_ICONS || { names: [] }).names.indexOf(n) >= 0;
     var pic = inDs ? '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>' : libSvg(n, 20);
-    return '<button type="button" class="site-lib__tile" role="option" data-site-lib-icon="' + n + '" aria-label="' + n + '" aria-selected="' + (n === lib.cur) + '" title="' + n + '">' + pic + "</button>";
+    // 이름 안내는 브라우저 title 대신 DS Tooltip (11-10). 이름은 aria-label 에 있어 안내는 눈으로만 본다
+    return '<span class="ds-tooltip-anchor site-lib__cell" role="none"><button type="button" class="site-lib__tile" role="option" data-site-lib-icon="' + n + '" aria-label="' + n + '" aria-selected="' + (n === lib.cur) + '">' + pic + '</button><span class="ds-tooltip" aria-hidden="true">' + n + "</span></span>";
   }
   function libDraw() {
     var grid = document.querySelector("[data-site-lib-grid]"); if (!grid) return;
@@ -224,7 +225,7 @@
     var inDs = D.names.indexOf(n) >= 0, base = n.replace(/-solid$/, "");
     var tags = (D.use[n] ? D.use[n].split(/,\s*/) : []).concat((L.tags[base] || "").split(/[,\s]+/).filter(Boolean).slice(0, 12));
     var html = '<div class="site-lib__name"><b>' + n + "</b>" + (inDs ? '<span class="ds-badge" data-tone="positive">YDS</span>' : '<span class="ds-badge">Lucide</span>') + "</div>";
-    if (tags.length) html += '<div class="site-lib__tags">' + tags.map(function (t) { return "<span>" + libEsc(t) + "</span>"; }).join("") + "</div>";
+    if (tags.length) html += '<div class="site-lib__tags">' + tags.map(function (t) { return '<span class="ds-badge" data-size="large">' + libEsc(t) + "</span>"; }).join("") + "</div>";  /* 표시 전용 라벨은 DS Badge (11-10) */
     html += '<div class="site-lib__preview">' + (inDs ? '<i class="ds-icon ds-icon--' + n + '" style="--ds-icon-size: 48px" aria-hidden="true"></i>' : libSvg(n, 48)) + "</div>";
     if (inDs) html += libCode("HTML", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
     else html += '<p class="site-lib__note">YDS에 아직 없는 아이콘입니다. 아래 두 코드를 차례로 붙여 넣으면 바로 쓸 수 있습니다.</p>' + libCode("1. 내 서비스 CSS 파일 맨 끝에 붙이기", lucideCss(n)) + libCode("2. 아이콘을 넣을 HTML 자리에 붙이기", '<i class="ds-icon ds-icon--' + n + '" aria-hidden="true"></i>');
@@ -592,7 +593,7 @@
     panels.forEach(function (p) { p.hidden = p.getAttribute("data-site-gs-panel") !== k; });
     document.querySelectorAll("[data-site-gs]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-site-gs") === k)); });
   }
-  function gsHash() { var k = location.hash.slice(1); if (k === "brand") { var b = document.getElementById("ai"); if (b) b.scrollIntoView(); return; } /* 지운 브랜드 파일 절의 예전 주소 */ if (/^(migrate|start|theme|draft)$/.test(k)) { showGs(k); var h = document.getElementById("ai"); if (h) h.scrollIntoView(); } }
+  function gsHash() { /* 11-10 세 칸을 없앤 뒤 예전 주소를 새 절로 */ var to = { migrate: "dev", start: "dev", install: "dev", draft: "ai", theme: "dev", brand: "dev" }[location.hash.slice(1)]; var h = to && document.getElementById(to); if (h) h.scrollIntoView(); }
   addEventListener("hashchange", gsHash);
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -622,11 +623,11 @@
     dlg.setAttribute("role", "dialog"); dlg.setAttribute("aria-modal", "true"); dlg.setAttribute("aria-labelledby", "site-tplv-title");
     dlg.innerHTML = '<div class="site-tplv__scrim" data-tplv-close></div>' +
       '<div class="site-tplv__box"><header class="site-tplv__head"><div class="site-tplv__texts"><h2 class="site-tplv__title" id="site-tplv-title"></h2><p class="site-tplv__desc"></p></div>' +
-      '<button type="button" class="site-tplv__x" data-tplv-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></header>' +
+      '<button type="button" class="ds-btn site-tplv__x" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></header>' +
       '<div class="site-tplv__frame"><iframe title="" data-site-frame></iframe></div>' +
       '<footer class="site-tplv__foot"><code class="site-tplv__path"></code><span class="site-tplv__acts"></span></footer></div>' +
-      '<button type="button" class="site-tplv__nav" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
-      '<button type="button" class="site-tplv__nav" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
+      '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
+      '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
     var frame = dlg.querySelector("iframe"), cur = null, back = null;
     frame.addEventListener("load", function () { themeFrame(frame); });
@@ -770,18 +771,19 @@
 
 })();
 
-/* 제목 옆 링크 버튼: 누르면 이 제목 주소를 복사하고 2초 동안 체크 아이콘(코드 복사 버튼과 같은 반응, 11-10 사용자 "복사 클릭 시 피드백") */
+/* 제목 옆 링크 버튼(DS Tooltip + ghost 아이콘 버튼): 누르면 이 제목 주소를 복사하고 DS Snackbar 로 알린다 (11-10 사용자 "복사 클릭 피드백은 우리 컴포넌트를 그대로") */
 document.addEventListener("click", function (e) {
-  var a = e.target.closest && e.target.closest(".site-anchor");
-  if (!a) return;
-  e.preventDefault();
-  var url = location.href.split("#")[0] + a.getAttribute("href");
-  history.replaceState(null, "", a.getAttribute("href"));
-  var done = function () {
-    a.setAttribute("data-copied", "");
-    a.setAttribute("aria-label", "링크를 복사했어요");
-    clearTimeout(a._t);
-    a._t = setTimeout(function () { a.removeAttribute("data-copied"); a.setAttribute("aria-label", "이 제목 링크 복사"); }, 2000);
+  var b = e.target.closest && e.target.closest("[data-site-anchor]");
+  if (!b) return;
+  var hash = "#" + b.getAttribute("data-site-anchor");
+  var url = location.href.split("#")[0] + hash;
+  history.replaceState(null, "", hash);
+  var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { variant: ok ? "positive" : "critical" }); };
+  // 클립보드 권한이 없는 곳(앱 안 미리보기 창 등)은 예전 복사 방식으로 한 번 더 해 본다
+  var legacy = function () {
+    var t = document.createElement("textarea"); t.value = url; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+    document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); b.focus();
+    say(ok ? "링크를 복사했어요" : "링크를 복사하지 못했어요. 주소 창의 주소를 복사해 주세요.", ok);
   };
-  if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, done); else done();
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { say("링크를 복사했어요", true); }, legacy); else legacy();
 });

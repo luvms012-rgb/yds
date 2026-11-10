@@ -99,6 +99,7 @@
      81 Lightbox             .ds-lightbox
      83 Mega Menu            .ds-megamenu
      84 Command Palette      .ds-command
+     85 Segmented Text Input .ds-segmentinput
    ========================================================================== */
 
 
@@ -4631,7 +4632,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   border: 0;
   border-radius: var(--ds-shape-sm);
   background: none;
-  color: var(--ds-color-fg-neutral-muted);
+  color: var(--ds-color-fg-neutral-subtle);
   cursor: pointer;
 }
 .ds-datefield__picker:hover { background: var(--ds-color-bg-neutral-weak-alpha); }
@@ -4782,3 +4783,90 @@ dialog.ds-command:not([open]) { display: none; }
 .ds-command__label { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .ds-command__kbd { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: var(--ds-space-x5); min-height: var(--ds-space-x5); padding: 0 var(--ds-space-x1_5); border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-family: inherit; font-size: var(--ds-font-size-t01); line-height: var(--ds-line-height-t01); }
 .ds-command__empty { margin: 0; padding: var(--ds-space-x8) var(--ds-space-x4); text-align: center; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+
+
+/* --------------------------------------------------------------------------
+   85 Segmented Text Input - 주민등록번호, 카드번호처럼 일부를 가려야 하는 값을 구간마다 나눠 받는 입력 필드 (2026-11-10 추가)
+     <div class="ds-input ds-segmentinput" data-variant="outline" data-size="large" role="group" aria-labelledby="라벨 id">
+       <input class="ds-segmentinput__segment" inputmode="numeric" maxlength="6" aria-label="앞 6자리">
+       <span class="ds-segmentinput__separator" aria-hidden="true">-</span>
+       <input class="ds-segmentinput__segment" inputmode="numeric" maxlength="1" aria-label="뒤 첫 자리" [data-masked]>
+       [<span class="ds-segmentinput__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>]
+       [<span class="ds-segmentinput__suffix"><img src="…" alt="카드사 이름"></span>]
+     </div>
+   size: large(기본) 높이 52, shape/lg, t05 / medium(PC 전용) 높이 40, shape/sm, t04
+   입력 필드는 Text Field outline과 같습니다(aria-invalid, disabled, readonly) / 구간 너비는 maxlength 자리 수만큼, 구간과 구분자 사이 x1_5
+   data-masked: 입력한 글자를 점으로 표시합니다 / dots: 받지 않는 자리를 지름 7 점으로 표시합니다, 점 사이 x1
+   suffix 30x20, shape/2xs, bg/neutral(카드사 로고 자리) / 라벨, 도움말, 오류는 Field Label(.ds-field)로 감쌉니다
+   형식만 정해진 값(전화번호, 이메일, 유효기간)은 Text Field, 인증번호를 한 칸에 한 글자씩 받을 때는 Code Input을 사용합니다
+   ybm-ds.js: 자리 수를 채우면 다음 구간으로 이동하고, 빈 구간에서 Backspace는 앞 구간의 마지막 글자를 지웁니다
+   -------------------------------------------------------------------------- */
+.ds-segmentinput {
+  --ds-segmentinput-gap: var(--ds-space-x1_5);
+  --ds-segmentinput-dot: 7px;
+  --ds-segmentinput-dot-gap: var(--ds-space-x1);
+  --ds-segmentinput-suffix-width: 30px;
+  --ds-segmentinput-suffix-height: 20px;
+  gap: var(--ds-segmentinput-gap);
+}
+.ds-segmentinput__segment {
+  --ds-segmentinput-chars: 4;
+  flex: none;
+  box-sizing: content-box;
+  width: calc(var(--ds-segmentinput-chars) * 1ch + 1px);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ds-input-color);
+  font: inherit;
+  font-size: var(--ds-input-font-size);
+  line-height: var(--ds-input-line-height);
+  font-variant-numeric: tabular-nums;
+  caret-color: var(--ds-color-fg-brand);
+}
+.ds-segmentinput__segment[maxlength="1"] { --ds-segmentinput-chars: 1; }
+.ds-segmentinput__segment[maxlength="2"] { --ds-segmentinput-chars: 2; }
+.ds-segmentinput__segment[maxlength="3"] { --ds-segmentinput-chars: 3; }
+.ds-segmentinput__segment[maxlength="5"] { --ds-segmentinput-chars: 5; }
+.ds-segmentinput__segment[maxlength="6"] { --ds-segmentinput-chars: 6; }
+.ds-segmentinput__segment[maxlength="7"] { --ds-segmentinput-chars: 7; }
+.ds-segmentinput__segment[maxlength="8"] { --ds-segmentinput-chars: 8; }
+.ds-segmentinput__segment::placeholder { color: var(--ds-color-fg-placeholder); opacity: 1; }
+/* 가린 구간: 글자는 투명, 입력한 글자 수(--ds-segmentinput-filled, ybm-ds.js 가 넣는다)만큼 dots 와 같은 점을 바탕에 그린다
+   글자 한 개 자리 = 점 지름 + 점 사이. 칸의 내용 폭은 채운 자리만큼, 남은 자리는 오른쪽 안쪽 여백이라 전체 폭은 그대로다 */
+.ds-segmentinput__segment[data-masked] {
+  --ds-segmentinput-filled: 0;
+  --ds-segmentinput-slot: calc(var(--ds-segmentinput-dot) + var(--ds-segmentinput-dot-gap));
+  width: calc(var(--ds-segmentinput-filled) * var(--ds-segmentinput-slot));
+  padding-inline-end: calc((var(--ds-segmentinput-chars) - var(--ds-segmentinput-filled)) * var(--ds-segmentinput-slot));
+  margin-inline-end: calc(var(--ds-segmentinput-dot-gap) * -1);  /* 마지막 점 뒤 점 사이만큼 당겨 구분자와의 간격을 앞쪽과 같게 */
+  color: transparent;
+  letter-spacing: calc(var(--ds-segmentinput-slot) - 1ch);
+  background: radial-gradient(circle closest-side at calc(var(--ds-segmentinput-dot) / 2) 50%, var(--ds-input-color) 92%, transparent 100%) left center / var(--ds-segmentinput-slot) var(--ds-segmentinput-dot) repeat-x content-box;
+}
+.ds-segmentinput__segment[data-masked]::selection { color: transparent; }
+.ds-segmentinput__separator { flex: none; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-input-font-size); line-height: var(--ds-input-line-height); }
+.ds-segmentinput__dots { flex: none; display: inline-flex; align-items: center; gap: var(--ds-segmentinput-dot-gap); color: var(--ds-input-color); }
+.ds-segmentinput__dots > i { width: var(--ds-segmentinput-dot); height: var(--ds-segmentinput-dot); border-radius: var(--ds-shape-pill); background: currentColor; }
+.ds-segmentinput__suffix {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--ds-segmentinput-suffix-width);
+  height: var(--ds-segmentinput-suffix-height);
+  margin-inline-start: auto;
+  overflow: hidden;
+  border-radius: var(--ds-shape-2xs);
+  background: var(--ds-color-bg-neutral);
+  color: var(--ds-color-fg-neutral-subtle);
+}
+.ds-segmentinput__suffix > img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.ds-segmentinput__suffix > .ds-icon { --ds-icon-size: 16px; }
+/* 상태: 비활성은 글자와 점 모두 fg/disabled, 비활성과 읽기 전용은 바탕 bg/disabled (Text Field outline 과 같다) */
+.ds-segmentinput:has(.ds-segmentinput__segment:disabled) { --ds-input-color: var(--ds-color-fg-disabled); }
+.ds-segmentinput:has(.ds-segmentinput__segment:disabled) .ds-segmentinput__separator { color: var(--ds-color-fg-disabled); }
+.ds-segmentinput[data-variant="outline"]:has(.ds-segmentinput__segment:is(:disabled, [readonly])) { --ds-input-bg: var(--ds-color-bg-disabled); }
+.ds-segmentinput__segment:disabled { cursor: not-allowed; }

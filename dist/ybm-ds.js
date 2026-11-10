@@ -29,6 +29,7 @@
      · Lightbox — Dialog 와 같이 열고 닫기, data-ds-index 로 시작 사진, 이전/다음 버튼과 좌우 화살표 키로 넘기기
      · Mega Menu — data-ds-megamenu 트리거로 열고 닫기, Esc 와 바깥 누름으로 닫기
      · Command Palette — Dialog 와 같이 열기, data-ds-hotkey="k" 면 Ctrl/Command + K, 낱말로 거르기, 위아래 화살표와 Enter
+     · Segmented Text Input — 자리 수를 채우면 다음 구간, 빈 구간에서 Backspace 는 앞 구간 마지막 글자 지우기, 끝과 처음에서 좌우 화살표로 옆 구간, 붙여 넣으면 구분자를 빼고 차례로 채우되 가린 구간 앞에서 멈춤, 한글 조합 중에는 옮기지 않음
    사용: <script src="…/ybm-ds/dist/ybm-ds.js" defer></script>
    ========================================================================== */
 (function () {
@@ -389,6 +390,78 @@
     return false;
   }
 
+  /* ---- Segmented Text Input: 구간마다 따로 입력 (2026-11-10) ------------------ */
+  function segParts(seg) { return [].slice.call(seg.closest(".ds-segmentinput").querySelectorAll(".ds-segmentinput__segment")); }
+  function segMax(seg) { return parseInt(seg.getAttribute("maxlength"), 10) || 0; }
+  function segNumeric(seg) { return seg.getAttribute("inputmode") === "numeric"; }
+  function segFocus(seg, atEnd) {
+    seg.focus();
+    var n = atEnd ? seg.value.length : 0;
+    try { seg.setSelectionRange(n, n); } catch (err) { /* 자리 지정이 안 되는 칸은 그대로 */ }
+  }
+  function segEditable(seg) { return seg && !seg.disabled && !seg.readOnly; }
+  // 가린 구간은 입력한 글자 수만큼 CSS 가 점을 그린다 (값을 코드로 바꾸면 input 이벤트를 보내거나 DS.init 을 다시 부른다)
+  function segSync(seg) { if (seg.hasAttribute("data-masked")) seg.style.setProperty("--ds-segmentinput-filled", seg.value.length); }
+  // 글자를 이 구간부터 차례로 나눠 넣는다. 다음 구간이 가린 구간이면 그 앞에서 멈추고, 마지막으로 채운 구간 번호를 돌려준다
+  function segFill(segs, i, text) {
+    var last = i;
+    for (var k = i; k < segs.length && text; k++) {
+      if (k > i && (segs[k].hasAttribute("data-masked") || !segEditable(segs[k]))) break;
+      var max = segMax(segs[k]) || text.length;
+      segs[k].value = text.slice(0, max);
+      segSync(segs[k]);
+      text = text.slice(max);
+      last = k;
+    }
+    return last;
+  }
+  // 채운 구간이 다 찼으면 다음 구간(가린 구간이어도)으로, 아니면 그 구간 끝으로
+  function segLand(segs, last) {
+    var max = segMax(segs[last]);
+    if (max && segs[last].value.length >= max && segEditable(segs[last + 1])) segFocus(segs[last + 1], false);
+    else segFocus(segs[last], true);
+  }
+  function segAfterInput(seg) {
+    var segs = segParts(seg), i = segs.indexOf(seg), max = segMax(seg);
+    var v = segNumeric(seg) ? seg.value.replace(/\D/g, "") : seg.value;
+    if (max && v.length > max) { segLand(segs, segFill(segs, i, v)); return; }  // 자동 채움처럼 한 번에 여러 글자
+    if (v !== seg.value) seg.value = v;
+    segSync(seg);
+    if (max && v.length === max && seg.selectionStart === v.length && segEditable(segs[i + 1])) segFocus(segs[i + 1], false);
+  }
+  document.addEventListener("input", function (e) {
+    var seg = e.target.closest && e.target.closest(".ds-segmentinput__segment");
+    if (seg && !e.isComposing) segAfterInput(seg);
+  });
+  document.addEventListener("compositionend", function (e) {
+    var seg = e.target.closest && e.target.closest(".ds-segmentinput__segment");
+    if (seg) segAfterInput(seg);
+  });
+  document.addEventListener("paste", function (e) {
+    var seg = e.target.closest && e.target.closest(".ds-segmentinput__segment");
+    if (!seg) return;
+    e.preventDefault();
+    var clip = (e.clipboardData || window.clipboardData).getData("text");
+    clip = segNumeric(seg) ? clip.replace(/\D/g, "") : clip.replace(/[\s\-–.\/]/g, "");
+    var segs = segParts(seg), i = segs.indexOf(seg);
+    var text = seg.value.slice(0, seg.selectionStart || 0) + clip;
+    segLand(segs, segFill(segs, i, text));
+  });
+  // 가린 구간의 글자는 복사하거나 잘라 낼 수 없다
+  function segNoCopy(e) { var seg = e.target.closest && e.target.closest(".ds-segmentinput__segment[data-masked]"); if (seg) e.preventDefault(); }
+  document.addEventListener("copy", segNoCopy);
+  document.addEventListener("cut", segNoCopy);
+  function segKey(seg, e) {
+    if (e.isComposing || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return false;
+    var segs = segParts(seg), i = segs.indexOf(seg);
+    var at = seg.selectionStart, len = seg.value.length, collapsed = at === seg.selectionEnd;
+    var prev = segs[i - 1], next = segs[i + 1];
+    if (e.key === "Backspace" && !len && segEditable(prev)) { e.preventDefault(); prev.value = prev.value.slice(0, -1); segSync(prev); segFocus(prev, true); return true; }
+    if (e.key === "ArrowLeft" && collapsed && at === 0 && prev) { e.preventDefault(); segFocus(prev, true); return true; }
+    if (e.key === "ArrowRight" && collapsed && at === len && next) { e.preventDefault(); segFocus(next, false); return true; }
+    return false;
+  }
+
   /* ---- Toolbar: 좌우 화살표로 막대 안 버튼 사이를 옮긴다 (2026-11-05) -------- */
   function toolbarKey(el, e) {
     if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return false;
@@ -557,6 +630,7 @@
     (root || document).querySelectorAll(".ds-multiselect__panel[id]").forEach(syncMultiSelect);
     (root || document).querySelectorAll("[data-ds-selection]").forEach(syncSelection);
     (root || document).querySelectorAll("dialog.ds-lightbox").forEach(function (b) { lightboxGo(b, Math.max(0, lightboxIndex(b))); });
+    (root || document).querySelectorAll(".ds-segmentinput__segment[data-masked]").forEach(segSync);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { init(); });
   else init();
@@ -702,6 +776,8 @@
     }
     var cellK = e.target.closest && e.target.closest(".ds-codeinput__cell");
     if (cellK && codeKey(cellK, e)) return;
+    var segK = e.target.closest && e.target.closest(".ds-segmentinput__segment");
+    if (segK && segKey(segK, e)) return;
     if (e.target.classList && e.target.classList.contains("ds-tree__node") && treeKey(e.target, e)) return;
     if (e.target.closest && e.target.closest(".ds-toolbar") && toolbarKey(e.target, e)) return;
     if (e.target.getAttribute && e.target.getAttribute("role") === "combobox" && e.target.getAttribute("aria-controls")
