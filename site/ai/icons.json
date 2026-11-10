@@ -84,7 +84,7 @@
       "name": "calendar",
       "class": "ds-icon--calendar",
       "solid": false,
-      "use": "날짜 고르기"
+      "use": "날짜 선택"
     },
     {
       "name": "calendar-days",
@@ -210,7 +210,7 @@
       "name": "clock",
       "class": "ds-icon--clock",
       "solid": false,
-      "use": "시간 고르기, 시각"
+      "use": "시간 선택, 시각"
     },
     {
       "name": "cloud",
@@ -648,7 +648,7 @@
       "name": "pencil",
       "class": "ds-icon--pencil",
       "solid": false,
-      "use": "고치기"
+      "use": "수정"
     },
     {
       "name": "phone",
@@ -714,7 +714,7 @@
       "name": "scissors",
       "class": "ds-icon--scissors",
       "solid": false,
-      "use": "오려 두기"
+      "use": "잘라내기"
     },
     {
       "name": "search",

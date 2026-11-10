@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <dl class="ds-desclist" [data-layout="top"] [data-columns="2|3"] [data-align="end"] [data-divider]>
@@ -38,24 +38,24 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 이름은 짧게 작성하고, 값이 길면 `data-layout="top"`으로 이름을 위에 둡니다. |
+| **Do** | 이름은 짧게 작성하고, 값이 길면 `data-layout="top"`으로 이름을 위에 배치합니다. |
 | **Do** | 금액처럼 끝을 맞춰 읽는 값은 `data-align="end"`로 오른쪽에 붙입니다. |
-| **Do** | 고칠 수 있는 값은 Text Field로 만들고, 이 목록은 보여 주기만 합니다. |
+| **Do** | 수정할 수 있는 값은 Text Field를 사용합니다. Description List는 값을 표시하는 용도로만 사용합니다. |
 | **Don't** | 이름과 값이 짝이 아닌 내용에는 사용하지 않습니다. |
 
 ## 예시
 
-### 결제 정보는 금액을 오른쪽 끝에
+### 결제 정보의 금액은 오른쪽 정렬
 
-금액이 있는 목록은 값을 오른쪽 끝에 맞춰 위아래 숫자를 견줘 보기 쉽게 합니다. 마지막 합계만 굵게 표시합니다.
+금액이 있는 목록은 값을 오른쪽 정렬해 위아래 숫자를 비교하기 쉽게 합니다. 마지막 합계만 굵게 표시합니다.
 
 ```html
 <dl class="ds-desclist" data-divider data-align="end" style="width: 100%; max-width: 420px"><div class="ds-desclist__item"><dt class="ds-desclist__label">상품 금액</dt><dd class="ds-desclist__value">52,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">할인</dt><dd class="ds-desclist__value">-4,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">배송비</dt><dd class="ds-desclist__value">0원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 금액</dt><dd class="ds-desclist__value"><b>48,000원</b></dd></div></dl>
 ```
 
-### 값이 길면 이름을 위에
+### 값이 길면 이름을 위에 배치
 
-주소나 요청 사항처럼 긴 값은 이름을 위에 두고 넓은 화면에서는 두 칸으로 나눕니다. 좁은 화면에서는 한 칸으로 돌아갑니다.
+주소나 요청 사항처럼 긴 값은 이름을 위에 두고, 넓은 화면에서는 두 열로 나눕니다. 좁은 화면에서는 한 열로 표시합니다.
 
 ```html
 <dl class="ds-desclist" data-layout="top" data-columns="2" style="width: 100%"><div class="ds-desclist__item"><dt class="ds-desclist__label">받는 사람</dt><dd class="ds-desclist__value">와이비엠</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">연락처</dt><dd class="ds-desclist__value">010-1234-5678</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">배송지</dt><dd class="ds-desclist__value">서울시 종로구 종로 1길 23, 4층</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">요청 사항</dt><dd class="ds-desclist__value">문 앞에 두고 가 주세요</dd></div></dl>
@@ -77,5 +77,5 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 layout: start(기본, 이름 왼쪽 + 값 오른쪽) / top(이름 위 + 값 아래, 값이 길 때)
 이름 t04 Medium fg/neutral-muted, 폭 --ds-desclist-label-width(기본 96) / 값 t04 fg/neutral
 줄 사이 x2 / data-divider 면 줄마다 위아래 x3 + 사이 선 stroke/neutral-muted / 이름과 값 사이 x4 / 여러 칸 사이 x6(폭 480 아래는 한 칸)
-data-align="end": 값을 오른쪽 끝에 붙인다(금액, 결제 정보)
+data-align="end": 값을 오른쪽 끝에 정렬합니다(금액, 결제 정보)
 ```

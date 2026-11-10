@@ -9,7 +9,7 @@
           "items": [
             [
               "DS",
-              "새 컴포넌트 5종을 더했습니다. Date Field, Lightbox, Selection Bar, Mega Menu, Command Palette입니다."
+              "새 컴포넌트 4종을 더했습니다. Date Field, Lightbox, Mega Menu, Command Palette입니다."
             ],
             [
               "DS",
@@ -22,7 +22,19 @@
           "items": [
             [
               "DS",
+              "Table 위 선을 옅은 선으로 바꾸고, 머리줄을 높이 40, 글자 14 Medium으로 바꿨습니다."
+            ],
+            [
+              "DS",
+              "중립 Badge 바탕을 알파 색으로 바꿨습니다. 회색 박스 안에서도 배지가 보입니다."
+            ],
+            [
+              "DS",
               "Segmented Control medium의 모서리를 바깥 8, 안쪽 6으로 바꿨습니다. 같은 높이의 Button과 나란히 놓여도 모서리가 맞습니다."
+            ],
+            [
+              "DS",
+              "Selection Bar를 Toolbar에 합쳤습니다. 떠 있는 막대와 선택 해제 버튼은 Toolbar에서 사용합니다."
             ]
           ]
         }

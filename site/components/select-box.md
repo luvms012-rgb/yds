@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-selectbox-group" [style="--ds-selectbox-columns: 2"]>
@@ -26,9 +26,9 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Texts** `ds-selectbox__texts` | 제목과 설명을 묶는 글자 영역입니다. |
-| **Label** `ds-selectbox__label` | 이름이나 값을 보여 주는 글자입니다. |
-| **Desc** `ds-selectbox__desc` | 제목에 덧붙이는 설명 글입니다. |
+| **Texts** `ds-selectbox__texts` | 제목과 설명을 묶는 텍스트 영역입니다. |
+| **Label** `ds-selectbox__label` | 이름이나 값을 표시하는 텍스트입니다. |
+| **Desc** `ds-selectbox__desc` | 제목을 보충하는 설명입니다. |
 | **Control** `ds-checkbox__control` | 실제로 값을 입력하거나 선택하는 부분입니다. |
 | **Control** `ds-radio__control` | 실제로 값을 입력하거나 선택하는 부분입니다. |
 
@@ -52,9 +52,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 예시
 
-### 설명을 읽고 선택하는 이용권
+### 설명이 필요한 이용권 선택
 
-선택지마다 가격과 조건 같은 설명이 필요할 때 Select Box로 크게 보여 줍니다. 짧은 라벨만으로 선택할 수 있으면 Radio Group을 사용합니다.
+선택지마다 가격과 조건 같은 설명이 필요할 때 Select Box로 크게 표시합니다. 짧은 라벨만으로 선택할 수 있으면 Radio Group을 사용하세요.
 
 ```html
 <div class="ds-field u-full" style="max-width: 420px">
@@ -87,9 +87,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 여러 개를 선택할 때는 체크로만
+### 여러 개 선택은 체크 표시로 통일
 
-관심 분야처럼 여러 개를 선택할 때는 모든 상자에 체크 표시를 사용합니다. 한 묶음 안에서 check와 radio를 섞으면 몇 개를 선택해야 하는지 헷갈립니다.
+관심 분야처럼 여러 개를 선택할 때는 모든 항목에 체크 표시를 사용합니다. 한 그룹 안에서 check와 radio를 섞으면 몇 개를 선택해야 하는지 헷갈립니다.
 
 ```html
 <div class="ds-field u-full" style="max-width: 420px">
@@ -149,7 +149,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```
 layout: horizontal(기본) / vertical(여러 열로 놓을 때)
-표시는 Checkbox(square/neutral/medium), Radio(neutral/medium) 를 그대로 쓴다.
+선택 표시는 Checkbox(square/neutral/medium), Radio(neutral/medium)를 그대로 사용합니다.
 Figma: padding x4 x5 / gap x3 / shape/lg / bg/layer-default / 1px stroke/neutral-weak
   선택 1px stroke/neutral-contrast(색만 진해짐) / disabled bg/disabled + 글자 fg/disabled
   label t05 Medium fg/neutral / desc t04 fg/neutral-subtle / 글 사이 2 / 앞 아이콘 24

@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <dialog class="ds-menusheet" id="ms" aria-labelledby="ms-t">
@@ -27,16 +27,16 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Header** `ds-menusheet__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
+| **Header** `ds-menusheet__header` | 제목과 닫기 버튼이 놓이는 상단 영역입니다. |
 | **Title** `ds-menusheet__title` | 제목입니다. |
-| **Desc** `ds-menusheet__desc` | 제목에 덧붙이는 설명 글입니다. |
+| **Desc** `ds-menusheet__desc` | 제목을 보충하는 설명입니다. |
 | **List** `ds-menusheet__list` | 항목 목록입니다. |
 | **Group** `ds-menusheet__group` | 관련 항목을 묶는 영역입니다. |
 | **Item** `ds-menusheet__item` | 목록의 항목 하나입니다. |
 | **Content** `ds-menusheet__content` | 주된 내용이 들어가는 영역입니다. |
-| **Label** `ds-menusheet__label` | 이름이나 값을 보여 주는 글자입니다. |
+| **Label** `ds-menusheet__label` | 이름이나 값을 표시하는 텍스트입니다. |
 | **Item Desc** `ds-menusheet__item-desc` | 항목 설명입니다. |
-| **Footer** `ds-menusheet__footer` | 버튼이나 보조 정보가 놓이는 아래 영역입니다. |
+| **Footer** `ds-menusheet__footer` | 버튼이나 보조 정보가 놓이는 하단 영역입니다. |
 | **Close** `ds-menusheet__close` | 닫기 버튼입니다. |
 
 ## 속성
@@ -67,7 +67,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 더보기 버튼으로 동작 선택
 
-모바일에서 더보기 버튼을 누르면 Menu Sheet로 할 수 있는 동작을 보여 줍니다. 몇 가지 동작 가운데 하나를 선택할 때 사용하고, 입력이나 긴 내용이 필요하면 Bottom Sheet를 사용합니다.
+모바일에서 더보기 버튼을 누르면 Menu Sheet로 할 수 있는 동작을 표시합니다. 몇 가지 동작 중 하나를 선택할 때 사용하고, 입력이나 긴 내용이 필요하면 Bottom Sheet를 사용합니다.
 
 ```html
 <ul class="ds-list u-full" data-variant="inset" style="max-width: 375px">
@@ -101,7 +101,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 되돌릴 수 없는 동작은 따로 묶기
 
-대화방 나가기처럼 되돌릴 수 없는 동작은 critical로 바꾸고 다른 동작과 떨어진 묶음에 둡니다. 결과를 한 줄 설명으로 붙여 누르기 전에 알 수 있게 합니다.
+대화방 나가기처럼 되돌릴 수 없는 동작은 critical로 표시하고 다른 동작과 분리된 묶음에 배치합니다. 한 줄 설명으로 결과를 안내해 누르기 전에 알 수 있게 합니다.
 
 ```html
 <header class="ds-appbar u-full" style="max-width: 375px">
@@ -134,9 +134,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 짧은 방법 선택은 가운데 정렬로
+### 짧은 선택지는 가운데 정렬
 
-아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 글자를 가운데에 둡니다. 사진 바꾸기처럼 방법 하나를 선택하고 바로 다음 화면으로 넘어갈 때 사용합니다.
+아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 텍스트를 가운데 정렬합니다. 사진 변경처럼 방법 하나를 선택하고 바로 다음 화면으로 이동할 때 사용합니다.
 
 ```html
 <div class="u-col u-center u-gap-3">
@@ -162,7 +162,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-Bottom Sheet 와 같이 네이티브 <dialog> 를 쓴다. data-ds-open 으로 열고, data-ds-close 와 바깥 누르기로 닫는다.
+Bottom Sheet와 같이 네이티브 <dialog>를 사용합니다. data-ds-open으로 열고, data-ds-close나 바깥 영역을 누르면 닫힙니다.
 Item tone: 기본 neutral / data-tone="critical"(되돌릴 수 없는 동작)   labelAlign: 기본 left / data-label-align="center"
 Figma: 최대 폭 480 / 위쪽 shape/2xl / bg/layer-floating / padding 위 x6, 좌우 global gutter, 아래 x4
   header gap x1, 아래 x4, 제목 t06 Bold, 설명 t04 fg/neutral-muted / 묶음 사이 x2_5 / 묶음 shape/xl, 줄 사이 1px stroke/neutral-muted

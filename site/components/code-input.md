@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-codeinput" role="group" aria-label="인증번호 6자리" [data-size="medium"] [aria-invalid="true"]>
@@ -34,16 +34,16 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 칸 수는 보내는 번호의 자리 수와 같게 둡니다. |
-| **Do** | 숫자만 받을 때는 `inputmode="numeric"`과 `autocomplete="one-time-code"`를 넣어 문자로 온 번호를 바로 채우게 합니다. |
-| **Do** | 남은 시간은 Timer로, 틀렸을 때는 칸 아래 오류 문구로 알립니다. |
+| **Do** | 칸 수는 발송하는 번호의 자릿수와 같게 맞춥니다. |
+| **Do** | 숫자만 받을 때는 `inputmode="numeric"`과 `autocomplete="one-time-code"`를 넣어 문자로 받은 번호가 자동으로 입력되게 합니다. |
+| **Do** | 남은 시간은 Timer로, 입력이 틀리면 입력란 아래 오류 문구로 알립니다. |
 | **Don't** | 비밀번호처럼 가려야 하는 값에는 사용하지 않습니다. |
 
 ## 예시
 
-### 문자로 받은 인증번호 넣기
+### 문자 인증번호 입력
 
-칸 아래에 남은 시간과 다시 받기를 둡니다. 번호가 오면 휴대폰이 첫 칸에 알아서 채우고, 칸을 다 채우면 바로 확인합니다.
+입력란 아래에 남은 시간과 다시 받기를 배치합니다. 번호가 오면 휴대폰이 첫 칸에 자동으로 채우고, 모든 칸을 채우면 바로 확인합니다.
 
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
@@ -53,9 +53,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 번호가 틀렸을 때
+### 인증번호 오류
 
-칸 전체를 오류 색으로 바꾸고 칸 아래에 까닭을 한 줄로 적습니다. 다시 넣을 수 있게 칸은 비우지 않습니다.
+모든 칸을 오류 색으로 바꾸고 아래에 이유를 한 줄로 표시합니다. 다시 입력할 수 있도록 칸을 비우지 않습니다.
 
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
@@ -83,5 +83,5 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```
 size: large(기본) 칸 48x56, shape/lg, t08 SemiBold / medium 칸 40x48, shape/md, t06 SemiBold / 칸 사이 x2
 선: 1px stroke/neutral-weak, 포커스 stroke/neutral-contrast, 틀림 stroke/critical-solid, 비활성 bg/disabled
-ybm-ds.js: 한 글자를 넣으면 다음 칸, 지우면 앞 칸, 붙여 넣으면 모든 칸을 채우고 다 채우면 ds-code-complete(detail.value)
+ybm-ds.js: 한 글자를 넣으면 다음 칸, 지우면 앞 칸으로 이동하고, 붙여 넣으면 모든 칸을 채웁니다. 다 채우면 ds-code-complete(detail.value)를 보냅니다
 ```

@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <header class="ds-appbar" [data-platform="android"] [data-tone="transparent" data-gradient]>
@@ -31,7 +31,7 @@
 | **Button** `ds-appbar__button` | 아이콘 버튼입니다. |
 | **Main** `ds-appbar__main` | 제목이 놓이는 가운데 영역입니다. |
 | **Title** `ds-appbar__title` | 제목입니다. |
-| **Subtitle** `ds-appbar__subtitle` | 제목 아래에 붙는 작은 글입니다. |
+| **Subtitle** `ds-appbar__subtitle` | 제목 아래에 붙는 작은 텍스트입니다. |
 | **Right** `ds-appbar__right` | 검색 같은 버튼이 놓이는 오른쪽 영역입니다. |
 
 ## 속성
@@ -49,16 +49,16 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 모바일 화면마다 하나씩 둡니다. |
-| **Do** | 제목 위치(ios 가운데, android 왼쪽)는 한 서비스 안에서 하나로 맞춥니다. |
+| **Do** | 제목 위치(ios 가운데, android 왼쪽)는 한 서비스 안에서 통일합니다. |
 | **Do** | 왼쪽에는 뒤로 가기나 닫기 버튼을 둡니다. |
 | **Do** | 오른쪽에는 아이콘 버튼을 2개까지 둡니다. |
-| **Do** | transparent는 사진 위에서만 쓰고, gradient를 함께 켭니다. |
+| **Do** | transparent는 사진 위에서만 사용하고, gradient를 함께 적용합니다. |
 
 ## 예시
 
-### 하위 화면 맨 위에 뒤로 가기와 제목
+### 하위 화면의 뒤로 가기와 제목
 
-하위 화면 맨 위에 뒤로 가기 버튼과 화면 제목을 둡니다. 오른쪽 아이콘 버튼은 2개까지만 두어 제목 자리를 지킵니다.
+하위 화면 맨 위에 뒤로 가기 버튼과 화면 제목을 배치합니다. 오른쪽 아이콘 버튼은 2개까지만 두어 제목 영역을 확보합니다.
 
 ```html
 <div style="width: 100%; max-width: 375px">
@@ -95,9 +95,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 작성 화면은 닫기 버튼과 부제목으로
+### 작성 화면의 닫기 버튼과 부제목
 
-전체 화면으로 여는 작성 화면은 제목을 왼쪽 끝에, 닫기 버튼을 오른쪽 끝에 둡니다. 부제목에는 지금 단계처럼 제목을 돕는 짧은 정보만 넣습니다.
+전체 화면으로 여는 작성 화면은 제목을 왼쪽 끝에, 닫기 버튼을 오른쪽 끝에 배치합니다. 부제목에는 현재 단계처럼 제목을 보완하는 짧은 정보만 넣습니다.
 
 ```html
 <div style="width: 100%; max-width: 375px">
@@ -134,9 +134,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 안드로이드 앱은 제목을 왼쪽에
+### 안드로이드 앱은 제목 왼쪽 정렬
 
-안드로이드 앱이라면 `data-platform="android"`로 제목을 왼쪽에 둡니다. 한 서비스 안에서는 모든 화면의 제목 위치를 하나로 맞춥니다.
+안드로이드 앱에서는 `data-platform="android"`로 제목을 왼쪽에 배치합니다. 한 서비스 안에서는 모든 화면의 제목 위치를 통일합니다.
 
 ```html
 <div style="width: 100%; max-width: 375px">
@@ -186,7 +186,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```
 theme(Figma) = data-platform: 기본 ios(제목 가운데) / "android"(제목 왼쪽)
 tone: 기본 layer / data-tone="transparent"(사진 같은 배경 위, 글자와 아이콘 흰색) + data-gradient(가독성용 위쪽 그라데이션)
-titleLayout: 부제목을 넣으면 withSubtitle 모양이 된다
+titleLayout: 부제목을 넣으면 withSubtitle 모양이 됩니다
 Figma: 높이 x14 / 좌우 padding x1_5 / bg/layer-default
   ios 양옆 칸 버튼 2개 폭, 제목과 양옆 최소 간격 x2 / android 제목 칸 왼쪽 padding x1_5
   제목 Static t06 Bold fg/neutral (부제목이 있으면 t05 Bold) / 부제목 Static t02 fg/neutral-muted

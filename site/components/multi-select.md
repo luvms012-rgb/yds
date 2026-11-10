@@ -2,11 +2,11 @@
 
 # Multi Select
 
-목록에서 값을 여러 개 선택해 칸 안에 모아 표시하는 컴포넌트입니다.
+목록에서 값을 여러 개 선택해 입력 필드 안에 모아 표시하는 컴포넌트입니다.
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-multiselect">
@@ -26,12 +26,12 @@
 | 구성 요소 | 설명 |
 | --- | --- |
 | **Trigger** `ds-multiselect__trigger` | 누르면 열리거나 바뀌는 버튼입니다. |
-| **Values** `ds-multiselect__values` | 선택한 값이 배지로 들어가는 영역입니다. |
+| **Values** `ds-multiselect__values` | 선택한 값이 배지로 표시되는 영역입니다. |
 | **Panel** `ds-multiselect__panel` | 펼쳐지는 선택 목록입니다. |
 | **Heading** `ds-multiselect__heading` | 목록 위에 붙는 소제목입니다. |
 | **Option** `ds-multiselect__option` | 선택할 수 있는 선택지 하나입니다. |
 | **Control** `ds-checkbox__control` | 실제로 값을 입력하거나 선택하는 부분입니다. |
-| **Label** `ds-multiselect__label` | 이름이나 값을 보여 주는 글자입니다. |
+| **Label** `ds-multiselect__label` | 이름이나 값을 표시하는 텍스트입니다. |
 
 ## 속성
 
@@ -53,14 +53,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 여러 개를 선택할 때만 Multi Select를 사용합니다. |
-| **Do** | 선택한 값이 많으면 2개까지 보여 주고 나머지는 +N으로 줄입니다. |
-| **Do** | 선택지가 15개를 넘으면 찾기 칸을 둡니다. |
+| **Do** | 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다. |
+| **Do** | 선택지가 15개를 넘으면 검색 필드를 제공합니다. |
 
 ## 예시
 
-### 여러 개를 선택하는 칸에만 사용하기
+### 여러 값을 선택하는 필드에만 사용
 
-관심 분야처럼 여러 개를 선택하는 칸에만 Multi Select를 사용합니다. 선택한 값이 많으면 칸에는 2개까지 보여 주고 나머지는 +N으로 줄입니다.
+관심 분야처럼 여러 값을 선택하는 필드에만 Multi Select를 사용합니다. 선택한 값이 많으면 필드에는 2개까지 표시하고 나머지는 +N으로 줄입니다.
 
 ```html
 <form class="u-col u-gap-5 u-full" style="max-width: 360px">
@@ -98,9 +98,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </form>
 ```
 
-### 여러 조건을 선택하는 필터에 사용하기
+### 여러 조건을 선택하는 필터
 
-여러 지역을 한 번에 선택하는 필터는 Multi Select로, 정렬처럼 하나만 선택하는 칸은 Select로 둡니다. 선택지가 많으면 헤더로 묶어 찾기 쉽게 합니다.
+여러 지역을 한 번에 선택하는 필터는 Multi Select를, 정렬처럼 하나만 선택하는 필드는 Select를 사용합니다. 선택지가 많으면 헤더로 묶어 찾기 쉽게 합니다.
 
 ```html
 <div class="u-col u-gap-3 u-full" style="max-width: 480px">
@@ -141,8 +141,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-Popover 와 같이 data-ds-popover="id" 로 열고, 바깥 누르기와 Esc 로 닫는다.
-ybm-ds.js 가 고른 값을 Badge 로 칸에 채우고, data-max(기본 2) 를 넘으면 +N 으로 줄인다.
+Popover와 같이 data-ds-popover="id"로 열고, 바깥 영역이나 Esc를 누르면 닫힙니다.
+ybm-ds.js가 선택한 값을 Badge로 필드에 표시하고, data-max(기본 2)를 넘으면 +N으로 줄입니다.
 Figma: Trigger 높이 40, padding x2 x3_5, gap x2, shape/sm, 1px stroke/neutral-weak (열림 stroke/neutral-contrast), 값 사이 x1, +N t04 Medium fg/neutral-muted
   Panel padding x1, shape/lg, bg/layer-floating, elevation overlay, 최대 높이 300 / heading padding x1 x2, t02 fg/neutral-muted
   Option padding x1_5 x2, gap x2, shape/sm, t04 Medium / highlighted bg/transparent-pressed / disabled fg/disabled

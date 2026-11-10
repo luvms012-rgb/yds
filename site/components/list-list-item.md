@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <ul class="ds-list" [data-variant="inset"] [data-divider]>
@@ -31,9 +31,9 @@
 | **Prefix** `ds-list-item__prefix` | 앞에 붙는 아이콘이나 요소입니다. |
 | **Content** `ds-list-item__content` | 주된 내용이 들어가는 영역입니다. |
 | **Title** `ds-list-item__title` | 제목입니다. |
-| **Desc** `ds-list-item__desc` | 제목에 덧붙이는 설명 글입니다. |
+| **Desc** `ds-list-item__desc` | 제목을 보충하는 설명입니다. |
 | **Suffix** `ds-list-item__suffix` | 뒤에 붙는 아이콘이나 요소입니다. |
-| **Chevron** `ds-list-item__chevron` | 다른 화면으로 이동함을 알리는 꺾쇠입니다. |
+| **Chevron** `ds-list-item__chevron` | 다른 화면으로 이동함을 나타내는 꺾쇠 아이콘입니다. |
 
 ## 속성
 
@@ -49,14 +49,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 한 줄 안에 누를 수 있는 요소는 3개까지만 둡니다. |
-| **Don't** | 줄 전체가 링크이면 안에 다른 버튼을 넣지 않습니다. |
+| **Do** | 한 행 안에 누를 수 있는 요소는 3개까지만 둡니다. |
+| **Don't** | 행 전체가 링크이면 안에 다른 버튼을 넣지 않습니다. |
 
 ## 예시
 
-### 줄 전체가 링크면 값과 꺾쇠만 두기
+### 항목 전체가 링크일 때 값과 꺾쇠만
 
-줄 전체가 하나의 링크일 때는 오른쪽에 값과 꺾쇠만 두고 다른 버튼은 넣지 않습니다. 누를 곳이 줄 하나뿐이라 어디를 눌러도 같은 화면으로 갑니다.
+항목 전체가 하나의 링크일 때는 오른쪽에 값과 꺾쇠만 표시하고 다른 버튼은 넣지 않습니다. 누르는 영역이 하나여서 어디를 눌러도 같은 화면으로 이동합니다.
 
 ```html
 <ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
@@ -89,9 +89,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </ul>
 ```
 
-### 바로 바뀌는 설정은 줄 끝에 Switch 두기
+### 즉시 반영되는 설정은 항목 끝에 Switch
 
-누르는 즉시 반영되는 설정은 줄 끝에 Switch를 두고 줄 전체를 `label`로 감쌉니다. 글자를 눌러도 켜고 꺼져 누를 자리가 넓어집니다.
+누르는 즉시 반영되는 설정은 항목 끝에 Switch를 배치하고 항목 전체를 `label`로 감쌉니다. 텍스트를 눌러도 켜고 끌 수 있어 누르는 영역이 넓어집니다.
 
 ```html
 <ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
@@ -125,9 +125,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </ul>
 ```
 
-### 동작이 여럿이면 줄은 링크로 두지 않기
+### 동작이 여러 개인 항목은 링크로 만들지 않기
 
-한 줄에 수정, 삭제처럼 동작이 여럿이면 줄은 링크로 만들지 않고 버튼을 줄 끝에 둡니다. 누를 수 있는 요소는 한 줄에 3개까지만 둡니다.
+한 항목에 수정, 삭제처럼 동작이 여러 개이면 항목을 링크로 만들지 않고 버튼을 항목 끝에 배치합니다. 누를 수 있는 요소는 한 항목에 3개까지만 둡니다.
 
 ```html
 <ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
@@ -179,5 +179,5 @@ Figma item medium: min-h56 / py x3 / px x4 / gap x3 / title t05 fg/neutral / des
   prefix 24(아이콘 fg/neutral-subtle, Avatar 36 가능) / suffix t04 fg/neutral-subtle / chevron 20 fg/neutral-subtle
   pressed bg/transparent-pressed / disabled 글자 fg/disabled / divider 1px stroke/neutral-muted(본문 시작점부터, inset 은 좌우 x4, 2026-11-04)
   inset: bg/layer-default / 1px stroke/neutral(2026-11-04) / shape/xl / 바깥 여백 없음
-상호작용 요소(링크/스위치 등)는 한 줄에 4개 미만. 행 전체가 링크이면 안에 다른 버튼을 넣지 않는다.
+상호작용 요소(링크, 스위치 등)는 한 줄에 4개 미만으로 배치합니다. 행 전체가 링크이면 안에 다른 버튼을 넣지 않습니다.
 ```

@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="추천">
@@ -22,7 +22,7 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Scroller** `ds-carousel__scroller` | 옆으로 넘기는 영역입니다. |
+| **Scroller** `ds-carousel__scroller` | 가로로 넘기는 영역입니다. |
 | **Item** `ds-carousel__item` | 목록의 항목 하나입니다. |
 | **Button** `ds-carousel__button` | 이전 장, 다음 장으로 넘기는 버튼입니다. |
 
@@ -42,9 +42,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 사진은 Image Frame의 비율 안에 꽉 채워 넣습니다. |
+| **Do** | 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. |
 | **Do** | 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. |
-| **Do** | 터치 화면에서는 넘기기 버튼 없이 손가락으로 넘깁니다. |
+| **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
 | **Do** | 묶음에는 aria-label을 붙입니다. |
 | **Don't** | 모두가 봐야 하는 내용은 넣지 않습니다. |
 | **Don't** | 자동으로 넘기지 않습니다. |
@@ -54,7 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 추천 상품을 옆으로 넘겨 보기
 
-같은 모양의 상품 카드를 한 줄로 늘어놓고 옆으로 넘겨 봅니다. PC에서는 양 끝 버튼으로 한 화면씩 넘기고, 끝에 닿으면 그쪽 버튼이 사라집니다.
+같은 모양의 상품 카드를 한 줄로 배치하고 옆으로 넘겨 봅니다. PC에서는 양 끝 버튼으로 한 화면씩 넘기고, 끝에 닿으면 그쪽 버튼이 사라집니다.
 
 ```html
 <div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
@@ -109,7 +109,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 사진 여러 장을 한 장씩 넘기기
 
-사진은 Image Frame의 비율 안에 꽉 채우고, 한 장을 한 항목으로 넣어 넘깁니다. 사진마다 순서 표시를 얹어 몇 번째 사진인지 알려 줍니다.
+사진은 Image Frame의 비율에 맞춰 꽉 채우고, 한 장을 한 항목으로 넣어 넘깁니다. 사진마다 순서를 표시해 몇 번째 사진인지 알립니다.
 
 ```html
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="숙소 사진" style="width: 100%; max-width: 420px">
@@ -141,9 +141,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 터치 화면에서는 손가락으로 넘기기
+### 터치 화면에서는 스와이프로 넘기기
 
-터치 화면에서는 넘기기 버튼을 빼고 손가락으로 밀어 넘깁니다. 다음 항목이 조금 보이게 두어 옆에 더 있다는 것을 알립니다.
+터치 화면에서는 넘기기 버튼을 빼고 스와이프로 넘깁니다. 다음 항목이 조금 보이게 해 옆에 더 있다는 것을 알립니다.
 
 ```html
 <div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
@@ -199,8 +199,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-항목은 넘길 때 시작 위치에 맞춰 멈춘다. 이미지 넘기기 배너는 Image Frame 을 항목으로 넣어 만든다.
-번호(1/4)는 항목 안이 아니라 캐러셀 바로 안에 [<span class="ds-carousel__count" aria-hidden="true">1/4</span>] 로 둔다. 넘겨도 제자리에 있고 숫자는 ybm-ds.js 가 바꾼다.
-ybm-ds.js 가 처음/끝에 닿으면 data-at-start / data-at-end 를 붙여 그쪽 흐림과 버튼을 감추고, 버튼을 누르면 한 화면씩 넘긴다.
+항목은 넘길 때 시작 위치에 맞춰 멈춥니다. 넘겨 보는 이미지 배너는 Image Frame을 항목으로 넣어 만듭니다.
+번호(1/4)는 항목 안이 아니라 캐러셀 바로 안에 [<span class="ds-carousel__count" aria-hidden="true">1/4</span>]로 배치합니다. 넘겨도 위치가 고정되고 숫자는 ybm-ds.js가 바꿉니다.
+처음이나 끝에 닿으면 ybm-ds.js가 data-at-start / data-at-end를 붙여 그쪽 흐림과 버튼을 숨기고, 버튼을 누르면 한 화면씩 넘깁니다.
 Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2
 ```

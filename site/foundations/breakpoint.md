@@ -6,7 +6,7 @@
 
 ## 개요
 
-작은 화면부터 만들고 폭이 넓어질 때 배치를 더합니다. `@media` 안에서는 CSS 변수를 사용할 수 없어 숫자를 직접 입력합니다.
+작은 화면부터 만들고, 화면이 넓어질 때 레이아웃을 추가합니다. `@media` 안에서는 CSS 변수를 사용할 수 없어 숫자를 직접 입력합니다.
 
 ## 토큰
 
@@ -19,8 +19,8 @@
 
 ## 폭에 따라 바뀌는 컴포넌트
 
-- Top Navigation ↔ Top App Bar, Side Panel ↔ Bottom Sheet, Dialog ↔ Bottom Sheet는 768을 기준으로 바꿉니다.
-- Side Navigation은 1280 이상에서 펼치고, 768 이상에서 접고, 그보다 좁으면 서랍 메뉴로 엽니다.
+- Top Navigation ↔ Top App Bar, Side Panel ↔ Bottom Sheet, Dialog ↔ Bottom Sheet는 768을 기준으로 전환합니다.
+- Side Navigation은 1280 이상에서 펼쳐지고, 768 이상에서 접히며, 그보다 좁으면 서랍 메뉴로 열립니다.
 
 ## 코드에서 쓰기
 

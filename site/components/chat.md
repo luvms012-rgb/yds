@@ -2,11 +2,11 @@
 
 # Chat
 
-말풍선과 입력 칸으로 대화 화면을 구성하는 컴포넌트입니다.
+말풍선과 입력란으로 대화 화면을 구성하는 컴포넌트입니다.
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-chat-bubble" [data-sender="user"]>안녕하세요! 무엇을 도와드릴까요?</div>
@@ -26,10 +26,10 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Status** `ds-chat-meta__status` | "답변 중"처럼 지금 상태를 알리는 글입니다. |
+| **Status** `ds-chat-meta__status` | "답변 중"처럼 현재 상태를 알리는 텍스트입니다. |
 | **Attach** `ds-chat-composer__attach` | 파일을 첨부하는 버튼입니다. |
 | **Field** `ds-chat-composer__field` | 텍스트를 입력하는 영역입니다. |
-| **Input** `ds-chat-composer__input` | 실제 입력 칸입니다. |
+| **Input** `ds-chat-composer__input` | 실제 입력 필드입니다. |
 
 ## 속성
 
@@ -46,15 +46,15 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 둡니다. |
-| **Do** | 입력 칸이 비어 있으면 보내기 버튼을 끕니다. |
-| **Do** | 답변을 만드는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다. |
+| **Do** | 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다. |
+| **Do** | 입력란이 비어 있으면 보내기 버튼을 비활성화합니다. |
+| **Do** | 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다. |
 
 ## 예시
 
-### 말풍선 자리로 누가 한 말인지 나누기
+### 말풍선 위치로 화자 구분
 
-상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 두고 내 말 아래에 읽음 상태를 붙입니다. 입력 칸이 비어 있는 동안에는 보내기 버튼을 꺼 둡니다.
+상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치하고 내 메시지 아래에 읽음 상태를 표시합니다. 입력란이 비어 있는 동안에는 보내기 버튼을 비활성화합니다.
 
 ```html
 <div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
@@ -77,9 +77,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 답변을 만드는 동안 멈춤 버튼 보여 주기
+### 답변 생성 중 멈춤 버튼 표시
 
-답변을 만드는 동안에는 보내기 버튼을 멈춤(`data-state="stop"`) 버튼으로 바꿉니다. 답변이 길어지거나 질문을 잘못 보냈을 때 바로 멈출 수 있습니다.
+답변을 생성하는 동안에는 보내기 버튼을 멈춤(`data-state="stop"`) 버튼으로 바꿉니다. 답변이 길어지거나 질문을 잘못 보냈을 때 바로 멈출 수 있습니다.
 
 ```html
 <div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
@@ -97,9 +97,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 보내지 못한 메시지 알리기
+### 전송 실패 메시지 안내
 
-보내지 못한 말풍선 아래에 `data-status="error"` 상태를 붙여 critical 색 글자로 알립니다. 다시 보내기 버튼을 바로 옆에 두어 고치는 방법까지 보여 줍니다.
+보내지 못한 말풍선 아래에 `data-status="error"` 상태를 지정해 critical 색 텍스트로 알립니다. 다시 보내기 버튼을 바로 옆에 배치해 해결 방법까지 제공합니다.
 
 ```html
 <div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
@@ -142,7 +142,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ▸ Send Button  state: send / stop / disabled
   Figma: 36 원 / 아이콘 20 / send bg/brand-solid + arrow-up fg/on-brand-solid
          stop bg/neutral-solid + square fg/on-neutral-solid / disabled bg/disabled + fg/disabled
-▸ Composer  state: empty / typing (비어 있으면 보내기 비활성 - ybm-ds.js 가 맞춰 준다)
+▸ Composer  state: empty / typing (비어 있으면 보내기 버튼 비활성, ybm-ds.js가 처리)
   Figma: 위 1px stroke/neutral-muted / padding x2 x3 / gap x2 / bg/layer-default
          첨부 36 + plus 22 fg/neutral-muted / 입력 칸 min-h x11 padding 0 x1 0 x4 gap x2 shape/3xl bg/neutral-weak-alpha
          글 t05 fg/neutral, placeholder fg/placeholder / 화면 아래 고정, 여러 줄은 5줄까지 늘어난다

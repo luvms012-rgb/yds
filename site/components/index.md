@@ -184,8 +184,6 @@
 
 - [List](https://luvms012-rgb.github.io/yds/site/components/list-list-item.md)
 
-- [Selection Bar](https://luvms012-rgb.github.io/yds/site/components/selection-bar.md)
-
 - [Table](https://luvms012-rgb.github.io/yds/site/components/table.md)
 
 - [Tree](https://luvms012-rgb.github.io/yds/site/components/tree.md)

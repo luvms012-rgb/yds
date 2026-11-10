@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <span class="ds-popover-anchor">
@@ -26,13 +26,13 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Header** `ds-popover__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
-| **Texts** `ds-popover__texts` | 제목과 설명을 묶는 글자 영역입니다. |
+| **Header** `ds-popover__header` | 제목과 닫기 버튼이 놓이는 상단 영역입니다. |
+| **Texts** `ds-popover__texts` | 제목과 설명을 묶는 텍스트 영역입니다. |
 | **Title** `ds-popover__title` | 제목입니다. |
-| **Desc** `ds-popover__desc` | 제목에 덧붙이는 설명 글입니다. |
+| **Desc** `ds-popover__desc` | 제목을 보충하는 설명입니다. |
 | **Close** `ds-popover__close` | 닫기 버튼입니다. |
 | **Body** `ds-popover__body` | 본문이 들어가는 영역입니다. |
-| **Footer** `ds-popover__footer` | 버튼이나 보조 정보가 놓이는 아래 영역입니다. |
+| **Footer** `ds-popover__footer` | 버튼이나 보조 정보가 놓이는 하단 영역입니다. |
 
 ## 속성
 
@@ -59,9 +59,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 예시
 
-### 버튼 옆에서 끝나는 작은 작업 열기
+### 버튼 옆에서 끝나는 작은 작업
 
-공유처럼 버튼 옆에서 끝나는 작은 작업은 Popover로 엽니다. 바깥을 누르면 닫히므로 화면을 막고 꼭 확인받아야 할 때는 Dialog를 사용합니다.
+공유처럼 버튼 옆에서 끝나는 작은 작업은 Popover로 엽니다. 바깥을 누르면 닫히므로, 화면을 막고 꼭 확인받아야 할 때는 Dialog를 사용합니다.
 
 ```html
 <div class="u-col u-gap-3 u-full" style="max-width: 480px">
@@ -97,9 +97,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 닫기 버튼 대신 아래 버튼으로 닫기
+### 닫기 버튼 대신 하단 버튼으로 닫기
 
-필터처럼 선택한 뒤 적용하는 작업은 아래에 취소와 적용 버튼을 두고 위쪽 닫기 버튼은 뺍니다. 닫기 버튼을 빼면 아래 버튼에 `data-ds-close`를 붙여 창이 꼭 닫히게 합니다.
+필터처럼 선택한 뒤 적용하는 작업은 하단에 취소와 적용 버튼을 배치하고 상단 닫기 버튼은 뺍니다. 닫기 버튼을 빼면 하단 버튼에 `data-ds-close`를 붙여 창이 반드시 닫히게 합니다.
 
 ```html
 <div class="u-col u-gap-3 u-full" style="max-width: 480px">
@@ -152,11 +152,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```
 actions: single / pair / none(footer 없음)   placement: bottom-start(기본) / bottom-end / top-start / top-end
-ybm-ds.js: data-ds-popover 로 열고 닫기, 바깥 클릭과 Esc 로 닫기, 안의 data-ds-close 로 닫기.
+ybm-ds.js: data-ds-popover로 열고 닫으며, 바깥 클릭, Esc, 안쪽의 data-ds-close로도 닫힙니다.
 Figma: 폭 320 / padding x5 / gap x4 / shape/xl / bg/layer-floating / 1px stroke/neutral-muted / elevation 2
   title t05 Bold fg/neutral / desc t04 fg/neutral-subtle / 글 사이 x1 / 머리말 gap x3 / 닫기 Lucide/x 20 fg/neutral
   body t04 fg/neutral / footer 오른쪽 정렬 gap x2, Action Button small
-닫기 버튼을 숨기면 본문이나 버튼 영역에 닫는 동작을 꼭 둔다.
+닫기 버튼을 숨길 때는 본문이나 버튼 영역에 닫을 수 있는 동작을 제공하세요.
 고르는 법: 짧은 설명은 Tooltip, Help Bubble / 제목과 버튼이 있는 작은 작업 창은 Popover / 화면을 막아야 하면 Dialog
-알림 고르는 법(2026-11-10): 작업 결과는 Snackbar / 입력 오류는 칸 아래 안내 글 / 작업을 막는 오류와 화면 전체 상태는 Banner / 화면 안 안내는 Callout / 되돌릴 수 없는 작업 확인은 Alert Dialog
+알림 고르는 법(2026-11-10): 작업 결과는 Snackbar / 입력 오류는 입력 필드 아래 안내 글 / 작업을 막는 오류와 화면 전체 상태는 Banner / 화면 안 안내는 Callout / 되돌릴 수 없는 작업 확인은 Alert Dialog
 ```

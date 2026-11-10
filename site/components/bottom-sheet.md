@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <dialog class="ds-bottomsheet" aria-labelledby="bs-t" [data-header-align="center"] [data-handle]>
@@ -24,12 +24,12 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Header** `ds-bottomsheet__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
+| **Header** `ds-bottomsheet__header` | 제목과 닫기 버튼이 놓이는 상단 영역입니다. |
 | **Title** `ds-bottomsheet__title` | 제목입니다. |
-| **Desc** `ds-bottomsheet__desc` | 제목에 덧붙이는 설명 글입니다. |
+| **Desc** `ds-bottomsheet__desc` | 제목을 보충하는 설명입니다. |
 | **Close** `ds-bottomsheet__close` | 닫기 버튼입니다. |
 | **Body** `ds-bottomsheet__body` | 본문이 들어가는 영역입니다. |
-| **Footer** `ds-bottomsheet__footer` | 버튼이나 보조 정보가 놓이는 아래 영역입니다. |
+| **Footer** `ds-bottomsheet__footer` | 버튼이나 보조 정보가 놓이는 하단 영역입니다. |
 
 ## 속성
 
@@ -47,14 +47,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 입력이나 긴 내용은 Bottom Sheet에 담습니다. |
 | **Do** | 되돌릴 수 없는 동작은 critical로 따로 묶습니다. |
 | **Do** | PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. |
-| **Do** | 화면이 좁으면 Bottom Sheet로 바꿉니다. |
+| **Do** | 화면이 좁으면 Bottom Sheet로 전환합니다. |
 | **Do** | 내용이 길면 단계별 시트로 나누고, 겹치는 시트는 2개까지 둡니다. |
 
 ## 예시
 
-### 목록 정렬을 선택해 적용하기
+### 목록 정렬 선택
 
-값을 선택한 뒤 적용 버튼으로 반영하는 선택은 Bottom Sheet에 담습니다. 위에 닫기 버튼이 있으니 아래에는 적용 버튼 하나만 둡니다.
+값을 선택한 뒤 적용 버튼을 눌러 반영하는 경우 Bottom Sheet를 사용합니다. 상단에 닫기 버튼이 있으므로 하단에는 적용 버튼 하나만 배치합니다.
 
 ```html
 <div class="u-flex u-center u-between" style="width: 100%; max-width: 375px">
@@ -80,9 +80,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 직접 입력할 수도 있는 선택 받기
+### 직접 입력도 가능한 선택
 
-선택하다가 직접 입력해야 할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 받습니다. 동작 몇 개 중 하나를 선택할 때만 Menu Sheet를 사용하고, 입력이 있으면 Bottom Sheet를 사용합니다.
+선택지 외에 직접 입력할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 입력받습니다. Menu Sheet는 몇 가지 동작 중 하나를 선택할 때만 사용하고, 입력이 있으면 Bottom Sheet를 사용합니다.
 
 ```html
 <div class="ds-field" style="width: 100%; max-width: 375px">
@@ -114,9 +114,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 짧은 안내는 제목을 가운데로
+### 짧은 안내는 제목 가운데 정렬
 
-안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데에 둡니다. 위쪽 닫기 버튼은 빼고 아래 버튼으로 닫게 합니다.
+안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다. 상단 닫기 버튼은 빼고 하단 버튼으로 닫습니다.
 
 ```html
 <article class="ds-card" data-size="small" style="width: 100%; max-width: 375px">

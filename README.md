@@ -405,59 +405,58 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 73 | Code Input | `.ds-codeinput` (`__cell`) | `2714:1564`, 8 | size `large/medium`, `aria-invalid`, 다 채우면 `ds-code-complete` |
 | 74 | Chart | `.ds-chart` (`__header/title/desc/plot/col/bar/label/svg/line/area/axis/donut/total/legend/swatch`) | `2715:1115`, 3 | type `bar/line/donut`, `data-series` 1~5, `--ds-chart-value`, `--ds-chart-height`, `--ds-chart-size` |
 | 75 | Description List | `.ds-desclist` (`__item/label/value`) | `2716:376`, 4 | layout `start/top`, columns `2/3`, align `end`, `data-divider`, `--ds-desclist-label-width` |
-| 76 | Toolbar | `.ds-toolbar` (`__start/center/end/title/count/separator`) | `2717:624`, 4 | size `medium/small`, variant `plain/muted`, `data-divider`, 좌우 화살표 이동 |
+| 76 | Toolbar | `.ds-toolbar` (`__start/center/end/title/count/separator/clear`) | `2717:624`, 4 | size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, 표에 `data-ds-selection`, 좌우 화살표 이동 |
 | 77 | Tree | `.ds-tree` (`__node/row/toggle/icon/label/suffix/group`) | `2716:594`, 2 / Item `2716:495`, 12 | size `medium/small`, guides `none`, `aria-expanded`, `aria-selected`, 화살표 키 |
 | 78 | Wheel Picker | `.ds-wheelpicker` (`__column/option`) | `2714:1665`, 2 | Time Picker 와 같은 휠, 열 여러 개, `aria-selected`, change |
 | 79 | Search Field | `.ds-searchfield` (`__cancel`, 칸은 `.ds-input`) | `2714:1744`, 4 | variant `outline/fill`, 칸은 Text Field, cancel |
 | 80 | Date Field | `.ds-datefield` (`__control/picker`, 칸은 `.ds-input`) | `3141:3257`, 4 | 칸은 Text Field, 숫자를 넣으면 점 자동, 달력 버튼은 Date Picker 를 연다 |
 | 81 | Lightbox | `.ds-lightbox` (`__bar/count/close/slide/img/caption/nav`) | `3144:1195` | `data-ds-open` + `data-ds-index`, 좌우 화살표 키, 늘 어두운 바탕 |
-| 82 | Selection Bar | `.ds-selectionbar` (`__count/actions/clear`) | `3143:1017`, 2 | position `floating`, 표에 `data-ds-selection`, `data-count-format` |
 | 83 | Mega Menu | `.ds-megamenu` (`__inner/group/title/list/link/aside`) | `3143:2639` | 트리거 `data-ds-megamenu` + `aria-expanded`, 768 이상에서만 |
 | 84 | Command Palette | `.ds-command` (`__search/input/list/group/title/item/label/kbd/empty`) | `3144:1210` | `data-ds-hotkey="k"`, 거르기, 위아래 화살표와 Enter |
 
 목록의 기계용 사본이 `components.json`이다. 컴포넌트를 추가/변경하면 이 표와 `components.json`을 함께 고친다(sync가 Figma/CSS와 대조).
 
 ### 6.2 사용 지침 (Do / Don't)
-- **Action Button** - 강조 버튼(High emphasis)은 한 화면에 하나만 둡니다. 버튼을 세 개 넘게 나란히 두지 않습니다.
-- **Badge** - 누를 수 없는 표시용 라벨로만 사용합니다. 같은 자리의 상태는 모두 배지로 보여 주고, 색으로만 강약을 나눕니다.
-- **Segmented Control** - 항목은 2~4개로 하고, 한 화면에 하나만 둡니다. 선택하면 선택 배경이 미끄러지듯 옮겨 가는 움직임을 그대로 둡니다.
+- **Action Button** - 강조 버튼(High emphasis)은 한 화면에 하나만 사용합니다. 버튼은 3개를 넘게 나란히 배치하지 않습니다.
+- **Badge** - 누를 수 없는 표시용 라벨로만 사용합니다. 같은 위치의 상태는 모두 배지로 표시하고, 강약은 색으로만 구분합니다.
+- **Segmented Control** - 항목은 2~4개를 사용하고, 한 화면에 하나만 둡니다. 선택하면 선택 배경이 이동하는 모션을 그대로 유지합니다.
 - **Switch** - 누르는 즉시 반영되는 설정에만 사용합니다. 저장 버튼이 따로 있으면 Checkbox를 사용합니다.
-- **Snackbar** - 4초 동안 보이고, 한 번에 하나만 띄웁니다.
-- **Chip Tabs** - 콘텐츠 분류를 바꿀 때 사용합니다. 화면의 주요 메뉴는 Tabs로 만듭니다. 한 줄 안에서 variant를 섞지 않습니다.
-- **FAB** - 한 화면에 하나만 두고, 되도록 라벨을 붙입니다. disabled 상태로 두지 않습니다. 사용할 수 없으면 버튼을 숨깁니다.
-- **Dialog** - 위쪽 닫기 버튼과 아래쪽 취소 버튼을 함께 두지 않습니다. 아래쪽 주요 버튼은 Action Button large(52)를 사용합니다.
+- **Snackbar** - 4초 동안 표시하고, 한 번에 하나만 띄웁니다.
+- **Chip Tabs** - 콘텐츠 분류를 바꿀 때 사용합니다. 화면의 주요 메뉴는 Tabs를 사용합니다. 한 줄 안에서 variant를 섞지 않습니다.
+- **FAB** - 한 화면에 하나만 두고, 되도록 라벨을 붙입니다. disabled 상태로 표시하지 않습니다. 사용할 수 없으면 버튼을 숨깁니다.
+- **Dialog** - 상단 닫기 버튼과 하단 취소 버튼을 함께 사용하지 않습니다. 하단 주요 버튼은 Action Button large(52)를 사용합니다.
 - **Alert Dialog** - 되돌릴 수 없는 작업을 확인받을 때 사용합니다. 바깥을 눌러도 닫히지 않고 버튼으로만 닫힙니다.
 - **Menu vs Select** - 동작을 실행할 때는 Menu, 값을 선택할 때는 Select를 사용합니다.
-- **Callout** - 앞 아이콘은 채움(Solid) 모양을 사용합니다. 전체를 누를 수 있는 Callout에는 링크 글자를 따로 넣지 않습니다. 제목, 본문, 링크는 한 줄로 이어 작성하고, 사이는 두 칸 띄웁니다.
-- **Bottom Navigation** - 탭은 3~5개를 둡니다. 라벨은 한글 5자(영문 10자) 안으로 작성합니다. 아이콘은 채움(Solid) 모양을 사용합니다. 숫자 배지를 세 개 넘게 한꺼번에 띄우지 않습니다. 배지 숫자는 1~99까지 표시하고, 100 이상은 `99+`로 표시합니다. 숫자가 0이면 배지를 숨깁니다.
-- **Side Navigation** - 하위 메뉴가 있는 항목은 눌러도 이동하지 않고 펼치기만 합니다. 메뉴는 화면 폭 1280 이상에서 펼치고, 768 이상에서 접습니다. 화면 폭이 768보다 좁으면 서랍(Drawer)으로 바꿉니다.
+- **Callout** - 앞쪽 아이콘은 채움(Solid) 모양을 사용합니다. 전체를 누를 수 있는 Callout에는 링크 텍스트를 따로 넣지 않습니다. 제목, 본문, 링크는 한 줄로 이어 작성하고, 사이는 두 칸 띄웁니다.
+- **Bottom Navigation** - 탭은 3~5개를 사용합니다. 라벨은 한글 5자(영문 10자) 이내로 작성합니다. 아이콘은 채움(Solid) 모양을 사용합니다. 숫자 배지는 동시에 3개를 넘게 표시하지 않습니다. 배지 숫자는 1~99까지 표시하고, 100 이상은 `99+`로 표시합니다. 숫자가 0이면 배지를 숨깁니다.
+- **Side Navigation** - 하위 메뉴가 있는 항목은 눌러도 이동하지 않고 펼치기만 합니다. 메뉴는 화면 폭 1280 이상에서 펼치고, 768 이상에서 접습니다. 화면 폭이 768보다 좁으면 서랍(Drawer)으로 전환합니다.
 - **Divider** - 마지막 묶음 아래에는 구분선을 두지 않습니다.
-- **List Item** - 한 줄 안에 누를 수 있는 요소는 3개까지만 둡니다. 줄 전체가 링크이면 안에 다른 버튼을 넣지 않습니다.
-- **Tooltip vs Help Bubble** - Tooltip은 아이콘 버튼 이름 같은 짧은 라벨에만 사용합니다. Tooltip은 마우스를 올리거나 포커스할 때만 보이고, 터치 화면에서는 안 보입니다. 닫기 버튼이 필요하거나 설명이 여러 줄이면 Help Bubble을 사용합니다.
-- **Banner vs Callout** - Banner는 화면 맨 위에 전체 폭으로, 한 번에 하나만 띄웁니다. 본문 안의 안내는 Callout을 사용합니다.
-- **Breadcrumbs** - 웹 화면에서 깊이가 2단계 이상일 때만 사용합니다. 마지막 항목(지금 화면)은 링크로 만들지 않습니다. 모바일 앱에서는 뒤로 가기 버튼이 있는 헤더를 사용합니다.
-- **Stepper** - 단계는 3~5개로 하고, 라벨은 짧은 명사로 작성합니다. 단계가 더 많으면 "2 / 6"처럼 글자로 보여 줍니다.
+- **List Item** - 한 행 안에 누를 수 있는 요소는 3개까지만 둡니다. 행 전체가 링크이면 안에 다른 버튼을 넣지 않습니다.
+- **Tooltip vs Help Bubble** - Tooltip은 아이콘 버튼 이름 같은 짧은 라벨에만 사용합니다. Tooltip은 마우스를 올리거나 포커스할 때만 표시되고, 터치 화면에서는 표시되지 않습니다. 닫기 버튼이 필요하거나 설명이 여러 줄이면 Help Bubble을 사용합니다.
+- **Banner vs Callout** - Banner는 화면 맨 위에 전체 폭으로 배치하고, 한 번에 하나만 표시합니다. 본문 안의 안내는 Callout을 사용합니다.
+- **Breadcrumbs** - 웹 화면에서 깊이가 2단계 이상일 때만 사용합니다. 마지막 항목(현재 화면)은 링크로 만들지 않습니다. 모바일 앱에서는 뒤로 가기 버튼이 있는 헤더를 사용합니다.
+- **Stepper** - 단계는 3~5개를 사용하고, 라벨은 짧은 명사로 작성합니다. 단계가 더 많으면 "2 / 6"처럼 텍스트로 표시합니다.
 - **Select Box** - 설명이 필요한 선택지가 2~6개일 때 사용합니다. 짧은 선택지는 Radio Group이나 Checkbox를 사용합니다. 한 묶음 안에서 check와 radio를 섞지 않습니다.
-- **Time Picker** - 시간 선택이 화면의 주요 기능이면 화면에 바로 둡니다. 입력 칸에서 선택할 때는 Bottom Sheet 안에 넣고, Field Button을 눌러 엽니다.
-- **Table Pagination** - 데이터 표 아래에서만 사용합니다. 일반 목록에는 Pagination을 사용합니다. 페이지당 줄 수 선택지는 3~4가지로 둡니다.
+- **Time Picker** - 시간 선택이 화면의 주요 기능이면 화면에 바로 배치합니다. 입력 필드에서 선택할 때는 Bottom Sheet 안에 배치하고, Field Button을 눌러 엽니다.
+- **Table Pagination** - 데이터 표 아래에서만 사용합니다. 일반 목록에는 Pagination을 사용합니다. 페이지당 행 수 선택지는 3~4개로 제공합니다.
 - **Popover vs Dialog** - Popover는 버튼 옆에 뜨는 작은 창이고, 바깥을 누르면 닫힙니다. 화면을 막고 확인받아야 할 때는 Dialog를 사용합니다.
-- **Top App Bar** - 모바일 화면마다 하나씩 둡니다. 제목 위치(ios 가운데, android 왼쪽)는 한 서비스 안에서 하나로 맞춥니다. 왼쪽에는 뒤로 가기나 닫기 버튼을 둡니다. 오른쪽에는 아이콘 버튼을 2개까지 둡니다. transparent는 사진 위에서만 쓰고, gradient를 함께 켭니다.
-- **Top Navigation** - PC 화면에서만 사용합니다. 메뉴는 7개까지 둡니다. 지금 화면이 속한 메뉴에는 `aria-current="page"`를 붙입니다. 화면이 좁아지면 Top App Bar와 메뉴 버튼으로 바꿉니다.
-- **Search Suggestion** - 검색 칸은 Text Field outline에 search 아이콘과 지우기 버튼을 붙여 만듭니다. 검색 칸에는 `type="search"`와 `role="combobox"`를 붙입니다. 입력 전에는 최근 검색어, 입력 중에는 추천어, 결과가 없으면 안내 문구를 보여 줍니다.
-- **File Attach** - 끌어 놓는 칸은 PC 화면에만 둡니다. 모바일에서는 추가 버튼(Trigger)과 파일 줄만 사용합니다. 추가 버튼에는 지금 개수와 최대 개수를 적습니다. 파일이 최대 개수만큼 차면 추가 버튼을 disabled로 바꿉니다.
+- **Top App Bar** - 모바일 화면마다 하나씩 둡니다. 제목 위치(ios 가운데, android 왼쪽)는 한 서비스 안에서 통일합니다. 왼쪽에는 뒤로 가기나 닫기 버튼을 둡니다. 오른쪽에는 아이콘 버튼을 2개까지 둡니다. transparent는 사진 위에서만 사용하고, gradient를 함께 적용합니다.
+- **Top Navigation** - PC 화면에서만 사용합니다. 메뉴는 7개까지 둡니다. 현재 화면이 속한 메뉴에는 `aria-current="page"`를 붙입니다. 화면이 좁아지면 Top App Bar와 메뉴 버튼으로 전환합니다.
+- **Search Suggestion** - 검색 필드는 Text Field outline에 search 아이콘과 지우기 버튼을 붙여 만듭니다. 검색 필드에는 `type="search"`와 `role="combobox"`를 붙입니다. 입력 전에는 최근 검색어, 입력 중에는 추천어, 결과가 없으면 안내 문구를 표시합니다.
+- **File Attach** - 파일을 끌어 놓는 영역은 PC 화면에만 배치합니다. 모바일에서는 추가 버튼(Trigger)과 파일 항목만 사용합니다. 추가 버튼에는 현재 개수와 최대 개수를 표시합니다. 파일이 최대 개수에 도달하면 추가 버튼을 disabled로 바꿉니다.
 - **Menu Sheet vs Bottom Sheet** - 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다. 입력이나 긴 내용은 Bottom Sheet에 담습니다. 되돌릴 수 없는 동작은 critical로 따로 묶습니다.
-- **Result Section** - 신청 완료, 오류, 빈 결과처럼 결과가 화면의 중심일 때 사용합니다. 다음에 할 일 버튼은 하나만 위에 둡니다. 보조 동작은 ghost 버튼으로 아래에 둡니다. 목록이 비었다는 짧은 안내는 Empty를 사용합니다.
-- **Timer** - 숫자 폭이 고정돼 있어 값이 바뀌어도 글자가 제자리에 있습니다. 크기와 색은 놓이는 자리에 맞춰 바꿉니다. 시간이 다 되면 `ds-timer-end` 이벤트를 받아 다음 동작으로 이어 갑니다.
+- **Result Section** - 신청 완료, 오류, 빈 결과처럼 결과가 화면의 중심일 때 사용합니다. 다음 동작을 안내하는 주요 버튼은 하나만 위에 배치합니다. 보조 동작은 ghost 버튼으로 아래에 배치합니다. 목록이 비어 있다는 짧은 안내에는 Empty를 사용합니다.
+- **Timer** - 숫자 폭이 고정되어 있어 값이 바뀌어도 글자 위치가 흔들리지 않습니다. 크기와 색은 배치되는 위치에 맞춰 조정합니다. 시간이 끝나면 `ds-timer-end` 이벤트를 받아 다음 동작을 실행합니다.
 - **Status Dot** - 색만으로 뜻을 전하지 않도록 글자와 함께 사용합니다. 프로필 사진 위의 상태는 Avatar의 Status를 사용합니다.
-- **로딩 표시** - 로딩은 Progress Circle의 indeterminate로 보여 줍니다. Spinner 부품은 따로 없습니다.
-- **Checkbox Group** - 서로 관련된 체크박스만 묶습니다. 묶음 이름과 오류 문구는 Field Label로 붙입니다.
-- **Scroll Fog** - 흐려지는 쪽에 20 이상 여백을 둡니다. 화면 전체 세로 스크롤에는 위 20, 아래 80을 둡니다.
-- **Pull To Refresh** - 최신 내용을 다시 불러오는 목록 화면에만 사용합니다. 글자를 끌어서 선택하는 영역에서는 data-disabled로 끕니다.
-- **Side Panel vs Bottom Sheet** - PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. 화면이 좁으면 Bottom Sheet로 바꿉니다.
-- **Image Frame / Carousel** - 사진은 Image Frame의 비율 안에 꽉 채워 넣습니다. 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. 터치 화면에서는 넘기기 버튼 없이 손가락으로 넘깁니다.
-- **Markdown / Code Block / Citation** - AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. 코드는 Code Block에 넣습니다. 근거는 번호나 출처 칩(Citation)으로 붙입니다.
-- **Multi Select vs Select** - 여러 개를 선택할 때만 Multi Select를 사용합니다. 선택한 값이 많으면 2개까지 보여 주고 나머지는 +N으로 줄입니다.
-- **Chat** - 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 둡니다. 입력 칸이 비어 있으면 보내기 버튼을 끕니다. 답변을 만드는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다.
+- **로딩 표시** - 로딩은 Progress Circle의 indeterminate로 표시합니다. Spinner 컴포넌트는 따로 없습니다.
+- **Checkbox Group** - 서로 관련된 체크박스만 묶습니다. 묶음 이름과 오류 문구는 Field Label로 연결합니다.
+- **Scroll Fog** - 흐려지는 쪽에는 20 이상의 여백을 둡니다. 화면 전체 세로 스크롤에는 위 20, 아래 80의 여백을 둡니다.
+- **Pull To Refresh** - 최신 내용을 다시 불러오는 목록 화면에만 사용합니다. 텍스트를 드래그해 선택하는 영역에서는 data-disabled로 비활성화합니다.
+- **Side Panel vs Bottom Sheet** - PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. 화면이 좁으면 Bottom Sheet로 전환합니다.
+- **Image Frame / Carousel** - 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다.
+- **Markdown / Code Block / Citation** - AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. 코드는 Code Block에 넣습니다. 근거는 번호나 출처 칩(Citation)으로 표시합니다.
+- **Multi Select vs Select** - 여러 개를 선택할 때만 Multi Select를 사용합니다. 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다.
+- **Chat** - 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다. 입력란이 비어 있으면 보내기 버튼을 비활성화합니다. 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다.
 - 닫기 버튼(Dialog/Bottom Sheet): 40×40 투명 + 24px `Lucide/x`, 색 `fg/neutral`.
 
 ---

@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <figure class="ds-codeblock">
@@ -20,7 +20,7 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Header** `ds-codeblock__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
+| **Header** `ds-codeblock__header` | 제목과 닫기 버튼이 놓이는 상단 영역입니다. |
 | **Language** `ds-codeblock__language` | 코드 언어 이름입니다. |
 | **Copy** `ds-codeblock__copy` | 코드를 복사하는 버튼입니다. |
 | **Code** `ds-codeblock__code` | 코드 본문입니다. |
@@ -47,14 +47,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | **Do** | AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. |
 | **Do** | 코드는 Code Block에 넣습니다. |
-| **Do** | 근거는 번호나 출처 칩(Citation)으로 붙입니다. |
+| **Do** | 근거는 번호나 출처 칩(Citation)으로 표시합니다. |
 | **Don't** | 5줄 미만 코드에는 줄 번호를 넣지 않습니다. |
 
 ## 예시
 
-### AI 답변 안에서 코드 보여 주기
+### AI 답변 속 코드
 
-Markdown 답변 안의 코드는 Code Block에 넣고, 머리줄에 언어 이름과 복사 버튼을 둡니다. 복사 버튼에 `data-ds-copy`를 붙이면 누를 때 코드가 복사됩니다.
+Markdown 답변 안의 코드는 Code Block에 넣고, 헤더에 언어 이름과 복사 버튼을 배치합니다. 복사 버튼에 `data-ds-copy`를 붙이면 누를 때 코드가 복사됩니다.
 
 ```html
 <div class="ds-markdown" style="width: 100%; max-width: 560px">
@@ -72,9 +72,9 @@ console.log(text); // 2026. 11. 4.</code></pre>
 </div>
 ```
 
-### 긴 한 줄은 줄을 바꿔 다 보이게
+### 긴 줄 자동 줄바꿈
 
-한 줄이 긴 코드는 `data-wrap`을 붙여 가로로 밀지 않고 줄을 바꿔 보여 줍니다. 주소처럼 끝까지 읽고 그대로 붙여 넣어야 하는 코드에 사용합니다.
+한 줄이 긴 코드는 `data-wrap`을 붙여 가로 스크롤 없이 줄을 바꿔 표시합니다. 주소처럼 끝까지 읽고 그대로 붙여 넣어야 하는 코드에 사용합니다.
 
 ```html
 <div class="ds-markdown" style="width: 100%; max-width: 480px">
@@ -89,9 +89,9 @@ console.log(text); // 2026. 11. 4.</code></pre>
 </div>
 ```
 
-### 짧은 명령은 머리줄 없이 끼워 넣기
+### 짧은 명령은 헤더 없이
 
-명령 한 줄처럼 짧고 무엇인지 분명한 코드는 머리줄을 빼고 코드 칸만 둡니다. 순서 안내 사이에 끼워도 글의 흐름이 끊기지 않습니다.
+명령 한 줄처럼 짧고 무엇인지 분명한 코드는 헤더를 빼고 코드 영역만 표시합니다. 순서 안내 사이에 넣어도 글의 흐름이 끊기지 않습니다.
 
 ```html
 <div class="ds-markdown" style="width: 100%; max-width: 480px">
@@ -111,8 +111,8 @@ console.log(text); // 2026. 11. 4.</code></pre>
 ### 크기와 여백
 
 ```
-header 에는 언어 이름과 복사 버튼. 복사 버튼(data-ds-copy)은 ybm-ds.js 가 코드를 복사하고 잠시 data-copied 를 붙인다.
-data-wrap: 긴 줄을 가로로 넘기지 않고 줄바꿈한다(2026-10-30 추가).
+header에는 언어 이름과 복사 버튼을 배치합니다. 복사 버튼(data-ds-copy)을 누르면 ybm-ds.js가 코드를 복사하고 잠시 data-copied를 붙입니다.
+data-wrap: 긴 줄을 가로로 넘기지 않고 줄바꿈합니다(2026-10-30 추가).
 Figma: shape/sm, 1px stroke/neutral-weak, bg/neutral / header padding x2 x4, 아래 1px 선, 언어 12 Medium fg/neutral-subtle, 복사 24 안에 16
   코드 padding x3 x4, 13 / 20, fg/neutral, 긴 줄은 가로 스크롤
 ```

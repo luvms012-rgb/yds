@@ -2,11 +2,11 @@
 
 # Card
 
-관련된 정보를 한 덩어리로 묶어 표시하는 컴포넌트입니다.
+관련된 정보를 하나로 묶어 표시하는 컴포넌트입니다.
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <article class="ds-card" [data-variant="elevated"] [data-size="small"]>
@@ -20,11 +20,11 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Header** `ds-card__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
+| **Header** `ds-card__header` | 제목과 닫기 버튼이 놓이는 상단 영역입니다. |
 | **Title** `ds-card__title` | 제목입니다. |
-| **Desc** `ds-card__desc` | 제목에 덧붙이는 설명 글입니다. |
+| **Desc** `ds-card__desc` | 제목을 보충하는 설명입니다. |
 | **Content** `ds-card__content` | 주된 내용이 들어가는 영역입니다. |
-| **Footer** `ds-card__footer` | 버튼이나 보조 정보가 놓이는 아래 영역입니다. |
+| **Footer** `ds-card__footer` | 버튼이나 보조 정보가 놓이는 하단 영역입니다. |
 
 ## 속성
 
@@ -39,17 +39,17 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 화면의 주요 버튼(brandSolid)은 카드 안이 아니라 화면 아래에 둡니다. 카드 아래쪽에는 보조 동작만 둡니다. |
+| **Do** | 화면의 주요 버튼(brandSolid)은 카드 안이 아니라 화면 하단에 배치합니다. 카드 하단에는 보조 동작만 배치합니다. |
 | **Do** | 따로 옮기거나 지울 수 있는 단위일 때만 카드로 만듭니다. 설정 묶음 같은 화면 구역은 제목과 여백으로 나눕니다. |
 | **Don't** | 같은 목록 안에서는 variant를 섞지 않습니다. 흰 화면에서는 outline, 회색 바탕 위에서는 elevated를 사용합니다. |
-| **Don't** | 카드 전체를 누를 수 있으면 아래쪽 버튼을 두지 않습니다. 누를 곳이 두 군데가 됩니다. |
+| **Don't** | 카드 전체를 누를 수 있으면 하단에 버튼을 두지 않습니다. 누르는 영역이 두 곳이 됩니다. |
 | **Don't** | 카드 안에 또 카드를 넣지 않습니다. 카드 안을 나눌 때는 Divider를 사용합니다. |
 
 ## 예시
 
-### 카드 전체를 눌러 상세로 가기
+### 카드 전체를 눌러 상세로 이동
 
-카드 전체가 링크이면 아래쪽 버튼을 두지 않습니다. 누를 곳이 한 군데라 카드 어디를 눌러도 같은 화면으로 갑니다.
+카드 전체가 링크이면 하단 버튼을 두지 않습니다. 누르는 영역이 하나여서 카드 어디를 눌러도 같은 화면으로 이동합니다.
 
 ```html
 <div class="u-flex u-wrap u-gap-3" style="width: 100%; max-width: 612px">
@@ -70,9 +70,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 카드 안은 Divider로 나누기
+### 카드 안은 Divider로 구분
 
-카드 안의 묶음은 Divider로 나누고, 카드 안에 카드를 넣지 않습니다. 화면의 주요 버튼은 카드 밖 아래에 두고 카드 아래쪽에는 보조 동작만 둡니다.
+카드 안의 묶음은 Divider로 구분하고, 카드 안에 카드를 넣지 않습니다. 화면의 주요 버튼은 카드 밖 아래에 배치하고, 카드 하단에는 보조 동작만 둡니다.
 
 ```html
 <div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
@@ -95,9 +95,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 여러 개를 늘어놓을 때는 variant 하나로
+### 여러 카드는 variant 하나로 통일
 
-나란히 놓는 요약 카드는 variant 하나로 맞추고 같은 목록 안에서 섞지 않습니다. 모양이 같아야 카드가 많아도 한 묶음으로 읽힙니다.
+나란히 놓는 요약 카드는 variant 하나로 통일하고 같은 목록 안에서 섞지 않습니다. 모양이 같아야 카드가 많아도 한 묶음으로 읽힙니다.
 
 ```html
 <div class="u-flex u-wrap u-gap-3" style="width: 100%; max-width: 624px">
@@ -146,5 +146,5 @@ Figma: bg/layer-default / shape/xl / padding medium x5 / small x4 / 영역 gap x
   header gap x1 / title t06 Bold(small t05 Bold, 2026-11-03 한 단계 올림: Empty 제목과 같은 단계) fg/neutral / desc t04(small t03) fg/neutral-subtle
   outline 1px stroke/neutral-weak / elevated elevation raised / footer 버튼 neutralWeak medium(small) gap x2
   모서리 medium shape/xl / small shape/lg (2026-11-03) / 화면 폭에 따라 안쪽 여백을 바꿀 때는 --ds-card-padding / --ds-card-gap
-전체가 눌리는 카드: <a class="ds-card" href> → pressed 시 bg/transparent-pressed 를 덧씌움
+전체가 눌리는 카드: <a class="ds-card" href>로 만들면 누를 때 bg/transparent-pressed를 덧씌웁니다
 ```

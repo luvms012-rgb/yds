@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-timepicker" role="group" aria-label="시간" [aria-disabled="true"]>
@@ -46,14 +46,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
-| **Do** | 시간 선택이 화면의 주요 기능이면 화면에 바로 둡니다. |
-| **Do** | 입력 칸에서 선택할 때는 Bottom Sheet 안에 넣고, Field Button을 눌러 엽니다. |
+| **Do** | 시간 선택이 화면의 주요 기능이면 화면에 바로 배치합니다. |
+| **Do** | 입력 필드에서 선택할 때는 Bottom Sheet 안에 배치하고, Field Button을 눌러 엽니다. |
 
 ## 예시
 
 ### 알림 시간을 화면에서 바로 선택
 
-시간 선택이 화면의 주요 기능이라 Time Picker를 화면에 바로 둡니다. 휠을 굴리거나 항목을 눌러 오전/오후, 시, 분을 선택합니다.
+시간 선택이 화면의 주요 기능이므로 Time Picker를 화면에 바로 배치합니다. 휠을 굴리거나 항목을 눌러 오전/오후, 시, 분을 선택합니다.
 
 ```html
 <div class="u-col u-gap-6" style="width: 100%; max-width: 360px">
@@ -99,9 +99,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 입력 칸을 누르면 시트에서 선택
+### 입력 필드를 눌러 Bottom Sheet에서 선택
 
-폼 안에서는 Field Button을 누르면 Bottom Sheet가 열리고 그 안에서 시간을 선택합니다. 날짜, 장소처럼 다른 입력 칸과 함께 있는 예약 화면에 사용합니다.
+폼 안에서는 Field Button을 누르면 Bottom Sheet가 열리고 그 안에서 시간을 선택합니다. 날짜, 장소처럼 다른 입력 필드와 함께 있는 예약 화면에 사용합니다.
 
 ```html
 <div class="ds-field" style="width: 100%; max-width: 360px">
@@ -165,10 +165,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-ybm-ds.js 가 가운데 온 항목에 aria-selected 를 붙이고 열에서 change 이벤트(detail.value)를 보낸다.
-처음 값은 aria-selected="true" 로 표시해 두면 그 위치로 맞춰 준다. 분 간격은 넣는 항목으로 정한다(기본 5분).
+ybm-ds.js가 가운데에 온 항목에 aria-selected를 붙이고, 열에서 change 이벤트(detail.value)를 보냅니다.
+초기 값에 aria-selected="true"를 붙이면 그 위치로 맞춰집니다. 분 간격은 넣는 항목으로 정합니다(기본 5분).
 Figma: 폭 320(채움) / 높이 220 = 항목 5줄 × x11 / 좌우 x4 / 열 간격 x2
   가운데 띠 bg/neutral-weak-alpha shape/md
   가운데 t07 SemiBold fg/neutral / 바로 위아래 t06 fg/neutral-muted / 그 밖 t05 fg/neutral-subtle / disabled 모두 fg/disabled
-모바일 입력 필드에서는 Field Button + Bottom Sheet 안에 넣어 쓴다.
+모바일 입력 필드에서는 Field Button으로 여는 Bottom Sheet 안에 넣어 사용합니다.
 ```

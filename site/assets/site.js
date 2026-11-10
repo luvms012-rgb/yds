@@ -350,7 +350,7 @@
         if (s >= 0.6 || shown.length < 2) break;
         var last = shown[shown.length - 1]; last.dataset.siteHid = last.style.display; last.style.display = "none";
       }
-      s = Math.max(s, 0.5);
+      s = Math.max(s, innerWidth < 600 ? 0.35 : 0.5);  // 휴대폰은 더 줄여 칸 안에 (11-10)
       st.style.width = aw / s + "px";
       st.style.transform = s < 1 ? "scale(" + s + ")" : "";
     });
@@ -769,3 +769,19 @@
 
 
 })();
+
+/* 제목 옆 링크 버튼: 누르면 이 제목 주소를 복사하고 2초 동안 체크 아이콘(코드 복사 버튼과 같은 반응, 11-10 사용자 "복사 클릭 시 피드백") */
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest(".site-anchor");
+  if (!a) return;
+  e.preventDefault();
+  var url = location.href.split("#")[0] + a.getAttribute("href");
+  history.replaceState(null, "", a.getAttribute("href"));
+  var done = function () {
+    a.setAttribute("data-copied", "");
+    a.setAttribute("aria-label", "링크를 복사했어요");
+    clearTimeout(a._t);
+    a._t = setTimeout(function () { a.removeAttribute("data-copied"); a.setAttribute("aria-label", "이 제목 링크 복사"); }, 2000);
+  };
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, done); else done();
+});

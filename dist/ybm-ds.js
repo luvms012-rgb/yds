@@ -21,13 +21,12 @@
      · Multi Select — Popover 와 같이 열고 닫기, 고른 값을 칸에 Badge 로 채우기
      · File Attach — 파일을 끌어 놓는 칸 위로 끌고 오면 data-state="dragover", 벗어나거나 놓으면 뺀다
      · Code Input — 한 칸에 한 글자, 넣으면 다음 칸, 지우면 앞 칸, 붙여 넣으면 모든 칸, 다 채우면 ds-code-complete(detail.value)
-     · Toolbar — 막대 안에서 좌우 화살표로 버튼 사이를 옮긴다
+     · Toolbar — 막대 안에서 좌우 화살표로 버튼 사이를 옮긴다, data-ds-selection 표의 고른 체크박스를 세어 막대를 보이고 숨긴다, 머리 체크박스는 모두 고르기, 해제 버튼
      · Tree — 줄을 누르면 펼치고 접고 고른다(change, detail.value), 위아래 화살표 이동, 오른쪽 펼침, 왼쪽 접기
      · Wheel Picker — Time Picker 와 같은 휠
      · Menu — checkbox 항목은 켜고 끄고, radio 항목은 묶음에서 하나만, 하위 메뉴 버튼은 열고 닫기
      · Date Field — 숫자만 넣으면 YYYY.MM.DD 로 점을 넣는다
      · Lightbox — Dialog 와 같이 열고 닫기, data-ds-index 로 시작 사진, 이전/다음 버튼과 좌우 화살표 키로 넘기기
-     · Selection Bar — data-ds-selection 표의 고른 체크박스를 세어 막대를 보이고 숨긴다, 머리 체크박스는 모두 고르기, 해제 버튼
      · Mega Menu — data-ds-megamenu 트리거로 열고 닫기, Esc 와 바깥 누름으로 닫기
      · Command Palette — Dialog 와 같이 열기, data-ds-hotkey="k" 면 Ctrl/Command + K, 낱말로 거르기, 위아래 화살표와 Enter
    사용: <script src="…/ybm-ds/dist/ybm-ds.js" defer></script>
@@ -488,7 +487,7 @@
     return [].indexOf.call(box.querySelectorAll(".ds-lightbox__slide"), box.querySelector('.ds-lightbox__slide[aria-current="true"]'));
   }
 
-  /* ---- Selection Bar ----------------------------------------------------- */
+  /* ---- Toolbar 선택 개수 ------------------------------------------------- */
   function selectionBoxes(table) {
     return [].slice.call(table.querySelectorAll('tbody input[type="checkbox"], [role="listitem"] input[type="checkbox"], li input[type="checkbox"]'));
   }
@@ -498,7 +497,7 @@
     var boxes = selectionBoxes(table), n = boxes.filter(function (b) { return b.checked; }).length;
     var all = table.querySelector('thead input[type="checkbox"]');
     if (all) { all.checked = n > 0 && n === boxes.length; all.indeterminate = n > 0 && n < boxes.length; }
-    var count = bar.querySelector(".ds-selectionbar__count");
+    var count = bar.querySelector(".ds-toolbar__count");
     if (count) count.textContent = (bar.getAttribute("data-count-format") || "{n}개 선택").replace("{n}", n);
     bar.hidden = n === 0;
   }
@@ -585,10 +584,10 @@
     var lbNav = t.closest(".ds-lightbox__nav");
     if (lbNav) { var lb = lbNav.closest(".ds-lightbox"); lightboxGo(lb, lightboxIndex(lb) + (lbNav.getAttribute("data-direction") === "previous" ? -1 : 1)); return; }
 
-    // Selection Bar 해제 버튼
-    var selClear = t.closest(".ds-selectionbar__clear");
+    // Toolbar 선택 해제 버튼
+    var selClear = t.closest(".ds-toolbar__clear");
     if (selClear) {
-      var selBar = selClear.closest(".ds-selectionbar");
+      var selBar = selClear.closest(".ds-toolbar");
       var selTable = selBar.id && document.querySelector('[data-ds-selection="' + selBar.id + '"]');
       if (selTable) { selectionBoxes(selTable).forEach(function (b) { b.checked = false; }); syncSelection(selTable); }
       else selBar.hidden = true;
@@ -728,7 +727,7 @@
     if (t.classList.contains("ds-datefield__control")) formatDateField(t);
     else if (t.classList.contains("ds-command__input")) commandFilter(t.closest(".ds-command"));
   });
-  // Selection Bar: 표의 체크박스가 바뀌면 센다, 머리 체크박스는 모두 고르기
+  // Toolbar 선택: 표의 체크박스가 바뀌면 센다, 머리 체크박스는 모두 고르기
   document.addEventListener("change", function (e) {
     var t = e.target;
     var table = t.closest && t.type === "checkbox" && t.closest("[data-ds-selection]");

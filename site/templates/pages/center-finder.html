@@ -190,12 +190,11 @@
   .tp-cf .tp-map { order: -1; min-height: 240px; border-radius: 0; }
   @media (min-width: 1024px) {
     .tp-cf { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); align-items: start; }
-    .tp-cf .tp-map { order: 0; position: sticky; top: var(--tp-topbar-h, 57px); height: calc(100vh - var(--tp-topbar-h, 57px)); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
+    .tp-cf .tp-map { order: 0; position: sticky; top: var(--tp-topbar-h, 52px); height: calc(100vh - var(--tp-topbar-h, 52px)); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }  /* 52 = ds-topnav 높이(안쪽 x2 + 항목 36), 11-10 사용자 "지도 상단 여백" */
   }
   .tp-cf__filter { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-center { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x2) var(--ds-space-x4); align-items: start; }
   .tp-center[aria-current] { margin-inline: calc(var(--ds-space-x3) * -1); padding-inline: var(--ds-space-x3); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); }
-  .tp-center[aria-current] .ds-badge { --ds-badge-bg: var(--ds-color-bg-layer-default); }  /* 회색 바탕 위 배지는 흰 바탕 (11-10 사용자, 반투명 금지) */
   .tp-center__acts { display: flex; gap: var(--ds-space-x2); }
   .tp-pin { position: absolute; color: var(--ds-color-fg-neutral); }
   .tp-pin[data-on] { color: var(--ds-color-fg-brand); }

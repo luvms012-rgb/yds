@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <span class="ds-badge" data-variant="solid" data-tone="brand">NEW</span>
@@ -22,7 +22,7 @@
 | 구성 요소 | 설명 |
 | --- | --- |
 | **Prefix** `ds-badge__prefix` | 앞에 붙는 아이콘이나 요소입니다. |
-| **Label** `ds-badge__label` | 이름이나 값을 보여 주는 글자입니다. |
+| **Label** `ds-badge__label` | 이름이나 값을 표시하는 텍스트입니다. |
 | **Action** `ds-badge__action` | 바로 실행하는 작은 버튼입니다. |
 
 ## 속성
@@ -40,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 누를 수 없는 표시용 라벨로만 사용합니다. |
-| **Do** | 같은 자리의 상태는 모두 배지로 보여 주고, 색으로만 강약을 나눕니다. |
+| **Do** | 같은 위치의 상태는 모두 배지로 표시하고, 강약은 색으로만 구분합니다. |
 | **Do** | 1~2단어로 작성합니다. |
 
 ## 예시
@@ -147,7 +147,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 변수 | 기본값 |
 | --- | --- |
-| `--ds-badge-bg` | `var(--ds-color-bg-neutral)` |
+| `--ds-badge-bg` | `var(--ds-color-bg-neutral-weak-alpha)` |
 | `--ds-badge-fg` | `var(--ds-color-fg-neutral-muted)` |
 | `--ds-badge-line` | `transparent` |
 
@@ -159,5 +159,5 @@ tone: neutral(기본) / brand / informative / positive / warning / critical
 Figma medium: py2 px6 / min-h20 / shape/2xs / t01 Medium / 아이콘 12
       large : py4 px8 / min-h24 / shape/xs  / t02 Medium / 아이콘 14
 공통: gap x0_5 / solid 라벨 fg/on-{tone}-solid
-기본 최대 너비 없음 — 말줄임이 필요하면 사용처에서 max-width 지정
+기본 최대 너비는 없습니다. 말줄임이 필요하면 사용하는 곳에서 max-width를 지정하세요.
 ```

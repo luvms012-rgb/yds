@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <div class="ds-ptr">
@@ -21,7 +21,7 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Indicator** `ds-ptr__indicator` | 지금 상태나 위치를 알려 주는 표시입니다. |
+| **Indicator** `ds-ptr__indicator` | 현재 상태나 위치를 나타내는 표시입니다. |
 | **Track** `ds-progress-circle__track` | 막대의 바탕입니다. |
 | **Range** `ds-progress-circle__range` | 당긴 만큼 차오르는 표시입니다. |
 | **Content** `ds-ptr__content` | 주된 내용이 들어가는 영역입니다. |
@@ -47,13 +47,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 최신 내용을 다시 불러오는 목록 화면에만 사용합니다. |
-| **Do** | 글자를 끌어서 선택하는 영역에서는 data-disabled로 끕니다. |
+| **Do** | 텍스트를 드래그해 선택하는 영역에서는 data-disabled로 비활성화합니다. |
 
 ## 예시
 
-### 새 소식이 쌓이는 목록에 사용하기
+### 새 내용이 쌓이는 목록
 
-알림처럼 새 내용이 계속 쌓이는 목록을 `ds-ptr`로 감쌉니다. 휴대폰에서 맨 위를 아래로 당기면 표시가 내려오고 `ds-refresh` 이벤트가 나갑니다.
+알림처럼 새 내용이 계속 쌓이는 목록을 `ds-ptr`로 감쌉니다. 모바일에서 목록 맨 위를 아래로 당기면 새로 고침 표시가 나타나고 `ds-refresh` 이벤트가 발생합니다.
 
 ```html
 <div class="u-col u-full" style="max-width: 375px">
@@ -105,9 +105,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 글자를 선택하는 화면에서는 끄기
+### 글자 선택 영역에서는 비활성화
 
-공지 본문처럼 글자를 끌어서 선택하는 영역은 `data-disabled`로 당기기를 끕니다. 글자를 선택하려던 동작이 새로 고침으로 바뀌지 않습니다.
+공지 본문처럼 글자를 드래그해 선택하는 영역은 `data-disabled`로 당기기를 비활성화합니다. 글자를 선택하려던 동작이 새로 고침으로 바뀌지 않습니다.
 
 ```html
 <div class="ds-ptr u-full" data-disabled style="max-width: 420px">
@@ -140,7 +140,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-ybm-ds.js 가 터치로 당긴 거리를 --ds-ptr-displacement 에 넣고, 88 을 넘겨 놓으면 data-state="refreshing" 과 ds-refresh 이벤트.
-새로 고침이 끝나면 DS.endRefresh(요소) 로 되돌린다. data-disabled 로 끈다.
+ybm-ds.js가 터치로 당긴 거리를 --ds-ptr-displacement에 넣고, 88을 넘겨서 놓으면 data-state="refreshing"을 붙이고 ds-refresh 이벤트를 보냅니다.
+새로 고침이 끝나면 DS.endRefresh(요소)로 원래 상태로 되돌립니다. data-disabled로 비활성화합니다.
 Figma: 위쪽 영역 높이 x6 + x8 × 2 / Progress Circle 24 neutral, 당기는 동안 차오르고 새로 고치는 동안 회전
 ```

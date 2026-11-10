@@ -1493,7 +1493,7 @@
           "variants": 4
         }
       ],
-      "props": "size `medium/small`, variant `plain/muted`, `data-divider`",
+      "props": "size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, `__clear`, 표에 `data-ds-selection`",
       "doc": "2717:627",
       "category": "Action"
     },
@@ -1586,23 +1586,6 @@
       "props": "`data-ds-open` + `data-ds-index`, 좌우 화살표 키, 사진 개수 표시",
       "category": "Overlay",
       "doc": "3144:1250"
-    },
-    {
-      "no": "82",
-      "name": "Selection Bar",
-      "classes": [
-        ".ds-selectionbar"
-      ],
-      "figma": [
-        {
-          "id": "3143:1017",
-          "type": "COMPONENT_SET",
-          "variants": 2
-        }
-      ],
-      "props": "position `floating`, 표에 `data-ds-selection`, `data-count-format`",
-      "category": "Table & List",
-      "doc": "3143:920"
     },
     {
       "no": "83",

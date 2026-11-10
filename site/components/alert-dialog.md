@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
 <dialog class="ds-dialog ds-alertdialog" role="alertdialog" aria-labelledby="a-t" aria-describedby="a-d">
@@ -22,10 +22,10 @@
 
 | 구성 요소 | 설명 |
 | --- | --- |
-| **Header** `ds-alertdialog__header` | 제목과 닫기 버튼이 놓이는 머리 영역입니다. |
+| **Header** `ds-alertdialog__header` | 제목과 닫기 버튼이 놓이는 상단 영역입니다. |
 | **Title** `ds-alertdialog__title` | 제목입니다. |
-| **Desc** `ds-alertdialog__desc` | 제목에 덧붙이는 설명 글입니다. |
-| **Footer** `ds-alertdialog__footer` | 버튼이나 보조 정보가 놓이는 아래 영역입니다. |
+| **Desc** `ds-alertdialog__desc` | 제목을 보충하는 설명입니다. |
+| **Footer** `ds-alertdialog__footer` | 버튼이나 보조 정보가 놓이는 하단 영역입니다. |
 
 ## 속성
 
@@ -49,9 +49,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 예시
 
-### 지우기 전에 한 번 더 묻기
+### 삭제 전 확인
 
-되돌릴 수 없는 삭제는 Alert Dialog로 확인받고, 실행 버튼은 criticalSolid로 둡니다. 바깥을 눌러도 닫히지 않아 버튼을 눌러야만 넘어갑니다.
+되돌릴 수 없는 삭제는 Alert Dialog로 확인받고, 실행 버튼은 criticalSolid를 사용합니다. 바깥을 눌러도 닫히지 않아 버튼을 눌러야만 다음으로 진행됩니다.
 
 ```html
 <ul class="ds-list" data-variant="inset" style="width: 100%; max-width: 420px">
@@ -77,9 +77,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 쓰던 글을 두고 나갈 때 묻기
+### 작성 중 나가기 확인
 
-쓰던 내용이 사라지는 동작 앞에서 한 번 더 묻고, 두 버튼을 가로로(`pair`) 나란히 둡니다. 확인 버튼에는 "나가기"처럼 실제로 일어나는 일을 적습니다.
+작성 중인 내용이 사라지는 동작 전에 한 번 더 확인하고, 두 버튼은 가로(`pair`)로 나란히 배치합니다. 확인 버튼에는 "나가기"처럼 실제로 일어나는 동작을 적습니다.
 
 ```html
 <div style="width: 100%; max-width: 375px">
@@ -104,9 +104,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 버튼 글이 길면 위아래로 쌓기
+### 긴 버튼 문구는 세로 배치
 
-버튼 글이 길어 가로 두 칸에 들어가지 않으면 `stacked`로 위아래로 쌓습니다. 해지처럼 잃는 것이 있는 동작은 설명에 무엇이 사라지는지 적습니다.
+버튼 문구가 길어 가로 두 칸에 들어가지 않으면 `stacked`로 세로로 쌓습니다. 해지처럼 잃는 것이 있는 동작은 무엇이 사라지는지 설명에 적습니다.
 
 ```html
 <ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
