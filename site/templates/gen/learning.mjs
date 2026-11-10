@@ -34,7 +34,7 @@ const home = () => {
   @media (min-width: 768px) { .tp-resume { grid-template-columns: 280px minmax(0, 1fr); } }
   .tp-must { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x2) var(--ds-space-x4); align-items: center; }
 `;
-  const must = (t, due, v, done = false) => `<div class="tp-must"><div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-row"><span class="tp-h4">${t}</span>${done ? badge('이수 완료', 'positive') : badge(due, due.startsWith('D-') && parseInt(due.slice(2)) <= 7 ? 'critical' : 'warning')}</div>${done ? '' : progress(v, { label: t + ' 진도' })}</div>${done ? btn('이수증', { size: 'xsmall', ic: 'download' }) : btn(v ? '이어 하기' : '시작하기', { size: 'xsmall' })}</div>`;
+  const must = (t, due, v, done = false) => `<div class="tp-must"><div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-row"><span class="tp-label">${t}</span>${done ? badge('이수 완료', 'positive') : badge(due, due.startsWith('D-') && parseInt(due.slice(2)) <= 7 ? 'critical' : 'warning')}</div>${done ? '' : progress(v, { label: t + ' 진도' })}</div>${done ? btn('이수증', { size: 'xsmall', ic: 'download' }) : btn(v ? '이어 하기' : '시작하기', { size: 'xsmall' })}</div>`;
   const body = `<div class="tp-app">${topbar(LEARN_MENU, 0, learnEnd)}
 <main class="tp-content">
   <div class="tp-hello">
@@ -56,7 +56,7 @@ const home = () => {
     <div class="tp-g4">${course(1, '처음 만나는 생성형 AI 업무 활용', ['3시간', '입문'], { b: badge('신규', 'brand', true) })}${course(2, '설득하는 프레젠테이션 구조 잡기', ['5시간', '중급'], { r: '4.7', n: '862' })}${course(3, '팀장의 1:1 대화법', ['2시간', '중급'], { r: '4.9', n: '2,310' })}${course(4, '비즈니스 영어 이메일 바로 쓰기', ['8시간', '입문'], { r: '4.6', n: '540' })}</div>
   </section>
   <section class="tp-sec">${secHead('사내 지식', { tools: link('지식 공유하기') })}
-    ${card(`<div class="tp-rows">${[['신규 입사자 온보딩 체크리스트', '인사팀 / 이서연', 128], ['고객 문의 응답 문장 모음', '고객경험팀 / 박지후', 96], ['분기 보고서 템플릿과 작성 팁', '전략기획팀 / 최하은', 74]].map(([t, w, l]) => `<div class="tp-between"><div class="tp-stack"><span class="tp-h4">${t}</span><span class="tp-caption">${w}</span></div><span class="tp-row tp-caption">${icon('thumbs-up', 'sm')}${T(l)}</span></div>`).join('')}</div>`)}
+    ${card(`<div class="tp-rows">${[['신규 입사자 온보딩 체크리스트', '인사팀 / 이서연', 128], ['고객 문의 응답 문장 모음', '고객경험팀 / 박지후', 96], ['분기 보고서 템플릿과 작성 팁', '전략기획팀 / 최하은', 74]].map(([t, w, l]) => `<div class="tp-between"><div class="tp-stack"><span class="tp-label">${t}</span><span class="tp-caption">${w}</span></div><span class="tp-row tp-caption">${icon('thumbs-up', 'sm')}${T(l)}</span></div>`).join('')}</div>`)}
   </section>
 </main></div>`;
   return { slug: 'learning-home', en: 'Learning Home', name: '학습 홈', group: 'Learning B2B', desc: '임직원이 학습을 시작하는 첫 화면입니다. 이어서 볼 강의와 필수 교육을 먼저 보여 줍니다.', css, body };
@@ -156,7 +156,7 @@ const admin = () => {
 `;
   const rows = [['데이터로 말하는 보고서 쓰기', '3기', '직무', '11.03 ~ 11.28', '전략기획팀 외 2', 86, 72, '진행 중'], ['개인정보 보호 교육', '2026', '법정 필수', '11.01 ~ 11.30', '전체 임직원', 1240, 58, '진행 중'], ['신임 팀장 리더십', '5기', '리더십', '11.10 ~ 12.12', '신임 팀장', 24, 31, '진행 중'], ['처음 만나는 생성형 AI 업무 활용', '2기', 'AI/디지털', '11.17 ~ 12.05', '희망자', 312, 0, '예정'], ['비즈니스 영어 이메일', '4기', '외국어', '10.06 ~ 10.31', '해외영업팀', 41, 95, '끝남']];
   const st = { '진행 중': 'informative', 예정: '', 끝남: 'positive' };
-  const trs = rows.map(([n, g, cat, per, who, cnt, v, s], i) => [`<div class="tp-stack"><span class="tp-h4">${n}</span><span class="tp-caption">${g} / ${per}</span></div>`, badge(cat), T(cnt.toLocaleString() + '명'), `<div class="tp-track" style="min-width:120px">${progress(v, { label: n + ' 이수율' })}<span class="tp-caption tp-num">${v}%</span></div>`, badge(s, st[s]), iconBtn('ellipsis', '더 보기', { size: 'xsmall' })]);
+  const trs = rows.map(([n, g, cat, per, who, cnt, v, s], i) => [`<div class="tp-stack"><span class="tp-label">${n}</span><span class="tp-caption">${g} / ${per}</span></div>`, badge(cat), T(cnt.toLocaleString() + '명'), `<div class="tp-track" style="min-width:120px">${progress(v, { label: n + ' 이수율' })}<span class="tp-caption tp-num">${v}%</span></div>`, badge(s, st[s]), iconBtn('ellipsis', '더 보기', { size: 'xsmall' })]);
   const main = `${head('과정 운영', { tools: btn('과정 만들기', { variant: 'brandSolid', ic: 'plus' }) })}
 <main class="tp-content">
   <div class="tp-ad">

@@ -631,7 +631,7 @@ ${practices([
 ])}`,
   },
   breakpoint: {
-    title: '기준점', lead: '기준점은 화면 너비에 따라 레이아웃이 바뀌는 지점입니다.',
+    title: '기준점', lead: '화면 너비에 따라 레이아웃이 바뀌는 지점입니다.',
     body: `<h2 id="overview">개요</h2>
 <p>작은 화면부터 만들고 폭이 넓어질 때 배치를 더합니다. <code>@media</code> 안에서는 CSS 변수를 사용할 수 없어 숫자를 직접 입력합니다.</p>
 <h2 id="tokens">토큰</h2>
@@ -1060,7 +1060,7 @@ write({
   </div>
 </div>
 <div class="site-tpl-grid">
-${templates.map((t) => `<article class="site-tpl" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
+${[...templates].sort((a, b) => a.name.localeCompare(b.name, "ko")).map((t) => `<article class="site-tpl" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
   <div class="site-tpl-thumb" aria-hidden="true"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 미리보기" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe></div>
   <div class="site-tpl__scrim">
     <div class="site-tpl__text"><h3 class="site-tpl__title"><a class="site-tpl__link" href="${t.slug}.html">${esc(t.name)}</a></h3><p class="site-tpl__desc">${esc(t.desc)}</p></div>
@@ -1112,7 +1112,7 @@ const RELEASES = readJson('site/src/updates.json').releases;
 const fmtDate = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${y}. ${m}. ${dd}`; };
 write({
   file: 'updates.html', section: 'updates', title: 'Updates', desc: 'YDS 업데이트 소식', layout: 'page',
-  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS 업데이트 소식과 변경 기록입니다.</p></header>
+  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">업데이트 소식과 변경 기록입니다.</p></header>
 ${RELEASES.map((r) => `<section class="site-group site-release">
 <h2 id="${r.version ? 'v' + r.version : 'd-' + r.date}">${r.version ? `<span class="site-release__ver">v${esc(r.version)}</span> ` : ''}<time datetime="${r.date}">${fmtDate(r.date)}</time></h2>
 <ul class="site-list">${r.sections.flatMap((s) => s.items).map(([a, t]) => `<li><span class="ds-badge" data-size="medium">${esc(a)}</span> ${inline(t)}</li>`).join('')}</ul>

@@ -64,6 +64,8 @@
 
 - [Code Input](https://luvms012-rgb.github.io/yds/site/components/code-input.md)
 
+- [Date Field](https://luvms012-rgb.github.io/yds/site/components/date-field.md)
+
 - [Date Picker](https://luvms012-rgb.github.io/yds/site/components/date-picker-date-cell.md)
 
 - [Field Button](https://luvms012-rgb.github.io/yds/site/components/field-button.md)
@@ -136,6 +138,8 @@
 
 - [Chip Tabs](https://luvms012-rgb.github.io/yds/site/components/chip-tabs.md)
 
+- [Mega Menu](https://luvms012-rgb.github.io/yds/site/components/mega-menu.md)
+
 - [Pagination](https://luvms012-rgb.github.io/yds/site/components/pagination.md)
 
 - [Side Navigation](https://luvms012-rgb.github.io/yds/site/components/side-navigation.md)
@@ -156,9 +160,13 @@
 
 - [Bottom Sheet](https://luvms012-rgb.github.io/yds/site/components/bottom-sheet.md)
 
+- [Command Palette](https://luvms012-rgb.github.io/yds/site/components/command-palette.md)
+
 - [Dialog](https://luvms012-rgb.github.io/yds/site/components/dialog.md)
 
 - [Help Bubble](https://luvms012-rgb.github.io/yds/site/components/help-bubble.md)
+
+- [Lightbox](https://luvms012-rgb.github.io/yds/site/components/lightbox.md)
 
 - [Menu Sheet](https://luvms012-rgb.github.io/yds/site/components/menu-sheet.md)
 
@@ -175,6 +183,8 @@
 - [Description List](https://luvms012-rgb.github.io/yds/site/components/description-list.md)
 
 - [List](https://luvms012-rgb.github.io/yds/site/components/list-list-item.md)
+
+- [Selection Bar](https://luvms012-rgb.github.io/yds/site/components/selection-bar.md)
 
 - [Table](https://luvms012-rgb.github.io/yds/site/components/table.md)
 

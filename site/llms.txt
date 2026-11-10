@@ -48,7 +48,7 @@
 - [Color](https://luvms012-rgb.github.io/yds/site/foundations/color.md): 색은 정보의 위계와 상태, 브랜드를 구분해 전달합니다.
 - [Typography](https://luvms012-rgb.github.io/yds/site/foundations/typography.md): 타이포그래피는 정보의 위계를 구분하고 글을 읽기 쉽게 만듭니다.
 - [Spacing](https://luvms012-rgb.github.io/yds/site/foundations/spacing.md): 간격은 요소 사이의 거리로 관계와 묶음을 나타냅니다.
-- [Breakpoint](https://luvms012-rgb.github.io/yds/site/foundations/breakpoint.md): 기준점은 화면 너비에 따라 레이아웃이 바뀌는 지점입니다.
+- [Breakpoint](https://luvms012-rgb.github.io/yds/site/foundations/breakpoint.md): 화면 너비에 따라 레이아웃이 바뀌는 지점입니다.
 - [Radius](https://luvms012-rgb.github.io/yds/site/foundations/shape.md): 모서리는 요소의 둥글기를 정해 일관된 인상을 만듭니다.
 - [Elevation](https://luvms012-rgb.github.io/yds/site/foundations/elevation.md): 그림자와 겹침 순서는 요소의 높낮이와 앞뒤 관계를 나타냅니다.
 - [Motion](https://luvms012-rgb.github.io/yds/site/foundations/motion.md): 움직임은 화면의 변화를 자연스럽게 이어 줍니다.
@@ -138,6 +138,11 @@
 - [Tree](https://luvms012-rgb.github.io/yds/site/components/tree.md): 폴더나 분류처럼 상하 관계가 있는 항목을 접고 펼쳐 표시하는 목록입니다.
 - [Wheel Picker](https://luvms012-rgb.github.io/yds/site/components/wheel-picker.md): 휠을 돌려 날짜나 숫자 같은 값 하나를 선택하는 컴포넌트입니다.
 - [Search Field](https://luvms012-rgb.github.io/yds/site/components/search-field.md): 지우기와 취소 버튼을 함께 제공하는 검색 입력 칸입니다.
+- [Date Field](https://luvms012-rgb.github.io/yds/site/components/date-field.md): 날짜를 숫자로 바로 입력하는 칸입니다.
+- [Lightbox](https://luvms012-rgb.github.io/yds/site/components/lightbox.md): 사진을 화면 가득 크게 보고 옆 사진으로 넘기는 창입니다.
+- [Selection Bar](https://luvms012-rgb.github.io/yds/site/components/selection-bar.md): 표나 목록에서 선택한 항목에 함께 적용할 동작을 모은 막대입니다.
+- [Mega Menu](https://luvms012-rgb.github.io/yds/site/components/mega-menu.md): 위 메뉴 아래로 펼쳐 하위 메뉴 묶음을 한 번에 보여 주는 판입니다.
+- [Command Palette](https://luvms012-rgb.github.io/yds/site/components/command-palette.md): 낱말로 화면 이동과 동작을 찾아 바로 실행하는 창입니다.
 
 ## Templates
 

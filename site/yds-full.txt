@@ -376,7 +376,7 @@ YDS의 색상은 역할 색과 팔레트 색 두 가지로 구성됩니다. 화�
 
 # Breakpoint
 
-기준점은 화면 너비에 따라 레이아웃이 바뀌는 지점입니다.
+화면 너비에 따라 레이아웃이 바뀌는 지점입니다.
 
 ## 개요
 
@@ -1351,6 +1351,8 @@ Purple
 
 - [Code Input](https://luvms012-rgb.github.io/yds/site/components/code-input.md)
 
+- [Date Field](https://luvms012-rgb.github.io/yds/site/components/date-field.md)
+
 - [Date Picker](https://luvms012-rgb.github.io/yds/site/components/date-picker-date-cell.md)
 
 - [Field Button](https://luvms012-rgb.github.io/yds/site/components/field-button.md)
@@ -1423,6 +1425,8 @@ Purple
 
 - [Chip Tabs](https://luvms012-rgb.github.io/yds/site/components/chip-tabs.md)
 
+- [Mega Menu](https://luvms012-rgb.github.io/yds/site/components/mega-menu.md)
+
 - [Pagination](https://luvms012-rgb.github.io/yds/site/components/pagination.md)
 
 - [Side Navigation](https://luvms012-rgb.github.io/yds/site/components/side-navigation.md)
@@ -1443,9 +1447,13 @@ Purple
 
 - [Bottom Sheet](https://luvms012-rgb.github.io/yds/site/components/bottom-sheet.md)
 
+- [Command Palette](https://luvms012-rgb.github.io/yds/site/components/command-palette.md)
+
 - [Dialog](https://luvms012-rgb.github.io/yds/site/components/dialog.md)
 
 - [Help Bubble](https://luvms012-rgb.github.io/yds/site/components/help-bubble.md)
+
+- [Lightbox](https://luvms012-rgb.github.io/yds/site/components/lightbox.md)
 
 - [Menu Sheet](https://luvms012-rgb.github.io/yds/site/components/menu-sheet.md)
 
@@ -1462,6 +1470,8 @@ Purple
 - [Description List](https://luvms012-rgb.github.io/yds/site/components/description-list.md)
 
 - [List](https://luvms012-rgb.github.io/yds/site/components/list-list-item.md)
+
+- [Selection Bar](https://luvms012-rgb.github.io/yds/site/components/selection-bar.md)
 
 - [Table](https://luvms012-rgb.github.io/yds/site/components/table.md)
 
@@ -4726,6 +4736,232 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 앱 상단이나 목록 위처럼 바탕이 흰 곳에는 fill을 사용합니다. |
 | **Do** | 추천어 목록이 필요하면 Search Suggestion을 함께 사용합니다. |
 | **Do** | 취소 버튼은 찾기 화면을 따로 열었을 때만 둡니다. |
+
+
+---
+
+<!-- https://luvms012-rgb.github.io/yds/site/components/date-field.md -->
+
+# Date Field
+
+날짜를 숫자로 바로 입력하는 칸입니다.
+
+## 사용법
+
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+
+```html
+<div class="ds-input ds-datefield" data-variant="outline" data-size="medium">
+  <input class="ds-input__control ds-datefield__control" type="text" inputmode="numeric" maxlength="10" placeholder="YYYY.MM.DD" aria-label="생년월일" autocomplete="bday">
+  [<button type="button" class="ds-datefield__picker" aria-label="달력에서 고르기" data-ds-popover="…"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></button>]
+</div>
+```
+
+## 속성
+
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
+
+그 밖에: 칸은 Text Field(size, `aria-invalid`), 숫자를 넣으면 점 자동, 달력 버튼(선택)
+
+## 동작
+
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
+
+- 숫자만 넣으면 YYYY.MM.DD 로 점을 넣는다
+
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 생년월일처럼 먼 날짜를 입력할 때 사용합니다. |
+| **Do** | 가까운 날짜를 달력에서 고를 때는 Date Picker를 사용합니다. |
+| **Do** | 라벨이나 플레이스홀더로 입력 형식(YYYY.MM.DD)을 알립니다. |
+| **Do** | 없는 날짜를 넣으면 칸 아래 안내 글로 고치는 방법을 알립니다. |
+
+
+---
+
+<!-- https://luvms012-rgb.github.io/yds/site/components/lightbox.md -->
+
+# Lightbox
+
+사진을 화면 가득 크게 보고 옆 사진으로 넘기는 창입니다.
+
+## 사용법
+
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+
+```html
+<dialog class="ds-lightbox" id="lb" aria-label="사진 크게 보기">
+  <div class="ds-lightbox__bar"><span class="ds-lightbox__count">1 / 3</span>
+    <button type="button" class="ds-lightbox__close" data-ds-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
+  <figure class="ds-lightbox__slide" aria-current="true"><img class="ds-lightbox__img" src="…" alt="…">[<figcaption class="ds-lightbox__caption">…</figcaption>]</figure>
+  <figure class="ds-lightbox__slide">…</figure>
+  <button type="button" class="ds-lightbox__nav" data-direction="previous" aria-label="이전 사진"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
+  <button type="button" class="ds-lightbox__nav" data-direction="next" aria-label="다음 사진"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+</dialog>
+```
+
+## 속성
+
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
+
+그 밖에: `data-ds-open` + `data-ds-index`, 좌우 화살표 키, 사진 개수 표시
+
+## 동작
+
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
+
+- Dialog 와 같이 열고 닫기, data-ds-index 로 시작 사진, 이전/다음 버튼과 좌우 화살표 키로 넘기기
+
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 사진을 크게 볼 필요가 있을 때만 사용합니다. 작은 그림 확대에는 사용하지 않습니다. |
+| **Do** | 모든 사진에 alt를 넣습니다. |
+| **Do** | 사진 개수와 지금 위치를 표시합니다. |
+| **Don't** | Lightbox 안에서 다른 창을 열지 않습니다. |
+
+
+---
+
+<!-- https://luvms012-rgb.github.io/yds/site/components/selection-bar.md -->
+
+# Selection Bar
+
+표나 목록에서 선택한 항목에 함께 적용할 동작을 모은 막대입니다.
+
+## 사용법
+
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+
+```html
+<div class="ds-selectionbar" id="sel" role="toolbar" aria-label="고른 항목 작업" [data-position="floating"] hidden>
+  <span class="ds-selectionbar__count" aria-live="polite">3개 선택</span>
+  <div class="ds-selectionbar__actions"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button> …</div>
+  <button type="button" class="ds-selectionbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+</div>
+```
+
+## 속성
+
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
+
+| 속성 | 값 |
+| --- | --- |
+| `position` | floating |
+
+그 밖에: 표에 `data-ds-selection`, `data-count-format`
+
+## 동작
+
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
+
+- data-ds-selection 표의 고른 체크박스를 세어 막대를 보이고 숨긴다, 머리 체크박스는 모두 고르기, 해제 버튼
+
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 항목을 하나 이상 선택했을 때만 보입니다. |
+| **Do** | 동작 버튼은 3개 안팎으로 두고, 나머지는 Menu로 모읍니다. |
+| **Do** | 선택한 개수를 늘 표시합니다. |
+| **Do** | 되돌릴 수 없는 동작은 Alert Dialog로 한 번 더 확인받습니다. |
+
+
+---
+
+<!-- https://luvms012-rgb.github.io/yds/site/components/mega-menu.md -->
+
+# Mega Menu
+
+위 메뉴 아래로 펼쳐 하위 메뉴 묶음을 한 번에 보여 주는 판입니다.
+
+## 사용법
+
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+
+```html
+<div class="ds-topnav" style="position: relative">  …
+  <button type="button" class="ds-topnav__item" aria-expanded="false" aria-controls="mm-1" data-ds-megamenu="mm-1">강의</button>
+  <div class="ds-megamenu" id="mm-1" hidden>
+    <div class="ds-megamenu__inner">
+      <section class="ds-megamenu__group" aria-labelledby="mm-1-a"><p class="ds-megamenu__title" id="mm-1-a">영어</p>
+        <ul class="ds-megamenu__list"><li><a class="ds-megamenu__link" href="#">토익</a></li> …</ul></section>
+      [<aside class="ds-megamenu__aside">추천 카드 한 개</aside>]
+    </div>
+  </div>
+</div>
+```
+
+## 속성
+
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
+
+그 밖에: 트리거 `data-ds-megamenu` + `aria-expanded`, 묶음 4개까지, aside(선택)
+
+## 동작
+
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
+
+- data-ds-megamenu 트리거로 열고 닫기, Esc 와 바깥 누름으로 닫기
+
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 하위 메뉴가 많은 PC 화면에서만 사용합니다. 모바일은 Menu Sheet를 사용합니다. |
+| **Do** | 묶음은 4개까지 두고 묶음 제목을 붙입니다. |
+| **Don't** | 마우스를 올리는 것만으로 열지 않습니다. 누르면 엽니다. |
+| **Don't** | 판 안에 입력 칸이나 긴 설명을 넣지 않습니다. |
+
+
+---
+
+<!-- https://luvms012-rgb.github.io/yds/site/components/command-palette.md -->
+
+# Command Palette
+
+낱말로 화면 이동과 동작을 찾아 바로 실행하는 창입니다.
+
+## 사용법
+
+아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않으면 해당 부분을 모두 지웁니다.
+
+```html
+<dialog class="ds-command" id="cmd" aria-label="명령 찾기" [data-ds-hotkey="k"]>
+  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i>
+    <input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="cmd-list" aria-autocomplete="list" placeholder="찾을 낱말" aria-label="명령 찾기"></div>
+  <div class="ds-command__list" id="cmd-list" role="listbox" aria-label="명령">
+    <div class="ds-command__group" role="group" aria-labelledby="cmd-g1"><p class="ds-command__title" id="cmd-g1">이동</p>
+      <div class="ds-command__item" role="option" id="cmd-1" aria-selected="true"><i class="ds-icon ds-icon--house" aria-hidden="true"></i><span class="ds-command__label">홈</span>[<kbd class="ds-command__kbd">G H</kbd>]</div>
+    </div>
+    <p class="ds-command__empty" hidden>찾는 명령이 없어요</p>
+  </div>
+</dialog>
+```
+
+## 속성
+
+Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
+
+그 밖에: `data-ds-hotkey="k"`, 거르기, 위아래 화살표와 Enter, 묶음과 단축키 표시
+
+## 동작
+
+`ybm-ds.js`를 불러오면 자동으로 동작합니다.
+
+- Dialog 와 같이 열기, data-ds-hotkey="k" 면 Ctrl/Command + K, 낱말로 거르기, 위아래 화살표와 Enter
+
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 자주 쓰는 화면 이동과 동작이 많은 업무 화면에서 사용합니다. |
+| **Do** | 항목 이름은 동사나 화면 이름으로 짧게 작성합니다. |
+| **Do** | 찾는 결과가 없으면 비어 있는 이유를 알립니다. |
+| **Don't** | 주요 동작을 이 창에만 두지 않습니다. 화면에도 버튼을 둡니다. |
 
 
 ---

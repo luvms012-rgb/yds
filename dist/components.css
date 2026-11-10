@@ -95,6 +95,11 @@
      77 Tree                 .ds-tree
      78 Wheel Picker         .ds-wheelpicker
      79 Search Field         .ds-searchfield
+     80 Date Field           .ds-datefield
+     81 Lightbox             .ds-lightbox
+     82 Selection Bar        .ds-selectionbar
+     83 Mega Menu            .ds-megamenu
+     84 Command Palette      .ds-command
    ========================================================================== */
 
 
@@ -1272,7 +1277,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
    기본 최대 너비 없음 — 말줄임이 필요하면 사용처에서 max-width 지정
    -------------------------------------------------------------------------- */
 .ds-badge {
-  --ds-badge-bg: var(--ds-color-bg-neutral);
+  --ds-badge-bg: var(--ds-color-bg-neutral-weak-alpha);  /* 2026-11-10 반투명: 회색 바탕(선택 행, 카드 면) 위에서도 배지 바탕이 보이게 */
   --ds-badge-fg: var(--ds-color-fg-neutral-muted);
   --ds-badge-line: transparent;
   display: inline-flex;
@@ -4580,3 +4585,220 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   font-weight: var(--ds-font-weight-medium);
   cursor: pointer;
 }
+
+/* --------------------------------------------------------------------------
+   80 Date Field - 날짜를 숫자로 바로 넣는 칸, 달력 버튼으로 Date Picker 를 함께 연다 (2026-11-10 추가)
+     <div class="ds-input ds-datefield" data-variant="outline" data-size="medium">
+       <input class="ds-input__control ds-datefield__control" type="text" inputmode="numeric" maxlength="10" placeholder="YYYY.MM.DD" aria-label="생년월일" autocomplete="bday">
+       [<button type="button" class="ds-datefield__picker" aria-label="달력에서 고르기" data-ds-popover="…"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></button>]
+     </div>
+   칸은 Text Field 그대로(size, aria-invalid, disabled) / 숫자만 넣으면 스크립트가 점을 넣는다(20010412 → 2001.04.12)
+   생년월일처럼 먼 날짜는 이 칸, 가까운 날짜를 달력에서 고를 때는 Date Picker
+   -------------------------------------------------------------------------- */
+.ds-datefield { --ds-datefield-picker-size: var(--ds-space-x8); }
+.ds-datefield__control { font-variant-numeric: tabular-nums; }
+.ds-datefield__picker {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--ds-datefield-picker-size);
+  height: var(--ds-datefield-picker-size);
+  margin-inline-end: calc(var(--ds-space-x1_5) * -1);
+  padding: 0;
+  border: 0;
+  border-radius: var(--ds-shape-sm);
+  background: none;
+  color: var(--ds-color-fg-neutral-muted);
+  cursor: pointer;
+}
+.ds-datefield__picker:hover { background: var(--ds-color-bg-neutral-weak-alpha); }
+.ds-datefield__picker:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 0; }
+.ds-datefield__control:disabled ~ .ds-datefield__picker { pointer-events: none; opacity: .4; }
+
+
+/* --------------------------------------------------------------------------
+   81 Lightbox - 사진을 화면 가득 크게 보고 옆 사진으로 넘긴다 (2026-11-10 추가)
+     <dialog class="ds-lightbox" id="lb" aria-label="사진 크게 보기">
+       <div class="ds-lightbox__bar"><span class="ds-lightbox__count">1 / 3</span>
+         <button type="button" class="ds-lightbox__close" data-ds-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
+       <figure class="ds-lightbox__slide" aria-current="true"><img class="ds-lightbox__img" src="…" alt="…">[<figcaption class="ds-lightbox__caption">…</figcaption>]</figure>
+       <figure class="ds-lightbox__slide">…</figure>
+       <button type="button" class="ds-lightbox__nav" data-direction="previous" aria-label="이전 사진"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
+       <button type="button" class="ds-lightbox__nav" data-direction="next" aria-label="다음 사진"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+     </dialog>
+   여는 버튼: data-ds-open="lb" [data-ds-index="2"](몇 번째 사진부터) / 버튼과 좌우 화살표 키로 넘기고 Esc, 빈 곳 누름으로 닫는다
+   바탕은 늘 어둡다(사진이 잘 보이게, 라이트와 다크가 같다)
+   -------------------------------------------------------------------------- */
+.ds-lightbox {
+  --ds-lightbox-bg: var(--ds-color-palette-static-black-alpha-900);
+  --ds-lightbox-fg: var(--ds-color-palette-static-white);
+  --ds-lightbox-button-bg: var(--ds-color-palette-static-white-alpha-200);
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--ds-lightbox-bg);
+  color: var(--ds-lightbox-fg);
+}
+dialog.ds-lightbox:not([open]) { display: none; }
+.ds-lightbox::backdrop { background: transparent; }
+.ds-lightbox[open] { animation: ds-fade-in var(--ds-duration-normal) var(--ds-easing-standard); }
+.ds-lightbox__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--ds-space-x4); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-variant-numeric: tabular-nums; }
+.ds-lightbox__slide { display: none; min-height: 0; margin: 0; padding: 0 var(--ds-space-x4) var(--ds-space-x6); }
+.ds-lightbox__slide[aria-current="true"] { display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; gap: var(--ds-space-x3); }
+.ds-lightbox__img { display: block; max-width: 100%; max-height: 100%; min-height: 0; align-self: center; object-fit: contain; border-radius: var(--ds-shape-sm); }
+.ds-lightbox__caption { max-width: 640px; text-align: center; opacity: .8; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+.ds-lightbox__close, .ds-lightbox__nav {
+  display: inline-grid;
+  place-items: center;
+  width: var(--ds-space-x10);
+  height: var(--ds-space-x10);
+  padding: 0;
+  border: 0;
+  border-radius: var(--ds-shape-pill);
+  background: var(--ds-lightbox-button-bg);
+  color: inherit;
+  cursor: pointer;
+}
+.ds-lightbox__nav { position: absolute; top: 50%; translate: 0 -50%; }
+.ds-lightbox__nav[data-direction="previous"] { left: var(--ds-space-x4); }
+.ds-lightbox__nav[data-direction="next"] { right: var(--ds-space-x4); }
+.ds-lightbox__nav:disabled { opacity: .3; cursor: default; }
+.ds-lightbox :is(.ds-lightbox__close, .ds-lightbox__nav):focus-visible { outline: 2px solid var(--ds-lightbox-fg); outline-offset: 2px; }
+@media (min-width: 768px) { .ds-lightbox__slide { padding: 0 var(--ds-space-x16) var(--ds-space-x8); } }
+
+
+/* --------------------------------------------------------------------------
+   82 Selection Bar - 표나 목록에서 고른 항목에 함께 할 동작을 모은 막대 (2026-11-10 추가)
+     <div class="ds-selectionbar" id="sel" role="toolbar" aria-label="고른 항목 작업" [data-position="floating"] hidden>
+       <span class="ds-selectionbar__count" aria-live="polite">3개 선택</span>
+       <div class="ds-selectionbar__actions"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button> …</div>
+       <button type="button" class="ds-selectionbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+     </div>
+   기본은 표 바로 위에 붙는 회색 막대, floating 은 화면 아래 가운데 떠 있는 막대
+   표(또는 목록)에 data-ds-selection="sel" 을 두면 스크립트가 tbody 체크박스를 세어 막대를 보이고 숨긴다. 머리 체크박스는 모두 고르기
+   개수 글자는 막대의 data-count-format="{n}개 선택" 으로 바꾼다 / 동작 버튼은 3개 안팎, 되돌릴 수 없는 동작은 Alert Dialog 로 다시 묻는다
+   -------------------------------------------------------------------------- */
+.ds-selectionbar {
+  --ds-selectionbar-bg: var(--ds-color-bg-neutral);
+  --ds-selectionbar-radius: var(--ds-shape-md);
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-x3);
+  min-height: var(--ds-space-x12);
+  padding: var(--ds-space-x1_5) var(--ds-space-x2) var(--ds-space-x1_5) var(--ds-space-x4);
+  border-radius: var(--ds-selectionbar-radius);
+  background: var(--ds-selectionbar-bg);
+  color: var(--ds-color-fg-neutral);
+}
+.ds-selectionbar[hidden] { display: none; }
+.ds-selectionbar[data-position="floating"] {
+  --ds-selectionbar-bg: var(--ds-color-bg-layer-floating);
+  position: fixed;
+  left: 50%;
+  bottom: var(--ds-space-x6);
+  z-index: var(--ds-z-overlay);
+  max-width: calc(100% - var(--ds-space-x8));
+  translate: -50% 0;
+  width: max-content;
+  box-shadow: var(--ds-elevation-overlay);
+  animation: ds-fade-in var(--ds-duration-normal) var(--ds-easing-standard);
+}
+.ds-selectionbar__count { flex: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
+.ds-selectionbar__actions { display: flex; flex: 1 1 auto; flex-wrap: wrap; gap: var(--ds-space-x1); min-width: 0; }
+.ds-selectionbar__clear { flex: none; display: inline-grid; place-items: center; width: var(--ds-space-x8); height: var(--ds-space-x8); padding: 0; border: 0; border-radius: var(--ds-shape-sm); background: none; color: var(--ds-color-fg-neutral-muted); cursor: pointer; }
+.ds-selectionbar__clear:hover { background: var(--ds-color-bg-neutral-weak-alpha); }
+.ds-selectionbar__clear:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 0; }
+
+
+/* --------------------------------------------------------------------------
+   83 Mega Menu - 위 메뉴 아래로 펼쳐 하위 메뉴 묶음을 한 번에 보여 준다 (2026-11-10 추가)
+     <div class="ds-topnav" style="position: relative">  …
+       <button type="button" class="ds-topnav__item" aria-expanded="false" aria-controls="mm-1" data-ds-megamenu="mm-1">강의</button>
+       <div class="ds-megamenu" id="mm-1" hidden>
+         <div class="ds-megamenu__inner">
+           <section class="ds-megamenu__group" aria-labelledby="mm-1-a"><p class="ds-megamenu__title" id="mm-1-a">영어</p>
+             <ul class="ds-megamenu__list"><li><a class="ds-megamenu__link" href="#">토익</a></li> …</ul></section>
+           [<aside class="ds-megamenu__aside">추천 카드 한 개</aside>]
+         </div>
+       </div>
+     </div>
+   판은 위 메뉴 바로 아래 화면 폭 전체, 안쪽 폭은 --ds-megamenu-width / 묶음은 4개까지
+   트리거를 누르면 열고 닫는다, Esc, 바깥 누름, 다른 트리거를 누르면 닫는다 / 768 미만에서는 보이지 않는다(Menu Sheet 사용)
+   -------------------------------------------------------------------------- */
+.ds-megamenu {
+  --ds-megamenu-width: 1200px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: var(--ds-z-overlay);
+  display: none;
+  background: var(--ds-color-bg-layer-floating);
+  box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted), var(--ds-elevation-overlay);
+}
+@media (min-width: 768px) { .ds-megamenu:not([hidden]) { display: block; animation: ds-fade-in var(--ds-duration-fast) var(--ds-easing-standard); } }
+.ds-megamenu__inner { box-sizing: border-box; display: flex; gap: var(--ds-space-x8); width: min(100%, var(--ds-megamenu-width)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x6) var(--ds-space-x8); }
+.ds-megamenu__group { flex: 1 1 0; min-width: 0; }
+.ds-megamenu__title { margin: 0 0 var(--ds-space-x2); color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-medium); }
+.ds-megamenu__list { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.ds-megamenu__link { display: block; margin-inline: calc(var(--ds-space-x2) * -1); padding: var(--ds-space-x2); border-radius: var(--ds-shape-sm); color: var(--ds-color-fg-neutral); text-decoration: none; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+.ds-megamenu__link:hover { background: var(--ds-color-bg-neutral-weak-alpha); }
+.ds-megamenu__link[aria-current="page"] { font-weight: var(--ds-font-weight-semibold); }
+.ds-megamenu__link:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: -2px; }
+.ds-megamenu__aside { flex: 1.2 1 0; min-width: 0; padding: var(--ds-space-x5); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral); }
+
+
+/* --------------------------------------------------------------------------
+   84 Command Palette - 낱말로 화면 이동과 동작을 찾아 바로 실행하는 창 (2026-11-10 추가)
+     <dialog class="ds-command" id="cmd" aria-label="명령 찾기" [data-ds-hotkey="k"]>
+       <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i>
+         <input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="cmd-list" aria-autocomplete="list" placeholder="찾을 낱말" aria-label="명령 찾기"></div>
+       <div class="ds-command__list" id="cmd-list" role="listbox" aria-label="명령">
+         <div class="ds-command__group" role="group" aria-labelledby="cmd-g1"><p class="ds-command__title" id="cmd-g1">이동</p>
+           <div class="ds-command__item" role="option" id="cmd-1" aria-selected="true"><i class="ds-icon ds-icon--house" aria-hidden="true"></i><span class="ds-command__label">홈</span>[<kbd class="ds-command__kbd">G H</kbd>]</div>
+         </div>
+         <p class="ds-command__empty" hidden>찾는 명령이 없어요</p>
+       </div>
+     </dialog>
+   여는 법: data-ds-open="cmd", 또는 dialog 에 data-ds-hotkey="k" 를 두면 Ctrl(맥은 Command) + K
+   낱말을 넣으면 이름으로 거르고, 위아래 화살표로 고르고 Enter 로 누른다(그 항목의 click) / 화면 위에서 15% 자리, 폭 --ds-command-width
+   -------------------------------------------------------------------------- */
+.ds-command {
+  --ds-command-width: 560px;
+  flex-direction: column;
+  width: min(calc(100% - var(--ds-space-x8)), var(--ds-command-width));
+  max-width: none;
+  max-height: min(480px, 70vh);
+  margin: 15vh auto auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--ds-shape-lg);
+  background: var(--ds-color-bg-layer-floating);
+  color: var(--ds-color-fg-neutral);
+  box-shadow: var(--ds-elevation-overlay);
+  display: flex;
+}
+dialog.ds-command:not([open]) { display: none; }
+.ds-command::backdrop { background: var(--ds-color-bg-overlay); animation: ds-fade-in var(--ds-duration-normal) var(--ds-easing-standard); }
+.ds-command__search { flex: none; display: flex; align-items: center; gap: var(--ds-space-x2); height: var(--ds-space-x14); padding: 0 var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); color: var(--ds-color-fg-neutral-subtle); }
+.ds-command__input { flex: 1 1 auto; min-width: 0; height: 100%; padding: 0; border: 0; outline: 0; background: none; color: var(--ds-color-fg-neutral); font: inherit; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+.ds-command__input::placeholder { color: var(--ds-color-fg-neutral-subtle); }
+.ds-command__list { flex: 1 1 auto; min-height: 0; overflow: auto; padding: var(--ds-space-x2); }
+.ds-command__group[hidden], .ds-command__item[hidden] { display: none; }
+.ds-command__group + .ds-command__group { margin-top: var(--ds-space-x2); }
+.ds-command__title { margin: 0; padding: var(--ds-space-x2) var(--ds-space-x2) var(--ds-space-x1); color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-medium); }
+.ds-command__item { display: flex; align-items: center; gap: var(--ds-space-x3); min-height: var(--ds-space-x10); padding: 0 var(--ds-space-x2); border-radius: var(--ds-shape-sm); color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); cursor: pointer; }
+.ds-command__item[aria-selected="true"] { background: var(--ds-color-bg-neutral-weak-alpha); }
+.ds-command__item > .ds-icon { flex: none; --ds-icon-size: 16px; color: var(--ds-color-fg-neutral-muted); }
+.ds-command__label { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ds-command__kbd { flex: none; display: inline-flex; align-items: center; min-height: var(--ds-space-x5); padding: 0 var(--ds-space-x1_5); border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-family: inherit; font-size: var(--ds-font-size-t01); line-height: var(--ds-line-height-t01); }
+.ds-command__empty { margin: 0; padding: var(--ds-space-x8) var(--ds-space-x4); text-align: center; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }

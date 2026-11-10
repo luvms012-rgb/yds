@@ -102,10 +102,10 @@ ${head('서비스 상태', { tools: `${segmented(['1시간', '1일', '7일'], 1,
 </main>
 <aside class="tp-panel" aria-label="알림과 서비스 요약">
   <section class="tp-sec" aria-labelledby="s-al">${secHead(`<span class="tp-row">${icon('triangle-alert')}활성 알림</span>`, { id: 's-al', cls: 'tp-h3', tools: badge('3건 발생', 'critical') })}<span class="tp-caption">최근 24시간 6건 / 최신순</span>
-    <div>${alerts.map(([t, n, w, st, time]) => `<div class="tp-alert">${dot(t, st)}<div class="tp-stack"><span class="tp-h4">${n}</span><span class="tp-caption">${w}</span></div><div class="tp-alert__end">${badge(st, t === 'positive' ? 'positive' : t === 'warning' ? 'warning' : 'critical')}<span class="tp-caption">${time}</span></div></div>`).join('')}</div>
+    <div>${alerts.map(([t, n, w, st, time]) => `<div class="tp-alert">${dot(t, st)}<div class="tp-stack"><span class="tp-label">${n}</span><span class="tp-caption">${w}</span></div><div class="tp-alert__end">${badge(st, t === 'positive' ? 'positive' : t === 'warning' ? 'warning' : 'critical')}<span class="tp-caption">${time}</span></div></div>`).join('')}</div>
   </section>
   <section class="tp-sec" aria-labelledby="s-br">${secHead(`<span class="tp-row">${icon('monitor')}서비스별 현황</span>`, { id: 's-br', cls: 'tp-h3', tools: badge('10') })}<span class="tp-caption">운영 / 모든 지역</span>
-    <div>${brk.map(([t, n, w, p, e]) => `<div class="tp-alert">${dot(t, n)}<div class="tp-stack"><span class="tp-h4">${n}</span><span class="tp-caption">${w}</span></div><div class="tp-alert__end"><span class="tp-num tp-h4">p99 ${p}</span>${badge(e, t === 'positive' ? 'positive' : t === 'warning' ? 'warning' : 'critical')}</div></div>`).join('')}</div>
+    <div>${brk.map(([t, n, w, p, e]) => `<div class="tp-alert">${dot(t, n)}<div class="tp-stack"><span class="tp-label">${n}</span><span class="tp-caption">${w}</span></div><div class="tp-alert__end"><span class="tp-num tp-h4">p99 ${p}</span>${badge(e, t === 'positive' ? 'positive' : t === 'warning' ? 'warning' : 'critical')}</div></div>`).join('')}</div>
   </section>
 </aside>
 </div>

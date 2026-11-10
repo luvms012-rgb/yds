@@ -409,6 +409,11 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 77 | Tree | `.ds-tree` (`__node/row/toggle/icon/label/suffix/group`) | Figma 없음(최종 검토 때) | size `medium/small`, guides `none`, `aria-expanded`, `aria-selected`, 화살표 키 |
 | 78 | Wheel Picker | `.ds-wheelpicker` (`__column/option`) | Figma 없음(최종 검토 때) | Time Picker 와 같은 휠, 열 여러 개, `aria-selected`, change |
 | 79 | Search Field | `.ds-searchfield` (`__cancel`, 칸은 `.ds-input`) | Figma 없음(최종 검토 때) | variant `outline/fill`, 칸은 Text Field, cancel |
+| 80 | Date Field | `.ds-datefield` (`__control/picker`, 칸은 `.ds-input`) | Figma 없음(최종 검토 때) | 칸은 Text Field, 숫자를 넣으면 점 자동, 달력 버튼은 Date Picker 를 연다 |
+| 81 | Lightbox | `.ds-lightbox` (`__bar/count/close/slide/img/caption/nav`) | Figma 없음(최종 검토 때) | `data-ds-open` + `data-ds-index`, 좌우 화살표 키, 늘 어두운 바탕 |
+| 82 | Selection Bar | `.ds-selectionbar` (`__count/actions/clear`) | Figma 없음(최종 검토 때) | position `floating`, 표에 `data-ds-selection`, `data-count-format` |
+| 83 | Mega Menu | `.ds-megamenu` (`__inner/group/title/list/link/aside`) | Figma 없음(최종 검토 때) | 트리거 `data-ds-megamenu` + `aria-expanded`, 768 이상에서만 |
+| 84 | Command Palette | `.ds-command` (`__search/input/list/group/title/item/label/kbd/empty`) | Figma 없음(최종 검토 때) | `data-ds-hotkey="k"`, 거르기, 위아래 화살표와 Enter |
 
 목록의 기계용 사본이 `components.json`이다. 컴포넌트를 추가/변경하면 이 표와 `components.json`을 함께 고친다(sync가 Figma/CSS와 대조).
 

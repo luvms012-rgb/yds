@@ -109,7 +109,7 @@ const score = () => {
   // 내 구간(9번째 막대)만 진하게, 나머지는 옅은 회색
   let k = 0;
   const distChart = barChart(dist.map((v) => [v]), { x: ['10', '20', '30', '40', '50', '60', '70', '80', '90', '99'], colors: ['var(--ds-color-bg-neutral)'], label: '점수 구간별 응시자 비율' }).replace(/fill="var\(--ds-color-bg-neutral\)"/g, (m) => (k++ === 8 ? `fill="${C(0)}"` : m));
-  const area = (t, s, max, v, note) => `<div class="tp-area"><div class="tp-between"><span class="tp-h4">${t}</span><span>${T(`<b>${s}</b> / ${max}`)}</span></div>${progress(v, { small: false, label: t })}<span class="tp-caption">${note}</span></div>`;
+  const area = (t, s, max, v, note) => `<div class="tp-area"><div class="tp-between"><span class="tp-label">${t}</span><span>${T(`<b>${s}</b> / ${max}`)}</span></div>${progress(v, { small: false, label: t })}<span class="tp-caption">${note}</span></div>`;
   const body = `<div class="tp-app">${topbar(USER_MENU, 2, userEnd)}
 ${head('영어 읽기 듣기 시험 성적', { eyebrow: breadcrumbs(['내 시험', '성적표']), tools: `${btn('인쇄', { ic: 'printer' })}${btn('성적 증명서 받기', { variant: 'brandSolid', ic: 'download' })}` })}
 <main class="tp-content">

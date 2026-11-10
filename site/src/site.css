@@ -525,7 +525,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc > .site-release { margin-top: var(--ds-space-x10); }
 .site-doc .site-release h2:not(.pv-stage *) { margin-top: 0; font-size: var(--ds-font-size-t07); line-height: 28px; }
 .site-doc .site-release__ver { margin-right: var(--ds-space-x2); }  /* 버전 번호 다음 날짜 */
-.site-doc .site-release h2 time { color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-medium); }
+.site-doc .site-release h2 time { color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
 .site-doc .site-release ul.site-list { margin-top: var(--ds-space-x2); }
 .site-release li .ds-badge { margin-right: var(--ds-space-x1); vertical-align: 2px; }
 .site-release[hidden] { display: none; }

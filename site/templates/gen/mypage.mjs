@@ -120,7 +120,7 @@ const orders = () => {
 
 /* 3. 내 정보 ----------------------------------------------------- */
 const profile = () => {
-  const row = (label, desc, end) => `<div class="tp-setrow"><div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-h4">${label}</span>${desc ? `<span class="tp-caption">${desc}</span>` : ''}</div><div class="tp-setrow__end">${end}</div></div>`;
+  const row = (label, desc, end) => `<div class="tp-setrow"><div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-label">${label}</span>${desc ? `<span class="tp-caption">${desc}</span>` : ''}</div><div class="tp-setrow__end">${end}</div></div>`;
   const val = (v, b = '변경') => `<span class="tp-setrow__val">${v}</span>${btn(b)}`;
   const sec = (title, rows) => `<section class="tp-sec" style="gap: var(--ds-space-x2)"><h2 class="tp-h2">${title}</h2><div class="tp-rows">${rows.join('')}</div></section>`;
   const body = shell('내 정보', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">내 정보</h1></div></header>

@@ -204,7 +204,7 @@ const cancel = () => {
   <div class="tp-pr-narrow tp-cancel">
     <div class="tp-stack" style="gap: var(--ds-space-x3)">${link('내 구독으로 돌아가기')}<h1 class="tp-h1">구독을 해지하기 전에 확인해 주세요</h1></div>
     <section class="tp-sec" aria-labelledby="lose"><h2 class="tp-h3" id="lose">해지하면 이런 혜택을 쓸 수 없어요</h2>
-      <div class="tp-keep">${keep.map(([ic, t, d]) => `<div class="tp-keep__item">${icon(ic)}<span class="tp-h4">${t}</span><span class="tp-sub">${d}</span></div>`).join('')}</div>
+      <div class="tp-keep">${keep.map(([ic, t, d]) => `<div class="tp-keep__item">${icon(ic)}<span class="tp-label">${t}</span><span class="tp-sub">${d}</span></div>`).join('')}</div>
     </section>
     <section class="tp-sec" aria-labelledby="why"><h2 class="tp-h3" id="why">해지하는 이유를 알려 주세요</h2>
       ${radios('why', ['요금이 부담돼요', '자주 쓰지 않아요', '필요한 기능이 없어요', '다른 서비스로 옮겨요', '기타'], 0)}

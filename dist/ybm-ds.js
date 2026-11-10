@@ -25,6 +25,11 @@
      · Tree — 줄을 누르면 펼치고 접고 고른다(change, detail.value), 위아래 화살표 이동, 오른쪽 펼침, 왼쪽 접기
      · Wheel Picker — Time Picker 와 같은 휠
      · Menu — checkbox 항목은 켜고 끄고, radio 항목은 묶음에서 하나만, 하위 메뉴 버튼은 열고 닫기
+     · Date Field — 숫자만 넣으면 YYYY.MM.DD 로 점을 넣는다
+     · Lightbox — Dialog 와 같이 열고 닫기, data-ds-index 로 시작 사진, 이전/다음 버튼과 좌우 화살표 키로 넘기기
+     · Selection Bar — data-ds-selection 표의 고른 체크박스를 세어 막대를 보이고 숨긴다, 머리 체크박스는 모두 고르기, 해제 버튼
+     · Mega Menu — data-ds-megamenu 트리거로 열고 닫기, Esc 와 바깥 누름으로 닫기
+     · Command Palette — Dialog 와 같이 열기, data-ds-hotkey="k" 면 Ctrl/Command + K, 낱말로 거르기, 위아래 화살표와 Enter
    사용: <script src="…/ybm-ds/dist/ybm-ds.js" defer></script>
    ========================================================================== */
 (function () {
@@ -460,6 +465,87 @@
     return false;
   }
 
+  /* ---- Date Field: 숫자만 넣으면 점을 넣는다 ------------------------------- */
+  function formatDateField(input) {
+    var d = input.value.replace(/\D/g, "").slice(0, 8);
+    var v = d.length > 6 ? d.slice(0, 4) + "." + d.slice(4, 6) + "." + d.slice(6) : d.length > 4 ? d.slice(0, 4) + "." + d.slice(4) : d;
+    if (v !== input.value) input.value = v;
+  }
+
+  /* ---- Lightbox ---------------------------------------------------------- */
+  function lightboxGo(box, i) {
+    var slides = [].slice.call(box.querySelectorAll(".ds-lightbox__slide"));
+    if (!slides.length) return;
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) { if (k === i) s.setAttribute("aria-current", "true"); else s.removeAttribute("aria-current"); });
+    var count = box.querySelector(".ds-lightbox__count");
+    if (count) count.textContent = (i + 1) + " / " + slides.length;
+    box.querySelectorAll(".ds-lightbox__nav").forEach(function (b) {
+      b.disabled = b.getAttribute("data-direction") === "previous" ? i === 0 : i === slides.length - 1;
+    });
+  }
+  function lightboxIndex(box) {
+    return [].indexOf.call(box.querySelectorAll(".ds-lightbox__slide"), box.querySelector('.ds-lightbox__slide[aria-current="true"]'));
+  }
+
+  /* ---- Selection Bar ----------------------------------------------------- */
+  function selectionBoxes(table) {
+    return [].slice.call(table.querySelectorAll('tbody input[type="checkbox"], [role="listitem"] input[type="checkbox"], li input[type="checkbox"]'));
+  }
+  function syncSelection(table) {
+    var bar = document.getElementById(table.getAttribute("data-ds-selection"));
+    if (!bar) return;
+    var boxes = selectionBoxes(table), n = boxes.filter(function (b) { return b.checked; }).length;
+    var all = table.querySelector('thead input[type="checkbox"]');
+    if (all) { all.checked = n > 0 && n === boxes.length; all.indeterminate = n > 0 && n < boxes.length; }
+    var count = bar.querySelector(".ds-selectionbar__count");
+    if (count) count.textContent = (bar.getAttribute("data-count-format") || "{n}개 선택").replace("{n}", n);
+    bar.hidden = n === 0;
+  }
+
+  /* ---- Mega Menu --------------------------------------------------------- */
+  function setMegamenu(trigger, open) {
+    var panel = document.getElementById(trigger.getAttribute("data-ds-megamenu"));
+    if (!panel) return;
+    panel.hidden = !open;
+    trigger.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  function closeMegamenus(except) {
+    document.querySelectorAll('[data-ds-megamenu][aria-expanded="true"]').forEach(function (tr) { if (tr !== except) setMegamenu(tr, false); });
+  }
+
+  /* ---- Command Palette --------------------------------------------------- */
+  function commandItems(box) {
+    return [].slice.call(box.querySelectorAll(".ds-command__item")).filter(function (it) { return !it.hidden; });
+  }
+  function commandSelect(box, item) {
+    box.querySelectorAll(".ds-command__item").forEach(function (it) { it.setAttribute("aria-selected", it === item ? "true" : "false"); });
+    var input = box.querySelector(".ds-command__input");
+    if (item) { if (item.id && input) input.setAttribute("aria-activedescendant", item.id); item.scrollIntoView({ block: "nearest" }); }
+    else if (input) input.removeAttribute("aria-activedescendant");
+  }
+  function commandFilter(box) {
+    var input = box.querySelector(".ds-command__input");
+    var q = (input ? input.value : "").trim().toLowerCase();
+    box.querySelectorAll(".ds-command__item").forEach(function (it) { it.hidden = !!q && it.textContent.toLowerCase().indexOf(q) < 0; });
+    box.querySelectorAll(".ds-command__group").forEach(function (g) { g.hidden = !g.querySelector(".ds-command__item:not([hidden])"); });
+    var items = commandItems(box), empty = box.querySelector(".ds-command__empty");
+    if (empty) empty.hidden = items.length > 0;
+    commandSelect(box, items[0] || null);
+  }
+  function commandMove(box, step) {
+    var items = commandItems(box);
+    if (!items.length) return;
+    var i = items.indexOf(box.querySelector('.ds-command__item[aria-selected="true"]')) + step;
+    if (i < 0) i = items.length - 1; else if (i >= items.length) i = 0;
+    commandSelect(box, items[i]);
+  }
+  function commandReset(box) {
+    var input = box.querySelector(".ds-command__input");
+    if (input) { input.value = ""; setTimeout(function () { input.focus(); }, 0); }
+    commandFilter(box);
+  }
+
   /* ---- 초기화: 페이지에 이미 있는 요소 ------------------------------------- */
   function init(root) {
     (root || document).querySelectorAll(".ds-slider").forEach(syncSlider);
@@ -470,6 +556,8 @@
     (root || document).querySelectorAll(".ds-segmented").forEach(watchSegmented);
     (root || document).querySelectorAll(".ds-carousel").forEach(syncCarousel);
     (root || document).querySelectorAll(".ds-multiselect__panel[id]").forEach(syncMultiSelect);
+    (root || document).querySelectorAll("[data-ds-selection]").forEach(syncSelection);
+    (root || document).querySelectorAll("dialog.ds-lightbox").forEach(function (b) { lightboxGo(b, Math.max(0, lightboxIndex(b))); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { init(); });
   else init();
@@ -487,6 +575,29 @@
       control.focus();
       return;
     }
+
+    // Mega Menu 트리거 → 열고 닫기, 바깥이나 링크를 누르면 닫는다
+    var mmTrigger = t.closest("[data-ds-megamenu]");
+    if (mmTrigger) { var mmOpen = mmTrigger.getAttribute("aria-expanded") !== "true"; closeMegamenus(mmTrigger); setMegamenu(mmTrigger, mmOpen); return; }
+    if (!t.closest(".ds-megamenu") || t.closest(".ds-megamenu__link")) closeMegamenus();
+
+    // Lightbox 이전/다음
+    var lbNav = t.closest(".ds-lightbox__nav");
+    if (lbNav) { var lb = lbNav.closest(".ds-lightbox"); lightboxGo(lb, lightboxIndex(lb) + (lbNav.getAttribute("data-direction") === "previous" ? -1 : 1)); return; }
+
+    // Selection Bar 해제 버튼
+    var selClear = t.closest(".ds-selectionbar__clear");
+    if (selClear) {
+      var selBar = selClear.closest(".ds-selectionbar");
+      var selTable = selBar.id && document.querySelector('[data-ds-selection="' + selBar.id + '"]');
+      if (selTable) { selectionBoxes(selTable).forEach(function (b) { b.checked = false; }); syncSelection(selTable); }
+      else selBar.hidden = true;
+      return;
+    }
+
+    // Command Palette 항목을 누르면 창을 닫는다 (항목의 할 일은 서비스가 click 으로 받는다)
+    var cmdItem = t.closest(".ds-command__item");
+    if (cmdItem) { var cmdBox = cmdItem.closest("dialog"); if (cmdBox) closeDialog(cmdBox); return; }
 
     var treeRow = t.closest(".ds-tree__row");
     if (treeRow && treeClick(treeRow, t)) { e.preventDefault(); return; }
@@ -527,7 +638,12 @@
     if (wheelOpt) { scrollWheelTo(wheelOpt.parentElement, wheelOpt, true); return; }
 
     var opener = t.closest("[data-ds-open]");
-    if (opener) { openDialog(opener.getAttribute("data-ds-open")); return; }
+    if (opener) {
+      var opened = openDialog(opener.getAttribute("data-ds-open"));
+      if (opened && opened.classList.contains("ds-lightbox")) lightboxGo(opened, +(opener.getAttribute("data-ds-index") || 0));
+      if (opened && opened.classList.contains("ds-command")) commandReset(opened);
+      return;
+    }
 
     var closer = t.closest("[data-ds-close]");
     if (closer) {
@@ -539,7 +655,9 @@
 
     // dialog 바깥(backdrop) 클릭 = dialog 요소 자신이 target
     // 단, Alert(role="alertdialog")는 버튼으로만 닫는다
-    if (t.tagName === "DIALOG" && (t.classList.contains("ds-dialog") || t.classList.contains("ds-bottomsheet") || t.classList.contains("ds-menusheet") || t.classList.contains("ds-sidepanel")) && t.getAttribute("role") !== "alertdialog") closeDialog(t);
+    if (t.tagName === "DIALOG" && (t.classList.contains("ds-dialog") || t.classList.contains("ds-bottomsheet") || t.classList.contains("ds-menusheet") || t.classList.contains("ds-sidepanel") || t.classList.contains("ds-lightbox") || t.classList.contains("ds-command")) && t.getAttribute("role") !== "alertdialog") closeDialog(t);
+    // Lightbox 사진 바깥 빈 곳을 누르면 닫는다
+    if (t.classList && t.classList.contains("ds-lightbox__slide")) closeDialog(t.closest("dialog"));
   });
 
   // Search Suggestion: 입력 칸에서 위아래 화살표로 줄을 고르고 Enter 로 누른다
@@ -565,6 +683,24 @@
 
   // Esc = 열린 Popover 닫기 / Time Picker 열에서 위아래 화살표 = 한 칸씩 / 추천어 입력 칸에서 줄 고르기
   document.addEventListener("keydown", function (e) {
+    // Command Palette 단축키 (Ctrl/Command + K)
+    if ((e.ctrlKey || e.metaKey) && !e.altKey && (e.key === "k" || e.key === "K")) {
+      var hot = document.querySelector('dialog.ds-command[data-ds-hotkey="k"]');
+      if (hot) { e.preventDefault(); if (hot.open) closeDialog(hot); else { openDialog(hot.id); commandReset(hot); } return; }
+    }
+    var openLb = document.querySelector("dialog.ds-lightbox[open]");
+    if (openLb && (e.key === "ArrowLeft" || e.key === "ArrowRight")) { e.preventDefault(); lightboxGo(openLb, lightboxIndex(openLb) + (e.key === "ArrowLeft" ? -1 : 1)); return; }
+    var cmdInput = e.target.classList && e.target.classList.contains("ds-command__input") ? e.target : null;
+    if (cmdInput && (e.key === "ArrowDown" || e.key === "ArrowUp")) { e.preventDefault(); commandMove(cmdInput.closest(".ds-command"), e.key === "ArrowDown" ? 1 : -1); return; }
+    if (cmdInput && e.key === "Enter") {
+      var sel = cmdInput.closest(".ds-command").querySelector('.ds-command__item[aria-selected="true"]:not([hidden])');
+      if (sel) { e.preventDefault(); sel.click(); }
+      return;
+    }
+    if (e.key === "Escape" && document.querySelector('[data-ds-megamenu][aria-expanded="true"]')) {
+      var mmBack = document.querySelector('[data-ds-megamenu][aria-expanded="true"]');
+      closeMegamenus(); mmBack.focus(); return;
+    }
     var cellK = e.target.closest && e.target.closest(".ds-codeinput__cell");
     if (cellK && codeKey(cellK, e)) return;
     if (e.target.classList && e.target.classList.contains("ds-tree__node") && treeKey(e.target, e)) return;
@@ -583,6 +719,22 @@
       var next = cur && (e.key === "ArrowUp" ? cur.previousElementSibling : cur.nextElementSibling);
       if (next) scrollWheelTo(col, next, true);
     }
+  });
+
+  // Date Field 점 넣기, Command Palette 거르기
+  document.addEventListener("input", function (e) {
+    var t = e.target;
+    if (!t.classList) return;
+    if (t.classList.contains("ds-datefield__control")) formatDateField(t);
+    else if (t.classList.contains("ds-command__input")) commandFilter(t.closest(".ds-command"));
+  });
+  // Selection Bar: 표의 체크박스가 바뀌면 센다, 머리 체크박스는 모두 고르기
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    var table = t.closest && t.type === "checkbox" && t.closest("[data-ds-selection]");
+    if (!table) return;
+    if (t.closest("thead")) selectionBoxes(table).forEach(function (b) { if (!b.disabled) b.checked = t.checked; });
+    syncSelection(table);
   });
 
   // clear 버튼을 누르는 순간 input 포커스가 빠지지 않게 (버튼이 사라지는 깜빡임 방지)

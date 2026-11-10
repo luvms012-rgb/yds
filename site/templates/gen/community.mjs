@@ -43,8 +43,8 @@ const CSS = FRAME_CSS + `
   .tp-meta .ds-icon { --ds-icon-size: 14px; }
   /* 순위 목록 */
   .tp-rank { display: flex; flex-direction: column; gap: var(--ds-space-x3); margin: 0; padding: 0; list-style: none; counter-reset: rank; }
-  .tp-rank > li { display: grid; grid-template-columns: var(--ds-space-x5) minmax(0, 1fr); gap: var(--ds-space-x2); align-items: center; counter-increment: rank; }
-  .tp-rank > li::before { content: counter(rank); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; color: var(--ds-color-fg-neutral); }
+  .tp-rank > li { display: grid; grid-template-columns: var(--ds-space-x5) minmax(0, 1fr); gap: var(--ds-space-x2); align-items: start; counter-increment: rank; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-rank > li::before { content: counter(rank); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; color: var(--ds-color-fg-neutral); }
   .tp-rank a { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); color: inherit; text-decoration: none; }
   /* 글 줄: 순위 번호, 제목과 댓글 수, 정보 한 줄, 오른쪽 사진 */
   .tp-trend { margin: 0; padding: 0; list-style: none; }
@@ -69,9 +69,9 @@ const boardNav = (cur) => `<nav class="ds-sidenav" aria-label="게시판"><div c
 const me = () => card(`<div class="tp-me"><div class="tp-row">${avatar('주말산책', 40)}<div class="tp-stack"><span class="tp-h4">주말산책</span><span class="tp-caption">글 ${T('12')} / 댓글 ${T('48')}</span></div></div>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil', fill: true })}</div>`);
 const leftNav = (cur) => `<aside class="tp-cm__nav" aria-label="내 정보와 게시판">${me()}${boardNav(cur)}</aside>`;
 const mobileBoards = (cur) => `<div class="tp-cm__chips">${chiptabs(BOARDS.map(([t]) => t), cur, '게시판')}</div>`;
-const who = (name, time, { lv = '', extra = '' } = {}) => `<div class="tp-who">${avatar(name, 24)}<span class="tp-h4">${name}</span>${lv ? badge(lv) : ''}<span class="tp-caption">${time}</span>${extra}</div>`;
+const who = (name, time, { lv = '', extra = '' } = {}) => `<div class="tp-who">${avatar(name, 24)}<span class="tp-label">${name}</span>${lv ? badge(lv) : ''}<span class="tp-caption">${time}</span>${extra}</div>`;
 const meta = (like, cmt, view) => `<div class="tp-meta"><span>${icon('thumbs-up')}${like}</span><span>${icon('message-circle')}${cmt}</span><span>${icon('eye')}${view}</span></div>`;
-const rank = (items) => `<ol class="tp-rank">${items.map(([t, c]) => `<li><a href="#"><span class="tp-h4 tp-clamp">${t}</span>${badge(c)}</a></li>`).join('')}</ol>`;
+const rank = (items) => `<ol class="tp-rank">${items.map(([t, c]) => `<li><a href="#"><span class="tp-label tp-clamp">${t}</span>${badge(c)}</a></li>`).join('')}</ol>`;
 // 글 줄 묶음. ranked 면 앞에 순위 번호를 붙인다. 줄 = [제목, 댓글 수, 정보 글 목록, 사진 번호(없으면 -1)]
 const trend = (rows, ranked = false) => `<ol class="tp-trend"${ranked ? ' data-ranked' : ''}>${rows.map(([t, c, infos, ph], i) => `<li><a href="#">${ranked ? `<span class="tp-trend__no">${i + 1}</span>` : ''}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-trend__line"><span class="tp-item-title tp-trend__t">${t}</span>${c ? badge(c) : ''}</div><div class="tp-meta">${infos.map((x) => `<span>${x}</span>`).join('')}</div></div>${ph >= 0 ? `<div class="tp-trend__thumb">${thumb('1:1', '', K.photo('mix', ph, 160), 'md')}</div>` : '<span></span>'}</a></li>`).join('')}</ol>`;
 const MOVES = [['same', 'minus'], ['up', 'chevron-up'], ['up', 'chevron-up'], ['down', 'chevron-down'], ['up', 'chevron-up']];

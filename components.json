@@ -1553,6 +1553,56 @@
       "props": "variant `outline/fill`, cancel 버튼",
       "doc": "2714:1745",
       "category": "Data Input"
+    },
+    {
+      "no": "80",
+      "name": "Date Field",
+      "classes": [
+        ".ds-datefield"
+      ],
+      "figma": [],
+      "props": "칸은 Text Field(size, `aria-invalid`), 숫자를 넣으면 점 자동, 달력 버튼(선택)",
+      "category": "Data Input"
+    },
+    {
+      "no": "81",
+      "name": "Lightbox",
+      "classes": [
+        ".ds-lightbox"
+      ],
+      "figma": [],
+      "props": "`data-ds-open` + `data-ds-index`, 좌우 화살표 키, 사진 개수 표시",
+      "category": "Overlay"
+    },
+    {
+      "no": "82",
+      "name": "Selection Bar",
+      "classes": [
+        ".ds-selectionbar"
+      ],
+      "figma": [],
+      "props": "position `floating`, 표에 `data-ds-selection`, `data-count-format`",
+      "category": "Table & List"
+    },
+    {
+      "no": "83",
+      "name": "Mega Menu",
+      "classes": [
+        ".ds-megamenu"
+      ],
+      "figma": [],
+      "props": "트리거 `data-ds-megamenu` + `aria-expanded`, 묶음 4개까지, aside(선택)",
+      "category": "Navigation"
+    },
+    {
+      "no": "84",
+      "name": "Command Palette",
+      "classes": [
+        ".ds-command"
+      ],
+      "figma": [],
+      "props": "`data-ds-hotkey=\"k\"`, 거르기, 위아래 화살표와 Enter, 묶음과 단축키 표시",
+      "category": "Overlay"
     }
   ]
 }

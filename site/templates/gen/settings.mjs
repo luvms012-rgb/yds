@@ -23,7 +23,7 @@ const CSS = `
   .tp-srow__label > .ds-icon { margin-top: 2px; color: var(--ds-color-fg-neutral-muted); }
 `;
 const nav = (groups, cur) => `<nav class="tp-snav" aria-label="설정 메뉴">${groups.map(([g, items]) => `${g ? `<span class="tp-snav__group">${g}</span>` : ''}${items.map(([t, ic]) => `<a class="tp-snav__item" href="#"${t === cur ? ' aria-current="page"' : ''}>${ic ? icon(ic, 'sm') : ''}${t}</a>`).join('')}`).join('')}</nav>`;
-const row = (ic, t, d, control) => `<div class="tp-srow"><div class="tp-srow__label">${icon(ic, 'sm')}<span class="tp-stack"><span class="tp-h4">${t}</span><span class="tp-sub">${d}</span></span></div><div>${control}</div></div>`;
+const row = (ic, t, d, control) => `<div class="tp-srow"><div class="tp-srow__label">${icon(ic, 'sm')}<span class="tp-stack"><span class="tp-label">${t}</span><span class="tp-sub">${d}</span></span></div><div>${control}</div></div>`;
 
 /* 1. 설정 대화상자 ---------------------------------------------- */
 const dialog = () => {
@@ -94,7 +94,7 @@ const panels = () => {
   <aside class="tp-sp__side"><h2 class="tp-h2">계정 설정</h2>${nav([['', items]], '개인 정보')}${divider()}${nav([['', [['로그아웃', 'log-out']]]], '')}</aside>
   <main class="tp-sp__main">
     <h1 class="tp-h1">개인 정보</h1>
-    <div>${info.map(([k, v, e]) => `<div class="tp-info"><div class="tp-stack"><span class="tp-h4">${k}</span><span class="tp-info__v">${v}</span></div>${e ? btn('수정', { variant: 'neutralWeak', size: 'xsmall' }) : ''}</div>`).join('')}</div>
+    <div>${info.map(([k, v, e]) => `<div class="tp-info"><div class="tp-stack"><span class="tp-label">${k}</span><span class="tp-info__v">${v}</span></div>${e ? btn('수정', { variant: 'neutralWeak', size: 'xsmall' }) : ''}</div>`).join('')}</div>
     ${card(`<div class="tp-row" style="align-items:flex-start">${icon('info', 'sm')}<div class="tp-stack"><span class="tp-h4">일부 정보가 보이지 않는 이유</span></div></div>`)}
   </main>
 </div>

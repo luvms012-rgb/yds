@@ -34,7 +34,7 @@ const schedule = () => {
     ['제515회', '01.11 (일)', '12.08 ~ 12.29', '01.23 (금)', badge('접수 예정', 'informative'), notify],
     ['제516회', '01.25 (일)', '12.22 ~ 01.12', '02.06 (금)', badge('접수 예정', 'informative'), notify],
     ['제511회', '11.09 (일)', '10.06 ~ 10.27', '11.21 (금)', badge('마감'), btn('성적 보기', { variant: 'ghost', size: 'xsmall' })],
-  ].map(([n, d, p, r, s, a]) => [`<span class="tp-h4">${n}</span>`, T(d), T(p), T(r), s, a]);
+  ].map(([n, d, p, r, s, a]) => [`<span class="tp-label">${n}</span>`, T(d), T(p), T(r), s, a]);
   const body = app(2, `
 ${head('시험 일정', { tools: btn('알림 설정', { ic: 'bell' }) })}
 <main class="tp-content">
@@ -50,8 +50,14 @@ ${head('시험 일정', { tools: btn('알림 설정', { ic: 'bell' }) })}
 /* 2. 센터 찾기 ------------------------------------------------------ */
 const centers = () => {
   const css = CSS + `
-  .tp-cf { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-cf { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; } .tp-cf .tp-map { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); min-height: 560px; } }
+  /* 지도 서비스 배치(11-10 사용자 "레이아웃 우측이 비어서 좋은 UI 가 아니야"): 왼쪽 칸에 제목, 거르기, 목록 / 오른쪽은 위 메뉴 바로 아래부터 지도가 채운다 */
+  .tp-cf { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
+  .tp-cf .tp-map { order: -1; min-height: 240px; border-radius: 0; }
+  @media (min-width: 1024px) {
+    .tp-cf { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); align-items: start; }
+    .tp-cf .tp-map { order: 0; position: sticky; top: var(--tp-topbar-h, 57px); height: calc(100vh - var(--tp-topbar-h, 57px)); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
+  }
+  .tp-cf__filter { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-center { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x2) var(--ds-space-x4); align-items: start; }
   .tp-center[aria-current] { margin-inline: calc(var(--ds-space-x3) * -1); padding-inline: var(--ds-space-x3); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); }
   .tp-center__acts { display: flex; gap: var(--ds-space-x2); }
@@ -68,18 +74,18 @@ const centers = () => {
   const row = ([n, info, subj, on]) => `<div class="tp-center"${on ? ' aria-current="true"' : ''}><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><span class="tp-item-title">${n}</span>${tags(info, 't4')}<div class="tp-row" style="flex-wrap: wrap; gap: var(--ds-space-x1)">${subj.map((s) => badge(s)).join('')}</div></div><div class="tp-center__acts">${iconBtn('map-pin', n + ' 지도에서 보기', { variant: 'neutralWeak' })}${btn('상담 예약', { variant: 'neutralSolid' })}</div></div>`;
   const pins = [[22, 30, 1], [38, 52], [55, 26], [64, 70], [78, 44]];
   const body = app(3, `
-${head('센터 찾기')}
+<div class="tp-cf">
 <main class="tp-content">
-  <div class="tp-stack" style="gap: var(--ds-space-x3)">
-    <div style="width: min(100%, 480px)">${search('cf-q', '센터 이름, 지역')}</div>
+  <h1 class="tp-h1">센터 찾기</h1>
+  <div class="tp-cf__filter" role="search">
+    ${search('cf-q', '센터 이름, 지역')}
     ${chiptabs(['전체 29', '서울 12', '경기 8', '인천 3', '부산 4', '대구 2'], 1, '지역')}
     <div class="tp-chips" role="group" aria-label="과정">${['토익', '회화', '중국어', '일본어', '공무원 영어'].map((t, i) => chip(t, { on: i < 2 })).join('')}</div>
   </div>
-  <div class="tp-cf">
-    <section class="tp-sec" aria-label="센터 목록"><span class="tp-sub">센터 ${T('12')}곳</span><div class="tp-rows">${cs.map(row).join('')}</div>${K.pagination(1, 3)}</section>
-    <div class="tp-map" role="img" aria-label="센터 위치 지도">${pins.map(([x, y, on]) => `<span class="tp-pin" style="left:${x}%;top:${y}%"${on ? ' data-on' : ''}>${icon('map-pin', 'lg')}</span>`).join('')}</div>
-  </div>
-</main>`);
+  <section class="tp-sec" aria-label="센터 목록"><span class="tp-sub">센터 ${T('12')}곳</span><div class="tp-rows">${cs.map(row).join('')}</div><div style="display:flex;justify-content:center">${K.pagination(1, 3)}</div></section>
+</main>
+<div class="tp-map" role="img" aria-label="센터 위치 지도">${pins.map(([x, y, on]) => `<span class="tp-pin" style="left:${x}%;top:${y}%"${on ? ' data-on' : ''}>${icon('map-pin', 'lg')}</span>`).join('')}</div>
+</div>`);
   return { slug: 'center-finder', en: 'Center Finder', name: '센터 찾기', group: 'Education', desc: '지역과 과정으로 가까운 센터를 찾고 상담을 예약하는 화면입니다.', css, body };
 };
 

@@ -86,11 +86,13 @@ const grouped = () => {
 const inbox = () => {
   const rows = [[1, '와이비엠', '결제 페이지가 일부 해외 카드에서 오류가 나요', '오전 9:52', 1], [1, '이준호', '11월 단체 수강 견적 다시 부탁드려요', '오전 9:31', 0], [1, '박하린', '강의 영상 자막 싱크가 맞지 않아요', '오전 8:58', 0], [0, '최민준', '모의고사 점수가 마이페이지에 반영되지 않아요', '오전 8:14', 0], [0, '정다은', '세금 계산서 발행 요청드립니다', '어제', 1], [0, '한지우', '앱에서 로그인이 자꾸 풀려요', '어제', 0], [0, '오세린', '수강 기간 연장이 가능한지 궁금해요', '어제', 0], [0, '윤도현', '기업 관리자 권한을 한 명 더 추가하고 싶어요', '월', 0], [0, '서지민', '교재 배송 주소를 바꾸고 싶어요', '월', 0]];
   const css = TABLE_CSS + `
-  .tp-ibx-tabs { padding-inline: var(--tp-gutter); }
+  /* 탭은 제목 묶음과 떼어 둔다(11-10 사용자 "탭을 위 그룹과 여백을 더 주어 분리") */
+  .tp-ibx-tabs { padding-inline: var(--tp-gutter); margin-top: var(--ds-space-x6); }
   @media (min-width: 1024px) { .tp-ibx-app { height: 100vh; } }
   .tp-inbox { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); min-height: 0; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 1024px) { .tp-inbox { grid-template-columns: minmax(0, 1fr) 8px minmax(0, 1.5fr); } }
   .tp-inbox__list { overflow: auto; }
+  .tp-inbox__list .ds-table { border-top: 0; }  /* 진한 윗선 없이 칸 경계의 옅은 선 하나만 (카드 안 표와 같음) */
   .tp-inbox__list .ds-table th:first-child, .tp-inbox__list .ds-table td:first-child { box-sizing: content-box; width: 8px; padding-inline-end: var(--ds-space-x1); overflow: visible; }
   .tp-inbox__list td:nth-child(2) { width: 100%; max-width: 0; }
   .tp-unread { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--ds-color-fg-neutral); }
