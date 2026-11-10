@@ -15,7 +15,7 @@ return { cnt, miss: [...miss] };
 }
 const C = DATA.comp || {}, P = C.page || {};
 const frame = await figma.getNodeByIdAsync(DATA.frame);
-await figma.setCurrentPageAsync(frame.parent.type === 'PAGE' ? frame.parent : figma.currentPage);
+{ let pg = frame; while (pg && pg.type !== 'PAGE') pg = pg.parent; await figma.setCurrentPageAsync(pg || figma.currentPage); }  // 섹션 안 프레임도 그 페이지로 (2026-11-10)
 const iconPage = figma.root.children.find((p) => p.name === 'Iconography'); await iconPage.loadAsync();
 const res = { frame: frame.id, created: [], warn: [] };
 const styles = Object.fromEntries((await figma.getLocalTextStylesAsync()).map((s) => [s.name, s]));
@@ -220,8 +220,9 @@ async function styleText(t, s, from, to) {
 async function runText(parts, s0, name) {
   const t = figma.createText(); t.name = name || 'Text';
   await figma.loadFontAsync(t.fontName);
-  const str = parts.map((p) => p[0]).join('').replace(/^\s+|\s+$/g, '');
-  const lead = parts.map((p) => p[0]).join('').search(/\S/);
+  const pre = s0 && s0.pre;  // 템플릿 코드 줄: 앞 공백(들여쓰기)은 남긴다
+  const str = parts.map((p) => p[0]).join('').replace(pre ? /^\n+|\s+$/g : /^\s+|\s+$/g, '');
+  const lead = pre ? parts.map((p) => p[0]).join('').search(/[^\n]/) : parts.map((p) => p[0]).join('').search(/\S/);
   await styleText(t, s0);
   t.characters = str || ' ';
   let i = -Math.max(lead, 0);
@@ -245,7 +246,10 @@ function sizeW(node, s, parent, cw) {
     if (s.fg && parent.layoutMode === 'HORIZONTAL' && !root) { node.textAutoResize = 'HEIGHT'; node.layoutGrow = 1; return; }  // 가로 줄에서 남는 폭을 채우는 글 (오른쪽 정렬 값 등)
     const one = s.nw || !s.lh || s.h <= s.lh * 1.4;
     if (one && s.ta && !s.nw && full && !root && !hugW(parent) && parent.layoutMode === 'VERTICAL') { node.layoutSizingHorizontal = 'FILL'; node.textAutoResize = 'HEIGHT'; return; }  // 가운데·오른쪽 맞춤 한 줄 글은 부모 폭을 채워야 맞춤이 보인다
-    if (one) { node.textAutoResize = 'WIDTH_AND_HEIGHT'; return; }
+    if (one) { node.textAutoResize = 'WIDTH_AND_HEIGHT';
+      // 템플릿: 폭이 정해진 한 줄 글(순위 숫자 칸 등)은 사이트 폭을 지킨다 (2026-11-10)
+      if (DATA.mode === 'template' && s.w > node.width + 4) { if (full && !root && !hugW(parent) && parent.layoutMode === 'VERTICAL') { node.layoutSizingHorizontal = 'FILL'; node.textAutoResize = 'HEIGHT'; } else { node.textAutoResize = 'HEIGHT'; node.resize(s.w, node.height); node.layoutSizingHorizontal = 'FIXED'; } }
+      return; }
     if (full && !root && !hugW(parent) && parent.layoutMode === 'VERTICAL') { node.layoutSizingHorizontal = 'FILL'; node.textAutoResize = 'HEIGHT'; return; }
     node.textAutoResize = 'HEIGHT'; node.resize(Math.max(s.w, 1), node.height); node.layoutSizingHorizontal = 'FIXED'; return;
   }
@@ -260,7 +264,8 @@ function fixAfter(node, s) {
   else if (node.type === 'INSTANCE' && node.layoutMode !== 'NONE' && node.layoutSizingVertical !== 'FILL' && s.h > node.height + 2) { try { node.resize(node.width, s.h); node.layoutSizingVertical = 'FIXED'; } catch (e) {} }
 }
 async function iconNode(el, parent) {
-  const s = el.s; const name = el.cls.find((c) => /^ds-icon--/.test(c) && !/^ds-icon--(xs|sm|md|lg|xl)$/.test(c)).slice(9);
+  const s = el.s; let name = el.cls.find((c) => /^ds-icon--/.test(c) && !/^ds-icon--(xs|sm|md|lg|xl)$/.test(c)).slice(9);
+  if (s.rot && s.rot % 90 === 0) { const DIR = ['right', 'down', 'left', 'up'], m2 = name.match(/^(chevron|arrow|chevrons)-(right|down|left|up)$/); if (m2) name = m2[1] + '-' + DIR[(DIR.indexOf(m2[2]) + s.rot / 90) % 4]; }
   const solid = /-solid$/.test(name); const setN = iconPage.findOne((n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === 'Lucide/' + name.replace(/-solid$/, ''));
   const comp = setN && (setN.type === 'COMPONENT_SET' ? setN.children.find((v) => /Solid/i.test(v.name) === solid) || setN.defaultVariant : setN);
   let n;
@@ -278,10 +283,20 @@ async function renderS(el, parent, sh) {
   if (isIcon(el)) return iconNode(el, parent);
   const cw = cwOf(parent);
   if (plainBox(s) && el.c.length && el.c.every(inlineOK) && !s.ov && !s.op && !/^i?[fg]$/.test(s.d)) { const t = await runText(flat(el, s, []), s, el.tag); parent.appendChild(t); sizeW(t, s, parent, cw); return t; }
+  // 차트 SVG (템플릿, el.svg = 계산된 색을 적은 마크업): 편집 가능한 벡터로, 색은 같은 값의 변수에 묶는다 (2026-11-10)
+  if (el.tag === 'svg' && el.svg) {
+    let f; try { f = figma.createNodeFromSvg(el.svg); } catch (e) { res.warn.push('svg ' + String(e).slice(0, 60)); f = null; }
+    if (f) { f.name = 'chart ' + (el.cls[0] || 'svg'); f.fills = []; f.clipsContent = false;
+      for (const v of f.findAll((x) => 'fills' in x)) { for (const pr of ['fills', 'strokes']) { const arr = v[pr]; if (!Array.isArray(arr) || !arr.length) continue; v[pr] = arr.map((q) => { if (q.type !== 'SOLID') return q; const h = [q.color.r, q.color.g, q.color.b].map((x) => Math.round(x * 255).toString(16).padStart(2, '0')).join('') + (q.opacity !== undefined && q.opacity < 1 ? Math.round(q.opacity * 255).toString(16).padStart(2, '0') : ''); return cpaint(h, pr === 'fills' && v.type === 'TEXT' ? 'fg' : pr === 'strokes' ? 'stroke' : 'bg'); }); } }
+      // SVG 글자는 들어온 폭이 좁아 줄이 바뀌는 일이 있어 한 줄로 두고, 오른쪽, 가운데 맞춤은 그 자리를 지킨다
+      for (const t of f.findAll((x) => x.type === 'TEXT')) { try { const al = t.textAlignHorizontal, r = t.x + t.width, cx = t.x + t.width / 2; await figma.loadFontAsync(t.fontName); t.textAutoResize = 'WIDTH_AND_HEIGHT'; if (al === 'RIGHT') t.x = r - t.width; else if (al === 'CENTER') t.x = cx - t.width / 2; } catch (e) {} }
+      parent.appendChild(f); return f; }
+  }
   if (['svg', 'img', 'video', 'canvas', 'picture'].includes(el.tag)) {
-    const f = figma.createFrame(); f.name = el.tag; f.fills = s.bg ? [cpaint(s.bg, 'bg')] : el.tag === 'svg' ? [] : [paint('bg/neutral')];
+    const f = figma.createAutoLayout(); f.name = el.tag; f.fills = s.bg ? [cpaint(s.bg, 'bg')] : el.tag === 'svg' ? [] : [paint('bg/neutral')];
     if (s.r) { [f.topLeftRadius, f.topRightRadius, f.bottomRightRadius, f.bottomLeftRadius] = s.r; }
-    parent.appendChild(f); f.resize(Math.max(s.w, 1), Math.max(s.h, 1)); if (sizeW(f, s, parent, cw) === 'fill') {} return f;
+    if (el.tag === 'img' && el.a && el.a.src) { f.name = 'img'; (res.imgs = res.imgs || []).push([f.id, el.a.src.replace('https://images.unsplash.com/photo-', 'U:').replace('auto=format&fit=crop&', '')]); }  // 사진은 나중에 upload_assets 로 칠을 채운다
+    parent.appendChild(f); f.resize(Math.max(s.w, 1), Math.max(s.h, 1)); f.layoutSizingHorizontal = 'FIXED'; f.layoutSizingVertical = 'FIXED'; if (sizeW(f, s, parent, cw) === 'fill') {} return f;
   }
   const dir = el.tag === 'tr' ? 'HORIZONTAL' : /^i?f$/.test(s.d) ? (s.fd === 'c' ? 'VERTICAL' : 'HORIZONTAL') : /^i?g$/.test(s.d) ? (s.gc > 1 ? 'HORIZONTAL' : 'VERTICAL') : 'VERTICAL';  // 표 줄은 가로
   const f = figma.createAutoLayout(dir); f.name = el.tag + (el.cls.length ? '.' + el.cls.join('.') : '');
@@ -329,21 +344,35 @@ async function renderS(el, parent, sh) {
   if (mode === 'later') { if (el.tag === 'td' || el.tag === 'th') { f.resize(Math.max(s.w, 1), f.height); f.layoutSizingHorizontal = 'FIXED'; f.primaryAxisAlignItems = 'CENTER'; } else if (/^(i|ib|if|ig)$/.test(s.d) || (parent.layoutMode === 'HORIZONTAL')) f.layoutSizingHorizontal = 'HUG'; else { f.resize(Math.max(s.w, 1), f.height); f.layoutSizingHorizontal = 'FIXED'; } }
   f.layoutSizingVertical = 'HUG';
   CW.set(f.id, inner);
+  // 가로 줄 끝 항목이 오른쪽 끝에 붙어 있으면(margin-left: auto) 가장 넓은 틈은 남는 폭을 채운다. 글꼴 폭 차이로 끝 글이 잘리지 않게 (템플릿, 2026-11-10)
+  let growAt = -1, growSp = null;
+  if (DATA.mode === 'template' && spacers && H) { const last = flow[flow.length - 1].b; if (last[0] + last[2] >= inner - 2) { let mx = 0; spacers.forEach((g, i) => { if (g >= 24 && g > mx) { mx = g; growAt = i; } }); } }
   for (let i = 0; i < items.length; i++) {
     const it = items[i];
-    if (spacers && i > 0 && !it.abs && spacers[flow.indexOf(it) - 1] > 0) { const sp = figma.createFrame(); sp.name = 'gap'; sp.fills = []; f.appendChild(sp); sp.resize(H ? spacers[flow.indexOf(it) - 1] : 1, H ? 1 : spacers[flow.indexOf(it) - 1]); }
+    if (spacers && i > 0 && !it.abs && spacers[flow.indexOf(it) - 1] > 0) { const sp = figma.createAutoLayout(); sp.name = 'gap'; sp.fills = []; f.appendChild(sp); sp.resize(H ? spacers[flow.indexOf(it) - 1] : 1, H ? 1 : spacers[flow.indexOf(it) - 1]); if (flow.indexOf(it) - 1 === growAt) { growSp = sp; if (f.layoutSizingHorizontal !== 'HUG') { sp.layoutGrow = 1; sp.minWidth = 4; } } }
     let n;
     if (it.run) { const s0 = it.parts[0][1] || s; n = await runText(it.parts, s0.fs ? s0 : s, 'Text'); f.appendChild(n); sizeW(n, { ...s0, w: it.b[2], h: it.b[3], lh: s0.lh, nw: s0.nw }, f, inner); if (!s0.ta && s.ta) n.textAlignHorizontal = s.ta === 'center' ? 'CENTER' : 'RIGHT'; }
     else n = await render(it.el, f, SH ? { shape: true } : {});
     if (n && it.abs) { try { n.layoutPositioning = 'ABSOLUTE'; n.x = it.b[0] + pad[3]; n.y = it.b[1] + pad[0]; } catch (e) {} }
+    // 음수 바깥 여백으로 부모 내용 칸보다 넓게 나간 칸 (선택된 목록 줄 바탕 등): 칸은 내용 폭을 채우고, 안쪽 여백을 그만큼 줄이고, 바탕과 테두리는 뒤에 깐 사각형이 좌우로 넘친다 (2026-11-10)
+    if (n && !it.abs && !H && !wrap && n.type === 'FRAME' && n.layoutMode !== 'NONE' && it.b[0] < -1) { const m = -it.b[0], mr = Math.max(0, it.b[0] + it.b[2] - inner);
+      if (n.paddingLeft >= m - 0.5 && n.paddingRight >= mr - 0.5) { for (const k of ['paddingLeft', 'paddingRight']) { try { n.setBoundVariable(k, null); } catch (e) {} } n.paddingLeft = Math.max(0, n.paddingLeft - m); n.paddingRight = Math.max(0, n.paddingRight - mr); n.layoutSizingHorizontal = 'FILL'; bindSp(n);
+        if (n.fills.length || n.strokes.length) { const bg = figma.createRectangle(); bg.name = 'bg'; bg.fills = n.fills; bg.strokes = n.strokes; bg.strokeAlign = 'INSIDE'; bg.strokeWeight = typeof n.strokeWeight === 'number' ? n.strokeWeight : 1; for (const k of ['topLeftRadius', 'topRightRadius', 'bottomRightRadius', 'bottomLeftRadius']) { bg[k] = n[k]; const bv = n.boundVariables && n.boundVariables[k]; if (bv) { const vv = await figma.variables.getVariableByIdAsync(bv.id); if (vv) bg.setBoundVariable(k, vv); } }
+          n.insertChild(0, bg); bg.layoutPositioning = 'ABSOLUTE'; bg.x = -m; bg.y = 0; bg.resize(n.width + m + mr, n.height); bg.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' }; n.fills = []; n.strokes = []; n.clipsContent = false; } } }
     // 세로 줄에서 자식 하나만 가운데나 오른쪽에 붙은 경우 (align-self, margin auto) - 가로 틀로 감싸 자리를 맞춘다
     if (n && !it.abs && !H && !wrap && n.parent === f && n.layoutSizingHorizontal !== 'FILL' && it.b[2] < inner - 2) { const x = it.b[0], r = inner - (x + it.b[2]); const want = x > 2 && Math.abs(x - r) <= 2 ? 'CENTER' : x > 2 && r <= 2 ? 'MAX' : x <= 2 && r > 2 ? 'MIN' : null; if (want && want !== f.counterAxisAlignItems) { const w = figma.createAutoLayout('HORIZONTAL'); w.name = 'align'; w.fills = []; f.insertChild(f.children.indexOf(n), w); w.layoutSizingHorizontal = 'FILL'; w.layoutSizingVertical = 'HUG'; w.primaryAxisAlignItems = want; w.appendChild(n); } }
   }
   if (!f.children.length) { const fill = f.layoutSizingHorizontal === 'FILL'; f.resize(Math.max(s.w, 0.01), Math.max(s.h, 0.01)); if (fill) f.layoutSizingHorizontal = 'FILL'; f.layoutSizingVertical = 'FIXED'; await pseudo(f, s); return f; }
+  // 여러 칸 격자: 칸 폭을 반올림해서 한 줄에 칸이 하나 모자라게 꺾이던 것(달력 등) - 칸 폭을 내용 폭에 딱 맞게 나눈다 (2026-11-10)
+  if (wrap && /^i?g$/.test(s.d) && s.gc > 1) { const g = f.itemSpacing || 0, cw2 = (inner - (s.gc - 1) * g) / s.gc; const cells = f.children.filter((c) => c.layoutPositioning !== 'ABSOLUTE');
+    if (cw2 > 0 && cells.every((c) => c.layoutSizingHorizontal === 'FIXED' && Math.abs(c.width - cw2) <= 2)) for (const c of cells) c.resize(cw2, c.height); }
   fixAfter(f, s);
   await pseudo(f, s);
+  bindSp(f);
   return f;
 }
+// 여백과 간격이 토큰 값과 같으면 dimension 변수에 묶는다 (2026-11-10)
+function bindSp(f) { if (!f.layoutMode || f.layoutMode === 'NONE') return; for (const k of ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft', 'itemSpacing'].concat(f.layoutWrap === 'WRAP' ? ['counterAxisSpacing'] : [])) { const v = f[k]; if (v > 0 && DIM[v]) { try { f.setBoundVariable(k, DIM[v]); } catch (e) {} } } }
 // ::before / ::after 의 선과 점 (s.ps: [x, y, w, h, 색, 모서리]) - 절대 위치 사각형. 가로선은 좌우 여백을 지키며 늘어난다 (2026-11-07)
 // 대표 그림이 상자보다 크면 상자 안에 들어가게 줄인다 (잘림 방지, 2026-11-07)
 function fitCover(cv, wrap) { if (cv.layoutSizingVertical === 'HUG' && cv.layoutSizingHorizontal === 'HUG') return; const mh = cv.height - cv.paddingTop - cv.paddingBottom - 96, mw = cv.width - cv.paddingLeft - cv.paddingRight - 96; const k = Math.min(1, mh / wrap.height, mw / wrap.width); if (k < 0.999 && k > 0) wrap.rescale(k); }
@@ -356,6 +385,7 @@ async function pseudo(f, s) {
     rc.resize(line ? Math.max(f.width - x - right, 1) : w, h); rc.x = x; rc.y = y > s.h / 2 && s.h ? f.height - (s.h - y) : y;
     if (r) rc.cornerRadius = Math.min(r, Math.min(w, h) / 2);
     if (line) rc.constraints = { horizontal: 'STRETCH', vertical: y > s.h / 2 ? 'MAX' : 'MIN' };
+    if (w <= 2 && h > 40 && Math.abs(h - s.h) <= 1) { rc.resize(w, f.height); rc.y = 0; rc.x = x > s.w / 2 ? f.width - (s.w - x) : x; rc.constraints = { horizontal: x > s.w / 2 ? 'MAX' : 'MIN', vertical: 'STRETCH' }; }  // 세로 선(왼쪽, 오른쪽 inset 그림자)은 높이를 따라간다
   }
   // ::before/::after 아이콘 (s.pi: [앞b/뒤a, 이름, w, h, 색, 절대, x, y]) - 체크, 꺾쇠, 화살표 등
   for (const [pos, nm, w, h, c, abs, x, y] of s.pi || []) {
@@ -364,8 +394,9 @@ async function pseudo(f, s) {
     if (abs) { f.appendChild(n); n.layoutPositioning = 'ABSOLUTE'; n.resize(w, h); n.x = x; n.y = y; } else { if (pos === 'b') { f.insertChild(0, n); if (f.layoutMode === 'HORIZONTAL') f.paddingLeft = Math.max(0, f.paddingLeft - w - f.itemSpacing); else f.paddingTop = Math.max(0, f.paddingTop - h - f.itemSpacing); } else f.appendChild(n); n.resize(w, h); }
   }
   // 글자 가상 요소 (s.pt: [앞b/뒤a, 글, 색, 크기, 굵기, 좌우 여백]) - 태그 사이 점 등
-  for (const [pos, txt, c, fs, fw, m] of s.pt || []) {
+  for (const [pos, txt, c, fs, fw, m, pw, pa] of s.pt || []) {
     const t = await runText([[txt, { fs, fw, c }]], { fs, fw, c }, 'pseudo');
+    if (pw > t.width) { t.textAutoResize = 'HEIGHT'; t.resize(pw, t.height); if (pa === 'r') t.textAlignHorizontal = 'RIGHT'; }  // 줄 번호처럼 폭이 정해진 글
     if (f.layoutMode !== 'HORIZONTAL') { f.layoutMode = 'HORIZONTAL'; f.counterAxisAlignItems = 'CENTER'; f.itemSpacing = m; }
     if (pos === 'b') { f.insertChild(0, t); f.paddingLeft = Math.max(0, f.paddingLeft - t.width - m); } else f.appendChild(t);
     if (m && f.itemSpacing < m) f.itemSpacing = m;
@@ -380,8 +411,14 @@ async function setNode(el, setCls, parent) {
   let node = inst;
   if (el.sp) { const ok = await FILL(inst, el.sp, true); if (ok === false && el.s && el.c.length) { inst.remove(); return renderS(el, parent); } }
   if (el.fx) node = await FIX(inst, el);
+  // 템플릿: 풀어서 그린 카드 등은 사이트 안쪽 여백으로 (2026-11-10)
+  if (DATA.mode === 'template' && node !== inst && node.type === 'FRAME' && node.layoutMode !== 'NONE' && el.s) { const p = el.s.p || [0, 0, 0, 0], bw = el.s.bw || [0, 0, 0, 0]; ['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'].forEach((k, i) => { try { node.setBoundVariable(k, null); } catch (e) {} node[k] = p[i] + bw[i]; }); bindSp(node); }
   if (el.s) { if (sizeW(node, el.s, parent, cw) !== 'fill') fixAfter(node, el.s); }
   else if ((el.a['data-width'] === 'fill' || el.cls.includes('u-grow') || el.cls.includes('u-full')) && parent.layoutMode && parent.layoutMode !== 'NONE') node.layoutSizingHorizontal = 'FILL';
+  // 템플릿: 그 자리에서 바탕을 바꾼 부품(회색 위 흰 배지 등)은 사이트 바탕색으로 덮는다 (2026-11-10)
+  // 템플릿: 사이트에서 굵은 안쪽 테두리(box-shadow inset 2px 등, 고른 카드)를 준 부품은 그 선으로 (2026-11-10)
+  if (DATA.mode === 'template' && el.s && el.s.rg && el.s.rg[0] >= 2 && (node.type === 'INSTANCE' || node.type === 'FRAME')) { node.strokes = [cpaint(el.s.rg[1], 'stroke')]; node.strokeAlign = 'INSIDE'; node.strokeWeight = el.s.rg[0]; }
+  if (DATA.mode === 'template' && el.s && el.s.bg && node.type === 'INSTANCE' && Array.isArray(node.fills) && node.fills.length === 1 && node.fills[0].type === 'SOLID') { const q = node.fills[0]; const [r, g, b, a] = hexRGB(el.s.bg); if (Math.abs(q.color.r * 255 - r) > 2 || Math.abs(q.color.g * 255 - g) > 2 || Math.abs(q.color.b * 255 - b) > 2 || Math.abs((q.opacity === undefined ? 1 : q.opacity) - a) > 0.03) node.fills = [cpaint(el.s.bg, 'bg')]; }
   if (el.sp && typeof el.sp.pct === 'number' && node.type === 'INSTANCE' && node.findOne((n) => n.name === 'thumb')) { node = node.detachInstance(); const a = node.findOne((n) => n.name === 'active'), t = node.findOne((n) => n.name === 'thumb'); const tr = node.findOne((n) => n.name === 'track'); if (tr) tr.resize(node.width, tr.height); t.x = Math.round((node.width - t.width) * el.sp.pct); if (a) a.resize(Math.max(1, t.x + t.width / 2), a.height); }
   return node;
 }
@@ -405,9 +442,9 @@ function picker(s) {
   return { take, has };
 }
 // 한국어 줄바꿈은 낱말 단위로 (사이트 word-break: keep-all). Figma 는 글자 사이에서 끊으므로 줄을 직접 나눈다 (2026-11-08)
-async function KEEPALL(B) {
+async function KEEPALL(B, bx) {
   const HAN = /[가-힣]/; const pg = figma.currentPage;
-  const boxes = B.findAll((x) => x.type === 'FRAME' && (x.name === PREFIX + '대표 그림' || (x.name === 'Preview' && x.parent && x.parent.name === 'Example Box')));
+  const boxes = bx || B.findAll((x) => x.type === 'FRAME' && (x.name === PREFIX + '대표 그림' || (x.name === 'Preview' && x.parent && x.parent.name === 'Example Box')));
   for (const b of boxes) for (const t of b.findAll((x) => x.type === 'TEXT' && x.visible && x.textAutoResize === 'HEIGHT')) {
     const s = t.characters; if (!HAN.test(s) || s.includes('\n') || !s.includes(' ')) continue;
     const seg = t.getStyledTextSegments(['fontName', 'fontSize']); if (seg.length !== 1 || t.height < seg[0].fontSize * 1.9) continue;
@@ -418,9 +455,9 @@ async function KEEPALL(B) {
   }
 }
 // 코드 글자는 사이트처럼 고정폭(ui-monospace → Roboto Mono). 한글은 이 글꼴에 없어 그대로 둔다 (2026-11-08)
-async function MONOFONT(B) {
+async function MONOFONT(B, bx) {
   const isCode = (n) => /^(code|pre)\b|ds-codeblock__header/.test(n.name) || (/^figcaption/.test(n.name) && n.parent && /ds-codeblock/.test(n.parent.name));
-  const boxes = B.findAll((x) => x.type === 'FRAME' && (x.name === PREFIX + '대표 그림' || (x.name === 'Preview' && x.parent && x.parent.name === 'Example Box')));
+  const boxes = bx || B.findAll((x) => x.type === 'FRAME' && (x.name === PREFIX + '대표 그림' || (x.name === 'Preview' && x.parent && x.parent.name === 'Example Box')));
   for (const b of boxes) for (const t of b.findAll((x) => x.type === 'TEXT')) {
     let p = t.parent, hit = false; while (p && p !== b) { if (isCode(p)) { hit = true; break; } p = p.parent; } if (!hit || t.fontName === figma.mixed && false) continue;
     const segs = t.getStyledTextSegments(['fontName']); for (const sg of segs) await figma.loadFontAsync(sg.fontName);
@@ -468,7 +505,7 @@ async function FILL(inst, s, top) {
   }
   // 되풀이 항목(라디오 묶음 등): 안쪽 같은 부품에 차례로 글을 넣고 남는 것은 끈다. 모자라면 false (모양 그대로 그린다)
   // 안쪽 글이 모두 꺼진 칸(빈 footer 등)은 칸째 끈다 - 빈 칸이 자리를 차지하지 않게 (2026-11-07)
-  const hideEmpty = (n) => { for (const c of n.children || []) { if (c.type === 'FRAME' && c.visible && c.children.length) { hideEmpty(c); if (c.children.every((x) => !x.visible)) c.visible = false; } } };
+  const hideEmpty = (n) => { for (const c of n.children || []) { if (c.type === 'FRAME' && c.visible && !c.children.length && /^messages$/i.test(c.name)) { c.visible = false; continue; } if (c.type === 'FRAME' && c.visible && c.children.length) { hideEmpty(c); if (c.children.every((x) => !x.visible)) c.visible = false; } } };  // 빈 안내 글 칸(messages)도 끈다 (2026-11-10)
   hideEmpty(inst);
   if (s.items) {
     const nested = nestedOf(inst).filter((n) => n.visible); const ids = []; for (const n of nested) ids.push(await setIdOf(n));
@@ -559,7 +596,7 @@ async function FIX(inst, el) {
     const old = [...fr.children]; let i = 0;
     const setT = async (t, v) => { if (!t) return; await fonts(t); t.characters = v; };
     for (const e of el.c.filter((x) => typeof x !== 'string')) {
-      if (i++ && tplN.space) fr.appendChild(tplN.space.clone());
+      if (i++ && tplN.space) { const sp = figma.createAutoLayout(); sp.name = 'space'; sp.fills = []; fr.appendChild(sp); sp.resize(tplN.space.width, tplN.space.height); try { sp.layoutSizingHorizontal = 'FILL'; } catch (er) {} }
       const sc = e.cls.find((c) => SET[c] && c !== 'ds-list-item');
       if (sc) { const n = await render(e, fr, {}); try { n.layoutSizingHorizontal = 'FILL'; } catch (er) {} continue; }
       if (e.tag === 'blockquote' && tplN.blockquote) { const b = tplN.blockquote.clone(); fr.appendChild(b); await setT(b.findOne((n) => n.type === 'TEXT'), deepT(e)); continue; }
@@ -573,6 +610,41 @@ async function FIX(inst, el) {
   return inst;
 }
 
+// ---------- 템플릿 화면 (DATA.mode = 'template', node sync.mjs tplpage, 2026-11-10)
+// 사이트 템플릿을 1920 폭으로 읽은 나무를 자동 배치 컴포넌트 'Template/<영문 이름>' 으로 그린다. 기존 프레임은 비우고 컴포넌트로 바꾼다(id 가 바뀌면 templates.json figma.pc 를 고친다)
+if (DATA.mode === 'template') {
+  for (const st of ['Regular', 'Medium', 'SemiBold', 'Bold']) { try { await figma.loadFontAsync({ family: 'Pretendard', style: st }); } catch (e) {} }
+  let root = frame;
+  for (const c of [...root.children]) c.remove();
+  if (root.type !== 'COMPONENT') { root.layoutMode = 'VERTICAL'; root = figma.createComponentFromNode(root); }
+  root.name = DATA.name; root.layoutMode = 'VERTICAL'; root.itemSpacing = 0; root.paddingTop = 0; root.paddingRight = 0; root.paddingBottom = 0; root.paddingLeft = 0;
+  try { root.minHeight = null; } catch (e) {}
+  root.resize(DATA.w, 1080); root.counterAxisSizingMode = 'FIXED'; root.primaryAxisSizingMode = 'FIXED';  // 화면 한 장 = 1920x1080 고정, 넘치는 아래는 잘라 낸다
+  root.fills = DATA.tree.s && DATA.tree.s.bg ? [cpaint(DATA.tree.s.bg, 'bg')] : [paint('bg/layer-default')]; root.clipsContent = true; root.strokes = [];
+  CW.set(root.id, DATA.w);
+  const body = await renderS(DATA.tree, root);
+  if (body) { body.name = 'Page'; try { body.layoutSizingHorizontal = 'FILL'; } catch (e) {} if (DATA.h <= 1084) { try { body.layoutSizingVertical = 'FILL'; } catch (e) {} } }
+  await KEEPALL(root, [root]);
+  await MONOFONT(root, [root]);
+  // 코드 상자(pre) 안 글은 사이트처럼 줄바꿈 없이 (글꼴이 넓어져 줄이 꺾이던 것)
+  for (const t of root.findAll((x) => x.type === 'TEXT')) { let p = t.parent, pre = false; while (p && p !== root) { if (/^pre\b/.test(p.name)) { pre = true; break; } p = p.parent; } if (pre) { try { t.textAutoResize = 'WIDTH_AND_HEIGHT'; } catch (e) {} } }
+  const mono = await MONOIZE({ children: [...root.children] });
+  // 남은 자동 배치 없는 틀(풀어 낸 부품 안쪽 등)은 같은 크기의 자동 배치로 바꾸고, 자식은 제자리에 둔다(겹쳐 놓인 장식만 해당)
+  const inI = (n) => { let p = n.parent; while (p && p !== root) { if (p.type === 'INSTANCE') return true; p = p.parent; } return false; };
+  for (const n of root.findAll((n) => n.type === 'FRAME' && n.layoutMode === 'NONE' && !/^chart /.test(n.name) && !(n.parent && /^chart /.test(n.parent.name)))) {
+    if (inI(n)) continue;
+    const w = n.width, h = n.height, pos = n.children.map((c) => [c, c.x, c.y]);
+    n.layoutMode = 'HORIZONTAL'; n.primaryAxisSizingMode = 'FIXED'; n.counterAxisSizingMode = 'FIXED'; n.resize(w, h);
+    for (const [c, x, y] of pos) { c.layoutPositioning = 'ABSOLUTE'; c.x = x; c.y = y; }
+  }
+  // 점검: 인스턴스 밖의 자동 배치 없는 프레임 (차트 SVG 는 따로 센다)
+  const inInst = (n) => { let p = n.parent; while (p && p !== root) { if (p.type === 'INSTANCE') return true; p = p.parent; } return false; };
+  const all = root.findAll(() => true).filter((n) => !inInst(n));
+  const nonAL = all.filter((n) => n.type === 'FRAME' && n.layoutMode === 'NONE' && !/^chart /.test(n.name) && !(n.parent && /^chart /.test(n.parent.name)));
+  const charts = all.filter((n) => n.type === 'FRAME' && /^chart /.test(n.name)).length;
+  const clipped = all.filter((n) => n.type === 'TEXT' && n.visible && n.parent && n.parent.clipsContent && (n.x + n.width > n.parent.width + 1 || n.y + n.height > n.parent.height + 1) && n.parent.type !== 'COMPONENT').map((n) => n.characters.slice(0, 20));
+  return { id: root.id, slug: DATA.slug, w: Math.round(root.width), h: Math.round(root.height), nodes: all.length, inst: all.filter((n) => n.type === 'INSTANCE').length, nonAL: nonAL.length, nonALnames: nonAL.slice(0, 5).map((n) => n.name.slice(0, 30)), charts, clipped: clipped.slice(0, 8), mono: mono.cnt, imgs: res.imgs || [], warn: res.warn.slice(0, 6) };
+}
 // ---------- 미리보기만 다시 그리기 (DATA.mode = 'preview'): 대표 그림과 예시 미리보기 칸만 비우고 다시 그린다. 코드, 표 등은 그대로
 if (DATA.mode === 'preview') {
   const B = frame.findChild((n) => n.type === 'FRAME' && n.name === 'Body');

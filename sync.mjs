@@ -7,6 +7,8 @@
 //   node sync.mjs links           Figma 문서 프레임의 문서 / 코드 링크를 고치는 스크립트 생성 → tokens/.figma-links.js
 //   node sync.mjs docs            Figma 문서 프레임 본문을 사이트와 같은 순서로 채우는 스크립트 생성 → tokens/.figma-docs.js
 //   node sync.mjs docpage <slug>  컴포넌트 문서 프레임 하나를 사이트 페이지 구성 그대로 다시 그리는 스크립트 → tokens/.figma-docpage.js
+//   node sync.mjs tplpage [slug ...]  템플릿 화면을 1920 자동 배치 컴포넌트로 그릴 자료 → tokens/.figma-tplpage/<slug>.json
+//                                  (먼저 node tokens/figma-styles.mjs --templates, 그리기 코드는 docpage 템플릿의 template 모드)
 //   node sync.mjs pull [결과.json]  Figma 결과 반영 → 토큰 빌드 → 검증 → GitHub 배포 → 가이드 재배포
 //   node sync.mjs build            토큰만 다시 빌드 (오늘 날짜)
 //   node sync.mjs verify           검증만
@@ -273,7 +275,7 @@ function mdBlocks(md) {
 }
 // ---- docpage 가 쓰는 사이트 실제 모양 자료 다듬기 (2026-11-06)
 const hostOf = (s) => (s ? Object.fromEntries(Object.entries(s).filter(([k]) => ['d', 'fd', 'gap', 'p', 'jc', 'ai'].includes(k))) : null);
-function prepStyled(P, SETS) {
+function prepStyled(P, SETS, TPL = false) {
   const isEl = (n) => n && typeof n === 'object';
   const setOf = (el) => (el.cls || []).find((c) => SETS[c] && c !== 'ds-list-item');
   const deep = (el) => (typeof el === 'string' ? el : (el.c || []).map(deep).join(' ')).replace(/\s+/g, ' ').trim();
@@ -284,7 +286,7 @@ function prepStyled(P, SETS) {
   const part = (el, name) => (el.c || []).find((x) => isEl(x) && (x.cls || []).some((k) => k.endsWith('__' + name)));
   const sub = (el, name) => { let r = null; const f = (n) => { if (isEl(n) && !r) { if ((n.cls || []).some((k) => k.endsWith('__' + name))) r = n; else (n.c || []).forEach(f); } }; (el.c || []).forEach(f); return r; };
   const hasNode = (n, t) => isEl(n) && (n === t || (n.c || []).some((x) => hasNode(x, t)));
-  const checked = (el) => isEl(el) && ((el.a && (el.a.checked !== undefined || el.a['aria-checked'] === 'true' || el.a['aria-selected'] === 'true')) || (el.c || []).some(checked));
+  const checked = (el) => isEl(el) && ((el.a && (el.a.checked !== undefined || el.a['aria-checked'] === 'true' || (TPL && el.a['aria-pressed'] === 'true') || el.a['aria-selected'] === 'true')) || (el.c || []).some(checked));
   // 부품 하나에 넣을 글 (tokens 쪽 FILL 이 읽는다)
   function spec(el) {
     const s = { set: SETS[setOf(el)], own: (el.c || []).filter((x) => typeof x === 'string').join(' ').replace(/\s+/g, ' ').trim(), parts: {}, kids: [], a: dataAttrs(el) };
@@ -308,6 +310,7 @@ function prepStyled(P, SETS) {
       const ca = ctl.a || {};
       const val = ca.value || (kind === 'ds-fieldbutton' || kind === 'ds-select' ? deep(sub(el, 'value') || { c: [] }) : '') || (kind === 'ds-textarea' ? deep(el) : '');
       if (val) { s.a.content = 'value'; if (kind === 'ds-textarea') s.parts.value = val; }
+      else if (TPL && (kind === 'ds-input' || kind === 'ds-textarea') && !ca.placeholder) s.parts.placeholder = ' ';  // 템플릿: 안내 글 없는 빈 칸은 부품 기본 글을 지운다
       const inv = ca['aria-invalid'] === 'true' || (el.a || {})['aria-invalid'] === 'true';
       if (inv) s.a.state = 'invalid'; else if (ca.disabled !== undefined) s.a.state = 'disabled'; else if (ca.readonly !== undefined || (el.a || {})['aria-readonly'] === 'true') s.a.state = 'readOnly';
       else if (kind === 'ds-select' && (el.a || {})['aria-expanded'] === 'true') s.a.state = 'open';
@@ -322,7 +325,8 @@ function prepStyled(P, SETS) {
       const inv = JSON.stringify(el).includes('"aria-invalid":"true"');
       s.flags = { required: !!sub(el, 'required'), indicator: !!sub(el, 'indicator'), showerror: inv && !!sub(el, 'error'), charactercount: !!sub(el, 'count'), showdescription: !!sub(el, 'help') && !inv, showlabel: !!sub(el, 'label') };
     }
-    if (kind === 'ds-selectbox') { const ctl = ctlOf(el); if (ctl && ctl.a) { s.a.type = ctl.a.type === 'radio' ? 'radio' : 'check'; s.a.state = ctl.a.disabled !== undefined ? 'disabled' : ctl.a.checked !== undefined ? 'checked' : 'unchecked'; } }
+    if (kind === 'ds-selectbox') { const ctl = ctlOf(el); if (ctl && ctl.a) { s.a.type = ctl.a.type === 'radio' ? 'radio' : 'check'; s.a.state = ctl.a.disabled !== undefined ? 'disabled' : ctl.a.checked !== undefined ? 'checked' : 'unchecked'; }
+      const ic = (el.c || []).find((x) => isEl(x) && (x.cls || []).includes('ds-icon')); if (ic) { s.flags = { ...(s.flags || {}), prefixicon: true }; s.icons = { prefix: (ic.cls.find((c) => /^ds-icon--/.test(c) && !/^ds-icon--(xs|sm|md|lg|xl)$/.test(c)) || '').slice(9) }; } }  // 앞 아이콘 (2026-11-10)
     if (kind === 'ds-accordion') s.a.state = (el.a || {}).open !== undefined ? 'expanded' : s.a.state === 'disabled' ? 'disabled' : 'collapsed';
     if (kind === 'ds-helpbubble') s.flags = { closebutton: !!sub(el, 'close') };
     if (kind === 'ds-searchfield') s.flags = { ...(s.flags || {}), cancel: !!sub(el, 'cancel') };
@@ -371,7 +375,7 @@ function prepStyled(P, SETS) {
     if (k) {
       el.sp = spec(el);
       const ke = (el.c || []).filter(isEl);
-      if (!el.sp.kids && !el.sp.parts && ke.length >= 2 && ke[0].cls[0] && ke.every((x) => x.cls[0] === ke[0].cls[0]) && !ke.some(hasSet)) el.sp.items = ke.map((x) => ({ t: deep(x), on: checked(x) }));
+      if (!el.sp.kids && (!el.sp.parts || TPL) && ke.length >= 2 && ke[0].cls[0] && ke.every((x) => x.cls[0] === ke[0].cls[0]) && !ke.some(hasSet)) el.sp.items = ke.map((x) => ({ t: deep(x), on: checked(x) }));
       const keep = (el.c || []).some(hasSet) || el.sp.items;
       if (keep) { el.c = el.c.map(prep); slim(el, true); }
       else { el.c = (el.c || []).filter((x) => typeof x === 'string' || isIcon(x)).map((x) => { if (isEl(x)) slim(x); return x; }); slim(el, false); }
@@ -453,6 +457,44 @@ ${fs.readFileSync(path.join(DS, 'tokens', 'figma-docpage.template.js'), 'utf8')}
 const DATA = ${JSON.stringify(DATA)};
 ${fs.readFileSync(path.join(DS, 'tokens', 'figma-docpage.template.js'), 'utf8')}`, 'utf8');
   return file;
+}
+
+// 템플릿 화면 (2026-11-10): 사이트 템플릿을 1920 폭으로 읽은 나무(tokens/.figma-templates.json)에 부품 글(sp)을 붙여
+// tokens/.figma-tplpage/<slug>.json 에 { code, data } 를 쓴다. code 는 docpage 템플릿에서 미리보기 모드 앞까지(주석 뺌)
+function tplpageFiles(slugs) {
+  const tf = path.join(DS, 'tokens', '.figma-templates.json');
+  if (!fs.existsSync(tf)) die('tokens/.figma-templates.json 이 없어요. 먼저 node tokens/figma-styles.mjs --templates');
+  const TJ = JSON.parse(fs.readFileSync(tf, 'utf8'));
+  const list = JSON.parse(read('site/src/templates.json')).templates;
+  const d = JSON.parse(fs.readFileSync(path.join(DS, 'tokens', '.figma-docs.json'), 'utf8'));
+  const reg = JSON.parse(read('components.json')).components;
+  const allSets = {}, allDefaults = {};
+  const norm = (x) => x.toLowerCase().replace(/[^a-z]/g, '');
+  for (const x of reg) {
+    const page = (d.components.find((y) => y.no === x.no) || {}).page || {};
+    for (const fg of (x.figma || []).filter((g) => g.type === 'COMPONENT_SET' || g.type === 'COMPONENT')) {
+      const cls = (fg.part ? x.classes.find((k) => norm(k).endsWith(norm(fg.part))) : x.classes[0]) || null;
+      if (!cls) continue; const k = cls.replace(/^\./, '');
+      if (!allSets[k]) { allSets[k] = fg.id; allDefaults[k] = page.defaults || {}; }
+    }
+  }
+  const tpl = fs.readFileSync(path.join(DS, 'tokens', 'figma-docpage.template.js'), 'utf8');
+  const cut = tpl.indexOf("if (DATA.mode === 'preview')");
+  const code = tpl.slice(0, cut).split('\n').filter((l) => !/^\s*\/\//.test(l)).join('\n') + "\nreturn { error: 'mode' };";
+  const dir = path.join(DS, 'tokens', '.figma-tplpage'); fs.mkdirSync(dir, { recursive: true });
+  const out = [];
+  for (const t of list.filter((x) => !slugs.length || slugs.includes(x.slug))) {
+    const v = TJ[t.slug]; if (!v) { say(c.y('  ! 캡처 없음 ' + t.slug)); continue; }
+    if (!t.figma || !t.figma.pc) { say(c.y('  ! Figma 프레임 없음 ' + t.slug)); continue; }
+    const sets = { ...allSets }, defaults = { ...allDefaults };
+    const P = { examples: [{ tree: [v.root] }] };
+    prepStyled(P, sets, true);
+    const used = new Set(); const walk = (n) => { if (n && typeof n === 'object') { (n.cls || []).forEach((k) => used.add(k)); (n.c || []).forEach(walk); } }; walk(P.examples[0].tree[0]);
+    for (const k of Object.keys(sets)) if (!used.has(k)) { delete sets[k]; delete defaults[k]; }
+    const DATA = { mode: 'template', frame: t.figma.pc, slug: t.slug, name: 'Template/' + t.en, group: t.group, tree: P.examples[0].tree[0], w: v.w, h: v.h, sets, defaults };
+    const f = path.join(dir, t.slug + '.json'); fs.writeFileSync(f, JSON.stringify({ code, data: DATA })); out.push([t.slug, fs.statSync(f).size]);
+  }
+  return out;
 }
 
 function reportComponents(comp) {
@@ -608,6 +650,9 @@ if (cmd === 'status') {
   const f = docpageScript(arg, process.argv[4]);
   say(c.g(`  ✔ ${rel(f)} 생성 (${(fs.statSync(f).size / 1024).toFixed(1)}KB)`));
   say('    다음: 이 파일 내용을 use_figma(fileKey 1VCEsFU3xMWuXIntIrZz9i)로 실행');
+} else if (cmd === 'tplpage') {
+  const r = tplpageFiles(args.filter((a) => !a.startsWith('--')).slice(1));
+  for (const [s1, n] of r) say(c.g(`  ✔ tokens/.figma-tplpage/${s1}.json (${(n / 1024).toFixed(1)}KB)`));
 } else if (cmd === 'pull') {
   const file = path.resolve(arg || RESULT_DEFAULT);
   if (!fs.existsSync(file)) die(`결과 파일이 없어요: ${file}\n    먼저 node sync.mjs figma → use_figma 실행 → 결과 저장`);

@@ -14,3 +14,5 @@ Thumbs.db
 
 # Figma 점검 임시 파일 (로컬 전용)
 .cache/
+tokens/.figma-templates.json
+tokens/.figma-tplpage/
