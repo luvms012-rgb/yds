@@ -24,6 +24,13 @@ const apply = () => {
   .tp-step-h .ds-icon { --ds-icon-size: 24px; color: var(--ds-color-fg-neutral); }
   .tp-step-h[data-current] .tp-step-no { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
   .tp-step-h > .tp-h2 { flex: 1 1 auto; font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); }
+  /* 좁은 화면: 제목 옆 세그먼트는 아래 줄로 (11-10 사용자 점검, 제목이 두 줄로 꺾이던 것) */
+  @media (max-width: 767px) { .tp-step-h { flex-wrap: wrap; } .tp-step-h > .ds-segmented { flex: 1 0 100%; } }
+  /* 1) 모바일 아래 고정 결제 막대 (장바구니 tp-orderbar 와 같은 틀, 1024 부터는 오른쪽 요약의 버튼) */
+  .tp-paybar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); margin-inline: calc(var(--tp-gutter) * -1); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-paybar .tp-stack { gap: 0; }
+  .tp-paybar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
+  @media (min-width: 1024px) { .tp-paybar { display: none; } }
   .tp-ds { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
   @media (min-width: 768px) { .tp-ds { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .tp-total { display: flex; align-items: baseline; justify-content: space-between; }
@@ -38,7 +45,7 @@ const apply = () => {
       ${card(`${stepH(2, '언어 고르기', 'done')}<div class="tp-chips" style="display:flex;flex-wrap:wrap;gap:var(--ds-space-x2)">${['영어', '중국어', '일본어', '스페인어', '러시아어', '베트남어'].map((l, i) => chip(l, { on: i === 0, size: 'medium' })).join('')}</div>`)}
       ${card(`${stepH(3, '날짜와 고사장 고르기', 'current', segmented(['날짜 먼저', '고사장 먼저'], 0, '고르는 순서'))}
         <div class="tp-ds">
-          <div class="tp-stack" style="gap: var(--ds-space-x3)">${calendar('2026년 11월', { first: 0, days: 30, sel: 18, today: 2, off: [1, 8, 15, 22, 29] })}</div>
+          <div class="tp-stack" style="gap: var(--ds-space-x3)">${calendar('2026년 11월', { first: 0, days: 30, sel: 18, today: 10, off: [1, 8, 15, 22, 29] })}</div>
           <div class="tp-stack" style="gap: var(--ds-space-x4)">
             <div class="tp-stack" style="gap: var(--ds-space-x2)"><span class="tp-h4">오전</span><div class="tp-slots">${slot('10:00')}${slot('11:20', false, true)}</div></div>
             <div class="tp-stack" style="gap: var(--ds-space-x2)"><span class="tp-h4">오후</span><div class="tp-slots">${slot('13:00', true)}${slot('14:20')}${slot('15:40')}${slot('17:00')}${slot('18:20', false, true)}${slot('19:30')}</div></div>
@@ -61,6 +68,7 @@ const apply = () => {
       <p class="tp-caption" style="text-align:center">시험 3일 전까지는 전액 환불돼요</p>
     </aside>
   </div>
+  <div class="tp-paybar"><div class="tp-stack"><span class="tp-caption">결제 금액</span><b>75,600원</b></div>${btn('결제하기', { variant: 'brandSolid', size: 'large' })}</div>
 </main></div>`;
   return { slug: 'exam-apply', en: 'Exam Application', name: '시험 신청', group: 'Exam', desc: '시험 종류부터 결제까지 한 화면에서 차례로 선택하는 신청 화면입니다. 선택한 내용과 금액은 옆 요약에 바로 표시됩니다.', css, body };
 };

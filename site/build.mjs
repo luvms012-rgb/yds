@@ -380,6 +380,12 @@ const write = (o) => written.push(page(o));
 // 순서 규칙은 글 대신 코드 주석으로 (11-10 밤 사용자 "3가지 적용": 복사해 가면 같이 따라간다)
 // 등록된 브랜드 (brands/*.json, 2026-11-10 사용자 "구조 보강 2가지"): 구조의 브랜드 카드에 이름 배지, 설치 코드에 브랜드 줄
 const BRANDS = fs.readdirSync(path.join(DS, 'brands')).filter((f) => f.endsWith('.json')).map((f) => ({ slug: f.replace(/\.json$/, ''), name: readJson('brands/' + f).name || f.replace(/\.json$/, '') }));
+// 첫 컴포넌트 (11-10 밤 사용자, 레퍼런스 A 시작하기의 "첫 컴포넌트" 방식): 설치 바로 아래, 붙여 넣으면 YDS 가 먹는지 바로 보인다. 글 없이 미리보기와 코드만
+const FIRST_COMPONENT = `<div class="ds-field">
+  <div class="ds-field__header"><label class="ds-field__label" for="gs-mail">이메일</label></div>
+  <div class="ds-input" data-variant="outline" data-size="large"><input class="ds-input__control" id="gs-mail" type="email" placeholder="name@company.com"></div>
+</div>
+<button type="button" class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">신청하기</button>`;
 const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>${BRANDS.length ? `
@@ -463,7 +469,11 @@ ${codeblock(AI_EXAMPLE, "text", " data-wrap")}
 <div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
-${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/ybm-ds.`, `${PIN}/dist/ybm-ds.`)}`)]])}
+${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/ybm-ds.`, `${PIN}/dist/ybm-ds.`)}`)], ['규칙 파일', codeblock(`# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
+curl -O ${SITE_URL}ai/AGENTS.md
+curl -O ${SITE_URL}ai/CLAUDE.md
+curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
+${example(`<div style="display: grid; gap: var(--ds-space-x4); width: min(100%, 360px)">${FIRST_COMPONENT.replaceAll('"gs-mail"', '"gs-mail-preview"')}</div>`, FIRST_COMPONENT)}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [

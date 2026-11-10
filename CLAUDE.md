@@ -3,7 +3,7 @@
 집(**Mac**)과 회사(**Windows**) 두 PC 에서 같은 저장소로 작업한다. 이 파일은 저장소에 같이 올라가므로 어느 PC 에서든 Claude 가 먼저 읽는다.
 PC 마다 따로 쌓이는 Claude 메모리는 서로 보이지 않는다 - 두 PC 가 함께 알아야 할 것은 여기에 적는다.
 
-- 최종 갱신: 2026-11-10 밤 (집 Mac, 시작하기 정리와 템플릿 분류 9개까지 배포)
+- 최종 갱신: 2026-11-10 밤 늦게 (집 Mac, 시작하기 정리, 템플릿 분류 9개, 템플릿 점검까지 배포)
 
 ## 1. 기준 주소
 
@@ -57,7 +57,9 @@ git clone https://github.com/luvms012-rgb/yds.git
   - **제목 옆 링크 복사**: Tooltip 을 빼고 Snackbar 만 남겼다(둘이 겹쳐 보여서).
   - **템플릿 분류 9개** (사용자 "탭이 너무 많다, YBM 사업에 최적화", 7개로 묶었다가 "잇지 말고 전부 분리"): 시험, 학습, 쇼핑, 결제, 회원, 커뮤니티, 고객센터, 콘텐츠, 관리자. 영어 group 값과 개수는 site/CLAUDE.md "템플릿 분류는 9개". 분류 안 순서는 많이 쓰는 화면부터(build.mjs `TPL_PRIORITY`, 목록과 왼쪽 메뉴 같은 순서). 새 템플릿은 9개 중 하나에 넣고 `TPL_PRIORITY` 에 자리도 정한다. **Figma Templates 페이지(3059:965)의 분류 섹션은 예전 17개 이름 그대로**라 사이트와 다르다. 사용자가 말하면 Figma 섹션도 9개로 다시 묶는다.
   - **사용자 평가 요청에 답한 것**: 시작하기를 사업부에 배포했을 때 디자이너는 충분, 개발자와 기획은 설명을 뺀 뒤 약해졌다고 보고 글 없이 세 가지(코드 주석, 상자 라벨, 브랜드 카드 링크)로 보완했다가 브랜드 카드 링크는 사용자 지시로 뺐다. 사업부 기획 1, 디자인 1, 개발 1명에게 5분 테스트를 권했다(사용자가 할 일).
-  - **남은 일**: ① Figma Templates 분류 섹션 9개로 ② 템플릿 UI 전체 개선(사용자 방향 대기) ③ 아래 항목들의 남은 일.
+  - **11-10 밤 늦게 더 한 것 (배포함)**: 시작하기 = 절 설명 문장 전부 삭제, 브랜드 카드 링크와 배지 넣었다 뺌, 요청 글 예시는 한 줄씩(브랜드 줄은 넣었다 뺌), 설치 코드에 `<!-- 서비스 CSS보다 앞에 -->` 와 브랜드 CSS 줄(고정 탭은 YDS 두 줄만 버전 주소), 레퍼런스 A 시작하기 비교로 "규칙 파일" 탭(curl 세 줄)과 첫 컴포넌트 예시(`FIRST_COMPONENT`). 로그인 3종 "다시 오셨네요" 삭제, 아이디 저장 체크박스. 구글 의견 폼 종류 = 버그 / 새 컴포넌트 요청 / 질문 / 기타. 브랜드 관리는 중앙 등록(담당자) 유지로 답함.
+  - **템플릿 71종 자동 점검 (11-10 밤, 375 와 1440, 스크립트는 세션 임시 폴더라 없음. 같은 검사 = 가로 넘침, 콘솔 오류, 깨진 이미지, 라벨 없는 입력칸, 이름 없는 버튼, 겹치는 id, h1 수)**: 넘침 0, 깨진 이미지 0, 라벨 없는 입력칸 0, 겹치는 id 0. 고친 것 = 시험 신청(모바일 아래 고정 결제 막대 `tp-paybar`, 3단계 제목 아래로 세그먼트, 오늘 표시 10일), 페이지 편집기와 파일 탐색기의 아이콘만 있는 세그먼트에 aria-label(kit `segmented` 가 `[HTML, 이름]` 을 받음). **남겨 둔 것(크리티컬 아님)**: h1 이 없는 템플릿 9종(ai-chat, canvas-editor, community-home, contact-form, dashboard, documentation, file-explorer, ide, mypage-home) - 숨김 h1(`tp-sr`)을 넣으면 된다. 가로 스크롤 영역(칩 탭, 코드, 도구 막대)이 화면 밖으로 나가는 것은 스크롤되는 영역이라 정상.
+  - **남은 일**: ① Figma Templates 분류 섹션 9개로 ② 템플릿 UI 전체 개선(사용자 방향 대기) ③ h1 없는 템플릿 9종 ④ 아래 항목들의 남은 일.
 - **(지난 인수인계) 2026-11-09 집 Mac 마무리, 템플릿 정리, 배포함** - Figma 쪽 상태는 바로 아래 항목을 본다.
   - **2026-11-10 저녁 회사 PC (배포함)**: 사용자 "컴포넌트는 제안 5가지 더 추가 후 최종 배포 - 피그마 씽크 - 완료". 새 컴포넌트 80 Date Field(.ds-datefield, 숫자를 넣으면 점 자동), 81 Lightbox(dialog.ds-lightbox, data-ds-index, 좌우 키), 82 Selection Bar(.ds-selectionbar, 표에 data-ds-selection, floating), 83 Mega Menu(.ds-megamenu, 트리거 data-ds-megamenu, 768 이상), 84 Command Palette(dialog.ds-command, data-ds-hotkey="k", 거르기와 화살표). 등록 9곳 모두(CSS, ybm-ds.js, components.json, README 6.1, index.html, covers, search-ko, figma-notes, part5 예시, anatomy-ko). 컴포넌트 83쪽, 사이트 169쪽. 중립 Badge 반투명은 사용자 "투명으로 하지 말라" 로 되돌림(회색 위 배지는 그 자리에서 --ds-badge-bg 를 layer-default 로). 사용자 지적 수정: 센터 찾기 지도 오른쪽 채움(1024 이상 sticky), 받은함 탭 위 여백과 표 위 진한 선 제거, 순위 목록 글자 굵기, Updates 날짜 진하게, Breakpoints/Updates 리드 문구, 템플릿 전체 보기 가나다 순. Figma 싱크 끝: 새 5종 세트(Date Field 3141:3257 size×picker 4, Lightbox 3144:1195, Selection Bar 3143:1017 position 2, Mega Menu 3143:2639, Command Palette 3144:1210)와 문서 프레임(3141:3160, 3144:1250, 3143:920, 3143:2667, 3144:1347)을 docpage 로 사이트와 같게 그림(그리기 코드가 50KB 를 넘어 공유 데이터 두 조각에 넣고 불러 씀, 끝나고 비움). 고쳐 넣은 곳: Date Field 달력 칸은 Text Field 대신 Date Field 세트로, Lightbox 대표 그림은 원래 크기 인스턴스 축소, Selection Bar 대표 그림 폭 맞춤, Mega Menu, Command Palette 대표 그림 글 순서. 넘침/잘림 0, 변수 359 같음, 세트 117 같음, 코드 링크 줄 번호 72곳 고침.
     - 11-10 밤: 사용자 "Selection Bar 와 Toolbar 비교, 중복이면 하나로 통합". 82 Selection Bar 를 76 Toolbar 로 합침(번호 82 는 비움). Toolbar 에 data-position="floating", __clear, data-ds-selection(ybm-ds.js syncSelection), 버튼 묶음 줄바꿈을 옮기고 예시 "떠 있는 막대"를 toolbar 끝에 둠. Updates 11-10 에 변경 한 줄. Figma 는 아직(Selection Bar 세트 3143:1017, 문서 프레임 3143:920 정리와 Toolbar 에 floating 반영 남음), 미배포.

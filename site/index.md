@@ -55,6 +55,23 @@ Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://
 <link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/toeic.css">
 ```
 
+**규칙 파일**
+
+```bash
+# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
+curl -O https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md
+curl -O https://luvms012-rgb.github.io/yds/site/ai/CLAUDE.md
+curl --create-dirs -o .cursor/rules/yds.mdc https://luvms012-rgb.github.io/yds/site/ai/yds.mdc
+```
+
+```html
+<div class="ds-field">
+  <div class="ds-field__header"><label class="ds-field__label" for="gs-mail">이메일</label></div>
+  <div class="ds-input" data-variant="outline" data-size="large"><input class="ds-input__control" id="gs-mail" type="email" placeholder="name@company.com"></div>
+</div>
+<button type="button" class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">신청하기</button>
+```
+
 ## 파일
 
 | 파일 | 무엇인가요 | 언제 쓰나요 |
