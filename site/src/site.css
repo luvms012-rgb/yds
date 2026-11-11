@@ -121,6 +121,9 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-nav__children { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
 .site-nav__toggle[aria-expanded="false"] + .site-nav__panel .site-nav__children { visibility: hidden; transition: visibility 0s var(--ds-duration-normal); }
 .site-nav__children > .site-nav__item { padding-left: var(--ds-space-x8); }
+/* 템플릿 묶음 안 하위 분류 이름 (11-11): 작은 회색 글자, 항목 글자와 같은 들여쓰기, 위 여백으로 묶음을 나눈다 */
+.site-nav__sublabel { display: block; padding: var(--ds-space-x3) var(--ds-space-x2) var(--ds-space-x1) var(--ds-space-x8); color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); font-weight: var(--ds-font-weight-medium); }
+.site-nav__sublabel:first-child { padding-top: var(--ds-space-x1); }
 @media (prefers-reduced-motion: reduce) { .site-nav__panel, .site-nav__chevron { transition: none; } }
 /* 찾기 칸은 흰 띠(위에 붙음) 안에 - 테두리는 DS 입력 칸 그대로 */
 .site-side__searchbar { position: sticky; top: 0; z-index: 1; padding-bottom: var(--ds-space-x2); background: var(--ds-color-bg-layer-default); box-shadow: 0 calc(-1 * var(--ds-space-x3)) 0 var(--ds-color-bg-layer-default); }  /* 메뉴 위 여백 12 만큼 위로 바탕을 늘려, 스크롤한 메뉴가 검색바 위 틈으로 보이지 않게 */

@@ -5,12 +5,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { page } from './kit.mjs';
+import { PLACE } from './groups.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PAGES = path.join(HERE, '..', 'pages');
 const JSON_PATH = path.join(HERE, '..', '..', 'src', 'templates.json');
 const GROUPS = ['Dashboard', 'Table', 'Form', 'Settings', 'Login', 'Tools', 'Content', 'AI Chat', 'Gallery', 'Community', 'Pricing', 'My Page', 'Commerce', 'Exam', 'Education', 'Exam B2B', 'Learning B2B'];
-const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test'];
+const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics'];
 
 const all = [];
 for (const m of MODS) {
@@ -19,7 +20,11 @@ for (const m of MODS) {
   const { templates } = await import(pathToFileURL(f).href);
   all.push(...templates);
 }
-all.sort((a, b) => GROUPS.indexOf(a.group) - GROUPS.indexOf(b.group) || a.en.localeCompare(b.en));
+// 분류와 하위 분류는 groups.mjs 가 정본이다 (생성기의 group 값보다 우선)
+const unplaced = all.filter((t) => !PLACE[t.slug]).map((t) => t.slug);
+if (unplaced.length) console.log('  ! groups.mjs 에 자리가 없는 템플릿:', unplaced.join(', '));
+for (const t of all) if (PLACE[t.slug]) { t.group = PLACE[t.slug].group; t.sub = PLACE[t.slug].sub; }
+all.sort((a, b) => (PLACE[a.slug]?.rank ?? 999) - (PLACE[b.slug]?.rank ?? 999) || a.en.localeCompare(b.en));
 
 const old = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
 const keepFigma = Object.fromEntries((old.templates || []).filter((t) => t.figma && t.rebuilt).map((t) => [t.slug, t.figma]));
@@ -27,6 +32,6 @@ for (const t of all) fs.writeFileSync(path.join(PAGES, t.slug + '.html'), page({
 const slugs = new Set(all.map((t) => t.slug));
 let removed = 0;
 for (const f of fs.readdirSync(PAGES)) if (f.endsWith('.html') && !slugs.has(f.slice(0, -5))) { fs.unlinkSync(path.join(PAGES, f)); removed++; }
-const out = { ...old, templates: all.map(({ slug, en, name, group, desc }) => ({ slug, name, en, group, desc, rebuilt: true, ...(keepFigma[slug] ? { figma: keepFigma[slug] } : {}) })) };
+const out = { ...old, templates: all.map(({ slug, en, name, group, sub, desc }) => ({ slug, name, en, group, ...(sub ? { sub } : {}), desc, rebuilt: true, ...(keepFigma[slug] ? { figma: keepFigma[slug] } : {}) })) };
 fs.writeFileSync(JSON_PATH, JSON.stringify(out, null, 2) + '\n');
 console.log(`${all.length}종 생성, 옛 파일 ${removed}개 삭제`);

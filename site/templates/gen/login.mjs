@@ -89,3 +89,6 @@ const loginSso = () => {
 };
 
 export const templates = [loginCard, loginSplit, loginSso].map((f) => f());
+
+// 회원가입, 아이디·비밀번호 찾기(basics.mjs)가 같은 로그인 틀을 쓴다 (11-11)
+export const AUTH = { CSS, brand, inp };

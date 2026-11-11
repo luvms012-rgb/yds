@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { linkPlan } from '../tokens/links.mjs';
 import { writeMarkdown } from './md.mjs';
 import { highlight } from './highlight.mjs';
+import { GROUPS as TPL_GROUPS, PLACE as TPL_PLACE } from './templates/gen/groups.mjs';
 
 const SITE = path.dirname(fileURLToPath(import.meta.url));
 // 사이트 CSS / JS 주소에 붙이는 버전 - 내용이 바뀌면 값이 바뀌어 브라우저가 예전 파일을 쓰지 않는다
@@ -268,7 +269,16 @@ function sideNav(section, file, root) {
   if (section === 'templates') {
     parts.push(item('templates/index.html', 'Overview'));
     // 11-05 사용자: 목록은 메뉴 없이 분류 탭, 상세는 탭과 같은 분류 묶음(묶음 안은 가나다 순)
-    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => tplRank(x) - tplRank(y))) parts.push(group(TPL_GROUP_KO[g] || g, templates.filter((t) => t.group === g).sort(tplSort).map((t) => item(`templates/${t.slug}.html`, t.name)), 'tpl-' + g));
+    // 11-11 사용자 "카테고리가 더 늘지 않게 서브 카테고리로": 묶음(분류) 안에 하위 분류 이름 줄을 두고 그 아래 항목. 정본은 templates/gen/groups.mjs
+    for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => tplRank(x) - tplRank(y))) {
+      const rows = []; let last = null;
+      for (const t of templates.filter((x) => x.group === g).sort(tplSort)) {
+        const sub = TPL_PLACE[t.slug]?.sub;
+        if (sub && sub !== last) { rows.push(`<span class="site-nav__sublabel" role="presentation">${esc(sub)}</span>`); last = sub; }
+        rows.push(item(`templates/${t.slug}.html`, t.name));
+      }
+      parts.push(group(TPL_GROUP_KO[g] || g, rows, 'tpl-' + g));
+    }
   }
   const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
   // 컴포넌트 메뉴 맨 위 찾기 칸 (높이 32, 모서리 12, 1px 테두리) - 메뉴 항목과 목록 카드를 함께 거른다
@@ -1015,20 +1025,10 @@ for (const [f, to, label] of [['selection-bar', 'toolbar', 'Toolbar']]) {
 const tplGroups = [...new Set(templates.map((t) => t.group))];
 // 분류 칩에 보이는 이름 (값은 templates.json의 영어 group)
 // 분류 9개 (2026-11-10 사용자 "템플릿 탭이 너무 많다", YBM 사업 기준, 이어 "잇지 말고 전부 분리"): 사업 탭 일곱 뒤에 공통 화면 둘
-const TPL_GROUP_KO = { Exam: '시험', Learning: '학습', Commerce: '쇼핑', Payment: '결제', Account: '회원', Community: '커뮤니티', Support: '고객센터', Content: '콘텐츠', Admin: '관리자', Tools: '도구' };
-// 분류 순서: YBM 서비스(시험, 교육)와 많이 쓰는 서비스 화면이 앞 (11-10 사용자, 예전 가나다 순을 바꿈). 목록에 없는 분류는 맨 뒤
-const TPL_ORDER = ['Exam', 'Learning', 'Commerce', 'Payment', 'Account', 'Community', 'Support', 'Content', 'Admin', 'Tools'];
-// 분류 안 순서는 많이 쓰는 화면부터 (2026-11-10 사용자). 없는 것은 뒤에 이름순
-const TPL_PRIORITY = [
-  'exam-apply', 'exam-schedule', 'exam-my', 'exam-score', 'level-test', 'mock-exam-pbt', 'mock-exam-cbt', 'exam-group-apply', 'exam-group-roster', 'exam-group-dashboard',
-  'learning-home', 'learning-catalog', 'learning-player', 'textbook-detail', 'lesson-plan', 'consult-booking', 'center-finder', 'learning-dashboard', 'learning-admin',
-  'cart', 'payment-form', 'checkout-wizard', 'pricing-plans', 'subscription-checkout', 'subscription-settings', 'subscription-cancel', 'cart-empty',
-  'login-card', 'mypage-home', 'mypage-orders', 'mypage-profile', 'settings', 'login-sso', 'login-split', 'settings-sidebar', 'settings-dialog',
-  'help-center', 'contact-form', 'community-home', 'community-board', 'community-post', 'community-write',
-  'detail-page', 'product-detail', 'library', 'centered-hero', 'documentation', 'product-gallery', 'classic-gallery', 'gallery-hero', 'mixed-gallery', 'side-gallery', 'documentation-design', 'documentation-technical', 'work-item-detail', 'ai-chat', 'ai-chat-landing',
-  'dashboard', 'table-filter', 'table-inbox', 'form-wizard', 'table-grouped', 'table-collapsible', 'table-tree', 'dashboard-progress', 'dashboard-alert-rail', 'form-wizard-dialog', 'form-wizard-inline', 'form-wizard-vertical', 'kanban-board', 'editor', 'file-explorer', 'canvas-editor', 'ide',
-];
-const tplPri = (s) => { const i = TPL_PRIORITY.indexOf(s); return i < 0 ? 999 : i; };
+// 템플릿 분류 9개와 하위 분류, 순서의 정본은 site/templates/gen/groups.mjs (2026-11-11 사용자 "카테고리가 더이상 늘지 않도록 서브 카테고리로")
+const TPL_GROUP_KO = Object.fromEntries(TPL_GROUPS.map(([g, ko]) => [g, ko]));
+const TPL_ORDER = TPL_GROUPS.map(([g]) => g);
+const tplPri = (s) => TPL_PLACE[s]?.rank ?? 999;
 const tplSort = (a, b) => tplRank(a.group) - tplRank(b.group) || tplPri(a.slug) - tplPri(b.slug) || a.name.localeCompare(b.name, 'ko');
 const tplRank = (g) => { const i = TPL_ORDER.indexOf(g); return i < 0 ? 99 : i; };
 tplGroups.sort((x, y) => tplRank(x) - tplRank(y));
