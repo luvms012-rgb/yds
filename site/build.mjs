@@ -1020,8 +1020,8 @@ const TPL_GROUP_KO = { Exam: '시험', Learning: '학습', Commerce: '쇼핑', P
 const TPL_ORDER = ['Exam', 'Learning', 'Commerce', 'Payment', 'Account', 'Community', 'Support', 'Content', 'Admin'];
 // 분류 안 순서는 많이 쓰는 화면부터 (2026-11-10 사용자). 없는 것은 뒤에 이름순
 const TPL_PRIORITY = [
-  'exam-apply', 'exam-schedule', 'exam-my', 'exam-score', 'exam-group-apply', 'exam-group-roster', 'exam-group-dashboard',
-  'learning-home', 'learning-catalog', 'learning-player', 'textbook-detail', 'lesson-plan', 'consult-booking', 'center-finder', 'learning-dashboard', 'learning-admin',
+  'exam-apply', 'exam-schedule', 'exam-my', 'exam-score', 'mock-exam-pbt', 'mock-exam-cbt', 'exam-group-apply', 'exam-group-roster', 'exam-group-dashboard',
+  'learning-home', 'learning-catalog', 'level-test', 'learning-player', 'textbook-detail', 'lesson-plan', 'consult-booking', 'center-finder', 'learning-dashboard', 'learning-admin',
   'cart', 'payment-form', 'checkout-wizard', 'pricing-plans', 'subscription-checkout', 'subscription-settings', 'subscription-cancel', 'cart-empty',
   'login-card', 'mypage-home', 'mypage-orders', 'mypage-profile', 'settings', 'login-sso', 'login-split', 'settings-sidebar', 'settings-dialog',
   'help-center', 'contact-form', 'community-home', 'community-board', 'community-post', 'community-write',

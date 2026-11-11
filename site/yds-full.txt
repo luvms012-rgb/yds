@@ -5002,6 +5002,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 - [학습 현황 대시보드](https://luvms012-rgb.github.io/yds/site/templates/pages/learning-dashboard.html): 교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.
 - [학습 홈](https://luvms012-rgb.github.io/yds/site/templates/pages/learning-home.html): 임직원이 학습을 시작하는 첫 화면입니다. 이어서 볼 강의와 필수 교육을 먼저 보여 줍니다.
 - [수업 옵션 선택](https://luvms012-rgb.github.io/yds/site/templates/pages/lesson-plan.html): 수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.
+- [레벨 테스트](https://luvms012-rgb.github.io/yds/site/templates/pages/level-test.html): 학원이나 어학 과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 한 번에 한 문항씩 풀고, 듣기 문항은 재생 줄과 함께 보여 줍니다.
 - [로그인 카드](https://luvms012-rgb.github.io/yds/site/templates/pages/login-card.html): 화면 가운데 카드 하나로 로그인하는 기본 로그인 화면입니다.
 - [로그인 (화면 분할)](https://luvms012-rgb.github.io/yds/site/templates/pages/login-split.html): 한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 사용합니다.
 - [로그인 (SSO)](https://luvms012-rgb.github.io/yds/site/templates/pages/login-sso.html): 이메일을 먼저 받고 회사 계정 로그인으로 이어 주는 화면입니다. 회사 계정이 없으면 비밀번호로 로그인합니다.
@@ -5046,5 +5047,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 - [시험 일정표](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-schedule.html): 회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.
 - [단체 접수](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-apply.html): 기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.
 - [단체 성적 대시보드](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-dashboard.html): 기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.
+- [모의고사 CBT](https://luvms012-rgb.github.io/yds/site/templates/pages/mock-exam-cbt.html): 컴퓨터로 보는 말하기 모의고사 화면입니다. 한 문항씩 준비 시간과 답변 시간을 큰 시계로 보여 주고, 옆에서 진행과 장비 상태를 확인합니다.
+- [모의고사 PBT](https://luvms012-rgb.github.io/yds/site/templates/pages/mock-exam-pbt.html): 종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.
 - [내 시험](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-my.html): 응시자가 자신의 시험 일정과 점수를 한눈에 보는 화면입니다.
 - [성적표](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-score.html): 시험 성적을 확인하는 화면입니다. 총점을 먼저 보여 주고 영역별 점수로 이어집니다.

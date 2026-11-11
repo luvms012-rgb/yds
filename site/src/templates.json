@@ -277,6 +277,14 @@
       }
     },
     {
+      "slug": "level-test",
+      "name": "레벨 테스트",
+      "en": "Level Test",
+      "group": "Learning",
+      "desc": "학원이나 어학 과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 한 번에 한 문항씩 풀고, 듣기 문항은 재생 줄과 함께 보여 줍니다.",
+      "rebuilt": true
+    },
+    {
       "slug": "login-card",
       "name": "로그인 카드",
       "en": "Login Card",
@@ -759,6 +767,22 @@
       "figma": {
         "pc": "3195:3698"
       }
+    },
+    {
+      "slug": "mock-exam-cbt",
+      "name": "모의고사 CBT",
+      "en": "Mock Exam CBT",
+      "group": "Exam",
+      "desc": "컴퓨터로 보는 말하기 모의고사 화면입니다. 한 문항씩 준비 시간과 답변 시간을 큰 시계로 보여 주고, 옆에서 진행과 장비 상태를 확인합니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "mock-exam-pbt",
+      "name": "모의고사 PBT",
+      "en": "Mock Exam PBT",
+      "group": "Exam",
+      "desc": "종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.",
+      "rebuilt": true
     },
     {
       "slug": "exam-my",
