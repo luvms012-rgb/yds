@@ -3,7 +3,7 @@
 집(**Mac**)과 회사(**Windows**) 두 PC 에서 같은 저장소로 작업한다. 이 파일은 저장소에 같이 올라가므로 어느 PC 에서든 Claude 가 먼저 읽는다.
 PC 마다 따로 쌓이는 Claude 메모리는 서로 보이지 않는다 - 두 PC 가 함께 알아야 할 것은 여기에 적는다.
 
-- 최종 갱신: 2026-11-10 밤 늦게 (집 Mac, 시작하기 정리, 템플릿 분류 9개, 템플릿 점검까지 배포)
+- 최종 갱신: 2026-11-11 밤 (클라우드 세션, Figma 싱크와 인수인계)
 
 ## 1. 기준 주소
 
@@ -52,6 +52,11 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
+- **인수인계 - 다음 세션은 여기부터 (2026-11-11 밤, 클라우드 세션 Figma 싱크, 사용자 "스탑. 인수인계 만들고 스탑")** - 기준은 YDS 와 사이트, Figma 가 따라간다. 시작은 "YDS CLAUDE.md 읽고 이어서", 먼저 `git pull`.
+  - **점검 결과(시작 때)**: 변수 359, 세트 117 일치. 코드 링크 43곳 밀림. 마지막 Figma 맞춤(2c38a4df) 뒤 바뀐 컴포넌트는 table, toolbar, segmented-text-input 셋.
+  - **Figma 에 한 것**: ① 코드 링크 43곳(Table ~ Segmented Text Input) 지금 components.css 줄 번호로. ② Table 세트 2164:1179 / 2164:1225 위 선과 마지막 Row 아래 선 stroke/neutral-weak. 문서 프레임 규격 글 새 문구, 변수 표에 `--ds-table-edge` 줄 추가(3303:902). 직접 그린 표(table.ds-table 프레임)의 위 선과 마지막 줄 선을 neutral-weak 로: Templates 페이지 표 17개 + Exam 섹션 표, 문서 페이지 Toolbar, Status Dot, Table Pagination, Table(카드 안 표는 사이트처럼 선 없음 그대로). ③ Toolbar: 세트는 이미 ghost 였음. 문서 muted 예시 버튼 4개 ghost, 예시 코드 neutralWeak→ghost, 규격 글 새 문구. ④ Segmented Text Input: 아이콘 든 suffix 20곳 28x28(dimension/x7), 모서리 shape/xs, 규격 글 새 문구. ⑤ 로그인 3종(3185:2654, 2755, 2859): "다시 오셨네요" 제목 지우고 비밀번호 아래 Checkbox(medium, square, brand, checked) "아이디 저장". ⑥ Side Panel(11-09 남은 일): 닫기 버튼을 절대 위치(오른쪽 위, x = 폭-61, y 14), header 오른쪽 여백 67 → CSS 처럼 제목 줄 가운데, 아이콘 끝이 본문 끝. ⑦ 온라인 평가 템플릿 3종을 tplpage 로 그림: Level Test `3305:4226`, Mock Exam PBT `3305:4322`, Mock Exam CBT `3305:4809`(site/src/templates.json figma.pc 에 넣음, 생성기 run.mjs 가 rebuilt 항목의 figma 를 지켜 준다).
+  - **남은 일(순서대로)**: ① Level Test 컴포넌트 3305:4226 은 아직 Learning 섹션(3287:3849)에 있다 → Exam 섹션(3287:3848)으로 옮기고 섹션 안 순서(TPL_PRIORITY) 맞추기. ② 그린 뒤 dfdae54a(레벨 테스트 듣기 플레이어 개선)가 올라와 Level Test 그림이 한 단계 옛것 → `node tokens/figma-styles.mjs --templates level-test` → `node sync.mjs tplpage level-test` → `node tokens/figma-payload.mjs level-test` → upload_assets(nodeIds 3290:3851) → Figma 에서 UNPACK 후 AsyncFunction('DATA', code) 실행(프레임은 figma.pc 3305:4226 을 비우고 다시 그린다). ③ CBT 사진 칸 3305:4872(img 560x420)에 사이트 사진(unsplash photo-1480714378408-67cf0d13bc1b, w=1120) 넣기 = upload_assets nodeIds. ④ 다 그린 뒤 `_payload 0~2`(3290:3851~3853, 페이지 왼쪽 x -2000) 지우기. ⑤ exam-apply(시험 신청) 6e6c229a 변경(모바일 결제 막대, 3단계 제목)이 Figma 3193:3264 에 반영됐는지 확인. ⑥ `node sync.mjs figma` 로 마지막 점검(링크는 이번에 모두 맞춤).
+  - **클라우드 세션에서 알게 된 것**: Pages 주소는 막혀 있어 저장소를 직접 읽음. Figma 업로드(mcp.figma.com)와 사진(images.unsplash.com)은 사용자 Default 환경 허용 목록에 넣었다(승인함). /usr/bin/google-chrome 이 있어 figma-styles.mjs 캡처가 된다. 기준점(.cache/figma-sync-mark.json)은 이번 세션 PC 에만 있음.
 - **11-11 레벨 테스트 되살림 (회사)** - 원인: 9680e695 가 생성물(site/templates/pages/level-test.html, templates.json)만 고치고 생성기 site/templates/gen/test.mjs 는 그대로 둬서, 푸시 때 GitHub 자동 빌드(.github/workflows/check.yml: run.mjs, build.mjs 를 돌려 바뀐 생성물을 yds-bot 이 자동 커밋)가 옛 화면으로 덮었다(d661eb36). 고침: test.mjs levelTest 를 다시 짠 화면으로 바꾸고 group Exam, examBar 는 time: null 이면 타이머 없이 오른쪽 버튼만. 생성 결과가 9680e695 의 페이지와 한 글자도 다르지 않음을 확인. **템플릿은 꼭 생성기(site/templates/gen/*.mjs)를 고친다, pages/*.html 을 손으로 고치면 다음 푸시 때 자동 빌드가 되돌린다.**
 - **인수인계 - 다음 세션은 여기부터 (2026-11-11 오후 회사, 사용자 "인수인계 만들고 모두 보류")** - 시작은 "YDS CLAUDE.md 읽고 이어서", 먼저 `git pull`. 모든 작업 보류 상태.
   - **확인 결과(보류 직전)**: 자동 커밋 d661eb36 이 레벨 테스트를 되돌렸다. 페이지는 옛 화면(tp-lt__dots), site/src/templates.json 의 level-test group 도 Learning 으로 돌아감. 다시 할 일: 자동 커밋이 무엇을 기준으로 다시 만드는지(아마 템플릿 생성기 원본, 예: 생성 스크립트 안 level-test 정의) 찾아 그 원본에 재구성 내용과 Exam 분류를 넣고, build.mjs TPL_PRIORITY(이미 시험 줄로 옮김)와 맞춘 뒤 다시 배포. 재구성 화면 내용은 9680e695 의 site/templates/pages/level-test.html 에 있다.

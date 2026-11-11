@@ -766,7 +766,10 @@
       "en": "Level Test",
       "group": "Exam",
       "desc": "과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 지금 영역과 진행을 보여 주고, 한 번에 한 문항만 풀며, 답을 고르면 바로 다음 문항으로 넘어갑니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3305:4226"
+      }
     },
     {
       "slug": "mock-exam-cbt",
@@ -774,7 +777,10 @@
       "en": "Mock Exam CBT",
       "group": "Exam",
       "desc": "컴퓨터로 보는 말하기 모의고사 화면입니다. 한 문항씩 준비 시간과 답변 시간을 큰 시계로 보여 주고, 옆에서 진행과 장비 상태를 확인합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3305:4809"
+      }
     },
     {
       "slug": "mock-exam-pbt",
@@ -782,7 +788,10 @@
       "en": "Mock Exam PBT",
       "group": "Exam",
       "desc": "종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3305:4322"
+      }
     },
     {
       "slug": "exam-my",
