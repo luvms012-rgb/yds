@@ -380,12 +380,6 @@ const write = (o) => written.push(page(o));
 // 순서 규칙은 글 대신 코드 주석으로 (11-10 밤 사용자 "3가지 적용": 복사해 가면 같이 따라간다)
 // 등록된 브랜드 (brands/*.json, 2026-11-10 사용자 "구조 보강 2가지"): 구조의 브랜드 카드에 이름 배지, 설치 코드에 브랜드 줄
 const BRANDS = fs.readdirSync(path.join(DS, 'brands')).filter((f) => f.endsWith('.json')).map((f) => ({ slug: f.replace(/\.json$/, ''), name: readJson('brands/' + f).name || f.replace(/\.json$/, '') }));
-// 첫 컴포넌트 (11-10 밤 사용자, 레퍼런스 A 시작하기의 "첫 컴포넌트" 방식): 설치 바로 아래, 붙여 넣으면 YDS 가 먹는지 바로 보인다. 글 없이 미리보기와 코드만
-const FIRST_COMPONENT = `<div class="ds-field">
-  <div class="ds-field__header"><label class="ds-field__label" for="gs-mail">이메일</label></div>
-  <div class="ds-input" data-variant="outline" data-size="large"><input class="ds-input__control" id="gs-mail" type="email" placeholder="name@company.com"></div>
-</div>
-<button type="button" class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">신청하기</button>`;
 const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>${BRANDS.length ? `
@@ -473,7 +467,6 @@ ${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblo
 curl -O ${SITE_URL}ai/AGENTS.md
 curl -O ${SITE_URL}ai/CLAUDE.md
 curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
-${codeblock(FIRST_COMPONENT)}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
@@ -672,7 +665,7 @@ const FD_TABS = {
   icons: [['icons.html', 'Overview'], ['icons-library.html', 'Library']],
 };
 // 탭마다 한 쪽: DS Tabs(hug, 안쪽 여백 없음) 모양 그대로, 트리거는 그 쪽으로 가는 링크 (11-10 사용자 "컴포넌트 1순위")
-const fdTabs = (key, file) => `<nav class="site-pagetabs" aria-label="${esc(foundName[key])} 문서"><div class="ds-tabs" role="tablist" data-layout="hug" data-inset="none">${FD_TABS[key].map(([f, l]) => { const on = 'foundations/' + f === file; return `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${on}"${on ? ' aria-current="page"' : ''}>${l}</a>`; }).join('')}</div></nav>`;
+const fdTabs = (key, file) => `<nav class="site-pagetabs" aria-label="${esc(foundName[key])} 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none">${FD_TABS[key].map(([f, l]) => { const on = 'foundations/' + f === file; return `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${on}"${on ? ' aria-current="page"' : ''}>${l}</a>`; }).join('')}</div></nav>`;
 const fdHead = (slug, lead) => `<header><h1 class="site-h1">${esc(foundName[slug])}</h1><p class="site-lead">${esc(lead)}</p>${metaLinks(linkBySlug[slug])}</header>`;
 for (const [slug, p] of Object.entries(foundPages)) {
   write({
