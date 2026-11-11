@@ -210,12 +210,18 @@
   .tp-lt__q { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
   .tp-lt__q h1 { margin: 0; text-align: center; font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-medium); color: var(--ds-color-fg-neutral); text-wrap: balance; }
   .tp-lt__q h1 b { font-weight: var(--ds-font-weight-bold); }
-  /* 듣기 카드: 큰 재생 버튼 하나와 재생 위치 */
-  .tp-lt__media { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x5); padding: var(--ds-space-x8) var(--ds-space-x5) var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral-weak-alpha); }
-  .tp-lt__play { --ds-btn-height: 72px; --ds-btn-radius: var(--ds-shape-pill); --ds-btn-icon-only: 32px; }
-  .tp-lt__track { display: flex; align-items: center; gap: var(--ds-space-x3); width: 100%; }
-  .tp-lt__track .ds-progress { flex: 1 1 auto; }
-  .tp-lt__track .ds-timer { flex: none; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); white-space: nowrap; }
+  /* 듣기 플레이어(2026-11-11 사용자 "성의 없어 보임", 음성 기록, 음악 재생 화면 참고): 소리 파형(들은 곳 brand), 양끝 시간, 가운데 재생 묶음(다시 듣기, 일시 정지, 속도) */
+  .tp-lt__media { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x6) var(--ds-space-x5) var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
+  .tp-lt__wave { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .tp-lt__wave > i { flex: 0 0 4px; height: var(--h); border-radius: var(--ds-shape-pill); background: var(--ds-color-stroke-neutral-weak); }
+  .tp-lt__wave > i[data-on] { background: var(--ds-color-bg-brand-solid); }
+  .tp-lt__wave > i[data-head] { position: relative; }
+  .tp-lt__wave > i[data-head]::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-brand-solid); box-shadow: 0 0 0 3px var(--ds-color-bg-layer-default); }
+  .tp-lt__time { display: flex; justify-content: space-between; margin-top: calc(var(--ds-space-x2) * -1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
+  .tp-lt__time time:first-child { color: var(--ds-color-fg-brand); font-weight: var(--ds-font-weight-semibold); }
+  .tp-lt__ctrl { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--ds-space-x4); }
+  .tp-lt__ctrl > :first-child { justify-self: end; } .tp-lt__ctrl > :last-child { justify-self: start; }
+  .tp-lt__play { --ds-btn-height: 64px; --ds-btn-radius: var(--ds-shape-pill); --ds-btn-icon-only: 28px; }
   .tp-lt .ds-selectbox-group { --ds-selectbox-columns: 1; }
   .tp-lt .ds-selectbox { min-height: 56px; }
   .tp-lt .ds-selectbox__label { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
@@ -229,7 +235,11 @@
 <main class="tp-lt tp-ex">
   <section class="tp-lt__q" aria-labelledby="lt-q">
     <h1 id="lt-q">대화를 듣고 <b>여자가 다음에 할 일</b>을 고르세요</h1>
-    <div class="tp-lt__media"><button type="button" class="ds-btn tp-lt__play" data-variant="brandSolid" data-size="large" data-layout="iconOnly" aria-label="대화 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><div class="tp-lt__track"><div class="ds-progress" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" aria-label="재생 위치" style="--ds-progress-value: 37%" data-tone="neutral" data-size="small"></div><time class="ds-timer tp-num">0:14 / 0:38</time></div></div>
+    <div class="tp-lt__media" role="group" aria-label="대화 음성">
+      <div class="tp-lt__wave" role="slider" tabindex="0" aria-label="재생 위치" aria-valuemin="0" aria-valuemax="38" aria-valuenow="14" aria-valuetext="0분 14초"><i style="--h:46%" data-on></i><i style="--h:89%" data-on></i><i style="--h:98%" data-on></i><i style="--h:67%" data-on></i><i style="--h:20%" data-on></i><i style="--h:57%" data-on></i><i style="--h:59%" data-on></i><i style="--h:31%" data-on></i><i style="--h:33%" data-on></i><i style="--h:35%" data-on></i><i style="--h:31%" data-on></i><i style="--h:71%" data-on></i><i style="--h:91%" data-on></i><i style="--h:70%" data-on></i><i style="--h:20%" data-on></i><i style="--h:66%" data-on data-head></i><i style="--h:85%"></i><i style="--h:65%"></i><i style="--h:27%"></i><i style="--h:34%"></i><i style="--h:27%"></i><i style="--h:40%"></i><i style="--h:67%"></i><i style="--h:62%"></i><i style="--h:22%"></i><i style="--h:66%"></i><i style="--h:97%"></i><i style="--h:87%"></i><i style="--h:45%"></i><i style="--h:34%"></i><i style="--h:50%"></i><i style="--h:33%"></i><i style="--h:34%"></i><i style="--h:47%"></i><i style="--h:26%"></i><i style="--h:54%"></i><i style="--h:91%"></i><i style="--h:93%"></i><i style="--h:55%"></i><i style="--h:34%"></i><i style="--h:70%"></i><i style="--h:68%"></i><i style="--h:37%"></i><i style="--h:29%"></i></div>
+      <div class="tp-lt__time tp-num"><time>0:14</time><time>0:38</time></div>
+      <div class="tp-lt__ctrl"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="처음부터 다시 듣기"><i class="ds-icon ds-icon--rotate-ccw" aria-hidden="true"></i></button><button type="button" class="ds-btn tp-lt__play" data-variant="brandSolid" data-size="large" data-layout="iconOnly" aria-label="일시 정지"><i class="ds-icon ds-icon--pause" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium" aria-label="재생 속도">1.0x</button></div>
+    </div>
     <div class="ds-selectbox-group" role="radiogroup" aria-labelledby="lt-q"><label class="ds-selectbox"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">회의 자료를 인쇄한다</span></span><span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="lt-q"></span></label><label class="ds-selectbox"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">회의실을 예약한다</span></span><span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="lt-q"></span></label><label class="ds-selectbox"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">동료에게 전화한다</span></span><span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="lt-q"></span></label><label class="ds-selectbox"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">점심을 주문한다</span></span><span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="lt-q"></span></label></div>
   </section>
   <div class="tp-lt__skip"><button type="button" class="ds-btn" data-variant="ghost" data-size="medium">모르겠어요</button></div>
