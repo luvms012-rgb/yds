@@ -473,7 +473,7 @@ ${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblo
 curl -O ${SITE_URL}ai/AGENTS.md
 curl -O ${SITE_URL}ai/CLAUDE.md
 curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
-${example(`<div style="display: grid; gap: var(--ds-space-x4); width: min(100%, 360px)">${FIRST_COMPONENT.replaceAll('"gs-mail"', '"gs-mail-preview"')}</div>`, FIRST_COMPONENT, 'site-example--compact')}
+${codeblock(FIRST_COMPONENT)}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [

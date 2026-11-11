@@ -210,7 +210,6 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-example__bar .ds-chiptabs__trigger { --ds-ct-bg: transparent; --ds-ct-fg: var(--ds-color-fg-neutral-muted); }
 .site-example__bar .ds-chiptabs__trigger[aria-selected="true"] { --ds-ct-bg: var(--ds-color-bg-neutral-weak-alpha); --ds-ct-fg: var(--ds-color-fg-neutral); }
 .site-example__preview { display: flex; flex-direction: column; justify-content: center; gap: var(--ds-space-x6); min-height: 240px; padding: var(--ds-space-x8) var(--ds-space-x6); overflow-x: auto; }
-.site-example--compact .site-example__preview { min-height: 0; padding: var(--ds-space-x6); }  /* 11-11 사용자 "위아래 여백이 너무 많아": 시작하기 첫 컴포넌트 예시 */
 .site-example__preview[hidden] { display: none; }
 .site-example__preview > .pv-stage { padding: 0; background: none; box-shadow: none; justify-content: center; }
 .site-example__code .ds-codeblock { margin: 0; border: 0; border-radius: 0; }
