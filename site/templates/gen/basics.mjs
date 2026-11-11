@@ -101,14 +101,7 @@ const findAccount = () => {
 };
 
 /* ===================================================================== 시험 */
-// 바코드: 수험번호로 막대 폭을 정하는 장식 그림 (번호는 아래 글자로 다시 적는다)
-const barcode = (num) => {
-  let x = 0; const bars = [];
-  for (const ch of (num + num).replace(/\D/g, '')) { const w = 1 + (Number(ch) % 3); bars.push(`<rect x="${x}" width="${w}" height="40"/>`); x += w + 1 + (Number(ch) % 2); }
-  return `<svg class="tp-barcode" viewBox="0 0 ${x} 40" preserveAspectRatio="none" aria-hidden="true" fill="currentColor">${bars.join('')}</svg>`;
-};
-
-/* 3. 수험표: 수험번호를 가장 크게, 라벨 위 값 아래 정보 칸, 바코드 아래 번호, 고사장과 준비물 */
+/* 3. 수험표: 수험번호를 가장 크게, 라벨 위 값 아래 정보 칸, 고사장과 준비물 */
 const ticket = () => {
   const NO = '1118-0427-0012';
   const css = CSS + `
@@ -125,10 +118,8 @@ const ticket = () => {
   .tp-cells > div { display: flex; flex-direction: column; gap: var(--ds-space-x1); padding: var(--ds-space-x4) var(--ds-space-x5); }
   .tp-cells dt { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
   .tp-cells dd { margin: 0; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
-  .tp-ticket__code { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x5); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-barcode { width: min(100%, 280px); height: 48px; color: var(--ds-color-fg-neutral); }
 `;
-  const cells = [['시험일', '11월 18일 (수)'], ['입실 마감', '12:40'], ['고사장', '강남 시험장'], ['교실과 좌석', '302호 15번']];
+  const cells = [['시험일', '11월 18일 (수)'], ['입실 마감', '12:40'], ['고사장', '강남 시험장'], ['고사실과 좌석', '11고사실 A4번']];
   const body = app(EXAM_MENU, 3, `
 <main class="tp-content">
   <div class="tp-nw">
@@ -143,7 +134,6 @@ const ticket = () => {
         </div>
       </div>
       <dl class="tp-cells">${cells.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-      <div class="tp-ticket__code">${barcode(NO)}<span class="tp-caption tp-num">${NO}</span></div>
     </article>
     ${card(`${secHead('고사장', { tools: btn('길찾기', { ic: 'map-pin', size: 'small' }) })}<div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-item-title">강남 시험장</span><span class="tp-caption">서울 강남구 테헤란로 000, 3층</span></div><div class="tp-map" aria-hidden="true">${icon('map-pin', 'lg')}</div>`)}
     ${card(`${secHead('준비물')}${checks(['수험표', '신분증 (주민등록증, 운전면허증, 여권 중 하나)', '컴퓨터용 사인펜, 수정 테이프'])}`)}

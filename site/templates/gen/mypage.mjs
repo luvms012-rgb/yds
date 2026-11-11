@@ -22,7 +22,7 @@ const CSS = FRAME_CSS + `
   @media (min-width: 768px) { .tp-mp { padding: var(--ds-space-x8) var(--ds-space-x6) var(--ds-space-x16); } }
   @media (min-width: 1024px) {
     .tp-mp { grid-template-columns: 200px minmax(0, 1fr); gap: var(--ds-space-x10); }
-    .tp-mp__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; }
+    .tp-mp__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; box-sizing: border-box; min-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); padding-right: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }  /* 11-11 사용자 "좌우 레이아웃 분리": 설정 패널처럼 메뉴 칸 오른쪽 세로 선 */
     .tp-mp__chips { display: none; }
   }
   .tp-mp__nav .ds-sidenav { width: auto; height: auto; background: none; }
@@ -132,7 +132,9 @@ const profile = () => {
     </div></section>
     ${sec('알림', [row('주문, 배송 알림', '결제, 출발, 도착을 알려 드려요.', sw('주문, 배송 알림', true)), row('혜택, 이벤트 알림', '받기로 한 날 2026.03.02', sw('혜택, 이벤트 알림', true)), row('이메일 소식', '받지 않기로 한 날 2026.08.11', sw('이메일 소식', false))])}
     <a class="tp-leave" href="#">회원 탈퇴</a>`);
-  return { slug: 'mypage-profile', en: 'My Info', name: '내 정보', group: 'Account', desc: '내 정보와 알림 설정을 보고 수정하는 화면입니다.', css: CSS, body };
+  return { slug: 'mypage-profile', en: 'My Info', name: '내 정보', group: 'Account', desc: '내 정보와 알림 설정을 보고 수정하는 화면입니다.', css: CSS + `
+  .tp-mp__main { width: min(100%, var(--tp-narrow)); }  /* 설정 행이 화면 끝까지 늘어나지 않게 (설정 패널과 같은 720) */
+`, body };
 };
 
 export const templates = [home, orders, profile].map((f) => f());
