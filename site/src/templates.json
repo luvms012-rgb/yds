@@ -24,17 +24,6 @@
       }
     },
     {
-      "slug": "canvas-editor",
-      "name": "캔버스 편집기",
-      "en": "Canvas Editor",
-      "group": "Admin",
-      "desc": "정해진 크기의 화면 위에서 디자인하는 편집기입니다. 레이어와 속성을 양옆에 둡니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:2936"
-      }
-    },
-    {
       "slug": "center-finder",
       "name": "센터 찾기",
       "en": "Center Finder",
@@ -145,17 +134,6 @@
       }
     },
     {
-      "slug": "file-explorer",
-      "name": "파일 탐색기",
-      "en": "File Explorer",
-      "group": "Admin",
-      "desc": "폴더를 열 때마다 옆 칸에 이어 보여 주는 파일 탐색기입니다. 깊은 폴더도 경로를 놓치지 않고 찾아갑니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:3220"
-      }
-    },
-    {
       "slug": "table-filter",
       "name": "필터 표",
       "en": "Filterable Table",
@@ -200,17 +178,6 @@
       }
     },
     {
-      "slug": "ide",
-      "name": "코드 편집기",
-      "en": "IDE",
-      "group": "Admin",
-      "desc": "파일 목록, 편집 창, 터미널을 한 화면에 둔 코드 편집기입니다. 칸마다 크기를 바꾸고 접을 수 있습니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:3514"
-      }
-    },
-    {
       "slug": "table-inbox",
       "name": "받은함 표",
       "en": "Inbox Table",
@@ -230,17 +197,6 @@
       "rebuilt": true,
       "figma": {
         "pc": "3185:1340"
-      }
-    },
-    {
-      "slug": "kanban-board",
-      "name": "칸반 보드",
-      "en": "Kanban Board",
-      "group": "Admin",
-      "desc": "할 일을 상태별 열에 카드로 배치한 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:1658"
       }
     },
     {
@@ -351,17 +307,6 @@
       }
     },
     {
-      "slug": "editor",
-      "name": "페이지 편집기",
-      "en": "Page Editor",
-      "group": "Admin",
-      "desc": "블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 선택한 블록의 속성은 오른쪽에서 바꿉니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:2424"
-      }
-    },
-    {
       "slug": "dashboard-progress",
       "name": "프로젝트 현황 대시보드",
       "en": "Project Status Dashboard",
@@ -469,6 +414,61 @@
       "rebuilt": true,
       "figma": {
         "pc": "3185:1492"
+      }
+    },
+    {
+      "slug": "canvas-editor",
+      "name": "캔버스 편집기",
+      "en": "Canvas Editor",
+      "group": "Tools",
+      "desc": "정해진 크기의 화면 위에서 디자인하는 편집기입니다. 레이어와 속성을 양옆에 둡니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3185:2936"
+      }
+    },
+    {
+      "slug": "file-explorer",
+      "name": "파일 탐색기",
+      "en": "File Explorer",
+      "group": "Tools",
+      "desc": "폴더를 열 때마다 옆 칸에 이어 보여 주는 파일 탐색기입니다. 깊은 폴더도 경로를 놓치지 않고 찾아갑니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3185:3220"
+      }
+    },
+    {
+      "slug": "ide",
+      "name": "코드 편집기",
+      "en": "IDE",
+      "group": "Tools",
+      "desc": "파일 목록, 편집 창, 터미널을 한 화면에 둔 코드 편집기입니다. 칸마다 크기를 바꾸고 접을 수 있습니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3185:3514"
+      }
+    },
+    {
+      "slug": "kanban-board",
+      "name": "칸반 보드",
+      "en": "Kanban Board",
+      "group": "Tools",
+      "desc": "할 일을 상태별 열에 카드로 배치한 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3187:1658"
+      }
+    },
+    {
+      "slug": "editor",
+      "name": "페이지 편집기",
+      "en": "Page Editor",
+      "group": "Tools",
+      "desc": "블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 선택한 블록의 속성은 오른쪽에서 바꿉니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3187:2424"
       }
     },
     {

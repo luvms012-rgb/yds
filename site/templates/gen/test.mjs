@@ -125,9 +125,8 @@ const mockCbt = () => {
   .tp-cbt__stage { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
   .tp-cbt__pic { width: min(100%, 560px); margin-inline: auto; }
   .tp-cbt__prompt { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); text-align: center; }
-  .tp-cbt__clock { display: grid; place-items: center; gap: var(--ds-space-x2); text-align: center; }
-  .tp-cbt__clock .ds-progress-circle { --ds-pc-size: 120px; --ds-pc-stroke: 8px; }
-  .tp-cbt__clock .ds-timer { font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-bold); color: var(--ds-color-fg-neutral); letter-spacing: -0.02em; }
+  .tp-cbt__clock { display: grid; place-items: center; gap: var(--ds-space-x1); text-align: center; }  /* 11-11 사용자 "너무 커": DS 기본 56 원 그대로 */
+  .tp-cbt__clock .ds-timer { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); color: var(--ds-color-fg-neutral); letter-spacing: -0.02em; }
   /* 녹음 막대 (11-11 사용자, UI 패턴의 음성 기록 서비스 녹음 막대 참고): 상태, 음량, 시간, 끝내기를 진한 막대 한 줄에 */
   .tp-recbar { display: flex; align-items: center; gap: var(--ds-space-x4); padding: var(--ds-space-x3) var(--ds-space-x3) var(--ds-space-x3) var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
   .tp-recbar__state { display: flex; align-items: center; gap: var(--ds-space-x2); flex: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); white-space: nowrap; }

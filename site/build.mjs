@@ -1015,9 +1015,9 @@ for (const [f, to, label] of [['selection-bar', 'toolbar', 'Toolbar']]) {
 const tplGroups = [...new Set(templates.map((t) => t.group))];
 // 분류 칩에 보이는 이름 (값은 templates.json의 영어 group)
 // 분류 9개 (2026-11-10 사용자 "템플릿 탭이 너무 많다", YBM 사업 기준, 이어 "잇지 말고 전부 분리"): 사업 탭 일곱 뒤에 공통 화면 둘
-const TPL_GROUP_KO = { Exam: '시험', Learning: '학습', Commerce: '쇼핑', Payment: '결제', Account: '회원', Community: '커뮤니티', Support: '고객센터', Content: '콘텐츠', Admin: '관리자' };
+const TPL_GROUP_KO = { Exam: '시험', Learning: '학습', Commerce: '쇼핑', Payment: '결제', Account: '회원', Community: '커뮤니티', Support: '고객센터', Content: '콘텐츠', Admin: '관리자', Tools: '도구' };
 // 분류 순서: YBM 서비스(시험, 교육)와 많이 쓰는 서비스 화면이 앞 (11-10 사용자, 예전 가나다 순을 바꿈). 목록에 없는 분류는 맨 뒤
-const TPL_ORDER = ['Exam', 'Learning', 'Commerce', 'Payment', 'Account', 'Community', 'Support', 'Content', 'Admin'];
+const TPL_ORDER = ['Exam', 'Learning', 'Commerce', 'Payment', 'Account', 'Community', 'Support', 'Content', 'Admin', 'Tools'];
 // 분류 안 순서는 많이 쓰는 화면부터 (2026-11-10 사용자). 없는 것은 뒤에 이름순
 const TPL_PRIORITY = [
   'exam-apply', 'exam-schedule', 'exam-my', 'exam-score', 'mock-exam-pbt', 'mock-exam-cbt', 'exam-group-apply', 'exam-group-roster', 'exam-group-dashboard',
