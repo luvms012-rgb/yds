@@ -32,7 +32,10 @@
       "group": "Exam",
       "sub": "접수",
       "desc": "결제를 마친 뒤 접수 번호와 접수, 결제 내용, 다음 일정을 보여 주는 화면입니다. 수험표와 내 시험으로 이어집니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3945"
+      }
     },
     {
       "slug": "exam-ticket",
@@ -41,7 +44,10 @@
       "group": "Exam",
       "sub": "접수",
       "desc": "수험 번호, 시험 시간, 고사장과 좌석을 한 장에 모은 수험표 화면입니다. 화면으로 보거나 인쇄해 시험장에 가져갑니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3946"
+      }
     },
     {
       "slug": "level-test",
@@ -110,7 +116,10 @@
       "group": "Exam",
       "sub": "성적",
       "desc": "로그인하지 않고 수험 번호와 생년월일로 성적을 확인하는 화면입니다. 총점, 영역별 점수, 지난 회차를 함께 봅니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3947"
+      }
     },
     {
       "slug": "exam-group-apply",
@@ -395,7 +404,10 @@
       "group": "Account",
       "sub": "가입과 찾기",
       "desc": "약관 동의, 본인 인증, 정보 입력을 한 화면에서 마치는 회원가입 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3948"
+      }
     },
     {
       "slug": "find-account",
@@ -404,7 +416,10 @@
       "group": "Account",
       "sub": "가입과 찾기",
       "desc": "이름과 휴대폰 인증으로 아이디를 찾거나 비밀번호를 다시 정하는 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3949"
+      }
     },
     {
       "slug": "mypage-home",
@@ -533,7 +548,10 @@
       "group": "Support",
       "sub": "공지",
       "desc": "분류와 찾기로 공지를 고르고 고정 공지를 맨 위에 두는 공지사항 목록입니다. 넓은 화면은 표, 좁은 화면은 두 줄 목록으로 보입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3950"
+      }
     },
     {
       "slug": "notice-detail",
@@ -542,7 +560,10 @@
       "group": "Support",
       "sub": "공지",
       "desc": "공지 본문과 일정 요약, 첨부 파일, 이전 글과 다음 글을 보여 주는 공지사항 상세 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3951"
+      }
     },
     {
       "slug": "help-center",
@@ -563,7 +584,10 @@
       "group": "Support",
       "sub": "도움말",
       "desc": "찾기와 분류로 질문을 고르고 많이 찾는 질문을 먼저 보여 주는 화면입니다. 답이 없으면 1:1 문의와 전화 상담으로 이어집니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3952"
+      }
     },
     {
       "slug": "contact-form",
@@ -584,7 +608,10 @@
       "group": "Content",
       "sub": "메인과 이벤트",
       "desc": "큰 배너, 바로 가기, 내 시험, 시험 일정, 공지, 추천 강의를 모은 서비스 첫 화면입니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3953"
+      }
     },
     {
       "slug": "event-page",
@@ -593,7 +620,10 @@
       "group": "Content",
       "sub": "메인과 이벤트",
       "desc": "혜택, 참여 방법, 이벤트 정보, 유의사항을 한 장에 모은 이벤트 화면입니다. 응모 버튼을 위와 아래에 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3309:3954"
+      }
     },
     {
       "slug": "centered-hero",

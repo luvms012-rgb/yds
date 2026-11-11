@@ -116,7 +116,7 @@ const SER = String.raw`(() => {
       }
       if (q.content === 'none' || q.content === 'normal' || q.display === 'none' || q.visibility === 'hidden') continue;
       // 줄 번호 (content: counter(...)): 같은 태그 형제 가운데 몇 번째인지로 숫자를 만든다. 폭과 오른쪽 맞춤도 함께 (템플릿 코드 편집기, 2026-11-10)
-      if (TPL && /^counter\(/.test(q.content) && el.parentNode) { const idx = [...el.parentNode.children].filter((x) => x.tagName === el.tagName).indexOf(el) + 1; pt.push([pe === '::before' ? 'b' : 'a', String(idx), hex(q.color), R(q.fontSize), +q.fontWeight, R(q.marginRight) + R(q.marginLeft) + R(q.paddingRight), R(q.width), q.textAlign === 'right' || q.textAlign === 'end' ? 'r' : '']); continue; }
+      if (TPL && /^counter\(/.test(q.content) && el.parentNode) { let ce = el; while (ce.parentElement && getComputedStyle(ce).counterIncrement === 'none') ce = ce.parentElement; if (getComputedStyle(ce).counterIncrement === 'none') ce = el; const idx = [...ce.parentNode.children].filter((x) => x.tagName === ce.tagName).indexOf(ce) + 1;  /* 숫자를 세는 요소(counter-increment)는 조상일 수 있다 (11-12 FAQ 순위) */ pt.push([pe === '::before' ? 'b' : 'a', String(idx), hex(q.color), R(q.fontSize), +q.fontWeight, R(q.marginRight) + R(q.marginLeft) + R(q.paddingRight), R(q.width), q.textAlign === 'right' || q.textAlign === 'end' ? 'r' : '']); continue; }
       if (/^".+"$/.test(q.content) && !/^(absolute|fixed)$/.test(q.position)) { try { pt.push([pe === '::before' ? 'b' : 'a', JSON.parse(q.content), hex(q.color), R(q.fontSize), +q.fontWeight, R(q.marginRight) + R(q.marginLeft)]); } catch (e) {} continue; }
       if (!/^(absolute|fixed)$/.test(q.position)) continue;
       if (q.content !== '""' && q.content !== "''") continue;

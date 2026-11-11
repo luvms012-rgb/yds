@@ -245,7 +245,7 @@ function sizeW(node, s, parent, cw) {
   if (node.type === 'TEXT') {
     if (s.fg && parent.layoutMode === 'HORIZONTAL' && !root) { node.textAutoResize = 'HEIGHT'; node.layoutGrow = 1; return; }  // 가로 줄에서 남는 폭을 채우는 글 (오른쪽 정렬 값 등)
     const one = s.nw || !s.lh || s.h <= s.lh * 1.4;
-    if (one && s.ta && !s.nw && full && !root && !hugW(parent) && parent.layoutMode === 'VERTICAL') { node.layoutSizingHorizontal = 'FILL'; node.textAutoResize = 'HEIGHT'; return; }  // 가운데·오른쪽 맞춤 한 줄 글은 부모 폭을 채워야 맞춤이 보인다
+    if (one && s.ta && !s.nw && full && !root && !hugW(parent) && parent.layoutMode === 'VERTICAL') { node.textAutoResize = 'WIDTH_AND_HEIGHT'; if (node.width <= cw) { node.layoutSizingHorizontal = 'FILL'; node.textAutoResize = 'HEIGHT'; } return; }  // 한 줄 글이 사이트 폭보다 조금 넓게 그려지면 꺾지 않는다 (11-12)  // 가운데·오른쪽 맞춤 한 줄 글은 부모 폭을 채워야 맞춤이 보인다
     if (one) { node.textAutoResize = 'WIDTH_AND_HEIGHT';
       // 템플릿: 폭이 정해진 한 줄 글(순위 숫자 칸 등)은 사이트 폭을 지킨다 (2026-11-10)
       if (DATA.mode === 'template' && s.w > node.width + 4) { if (full && !root && !hugW(parent) && parent.layoutMode === 'VERTICAL') { node.layoutSizingHorizontal = 'FILL'; node.textAutoResize = 'HEIGHT'; } else { node.textAutoResize = 'HEIGHT'; node.resize(s.w, node.height); node.layoutSizingHorizontal = 'FIXED'; } }
@@ -554,7 +554,9 @@ async function renderInto(fr, els, w) {
   CW.set(fr.id, w || fr.width - fr.paddingLeft - fr.paddingRight);
   const before = new Set(fr.children.map((c) => c.id));
   for (const el of els) await render(el, fr, {});
-  if (fr.layoutMode === 'VERTICAL') for (const c of fr.children) if (!before.has(c.id)) { try { if (c.type === 'TEXT') { c.layoutSizingHorizontal = 'FILL'; c.textAutoResize = 'HEIGHT'; } else c.layoutSizingHorizontal = 'FILL'; } catch (e) {} }
+  const news = fr.children.filter((c) => !before.has(c.id)); const cw0 = CW.get(fr.id);
+  // 사이트에서 폭이 좁은 것(align-self: flex-start 배지 등)은 늘리지 않는다 (11-12)
+  if (fr.layoutMode === 'VERTICAL') for (const [i, c] of news.entries()) { const es = news.length === els.length && els[i] && els[i].s; if (es && es.w > 0 && es.w < cw0 - 4 && c.type !== 'TEXT') continue; try { if (c.type === 'TEXT') { c.layoutSizingHorizontal = 'FILL'; c.textAutoResize = 'HEIGHT'; } else c.layoutSizingHorizontal = 'FILL'; } catch (e) {} }
 }
 async function FIX(inst, el) {
   const o = el.fx; const cp = inst.componentProperties;
