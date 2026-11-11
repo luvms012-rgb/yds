@@ -16,6 +16,9 @@ YBM 서비스 공용 디자인 시스템. Figma 변수/컴포넌트가 정본이
 ```
 yds/                         ← 저장소 루트 (2026-11-04 저장소 이름 ybm-ds → YDS) = Pages 사이트 루트
 ├─ README.md                 ← 이 문서 (DS 전체 안내)
+├─ CLAUDE.md                 Claude 작업 기준 (원칙, 기준 주소, 상시 규칙, 두 PC 싱크). 진행 상황은 적지 않는다
+├─ docs/handoff.md           최신 인수인계 1건 (작업 끝에 덮어쓴다, 시작할 때 읽는다)
+├─ docs/log.md               지난 작업 기록, 보류, 정리 후보 (필요할 때만 찾아본다)
 ├─ index.html                컴포넌트 미리보기 (48종, Light/Dark, ?only=43-48로 골라 보기)
 ├─ components.json           컴포넌트 목록 - CSS 클래스, Figma 노드 ID, 변형 수 (sync가 양쪽과 대조)
 ├─ sync.mjs                  ◆ 통합 동기화 (Figma ↔ 로컬 ↔ GitHub ↔ 가이드 사이트)
@@ -37,7 +40,8 @@ yds/                         ← 저장소 루트 (2026-11-04 저장소 이름 y
 │  ├─ design-tokens.json     (생성물) 중첩 JSON
 │  ├─ tokens.js              (생성물) JS 객체
 │  └─ tailwind.preset.js     (생성물) Tailwind preset - 값은 전부 CSS 변수 참조
-└─ .claude/skills/ds-sync/   Claude 용 동기화 절차 ("ds 동기화" 라고 요청하면 이 순서대로 실행)
+├─ .claude/skills/ds-sync/   Claude 용 동기화 절차 ("ds 동기화" 라고 요청하면 이 순서대로 실행)
+└─ .claude/skills/yds-figma-draw/   Claude 용 Figma 그리기 절차 (템플릿, 문서 프레임을 사이트와 같게 다시 그릴 때)
 ```
 
 git에 올리지 않는 것(`.gitignore`): `tokens/.figma-check.js`, `tokens/.figma-result.json`, `tokens/figma-variables.backup-*.json`
@@ -161,7 +165,7 @@ node sync.mjs release 1.1.0    새 버전: VERSION, DS 머리 버전, Updates �
 | Foundations | `2274:1143` | 문서 프레임을 사이트 메뉴 순서로: Color `2486:2`, Elevation `2486:46`, Motion `2609:8`(2026-10-31 추가, Duration / Easing 표), Radius `2486:35`, Spacing `2486:24`, Typography `2486:13` |
 | Iconography | `271:2027` | 문서 프레임 `Icon` `2517:2` - 머리말, 예시(크기/색/선형/채움/상태), 안내, 전체 아이콘(라이브러리 프레임 `2416:2`) |
 | ----- | | 구분선 |
-| Templates | `2479:5` | 사이트 Templates와 같은 구성: 머리말 `2606:2` + 분류 13개 섹션. 템플릿마다 제목, 설명, PC 1440 / Mobile 375 화면. 화면 ID는 `site/src/templates.json`의 `figma`. 2026-10-31 `node site/figma-capture.mjs`로 캡처해 올림(글자 레이어, 색은 DS 변수에 연결) |
+| Templates | `3059:965` | 사이트 Templates와 같은 분류 9개 섹션(순서는 `site/templates/gen/groups.mjs`). 템플릿마다 COMPONENT "Template/영어 이름" PC 1920x1080 화면. 화면 ID는 `site/src/templates.json`의 `figma.pc`. 그리는 절차는 `.claude/skills/yds-figma-draw/SKILL.md` |
 | --- | | 구분선 |
 | Action | `2479:7` | Action Button, Chip, Floating Action Button, Menu, Segmented Control, Toggle Button, **Text Link** `2493:324` |
 | Chat | `2479:8` | 문서 1개에 **Chat Message Bubble** `2499:6`, **Chat Message Metadata** `2499:18`, **Chat System Message** `2499:25`, **Chat Send Button** `2499:35`, **Chat Composer** `2499:54`. 문서 따로 **Markdown** `2568:66`, **Code Block** `2568:57`, **Citation** `2568:65` |
