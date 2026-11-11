@@ -52,6 +52,9 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
+- **인수인계 - 다음 세션은 여기부터 (2026-11-11 오후 회사, 사용자 "인수인계 만들고 모두 보류")** - 시작은 "YDS CLAUDE.md 읽고 이어서", 먼저 `git pull`. 모든 작업 보류 상태.
+  - **배포 확인 남음**: 9680e695 배포 직후 yds-bot 자동 커밋 d661eb36("DS 원본에 맞춰 사이트, 토큰 생성물 다시 만들기")이 위에 올라감. 실제 사이트에서 표 선, 아이콘 칸, 회색 막대 버튼은 새 모양 확인. 레벨 테스트 페이지(site/templates/pages/level-test.html)만 옛 화면(tp-lt__dots)으로 나옴. 할 일: `git show origin/main:site/templates/pages/level-test.html` 에 ds-stepper__step 이 있는지 본다. 없으면 자동 커밋이 덮은 것이니 원인(자동 생성 스크립트가 어디서 페이지를 다시 만드는지)을 찾아 고치고 다시 배포, 있으면 Pages 캐시라 기다린 뒤 다시 확인.
+  - **Figma**: 사용자가 퇴근 때 싱크를 걸 때까지 보류. 남은 일은 바로 아래 줄.
 - **11-11 밤 회사, Figma 싱크 전체 검수 중 사용자 보류 ("씽크는 내가 퇴근하고 걸고 갈테니")** - 코드 쪽은 배포함.
   - **배포한 것(코드, 사이트)**: Table 맨 위, 맨 아래 선 stroke/neutral-weak(`--ds-table-edge`, 행 사이는 neutral-muted 그대로, Card 안 표는 예전처럼 둘 다 없음). 회색 Toolbar(muted) 안 버튼은 ghost(예시 3곳 바꿈, components.css 주석). Segmented Text Input 끝 칸에 아이콘이 들면 28x28 정사각형(로고 칸은 30x20 그대로). 레벨 테스트 템플릿을 시험(Exam)으로 옮기고 다시 짬: uipatterns 플랭 레벨테스트 흐름 참고, 위 Stepper(어휘, 문법, 듣기, 말하기) 아래 한 문항만, 시간 제한 없음(타이머 뺌), 이전 버튼과 점 줄 뺌, 아래 모르겠어요(ghost) + 다음, 위 막대 오른쪽 "나중에 이어서 하기". Updates 11-11 에 Table, Toolbar 두 줄. 상시 규칙에 "기준은 YDS 와 사이트, Figma 는 자동" 추가.
   - **Figma 남은 일 추가**: Toolbar muted 예시 버튼 ghost, Segmented Text Input 아이콘 칸 정사각형(3230:4375), 레벨 테스트는 다시 짠 화면으로 그린다(Exam 섹션 3287:3848 으로 옮겨서).
