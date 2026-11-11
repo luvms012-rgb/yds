@@ -126,7 +126,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 size: large(기본) 높이 52, shape/lg, t05 / medium(PC 전용) 높이 40, shape/sm, t04
 입력 필드는 Text Field outline과 같습니다(aria-invalid, disabled, readonly) / 구간 너비는 maxlength 자리 수만큼, 구간과 구분자 사이 x1_5
 data-masked: 입력한 글자를 점으로 표시합니다 / dots: 받지 않는 자리를 지름 7 점으로 표시합니다, 점 사이 x1
-suffix 30x20, shape/2xs, bg/neutral(카드사 로고 자리) / 라벨, 도움말, 오류는 Field Label(.ds-field)로 감쌉니다
+suffix 30x20, shape/2xs, bg/neutral-weak-alpha(카드사 로고 자리), 아이콘을 넣으면 28x28 정사각형(아이콘 16) / 라벨, 도움말, 오류는 Field Label(.ds-field)로 감쌉니다
 형식만 정해진 값(전화번호, 이메일, 유효기간)은 Text Field, 인증번호를 한 칸에 한 글자씩 받을 때는 Code Input을 사용합니다
 ybm-ds.js: 자리 수를 채우면 다음 구간으로 이동하고, 빈 구간에서 Backspace는 앞 구간의 마지막 글자를 지웁니다
 ```

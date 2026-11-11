@@ -173,13 +173,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `--ds-table-head-h` | `40px` |
 | `--ds-table-row-h` | `56px` |
 | `--ds-table-line` | `var(--ds-color-stroke-neutral-muted)` |
+| `--ds-table-edge` | `var(--ds-color-stroke-neutral-weak)` |
 
 ### 크기와 여백
 
 ```
 density: default(기본) / compact
-2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-10 위 선도 옅은 선으로: 위 옅은 선 + 머리줄 바탕 없음 + 행 사이 옅은 선
-Figma: 표 위 1px stroke/neutral-muted / 칸 아래 1px stroke/neutral-muted / header 바탕 없음
+2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-11 표 맨 위와 맨 아래 선은 바깥 테두리 색(한 단계 짙게), 행 사이는 옅은 선
+Figma: 표 위 1px stroke/neutral-weak / 마지막 줄 아래 1px stroke/neutral-weak / 그 밖의 칸 아래 1px stroke/neutral-muted / header 바탕 없음
   높이 header 40 / body 56 (compact 40 / 48) / 칸 좌우 x3, 양 끝 칸 x4 / 한 줄 말줄임
   header t04 Medium fg/neutral / body t04 fg/neutral / 두 줄 칸 아래 줄 t02 fg/neutral-subtle
   묶음 행 44 bg/neutral-weak-alpha + SemiBold / hover(data-interactive 행만) bg/neutral-weak-alpha / selected bg/brand-weak

@@ -73,7 +73,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 선택한 개수와 선택한 행에 적용할 수 있는 동작만 담고, 배경을 채워 일시적으로 나타난 막대임을 알립니다. 끝에 선택 해제를 배치합니다.
 
 ```html
-<div class="ds-toolbar u-full" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
+<div class="ds-toolbar u-full" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
 ```
 
 ### 떠 있는 막대
@@ -90,7 +90,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```
 size: medium(기본) 높이 56, 좌우 x4, 사이 x2 / small 높이 48, 좌우 x3 / 안의 버튼은 small을 사용합니다
-variant: plain(기본, 바탕 없음) / muted(여러 줄을 고른 뒤 잠깐 나오는 막대, bg/neutral + shape/lg)
+variant: plain(기본, 바탕 없음) / muted(여러 줄을 고른 뒤 잠깐 나오는 막대, bg/neutral-weak-alpha + shape/lg)
+  muted 막대 안 버튼은 ghost(마우스를 올릴 때만 바탕)를 사용합니다. 회색 막대 위에 회색 버튼을 겹치지 않습니다 (2026-11-11)
 data-divider: 아래 선 stroke/neutral-muted로 내용과 구분합니다 / 묶음 사이 세로선 stroke/neutral-muted 높이 20
 data-position="floating": 화면 아래 가운데에 떠 있는 막대로 표시합니다, bg/layer-floating + elevation/overlay, [hidden]이면 숨깁니다
 __clear: 끝에 두는 선택 해제 버튼입니다, 누르면 고른 항목을 모두 풀고 막대를 숨깁니다

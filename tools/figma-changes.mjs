@@ -6,8 +6,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
-const R = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const R = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const docsFile = path.join(R, 'tokens/.figma-docs.json');
 const markFile = path.join(R, '.cache/figma-sync-mark.json');
 if (!fs.existsSync(docsFile)) { console.error('tokens/.figma-docs.json 이 없어요. 먼저 node site/build.mjs'); process.exit(1); }

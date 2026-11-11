@@ -373,7 +373,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 39 | Card | `.ds-card` | `2164:1063`, 4 | variant `elevated`(subtle 은 2026-11-04 부터 기본과 같은 모양, 이름만 남김), size(small 모서리 lg), 제목 18/16 |
 | 40 | Empty | `.ds-empty` | `2164:1092`, 2 | size |
 | 41 | Pagination | `.ds-pagination` | `2163:1067`, 2 / Item `2163:1028`, 16 | type `first/prev/next/last/ellipsis/simple` |
-| 42 | Table | `.ds-table` `.ds-table-wrap` | `2164:1271`, 2 / Row `2164:1178`, 8 / Cell `2164:1105`, 6 | density `compact`, align `center/end`, 두 줄 칸 `__stack`, 묶음 행 `tr.__group`, 체크박스 칸 (2026-11-03 개편: 머리줄 바탕 없음, 위 진한 선, 행 56/48) |
+| 42 | Table | `.ds-table` `.ds-table-wrap` | `2164:1271`, 2 / Row `2164:1178`, 8 / Cell `2164:1105`, 6 | density `compact`, align `center/end`, 두 줄 칸 `__stack`, 묶음 행 `tr.__group`, 체크박스 칸 (2026-11-03 개편: 머리줄 바탕 없음, 행 56/48, 2026-11-11 맨 위와 맨 아래 선 stroke/neutral-weak, 행 사이 stroke/neutral-muted) |
 | 43 | Divider | `.ds-divider` | `2347:1152`, 4 | type `thin/thick/vertical/label` (CSS data-weight / data-orientation / data-label), inset |
 | 44 | Tooltip | `.ds-tooltip` `.ds-tooltip-anchor` | `2348:1145`(COMPONENT) | placement `top/bottom/left/right`(CSS만), hover/focus 때만 표시 |
 | 45 | List, List Item | `.ds-list` `.ds-list-item` | Item `2350:1207`, 4 | size `medium/small`, state, prefix/description/suffix/chevron/divider, list variant `inset` |
