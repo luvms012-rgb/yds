@@ -52,6 +52,7 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
+- **11-11 레벨 테스트 되살림 (회사)** - 원인: 9680e695 가 생성물(site/templates/pages/level-test.html, templates.json)만 고치고 생성기 site/templates/gen/test.mjs 는 그대로 둬서, 푸시 때 GitHub 자동 빌드(.github/workflows/check.yml: run.mjs, build.mjs 를 돌려 바뀐 생성물을 yds-bot 이 자동 커밋)가 옛 화면으로 덮었다(d661eb36). 고침: test.mjs levelTest 를 다시 짠 화면으로 바꾸고 group Exam, examBar 는 time: null 이면 타이머 없이 오른쪽 버튼만. 생성 결과가 9680e695 의 페이지와 한 글자도 다르지 않음을 확인. **템플릿은 꼭 생성기(site/templates/gen/*.mjs)를 고친다, pages/*.html 을 손으로 고치면 다음 푸시 때 자동 빌드가 되돌린다.**
 - **인수인계 - 다음 세션은 여기부터 (2026-11-11 오후 회사, 사용자 "인수인계 만들고 모두 보류")** - 시작은 "YDS CLAUDE.md 읽고 이어서", 먼저 `git pull`. 모든 작업 보류 상태.
   - **확인 결과(보류 직전)**: 자동 커밋 d661eb36 이 레벨 테스트를 되돌렸다. 페이지는 옛 화면(tp-lt__dots), site/src/templates.json 의 level-test group 도 Learning 으로 돌아감. 다시 할 일: 자동 커밋이 무엇을 기준으로 다시 만드는지(아마 템플릿 생성기 원본, 예: 생성 스크립트 안 level-test 정의) 찾아 그 원본에 재구성 내용과 Exam 분류를 넣고, build.mjs TPL_PRIORITY(이미 시험 줄로 옮김)와 맞춘 뒤 다시 배포. 재구성 화면 내용은 9680e695 의 site/templates/pages/level-test.html 에 있다.
   - **배포 확인 남음**: 9680e695 배포 직후 yds-bot 자동 커밋 d661eb36("DS 원본에 맞춰 사이트, 토큰 생성물 다시 만들기")이 위에 올라감. 실제 사이트에서 표 선, 아이콘 칸, 회색 막대 버튼은 새 모양 확인. 레벨 테스트 페이지(site/templates/pages/level-test.html)만 옛 화면(tp-lt__dots)으로 나옴. 할 일: `git show origin/main:site/templates/pages/level-test.html` 에 ds-stepper__step 이 있는지 본다. 없으면 자동 커밋이 덮은 것이니 원인(자동 생성 스크립트가 어디서 페이지를 다시 만드는지)을 찾아 고치고 다시 배포, 있으면 Pages 캐시라 기다린 뒤 다시 확인.

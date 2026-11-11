@@ -1,4 +1,4 @@
-// 온라인 평가 템플릿 (2026-11-11 사용자 "레벨 테스트와 온라인 시험 테스트"): 학원 레벨 테스트(Learning), 모의고사 PBT 형, 모의고사 CBT 형(Exam).
+// 온라인 평가 템플릿 (2026-11-11 사용자 "레벨 테스트와 온라인 시험 테스트"): 학원 레벨 테스트(Exam, 11-11 학습에서 옮김), 모의고사 PBT 형, 모의고사 CBT 형(Exam).
 // 시험 이름은 특정 시험이 아닌 일반 이름을 쓴다. 문항 글은 내용 영역(tp-ex)이라 stripCopy 가 건드리지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar, selectbox, tags } from './frame.mjs';
@@ -26,34 +26,40 @@ const CSS = FRAME_CSS + `
   .tp-navbar > .tp-row { flex-wrap: nowrap; }
 `;
 
-const examBar = (title, { sub = '', time = '0:00', urgent = false, end = '' } = {}) => topbar([], -1, `<div class="tp-row" style="gap: var(--ds-space-x3)"><span class="tp-timer"${urgent ? ' data-urgent' : ''}>${icon('clock', 'sm')}<time class="ds-timer" aria-label="남은 시간">${time}</time></span>${end || btn('나가기', { size: 'small' })}</div>`).replace('<span class="tp-logo">로고</span>', `<span class="tp-logo">로고</span>`).replace('<nav class="ds-topnav__menu" aria-label="주요 메뉴"></nav>', `<div class="tp-stack" style="gap:0"><span class="tp-exam-title">${title}</span>${sub ? `<span class="tp-caption">${sub}</span>` : ''}</div>`);
+const examBar = (title, { sub = '', time = '0:00', urgent = false, end = '' } = {}) => topbar([], -1, time === null ? end : `<div class="tp-row" style="gap: var(--ds-space-x3)"><span class="tp-timer"${urgent ? ' data-urgent' : ''}>${icon('clock', 'sm')}<time class="ds-timer" aria-label="남은 시간">${time}</time></span>${end || btn('나가기', { size: 'small' })}</div>`).replace('<span class="tp-logo">로고</span>', `<span class="tp-logo">로고</span>`).replace('<nav class="ds-topnav__menu" aria-label="주요 메뉴"></nav>', `<div class="tp-stack" style="gap:0"><span class="tp-exam-title">${title}</span>${sub ? `<span class="tp-caption">${sub}</span>` : ''}</div>`);
 const audio = (cur, total, pct) => `<div class="tp-audio">${iconBtn('play', '다시 듣기', { variant: 'neutralSolid', size: 'small' })}${progress(pct, { tone: 'neutral', label: '재생 위치' })}<time class="ds-timer tp-num">${cur} / ${total}</time></div>`;
 
-/* 1. 레벨 테스트 (학원, 주니어 / 성인) ---------------------------------- */
+/* 1. 레벨 테스트 (2026-11-11 사용자, 시험 분류로 옮기고 다시 짬) -------------
+   위 Stepper(어휘, 문법, 듣기, 말하기) 아래 지금 문항 한 개만. 시간 제한 없음(타이머 없음), 이전 버튼과 점 줄 없음,
+   아래 모르겠어요(ghost) + 다음, 위 막대 오른쪽은 나중에 이어서 하기. */
 const levelTest = () => {
   const css = CSS + `
-  .tp-lt { display: flex; flex-direction: column; gap: var(--ds-space-x5); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
-  .tp-lt__meta { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
-  .tp-lt__dots { display: flex; gap: var(--ds-space-x1); }
-  .tp-lt__dots > span { width: 6px; height: 6px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-gray-200); }
-  .tp-lt__dots > span[data-on] { background: var(--ds-color-bg-neutral-solid); }
+  .tp-lt { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-narrow)); margin-inline: auto; padding-top: var(--ds-space-x6); }
+  /* 영역 단계(어휘, 문법, 듣기, 말하기) 아래에 지금 문항 한 개만. 고른 뒤 다음, 모르면 모르겠어요 (레벨 테스트는 시간 제한 없이 끝까지 푼다) */
+  .tp-lt__q { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
+  .tp-lt__head { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+  .tp-lt__head h1 { margin: 0; }
+  .tp-lt__count { color: var(--ds-color-fg-brand); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
   .tp-lt .tp-navbar { margin-top: auto; }
+  .tp-lt .tp-navbar > .ds-btn[data-variant="brandSolid"] { flex: 1 1 auto; max-width: 240px; }
   @media (min-width: 768px) { .tp-lt .tp-navbar { position: static; margin: 0; padding-inline: 0; box-shadow: none; } }
   .tp-topbar ~ .tp-content { width: min(100%, var(--tp-narrow-box)); }
 `;
-  const body = `<div class="tp-app">${examBar('영어 레벨 테스트', { sub: '성인 과정 / 30문항', time: '18:42' })}<main class="tp-content tp-lt tp-ex">
-  <div class="tp-stack" style="gap: var(--ds-space-x2)">
-    <div class="tp-lt__meta"><div class="tp-row">${badge('듣기', 'informative')}<span class="tp-q__no">12 <span class="tp-caption">/ 30</span></span></div><span class="tp-caption">답한 문항 11</span></div>
-    ${progress(40, { tone: 'neutral', label: '진행' })}
-  </div>
-  ${card(`<div class="tp-q">
-    <p class="tp-q__text">대화를 듣고 여자가 다음에 할 일을 고르세요.</p>
-    ${audio('0:14', '0:38', 37)}
-    ${selectbox('lt12', [['회의 자료를 인쇄한다'], ['회의실을 예약한다'], ['동료에게 전화한다'], ['점심을 주문한다']], 1, { vertical: false })}
-  </div>`, { size: 'medium' })}
-  <div class="tp-navbar"><div class="tp-row">${btn('이전', { variant: 'ghost', ic: 'chevron-left' })}<span class="tp-lt__dots" aria-hidden="true">${Array.from({ length: 6 }, (_, i) => `<span${i < 2 ? ' data-on' : ''}></span>`).join('')}</span></div><div class="tp-row">${btn('모르겠어요', { variant: 'neutralWeak' })}${btn('다음', { variant: 'brandSolid', icEnd: 'chevron-right' })}</div></div>
+  const steps = [["어휘", "complete"], ["문법", "complete"], ["듣기", "current"], ["말하기", ""]];
+  const stepper = `<ol class="ds-stepper" aria-label="테스트 영역">${steps.map(([l, st]) => `
+    <li class="ds-stepper__step"${st ? ` data-state="${st}"` : ""}${st === "current" ? ` aria-current="step"` : ""}><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">${l}</span></li>`).join("")}
+  </ol>`;
+  const choices = selectbox("lt-q", [["회의 자료를 인쇄한다"], ["회의실을 예약한다"], ["동료에게 전화한다"], ["점심을 주문한다"]], 1).replace("<div class=\"ds-selectbox-group\">", "<div class=\"ds-selectbox-group\" role=\"radiogroup\" aria-labelledby=\"lt-q\">");
+  const body = `<div class="tp-app">${examBar("영어 레벨 테스트", { sub: "4개 영역 / 약 15분", time: null, end: btn("나중에 이어서 하기", { variant: "ghost" }) })}<main class="tp-content tp-lt tp-ex">
+  ${stepper}
+  <section class="tp-lt__q" aria-labelledby="lt-q">
+    <div class="tp-lt__head"><span class="tp-lt__count">듣기 2 / 8</span><h1 class="tp-q__text" id="lt-q">대화를 듣고 여자가 다음에 할 일을 고르세요.</h1></div>
+    ${audio("0:14", "0:38", 37)}
+    ${choices}
+  </section>
+  <div class="tp-navbar">${btn("모르겠어요", { variant: "ghost", size: "medium" })}${btn("다음", { variant: "brandSolid", size: "medium" })}</div>
 </main></div>`;
-  return { slug: 'level-test', en: 'Level Test', name: '레벨 테스트', group: 'Learning', desc: '학원이나 어학 과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 한 번에 한 문항씩 풀고, 듣기 문항은 재생 줄과 함께 보여 줍니다.', css, body };
+  return { slug: "level-test", en: "Level Test", name: "레벨 테스트", group: "Exam", desc: "과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 어휘, 문법, 듣기, 말하기 중 지금 영역을 보여 주고, 한 번에 한 문항만 풀며, 모르면 건너뜁니다.", css, body };
 };
 
 /* 2. 모의고사 PBT 형 (지문 + 문항 + 답안지) ------------------------------- */
