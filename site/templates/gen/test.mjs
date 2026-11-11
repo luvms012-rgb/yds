@@ -29,37 +29,48 @@ const CSS = FRAME_CSS + `
 const examBar = (title, { sub = '', time = '0:00', urgent = false, end = '' } = {}) => topbar([], -1, time === null ? end : `<div class="tp-row" style="gap: var(--ds-space-x3)"><span class="tp-timer"${urgent ? ' data-urgent' : ''}>${icon('clock', 'sm')}<time class="ds-timer" aria-label="남은 시간">${time}</time></span>${end || btn('나가기', { size: 'small' })}</div>`).replace('<span class="tp-logo">로고</span>', `<span class="tp-logo">로고</span>`).replace('<nav class="ds-topnav__menu" aria-label="주요 메뉴"></nav>', `<div class="tp-stack" style="gap:0"><span class="tp-exam-title">${title}</span>${sub ? `<span class="tp-caption">${sub}</span>` : ''}</div>`);
 const audio = (cur, total, pct) => `<div class="tp-audio">${iconBtn('play', '다시 듣기', { variant: 'neutralSolid', size: 'small' })}${progress(pct, { tone: 'neutral', label: '재생 위치' })}<time class="ds-timer tp-num">${cur} / ${total}</time></div>`;
 
-/* 1. 레벨 테스트 (2026-11-11 사용자, 시험 분류로 옮기고 다시 짬) -------------
-   위 Stepper(어휘, 문법, 듣기, 말하기) 아래 지금 문항 한 개만. 시간 제한 없음(타이머 없음), 이전 버튼과 점 줄 없음,
-   아래 모르겠어요(ghost) + 다음, 위 막대 오른쪽은 나중에 이어서 하기. */
+/* 1. 레벨 테스트 (2026-11-11 사용자 "UI 고도화", 모바일 레벨 테스트 흐름을 참고해 다시 짬) -------------
+   사이트 머리 없이 문항에만 집중하는 전체 화면. 위 막대: 닫기(왼쪽), 영역 Stepper(가운데), 문항 수(오른쪽), 아래에 얇은 진행 막대.
+   가운데: 지시문(핵심 말 굵게), 듣기 카드(큰 재생 버튼), 답 Select Box 한 줄씩. 답을 고르면 바로 다음 문항으로 넘어가 다음 버튼이 없다.
+   맨 아래 가운데 모르겠어요(ghost). 시간 제한 없음. */
 const levelTest = () => {
   const css = CSS + `
-  .tp-lt { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-narrow)); margin-inline: auto; padding-top: var(--ds-space-x6); }
-  /* 영역 단계(어휘, 문법, 듣기, 말하기) 아래에 지금 문항 한 개만. 고른 뒤 다음, 모르면 모르겠어요 (레벨 테스트는 시간 제한 없이 끝까지 푼다) */
-  .tp-lt__q { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
-  .tp-lt__head { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
-  .tp-lt__head h1 { margin: 0; }
-  .tp-lt__count { color: var(--ds-color-fg-brand); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
-  .tp-lt .tp-navbar { margin-top: auto; }
-  .tp-lt .tp-navbar > .ds-btn[data-variant="brandSolid"] { flex: 1 1 auto; max-width: 240px; }
-  @media (min-width: 768px) { .tp-lt .tp-navbar { position: static; margin: 0; padding-inline: 0; box-shadow: none; } }
-  .tp-topbar ~ .tp-content { width: min(100%, var(--tp-narrow-box)); }
+  .tp-lt__bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
+  .tp-lt__barin { box-sizing: border-box; display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; gap: var(--ds-space-x2); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x3) var(--tp-gutter); }
+  .tp-lt__bar .ds-stepper { justify-self: center; width: min(100%, 400px); }
+  .tp-lt__count { justify-self: end; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tp-lt__bar .ds-progress { border-radius: 0; }
+  .tp-lt { box-sizing: border-box; display: flex; flex: 1 1 auto; flex-direction: column; align-items: stretch; gap: var(--ds-space-x6); width: min(100%, calc(560px + 2 * var(--tp-gutter))); margin-inline: auto; padding: var(--ds-space-x8) var(--tp-gutter) var(--ds-space-x6); }
+  .tp-lt__q { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
+  .tp-lt__q h1 { margin: 0; text-align: center; font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-medium); color: var(--ds-color-fg-neutral); text-wrap: balance; }
+  .tp-lt__q h1 b { font-weight: var(--ds-font-weight-bold); }
+  /* 듣기 카드: 큰 재생 버튼 하나와 재생 위치 */
+  .tp-lt__media { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x5); padding: var(--ds-space-x8) var(--ds-space-x5) var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral-weak-alpha); }
+  .tp-lt__play { --ds-btn-height: 72px; --ds-btn-radius: var(--ds-shape-pill); --ds-btn-icon-only: 32px; }
+  .tp-lt__track { display: flex; align-items: center; gap: var(--ds-space-x3); width: 100%; }
+  .tp-lt__track .ds-progress { flex: 1 1 auto; }
+  .tp-lt__track .ds-timer { flex: none; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); white-space: nowrap; }
+  .tp-lt .ds-selectbox-group { --ds-selectbox-columns: 1; }
+  .tp-lt .ds-selectbox { min-height: 56px; }
+  .tp-lt .ds-selectbox__label { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+  .tp-lt__skip { display: flex; justify-content: center; margin-top: auto; padding-top: var(--ds-space-x4); }
+  @media (min-width: 768px) { .tp-lt { padding-top: var(--ds-space-x14); gap: var(--ds-space-x8); } .tp-lt__q h1 { font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); } }
 `;
   const steps = [["어휘", "complete"], ["문법", "complete"], ["듣기", "current"], ["말하기", ""]];
-  const stepper = `<ol class="ds-stepper" aria-label="테스트 영역">${steps.map(([l, st]) => `
-    <li class="ds-stepper__step"${st ? ` data-state="${st}"` : ""}${st === "current" ? ` aria-current="step"` : ""}><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">${l}</span></li>`).join("")}
-  </ol>`;
-  const choices = selectbox("lt-q", [["회의 자료를 인쇄한다"], ["회의실을 예약한다"], ["동료에게 전화한다"], ["점심을 주문한다"]], 1).replace("<div class=\"ds-selectbox-group\">", "<div class=\"ds-selectbox-group\" role=\"radiogroup\" aria-labelledby=\"lt-q\">");
-  const body = `<div class="tp-app">${examBar("영어 레벨 테스트", { sub: "4개 영역 / 약 15분", time: null, end: btn("나중에 이어서 하기", { variant: "ghost" }) })}<main class="tp-content tp-lt tp-ex">
-  ${stepper}
+  const stepper = `<ol class="ds-stepper" aria-label="테스트 영역">${steps.map(([l, st]) => `<li class="ds-stepper__step"${st ? ` data-state="${st}"` : ""}${st === "current" ? ` aria-current="step"` : ""}><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">${l}</span></li>`).join("")}</ol>`;
+  const choices = selectbox("lt-q", [["회의 자료를 인쇄한다"], ["회의실을 예약한다"], ["동료에게 전화한다"], ["점심을 주문한다"]], -1).replace("<div class=\"ds-selectbox-group\">", "<div class=\"ds-selectbox-group\" role=\"radiogroup\" aria-labelledby=\"lt-q\">");
+  const play = iconBtn("play", "대화 듣기", { variant: "brandSolid", size: "large" }).replace('class="ds-btn"', 'class="ds-btn tp-lt__play"');
+  const body = `<div class="tp-app">
+<header class="tp-lt__bar"><div class="tp-lt__barin">${iconBtn("x", "테스트 나가기", { size: "medium" })}${stepper}<span class="tp-lt__count" aria-label="듣기 8문항 중 2번째">2 / 8</span></div>${progress(25, { label: "듣기 진행" })}</header>
+<main class="tp-lt tp-ex">
   <section class="tp-lt__q" aria-labelledby="lt-q">
-    <div class="tp-lt__head"><span class="tp-lt__count">듣기 2 / 8</span><h1 class="tp-q__text" id="lt-q">대화를 듣고 여자가 다음에 할 일을 고르세요.</h1></div>
-    ${audio("0:14", "0:38", 37)}
+    <h1 id="lt-q">대화를 듣고 <b>여자가 다음에 할 일</b>을 고르세요</h1>
+    <div class="tp-lt__media">${play}<div class="tp-lt__track">${progress(37, { tone: "neutral", label: "재생 위치" })}<time class="ds-timer tp-num">0:14 / 0:38</time></div></div>
     ${choices}
   </section>
-  <div class="tp-navbar">${btn("모르겠어요", { variant: "ghost", size: "medium" })}${btn("다음", { variant: "brandSolid", size: "medium" })}</div>
+  <div class="tp-lt__skip">${btn("모르겠어요", { variant: "ghost", size: "medium" })}</div>
 </main></div>`;
-  return { slug: "level-test", en: "Level Test", name: "레벨 테스트", group: "Exam", desc: "과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 어휘, 문법, 듣기, 말하기 중 지금 영역을 보여 주고, 한 번에 한 문항만 풀며, 모르면 건너뜁니다.", css, body };
+  return { slug: "level-test", en: "Level Test", name: "레벨 테스트", group: "Exam", desc: "과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 지금 영역과 진행을 보여 주고, 한 번에 한 문항만 풀며, 답을 고르면 바로 다음 문항으로 넘어갑니다.", css, body };
 };
 
 /* 2. 모의고사 PBT 형 (지문 + 문항 + 답안지) ------------------------------- */

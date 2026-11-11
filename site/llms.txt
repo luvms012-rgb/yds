@@ -218,7 +218,7 @@
 - [시험 일정표](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-schedule.html): 회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.
 - [단체 접수](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-apply.html): 기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.
 - [단체 성적 대시보드](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-group-dashboard.html): 기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.
-- [레벨 테스트](https://luvms012-rgb.github.io/yds/site/templates/pages/level-test.html): 과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 어휘, 문법, 듣기, 말하기 중 지금 영역을 보여 주고, 한 번에 한 문항만 풀며, 모르면 건너뜁니다.
+- [레벨 테스트](https://luvms012-rgb.github.io/yds/site/templates/pages/level-test.html): 과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 지금 영역과 진행을 보여 주고, 한 번에 한 문항만 풀며, 답을 고르면 바로 다음 문항으로 넘어갑니다.
 - [모의고사 CBT](https://luvms012-rgb.github.io/yds/site/templates/pages/mock-exam-cbt.html): 컴퓨터로 보는 말하기 모의고사 화면입니다. 한 문항씩 준비 시간과 답변 시간을 큰 시계로 보여 주고, 옆에서 진행과 장비 상태를 확인합니다.
 - [모의고사 PBT](https://luvms012-rgb.github.io/yds/site/templates/pages/mock-exam-pbt.html): 종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.
 - [내 시험](https://luvms012-rgb.github.io/yds/site/templates/pages/exam-my.html): 응시자가 자신의 시험 일정과 점수를 한눈에 보는 화면입니다.
