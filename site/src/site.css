@@ -336,13 +336,16 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 
 .site-frame { margin-top: var(--ds-space-x6); overflow: hidden; border: 1px solid var(--site-box-line); border-radius: var(--site-box-radius); background: var(--ds-color-bg-layer-default); }
 .site-frame__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--site-box-line); }
-.site-frame__stage { display: flex; justify-content: center; padding: var(--ds-space-x4); background: var(--ds-color-bg-neutral); overflow-x: auto; }
-.site-frame__stage iframe { display: block; width: 100%; max-width: 100%; height: 820px; border: 0; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: var(--ds-elevation-raised); }
-.site-frame__stage[data-device="tablet"] iframe { width: 768px; flex: none; }
-.site-frame__stage[data-device="mobile"] iframe { width: 375px; flex: none; height: 760px; }
+/* 템플릿 상세 미리보기 (11-11 사용자 "모바일 문서 보기에서 많이 깨진다"): 템플릿은 늘 실제 기기 폭(PC 1440, 태블릿 768, 모바일 375)으로 그리고
+   칸보다 크면 site.js fitStage 가 비율대로 줄인다. 예전에는 PC 를 칸 폭(폰에서 309)으로 그려 글자가 세로로 꺾이고, 태블릿과 모바일은 가운데 정렬 때문에 왼쪽이 잘렸다 */
+.site-frame__stage { display: flex; justify-content: center; padding: var(--ds-space-x4); background: var(--ds-color-bg-neutral); overflow: hidden; }
+.site-frame__stage iframe { display: block; flex: none; width: 1440px; height: 900px; border: 0; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: var(--ds-elevation-raised); transform-origin: 0 0; }
+.site-frame__stage[data-device="tablet"] iframe { width: 768px; height: 1024px; }
+.site-frame__stage[data-device="mobile"] iframe { width: 375px; height: 760px; }
 .site-frame__code[hidden], .site-frame__stage[hidden] { display: none; }
 .site-frame__code .ds-codeblock { margin: 0; border: 0; border-radius: 0; }
 .site-frame__code .ds-codeblock__code { max-height: 720px; overflow: auto; }
+.site-frame__code .ds-codeblock__code code { white-space: pre-wrap; overflow-wrap: anywhere; }  /* 템플릿 원본은 한 줄이 매우 길어(style 묶음) 옆으로 밀지 않고 접어서 보인다 (11-11) */
 
 /* ---- 토큰 / 아이콘 ---- */
 .site-swatches { display: inline-flex; gap: var(--ds-space-x2); margin-right: var(--ds-space-x2); vertical-align: middle; }

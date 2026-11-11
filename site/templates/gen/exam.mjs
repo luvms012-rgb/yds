@@ -77,7 +77,7 @@ const apply = () => {
 const mine = () => {
   const css = CSS + `
   .tp-next { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 768px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }
+  @media (min-width: 1024px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }  /* 11-11: 768 에서 왼쪽 칸이 눌려 1024 부터 */
   .tp-dday { display: inline-flex; align-self: flex-start; padding: 2px var(--ds-space-x2); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-check { display: flex; align-items: center; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-check .ds-icon { color: var(--ds-color-fg-neutral); }

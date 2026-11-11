@@ -95,6 +95,7 @@
       press(dev);
       var stage = dev.closest(".site-frame").querySelector(".site-frame__stage");
       stage.setAttribute("data-device", dev.getAttribute("data-site-device"));
+      fitStage(stage);
       return;
     }
 
@@ -292,6 +293,28 @@
     if (!e.target.closest(".site-toc-list")) tocOpen(false);
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") tocOpen(false); });
+
+  // 템플릿 상세 미리보기: 실제 기기 폭으로 그리고 칸에 맞게 줄인다. 줄인 만큼 음수 여백으로 자리를 줄여 아래 내용이 붙게 한다 (11-11)
+  var STAGE_W = { desktop: 1440, tablet: 768, mobile: 375 };
+  function fitStage(stage) {
+    var f = stage.querySelector("iframe"); if (!f) return;
+    var w = STAGE_W[stage.getAttribute("data-device")] || 1440;
+    f.style.transform = ""; f.style.margin = "";
+    var cs = getComputedStyle(stage), avail = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var s = Math.min(1, avail / w), h = f.offsetHeight;
+    if (s < 1) { f.style.transform = "scale(" + s + ")"; f.style.marginRight = (w * (s - 1)) + "px"; f.style.marginBottom = (h * (s - 1)) + "px"; }
+  }
+  function fitStages() { document.querySelectorAll(".site-frame__stage").forEach(fitStage); }
+  // 좁은 화면(폰)에서는 처음부터 모바일 폭으로 보여 준다
+  document.querySelectorAll(".site-frame__stage").forEach(function (stage) {
+    if (stage.clientWidth < 768) {
+      stage.setAttribute("data-device", "mobile");
+      var seg = stage.closest(".site-frame").querySelectorAll("[data-site-device]");
+      seg.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-site-device") === "mobile")); });
+    }
+  });
+  fitStages();
+  window.addEventListener("resize", fitStages);
 
   // 템플릿 썸네일 크기 맞춤
   function fitThumbs() {

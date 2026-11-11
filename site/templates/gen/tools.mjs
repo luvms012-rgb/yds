@@ -7,6 +7,7 @@ const APP_CSS = `
   .tp-tool { display: flex; flex-direction: column; height: 100vh; overflow: hidden; background: var(--ds-color-bg-layer-default); }
   .tp-tool__bar { display: flex; align-items: center; gap: var(--ds-space-x2); min-height: 52px; padding: var(--ds-space-x2) var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); overflow-x: auto; }
   .tp-tool__bar .tp-spacer { flex: 1 1 auto; }
+  .tp-tool__bar :is(.tp-h4, .tp-caption) { flex: none; white-space: nowrap; }  /* 11-11 모바일: 막대 글자가 세로로 꺾이지 않게 */
   .tp-tool__body { display: flex; flex: 1 1 auto; min-height: 0; }
   .tp-pane { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; overflow: auto; padding: var(--ds-space-x3); }
   .tp-pane--left { display: none; flex: none; width: 260px; box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }

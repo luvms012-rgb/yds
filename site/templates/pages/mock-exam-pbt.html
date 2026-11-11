@@ -183,6 +183,8 @@
 
   /* 평가 화면 공통: 위 막대에 제목, 남은 시간, 나가기 */
   .tp-exam-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); white-space: nowrap; }
+  .ds-topnav .tp-stack:has(> .tp-exam-title) { flex: 1 1 auto; min-width: 0; }
+  .tp-stack:has(> .tp-exam-title) > * { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }  /* 11-11 모바일: 부제가 세로로 꺾이지 않게 한 줄 말줄임 */
   .tp-timer { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); padding: 0 var(--ds-space-x3); height: 32px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); }
   .tp-timer .ds-timer { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
   .tp-timer[data-urgent] { background: var(--ds-color-bg-critical-weak); } .tp-timer[data-urgent] .ds-timer, .tp-timer[data-urgent] .ds-icon { color: var(--ds-color-fg-critical); }
