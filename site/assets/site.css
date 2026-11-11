@@ -177,7 +177,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc > h3 + p { margin-top: var(--ds-space-x1); }  /* 항목 제목 바로 아래 설명은 제목에 붙여 4 (11-05 사용자 "이 사이 여백을 좀 줄여줘") */
 .site-doc > p + p { margin-top: var(--ds-space-x2); }  /* 이어지는 문단은 한 덩어리로 8 */
 /* 제목 옆 링크 복사: 모양은 DS ghost 아이콘 버튼 그대로(Tooltip 은 Snackbar 와 겹쳐 11-10 밤 뺌). 사이트는 자리와 보이는 때(제목에 마우스를 올리거나 키보드로 갔을 때)만 정한다 (11-10) */
-.site-anchor { margin-left: var(--ds-space-x2); vertical-align: middle; opacity: 0; transition: opacity var(--ds-duration-fast) var(--ds-easing-standard); }
+.site-anchor { display: inline-flex; align-items: center; height: 1lh; margin-left: var(--ds-space-x2); vertical-align: top; opacity: 0; transition: opacity var(--ds-duration-fast) var(--ds-easing-standard); }  /* 11-11: 제목 줄 높이 안에서 가운데 */
 .site-doc h2:hover .site-anchor, .site-anchor:has(:focus-visible) { opacity: 1; }
 .site-doc :is(p, li):not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); letter-spacing: 0; }  /* 본문 16/24 (11-06 Figma 2662:26, 클래스 있는 문단도) */
 .site-doc ul.site-list { display: flex; flex-direction: column; gap: var(--ds-space-x2); padding-left: var(--ds-space-x5); list-style: disc; }

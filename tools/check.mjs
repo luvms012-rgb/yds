@@ -216,6 +216,18 @@ check('5-1 선 색', ({ err }) => {
   }
 });
 
+// 5-1b. 옅은 회색 칸은 반투명 (2026-11-11 사용자 "bg 가 있는 박스에 같은 bg 의 요소가 있으면 보이지 않는 오류, 근본 해결"):
+// 컴포넌트 안쪽 칸(트랙, 빈 칸, 약한 버튼, 자리 표시)은 bg-neutral-weak-alpha(-pressed) 를 써서 어떤 바탕 위에서도 보이게 한다.
+// 불투명 회색(bg-neutral, bg-neutral-weak-pressed, palette gray/brand-100~300, 브랜드가 회색이면 brand-200 도 같은 색)은 어두운 덮개 위에 뜨는 시트 메뉴 칸과 Avatar 빈 얼굴만 허용
+check('5-1b 옅은 칸 반투명', ({ err }) => {
+  const ALLOW = /\.ds-menusheet__(item|close)|\.ds-avatar\b/;
+  const rules = [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((m) => [m[1].trim(), m[2]]);
+  for (const [sel, body] of rules) {
+    const m = body.match(/var\(--ds-color-(bg-neutral|bg-neutral-weak-pressed|palette-(?:gray|brand)-(?:100|200|300))\)/);
+    if (m && !ALLOW.test(sel)) err(`${sel.split('\n').pop().slice(0, 80)}: 불투명 ${m[1]} (bg-neutral-weak-alpha 로, 같은 회색 바탕에서 사라짐)`);
+  }
+});
+
 // 5-2. 브랜드 층 (2026-11-09): 브랜드는 허용된 값만 바꾸고, dist/brands 는 손으로 고치지 않는다
 check('5-2 브랜드', ({ err, warn }) => {
   const tokens = read('dist/tokens.css');

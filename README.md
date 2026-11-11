@@ -249,6 +249,8 @@ gray `00/100~1000`, brand, blue, red, green, yellow, orange, purple `100~1000`, 
 `neutral` `neutral-weak-pressed` `neutral-weak-alpha(-pressed)` `neutral-muted` `neutral-subtle` `neutral-solid(-pressed)` `neutral-inverted(-pressed)` /
 `{brand|critical|informative|positive|warning|magic}-{solid|weak}(-pressed)`
 
+옅은 회색 칸(트랙, 빈 칸, 약한 버튼, 자리 표시)은 `neutral-weak-alpha(-pressed)` 를 씁니다. 반투명이라 흰 바탕, 회색 바탕 어디에 놓여도 보입니다. 불투명 `neutral` 은 어두운 덮개 위에 뜨는 칸에만 씁니다(2026-11-11, 검사 5-1b).
+
 **fg (25)** - `neutral` `neutral-muted` `neutral-subtle` `neutral-inverted` `placeholder` `disabled` /
 `{brand|critical|informative|positive|warning|magic}` + `-contrast` /
 `on-{brand|critical|informative|positive|warning|magic|neutral}-solid` (solid 배경 위 글자)
@@ -346,7 +348,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 13 | Quantity Picker | `.ds-quantity` | `1184:2146`, 18 | size, layout `fill` |
 | 15 | Chip | `.ds-chip` `.ds-chip-group` | `69:964`, 54 | variant `solid/outlineStrong/outlineWeak`, size, layout `iconOnly` |
 | 16 | Chip Tabs | `.ds-chiptabs` (`__trigger`) | `1407:2596`, 4 / Trigger `1407:2522`, 16 | variant `neutralSolid/neutralOutline`, size `medium/large`, inset `none`(2026-11-03) |
-| 17 | Tabs | `.ds-tabs` (`__trigger`) | `95:1313`, 4 / Tab Trigger `95:1272`, 12 | layout `fill/hug`, size, inset `none`(hug 일 때, 2026-11-03) |
+| 17 | Tabs | `.ds-tabs` (`__trigger`) | `95:1313`, 4 / Tab Trigger `95:1272`, 12 | layout `fill/hug`, size `small 40 글자 14 / medium 48 글자 16`(2026-11-11), inset `none`(hug 일 때, 2026-11-03) |
 | 18 | Segmented Control | `.ds-segmented` | `1239:2152`, 4 / Item `1239:2123`, 6 | layout, size(높이 32/40 고정, 2026-11-03), 선택 배경이 미끄러져 이동(필수 모션, ybm-ds.js) |
 | 19 | Toggle Button | `.ds-toggle` | `1244:2164`, 6 | size |
 | 20 | Badge | `.ds-badge` | `17:87`, 36 | variant `weak/solid/outline`, tone `neutral/brand/informative/positive/warning/critical`, size |

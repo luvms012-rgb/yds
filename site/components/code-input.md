@@ -46,7 +46,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 입력란 아래에 남은 시간과 다시 받기를 배치합니다. 번호가 오면 휴대폰이 첫 칸에 자동으로 채우고, 모든 칸을 채우면 바로 확인합니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field">
   <div class="ds-field__header"><span class="ds-field__label" id="ex-otp">인증번호</span></div>
   <div class="ds-codeinput" role="group" aria-labelledby="ex-otp"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="1번째 숫자"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="2번째 숫자"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="3번째 숫자"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="4번째 숫자"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="5번째 숫자"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="6번째 숫자"></div>
   <div class="ds-field__footer u-between"><p class="ds-field__help">남은 시간 <time class="ds-timer">2:48</time></p><a class="ds-link" data-size="small" href="#">다시 받기</a></div>

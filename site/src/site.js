@@ -726,14 +726,29 @@
   (function () {
     var toggles = [].slice.call(document.querySelectorAll("[data-site-md-toggle]")); if (!toggles.length) return;
     function close() { toggles.forEach(function (t) { t.setAttribute("aria-expanded", "false"); t.nextElementSibling.hidden = true; }); }
-    function done(msg) { if (window.YBM && DS.snackbar) DS.snackbar(msg, { variant: "positive" }); }
+    var cache = {};
+    function say(msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { variant: ok ? "positive" : "critical" }); }
+    // 클립보드 권한이 없거나 막히면 예전 복사 방식으로 한 번 더 해 본다
+    function copy(text, okMsg, el) {
+      var legacy = function () {
+        var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+        document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); if (el) el.focus();
+        say(ok ? okMsg : "복사하지 못했어요. 다시 눌러 주세요", ok);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say(okMsg, true); }, legacy); else legacy();
+    }
+    function load(url) { if (!cache[url]) cache[url] = fetch(url).then(function (r) { return r.text(); }); return cache[url]; }
+    // 메뉴를 열 때 내용을 미리 받아 두어, 누르는 순간 바로 복사한다(받는 사이 클릭 권한이 끊기지 않게)
+    toggles.forEach(function (t) { t.addEventListener("click", function () { [].forEach.call(t.nextElementSibling.querySelectorAll('[data-site-md="copy"]'), function (b) { var u = new URL(b.getAttribute("data-href"), location.href).href; load(u).then(function (x) { cache[u + "#text"] = x; }); }); }); });
     toggles.forEach(function (t) { t.addEventListener("click", function (e) { e.stopPropagation(); var open = t.getAttribute("aria-expanded") !== "true"; close(); t.setAttribute("aria-expanded", String(open)); t.nextElementSibling.hidden = !open; }); });
     document.addEventListener("click", function (e) {
       var b = e.target.closest("[data-site-md]");
       if (b) {
-        var url = new URL(b.getAttribute("data-href"), location.href).href;
-        if (b.getAttribute("data-site-md") === "link") navigator.clipboard.writeText(url).then(function () { done("마크다운 링크를 복사했어요"); });
-        else fetch(url).then(function (r) { return r.text(); }).then(function (t) { return navigator.clipboard.writeText(t); }).then(function () { done("마크다운 내용을 복사했어요"); });
+        var url = new URL(b.getAttribute("data-href"), location.href).href, toggle = b.closest(".site-md").querySelector("[data-site-md-toggle]");
+        if (b.getAttribute("data-site-md") === "link") copy(url, "마크다운 링크를 복사했어요", toggle);
+        else if (cache[url + "#text"] != null) copy(cache[url + "#text"], "마크다운 내용을 복사했어요", toggle);
+        else load(url).then(function (x) { copy(x, "마크다운 내용을 복사했어요", toggle); }, function () { say("내용을 불러오지 못했어요. 새 창으로 열어 주세요", false); });
+        if (b.tagName === "BUTTON") close();
       }
       if (!e.target.closest(".site-md")) close();
     });

@@ -165,7 +165,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 변수 | 기본값 |
 | --- | --- |
-| `--ds-banner-bg` | `var(--ds-color-bg-neutral)` |
+| `--ds-banner-bg` | `var(--ds-color-bg-neutral-weak-alpha)` |
 | `--ds-banner-fg` | `var(--ds-color-fg-neutral)` |
 | `--ds-banner-max` | `1200px` |
 

@@ -118,7 +118,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```
 tone: neutral(기본) / brand
 채움 길이는 --ds-slider-value(0~100%)이며, ybm-ds.js가 input마다 자동으로 갱신합니다.
-Figma: 높이 20 / 트랙 4 pill palette/gray-200 / 채움 bg/neutral-solid(brand bg/brand-solid)
+Figma: 높이 20 / 트랙 4 pill bg/neutral-weak-alpha / 채움 bg/neutral-solid(brand bg/brand-solid)
        썸 20 static-white + 1px 테두리(채움 색) + elevation raised
        disabled opacity .7 / 채움 bg/disabled / 썸 테두리 stroke/neutral-weak
 ```

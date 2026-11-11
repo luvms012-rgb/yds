@@ -128,7 +128,7 @@ Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않�
 
 | 변수 | 기본값 |
 | --- | --- |
-| `--ds-callout-bg` | `var(--ds-color-bg-neutral)` |
+| `--ds-callout-bg` | `var(--ds-color-bg-neutral-weak-alpha)` |
 | `--ds-callout-fg` | `var(--ds-color-fg-neutral)` |
 
 ### 크기와 여백
@@ -136,7 +136,7 @@ Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않�
 ```
 tone: neutral(기본) / informative / positive / warning / critical
 Figma: padding x3_5 / gap x2 / min-h50 / shape/md / t04 / 아이콘 Solid 16
-  neutral bg/neutral + fg/neutral(info) / informative bg/informative-weak + fg/brand-contrast(info)
+  neutral bg/neutral-weak-alpha + fg/neutral(info) / informative bg/informative-weak + fg/brand-contrast(info)
   positive bg/positive-weak + fg/positive(circle-check) / warning bg/warning-weak + fg/warning(triangle-alert)
   critical bg/critical-weak + fg/critical(circle-alert)
 제목/링크는 본문과 같은 줄(inline), 구분은 띄어쓰기 두 칸. 제목 Bold / 링크 밑줄.

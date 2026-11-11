@@ -166,7 +166,7 @@
 
 /* variant */
 .ds-btn[data-variant="neutralSolid"]   { --ds-btn-bg: var(--ds-color-bg-neutral-solid); --ds-btn-bg-pressed: var(--ds-color-bg-neutral-solid-pressed); --ds-btn-fg: var(--ds-color-fg-on-neutral-solid); }
-.ds-btn[data-variant="neutralWeak"]    { --ds-btn-bg: var(--ds-color-bg-neutral); --ds-btn-bg-pressed: var(--ds-color-bg-neutral-weak-pressed); --ds-btn-fg: var(--ds-color-fg-neutral); }
+.ds-btn[data-variant="neutralWeak"]    { --ds-btn-bg: var(--ds-color-bg-neutral-weak-alpha); --ds-btn-bg-pressed: var(--ds-color-bg-neutral-weak-alpha-pressed); --ds-btn-fg: var(--ds-color-fg-neutral); }
 .ds-btn[data-variant="criticalSolid"]  { --ds-btn-bg: var(--ds-color-bg-critical-solid); --ds-btn-bg-pressed: var(--ds-color-bg-critical-solid-pressed); --ds-btn-fg: var(--ds-color-fg-on-critical-solid); }
 .ds-btn[data-variant="brandOutline"]   { --ds-btn-bg: var(--ds-color-bg-transparent); --ds-btn-bg-pressed: var(--ds-color-bg-transparent-pressed); --ds-btn-fg: var(--ds-color-fg-brand); --ds-btn-border: var(--ds-color-stroke-neutral-weak); }
 .ds-btn[data-variant="neutralOutline"] { --ds-btn-bg: var(--ds-color-bg-transparent); --ds-btn-bg-pressed: var(--ds-color-bg-transparent-pressed); --ds-btn-fg: var(--ds-color-fg-neutral); --ds-btn-border: var(--ds-color-stroke-neutral-weak); }
@@ -994,7 +994,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
    Figma: shape/pill · t04 Regular(large t05) · 좌우 12/14/16 · min-w 44/48/52 · 아이콘 14/16/16 · 아이콘↔라벨 x1_5
      solid bg/neutral-weak-alpha · outlineStrong bg/layer-default + stroke/neutral-weak · outlineWeak + stroke/neutral-muted
      checked(solid·outlineStrong) bg/neutral-solid + fg/on-neutral-solid SemiBold
-     checked(outlineWeak) bg/neutral + stroke/neutral-contrast + fg/neutral Medium · disabled opacity .5
+     checked(outlineWeak) bg/neutral-weak-alpha + stroke/neutral-contrast + fg/neutral Medium · disabled opacity .5
    -------------------------------------------------------------------------- */
 .ds-chip {
   --ds-chip-height: 36px;
@@ -1028,14 +1028,14 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 .ds-chip[data-variant="outlineStrong"] { --ds-chip-bg: var(--ds-color-bg-layer-default); --ds-chip-line: var(--ds-color-stroke-neutral-weak); }
 .ds-chip[data-variant="outlineWeak"]   { --ds-chip-bg: var(--ds-color-bg-layer-default); --ds-chip-line: var(--ds-color-stroke-neutral-muted); }
 .ds-chip[aria-pressed="true"] { --ds-chip-bg: var(--ds-color-bg-neutral-solid); --ds-chip-fg: var(--ds-color-fg-on-neutral-solid); --ds-chip-line: var(--ds-color-bg-neutral-solid); font-weight: var(--ds-font-weight-semibold); } /* 선택되면 선도 같은 색: 고리처럼 안 보이게 */
-.ds-chip[data-variant="outlineWeak"][aria-pressed="true"] { --ds-chip-bg: var(--ds-color-bg-neutral); --ds-chip-fg: var(--ds-color-fg-neutral); --ds-chip-line: var(--ds-color-stroke-neutral-contrast); font-weight: var(--ds-font-weight-medium); }
+.ds-chip[data-variant="outlineWeak"][aria-pressed="true"] { --ds-chip-bg: var(--ds-color-bg-neutral-weak-alpha); --ds-chip-fg: var(--ds-color-fg-neutral); --ds-chip-line: var(--ds-color-stroke-neutral-contrast); font-weight: var(--ds-font-weight-medium); }
 .ds-chip:disabled { opacity: 0.5; cursor: not-allowed; }
 /* 호버 — 마우스 환경에서만, Figma 의 pressed 색을 쓴다 (DS 공통 규칙) */
 @media (hover: hover) {
   .ds-chip:hover:not(:disabled) { --ds-chip-bg: var(--ds-color-bg-neutral-weak-alpha-pressed); }
   .ds-chip:is([data-variant="outlineStrong"], [data-variant="outlineWeak"]):hover:not(:disabled) { --ds-chip-bg: var(--ds-color-bg-transparent-pressed); }
   .ds-chip[aria-pressed="true"]:hover:not(:disabled) { --ds-chip-bg: var(--ds-color-bg-neutral-solid-pressed); }
-  .ds-chip[data-variant="outlineWeak"][aria-pressed="true"]:hover:not(:disabled) { --ds-chip-bg: var(--ds-color-bg-neutral-weak-pressed); }
+  .ds-chip[data-variant="outlineWeak"][aria-pressed="true"]:hover:not(:disabled) { --ds-chip-bg: var(--ds-color-bg-neutral-weak-alpha-pressed); }
 }
 .ds-chip:active:not(:disabled) { --ds-chip-bg: var(--ds-color-bg-neutral-weak-alpha-pressed); }
 .ds-chip-group { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
@@ -1104,16 +1104,19 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 
 /* --------------------------------------------------------------------------
    17 Tabs — 화면 안 콘텐츠 영역 전환(주요 내비게이션)
-   size: small(기본 40) · medium 44   triggerLayout: fill(기본) · hug
+   size: small(기본 40, 글자 14) · medium 48, 글자 16(2026-11-11: 크기마다 글자도 달라진다)   triggerLayout: fill(기본) · hug
      <div class="ds-tabs" role="tablist" [data-size="medium"] [data-layout="hug"]>
        <button class="ds-tabs__trigger" role="tab" aria-selected="true">탭</button>
      </div>
-   Figma: bg/layer-default · 하단 1px stroke/neutral-muted · trigger padding x2_5 · t04 Medium fg/neutral-subtle(2026-11-03, placeholder 에서 진하게)
-     selected t04 SemiBold fg/neutral + 하단 2px fg/neutral 인디케이터(트리거 폭) · disabled fg/disabled
+   Figma: bg/layer-default · 하단 1px stroke/neutral-muted · trigger padding x2_5(medium x3) · t04 Medium(medium t05) fg/neutral-subtle(2026-11-03, placeholder 에서 진하게)
+     selected SemiBold fg/neutral + 하단 2px fg/neutral 인디케이터(트리거 폭) · disabled fg/disabled
      hug: 좌우 x4 · 트리거는 내용 폭
    -------------------------------------------------------------------------- */
 .ds-tabs {
   --ds-tabs-height: 40px;
+  --ds-tabs-padding-x: var(--ds-space-x2_5);
+  --ds-tabs-font-size: var(--ds-font-size-t04);
+  --ds-tabs-line-height: var(--ds-line-height-t04);
   position: relative;
   display: flex;
   min-height: var(--ds-tabs-height);
@@ -1123,7 +1126,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   scrollbar-width: none;
 }
 .ds-tabs::-webkit-scrollbar { display: none; }
-.ds-tabs[data-size="medium"] { --ds-tabs-height: 44px; }
+.ds-tabs[data-size="medium"] { --ds-tabs-height: 48px; --ds-tabs-padding-x: var(--ds-space-x3); --ds-tabs-font-size: var(--ds-font-size-t05); --ds-tabs-line-height: var(--ds-line-height-t05); }
 .ds-tabs[data-layout="hug"] { padding-inline: var(--ds-space-x4); }
 .ds-tabs[data-layout="hug"][data-inset="none"] { padding-inline: 0; }  /* 2026-11-03: 콘텐츠 칸 안에서 제목과 왼쪽 끝을 맞출 때 */
 .ds-tabs__trigger {
@@ -1133,10 +1136,10 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   justify-content: center;
   flex: 1 1 0;
   min-height: var(--ds-tabs-height);
-  padding: 0 var(--ds-space-x2_5);  /* 2026-11-05: 위아래 여백 대신 높이로 가운데 (여백 10 + 줄 21 이 41 이 되어 40 을 넘었다) */
+  padding: 0 var(--ds-tabs-padding-x);  /* 2026-11-05: 위아래 여백 대신 높이로 가운데 (여백 10 + 줄 21 이 41 이 되어 40 을 넘었다) */
   color: var(--ds-color-fg-neutral-subtle);  /* 2026-11-03: placeholder 색은 흰 바탕에서 대비 2.1 이라 한 단계 진하게 */
-  font-size: var(--ds-font-size-t04);
-  line-height: var(--ds-line-height-t04);
+  font-size: var(--ds-tabs-font-size);
+  line-height: var(--ds-tabs-line-height);
   font-weight: var(--ds-font-weight-medium);
   white-space: nowrap;
   transition: color var(--ds-duration-fast) var(--ds-easing-standard);
@@ -1163,7 +1166,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
        <button type="button" class="ds-segmented__item" aria-pressed="true">목록</button>
      </div>
    모션: 선택 배경이 선택한 항목으로 미끄러지듯 이동합니다(필수, ybm-ds.js). 누르면 aria-pressed가 바뀌고 change 이벤트가 발생합니다.
-   Figma small : 트랙 bg/neutral · padding 2 · shape/sm / item py6 px12 · shape/xs · t03 Medium fg/neutral-subtle (고른 칸 SemiBold)
+   Figma small : 트랙 bg/neutral-weak-alpha · padding 2 · shape/sm / item py6 px12 · shape/xs · t03 Medium fg/neutral-subtle (고른 칸 SemiBold)
          medium: 트랙 shape/sm / item py8 px16 · shape/xs · t04 Medium (고른 칸 SemiBold)
    모서리(2026-11-10): 바깥 모서리는 같은 높이의 Button과 맞춥니다. 안쪽 = 바깥 - 트랙 여백 2 (small, medium 모두 8 / 6)
          selected bg/layer-default + elevation raised + fg/neutral · disabled fg/disabled
@@ -1181,7 +1184,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   height: var(--ds-seg-height);
   padding: var(--ds-space-x0_5);
   border-radius: var(--ds-seg-track-radius);
-  background: var(--ds-color-bg-neutral);
+  background: var(--ds-color-bg-neutral-weak-alpha);
 }
 .ds-segmented[data-size="medium"] {
   --ds-seg-height: 40px;
@@ -1561,13 +1564,13 @@ button.ds-avatar-group__overflow:active::after { background: var(--ds-color-bg-n
        [<button class="ds-callout__suffix" aria-label="닫기"><i class="ds-icon ds-icon--x"></i></button>]
      </div>
    Figma: padding x3_5 · gap x2 · min-h50 · shape/md · t04 · 아이콘 Solid 16
-     neutral bg/neutral + fg/neutral(info) · informative bg/informative-weak + fg/brand-contrast(info)
+     neutral bg/neutral-weak-alpha + fg/neutral(info) · informative bg/informative-weak + fg/brand-contrast(info)
      positive bg/positive-weak + fg/positive(circle-check) · warning bg/warning-weak + fg/warning(triangle-alert)
      critical bg/critical-weak + fg/critical(circle-alert)
    제목·링크는 본문과 같은 줄(inline), 구분은 띄어쓰기 두 칸. 제목 Bold · 링크 밑줄.
    -------------------------------------------------------------------------- */
 .ds-callout {
-  --ds-callout-bg: var(--ds-color-bg-neutral);
+  --ds-callout-bg: var(--ds-color-bg-neutral-weak-alpha);
   --ds-callout-fg: var(--ds-color-fg-neutral);
   display: flex;
   align-items: center;
@@ -1846,7 +1849,7 @@ a.ds-callout:active, button.ds-callout:active { filter: brightness(0.97); }
 .ds-dialog__footer > .ds-btn { flex: 1 1 0; min-width: 0; }  /* 버튼 둘은 가로 2등분(취소 왼쪽, 주 동작 오른쪽) */
 .ds-dialog__footer[data-action="stacked"] { flex-direction: column; }  /* 버튼 글이 길어 한 줄에 안 들어가면 세로 */
 .ds-dialog__footer[data-action="stacked"] > .ds-btn { flex: none; width: 100%; }
-html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
+html:has(:is(.ds-dialog, .ds-bottomsheet):modal) { overflow: hidden; }  /* 2026-11-11: 모달로 연 창만 뒤 스크롤을 막음(문서에 펼쳐 둔 예시는 제외) */
 
 
 /* --------------------------------------------------------------------------
@@ -2022,12 +2025,12 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
      <span class="ds-skeleton" style="width:220px;height:16px"></span>
      <span class="ds-skeleton" data-shape="circle" style="--ds-skeleton-size:48px"></span>
      <span class="ds-skeleton" data-shape="text"></span>
-   Figma: palette/gray-200 · rectangle shape/sm · circle pill · text 늘 3줄, 줄 높이 14 · 줄 사이 x2 · 마지막 줄 64%
+   Figma: bg/neutral-weak-alpha(2026-11-11 반투명) · rectangle shape/sm · circle pill · text 늘 3줄, 줄 높이 14 · 줄 사이 x2 · 마지막 줄 64%
    모서리(2026-11-03): --ds-skeleton-radius로 나중에 표시될 콘텐츠와 모서리를 맞춥니다
    움직임 줄이기(2026-11-03): 설정을 켠 사용자에게는 깜빡임을 표시하지 않습니다
    -------------------------------------------------------------------------- */
 .ds-skeleton {
-  --ds-skeleton-color: var(--ds-color-palette-gray-200);
+  --ds-skeleton-color: var(--ds-color-bg-neutral-weak-alpha);
   --ds-skeleton-radius: var(--ds-shape-sm);
   display: block;
   height: 16px;
@@ -2054,7 +2057,7 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
    tone: neutral(기본) · brand
      <input type="range" class="ds-slider" min="0" max="100" value="45" [data-tone="brand"]>
    채움 길이는 --ds-slider-value(0~100%)이며, ybm-ds.js가 input마다 자동으로 갱신합니다.
-   Figma: 높이 20 · 트랙 4 pill palette/gray-200 · 채움 bg/neutral-solid(brand bg/brand-solid)
+   Figma: 높이 20 · 트랙 4 pill bg/neutral-weak-alpha · 채움 bg/neutral-solid(brand bg/brand-solid)
           썸 20 static-white + 1px 테두리(채움 색) + elevation raised
           disabled opacity .7 · 채움 bg/disabled · 썸 테두리 stroke/neutral-weak
    -------------------------------------------------------------------------- */
@@ -2071,8 +2074,8 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
   cursor: pointer;
 }
 .ds-slider[data-tone="brand"] { --ds-slider-active: var(--ds-color-bg-brand-solid); --ds-slider-thumb-line: var(--ds-color-bg-brand-solid); }
-.ds-slider::-webkit-slider-runnable-track { height: 4px; border-radius: var(--ds-shape-pill); background: linear-gradient(var(--ds-slider-active), var(--ds-slider-active)) 0 0 / var(--ds-slider-value) 100% no-repeat, var(--ds-color-palette-gray-200); }
-.ds-slider::-moz-range-track { height: 4px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-gray-200); }
+.ds-slider::-webkit-slider-runnable-track { height: 4px; border-radius: var(--ds-shape-pill); background: linear-gradient(var(--ds-slider-active), var(--ds-slider-active)) 0 0 / var(--ds-slider-value) 100% no-repeat, var(--ds-color-bg-neutral-weak-alpha); }
+.ds-slider::-moz-range-track { height: 4px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); }
 .ds-slider::-moz-range-progress { height: 4px; border-radius: var(--ds-shape-pill); background: var(--ds-slider-active); }
 .ds-slider::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; margin-top: -8px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white); box-shadow: inset 0 0 0 1px var(--ds-slider-thumb-line), var(--ds-elevation-raised); }
 .ds-slider::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white); box-shadow: inset 0 0 0 1px var(--ds-slider-thumb-line), var(--ds-elevation-raised); }
@@ -2084,11 +2087,11 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
    tone: brand(기본) · neutral   size: medium(기본 8) · small 4
      <div class="ds-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
           style="--ds-progress-value: 40%" [data-tone="neutral"] [data-size="small"]></div>
-   Figma: 트랙 palette/brand-200(neutral palette/gray-200) · 채움 bg/brand-solid(neutral bg/neutral-solid) · pill
+   Figma: 트랙 bg/neutral-weak-alpha(2026-11-11 모든 색 같음, 회색 박스 안에서도 보이게) · 채움 bg/brand-solid(neutral bg/neutral-solid) · pill
    -------------------------------------------------------------------------- */
 .ds-progress {
   --ds-progress-value: 0%;
-  --ds-progress-track: var(--ds-color-palette-brand-200);
+  --ds-progress-track: var(--ds-color-bg-neutral-weak-alpha);
   --ds-progress-range: var(--ds-color-bg-brand-solid);
   position: relative;
   display: block;
@@ -2099,7 +2102,7 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
   overflow: hidden;
 }
 .ds-progress[data-size="small"] { height: 4px; }
-.ds-progress[data-tone="neutral"] { --ds-progress-track: var(--ds-color-palette-gray-200); --ds-progress-range: var(--ds-color-bg-neutral-solid); }
+.ds-progress[data-tone="neutral"] { --ds-progress-track: var(--ds-color-bg-neutral-weak-alpha); --ds-progress-range: var(--ds-color-bg-neutral-solid); }
 .ds-progress::before {
   content: "";
   position: absolute;
@@ -2119,14 +2122,14 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
      </span>
      indeterminate: data-type="indeterminate" (회전하는 25% 호)
    Figma: 두께 24→3 · 40→5 · 56→7 · 둥근 끝 · 12시 시작
-     neutral 트랙 palette/gray-200 + 호 palette/gray-500 · brand palette/brand-200 + bg/brand-solid
+     트랙 bg/neutral-weak-alpha(2026-11-11 모든 색 같음) · neutral 호 palette/gray-500 · brand 호 bg/brand-solid
      staticWhite palette/static-white-alpha-300 + palette/static-white (팔레트를 직접 참조하는 것은 의도된 예외)
    -------------------------------------------------------------------------- */
 .ds-progress-circle {
   --ds-progress-value: 40;
   --ds-pc-size: 24px;
   --ds-pc-stroke: 3px;
-  --ds-pc-track: var(--ds-color-palette-gray-200);
+  --ds-pc-track: var(--ds-color-bg-neutral-weak-alpha);
   --ds-pc-range: var(--ds-color-palette-gray-500);
   display: inline-block;
   flex: none;
@@ -2135,7 +2138,7 @@ html:has(:is(.ds-dialog, .ds-bottomsheet)[open]) { overflow: hidden; }
 }
 .ds-progress-circle[data-size="40"] { --ds-pc-size: 40px; --ds-pc-stroke: 5px; }
 .ds-progress-circle[data-size="56"] { --ds-pc-size: 56px; --ds-pc-stroke: 7px; }
-.ds-progress-circle[data-tone="brand"]       { --ds-pc-track: var(--ds-color-palette-brand-200); --ds-pc-range: var(--ds-color-bg-brand-solid); }
+.ds-progress-circle[data-tone="brand"]       { --ds-pc-track: var(--ds-color-bg-neutral-weak-alpha); --ds-pc-range: var(--ds-color-bg-brand-solid); }
 .ds-progress-circle[data-tone="staticWhite"] { --ds-pc-track: var(--ds-color-palette-static-white-alpha-300); --ds-pc-range: var(--ds-color-palette-static-white); }
 .ds-progress-circle > svg { width: 100%; height: 100%; rotate: -90deg; overflow: visible; }
 .ds-progress-circle circle { cx: 50%; cy: 50%; r: calc(50% - var(--ds-pc-stroke) / 2); fill: none; stroke-width: var(--ds-pc-stroke); stroke-linecap: round; }
@@ -2870,7 +2873,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
    Callout과의 차이: Callout은 본문 안의 안내(둥근 상자)이고, Banner는 페이지 전체에 해당하는 공지(화면 맨 위, 한 번에 1개)입니다.
    -------------------------------------------------------------------------- */
 .ds-banner {
-  --ds-banner-bg: var(--ds-color-bg-neutral);
+  --ds-banner-bg: var(--ds-color-bg-neutral-weak-alpha);
   --ds-banner-fg: var(--ds-color-fg-neutral);
   --ds-banner-max: 1200px;
   width: 100%;
@@ -3577,7 +3580,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   border-radius: var(--ds-shape-lg);
   box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak);
 }
-.ds-fileitem__thumbnail { display: grid; place-items: center; flex: none; width: var(--ds-space-x12); height: var(--ds-space-x12); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-subtle); }
+.ds-fileitem__thumbnail { display: grid; place-items: center; flex: none; width: var(--ds-space-x12); height: var(--ds-space-x12); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral-subtle); }
 .ds-fileitem__thumbnail > .ds-icon { --ds-icon-size: 24px; }
 .ds-fileitem__texts { display: flex; flex-direction: column; min-width: 0; }
 .ds-fileitem__name {
@@ -3593,7 +3596,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 }
 .ds-fileitem__size { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t01); line-height: var(--ds-line-height-t01); }
 .ds-fileitem[data-readonly] :is(.ds-fileitem__thumbnail, .ds-fileitem__name, .ds-fileitem__size) { color: var(--ds-color-fg-disabled); }
-.ds-fileitem[data-type="image"] { width: var(--ds-space-x20); padding: 0; background: var(--ds-color-bg-neutral); box-shadow: none; }
+.ds-fileitem[data-type="image"] { width: var(--ds-space-x20); padding: 0; background: var(--ds-color-bg-neutral-weak-alpha); box-shadow: none; }
 .ds-fileitem[data-type="image"]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-subtle); pointer-events: none; }
 .ds-fileitem[data-type="image"][data-readonly] { opacity: 0.5; }
 .ds-fileitem__image { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
@@ -3684,7 +3687,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   width: 100%;
   min-height: 52px;
   padding: var(--ds-space-x3_5) var(--ds-space-x4);
-  background: var(--ds-color-bg-neutral);
+  background: var(--ds-color-bg-neutral);  /* 어두운 덮개 위에 떠서 불투명 */
   color: var(--ds-color-fg-neutral);
   font-size: var(--ds-font-size-t05);
   line-height: var(--ds-line-height-t05);
@@ -3918,7 +3921,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
    Figma: shape/sm / 빈 자리 bg/neutral / stroke 안쪽 1px stroke/neutral-subtle
      얹는 표시는 가장자리에서 x1_5 / indicator padding x0_5 x1_5, pill, palette/static-black-alpha-800, Static t01 Medium 흰색
    -------------------------------------------------------------------------- */
-.ds-imageframe { --ds-imageframe-ratio: 1; --ds-imageframe-radius: var(--ds-shape-sm); position: relative; overflow: hidden; aspect-ratio: var(--ds-imageframe-ratio); border-radius: var(--ds-imageframe-radius); background: var(--ds-color-bg-neutral); }
+.ds-imageframe { --ds-imageframe-ratio: 1; --ds-imageframe-radius: var(--ds-shape-sm); position: relative; overflow: hidden; aspect-ratio: var(--ds-imageframe-ratio); border-radius: var(--ds-imageframe-radius); background: var(--ds-color-bg-neutral-weak-alpha); }
 .ds-imageframe[data-ratio="4:3"] { --ds-imageframe-ratio: 4 / 3; }
 .ds-imageframe[data-ratio="16:9"] { --ds-imageframe-ratio: 16 / 9; }
 .ds-imageframe[data-radius="none"] { --ds-imageframe-radius: 0; }
@@ -4033,7 +4036,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-markdown hr { margin: var(--ds-space-x6) 0; border: 0; border-top: 1px solid var(--ds-color-stroke-neutral-muted); }
 .ds-markdown a:not([class]) { color: var(--ds-color-fg-brand); text-decoration: underline; }
 .ds-markdown img { max-width: 100%; border-radius: var(--ds-shape-sm); }
-.ds-markdown :not(pre) > code { padding: 0 var(--ds-space-x1); border-radius: var(--ds-shape-2xs); background: var(--ds-color-bg-neutral); font-family: var(--ds-font-mono); font-size: 0.9em; }
+.ds-markdown :not(pre) > code { padding: 0 var(--ds-space-x1); border-radius: var(--ds-shape-2xs); background: var(--ds-color-bg-neutral-weak-alpha); font-family: var(--ds-font-mono); font-size: 0.9em; }
 .ds-markdown table { border-collapse: collapse; }
 .ds-markdown :is(th, td) { padding: var(--ds-space-x2); border: 1px solid var(--ds-color-stroke-neutral-weak); text-align: start; }
 .ds-markdown th { font-weight: var(--ds-font-weight-semibold); }
@@ -4056,7 +4059,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   margin: 0;
   overflow: hidden;
   border-radius: var(--ds-shape-sm);
-  background: var(--ds-color-bg-neutral);
+  background: var(--ds-color-bg-neutral-weak-alpha);
   box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak);
 }
 .ds-codeblock__header { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -4264,6 +4267,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   display: flex;
   gap: var(--ds-space-x2);
 }
+.ds-field:has(> .ds-codeinput) { width: fit-content; max-width: 100%; }  /* 2026-11-11: 칸 묶음 너비에 맞춰 아래 도움말과 링크가 칸 끝선 안에 */
 .ds-codeinput[data-size="medium"] { --ds-codeinput-w: 40px; --ds-codeinput-h: 48px; --ds-codeinput-radius: var(--ds-shape-md); }
 .ds-codeinput__cell {
   --ds-codeinput-line: var(--ds-color-stroke-neutral-weak);
@@ -4382,7 +4386,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
     var(--ds-color-chart-series-3) 0 calc((var(--ds-chart-1) + var(--ds-chart-2) + var(--ds-chart-3)) * 1%),
     var(--ds-color-chart-series-4) 0 calc((var(--ds-chart-1) + var(--ds-chart-2) + var(--ds-chart-3) + var(--ds-chart-4)) * 1%),
     var(--ds-color-chart-series-5) 0 calc((var(--ds-chart-1) + var(--ds-chart-2) + var(--ds-chart-3) + var(--ds-chart-4) + var(--ds-chart-5)) * 1%),
-    var(--ds-color-bg-neutral) 0);
+    var(--ds-color-bg-neutral-weak-alpha) 0);
 }
 .ds-chart__donut::before { content: ""; position: absolute; inset: 24px; border-radius: 50%; background: var(--ds-color-bg-layer-default); }
 .ds-chart__total { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); }
@@ -4456,7 +4460,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   color: var(--ds-color-fg-neutral);
 }
 .ds-toolbar[data-size="small"] { min-height: 48px; padding-inline: var(--ds-space-x3); }
-.ds-toolbar[data-variant="muted"] { border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); }
+.ds-toolbar[data-variant="muted"] { border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral-weak-alpha); }
 .ds-toolbar[data-divider] { border-bottom: 1px solid var(--ds-color-stroke-neutral-muted); }
 .ds-toolbar[hidden] { display: none; }
 .ds-toolbar[data-position="floating"] {
@@ -4596,7 +4600,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
 .ds-searchfield > .ds-input { flex: 1 1 auto; min-width: 0; }
 .ds-searchfield .ds-input__control::-webkit-search-decoration,
 .ds-searchfield .ds-input__control::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
-.ds-searchfield[data-variant="fill"] > .ds-input { --ds-input-bg: var(--ds-color-bg-neutral); --ds-input-line: transparent; --ds-input-radius: var(--ds-shape-pill); }
+.ds-searchfield[data-variant="fill"] > .ds-input { --ds-input-bg: var(--ds-color-bg-neutral-weak-alpha); --ds-input-line: transparent; --ds-input-radius: var(--ds-shape-pill); }
 .ds-searchfield__cancel {
   flex: none;
   padding: var(--ds-space-x2) 0;
@@ -4734,7 +4738,7 @@ dialog.ds-lightbox:not([open]) { display: none; }
 .ds-megamenu__link:hover { background: var(--ds-color-bg-neutral-weak-alpha); }
 .ds-megamenu__link[aria-current="page"] { font-weight: var(--ds-font-weight-semibold); }
 .ds-megamenu__link:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: -2px; }
-.ds-megamenu__aside { flex: 1.2 1 0; min-width: 0; padding: var(--ds-space-x5); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral); }
+.ds-megamenu__aside { flex: 1.2 1 0; min-width: 0; padding: var(--ds-space-x5); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); }
 
 
 /* --------------------------------------------------------------------------
@@ -4860,7 +4864,7 @@ dialog.ds-command:not([open]) { display: none; }
   margin-inline-start: auto;
   overflow: hidden;
   border-radius: var(--ds-shape-2xs);
-  background: var(--ds-color-bg-neutral);
+  background: var(--ds-color-bg-neutral-weak-alpha);
   color: var(--ds-color-fg-neutral-subtle);
 }
 .ds-segmentinput__suffix > img { display: block; width: 100%; height: 100%; object-fit: contain; }

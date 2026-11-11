@@ -332,6 +332,11 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
 ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <link rel="icon" href="${root}assets/logo-ybmnet.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${esc(title)} - YDS">
+${desc ? `<meta property="og:description" content="${esc(desc)}">
+` : ''}<meta property="og:image" content="${SITE_URL}assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="${root}../dist/ybm-ds.css">
 <link rel="stylesheet" href="${root}assets/site.css?v=${ASSET_V}">
 <script src="${root}../dist/ybm-ds.js" defer></script>
@@ -413,6 +418,7 @@ const LLMS_RULES = `## 지킬 것
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다.
 - 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
+- 옅은 회색 칸(트랙, 빈 칸, 자리 표시, 회색 박스 안의 칸)은 --ds-color-bg-neutral-weak-alpha를 쓴다. 불투명 --ds-color-bg-neutral은 같은 회색 바탕 위에서 사라진다.
 - 원본: YDS 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. YDS 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드: 브랜드 파일(${PUBLIC}/dist/brands/브랜드이름.css)을 YDS CSS 다음, 서비스 CSS 앞에 불러오고 <html>에 data-ds-brand="브랜드이름"을 단다. 브랜드 값을 서비스 CSS에 따로 적지 않는다.
@@ -1127,6 +1133,7 @@ fs.copyFileSync(path.join(SITE, 'src/site.js'), path.join(SITE, 'assets/site.js'
 // 가이드 모노톤: 사이트는 site.css 끝에 붙이고, 템플릿 미리보기 iframe은 site.js가 이 파일을 넣는다
 fs.copyFileSync(path.join(SITE, 'src/brand-mono.css'), path.join(SITE, 'assets/brand-mono.css'));
 fs.copyFileSync(path.join(SITE, 'src/logo-ybmnet.svg'), path.join(SITE, 'assets/logo-ybmnet.svg'));
+if (fs.existsSync(path.join(SITE, 'src/og-image.png'))) fs.copyFileSync(path.join(SITE, 'src/og-image.png'), path.join(SITE, 'assets/og-image.png'));  // 공유 썸네일 (11-11 사용자 "썸네일에 YBM NET 로고")
 fs.writeFileSync(path.join(SITE, 'assets/lucide-icons.js'), `/* Lucide ${lucide.version} (ISC) - 생성물: site/src/lucide-icons.json */\nwindow.LUCIDE = ${JSON.stringify(lucide)};\n`);
 fs.copyFileSync(path.join(SITE, 'src/lucide-LICENSE.txt'), path.join(SITE, 'assets/lucide-LICENSE.txt'));
 // 사이트 전용 아이콘(DS 아이콘 세트에 없는 화면 모드, 저장소 링크용). Lucide 원본 경로를 DS와 같은 방식(mask)으로 쓴다

@@ -120,5 +120,5 @@ layout : 기본 withText / data-layout="iconOnly"      state: aria-pressed="true
 Figma: shape/pill / t04 Regular(large t05) / 좌우 12/14/16 / min-w 44/48/52 / 아이콘 14/16/16 / 아이콘↔라벨 x1_5
   solid bg/neutral-weak-alpha / outlineStrong bg/layer-default + stroke/neutral-weak / outlineWeak + stroke/neutral-muted
   checked(solid/outlineStrong) bg/neutral-solid + fg/on-neutral-solid SemiBold
-  checked(outlineWeak) bg/neutral + stroke/neutral-contrast + fg/neutral Medium / disabled opacity .5
+  checked(outlineWeak) bg/neutral-weak-alpha + stroke/neutral-contrast + fg/neutral Medium / disabled opacity .5
 ```

@@ -102,12 +102,15 @@ PC 상세 화면에서는 `data-layout="hug"`로 탭이 글자 길이만큼만 �
 | 변수 | 기본값 |
 | --- | --- |
 | `--ds-tabs-height` | `40px` |
+| `--ds-tabs-padding-x` | `var(--ds-space-x2_5)` |
+| `--ds-tabs-font-size` | `var(--ds-font-size-t04)` |
+| `--ds-tabs-line-height` | `var(--ds-line-height-t04)` |
 
 ### 크기와 여백
 
 ```
-size: small(기본 40) / medium 44   triggerLayout: fill(기본) / hug
-Figma: bg/layer-default / 하단 1px stroke/neutral-muted / trigger padding x2_5 / t04 Medium fg/neutral-subtle(2026-11-03, placeholder 에서 진하게)
-  selected t04 SemiBold fg/neutral + 하단 2px fg/neutral 인디케이터(트리거 폭) / disabled fg/disabled
+size: small(기본 40, 글자 14) / medium 48, 글자 16(2026-11-11: 크기마다 글자도 달라진다)   triggerLayout: fill(기본) / hug
+Figma: bg/layer-default / 하단 1px stroke/neutral-muted / trigger padding x2_5(medium x3) / t04 Medium(medium t05) fg/neutral-subtle(2026-11-03, placeholder 에서 진하게)
+  selected SemiBold fg/neutral + 하단 2px fg/neutral 인디케이터(트리거 폭) / disabled fg/disabled
   hug: 좌우 x4 / 트리거는 내용 폭
 ```

@@ -119,7 +119,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 변수 | 기본값 |
 | --- | --- |
-| `--ds-skeleton-color` | `var(--ds-color-palette-gray-200)` |
+| `--ds-skeleton-color` | `var(--ds-color-bg-neutral-weak-alpha)` |
 | `--ds-skeleton-radius` | `var(--ds-shape-sm)` |
 | `--ds-skeleton-size` | `48px` |
 
@@ -127,7 +127,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```
 shape: rectangle(기본) / circle / text
-Figma: palette/gray-200 / rectangle shape/sm / circle pill / text 늘 3줄, 줄 높이 14 / 줄 사이 x2 / 마지막 줄 64%
+Figma: bg/neutral-weak-alpha(2026-11-11 반투명) / rectangle shape/sm / circle pill / text 늘 3줄, 줄 높이 14 / 줄 사이 x2 / 마지막 줄 64%
 모서리(2026-11-03): --ds-skeleton-radius로 나중에 표시될 콘텐츠와 모서리를 맞춥니다
 움직임 줄이기(2026-11-03): 설정을 켠 사용자에게는 깜빡임을 표시하지 않습니다
 ```
