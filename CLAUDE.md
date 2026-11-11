@@ -3,7 +3,7 @@
 집(**Mac**)과 회사(**Windows**) 두 PC 에서 같은 저장소로 작업한다. 이 파일은 저장소에 같이 올라가므로 어느 PC 에서든 Claude 가 먼저 읽는다.
 PC 마다 따로 쌓이는 Claude 메모리는 서로 보이지 않는다 - 두 PC 가 함께 알아야 할 것은 여기에 적는다.
 
-- 최종 갱신: 2026-11-11 밤 (클라우드 세션, Figma 싱크와 인수인계)
+- 최종 갱신: 2026-11-12 새벽 (집 Mac, Figma 템플릿 싱크와 인수인계)
 
 ## 1. 기준 주소
 
@@ -52,6 +52,10 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
+- **인수인계 - 다음 세션은 여기부터 (2026-11-12 새벽 집 Mac, 사용자 "yds, yds-site 기준으로 피그마에 그대로 씽크", 커밋 55b2edf7)** - 시작은 "YDS CLAUDE.md 읽고 이어서", 먼저 `git pull`. 아래 11-11 밤 항목들의 Figma 남은 일은 이번에 거의 끝냈다.
+  - **Figma 에 한 것**: ① Command Palette kbd 칸 4곳 바탕 bg/layer-default. ② Templates 페이지(3059:965) 섹션을 사이트 분류 9개(groups.mjs 순서, Tools 섹션 지움)로 다시 묶음, Level Test 를 Exam 으로. ③ 새 템플릿 10쪽(figma.pc 3309:3945 ~ 3309:3954, templates.json 에 넣음)과 바뀐 4쪽(level-test, mypage-home, mypage-orders, mypage-profile), exam-apply(오늘 표시, 지난 날짜 흐림)를 tplpage 로 다시 그림. 이제 figma 가 없는 템플릿 0. ④ 사진 17장(서비스 메인, 마이페이지 2종, CBT)을 upload_assets 로 사진 칸에, 서비스 메인 큰 사진 아래 그라데이션(palette/static-black-alpha-600). ⑤ 사이트와 글자 대조, 화면 나란히 비교로 고친 것: FAQ 순위 숫자 1~5, Level Test 위 막대(2 / 8 이 프레임 밖)와 단계 숫자 3, 4, 이벤트 참여 방법 숫자 동그라미, 배지(D-7, EVENT) 늘어남, 작은 Text Link 글자 t03 + hug(20곳), 시험 신청 달력 오늘 고리, CBT 문항 번호 한 줄 7개와 음량 손잡이(Slider 인스턴스를 풀어 값 65%). ⑥ 넘침과 잘림 검사 16쪽 0, 코드 링크 170곳 일치, `_payload` 사각형 14개와 임시 공유 데이터(unpack, tplrun, tplpatch) 지움.
+  - **도구 고친 것**: tokens/figma-docpage.template.js = 가운데 맞춤 한 줄 글이 사이트 폭보다 조금 넓게 그려지면 꺾지 않음(sizeW, "접수 완료" 두 줄 문제), 카드 본문 안 좁은 요소(align-self: flex-start 배지)는 늘리지 않음(renderInto). tokens/figma-styles.mjs = counter() 숫자를 counter-increment 가 있는 조상 기준으로 셈(FAQ 순위가 모두 1 이던 것).
+  - **남은 차이(알려진 한계)**: 사진은 이번 15쪽만 넣음(예전 템플릿 사진 칸은 회색 그대로), 그림자 일부, Get Started 코드 탭은 고른 탭 하나만 보이는 것이 사이트와 같아 그대로 둠. 변수와 컴포넌트 세트 전체 점검(`node sync.mjs figma`)은 이번에 바꾼 것이 kbd 칸 바탕뿐이라 돌리지 않았다. 템플릿 다시 그리기 순서는 아래 11-11 밤 항목(figma-styles → tplpage → figma-payload → upload_assets → Figma 에서 풀어 실행)과 같다. 풀기 함수는 공유 데이터에서 지웠으므로 다시 그릴 때 .cache/audit 도구로 다시 넣는다.
 - **인수인계 - 다음 세션은 여기부터 (2026-11-11 밤 집 Mac 마무리, 템플릿 분류 고정, 기본 화면 10쪽, 작업 지침, 배포함)** - 시작은 "YDS CLAUDE.md 읽고 이어서". 시작할 때 `git pull`.
   - **모바일 문서 보기 수정 (배포함 f41f6cab)**: 미리보기를 실제 기기 폭으로 그리고 줄임, 폰은 모바일로 시작, 코드 줄 접기, 템플릿 7곳 글자 꺾임 수정.
   - **템플릿 분류 9개 고정**: 정본 `site/templates/gen/groups.mjs`. 문서 보기 왼쪽 메뉴에 하위 분류 이름 줄. 도구 탭은 관리자 > 도구로. 자세한 것은 site/CLAUDE.md "템플릿 분류 정본".
