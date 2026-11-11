@@ -645,7 +645,8 @@
       dlg.querySelector(".site-tplv__acts").innerHTML =
         (fig ? '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + fig.getAttribute("href") + '" target="_blank" rel="noopener">Figma에서 열기</a>' : "") +
         '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + slug + '.html">문서 보기</a>' +
-        '<a class="ds-btn" data-variant="neutralSolid" data-size="small" href="pages/' + slug + '.html" target="_blank" rel="noopener">새 창으로 보기</a>';
+        '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="pages/' + slug + '.html" target="_blank" rel="noopener">새 창으로 보기</a>' +
+        '<button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small" data-tplv-copy><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i>AI 요청 글 복사</button>';
       frame.title = card.querySelector(".site-tpl__title").textContent + " 미리보기";
       frame.src = "pages/" + slug + ".html";
       dlg.hidden = false; root.classList.add("site-tplv-open");
@@ -663,9 +664,25 @@
         a.addEventListener("click", function (e) { if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return; e.preventDefault(); open(card); });
       });
     });
+    // AI 요청 글 복사 (11-11 사용자): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다. 내려받을 것 없이 AI 도구에 붙여 넣는다
+    function copyPrompt(b) {
+      if (!cur) return;
+      var slug = slugOf(cur), name = cur.querySelector(".site-tpl__title").textContent;
+      var text = "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
+        "\n\n'" + name + "' 템플릿을 바탕으로 화면을 만들어 줘. 배치와 컴포넌트는 그대로 두고 내용만 바꿔 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
+        "\n바꿀 것: [서비스 이름, 글, 데이터]";
+      var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { variant: ok ? "positive" : "critical" }); };
+      var legacy = function () {
+        var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+        document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); b.focus();
+        say(ok ? "요청 글을 복사했어요. AI 도구에 붙여 넣으세요." : "복사하지 못했어요. 새 창으로 열어 주소를 복사해 주세요.", ok);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say("요청 글을 복사했어요. AI 도구에 붙여 넣으세요.", true); }, legacy); else legacy();
+    }
     dlg.addEventListener("click", function (e) {
       if (e.target.closest("[data-tplv-close]")) close();
       var s = e.target.closest("[data-tplv-step]"); if (s) step(+s.getAttribute("data-tplv-step"));
+      var c = e.target.closest("[data-tplv-copy]"); if (c) copyPrompt(c);
     });
     document.addEventListener("keydown", function (e) {
       if (dlg.hidden) return;
