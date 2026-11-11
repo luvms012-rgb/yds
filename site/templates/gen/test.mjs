@@ -46,18 +46,8 @@ const levelTest = () => {
   .tp-lt__q { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
   .tp-lt__q h1 { margin: 0; text-align: center; font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-medium); color: var(--ds-color-fg-neutral); text-wrap: balance; }
   .tp-lt__q h1 b { font-weight: var(--ds-font-weight-bold); }
-  /* 듣기 플레이어(2026-11-11 사용자 "성의 없어 보임", 음성 기록, 음악 재생 화면 참고): 소리 파형(들은 곳 brand), 양끝 시간, 가운데 재생 묶음(다시 듣기, 일시 정지, 속도) */
-  .tp-lt__media { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x6) var(--ds-space-x5) var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
-  .tp-lt__wave { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .tp-lt__wave > i { flex: 0 0 4px; height: var(--h); border-radius: var(--ds-shape-pill); background: var(--ds-color-stroke-neutral-weak); }
-  .tp-lt__wave > i[data-on] { background: var(--ds-color-bg-brand-solid); }
-  .tp-lt__wave > i[data-head] { position: relative; }
-  .tp-lt__wave > i[data-head]::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-brand-solid); box-shadow: 0 0 0 3px var(--ds-color-bg-layer-default); }
-  .tp-lt__time { display: flex; justify-content: space-between; margin-top: calc(var(--ds-space-x2) * -1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
-  .tp-lt__time time:first-child { color: var(--ds-color-fg-brand); font-weight: var(--ds-font-weight-semibold); }
-  .tp-lt__ctrl { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--ds-space-x4); }
-  .tp-lt__ctrl > :first-child { justify-self: end; } .tp-lt__ctrl > :last-child { justify-self: start; }
-  .tp-lt__play { --ds-btn-height: 64px; --ds-btn-radius: var(--ds-shape-pill); --ds-btn-icon-only: 28px; }
+  /* 듣기 플레이어 (11-11 사용자 "오디오 플레이어가 어색, 단순하게"): 공용 한 줄(재생, 진행 막대, 시간)만. 파형, 큰 재생 버튼, 속도는 뺐다 */
+  .tp-lt .tp-audio { padding: var(--ds-space-x4); }
   .tp-lt .ds-selectbox-group { --ds-selectbox-columns: 1; }
   .tp-lt .ds-selectbox { min-height: 56px; }
   .tp-lt .ds-selectbox__label { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
@@ -67,15 +57,7 @@ const levelTest = () => {
   const steps = [["어휘", "complete"], ["문법", "complete"], ["듣기", "current"], ["말하기", ""]];
   const stepper = `<ol class="ds-stepper" aria-label="테스트 영역">${steps.map(([l, st]) => `<li class="ds-stepper__step"${st ? ` data-state="${st}"` : ""}${st === "current" ? ` aria-current="step"` : ""}><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">${l}</span></li>`).join("")}</ol>`;
   const choices = selectbox("lt-q", [["회의 자료를 인쇄한다"], ["회의실을 예약한다"], ["동료에게 전화한다"], ["점심을 주문한다"]], -1).replace("<div class=\"ds-selectbox-group\">", "<div class=\"ds-selectbox-group\" role=\"radiogroup\" aria-labelledby=\"lt-q\">");
-  const play = iconBtn("pause", "일시 정지", { variant: "brandSolid", size: "large" }).replace('class="ds-btn"', 'class="ds-btn tp-lt__play"');
-  // 소리 파형 막대 44개(말소리처럼 크고 작게), 37% 지점까지 들음
-  const BARS = 44, HEAD = Math.round(BARS * 0.37);
-  const wave = Array.from({ length: BARS }, (_, i) => { const h = 18 + Math.round(Math.abs(Math.sin(i * 0.9) * 0.6 + Math.sin(i * 0.37 + 1) * 0.4) * 82); return `<i style="--h:${Math.min(100, h)}%"${i < HEAD ? " data-on" : ""}${i === HEAD - 1 ? " data-head" : ""}></i>`; }).join("");
-  const player = `<div class="tp-lt__media" role="group" aria-label="대화 음성">
-      <div class="tp-lt__wave" role="slider" tabindex="0" aria-label="재생 위치" aria-valuemin="0" aria-valuemax="38" aria-valuenow="14" aria-valuetext="0분 14초">${wave}</div>
-      <div class="tp-lt__time tp-num"><time>0:14</time><time>0:38</time></div>
-      <div class="tp-lt__ctrl">${iconBtn("rotate-ccw", "처음부터 다시 듣기", { variant: "neutralWeak", size: "medium" })}${play}${btn("1.0x", { variant: "neutralWeak", size: "medium", aria: "재생 속도" })}</div>
-    </div>`;
+  const player = `<div role="group" aria-label="대화 음성">${audio("0:14", "0:38", 37)}</div>`;
   const body = `<div class="tp-app">
 <header class="tp-lt__bar"><div class="tp-lt__barin">${iconBtn("x", "테스트 나가기", { size: "medium" })}${stepper}<span class="tp-lt__count" aria-label="듣기 8문항 중 2번째">2 / 8</span></div>${progress(25, { label: "듣기 진행" })}</header>
 <main class="tp-lt tp-ex">
