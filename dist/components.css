@@ -4788,7 +4788,7 @@ dialog.ds-command:not([open]) { display: none; }
 .ds-command__item[aria-selected="true"] { background: var(--ds-color-bg-neutral-weak-alpha); }
 .ds-command__item > .ds-icon { flex: none; --ds-icon-size: 16px; color: var(--ds-color-fg-neutral-muted); }
 .ds-command__label { flex: 1 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.ds-command__kbd { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: var(--ds-space-x5); min-height: var(--ds-space-x5); padding: 0 var(--ds-space-x1_5); border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-family: inherit; font-size: var(--ds-font-size-t01); line-height: var(--ds-line-height-t01); }
+.ds-command__kbd { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: var(--ds-space-x5); min-height: var(--ds-space-x5); padding: 0 var(--ds-space-x1_5); border-radius: var(--ds-shape-2xs); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-family: inherit; font-size: var(--ds-font-size-t01); line-height: var(--ds-line-height-t01); }
 .ds-command__empty { margin: 0; padding: var(--ds-space-x8) var(--ds-space-x4); text-align: center; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
 
 

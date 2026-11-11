@@ -52,14 +52,17 @@ git clone https://github.com/luvms012-rgb/yds.git
 - `.gitattributes` 가 `* -text`(줄바꿈 변환 없음)다. 파일의 줄바꿈을 바꾸지 않는다 - 현재 CRLF 는 `동기화.bat` 하나뿐이고 나머지는 LF.
 
 ## 3. 진행 상황
-- **인수인계 - 다음 세션은 여기부터 (2026-11-11 밤 집 Mac, 템플릿 분류 고정과 기본 화면 10쪽)** - 시작은 "YDS CLAUDE.md 읽고 이어서". 시작할 때 `git pull`.
+- **인수인계 - 다음 세션은 여기부터 (2026-11-11 밤 집 Mac 마무리, 템플릿 분류 고정, 기본 화면 10쪽, 작업 지침, 배포함)** - 시작은 "YDS CLAUDE.md 읽고 이어서". 시작할 때 `git pull`.
   - **모바일 문서 보기 수정 (배포함 f41f6cab)**: 미리보기를 실제 기기 폭으로 그리고 줄임, 폰은 모바일로 시작, 코드 줄 접기, 템플릿 7곳 글자 꺾임 수정.
   - **템플릿 분류 9개 고정**: 정본 `site/templates/gen/groups.mjs`. 문서 보기 왼쪽 메뉴에 하위 분류 이름 줄. 도구 탭은 관리자 > 도구로. 자세한 것은 site/CLAUDE.md "템플릿 분류 정본".
   - **새 템플릿 10쪽 (84종)**: `basics.mjs`. 회원가입, 아이디 비밀번호 찾기, 수험표, 접수 완료, 성적 조회, 공지사항 목록과 상세, 자주 묻는 질문, 서비스 메인, 이벤트 페이지. 375, 768, 1440 검사(넘침, 꺾인 글자, 라벨, 이름 없는 버튼, h1, 콘솔)와 문서 보기 84쪽 모바일 검사 문제 0. Figma 화면은 아직 없다.
   - **레벨 테스트 듣기 플레이어 단순화**: 사용자 "오디오 플레이어가 어색, 단순하게". 소리 파형, 큰 재생 버튼, 속도 버튼을 빼고 공용 한 줄(test.mjs `audio()`: 재생 버튼, 진행 막대, 시간)로 바꿨다.
   - **수험표**: 바코드 삭제, 마지막 칸 "고사실과 좌석 / 11고사실 A4번" (사용자).
   - **마이페이지 3종 좌우 분리**: 사용자 "좌우 레이아웃 분리 필요". 1024 부터 왼쪽 메뉴 칸 오른쪽에 세로 선(설정 패널과 같은 방식, 메뉴가 화면 높이만큼 붙어 있어 선이 늘 보임), 내 정보 본문은 720.
-  - **남은 일**: ① 2순위 7종(내 강의실, 오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역)과 3순위 3종(오류, 점검, 알림 목록), 사용자 지시 대기 ② Figma 템플릿에 새 10쪽과 분류 9개 반영 ③ 아래 항목들의 남은 일.
+  - **템플릿과 디자인 작업 지침 (사용자, 앞으로 모든 템플릿, 디자인 작업에 적용)**: kit.mjs `PRINCIPLE`(모든 템플릿 맨 위 주석)과 site/CLAUDE.md 에 원문을 넣었다. 단순하게 / 글 빼고 배치로 / UX, DX, AX 함께 / 망가뜨리지 말고 애매하면 작업 전에 질문. 원문의 DESIGN.md 는 이 저장소에 없어 YDS 규칙(yds.txt)으로 적었다.
+  - **자주 묻는 질문**: 회색 판 안 찾기 칸은 흰 바탕(`--ds-input-bg` 만 덮어씀).
+  - **다크 모드 단축키 칸 (DS 변경)**: Command Palette 의 `.ds-command__kbd` 와 템플릿 `.tp-kbd` 에 바탕 `bg-layer-default` 를 더했다. 다크에서 테두리(stroke-neutral-weak #393d46)와 선택 줄 바탕이 같아 테두리가 사라지던 것. **Figma Command Palette 의 kbd 바탕은 아직 안 맞췄다**(다음 세션에서 Figma 싱크).
+  - **남은 일**: ① Figma Command Palette kbd 바탕 싱크 ② 2순위 7종(내 강의실, 오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역)과 3순위 3종(오류, 점검, 알림 목록), 사용자 지시 대기 ③ Figma 템플릿에 새 10쪽과 분류 9개 반영 ④ 아래 항목들의 남은 일.
 - **인수인계 - 다음 세션은 여기부터 (2026-11-11 밤, 클라우드 세션 Figma 싱크, 사용자 "스탑. 인수인계 만들고 스탑")** - 기준은 YDS 와 사이트, Figma 가 따라간다. 시작은 "YDS CLAUDE.md 읽고 이어서", 먼저 `git pull`.
   - **점검 결과(시작 때)**: 변수 359, 세트 117 일치. 코드 링크 43곳 밀림. 마지막 Figma 맞춤(2c38a4df) 뒤 바뀐 컴포넌트는 table, toolbar, segmented-text-input 셋.
   - **Figma 에 한 것**: ① 코드 링크 43곳(Table ~ Segmented Text Input) 지금 components.css 줄 번호로. ② Table 세트 2164:1179 / 2164:1225 위 선과 마지막 Row 아래 선 stroke/neutral-weak. 문서 프레임 규격 글 새 문구, 변수 표에 `--ds-table-edge` 줄 추가(3303:902). 직접 그린 표(table.ds-table 프레임)의 위 선과 마지막 줄 선을 neutral-weak 로: Templates 페이지 표 17개 + Exam 섹션 표, 문서 페이지 Toolbar, Status Dot, Table Pagination, Table(카드 안 표는 사이트처럼 선 없음 그대로). ③ Toolbar: 세트는 이미 ghost 였음. 문서 muted 예시 버튼 4개 ghost, 예시 코드 neutralWeak→ghost, 규격 글 새 문구. ④ Segmented Text Input: 아이콘 든 suffix 20곳 28x28(dimension/x7), 모서리 shape/xs, 규격 글 새 문구. ⑤ 로그인 3종(3185:2654, 2755, 2859): "다시 오셨네요" 제목 지우고 비밀번호 아래 Checkbox(medium, square, brand, checked) "아이디 저장". ⑥ Side Panel(11-09 남은 일): 닫기 버튼을 절대 위치(오른쪽 위, x = 폭-61, y 14), header 오른쪽 여백 67 → CSS 처럼 제목 줄 가운데, 아이콘 끝이 본문 끝. ⑦ 온라인 평가 템플릿 3종을 tplpage 로 그림: Level Test `3305:4226`, Mock Exam PBT `3305:4322`, Mock Exam CBT `3305:4809`(site/src/templates.json figma.pc 에 넣음, 생성기 run.mjs 가 rebuilt 항목의 figma 를 지켜 준다).

@@ -105,7 +105,7 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .tp-zoom { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--ds-shape-xl); background: none; cursor: zoom-in; }
   .tp-zoom:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
-  .tp-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t01); font-family: inherit; }
+  .tp-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: var(--ds-shape-2xs); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t01); font-family: inherit; }
   @media (min-width: 768px) {
     .tp-head { padding: var(--ds-space-x6) var(--ds-space-x6) 0; }
     .tp-content { padding: var(--ds-space-x6) var(--ds-space-x6) var(--ds-space-x12); gap: var(--ds-space-x8); }
@@ -160,11 +160,23 @@ export const stripCopy = (html) => {
 };
 
 // 템플릿 정의 (사용자 2026-11-09): 모든 템플릿 HTML 머리에 그대로 들어간다. 템플릿을 만들고 고칠 때의 기준이다
-export const PRINCIPLE = `세 사람 모두에게 좋아져야 해
+// 템플릿 정의 (2026-11-11 사용자 "템플릿이나 디자인 구성할 때 아래 지침을 참고해"). 모든 템플릿 HTML 맨 위 주석으로 들어간다.
+// 사용자 원문의 "DESIGN.md" 는 이 저장소에 없어 YDS 규칙(yds.txt)으로 적었고, 가운뎃점은 검사 규칙대로 쉼표로 바꿨다.
+export const PRINCIPLE = `목적, 구조, 디자인, 코드 모두 단순하게 만들어줘.
+
+1. 글을 빼고 배치로 해결해
+- 홍보 문구, 설명 글, 툴팁, 보조 라벨은 전부 빼줘.
+- 글 없이 이해가 안 되는 화면이라면, 글을 더하지 말고 여백, 정렬, 크기, 순서를 고쳐서 해결해.
+
+2. 세 사람 모두에게 좋아져야 해
 무엇을 결정하든 아래 셋이 동시에 좋아지는 방향으로 해줘.
 - UX: 쓰는 사람이 더 편하게
 - DX: 개발자가 더 쉽게 만들고 고칠 수 있게
-- AX: 나중에 이 코드를 다룰 AI도 더 쉽게 이해할 수 있게`;
+- AX: 나중에 이 코드를 다룰 AI도 더 쉽게 이해할 수 있게
+
+3. 망가뜨리지 마
+- 원래 되던 기능은 절대 망가지면 안 돼.
+- 애매한 부분이나 YDS 규칙(yds.txt)이 내 서비스와 안 맞는 부분은 혼자 추측해서 정하지 말고, 작업 전에 나한테 질문해.`;
 
 export const page = ({ title, css = '', body, bodyClass = '' }) => `<!doctype html>
 <!--

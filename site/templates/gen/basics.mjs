@@ -266,6 +266,7 @@ const noticeDetail = () => {
 const faq = () => {
   const css = CSS + `
   .tp-fq-panel { display: flex; flex-direction: column; gap: var(--ds-space-x3); padding: var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
+  .tp-fq-panel .ds-input { --ds-input-bg: var(--ds-color-bg-layer-default); }  /* 회색 판 위 입력칸은 흰 바탕 (11-11 사용자) */
   .tp-top5 { margin: 0; padding: 0; list-style: none; counter-reset: top; }
   .tp-top5 li { counter-increment: top; }
   .tp-top5 a { display: grid; grid-template-columns: var(--ds-space-x6) minmax(0, 1fr); gap: var(--ds-space-x3); padding-block: var(--ds-space-x3); color: inherit; text-decoration: none; }
