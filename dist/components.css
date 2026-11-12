@@ -3393,8 +3393,9 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
      </header>
    Figma: padding x2 / bg/layer-default / 왼쪽 묶음 gap x4 / 메뉴 사이 x1 / 오른쪽 끝 버튼 사이 x1
      로고 칸 높이 x8, 좌우 padding x2, 로고 높이 28
-     Top Navigation Item 높이 x8, 좌우 padding x3, shape/sm, t04 Medium fg/neutral-muted
-     hover bg/transparent-pressed / 선택 bg/neutral-weak-alpha, t04 SemiBold fg/neutral
+     Top Navigation Item 높이 x8, 좌우 padding x3, shape/sm, t04 Medium fg/neutral-subtle(옅게)
+     hover bg/transparent-pressed, fg/neutral / 선택은 바탕 없이 t04 SemiBold fg/neutral (2026-11-12)
+     로그인 뒤 내 정보 Avatar 는 32 로 로그인 버튼(xsmall 32)과 같은 높이 (2026-11-12)
    -------------------------------------------------------------------------- */
 .ds-topnav {
   display: flex;
@@ -3422,7 +3423,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   height: var(--ds-space-x8);
   padding-inline: var(--ds-space-x3);
   border-radius: var(--ds-shape-sm);
-  color: var(--ds-color-fg-neutral-muted);
+  color: var(--ds-color-fg-neutral-subtle);
   font-size: var(--ds-font-size-t04);
   line-height: var(--ds-line-height-t04);
   font-weight: var(--ds-font-weight-medium);
@@ -3430,9 +3431,10 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   white-space: nowrap;
   transition: background-color var(--ds-duration-fast) var(--ds-easing-standard), color var(--ds-duration-fast) var(--ds-easing-standard);
 }
-.ds-topnav__item:hover { background: var(--ds-color-bg-transparent-pressed); }
-.ds-topnav__item[aria-current="page"] { background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
+.ds-topnav__item:hover { background: var(--ds-color-bg-transparent-pressed); color: var(--ds-color-fg-neutral); }
+.ds-topnav__item[aria-current="page"] { color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
 .ds-topnav__end { display: flex; flex: none; align-items: center; gap: var(--ds-space-x1); margin-inline-start: auto; }
+.ds-topnav__end > .ds-avatar { --ds-avatar-size: 32px; }  /* 로그인 버튼(xsmall 32)과 같은 높이 */
 
 
 /* --------------------------------------------------------------------------
