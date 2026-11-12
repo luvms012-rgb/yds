@@ -16,7 +16,7 @@
      · Segmented Control — 누르면 하나만 aria-pressed, change 이벤트. 선택 배경이 고른 항목으로 미끄러져 이동(위치는 --ds-seg-x / --ds-seg-w)
      · Side Panel — Dialog 와 같이 열고 닫기, 본문이 스크롤되면 data-scrolled
      · Pull To Refresh — 터치로 당긴 거리 표시, 넘겨 놓으면 ds-refresh 이벤트, DS.endRefresh(요소) 로 되돌리기
-     · Carousel — 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
+     · Carousel — 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기(진행 막대 안 버튼은 끝에서 반대쪽 끝으로), 진행 막대 채우기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
      · Code Block — data-ds-copy 버튼으로 코드 복사
      · Multi Select — Popover 와 같이 열고 닫기, 고른 값을 칸에 Badge 로 채우기
      · File Attach — 파일을 끌어 놓는 칸 위로 끌고 오면 data-state="dragover", 벗어나거나 놓으면 뺀다
@@ -254,12 +254,16 @@
     car.toggleAttribute("data-at-start", sc.scrollLeft <= 1);
     car.toggleAttribute("data-at-end", sc.scrollLeft >= max - 1);
     var count = car.querySelector(".ds-carousel__count");
+    var bar = car.querySelector(".ds-carousel__progress");
     var items = sc.querySelectorAll(".ds-carousel__item");
-    if (count && items.length) {
+    if ((count || bar) && items.length) {
       var w = items[0].offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0);
       var idx = sc.scrollLeft >= max - 1 ? items.length - 1 : Math.round(sc.scrollLeft / (w || 1));
-      // 지금 번호는 <strong>, 뒤의 아이콘은 그대로 둔다
       var now = Math.min(items.length, idx + 1);
+      // 진행 막대: 지금 번호까지 채운다
+      if (bar) bar.style.setProperty("--ds-carousel-progress", now / items.length);
+      if (!count) return;
+      // 지금 번호는 <strong>, 뒤의 아이콘은 그대로 둔다
       if (count.querySelector("strong") && count.textContent === now + "/" + items.length) return;
       var icon = count.querySelector(".ds-icon");
       while (count.firstChild && count.firstChild !== icon) count.removeChild(count.firstChild);
@@ -749,6 +753,12 @@
     var carBtn = t.closest(".ds-carousel__button");
     if (carBtn) {
       var sc = carBtn.closest(".ds-carousel").querySelector(".ds-carousel__scroller");
+      var back = carBtn.getAttribute("data-direction") === "previous";
+      // 진행 막대 안의 버튼은 끝에서 반대쪽 끝으로 돌아간다
+      if (carBtn.closest(".ds-carousel__bar") && (back ? sc.scrollLeft <= 1 : sc.scrollLeft >= sc.scrollWidth - sc.clientWidth - 1)) {
+        sc.scrollTo({ left: back ? sc.scrollWidth : 0, behavior: "smooth" });
+        return;
+      }
       sc.scrollBy({ left: (carBtn.getAttribute("data-direction") === "previous" ? -1 : 1) * sc.clientWidth * 0.8, behavior: "smooth" });
       return;
     }

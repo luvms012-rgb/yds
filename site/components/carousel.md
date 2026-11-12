@@ -18,8 +18,8 @@
 </div>
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
   <div class="ds-carousel__scroller">…</div>
-  <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
-  <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
   <div class="ds-carousel__controls">
     <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     <button type="button" class="ds-carousel__count" data-ds-open="banner-all" aria-label="전체 배너 보기">1/12<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
@@ -29,6 +29,17 @@
   <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
   <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
 </dialog>
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+  <div class="ds-carousel__scroller">…</div>
+  <div class="ds-carousel__bar">
+    <div class="ds-carousel__progress" aria-hidden="true"></div>
+    <div class="ds-carousel__controls">
+      <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+      <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
+      <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
 ```
 
 ## 구조
@@ -46,6 +57,8 @@
 | **Close** `ds-dialog__close` | 닫기 버튼입니다. |
 | **Body** `ds-dialog__body` | 본문이 들어가는 영역입니다. |
 | **All** `ds-carousel__all` | 모든 항목을 한 번에 보여 주는 칸입니다. |
+| **Bar** `ds-carousel__bar` | 진행 막대와 버튼을 항목 아래 한 줄에 두는 자리입니다. |
+| **Progress** `ds-carousel__progress` | 지금 몇 번째까지 왔는지 채워 보여 주는 막대입니다. |
 
 ## 속성
 
@@ -55,13 +68,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | 켜고 끄는 속성 | `autoplay` |
 
-그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32, square 48
+그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32
 
 ## 동작
 
 `ybm-ds.js`를 불러오면 자동으로 동작합니다.
 
-- 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
+- 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기(진행 막대 안 버튼은 끝에서 반대쪽 끝으로), 진행 막대 채우기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
 
 ## 사용 지침
 
@@ -135,7 +148,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 사진 여러 장을 한 장씩 넘기기
 
-사진은 Image Frame의 비율에 맞춰 꽉 채우고, 한 장을 한 항목으로 넣어 넘깁니다. 사진마다 순서를 표시해 몇 번째 사진인지 알립니다.
+사진은 Image Frame의 비율에 맞춰 꽉 채우고, 한 장을 한 항목으로 넣어 넘깁니다. 번호로 몇 번째 사진인지 알리고, 번호를 누르면 모든 사진을 한 번에 봅니다.
 
 ```html
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="숙소 사진" style="width: 100%; max-width: 420px">
@@ -161,10 +174,17 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </div>
     </div>
   </div>
-  <span class="ds-carousel__count" aria-hidden="true">1/4</span>
+  <button type="button" class="ds-carousel__count" data-ds-open="carousel-photo-all" aria-label="전체 사진 보기">1/4<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
   <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
   <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
 </div>
+<dialog class="ds-dialog" id="carousel-photo-all" data-size="large" aria-labelledby="carousel-photo-all-title">
+  <div class="ds-dialog__header">
+    <h2 class="ds-dialog__title" id="carousel-photo-all-title">전체 보기</h2>
+    <button class="ds-dialog__close" data-ds-close aria-label="닫기"></button>
+  </div>
+  <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
+</dialog>
 ```
 
 ### 터치 화면에서는 스와이프로 넘기기
@@ -210,7 +230,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 큰 배너를 자동으로 넘기기
 
-큰 배너만 자동으로 넘기고, 멈춤 버튼을 번호 옆에 함께 둡니다. 번호를 누르면 모든 배너를 한 번에 봅니다.
+큰 배너만 자동으로 넘기고, 멈춤 버튼을 번호 옆에 함께 둡니다.
 
 ```html
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000" style="width: 100%; max-width: 560px">
@@ -236,8 +256,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </a>
     </div>
   </div>
-  <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
-  <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
   <div class="ds-carousel__controls">
     <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     <button type="button" class="ds-carousel__count" data-ds-open="carousel-all" aria-label="전체 배너 보기">1/4<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
@@ -250,6 +270,50 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
 </dialog>
+```
+
+### 배너 아래 진행 막대로 넘기기
+
+배너 아래 한 줄에 진행 막대와 이동, 멈춤 버튼을 둡니다. 막대가 지금 몇 번째까지 왔는지 채워 보여 줍니다.
+
+```html
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="기획전" data-autoplay="5000" style="width: 100%; max-width: 560px">
+  <div class="ds-carousel__scroller">
+    <div class="ds-carousel__item" style="width: 100%">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=960&q=70" alt="산으로 둘러싸인 호수">
+      </a>
+    </div>
+    <div class="ds-carousel__item" style="width: 100%">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=960&q=70" alt="구름 위로 솟은 산">
+      </a>
+    </div>
+    <div class="ds-carousel__item" style="width: 100%">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=960&q=70" alt="안개 낀 산자락">
+      </a>
+    </div>
+    <div class="ds-carousel__item" style="width: 100%">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=960&q=70" alt="햇살이 드는 숲">
+      </a>
+    </div>
+    <div class="ds-carousel__item" style="width: 100%">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=70" alt="언덕 사이로 난 길">
+      </a>
+    </div>
+  </div>
+  <div class="ds-carousel__bar">
+    <div class="ds-carousel__progress" aria-hidden="true"></div>
+    <div class="ds-carousel__controls">
+      <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+      <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
+      <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
 ```
 
 ## 규격
@@ -275,6 +339,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `--ds-carousel-controls-y` | `var(--ds-space-x2)` |
 | `--ds-carousel-fade-start` | `var(--ds-carousel-fade)` |
 | `--ds-carousel-fade-end` | `var(--ds-carousel-fade)` |
+| `--ds-carousel-progress` | `0` |
 
 ### 크기와 여백
 
@@ -284,6 +349,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 처음이나 끝에 닿으면 ybm-ds.js가 data-at-start / data-at-end를 붙여 그쪽 흐림과 버튼을 숨기고, 버튼을 누르면 한 화면씩 넘깁니다.
 큰 배너 (2026-11-12): 자동 넘김은 큰 배너에만 쓰고, 멈춤 버튼을 늘 함께 둡니다. 마우스를 올리거나 포커스가 들어오면 멈추고, 움직임 줄이기 설정이면 처음부터 멈춰 있습니다.
 번호를 버튼으로 두면 누를 때 모든 항목을 Dialog 에 모아 보여 줍니다. 모음 칸이 비어 있으면 ybm-ds.js 가 항목을 복사해 채웁니다.
+진행 막대 (2026-11-12): 항목 아래 한 줄에 진행 막대와 이전, 다음, 멈춤 버튼을 둡니다. 막대는 지금 몇 번째까지 왔는지 채워 보여 주고, 이동 버튼은 끝에서 반대쪽 끝으로 돌아갑니다.
 서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -play-icon-size / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
-Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2 / square 48, 둥글기 12, 아이콘 24
+Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2
 ```

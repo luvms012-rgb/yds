@@ -4191,8 +4191,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
   <div class="ds-carousel__scroller">…</div>
-  <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
-  <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
   <div class="ds-carousel__controls">
     <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     <button type="button" class="ds-carousel__count" data-ds-open="banner-all" aria-label="전체 배너 보기">1/12<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
@@ -4202,6 +4202,17 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
   <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
 </dialog>
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+  <div class="ds-carousel__scroller">…</div>
+  <div class="ds-carousel__bar">
+    <div class="ds-carousel__progress" aria-hidden="true"></div>
+    <div class="ds-carousel__controls">
+      <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+      <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
+      <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
 ```
 
 ## 속성
@@ -4212,13 +4223,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | 켜고 끄는 속성 | `autoplay` |
 
-그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32, square 48
+그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32
 
 ## 동작
 
 `ybm-ds.js`를 불러오면 자동으로 동작합니다.
 
-- 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
+- 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기(진행 막대 안 버튼은 끝에서 반대쪽 끝으로), 진행 막대 채우기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
 
 ## 사용 지침
 

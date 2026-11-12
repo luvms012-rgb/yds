@@ -3971,8 +3971,8 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
    번호를 버튼으로 두면 누를 때 모든 항목을 Dialog 에 모아 보여 줍니다. 모음 칸이 비어 있으면 ybm-ds.js 가 항목을 복사해 채웁니다.
      <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
        <div class="ds-carousel__scroller">…</div>
-       <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
-       <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+       <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+       <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
        <div class="ds-carousel__controls">
          <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
          <button type="button" class="ds-carousel__count" data-ds-open="banner-all" aria-label="전체 배너 보기">1/12<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
@@ -3982,8 +3982,20 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
        <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
        <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
      </dialog>
+   진행 막대 (2026-11-12): 항목 아래 한 줄에 진행 막대와 이전, 다음, 멈춤 버튼을 둡니다. 막대는 지금 몇 번째까지 왔는지 채워 보여 주고, 이동 버튼은 끝에서 반대쪽 끝으로 돌아갑니다.
+     <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+       <div class="ds-carousel__scroller">…</div>
+       <div class="ds-carousel__bar">
+         <div class="ds-carousel__progress" aria-hidden="true"></div>
+         <div class="ds-carousel__controls">
+           <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+           <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
+           <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
+         </div>
+       </div>
+     </div>
    서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -play-icon-size / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
-   Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2 / square 48, 둥글기 12, 아이콘 24
+   Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2
    -------------------------------------------------------------------------- */
 .ds-carousel { --ds-carousel-gap: var(--ds-space-x2); --ds-carousel-padding: 0px; --ds-carousel-fade: var(--ds-space-x1); --ds-carousel-button-size: var(--ds-space-x8); --ds-carousel-button-radius: var(--ds-shape-pill); --ds-carousel-button-shadow: var(--ds-elevation-overlay); --ds-carousel-button-inset: var(--ds-space-x2); --ds-carousel-control-size: var(--ds-space-x6); --ds-carousel-play-icon-size: calc(var(--ds-carousel-control-size) * 0.45); --ds-carousel-count-font-size: var(--ds-font-size-t02); --ds-carousel-count-padding: 0 var(--ds-space-x2); --ds-carousel-controls-x: var(--ds-space-x2); --ds-carousel-controls-y: var(--ds-space-x2); position: relative; min-width: 0; max-width: 100%; }
 .ds-carousel__scroller {
@@ -4025,9 +4037,6 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-carousel__button[data-direction="next"] { right: var(--ds-carousel-button-inset); }
 .ds-carousel[data-at-start] .ds-carousel__button[data-direction="previous"],
 .ds-carousel[data-at-end] .ds-carousel__button[data-direction="next"] { opacity: 0; pointer-events: none; }
-/* 2026-11-12: 큰 배너용 네모 버튼. 크기와 둥글기는 --ds-carousel-button-size / -radius 로 바꿉니다 */
-.ds-carousel__button[data-shape="square"] { --ds-carousel-button-size: var(--ds-space-x12); --ds-carousel-button-radius: var(--ds-shape-lg); }
-.ds-carousel__button[data-shape="square"] .ds-icon { --ds-icon-size: 24px; }
 /* 2026-11-12: 멈춤 버튼과 번호 버튼을 오른쪽 아래에 함께 둔다. 자동 넘김은 끝에서 처음으로 돌아간다 */
 .ds-carousel__controls { position: absolute; z-index: 1; right: var(--ds-carousel-controls-x); bottom: var(--ds-carousel-controls-y); display: flex; align-items: center; gap: var(--ds-space-x1); }
 .ds-carousel__controls .ds-carousel__count { position: static; }
@@ -4037,6 +4046,18 @@ button.ds-carousel__count { display: inline-flex; align-items: center; gap: var(
 button.ds-carousel__count strong { font-weight: var(--ds-font-weight-bold); }
 .ds-carousel__count strong { font-weight: inherit; }
 button.ds-carousel__count .ds-icon { --ds-icon-size: 12px; }
+/* 2026-11-12: 진행 막대. 항목 아래 한 줄, 막대는 남는 폭을 채우고 오른쪽에 버튼 묶음. 채운 길이는 ybm-ds.js 가 --ds-carousel-progress(0~1)로 */
+.ds-carousel__bar { display: flex; align-items: center; gap: var(--ds-space-x6); margin-top: var(--ds-space-x3); }
+.ds-carousel__progress { --ds-carousel-progress: 0; position: relative; flex: 1; height: 2px; overflow: hidden; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); }
+.ds-carousel__progress::before { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--ds-carousel-progress) * 100%); background: var(--ds-color-bg-neutral-inverted); transition: width var(--ds-duration-normal) var(--ds-easing-standard); }
+.ds-carousel__bar .ds-carousel__controls { position: static; gap: var(--ds-space-x1); }
+.ds-carousel__bar .ds-carousel__button { position: static; inset: auto; width: var(--ds-space-x6); height: var(--ds-space-x6); border-radius: var(--ds-shape-xs); background: none; box-shadow: none; translate: none; }
+.ds-carousel__bar .ds-carousel__button[data-direction="next"] { position: relative; margin-left: var(--ds-space-x1); }
+.ds-carousel__bar .ds-carousel__button[data-direction="next"]::before { content: ""; position: absolute; left: calc(var(--ds-space-x1) * -1); top: 50%; width: 1px; height: 10px; translate: -50% -50%; background: var(--ds-color-stroke-neutral-muted); }
+.ds-carousel[data-at-start] .ds-carousel__bar .ds-carousel__button[data-direction="previous"],
+.ds-carousel[data-at-end] .ds-carousel__bar .ds-carousel__button[data-direction="next"] { opacity: 1; pointer-events: auto; }
+.ds-carousel__bar .ds-carousel__play { background: none; color: var(--ds-color-fg-neutral); }
+@media (prefers-reduced-motion: reduce) { .ds-carousel__progress::before { transition: none; } }
 .ds-carousel__all { display: grid; gap: var(--ds-space-x3); }
 @media (min-width: 768px) { .ds-carousel__all { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
