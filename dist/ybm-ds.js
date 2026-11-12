@@ -271,14 +271,21 @@
       // 진행 막대: 지금 번호까지 채운다
       if (bar) bar.style.setProperty("--ds-carousel-progress", now / items.length);
       if (!count) return;
-      // 지금 번호는 <strong>, 뒤의 아이콘은 그대로 둔다
-      if (count.querySelector("strong") && count.textContent === now + "/" + items.length) return;
+      // 진행 막대 줄 안 번호는 두 자리(05 | 23), 그 밖은 지금 번호를 <strong> 으로(3/12). 뒤의 아이콘은 그대로 둔다
+      var inBar = !!count.closest(".ds-carousel__bar");
+      var pad = function (n) { return inBar && n < 10 ? "0" + n : "" + n; };
+      if (count.querySelector("strong") && count.textContent === pad(now) + (inBar ? "" : "/") + pad(items.length)) return;
       var icon = count.querySelector(".ds-icon");
       while (count.firstChild && count.firstChild !== icon) count.removeChild(count.firstChild);
       var cur = document.createElement("strong");
-      cur.textContent = now;
+      cur.textContent = pad(now);
       count.insertBefore(cur, icon);
-      count.insertBefore(document.createTextNode("/" + items.length), icon);
+      if (inBar) {
+        var total = document.createElement("span");
+        total.className = "ds-carousel__total";
+        total.textContent = pad(items.length);
+        count.insertBefore(total, icon);
+      } else count.insertBefore(document.createTextNode("/" + items.length), icon);
     }
   }
   // 항목이 멈추는 자리(항목 왼쪽 - 안쪽 여백)

@@ -29,12 +29,13 @@
   <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
   <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
 </dialog>
-<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-layout="bar" data-autoplay="5000">
   <div class="ds-carousel__scroller">…</div>
   <div class="ds-carousel__bar">
     <div class="ds-carousel__progress" aria-hidden="true"></div>
     <div class="ds-carousel__controls">
       <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+      <span class="ds-carousel__count" aria-hidden="true">01/05</span>
       <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
       <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     </div>
@@ -66,7 +67,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| 켜고 끄는 속성 | `autoplay` |
+| `layout` | overlay bar |
+| 켜고 끄는 속성 | `autoplay` `loop` |
 
 그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32
 
@@ -274,10 +276,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 배너 아래 진행 막대로 넘기기
 
-배너 아래 한 줄에 진행 막대와 이동, 멈춤 버튼을 둡니다. 막대가 지금 몇 번째까지 왔는지 채워 보여 줍니다.
+배너 아래 한 줄에 진행 막대, 번호, 이동과 멈춤 버튼을 둡니다. 막대가 지금 몇 번째까지 왔는지 채워 보여 줍니다.
 
 ```html
-<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="기획전" data-autoplay="5000" style="width: 100%; max-width: 560px">
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="기획전" data-layout="bar" data-autoplay="5000" style="width: 100%; max-width: 560px">
   <div class="ds-carousel__scroller">
     <div class="ds-carousel__item" style="width: 100%">
       <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
@@ -309,6 +311,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <div class="ds-carousel__progress" aria-hidden="true"></div>
     <div class="ds-carousel__controls">
       <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+      <span class="ds-carousel__count" aria-hidden="true">01/05</span>
       <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
       <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     </div>
@@ -344,13 +347,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
+모양(data-layout): overlay(기본, 버튼과 번호가 항목 위에 뜸) / bar(항목 아래 한 줄에 진행 막대와 버튼). 크기, 둥글기, 위치는 변수로만 바꿉니다.
 항목은 넘길 때 시작 위치에 맞춰 멈춥니다. 넘겨 보는 이미지 배너는 Image Frame을 항목으로 넣어 만듭니다.
 번호(1/4)는 항목 안이 아니라 캐러셀 바로 안에 [<span class="ds-carousel__count" aria-hidden="true">1/4</span>]로 배치합니다. 넘겨도 위치가 고정되고 숫자는 ybm-ds.js가 바꿉니다.
 처음이나 끝에 닿으면 ybm-ds.js가 data-at-start / data-at-end를 붙여 그쪽 흐림과 버튼을 숨기고, 버튼을 누르면 한 화면씩 넘깁니다.
 큰 배너 (2026-11-12): 자동 넘김은 큰 배너에만 쓰고, 멈춤 버튼을 늘 함께 둡니다. 마우스를 올리거나 포커스가 들어오면 멈추고, 움직임 줄이기 설정이면 처음부터 멈춰 있습니다.
 번호를 버튼으로 두면 누를 때 모든 항목을 Dialog 에 모아 보여 줍니다. 모음 칸이 비어 있으면 ybm-ds.js 가 항목을 복사해 채웁니다.
 끝없이 넘기기 (2026-11-12): data-loop 를 붙이면 첫 장 왼쪽에 마지막 장, 마지막 장 오른쪽에 첫 장이 보이고 끊김 없이 이어집니다. 복제 장은 ybm-ds.js 가 만들고 번호, 진행 막대, 전체 보기에서는 세지 않습니다. 양옆 장을 보이려면 --ds-carousel-padding 을 줍니다.
-진행 막대 (2026-11-12): 항목 아래 한 줄에 진행 막대와 이전, 다음, 멈춤 버튼을 둡니다. 막대는 지금 몇 번째까지 왔는지 채워 보여 주고, 이동 버튼은 끝에서 반대쪽 끝으로 돌아갑니다.
+진행 막대 (2026-11-12): 항목 아래 한 줄에 진행 막대, 이전, 번호(05 | 23), 다음, 멈춤 버튼을 둡니다. 막대는 지금 몇 번째까지 왔는지 채워 보여 주고, 이동 버튼은 끝에서 반대쪽 끝으로 돌아갑니다. 번호는 ybm-ds.js 가 두 자리로 채웁니다.
 서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -play-icon-size / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
 Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2
 ```

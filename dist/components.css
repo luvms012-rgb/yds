@@ -3957,6 +3957,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 
 /* --------------------------------------------------------------------------
    67 Carousel - 가로로 넘기며 보는 묶음 (2026-10-29 추가)
+   모양(data-layout): overlay(기본, 버튼과 번호가 항목 위에 뜸) / bar(항목 아래 한 줄에 진행 막대와 버튼). 크기, 둥글기, 위치는 변수로만 바꿉니다.
    항목은 넘길 때 시작 위치에 맞춰 멈춥니다. 넘겨 보는 이미지 배너는 Image Frame을 항목으로 넣어 만듭니다.
    번호(1/4)는 항목 안이 아니라 캐러셀 바로 안에 [<span class="ds-carousel__count" aria-hidden="true">1/4</span>]로 배치합니다. 넘겨도 위치가 고정되고 숫자는 ybm-ds.js가 바꿉니다.
    처음이나 끝에 닿으면 ybm-ds.js가 data-at-start / data-at-end를 붙여 그쪽 흐림과 버튼을 숨기고, 버튼을 누르면 한 화면씩 넘깁니다.
@@ -3983,13 +3984,14 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
        <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
      </dialog>
    끝없이 넘기기 (2026-11-12): data-loop 를 붙이면 첫 장 왼쪽에 마지막 장, 마지막 장 오른쪽에 첫 장이 보이고 끊김 없이 이어집니다. 복제 장은 ybm-ds.js 가 만들고 번호, 진행 막대, 전체 보기에서는 세지 않습니다. 양옆 장을 보이려면 --ds-carousel-padding 을 줍니다.
-   진행 막대 (2026-11-12): 항목 아래 한 줄에 진행 막대와 이전, 다음, 멈춤 버튼을 둡니다. 막대는 지금 몇 번째까지 왔는지 채워 보여 주고, 이동 버튼은 끝에서 반대쪽 끝으로 돌아갑니다.
-     <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+   진행 막대 (2026-11-12): 항목 아래 한 줄에 진행 막대, 이전, 번호(05 | 23), 다음, 멈춤 버튼을 둡니다. 막대는 지금 몇 번째까지 왔는지 채워 보여 주고, 이동 버튼은 끝에서 반대쪽 끝으로 돌아갑니다. 번호는 ybm-ds.js 가 두 자리로 채웁니다.
+     <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-layout="bar" data-autoplay="5000">
        <div class="ds-carousel__scroller">…</div>
        <div class="ds-carousel__bar">
          <div class="ds-carousel__progress" aria-hidden="true"></div>
          <div class="ds-carousel__controls">
            <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+           <span class="ds-carousel__count" aria-hidden="true">01/05</span>
            <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
            <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
          </div>
@@ -4053,11 +4055,14 @@ button.ds-carousel__count .ds-icon { --ds-icon-size: 12px; }
 .ds-carousel__progress::before { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--ds-carousel-progress) * 100%); background: var(--ds-color-bg-neutral-inverted); transition: width var(--ds-duration-normal) var(--ds-easing-standard); }
 .ds-carousel__bar .ds-carousel__controls { position: static; gap: var(--ds-space-x1); }
 .ds-carousel__bar .ds-carousel__button { position: static; inset: auto; width: var(--ds-space-x6); height: var(--ds-space-x6); border-radius: var(--ds-shape-xs); background: none; box-shadow: none; translate: none; }
-.ds-carousel__bar .ds-carousel__button[data-direction="next"] { position: relative; margin-left: var(--ds-space-x1); }
-.ds-carousel__bar .ds-carousel__button[data-direction="next"]::before { content: ""; position: absolute; left: calc(var(--ds-space-x1) * -1); top: 50%; width: 1px; height: 12px; translate: -50% -50%; background: var(--ds-color-stroke-neutral-weak); }
+/* 막대 줄 번호: 지금 번호 | 전체 수, 사이에 짧은 세로선 */
+.ds-carousel__bar .ds-carousel__count { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); padding: 0; border-radius: 0; background: none; color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-regular); }
+.ds-carousel__bar .ds-carousel__count strong { font-weight: inherit; }
+.ds-carousel__bar .ds-carousel__total { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); }
+.ds-carousel__bar .ds-carousel__total::before { content: ""; width: 1px; height: 10px; background: var(--ds-color-stroke-neutral-weak); }
 .ds-carousel[data-at-start] .ds-carousel__bar .ds-carousel__button[data-direction="previous"],
 .ds-carousel[data-at-end] .ds-carousel__bar .ds-carousel__button[data-direction="next"] { opacity: 1; pointer-events: auto; }
-.ds-carousel__bar .ds-carousel__play { background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral); }
+.ds-carousel__bar .ds-carousel__play { background: none; color: var(--ds-color-fg-neutral); }
 @media (prefers-reduced-motion: reduce) { .ds-carousel__progress::before { transition: none; } }
 .ds-carousel__all { display: grid; gap: var(--ds-space-x3); }
 @media (min-width: 768px) { .ds-carousel__all { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

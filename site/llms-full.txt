@@ -4202,12 +4202,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
   <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
 </dialog>
-<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-layout="bar" data-autoplay="5000">
   <div class="ds-carousel__scroller">…</div>
   <div class="ds-carousel__bar">
     <div class="ds-carousel__progress" aria-hidden="true"></div>
     <div class="ds-carousel__controls">
       <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
+      <span class="ds-carousel__count" aria-hidden="true">01/05</span>
       <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
       <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     </div>
@@ -4221,7 +4222,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| 켜고 끄는 속성 | `autoplay` |
+| `layout` | overlay bar |
+| 켜고 끄는 속성 | `autoplay` `loop` |
 
 그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32
 
