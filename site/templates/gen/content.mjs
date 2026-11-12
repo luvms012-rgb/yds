@@ -138,9 +138,6 @@ const productDetail = () => {
   .tp-thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--ds-space-x2); }
   .tp-thumbs .ds-imageframe[aria-current="true"] { outline: 2px solid var(--ds-color-stroke-neutral-contrast); outline-offset: 2px; }
   .tp-pd__info { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
-  .tp-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ds-space-x2); }
-  .tp-price b { font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); }
-  .tp-price s { color: var(--ds-color-fg-neutral-subtle); }
   .tp-opt { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
   .tp-opt .ds-quantity { align-self: flex-start; width: 144px; }
   .tp-pd__btns { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x2); }
@@ -149,7 +146,7 @@ const productDetail = () => {
   <div class="tp-pd__media">${K.zoom('pd-lb', 0, thumb('1:1', '', K.photo('book', 0, 1200), 'xl'), '상품 사진 크게 보기')}<div class="tp-thumbs">${Array.from({ length: 6 }, (_, i) => thumb('1:1', '', K.photo('book', i, 320), 'md').replace('aria-hidden="true"', i === 0 ? 'aria-current="true"' : 'aria-hidden="true"')).join('')}</div></div>
   <div class="tp-pd__info">
     <div class="tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-h1">TOEIC 실전 모의고사 1000제 세트</h1><span class="ds-rating" data-size="small" style="--ds-rating-value: 4.3" role="img" aria-label="5점 만점에 4.3점, 후기 128개"><span class="ds-rating__stars"></span><span class="ds-rating__value">4.3</span><span class="ds-rating__count">(128)</span></span></div>
-    <div class="tp-price"><b class="tp-num">38,000원</b><s class="tp-num">48,000원</s>${badge('할인', 'critical')}</div>
+    <div class="ds-price"><s class="ds-price__was">48,000원</s><div class="ds-price__now"><span class="ds-price__rate">20%</span><strong class="ds-price__value">38,400원</strong></div></div>
     
     <div class="tp-opt"><span class="tp-h4">구성</span>${segmented(['문제집만', '문제집 + 해설', '전체 세트'], 2, '구성', 'medium')}</div>
     <div class="tp-opt"><span class="tp-h4">음원</span>${segmented(['QR 스트리밍', 'MP3 다운로드'], 0, '음원', 'medium')}</div>

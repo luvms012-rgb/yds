@@ -5,6 +5,7 @@
 
 ## 한 것
 
+- **새 컴포넌트 3종 (11-12)**: 86 Section Header(`.ds-sectionheader`), 87 Price(`.ds-price`), 88 Stat(`.ds-stat`). 레퍼런스 2곳에 같은 부품이 없어 사용자 결정으로 템플릿에서 쓰던 모양을 정본으로 올렸다. 템플릿 kit 의 `secHead()`, `kpi()`, `delta()` 와 장바구니, 상품 상세, 요금제의 가격 표시 5가지를 새 컴포넌트로 바꿨다(상품 상세 할인 배지는 할인율로). Figma 는 아직 없다.
 - **운영 구조 정리 (11-12)**: 루트 CLAUDE.md 의 "3. 진행 상황" 을 글자 그대로 docs/log.md 로 옮겼다. CLAUDE.md 는 원칙, 기준 주소, 상시 규칙, 두 PC 싱크, 작업 규칙만 남겼다. 인수인계는 이 파일 하나에 최신 1건만 둔다. site/CLAUDE.md 는 바뀐 옛 값 40줄을 log.md 끝으로 옮기고 지금 값만 남겼다(Get Started, Updates 는 지금 구성으로 다시 씀). Figma 그리기 절차는 새 스킬 `.claude/skills/yds-figma-draw` 에 있다. 섞여 있던 줄(배치 묶음, 왼쪽 메뉴, Themes, Foundations, 템플릿 묶음 기록)도 사용자 답변대로 지금 값만 남겼다.
 - **싱크 점검 (11-12)**: 저장소, 실사이트, Figma 모두 일치. 변수 359, 컴포넌트 세트 117, 문서와 코드 링크 170, 템플릿 화면 84.
 - **Figma Templates 바탕 (11-12)**: 템플릿 84개의 화면 바탕을 bg/canvas 로, 섹션 9개 바탕을 bg/layer-default 로 바꿨다. 사이트 템플릿(흰 바탕)과 다른 Figma 보기용 차이다.
@@ -14,13 +15,14 @@
 ## 남은 일 (순서대로)
 
 0. 자동 싱크 예약 작업 등록(사용자): Claude 가 대신 등록하면 권한에서 막힌다. 앱의 예약 작업 화면에서 tools/auto-sync-task.md 의 작업 지시문을 붙여 넣어 만든다(평일 18:30). 새 도구 tools/figma-quick.mjs 의 점검 스크립트는 아직 Figma 에서 실제로 돌려 보지 않았다(같은 내용을 손으로 돌린 것은 일치).
-1. 운영 구조 정리 5단계: 시험지 만들기. Get Started 예시 요청 6개를 yds.txt 주소만 준 새 세션에서 돌려 yds-check 문제 수, hex 직접 쓴 수, 없는 클래스 수를 표로 쌓는다.
-2. 템플릿 2순위 7종(내 강의실, 오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역)과 3순위 3종(오류, 점검, 알림 목록). 사용자 지시 대기.
-3. 새 컴포넌트 점 규칙. 제안(컴포넌트마다 추가일부터 14일, 그 페이지를 한 번 열면 사라짐)에 대한 답 대기. 지금은 가장 최근 묶음만 30일(build.mjs NEW_COMPS).
-4. 템플릿 UI 전체 개선. 사용자가 방향을 줄 때까지 시작하지 않고, 짚은 화면만 고친다.
-5. h1 이 없는 템플릿 9종에 숨김 제목(`tp-sr`) 넣기: ai-chat, canvas-editor, community-home, contact-form, dashboard, documentation, file-explorer, ide, mypage-home.
-6. Figma: 예전 템플릿 사진 칸은 회색, 그림자는 일부만. 라이브러리 다시 게시는 사용자가 한다. 라이브러리 원본(Foundations, Iconography, 컴포넌트) 변수 연결은 사용자 "다음에".
-7. Markdown 메뉴 복사 성공 안내를 일반 브라우저에서 한 번 눌러 확인한다.
+1. Figma 싱크(사용자가 걸 때): 새 컴포넌트 86~88 세트와 문서 프레임, 코드 링크. 그리고 이 세 컴포넌트를 쓰는 템플릿만 다시 그린다(머리글 22쪽, 가격 5쪽, 수치 5쪽, `grep -l "ds-sectionheader|ds-price|ds-stat" site/templates/pages/*.html`). kit CSS 가 바뀌어 `figma-quick changed` 는 템플릿 84개를 모두 내놓지만 나머지는 화면이 그대로다.
+2. 운영 구조 정리 5단계: 시험지 만들기. Get Started 예시 요청 6개를 yds.txt 주소만 준 새 세션에서 돌려 yds-check 문제 수, hex 직접 쓴 수, 없는 클래스 수를 표로 쌓는다.
+3. 템플릿 2순위 7종(내 강의실, 오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역)과 3순위 3종(오류, 점검, 알림 목록). 사용자 지시 대기.
+4. 새 컴포넌트 점 규칙. 제안(컴포넌트마다 추가일부터 14일, 그 페이지를 한 번 열면 사라짐)에 대한 답 대기. 지금은 가장 최근 묶음만 30일(build.mjs NEW_COMPS).
+5. 템플릿 UI 전체 개선. 사용자가 방향을 줄 때까지 시작하지 않고, 짚은 화면만 고친다.
+6. h1 이 없는 템플릿 9종에 숨김 제목(`tp-sr`) 넣기: ai-chat, canvas-editor, community-home, contact-form, dashboard, documentation, file-explorer, ide, mypage-home.
+7. Figma: 예전 템플릿 사진 칸은 회색, 그림자는 일부만. 라이브러리 다시 게시는 사용자가 한다. 라이브러리 원본(Foundations, Iconography, 컴포넌트) 변수 연결은 사용자 "다음에".
+8. Markdown 메뉴 복사 성공 안내를 일반 브라우저에서 한 번 눌러 확인한다.
 
 ### 오래된 대기 (2026-11-09 기록, 지금도 유효한지 사용자에게 확인)
 

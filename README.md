@@ -420,6 +420,9 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 83 | Mega Menu | `.ds-megamenu` (`__inner/group/title/list/link/aside`) | `3143:2639` | 트리거 `data-ds-megamenu` + `aria-expanded`, 768 이상에서만 |
 | 84 | Command Palette | `.ds-command` (`__search/input/list/group/title/item/label/kbd/empty`) | `3144:1210` | `data-ds-hotkey="k"`, 거르기, 위아래 화살표와 Enter |
 | 85 | Segmented Text Input | `.ds-segmentinput` (`__segment/separator/dots/suffix`, 틀은 `.ds-input`) | `3230:4375`, 20 | size `large/medium`, 가린 구간 `data-masked`, 자리 수를 채우면 다음 구간, 붙여 넣기는 가린 구간 앞에서 멈춤 |
+| 86 | Section Header | `.ds-sectionheader` (`__title/end`) | Figma 없음(최종 검토 때) | size `medium/small`, end 에 Text Link, 버튼, Segmented Control, Chip Tabs, Select, Badge 중 하나 |
+| 87 | Price | `.ds-price` (`__was/now/rate/value/unit`) | Figma 없음(최종 검토 때) | size `small/medium/large`, `data-align="end"`, 원래 가격은 위 줄 |
+| 88 | Stat | `.ds-stat` (`__label/body/value/delta`) | Figma 없음(최종 검토 때) | 증감 `data-tone="up/down/flat"`, 이름 앞 Status Dot |
 
 목록의 기계용 사본이 `components.json`이다. 컴포넌트를 추가/변경하면 이 표와 `components.json`을 함께 고친다(sync가 Figma/CSS와 대조).
 

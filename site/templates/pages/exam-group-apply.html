@@ -74,11 +74,9 @@
   .tp-content { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x10); }
   .tp-panel { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-sec { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; }
-  .tp-sec-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2) var(--ds-space-x3); }
-  .tp-sec-head__texts { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ds-space-x1) var(--ds-space-x2); }
   .tp-row { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
   /* 줄 안에 놓인 고르기 칸은 글자만큼만 */
-  :is(.tp-row, .tp-between, .tp-head__tools, .tp-sec-head, .tp-ttools__end) > .ds-select { width: auto; min-width: 140px; }
+  :is(.tp-row, .tp-between, .tp-head__tools, .tp-ttools__end) > .ds-select { width: auto; min-width: 140px; }
   .tp-between { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); }
   .tp-stack { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
   .tp-stack > .ds-badge { align-self: flex-start; }
@@ -86,13 +84,6 @@
   /* 카드 (레퍼런스 A): 흰 바탕 + 옅은 1px 선, 모서리 12 */
   .tp-card { min-width: 0; }
   .tp-span2 { grid-column: auto; }
-  .tp-kpi__label { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
-  .tp-kpi__value { font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-  .tp-delta { display: inline-flex; align-items: center; gap: 2px; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .tp-delta .ds-icon { --ds-icon-size: 14px; }
-  .tp-delta[data-tone="up"] { color: var(--ds-color-fg-positive); }
-  .tp-delta[data-tone="down"] { color: var(--ds-color-fg-critical); }
-  .tp-delta[data-tone="flat"] { color: var(--ds-color-fg-neutral-muted); }
   /* 차트: 얇은 선, 옅은 격자, 마우스를 올리면 세로 안내선과 값 풍선 */
   .tp-chart { display: block; width: 100%; height: auto; overflow: visible; }
   .tp-chart text { fill: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t01); font-family: inherit; font-variant-numeric: tabular-nums; }

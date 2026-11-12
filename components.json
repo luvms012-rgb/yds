@@ -1635,6 +1635,36 @@
       "props": "size `large/medium`(medium 은 PC 전용), 가린 구간 `data-masked`, `aria-invalid`, disabled, readonly, 구간마다 maxlength",
       "category": "Data Input",
       "doc": "3230:3474"
+    },
+    {
+      "no": "86",
+      "name": "Section Header",
+      "classes": [
+        ".ds-sectionheader"
+      ],
+      "figma": [],
+      "props": "size `medium/small`, title 안 아이콘과 Badge, end 에 Text Link, Action Button, Segmented Control, Chip Tabs, Select, Badge",
+      "category": "Layout"
+    },
+    {
+      "no": "87",
+      "name": "Price",
+      "classes": [
+        ".ds-price"
+      ],
+      "figma": [],
+      "props": "size `small/medium/large`, align `end`, 할인율 rate, 원래 가격 was, 단위 unit",
+      "category": "Content"
+    },
+    {
+      "no": "88",
+      "name": "Stat",
+      "classes": [
+        ".ds-stat"
+      ],
+      "figma": [],
+      "props": "증감 tone `up/down/flat`, 이름 앞 Status Dot",
+      "category": "Content"
     }
   ]
 }
