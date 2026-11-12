@@ -18,6 +18,7 @@
 - 규칙 파일: 설치할 때 규칙 파일(https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다.
 - 컴포넌트: 목록(https://luvms012-rgb.github.io/yds/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(https://raw.githubusercontent.com/luvms012-rgb/yds/main/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
+- 캐러셀: 자동 넘김(data-autoplay)은 큰 배너에만 쓰고, 멈춤 버튼(.ds-carousel__play)을 꼭 함께 둔다.
 - 아이콘: 목록(https://luvms012-rgb.github.io/yds/site/ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 옅은 회색 칸(트랙, 빈 칸, 자리 표시, 회색 박스 안의 칸)은 --ds-color-bg-neutral-weak-alpha를 쓴다. 불투명 --ds-color-bg-neutral은 같은 회색 바탕 위에서 사라진다.
@@ -4188,19 +4189,36 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
   <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
 </div>
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000">
+  <div class="ds-carousel__scroller">…</div>
+  <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
+  <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
+  <div class="ds-carousel__controls">
+    <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause" aria-hidden="true"></i></button>
+    <button type="button" class="ds-carousel__count" data-ds-open="banner-all" aria-label="전체 배너 보기">1/12<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
+  </div>
+</div>
+<dialog class="ds-dialog" id="banner-all" data-size="large" aria-labelledby="banner-all-title">
+  <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
+  <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
+</dialog>
 ```
 
 ## 속성
 
 Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
-그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32
+| 속성 | 값 |
+| --- | --- |
+| 켜고 끄는 속성 | `autoplay` |
+
+그 밖에: 항목 사이 x2, 끝 흐림 x1, 버튼 32, square 48
 
 ## 동작
 
 `ybm-ds.js`를 불러오면 자동으로 동작합니다.
 
-- 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기
+- 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
 
 ## 사용 지침
 
@@ -4209,9 +4227,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. |
 | **Do** | 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. |
 | **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
+| **Do** | 자동 넘김은 큰 배너에만 사용하고, 멈춤 버튼을 함께 둡니다. |
 | **Do** | 묶음에는 aria-label을 붙입니다. |
 | **Don't** | 모두가 봐야 하는 내용은 넣지 않습니다. |
-| **Don't** | 자동으로 넘기지 않습니다. |
+| **Don't** | 멈춤 버튼 없이 자동으로 넘기지 않습니다. |
 | **Don't** | Carousel 안에 Carousel을 넣지 않습니다. |
 
 
