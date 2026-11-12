@@ -3392,10 +3392,11 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
        </div>
      </header>
    Figma: padding x2 / bg/layer-default / 왼쪽 묶음 gap x4 / 메뉴 사이 x1 / 오른쪽 끝 버튼 사이 x1
-     로고 칸 높이 x8, 좌우 padding x2, 로고 높이 28
+     로고 칸 높이 x8, 좌우 padding x2, 로고 높이 20(메뉴 글자 14 보다 조금 크게, 2026-11-12)
      Top Navigation Item 높이 x8, 좌우 padding x3, shape/sm, t04 Medium fg/neutral-subtle(옅게)
      hover bg/transparent-pressed, fg/neutral / 선택은 바탕 없이 t04 SemiBold fg/neutral (2026-11-12)
      로그인 뒤 내 정보 Avatar 는 32 로 로그인 버튼(xsmall 32)과 같은 높이 (2026-11-12)
+     data-layout="center": 메뉴를 막대 가운데에, 로고는 왼쪽, 버튼은 오른쪽 그대로 (2026-11-12)
    -------------------------------------------------------------------------- */
 .ds-topnav {
   display: flex;
@@ -3414,7 +3415,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   color: var(--ds-color-fg-neutral);
   text-decoration: none;
 }
-.ds-topnav__heading > :is(img, svg) { width: auto; height: 28px; }
+.ds-topnav__heading > :is(img, svg) { width: auto; height: 20px; }
 .ds-topnav__menu { display: flex; align-items: center; gap: var(--ds-space-x1); min-width: 0; }
 .ds-topnav__item {
   display: inline-flex;
@@ -3435,6 +3436,10 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-topnav__item[aria-current="page"] { color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
 .ds-topnav__end { display: flex; flex: none; align-items: center; gap: var(--ds-space-x1); margin-inline-start: auto; }
 .ds-topnav__end > .ds-avatar { --ds-avatar-size: 32px; }  /* 로그인 버튼(xsmall 32)과 같은 높이 */
+.ds-topnav[data-layout="center"] { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--ds-space-x4); }
+.ds-topnav[data-layout="center"] .ds-topnav__left { display: contents; }
+.ds-topnav[data-layout="center"] .ds-topnav__heading { justify-self: start; }
+.ds-topnav[data-layout="center"] .ds-topnav__end { justify-self: end; }
 
 
 /* --------------------------------------------------------------------------

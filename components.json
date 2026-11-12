@@ -1085,7 +1085,7 @@
       ],
       "doc": "2557:2397",
       "category": "Navigation",
-      "props": "search, action / Item selected, state `enabled/hover`"
+      "props": "layout `center`(메뉴 가운데), search, action / Item selected, state `enabled/hover`"
     },
     {
       "no": "56",

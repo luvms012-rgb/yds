@@ -9,6 +9,10 @@
           "items": [
             [
               "DS",
+              "Top Navigation 에 메뉴를 막대 가운데에 두는 data-layout=\"center\" 를 더했습니다."
+            ],
+            [
+              "DS",
               "Text Link 끝에 화살표 아이콘을 넣으면 밑줄 없이 표시됩니다. 전체 보기처럼 이동을 알리는 링크에 사용합니다."
             ],
             [
