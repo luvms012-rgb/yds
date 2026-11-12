@@ -16,7 +16,7 @@
      · Segmented Control — 누르면 하나만 aria-pressed, change 이벤트. 선택 배경이 고른 항목으로 미끄러져 이동(위치는 --ds-seg-x / --ds-seg-w)
      · Side Panel — Dialog 와 같이 열고 닫기, 본문이 스크롤되면 data-scrolled
      · Pull To Refresh — 터치로 당긴 거리 표시, 넘겨 놓으면 ds-refresh 이벤트, DS.endRefresh(요소) 로 되돌리기
-     · Carousel — 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기(진행 막대 안 버튼은 끝에서 반대쪽 끝으로), 진행 막대 채우기, data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
+     · Carousel — 처음/끝이면 data-at-start / data-at-end, 버튼으로 한 화면씩 넘기기(진행 막대 안 버튼은 끝에서 반대쪽 끝으로), 진행 막대 채우기, data-loop 면 앞뒤 복제 장으로 끝없이 넘기기(번호, 막대, 전체 보기는 진짜 장만), data-autoplay 면 자동 넘김(멈춤 버튼, 마우스 올림, 포커스에 멈춤), 번호 버튼으로 연 전체 보기 칸 채우기
      · Code Block — data-ds-copy 버튼으로 코드 복사
      · Multi Select — Popover 와 같이 열고 닫기, 고른 값을 칸에 Badge 로 채우기
      · File Attach — 파일을 끌어 놓는 칸 위로 끌고 오면 data-state="dragover", 벗어나거나 놓으면 뺀다
@@ -251,14 +251,22 @@
     var sc = car.querySelector(".ds-carousel__scroller");
     if (!sc) return;
     var max = sc.scrollWidth - sc.clientWidth;
-    car.toggleAttribute("data-at-start", sc.scrollLeft <= 1);
-    car.toggleAttribute("data-at-end", sc.scrollLeft >= max - 1);
+    var loop = !!car._dsLoop;
+    // 루프면 끝이 없으므로 처음/끝 표시를 붙이지 않는다
+    car.toggleAttribute("data-at-start", !loop && sc.scrollLeft <= 1);
+    car.toggleAttribute("data-at-end", !loop && sc.scrollLeft >= max - 1);
     var count = car.querySelector(".ds-carousel__count");
     var bar = car.querySelector(".ds-carousel__progress");
-    var items = sc.querySelectorAll(".ds-carousel__item");
+    var items = sc.querySelectorAll(".ds-carousel__item:not([data-ds-clone])");
     if ((count || bar) && items.length) {
-      var w = items[0].offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0);
-      var idx = sc.scrollLeft >= max - 1 ? items.length - 1 : Math.round(sc.scrollLeft / (w || 1));
+      var idx;
+      if (loop) {
+        var near = carouselNearest(sc);
+        idx = near.hasAttribute("data-ds-clone") ? +near.getAttribute("data-ds-clone") : Array.prototype.indexOf.call(items, near);
+      } else {
+        var w = items[0].offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0);
+        idx = sc.scrollLeft >= max - 1 ? items.length - 1 : Math.round(sc.scrollLeft / (w || 1));
+      }
       var now = Math.min(items.length, idx + 1);
       // 진행 막대: 지금 번호까지 채운다
       if (bar) bar.style.setProperty("--ds-carousel-progress", now / items.length);
@@ -273,13 +281,59 @@
       count.insertBefore(document.createTextNode("/" + items.length), icon);
     }
   }
+  // 항목이 멈추는 자리(항목 왼쪽 - 안쪽 여백)
+  function carouselPos(sc, item) {
+    return item.getBoundingClientRect().left - sc.getBoundingClientRect().left + sc.scrollLeft - (parseFloat(getComputedStyle(sc).scrollPaddingLeft) || 0);
+  }
+  function carouselNearest(sc) {
+    var best = null, dist = Infinity;
+    sc.querySelectorAll(".ds-carousel__item").forEach(function (it) {
+      var d = Math.abs(carouselPos(sc, it) - sc.scrollLeft);
+      if (d < dist) { dist = d; best = it; }
+    });
+    return best;
+  }
+  function carouselStep(sc) {
+    var item = sc.querySelector(".ds-carousel__item");
+    return item ? item.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0) : sc.clientWidth;
+  }
+  // 루프: 앞뒤에 복제 장을 두고, 복제 장에 멈추면 같은 진짜 장으로 순간 이동한다
+  function setupLoop(car) {
+    var sc = car.querySelector(".ds-carousel__scroller");
+    if (!sc || car._dsLoop) return;
+    var items = Array.prototype.slice.call(sc.querySelectorAll(".ds-carousel__item"));
+    if (items.length < 2) return;
+    var k = Math.min(2, items.length);
+    var clone = function (it, i) {
+      var c = it.cloneNode(true);
+      c.setAttribute("data-ds-clone", i);
+      c.setAttribute("aria-hidden", "true");
+      c.inert = true;
+      c.removeAttribute("id");
+      c.querySelectorAll("[id]").forEach(function (n) { n.removeAttribute("id"); });
+      return c;
+    };
+    for (var i = 0; i < k; i++) {
+      sc.insertBefore(clone(items[items.length - 1 - i], items.length - 1 - i), sc.firstChild);
+      sc.appendChild(clone(items[i], i));
+    }
+    car._dsLoop = true;
+    sc.scrollLeft = carouselPos(sc, items[0]);
+  }
+  function fixLoop(car) {
+    var sc = car.querySelector(".ds-carousel__scroller");
+    var near = sc && carouselNearest(sc);
+    if (!near || !near.hasAttribute("data-ds-clone")) return;
+    var real = sc.querySelectorAll(".ds-carousel__item:not([data-ds-clone])")[+near.getAttribute("data-ds-clone")];
+    if (real) sc.scrollLeft = carouselPos(sc, real) + (sc.scrollLeft - carouselPos(sc, near));
+  }
   // 자동 넘김: 큰 배너에만. 멈춤 버튼(data-paused)과 마우스 올림/포커스(_dsHold)에 멈춘다
   function carouselNext(car) {
     var sc = car.querySelector(".ds-carousel__scroller");
-    var item = sc && sc.querySelector(".ds-carousel__item");
-    if (!item) return;
-    if (sc.scrollLeft >= sc.scrollWidth - sc.clientWidth - 1) sc.scrollTo({ left: 0, behavior: "smooth" });
-    else sc.scrollBy({ left: item.offsetWidth + (parseFloat(getComputedStyle(sc).columnGap) || 0), behavior: "smooth" });
+    if (!sc || !sc.querySelector(".ds-carousel__item")) return;
+    if (car._dsLoop) fixLoop(car);
+    if (!car._dsLoop && sc.scrollLeft >= sc.scrollWidth - sc.clientWidth - 1) sc.scrollTo({ left: 0, behavior: "smooth" });
+    else sc.scrollBy({ left: carouselStep(sc), behavior: "smooth" });
   }
   function setCarouselPaused(car, paused) {
     car.toggleAttribute("data-paused", paused);
@@ -313,7 +367,7 @@
   function fillCarouselAll(car, dialog) {
     var all = dialog && dialog.querySelector(".ds-carousel__all");
     if (!all || all.children.length) return;
-    car.querySelectorAll(".ds-carousel__item").forEach(function (item) {
+    car.querySelectorAll(".ds-carousel__item:not([data-ds-clone])").forEach(function (item) {
       Array.prototype.forEach.call(item.children, function (c) {
         var copy = c.cloneNode(true);
         copy.removeAttribute("id");
@@ -325,7 +379,11 @@
   document.addEventListener("scroll", function (e) {
     var el = e.target;
     if (!el.classList) return;
-    if (el.classList.contains("ds-carousel__scroller")) syncCarousel(el.parentElement);
+    if (el.classList.contains("ds-carousel__scroller")) {
+      var car = el.parentElement;
+      syncCarousel(car);
+      if (car._dsLoop) { clearTimeout(car._dsLoopTimer); car._dsLoopTimer = setTimeout(function () { fixLoop(car); }, 150); }
+    }
     else if (el.classList.contains("ds-sidepanel__body")) el.toggleAttribute("data-scrolled", el.scrollTop > 0);
   }, true);
 
@@ -687,6 +745,7 @@
     (root || document).querySelectorAll(".ds-chat-composer__input").forEach(syncComposer);
     tickTimers();
     (root || document).querySelectorAll(".ds-segmented").forEach(watchSegmented);
+    (root || document).querySelectorAll(".ds-carousel[data-loop]").forEach(setupLoop);
     (root || document).querySelectorAll(".ds-carousel").forEach(syncCarousel);
     (root || document).querySelectorAll(".ds-carousel[data-autoplay]").forEach(startAutoplay);
     (root || document).querySelectorAll(".ds-multiselect__panel[id]").forEach(syncMultiSelect);
@@ -752,8 +811,11 @@
     // Carousel 버튼 → 한 화면의 80% 만큼 넘긴다
     var carBtn = t.closest(".ds-carousel__button");
     if (carBtn) {
-      var sc = carBtn.closest(".ds-carousel").querySelector(".ds-carousel__scroller");
+      var btnCar = carBtn.closest(".ds-carousel");
+      var sc = btnCar.querySelector(".ds-carousel__scroller");
       var back = carBtn.getAttribute("data-direction") === "previous";
+      // 루프는 한 장씩 계속 넘긴다
+      if (btnCar._dsLoop) { fixLoop(btnCar); sc.scrollBy({ left: (back ? -1 : 1) * carouselStep(sc), behavior: "smooth" }); return; }
       // 진행 막대 안의 버튼은 끝에서 반대쪽 끝으로 돌아간다
       if (carBtn.closest(".ds-carousel__bar") && (back ? sc.scrollLeft <= 1 : sc.scrollLeft >= sc.scrollWidth - sc.clientWidth - 1)) {
         sc.scrollTo({ left: back ? sc.scrollWidth : 0, behavior: "smooth" });
