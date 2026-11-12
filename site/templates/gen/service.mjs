@@ -105,7 +105,7 @@ ${head('수업 옵션 선택')}
 <main class="tp-content">
   <div class="tp-two">
     <div class="tp-stack" style="gap: var(--ds-space-x4)">
-      ${card(`<span class="tp-h3">수업</span>${opt('언어', chips(['영어', '중국어', '일본어'], 0, '언어'))}${opt('방식', segmented(['전화', '화상'], 1, '수업 방식', 'medium'))}${opt('수업 시간', chips(['10분', '20분', '30분'], 1, '수업 시간'))}${opt('주 횟수', chips(['주 2회', '주 3회', '주 5회'], 1, '주 횟수'))}`)}
+      ${card(`<span class="tp-h3">수업</span>${opt('언어', chips(['영어', '중국어', '일본어'], 0, '언어'))}${opt('방식', chips(['전화', '화상'], 1, '수업 방식'))}${opt('수업 시간', chips(['10분', '20분', '30분'], 1, '수업 시간'))}${opt('주 횟수', chips(['주 2회', '주 3회', '주 5회'], 1, '주 횟수'))}`)}
       ${card(`<span class="tp-h3">수강 기간</span>${selectbox('period', [['1개월', '12회 / 89,000원'], ['3개월', '36회 / 237,000원'], ['6개월', '72회 / 438,000원']], 1, { cols: 3, vertical: true })}`)}
       ${card(`<div class="tp-between"><span class="tp-h3">수업 시간대</span>${segmented(['오전', '오후', '저녁'], 2, '시간대')}</div><div class="tp-slots">${slot('18:00')}${slot('18:30', false, true)}${slot('19:00', true)}${slot('19:30')}${slot('20:00')}${slot('20:30')}${slot('21:00', false, true)}${slot('21:30')}</div>`)}
       ${card(`<span class="tp-h3">교재</span>${checkbox('교재 함께 받기 (+18,000원)', { checked: true })}`)}
