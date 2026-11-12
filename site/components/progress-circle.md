@@ -141,7 +141,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-tone: neutral(기본) / brand / staticWhite   size: 24(기본) / 40 / 56   type: determinate / indeterminate
+tone: neutral(기본) / brand / staticWhite   size: 24(기본) / 40 / 56   indeterminate: 켜기
   indeterminate: data-indeterminate (회전하는 25% 호, 예전 data-type="indeterminate" 도 읽음)
 Figma: 두께 24→3 / 40→5 / 56→7 / 둥근 끝 / 12시 시작
   트랙 bg/neutral-weak-alpha(2026-11-11 모든 색 같음) / neutral 호 palette/gray-500 / brand 호 bg/brand-solid

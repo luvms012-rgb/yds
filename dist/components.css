@@ -2123,7 +2123,7 @@ html:has(:is(.ds-dialog, .ds-bottomsheet):modal) { overflow: hidden; }  /* 2026-
 
 /* --------------------------------------------------------------------------
    34 Progress Circle — 원형 진행 표시(값을 모르는 대기는 indeterminate)
-   tone: neutral(기본) · brand · staticWhite   size: 24(기본) · 40 · 56   type: determinate · indeterminate
+   tone: neutral(기본) · brand · staticWhite   size: 24(기본) · 40 · 56   indeterminate: 켜기
      <span class="ds-progress-circle" data-size="40" data-tone="brand" role="progressbar" aria-valuenow="40" style="--ds-progress-value: 40">
        <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg>
      </span>
@@ -2517,7 +2517,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 
 /* --------------------------------------------------------------------------
    42 Table — 같은 기준(열)으로 비교하는 표 (<table> 그대로)
-   density: default(기본) · compact
+   size: default(기본) · small
      <div class="ds-table-wrap">            ← 열이 넘치면 가로 스크롤
        <table class="ds-table" [data-size="small"]>
          <thead><tr><th scope="col">선택</th><th scope="col">제목</th><th scope="col" data-align="end">금액</th></tr></thead>
@@ -2533,7 +2533,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
      </div>
    2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-11 표 맨 위와 맨 아래 선은 바깥 테두리 색(한 단계 짙게), 행 사이는 옅은 선
    Figma: 표 위 1px stroke/neutral-weak · 마지막 줄 아래 1px stroke/neutral-weak · 그 밖의 칸 아래 1px stroke/neutral-muted · header 바탕 없음
-     높이 header 40 / body 56 (compact 40 / 48) · 칸 좌우 x3, 양 끝 칸 x4 · 한 줄 말줄임
+     높이 header 40 / body 56 (small 40 / 48) · 칸 좌우 x3, 양 끝 칸 x4 · 한 줄 말줄임
      header t04 Medium fg/neutral · body t04 fg/neutral · 두 줄 칸 아래 줄 t02 fg/neutral-subtle
      묶음 행 44 bg/neutral-weak-alpha + SemiBold · hover(data-interactive 행만) bg/neutral-weak-alpha · selected bg/brand-weak
      정렬: 글 start(기본) · 숫자 end · 짧은 고정 길이 값(번호·날짜·상태) center → data-align (right 는 end 와 같음)
@@ -2683,7 +2683,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 
 /* --------------------------------------------------------------------------
    45 List · List Item — 설정·메뉴·목록 화면의 한 줄 (2026-10-22 추가)
-   variant: plain(기본) · inset(카드 안처럼 둥근 묶음)   size: medium(기본) · small   divider: data-divider
+   inset: data-inset(카드 안처럼 둥근 묶음)   size: medium(기본) · small   divider: data-divider
      <ul class="ds-list" [data-inset] [data-divider]>
        <li>
          <a class="ds-list-item" href="#" [data-size="small"]>

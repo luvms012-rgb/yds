@@ -49,7 +49,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 데이터가 없을 때는 헤더 행 아래에 Empty(small)를 표 전체 폭으로 표시합니다. |
 | **Do** | 마우스를 올렸을 때 색이 바뀌는 효과는 행을 눌러 상세 화면으로 이동하는 표에서만 사용합니다. |
 | **Do** | 글은 왼쪽, 숫자와 금액은 오른쪽에 맞춥니다. 번호, 날짜, 상태처럼 짧고 길이가 같은 값은 가운데에 맞춥니다. |
-| **Don't** | 한 표 안에서 density를 섞지 않습니다. 데이터가 많은 관리 화면은 compact, 일반 사용자 화면은 default를 사용합니다. |
+| **Don't** | 한 표 안에서 크기를 섞지 않습니다. 데이터가 많은 관리 화면은 small, 일반 사용자 화면은 기본 크기를 사용합니다. |
 | **Don't** | 한 칸에 두 줄 넘게 넣지 않습니다. 긴 글은 말줄임하고 상세 화면에서 표시합니다. |
 
 ## 예시
@@ -178,10 +178,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-density: default(기본) / compact
+size: default(기본) / small
 2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-11 표 맨 위와 맨 아래 선은 바깥 테두리 색(한 단계 짙게), 행 사이는 옅은 선
 Figma: 표 위 1px stroke/neutral-weak / 마지막 줄 아래 1px stroke/neutral-weak / 그 밖의 칸 아래 1px stroke/neutral-muted / header 바탕 없음
-  높이 header 40 / body 56 (compact 40 / 48) / 칸 좌우 x3, 양 끝 칸 x4 / 한 줄 말줄임
+  높이 header 40 / body 56 (small 40 / 48) / 칸 좌우 x3, 양 끝 칸 x4 / 한 줄 말줄임
   header t04 Medium fg/neutral / body t04 fg/neutral / 두 줄 칸 아래 줄 t02 fg/neutral-subtle
   묶음 행 44 bg/neutral-weak-alpha + SemiBold / hover(data-interactive 행만) bg/neutral-weak-alpha / selected bg/brand-weak
   정렬: 글 start(기본) / 숫자 end / 짧은 고정 길이 값(번호/날짜/상태) center → data-align (right 는 end 와 같음)

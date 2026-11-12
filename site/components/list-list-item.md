@@ -173,7 +173,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-variant: plain(기본) / inset(카드 안처럼 둥근 묶음)   size: medium(기본) / small   divider: data-divider
+inset: data-inset(카드 안처럼 둥근 묶음)   size: medium(기본) / small   divider: data-divider
 Figma item medium: min-h56 / py x3 / px x4 / gap x3 / title t05 fg/neutral / desc t03 fg/neutral-subtle
             small : min-h48 / py x2_5 / title t04 / desc t02
   prefix 24(아이콘 fg/neutral-subtle, Avatar 36 가능) / suffix t04 fg/neutral-subtle / chevron 20 fg/neutral-subtle
