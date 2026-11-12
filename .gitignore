@@ -16,3 +16,4 @@ Thumbs.db
 .cache/
 tokens/.figma-templates.json
 tokens/.figma-tplpage/
+tokens/.figma-quick.js
