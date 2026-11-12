@@ -268,7 +268,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `--ds-carousel-button-shadow` | `var(--ds-elevation-overlay)` |
 | `--ds-carousel-button-inset` | `var(--ds-space-x2)` |
 | `--ds-carousel-control-size` | `var(--ds-space-x6)` |
-| `--ds-carousel-play-icon-size` | `14px` |
+| `--ds-carousel-play-icon-size` | `calc(var(--ds-carousel-control-size) * 0.45)` |
 | `--ds-carousel-count-font-size` | `var(--ds-font-size-t02)` |
 | `--ds-carousel-count-padding` | `0 var(--ds-space-x2)` |
 | `--ds-carousel-controls-x` | `var(--ds-space-x2)` |
