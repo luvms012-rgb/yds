@@ -182,7 +182,9 @@
    02 Text Link — CTA 위/아래 보조 링크 (Figma Text Link 2493:324, state enabled/hover)
    size: medium(기본, t05) · small(t03, 본문 옆이나 표, 칸 머리처럼 보조 자리) (2026-11-03 추가)
    문장 안(p, li): size와 상관없이 주변 글자 크기를 따릅니다 (2026-11-09)
+   화살표 링크: 끝에 chevron-right 아이콘을 넣으면 밑줄 없이 표시합니다. 화살표가 이동을 알립니다 (2026-11-12)
      <a class="ds-link" href="…" [data-size="small"]>비밀번호를 잊으셨나요?</a>
+     <a class="ds-link" href="…" data-size="small">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a>
    -------------------------------------------------------------------------- */
 .ds-link {
   --ds-link-color: var(--ds-color-fg-neutral-subtle);
@@ -200,6 +202,10 @@
 /* 문장 안(p, li)의 링크는 size 와 상관없이 주변 글자 크기를 따른다 (2026-11-09) */
 :is(p, li) .ds-link,
 :is(p, li) .ds-link[data-size] { font-size: inherit; line-height: inherit; }
+/* 아이콘이 붙은 링크(전체 보기 화살표, 이전 화살표)는 아이콘이 이동을 알리므로 밑줄을 쓰지 않는다 (2026-11-12) */
+.ds-link:has(> .ds-icon) { display: inline-flex; align-items: center; gap: var(--ds-space-x1); text-decoration: none; }
+.ds-link > .ds-icon { --ds-icon-size: 16px; }
+.ds-link[data-size="small"] > .ds-icon { --ds-icon-size: 14px; }
 
 
 /* --------------------------------------------------------------------------

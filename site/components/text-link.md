@@ -10,6 +10,7 @@
 
 ```html
 <a class="ds-link" href="…" [data-size="small"]>비밀번호를 잊으셨나요?</a>
+<a class="ds-link" href="…" data-size="small">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a>
 ```
 
 ## 속성
@@ -27,7 +28,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 링크 글에는 이동할 화면을 작성합니다. "여기", "더 보기"만 사용하지 않습니다. |
+| **Do** | 전체 보기처럼 묶음 밖으로 이동하는 링크는 끝에 chevron-right 아이콘을 붙입니다. 화살표가 있으면 밑줄 없이 표시됩니다. |
 | **Don't** | 화면을 이동하지 않는 동작에는 사용하지 않습니다. 동작에는 Action Button을 사용합니다. |
+| **Don't** | 문장 안 링크에는 화살표를 붙이지 않습니다. 문장 안 링크는 밑줄로 구분합니다. |
 
 ## 예시
 
@@ -56,13 +59,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 그룹 제목 옆 전체 보기
 
-그룹 제목 오른쪽에 작은 Text Link로 전체 보기를 배치합니다. `data-size="small"`은 제목 옆, 표, 입력 필드 위처럼 보조 영역에 사용합니다.
+그룹 제목 오른쪽에 화살표를 붙인 작은 Text Link로 전체 보기를 배치합니다. 화살표가 이동을 알리므로 밑줄 없이 표시됩니다. `data-size="small"`은 제목 옆, 표, 입력 필드 위처럼 보조 영역에 사용합니다.
 
 ```html
 <section class="u-col u-gap-3" style="width: 100%; max-width: 420px">
   <div class="u-flex u-center u-between">
     <h3 class="ds-t06 ds-fw-bold">최근 주문</h3>
-    <a class="ds-link" data-size="small" href="#">전체 보기</a>
+    <a class="ds-link" data-size="small" href="#">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a>
   </div>
   <ul class="ds-list" data-variant="inset" data-divider>
     <li>
@@ -126,4 +129,5 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```
 size: medium(기본, t05) / small(t03, 본문 옆이나 표, 칸 머리처럼 보조 자리) (2026-11-03 추가)
 문장 안(p, li): size와 상관없이 주변 글자 크기를 따릅니다 (2026-11-09)
+화살표 링크: 끝에 chevron-right 아이콘을 넣으면 밑줄 없이 표시합니다. 화살표가 이동을 알립니다 (2026-11-12)
 ```

@@ -16,7 +16,7 @@
 - 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css, ybm-ds.js)를 쓴다.
 - 규칙 파일: 설치할 때 규칙 파일(https://luvms012-rgb.github.io/yds/site/ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다.
 - 컴포넌트: 목록(https://luvms012-rgb.github.io/yds/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(https://raw.githubusercontent.com/luvms012-rgb/yds/main/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
-- 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다.
+- 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
 - 아이콘: 목록(https://luvms012-rgb.github.io/yds/site/ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 옅은 회색 칸(트랙, 빈 칸, 자리 표시, 회색 박스 안의 칸)은 --ds-color-bg-neutral-weak-alpha를 쓴다. 불투명 --ds-color-bg-neutral은 같은 회색 바탕 위에서 사라진다.
