@@ -9,6 +9,8 @@ const PR_CSS = FRAME_CSS + `
   .tp-pr-narrow { box-sizing: border-box; width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-pr-hero { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x3); text-align: center; }
   .tp-pr-period { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--ds-space-x2); }
+  .tp-price { display: flex; align-items: baseline; gap: var(--ds-space-x1); }
+  .tp-price__v { font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
   .tp-feat { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
   .tp-feat li { display: flex; align-items: flex-start; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-feat li > .ds-icon { flex: none; margin-top: 2px; --ds-icon-size: 16px; }
@@ -44,7 +46,7 @@ const plans = () => {
   const planCard = ([n, d, [m, y], cta, v, f], i) => card(`<div class="tp-plan__top">
     <div class="tp-between"><h2 class="tp-h3">${n}</h2>${i === 2 ? badge('추천', 'brand', true) : ''}</div>
     <p class="tp-sub">${d}</p>
-    <div class="tp-stack"><div class="ds-price" data-size="large"><div class="ds-price__now"><strong class="ds-price__value" data-m>${m}</strong><strong class="ds-price__value" data-y>${y}</strong><span class="ds-price__unit">/ 월</span></div></div>
+    <div class="tp-stack"><div class="tp-price"><span class="tp-price__v" data-m>${m}</span><span class="tp-price__v" data-y>${y}</span><span class="tp-sub">/ 월</span></div>
     <span class="tp-caption" data-m>${i ? '매달 결제해요' : '카드 없이 쓸 수 있어요'}</span><span class="tp-caption" data-y>${i ? '1년치를 한 번에 결제해요' : '카드 없이 쓸 수 있어요'}</span></div>
   </div>
   ${btn(cta, { variant: v, size: 'medium', fill: true, attrs: i === 0 ? 'disabled' : '' })}
@@ -161,7 +163,7 @@ const manage = () => {
   ${head('구독과 결제')}
   <main class="tp-content">
     <div class="tp-manage">
-      ${card(`<div class="tp-stack"><div class="tp-between"><span class="tp-row"><h2 class="tp-h2">프로</h2>${badge('이용 중', 'positive')}</span>${link('요금제 비교하기')}</div><div class="ds-price"><div class="ds-price__now"><strong class="ds-price__value">${T('7,900원')}</strong><span class="ds-price__unit">/ 월, 연 결제 ${T('94,800원')}</span></div></div></div>
+      ${card(`<div class="tp-stack"><div class="tp-between"><span class="tp-row"><h2 class="tp-h2">프로</h2>${badge('이용 중', 'positive')}</span>${link('요금제 비교하기')}</div><div class="tp-price"><span class="tp-mid">${T('7,900원')}</span><span class="tp-sub">/ 월, 연 결제 ${T('94,800원')}</span></div></div>
       <div class="tp-rows">
         <div class="tp-kv"><span>다음 결제일</span>${T('2027.10.09')}</div>
         <div class="tp-kv"><span>다음 결제 금액</span>${T('94,800원')}</div>

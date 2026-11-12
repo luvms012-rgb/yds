@@ -159,22 +159,5 @@
       "desc": "틀린 구간에 `aria-invalid=\"true\"`를 붙이면 테두리와 아래 안내 글이 오류 색으로 바뀝니다. 안내 글에는 고치는 방법을 적습니다.",
       "html": "<div class=\"ds-field\" style=\"width:min(100%,320px)\">\n  <div class=\"ds-field__header\"><span class=\"ds-field__label\" id=\"ex-sti3\">주민등록번호</span></div>\n  <div class=\"ds-input ds-segmentinput\" data-variant=\"outline\" data-size=\"large\" role=\"group\" aria-labelledby=\"ex-sti3\"><input class=\"ds-segmentinput__segment\" inputmode=\"numeric\" maxlength=\"6\" autocomplete=\"off\" aria-label=\"앞 6자리\" value=\"901301\" aria-invalid=\"true\" aria-describedby=\"ex-sti3-error\"><span class=\"ds-segmentinput__separator\" aria-hidden=\"true\">-</span><input class=\"ds-segmentinput__segment\" inputmode=\"numeric\" maxlength=\"1\" autocomplete=\"off\" aria-label=\"뒷자리 첫 자리\" value=\"1\"><span class=\"ds-segmentinput__dots\" aria-hidden=\"true\"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>\n  <div class=\"ds-field__footer\"><p class=\"ds-field__error\" id=\"ex-sti3-error\">앞 6자리는 생년월일로 입력해 주세요.</p></div>\n</div>"
     }
-  ],
-  "price": [
-    {
-      "title": "상품 목록",
-      "desc": "목록과 장바구니에서는 small 을 사용합니다.",
-      "html": "<div class=\"ds-price\" data-size=\"small\"><s class=\"ds-price__was\">32,000원</s><div class=\"ds-price__now\"><span class=\"ds-price__rate\">15%</span><strong class=\"ds-price__value\">27,200원</strong></div></div>"
-    },
-    {
-      "title": "상품 상세",
-      "desc": "상세 화면에서는 기본 크기로 상품 이름 아래에 둡니다.",
-      "html": "<div class=\"ds-price\"><s class=\"ds-price__was\">48,000원</s><div class=\"ds-price__now\"><span class=\"ds-price__rate\">20%</span><strong class=\"ds-price__value\">38,400원</strong></div></div>"
-    },
-    {
-      "title": "요금제",
-      "desc": "요금제는 large 와 단위를 함께 사용합니다.",
-      "html": "<div class=\"ds-price\" data-size=\"large\"><div class=\"ds-price__now\"><strong class=\"ds-price__value\">9,900원</strong><span class=\"ds-price__unit\">/ 월</span></div></div>"
-    }
   ]
 }

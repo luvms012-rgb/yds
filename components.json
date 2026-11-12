@@ -1635,23 +1635,6 @@
       "props": "size `large/medium`(medium 은 PC 전용), 가린 구간 `data-masked`, `aria-invalid`, disabled, readonly, 구간마다 maxlength",
       "category": "Data Input",
       "doc": "3230:3474"
-    },
-    {
-      "no": "87",
-      "name": "Price",
-      "classes": [
-        ".ds-price"
-      ],
-      "figma": [
-        {
-          "id": "3336:3081",
-          "type": "COMPONENT_SET",
-          "variants": 3
-        }
-      ],
-      "props": "size `small/medium/large`, align `end`, 할인율 rate, 원래 가격 was, 단위 unit",
-      "category": "Content",
-      "doc": "3336:2905"
     }
   ]
 }

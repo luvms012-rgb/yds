@@ -52,8 +52,6 @@
 
 - [Image Frame](https://luvms012-rgb.github.io/yds/site/components/image-frame.md)
 
-- [Price](https://luvms012-rgb.github.io/yds/site/components/price.md)
-
 - [Tag Group](https://luvms012-rgb.github.io/yds/site/components/tag-group.md)
 
 - [Timer](https://luvms012-rgb.github.io/yds/site/components/timer.md)

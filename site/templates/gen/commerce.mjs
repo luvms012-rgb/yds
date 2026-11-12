@@ -53,14 +53,17 @@ const CSS = FRAME_CSS + `
   .tp-item__info > .ds-btn { align-self: flex-start; margin-top: var(--ds-space-x1); }
   .tp-selbar .ds-checkbox { white-space: nowrap; }
   .tp-only-md { display: none; }
+  .tp-price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .tp-price__was { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); text-decoration: line-through; }
+  .tp-price__now { display: flex; align-items: baseline; gap: var(--ds-space-x1); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); }
   .tp-off { color: var(--ds-color-fg-critical); }
-  .tp-item[data-soldout] :is(.tp-item__img, .tp-item__name, .ds-price) { opacity: 0.4; }
+  .tp-item[data-soldout] :is(.tp-item__img, .tp-item__name, .tp-price) { opacity: 0.4; }
   @media (min-width: 768px) {
     .tp-item { grid-template-columns: auto 88px minmax(0, 1fr) auto auto; grid-template-areas: "chk img info ctl del"; align-items: center; column-gap: var(--ds-space-x4); }
     .tp-item__chk { align-self: center; padding-top: 0; }
     .tp-item__del { margin-top: 0; }
     .tp-item__ctl { gap: var(--ds-space-x6); }
-    .tp-item .ds-price { min-width: 140px; }
+    .tp-price { min-width: 140px; }
     .tp-only-md { display: inline-flex; }
   }
   /* 결제 예정 금액 */
@@ -87,14 +90,14 @@ const CSS = FRAME_CSS + `
   .tp-rec { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
   .tp-rec__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); color: var(--ds-color-fg-neutral); text-decoration: none; }
   /* 할인 없는 상품도 가격 줄 높이를 같게, 담기 버튼은 카드 맨 아래 한 줄로 */
-  .tp-rec .ds-price { justify-content: flex-end; min-height: calc(var(--ds-line-height-t03) + 2px + var(--ds-line-height-t05)); margin-top: calc(-1 * var(--ds-space-x1)); }
+  .tp-rec .tp-price { align-items: flex-start; gap: 0; margin-top: calc(-1 * var(--ds-space-x1)); }
+  .tp-rec .tp-price__was { order: 2; }
   .tp-rec .ds-btn { margin-top: auto; }
 `;
 
 const steps = (cur) => `<ol class="tp-steps" aria-label="주문 단계">${['장바구니', '주문 결제', '주문 완료'].map((t, i) => `<li${i === cur ? ' aria-current="step"' : ''}><b>${i + 1}</b>${t}</li>`).join('')}</ol>`;
 const qty = (n, name, off = false) => `<div class="ds-quantity" data-size="small"><button type="button" class="ds-quantity__btn" aria-label="${esc(name)} 수량 줄이기"${n <= 1 || off ? ' disabled' : ''}>${icon('minus')}</button><input class="ds-quantity__value" inputmode="numeric" value="${n}" aria-label="${esc(name)} 수량"${off ? ' disabled' : ''}><button type="button" class="ds-quantity__btn" aria-label="${esc(name)} 수량 늘리기"${off ? ' disabled' : ''}>${icon('plus')}</button></div>`;
-// 가격 = DS 87 Price small. 장바구니 금액 칸은 오른쪽 끝(end), 추천 상품은 왼쪽
-const price = (now, was, n, align = 'end') => `<div class="ds-price" data-size="small"${align === 'end' ? ' data-align="end"' : ''}>${was ? `<s class="ds-price__was">${(was * n).toLocaleString('ko-KR')}원</s>` : ''}<div class="ds-price__now">${was ? `<span class="ds-price__rate">${Math.round((1 - now / was) * 100)}%</span>` : ''}<strong class="ds-price__value">${won(now * n)}</strong></div></div>`;
+const price = (now, was, n) => `<div class="tp-price">${was ? `<span class="tp-price__was tp-num">${(was * n).toLocaleString('ko-KR')}원</span>` : ''}<span class="tp-price__now">${was ? `<span class="tp-off tp-num">${Math.round((1 - now / was) * 100)}%</span>` : ''}${won(now * n)}</span></div>`;
 const item = ([name, opt, img, now, was, n, soldout]) => `<div class="tp-item"${soldout ? ' data-soldout' : ''}>
   <span class="tp-item__chk">${checkOnly(name + ' 고르기', !soldout)}</span>
   <a class="tp-item__img" href="#" tabindex="-1">${thumb('1:1', '', K.photo('product', img, 240), 'md')}</a>
@@ -102,7 +105,7 @@ const item = ([name, opt, img, now, was, n, soldout]) => `<div class="tp-item"${
   <div class="tp-item__ctl">${qty(n, name, soldout)}${price(now, was, n)}</div>
   <span class="tp-item__del">${iconBtn('x', name + ' 빼기', { size: 'xsmall' })}</span>
 </div>`;
-const rec = ([name, img, now, was]) => `<article class="tp-rec"><a href="#" tabindex="-1">${thumb('1:1', '', K.photo('product', img, 480), 'lg')}</a><a class="tp-rec__name" href="#">${name}</a>${price(now, was, 1, 'start')}${btn('담기', { variant: 'neutralWeak', ic: 'shopping-cart', fill: true })}</article>`;
+const rec = ([name, img, now, was]) => `<article class="tp-rec"><a href="#" tabindex="-1">${thumb('1:1', '', K.photo('product', img, 480), 'lg')}</a><a class="tp-rec__name" href="#">${name}</a>${price(now, was, 1).replace('class="tp-price"', 'class="tp-price" style="align-items:flex-start"')}${btn('담기', { variant: 'neutralWeak', ic: 'shopping-cart', fill: true })}</article>`;
 const RECS = [['가벼운 러닝화', 3, 79000, 99000], ['즉석 카메라 필름 20장', 2, 24000, 0], ['원두 커피 200g', 5, 16900, 18900], ['가죽 시계줄 20mm', 0, 19800, 0]];
 const NOTES = ['장바구니에 담은 상품은 30일 동안 보관해요.', '쿠폰과 적립금은 주문 결제 단계에서 쓸 수 있어요.', '상품 가격과 할인은 바뀔 수 있어서, 결제할 때의 금액으로 주문돼요.'];
 

@@ -100,7 +100,6 @@
      83 Mega Menu            .ds-megamenu
      84 Command Palette      .ds-command
      85 Segmented Text Input .ds-segmentinput
-     87 Price                .ds-price
    ========================================================================== */
 
 
@@ -4942,38 +4941,3 @@ dialog.ds-command:not([open]) { display: none; }
 .ds-segmentinput:has(.ds-segmentinput__segment:disabled) .ds-segmentinput__separator { color: var(--ds-color-fg-disabled); }
 .ds-segmentinput[data-variant="outline"]:has(.ds-segmentinput__segment:is(:disabled, [readonly])) { --ds-input-bg: var(--ds-color-bg-disabled); }
 .ds-segmentinput__segment:disabled { cursor: not-allowed; }
-
-
-/* --------------------------------------------------------------------------
-   87 Price - 상품과 요금제의 판매 가격을 할인율, 원래 가격과 함께 보여 주는 가격 표시 (2026-11-12 추가)
-     <div class="ds-price" [data-size="small|large"] [data-align="end"]>
-       [<s class="ds-price__was">48,000원</s>]
-       <div class="ds-price__now">[<span class="ds-price__rate">20%</span>]<strong class="ds-price__value">38,000원</strong>[<span class="ds-price__unit">/ 월</span>]</div>
-     </div>
-   size: small 가격 t05(목록, 장바구니) / medium(기본) 가격 t09(상품 상세) / large 가격 t10(요금제)
-   가격 Bold fg/neutral, 할인율은 가격과 같은 크기 fg/critical / 단위 fg/neutral-muted, 원래 가격 취소선 fg/neutral-subtle(small t03, 그 밖 t04)
-   원래 가격은 판매 가격 위 줄, 사이 2 / 할인율, 가격, 단위 사이 x1 / 숫자는 고정폭
-   data-align="end": 오른쪽 끝에 맞춥니다(장바구니 금액 칸)
-   -------------------------------------------------------------------------- */
-.ds-price {
-  --ds-price-size: var(--ds-font-size-t09);
-  --ds-price-line: var(--ds-line-height-t09);
-  --ds-price-sub-size: var(--ds-font-size-t04);
-  --ds-price-sub-line: var(--ds-line-height-t04);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  min-width: 0;
-  font-variant-numeric: tabular-nums;
-}
-.ds-price[data-size="small"] { --ds-price-size: var(--ds-font-size-t05); --ds-price-line: var(--ds-line-height-t05); --ds-price-sub-size: var(--ds-font-size-t03); --ds-price-sub-line: var(--ds-line-height-t03); }
-.ds-price[data-size="large"] { --ds-price-size: var(--ds-font-size-t10); --ds-price-line: var(--ds-line-height-t10); }
-.ds-price[data-align="end"] { align-items: flex-end; text-align: end; }
-.ds-price__was { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-price-sub-size); line-height: var(--ds-price-sub-line); text-decoration: line-through; }
-.ds-price__now { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--ds-space-x1); min-width: 0; }
-.ds-price__rate,
-.ds-price__value { font-size: var(--ds-price-size); line-height: var(--ds-price-line); font-weight: var(--ds-font-weight-bold); }
-.ds-price__rate { color: var(--ds-color-fg-critical); }
-.ds-price__value { color: var(--ds-color-fg-neutral); }
-.ds-price__unit { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-price-sub-size); line-height: var(--ds-price-sub-line); }
