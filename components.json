@@ -1642,9 +1642,16 @@
       "classes": [
         ".ds-sectionheader"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3336:1566",
+          "type": "COMPONENT_SET",
+          "variants": 2
+        }
+      ],
       "props": "size `medium/small`, title 안 아이콘과 Badge, end 에 Text Link, Action Button, Segmented Control, Chip Tabs, Select, Badge",
-      "category": "Layout"
+      "category": "Layout",
+      "doc": "3336:1398"
     },
     {
       "no": "87",
@@ -1652,9 +1659,16 @@
       "classes": [
         ".ds-price"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3336:3081",
+          "type": "COMPONENT_SET",
+          "variants": 3
+        }
+      ],
       "props": "size `small/medium/large`, align `end`, 할인율 rate, 원래 가격 was, 단위 unit",
-      "category": "Content"
+      "category": "Content",
+      "doc": "3336:2905"
     },
     {
       "no": "88",
@@ -1662,9 +1676,16 @@
       "classes": [
         ".ds-stat"
       ],
-      "figma": [],
+      "figma": [
+        {
+          "id": "3337:1606",
+          "type": "COMPONENT_SET",
+          "variants": 3
+        }
+      ],
       "props": "증감 tone `up/down/flat`, 이름 앞 Status Dot",
-      "category": "Content"
+      "category": "Content",
+      "doc": "3337:1426"
     }
   ]
 }

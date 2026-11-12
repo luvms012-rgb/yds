@@ -339,6 +339,10 @@ function prepStyled(P, SETS, TPL = false) {
     if (kind === 'ds-accordion') s.a.state = (el.a || {}).open !== undefined ? 'expanded' : s.a.state === 'disabled' ? 'disabled' : 'collapsed';
     if (kind === 'ds-helpbubble') s.flags = { closebutton: !!sub(el, 'close') };
     if (kind === 'ds-searchfield') s.flags = { ...(s.flags || {}), cancel: !!sub(el, 'cancel') };
+    // 86 ~ 88 (2026-11-12): 있는 부품만 켠다. Stat 의 tone 은 안쪽 delta 에 있다
+    if (kind === 'ds-sectionheader') s.flags = { end: !!sub(el, 'end') };
+    if (kind === 'ds-price') s.flags = { showwas: !!sub(el, 'was'), showrate: !!sub(el, 'rate'), showunit: !!sub(el, 'unit') };
+    if (kind === 'ds-stat') { const d = sub(el, 'delta'); s.flags = { showdelta: !!d }; if (d) s.a.tone = (d.a || {})['data-tone'] || 'flat'; }
     if (el.a && el.a.placeholder) s.parts.placeholder = el.a.placeholder;
     if (el.a && el.a.value) s.parts.value = el.a.value;
     const push = (key, v) => { if (!v) return; s.parts[key] = s.parts[key] === undefined ? v : [].concat(s.parts[key], v); };
