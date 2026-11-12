@@ -54,8 +54,6 @@
 
 - [Price](https://luvms012-rgb.github.io/yds/site/components/price.md)
 
-- [Stat](https://luvms012-rgb.github.io/yds/site/components/stat.md)
-
 - [Tag Group](https://luvms012-rgb.github.io/yds/site/components/tag-group.md)
 
 - [Timer](https://luvms012-rgb.github.io/yds/site/components/timer.md)
@@ -135,8 +133,6 @@
 - [Pull To Refresh](https://luvms012-rgb.github.io/yds/site/components/pull-to-refresh.md)
 
 - [Scroll Fog](https://luvms012-rgb.github.io/yds/site/components/scroll-fog.md)
-
-- [Section Header](https://luvms012-rgb.github.io/yds/site/components/section-header.md)
 
 ## Navigation
 

@@ -100,9 +100,7 @@
      83 Mega Menu            .ds-megamenu
      84 Command Palette      .ds-command
      85 Segmented Text Input .ds-segmentinput
-     86 Section Header       .ds-sectionheader
      87 Price                .ds-price
-     88 Stat                 .ds-stat
    ========================================================================== */
 
 
@@ -4884,43 +4882,6 @@ dialog.ds-command:not([open]) { display: none; }
 
 
 /* --------------------------------------------------------------------------
-   86 Section Header - 화면 안 묶음의 제목과 전체 보기, 정렬 같은 동작을 한 줄에 두는 머리글 (2026-11-12 추가)
-     <div class="ds-sectionheader" [data-size="small"]>
-       <h2 class="ds-sectionheader__title">공지</h2>
-       [<div class="ds-sectionheader__end"><a class="ds-link" data-size="small" href="…">전체 보기</a></div>]
-     </div>
-   size: medium(기본) 제목 t07 SemiBold / small 제목 t05 Bold(카드 안, 댓글처럼 작은 묶음)
-   제목과 end 는 양 끝 정렬, 세로 가운데, 사이 x3 / 폭이 좁으면 end 가 다음 줄로 내려갑니다(줄 사이 x2)
-   title 안에 아이콘, Badge, 개수를 함께 둘 수 있습니다(사이 x1_5) / 제목 태그(h2, h3)는 화면 구조에 맞춰 고릅니다
-   end 에는 Text Link, Action Button(small), Segmented Control, Chip Tabs, Select, Badge 중 하나를 둡니다
-   머리글 아래 내용과의 사이는 감싸는 쪽이 정합니다
-   -------------------------------------------------------------------------- */
-.ds-sectionheader {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ds-space-x2) var(--ds-space-x3);
-  min-width: 0;
-}
-.ds-sectionheader__title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--ds-space-x1_5);
-  min-width: 0;
-  margin: 0;
-  color: var(--ds-color-fg-neutral);
-  font-size: var(--ds-font-size-t07);
-  line-height: var(--ds-line-height-t07);
-  font-weight: var(--ds-font-weight-semibold);
-}
-.ds-sectionheader[data-size="small"] .ds-sectionheader__title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); }
-.ds-sectionheader__end { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
-.ds-sectionheader__end > .ds-select { width: auto; min-width: 140px; }
-
-
-/* --------------------------------------------------------------------------
    87 Price - 상품과 요금제의 판매 가격을 할인율, 원래 가격과 함께 보여 주는 가격 표시 (2026-11-12 추가)
      <div class="ds-price" [data-size="small|large"] [data-align="end"]>
        [<s class="ds-price__was">48,000원</s>]
@@ -4953,24 +4914,3 @@ dialog.ds-command:not([open]) { display: none; }
 .ds-price__rate { color: var(--ds-color-fg-critical); }
 .ds-price__value { color: var(--ds-color-fg-neutral); }
 .ds-price__unit { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-price-sub-size); line-height: var(--ds-price-sub-line); }
-
-
-/* --------------------------------------------------------------------------
-   88 Stat - 핵심 수치를 이름, 값, 지난번과 비교한 증감으로 보여 주는 숫자 표시 (2026-11-12 추가)
-     <div class="ds-stat">
-       <span class="ds-stat__label">평균 점수</span>
-       <div class="ds-stat__body"><span class="ds-stat__value">712점</span>[<span class="ds-stat__delta" data-tone="up"><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i>+24</span>]</div>
-     </div>
-   이름 t04 fg/neutral-muted / 값 t08 SemiBold fg/neutral, 숫자는 고정폭 / 증감 t03 Medium, 아이콘 14
-   tone: up fg/positive(arrow-up) / down fg/critical(arrow-down) / flat fg/neutral-muted(아이콘 없음)
-   이름과 값 사이 x1, 값과 증감 사이 x2 / 이름 앞에 Status Dot 을 둘 수 있습니다
-   여러 개를 나란히 둘 때는 하나씩 Card 에 넣고, 작은 추이 그래프는 Stat 아래에 둡니다
-   -------------------------------------------------------------------------- */
-.ds-stat { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
-.ds-stat__label { display: flex; align-items: center; gap: var(--ds-space-x1_5); min-width: 0; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
-.ds-stat__body { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--ds-space-x2); min-width: 0; }
-.ds-stat__value { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
-.ds-stat__delta { display: inline-flex; align-items: center; gap: 2px; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.ds-stat__delta > .ds-icon { --ds-icon-size: 14px; }
-.ds-stat__delta[data-tone="up"] { color: var(--ds-color-fg-positive); }
-.ds-stat__delta[data-tone="down"] { color: var(--ds-color-fg-critical); }

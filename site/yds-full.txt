@@ -1288,8 +1288,6 @@ Purple
 
 - [Price](https://luvms012-rgb.github.io/yds/site/components/price.md)
 
-- [Stat](https://luvms012-rgb.github.io/yds/site/components/stat.md)
-
 - [Tag Group](https://luvms012-rgb.github.io/yds/site/components/tag-group.md)
 
 - [Timer](https://luvms012-rgb.github.io/yds/site/components/timer.md)
@@ -1369,8 +1367,6 @@ Purple
 - [Pull To Refresh](https://luvms012-rgb.github.io/yds/site/components/pull-to-refresh.md)
 
 - [Scroll Fog](https://luvms012-rgb.github.io/yds/site/components/scroll-fog.md)
-
-- [Section Header](https://luvms012-rgb.github.io/yds/site/components/section-header.md)
 
 ## Navigation
 
@@ -4973,46 +4969,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ---
 
-<!-- https://luvms012-rgb.github.io/yds/site/components/section-header.md -->
-
-# Section Header
-
-화면 안 묶음의 제목과 전체 보기, 정렬 같은 동작을 한 줄에 두는 머리글입니다.
-
-## 사용법
-
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
-
-```html
-<div class="ds-sectionheader" [data-size="small"]>
-  <h2 class="ds-sectionheader__title">공지</h2>
-  [<div class="ds-sectionheader__end"><a class="ds-link" data-size="small" href="…">전체 보기</a></div>]
-</div>
-```
-
-## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
-| 속성 | 값 |
-| --- | --- |
-| `size` | medium small |
-| 켜고 끄는 속성 | `Select` `Badge` |
-
-그 밖에: title 안 아이콘과 Badge, end 에 Text Link, Action Button, Segmented Control, Chip Tabs
-
-## 사용 지침
-
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 화면 안 묶음마다 제목을 하나 둡니다. |
-| **Do** | 오른쪽에는 전체 보기, 정렬처럼 그 묶음에 딸린 동작을 하나만 둡니다. |
-| **Do** | 카드 안이나 댓글처럼 작은 묶음은 small을 사용합니다. |
-| **Don't** | 화면 맨 위 제목에는 사용하지 않습니다. |
-
-
----
-
 <!-- https://luvms012-rgb.github.io/yds/site/components/price.md -->
 
 # Price
@@ -5049,41 +5005,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 한 목록 안에서는 같은 크기를 사용합니다. |
 | **Do** | 금액 칸처럼 오른쪽 끝에 맞출 때는 `data-align="end"`를 사용합니다. |
 | **Don't** | 할인율을 Badge로 따로 표시하지 않습니다. |
-
-
----
-
-<!-- https://luvms012-rgb.github.io/yds/site/components/stat.md -->
-
-# Stat
-
-핵심 수치를 이름, 값, 지난번과 비교한 증감으로 보여 주는 숫자 표시입니다.
-
-## 사용법
-
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
-
-```html
-<div class="ds-stat">
-  <span class="ds-stat__label">평균 점수</span>
-  <div class="ds-stat__body"><span class="ds-stat__value">712점</span>[<span class="ds-stat__delta" data-tone="up"><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i>+24</span>]</div>
-</div>
-```
-
-## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
-그 밖에: 증감 tone `up/down/flat`, 이름 앞 Status Dot
-
-## 사용 지침
-
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 숫자는 단위와 함께 표시합니다. |
-| **Do** | 증감은 지난번과 비교할 값이 있을 때만 표시합니다. |
-| **Do** | 여러 개를 나란히 둘 때는 하나씩 Card에 넣습니다. |
-| **Don't** | 좋고 나쁨을 색으로만 알리지 않습니다. 증감 앞에 +, - 를 붙입니다. |
 
 
 ---

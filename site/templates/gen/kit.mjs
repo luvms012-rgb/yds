@@ -52,9 +52,11 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-content { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x10); }
   .tp-panel { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-sec { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; }
+  .tp-sec-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2) var(--ds-space-x3); }
+  .tp-sec-head__texts { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ds-space-x1) var(--ds-space-x2); }
   .tp-row { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
   /* 줄 안에 놓인 고르기 칸은 글자만큼만 */
-  :is(.tp-row, .tp-between, .tp-head__tools, .tp-ttools__end) > .ds-select { width: auto; min-width: 140px; }
+  :is(.tp-row, .tp-between, .tp-head__tools, .tp-sec-head, .tp-ttools__end) > .ds-select { width: auto; min-width: 140px; }
   .tp-between { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); }
   .tp-stack { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
   .tp-stack > .ds-badge { align-self: flex-start; }
@@ -62,6 +64,13 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   /* 카드 (레퍼런스 A): 흰 바탕 + 옅은 1px 선, 모서리 12 */
   .tp-card { min-width: 0; }
   .tp-span2 { grid-column: auto; }
+  .tp-kpi__label { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
+  .tp-kpi__value { font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tp-delta { display: inline-flex; align-items: center; gap: 2px; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tp-delta .ds-icon { --ds-icon-size: 14px; }
+  .tp-delta[data-tone="up"] { color: var(--ds-color-fg-positive); }
+  .tp-delta[data-tone="down"] { color: var(--ds-color-fg-critical); }
+  .tp-delta[data-tone="flat"] { color: var(--ds-color-fg-neutral-muted); }
   /* 차트: 얇은 선, 옅은 격자, 마우스를 올리면 세로 안내선과 값 풍선 */
   .tp-chart { display: block; width: 100%; height: auto; overflow: visible; }
   .tp-chart text { fill: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t01); font-family: inherit; font-variant-numeric: tabular-nums; }
@@ -267,12 +276,9 @@ export const head = (title, { tools = '', level = 1 } = {}) => `<header class="t
   <div class="tp-head__texts"><h${level} class="tp-h1">${title}</h${level}></div>
   ${tools ? `<div class="tp-head__tools">${even(tools)}</div>` : ''}
 </header>`;
-// 묶음 머리글 = DS 86 Section Header. cls 는 예전 이름(tp-h2 기본, tp-h3 = small)
-export const secHead = (title, { tools = '', level = 2, cls = 'tp-h2', id = '' } = {}) => `<div class="ds-sectionheader"${cls === 'tp-h3' ? ' data-size="small"' : ''}><h${level} class="ds-sectionheader__title"${id ? ` id="${id}"` : ''}>${title}</h${level}>${tools ? `<div class="ds-sectionheader__end">${even(tools)}</div>` : ''}</div>`;
-// 증감 = DS 88 Stat 의 delta (표 줄이나 큰 점수 옆에 따로 둘 때도 같은 모양)
-export const delta = (v, tone = v.startsWith('-') ? 'down' : v.startsWith('+') ? 'up' : 'flat') => `<span class="ds-stat__delta" data-tone="${tone}">${tone === 'flat' ? '' : `<i class="ds-icon ds-icon--arrow-${tone}" aria-hidden="true"></i>`}${v}</span>`;
-// 핵심 수치 카드 = Card 안 DS 88 Stat, 작은 추이 그래프는 아래
-export const kpi = (label, value, { d = '', chart = '', lead = '' } = {}) => card(`<div class="ds-stat"><span class="ds-stat__label">${lead}${label}</span><div class="ds-stat__body"><span class="ds-stat__value">${value}</span>${d ? delta(d) : ''}</div></div>${chart}`);
+export const secHead = (title, { tools = '', level = 2, cls = 'tp-h2', id = '' } = {}) => `<div class="tp-sec-head"><div class="tp-sec-head__texts"><h${level} class="${cls}"${id ? ` id="${id}"` : ''}>${title}</h${level}></div>${tools ? `<div class="tp-row">${even(tools)}</div>` : ''}</div>`;
+export const delta = (v, tone = v.startsWith('-') ? 'down' : v.startsWith('+') ? 'up' : 'flat') => `<span class="tp-delta" data-tone="${tone}">${tone === 'flat' ? '' : `<i class="ds-icon ds-icon--arrow-up ds-icon--sm" aria-hidden="true"${tone === 'down' ? ' style="transform: rotate(180deg)"' : ''}></i>`}${v}</span>`;
+export const kpi = (label, value, { d = '', chart = '', lead = '' } = {}) => card(`<div class="tp-stack">${lead ? `<div class="tp-row">${lead}<span class="tp-kpi__label">${label}</span></div>` : `<span class="tp-kpi__label">${label}</span>`}<div class="tp-row" style="align-items: baseline; flex-wrap: wrap"><span class="tp-kpi__value">${value}</span>${d ? delta(d) : ''}</div></div>${chart}`);
 
 /* ------------------------------------------------------------ 데이터와 차트 */
 export const rnd = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
