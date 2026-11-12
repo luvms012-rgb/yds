@@ -692,8 +692,9 @@
       if (!cur) return;
       var slug = slugOf(cur), name = cur.querySelector(".site-tpl__title").textContent;
       var text = "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
-        "\n\n'" + name + "' 템플릿을 바탕으로 화면을 만들어 줘. 배치와 컴포넌트는 그대로 두고 내용만 바꿔 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
-        "\n바꿀 것: [서비스 이름, 글, 데이터]";
+        "\n\n'" + name + "' 템플릿을 참고해서 화면을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
+        "\n템플릿은 출발점이야. 서비스의 목적과 쓰는 사람에 맞게 구성, 배치, 컴포넌트, 내용을 자유롭게 다시 짜 줘. 필요하면 YDS 의 다른 컴포넌트와 템플릿도 함께 써 줘." +
+        "\n\n만들 화면: [서비스와 화면 설명]";
       var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
       var legacy = function () {
         var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
