@@ -6,7 +6,7 @@
 
 ## 개요
 
-아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 155개이고, 필요하면 Lucide 1,999개 가운데서 추가할 수 있습니다. 모든 아이콘은 [Library](https://luvms012-rgb.github.io/yds/site/foundations/icons-library.md)에서 찾아 바로 복사할 수 있습니다.
+아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 157개이고, 필요하면 Lucide 1,999개 가운데서 추가할 수 있습니다. 모든 아이콘은 [Library](https://luvms012-rgb.github.io/yds/site/foundations/icons-library.md)에서 찾아 바로 복사할 수 있습니다.
 
 ```html
 <!-- 글자 옆: 꾸밈용이라 aria-hidden -->

@@ -283,7 +283,12 @@
     if (!btn) return;
     btn.setAttribute("aria-label", paused ? "재생" : "멈춤");
     var icon = btn.querySelector(".ds-icon");
-    if (icon) { icon.classList.toggle("ds-icon--pause", !paused); icon.classList.toggle("ds-icon--play", paused); }
+    if (icon) {
+      // 채운 모양(-solid)을 썼으면 채운 모양끼리 바꾼다
+      var solid = icon.classList.contains("ds-icon--pause-solid") || icon.classList.contains("ds-icon--play-solid");
+      ["ds-icon--pause", "ds-icon--play", "ds-icon--pause-solid", "ds-icon--play-solid"].forEach(function (n) { icon.classList.remove(n); });
+      icon.classList.add("ds-icon--" + (paused ? "play" : "pause") + (solid ? "-solid" : ""));
+    }
   }
   function startAutoplay(car) {
     var ms = parseInt(car.getAttribute("data-autoplay"), 10);

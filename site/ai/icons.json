@@ -1,6 +1,6 @@
 {
   "$note": "YDS 에서 바로 쓸 수 있는 아이콘입니다. <i class=\"ds-icon ds-icon--이름\" aria-hidden=\"true\"></i> 로 쓰고, 여기에 없는 이름은 쓰지 않습니다. 채움 모양은 이름 끝이 -solid 입니다.",
-  "count": 155,
+  "count": 157,
   "icons": [
     {
       "name": "archive",
@@ -639,6 +639,12 @@
       "use": "멈춤"
     },
     {
+      "name": "pause-solid",
+      "class": "ds-icon--pause-solid",
+      "solid": true,
+      "use": "멈춤 (채움)"
+    },
+    {
       "name": "pen-tool",
       "class": "ds-icon--pen-tool",
       "solid": false,
@@ -661,6 +667,12 @@
       "class": "ds-icon--play",
       "solid": false,
       "use": "실행, 재생"
+    },
+    {
+      "name": "play-solid",
+      "class": "ds-icon--play-solid",
+      "solid": true,
+      "use": "재생 (채움)"
     },
     {
       "name": "plus",

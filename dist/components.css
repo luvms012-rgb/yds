@@ -3974,7 +3974,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
        <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
        <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
        <div class="ds-carousel__controls">
-         <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause" aria-hidden="true"></i></button>
+         <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
          <button type="button" class="ds-carousel__count" data-ds-open="banner-all" aria-label="전체 배너 보기">1/12<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
        </div>
      </div>
@@ -3982,10 +3982,10 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
        <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="banner-all-title">전체 보기</h2><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
        <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
      </dialog>
-   서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
+   서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -play-icon-size / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
    Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2 / square 48, 둥글기 12, 아이콘 24
    -------------------------------------------------------------------------- */
-.ds-carousel { --ds-carousel-gap: var(--ds-space-x2); --ds-carousel-padding: 0px; --ds-carousel-fade: var(--ds-space-x1); --ds-carousel-button-size: var(--ds-space-x8); --ds-carousel-button-radius: var(--ds-shape-pill); --ds-carousel-button-shadow: var(--ds-elevation-overlay); --ds-carousel-button-inset: var(--ds-space-x2); --ds-carousel-control-size: var(--ds-space-x6); --ds-carousel-count-font-size: var(--ds-font-size-t02); --ds-carousel-count-padding: 0 var(--ds-space-x2); --ds-carousel-controls-x: var(--ds-space-x2); --ds-carousel-controls-y: var(--ds-space-x2); position: relative; min-width: 0; max-width: 100%; }
+.ds-carousel { --ds-carousel-gap: var(--ds-space-x2); --ds-carousel-padding: 0px; --ds-carousel-fade: var(--ds-space-x1); --ds-carousel-button-size: var(--ds-space-x8); --ds-carousel-button-radius: var(--ds-shape-pill); --ds-carousel-button-shadow: var(--ds-elevation-overlay); --ds-carousel-button-inset: var(--ds-space-x2); --ds-carousel-control-size: var(--ds-space-x6); --ds-carousel-play-icon-size: 14px; --ds-carousel-count-font-size: var(--ds-font-size-t02); --ds-carousel-count-padding: 0 var(--ds-space-x2); --ds-carousel-controls-x: var(--ds-space-x2); --ds-carousel-controls-y: var(--ds-space-x2); position: relative; min-width: 0; max-width: 100%; }
 .ds-carousel__scroller {
   --ds-carousel-fade-start: var(--ds-carousel-fade);
   --ds-carousel-fade-end: var(--ds-carousel-fade);
@@ -4032,7 +4032,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-carousel__controls { position: absolute; z-index: 1; right: var(--ds-carousel-controls-x); bottom: var(--ds-carousel-controls-y); display: flex; align-items: center; gap: var(--ds-space-x1); }
 .ds-carousel__controls .ds-carousel__count { position: static; }
 .ds-carousel__play { display: grid; place-items: center; width: var(--ds-carousel-control-size); height: var(--ds-carousel-control-size); border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-black-alpha-600); color: var(--ds-color-palette-static-white); }
-.ds-carousel__play .ds-icon { --ds-icon-size: 12px; }
+.ds-carousel__play .ds-icon { --ds-icon-size: var(--ds-carousel-play-icon-size); }
 button.ds-carousel__count { display: inline-flex; align-items: center; gap: var(--ds-space-x0_5); height: var(--ds-carousel-control-size); padding: var(--ds-carousel-count-padding); font-size: var(--ds-carousel-count-font-size); line-height: 1; font-weight: var(--ds-font-weight-regular); pointer-events: auto; cursor: pointer; }
 button.ds-carousel__count strong { font-weight: var(--ds-font-weight-bold); }
 .ds-carousel__count strong { font-weight: inherit; }

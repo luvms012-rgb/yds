@@ -21,7 +21,7 @@
   <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
   <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
   <div class="ds-carousel__controls">
-    <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause" aria-hidden="true"></i></button>
+    <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     <button type="button" class="ds-carousel__count" data-ds-open="banner-all" aria-label="전체 배너 보기">1/12<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
   </div>
 </div>
@@ -239,7 +239,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <button type="button" class="ds-carousel__button" data-direction="previous" data-shape="square" aria-label="이전"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
   <button type="button" class="ds-carousel__button" data-direction="next" data-shape="square" aria-label="다음"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>
   <div class="ds-carousel__controls">
-    <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause" aria-hidden="true"></i></button>
+    <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
     <button type="button" class="ds-carousel__count" data-ds-open="carousel-all" aria-label="전체 배너 보기">1/4<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
   </div>
 </div>
@@ -268,6 +268,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `--ds-carousel-button-shadow` | `var(--ds-elevation-overlay)` |
 | `--ds-carousel-button-inset` | `var(--ds-space-x2)` |
 | `--ds-carousel-control-size` | `var(--ds-space-x6)` |
+| `--ds-carousel-play-icon-size` | `14px` |
 | `--ds-carousel-count-font-size` | `var(--ds-font-size-t02)` |
 | `--ds-carousel-count-padding` | `0 var(--ds-space-x2)` |
 | `--ds-carousel-controls-x` | `var(--ds-space-x2)` |
@@ -283,6 +284,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 처음이나 끝에 닿으면 ybm-ds.js가 data-at-start / data-at-end를 붙여 그쪽 흐림과 버튼을 숨기고, 버튼을 누르면 한 화면씩 넘깁니다.
 큰 배너 (2026-11-12): 자동 넘김은 큰 배너에만 쓰고, 멈춤 버튼을 늘 함께 둡니다. 마우스를 올리거나 포커스가 들어오면 멈추고, 움직임 줄이기 설정이면 처음부터 멈춰 있습니다.
 번호를 버튼으로 두면 누를 때 모든 항목을 Dialog 에 모아 보여 줍니다. 모음 칸이 비어 있으면 ybm-ds.js 가 항목을 복사해 채웁니다.
-서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
+서비스 크기 맞춤은 변수로: --ds-carousel-button-size / -button-radius / -button-shadow / -button-inset, --ds-carousel-control-size(멈춤 버튼, 번호 높이) / -play-icon-size / -count-font-size / -count-padding, --ds-carousel-controls-x / -controls-y
 Figma: 항목 사이 x2 / 양 끝 흐림 x1 / Carousel Button 32 pill, bg/layer-floating, elevation overlay, 아이콘 16, 가장자리에서 x2 / square 48, 둥글기 12, 아이콘 24
 ```
