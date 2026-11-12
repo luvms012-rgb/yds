@@ -63,7 +63,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <p class="ds-field__help">수료증에 이 이름이 들어가요.</p>
     </div>
   </div>
-  <button type="button" class="ds-btn" data-size="large" data-width="fill">다음</button>
+  <button type="button" class="ds-btn" data-size="large" data-layout="fill">다음</button>
 </div>
 ```
 

@@ -108,7 +108,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </nav>
   <section class="u-col u-gap-3 u-grow u-mt-4">
     <h3 class="ds-t07 ds-fw-bold">이어서 볼 강의</h3>
-    <ul class="ds-list" data-variant="inset" data-divider>
+    <ul class="ds-list" data-inset data-divider>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">9강부터</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">16강부터</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
     </ul>

@@ -45,7 +45,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 알림 설정처럼 누르는 즉시 반영되는 항목에 Switch를 사용합니다. 별도 저장 버튼이 없으므로 켜고 끈 상태가 곧 결과입니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
@@ -100,7 +100,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 기기에서 알림을 꺼 두어 변경할 수 없는 항목은 Switch를 disabled 상태로 표시하고 이유를 설명에 적습니다. 바로 아래에 기기 설정으로 이동하는 항목을 배치해 다음 동작을 안내합니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">

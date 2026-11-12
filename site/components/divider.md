@@ -60,9 +60,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="u-col u-gap-4 u-full" style="max-width: 360px">
-  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">비밀번호로 로그인</button>
+  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">비밀번호로 로그인</button>
   <div class="ds-divider" role="separator" data-label><span>또는</span></div>
-  <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-width="fill">인증번호로 로그인</button>
+  <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="fill">인증번호로 로그인</button>
 </div>
 ```
 

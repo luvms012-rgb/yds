@@ -95,7 +95,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <div class="ds-timepicker__option" role="option">55</div>
     </div>
   </div>
-  <button type="button" class="ds-btn" data-size="large" data-width="fill">저장</button>
+  <button type="button" class="ds-btn" data-size="large" data-layout="fill">저장</button>
 </div>
 ```
 

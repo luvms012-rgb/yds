@@ -58,7 +58,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 List 안에 배치할 때는 `label.ds-list-item`으로 줄 전체를 라벨로 만듭니다. 작은 원을 정확히 누르지 않아도 줄 어디를 눌러도 선택됩니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider role="radiogroup" aria-label="결제 수단" style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider role="radiogroup" aria-label="결제 수단" style="max-width: 420px">
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span>

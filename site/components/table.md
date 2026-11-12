@@ -10,7 +10,7 @@
 
 ```html
 <div class="ds-table-wrap">            ← 열이 넘치면 가로 스크롤
-  <table class="ds-table" [data-density="compact"]>
+  <table class="ds-table" [data-size="small"]>
     <thead><tr><th scope="col">선택</th><th scope="col">제목</th><th scope="col" data-align="end">금액</th></tr></thead>
     <tbody>
       <tr class="ds-table__group"><td colspan="3">묶음 이름</td></tr>        ← 묶음 행(선택)
@@ -37,7 +37,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| `density` | compact |
+| `size` | small |
 | 켜고 끄는 속성 | `align` |
 
 ## 사용 지침

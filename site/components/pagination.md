@@ -20,7 +20,7 @@
   <a class="ds-pagination__item" data-type="last" href="?p=10" aria-label="마지막 페이지"></a>
 </nav>
 <!-- simple: 이전, 지금 위치, 다음만 -->
-<nav class="ds-pagination" data-type="simple" aria-label="페이지">
+<nav class="ds-pagination" data-layout="simple" aria-label="페이지">
   <a class="ds-pagination__item" data-type="prev" href="?p=2" aria-label="이전 페이지"></a>
   <span class="ds-pagination__indicator"><b>3</b> / 10</span>
   <a class="ds-pagination__item" data-type="next" href="?p=4" aria-label="다음 페이지"></a>
@@ -40,7 +40,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| `type` | first prev next last ellipsis simple |
+| `layout` | simple |
+| `item type` | first prev next last ellipsis |
 | `variant` | solid ghost |
 
 ## 사용 지침
@@ -98,7 +99,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="u-col u-gap-6 u-full" style="max-width: 640px">
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 영어 메일 쓰기</span><span class="ds-list-item__desc">강의 18개, 9시간</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">발표가 쉬워지는 영어 표현</span><span class="ds-list-item__desc">강의 14개, 7시간</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">회의에서 바로 쓰는 영어</span><span class="ds-list-item__desc">강의 20개, 10시간</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
@@ -121,7 +122,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 좁은 카드 안에서는 simple
 
-카드처럼 좁은 영역에서는 `data-type="simple"`로 현재 페이지와 전체 페이지 수만 표시합니다. 번호를 나열할 공간이 없을 때 이전, 다음 버튼만으로 이동합니다.
+카드처럼 좁은 영역에서는 `data-layout="simple"`로 현재 페이지와 전체 페이지 수만 표시합니다. 번호를 나열할 공간이 없을 때 이전, 다음 버튼만으로 이동합니다.
 
 ```html
 <article class="ds-card u-full" data-size="small" style="max-width: 360px">
@@ -137,7 +138,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </ul>
   </div>
   <footer class="ds-card__footer">
-    <nav class="ds-pagination u-grow" data-type="simple" aria-label="후기 페이지">
+    <nav class="ds-pagination u-grow" data-layout="simple" aria-label="후기 페이지">
       <a class="ds-pagination__item" data-type="prev" href="?p=1" aria-label="이전 페이지"></a>
       <span class="ds-pagination__indicator"><b>2</b> / 8</span>
       <a class="ds-pagination__item" data-type="next" href="?p=3" aria-label="다음 페이지"></a>

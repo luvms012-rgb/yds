@@ -64,7 +64,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="u-col u-gap-3 u-full" style="max-width: 420px">
   <form class="ds-searchfield" role="search" action="#"><div class="ds-input" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" name="q" placeholder="상품 이름으로 찾기" aria-label="찾기" value="텀블러"><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></form>
-  <ul class="ds-list" data-variant="inset" data-divider><li><div class="ds-list-item"><span class="ds-list-item__content"><span class="ds-list-item__title">스테인리스 텀블러 500ml</span><span class="ds-list-item__desc">18,000원</span></span></div></li></ul>
+  <ul class="ds-list" data-inset data-divider><li><div class="ds-list-item"><span class="ds-list-item__content"><span class="ds-list-item__title">스테인리스 텀블러 500ml</span><span class="ds-list-item__desc">18,000원</span></span></div></li></ul>
 </div>
 ```
 

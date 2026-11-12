@@ -10,7 +10,7 @@
 
 ```html
 <div class="ds-selectbox-group" [style="--ds-selectbox-columns: 2"]>
-  <label class="ds-selectbox" [data-layout="vertical"]>
+  <label class="ds-selectbox" [data-orientation="vertical"]>
     [<i class="ds-icon ds-icon--…" aria-hidden="true"></i>]
     <span class="ds-selectbox__texts">
       <span class="ds-selectbox__label">라벨</span>
@@ -40,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | `type` | check radio |
 | `state` | unchecked checked disabled |
-| `layout` | horizontal vertical |
+| `orientation` | horizontal vertical |
 
 ## 사용 지침
 
@@ -97,7 +97,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <span class="ds-field__label" id="select-box-ex2-label">관심 있는 분야를 모두 골라 주세요</span>
   </div>
   <div class="ds-selectbox-group" role="group" aria-labelledby="select-box-ex2-label" style="--ds-selectbox-columns: 2">
-    <label class="ds-selectbox" data-layout="vertical">
+    <label class="ds-selectbox" data-orientation="vertical">
       <i class="ds-icon ds-icon--message-circle" aria-hidden="true"></i>
       <span class="ds-selectbox__texts">
         <span class="ds-selectbox__label">말하기</span>
@@ -105,7 +105,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </span>
       <span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span>
     </label>
-    <label class="ds-selectbox" data-layout="vertical">
+    <label class="ds-selectbox" data-orientation="vertical">
       <i class="ds-icon ds-icon--headset" aria-hidden="true"></i>
       <span class="ds-selectbox__texts">
         <span class="ds-selectbox__label">듣기</span>
@@ -113,7 +113,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </span>
       <span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span>
     </label>
-    <label class="ds-selectbox" data-layout="vertical">
+    <label class="ds-selectbox" data-orientation="vertical">
       <i class="ds-icon ds-icon--book-open" aria-hidden="true"></i>
       <span class="ds-selectbox__texts">
         <span class="ds-selectbox__label">읽기</span>
@@ -121,7 +121,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </span>
       <span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span>
     </label>
-    <label class="ds-selectbox" data-layout="vertical">
+    <label class="ds-selectbox" data-orientation="vertical">
       <i class="ds-icon ds-icon--pencil" aria-hidden="true"></i>
       <span class="ds-selectbox__texts">
         <span class="ds-selectbox__label">쓰기</span>

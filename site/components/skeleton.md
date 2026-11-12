@@ -39,7 +39,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록을 불러오는 동안 줄마다 사진, 제목, 설명 자리를 Skeleton으로 미리 표시합니다. 곧 나타날 모양을 알 수 있고, 내용이 들어와도 줄 높이가 같아 화면이 흔들리지 않습니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider aria-busy="true" aria-label="강의 목록 불러오는 중" style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider aria-busy="true" aria-label="강의 목록 불러오는 중" style="max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix"><span class="ds-skeleton" style="width: 48px; height: 48px"></span></span>

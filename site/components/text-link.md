@@ -46,7 +46,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-input" data-variant="outline">
     <input class="ds-input__control" type="password" aria-label="비밀번호" placeholder="비밀번호" autocomplete="current-password">
   </div>
-  <button type="button" class="ds-btn" data-size="large" data-width="fill">로그인</button>
+  <button type="button" class="ds-btn" data-size="large" data-layout="fill">로그인</button>
   <div class="u-flex u-center u-gap-3">
     <a class="ds-link" href="#">아이디 찾기</a>
     <span class="ds-divider" role="separator" aria-orientation="vertical" data-orientation="vertical"></span>
@@ -67,7 +67,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <h3 class="ds-t06 ds-fw-bold">최근 주문</h3>
     <a class="ds-link" data-size="small" href="#">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">

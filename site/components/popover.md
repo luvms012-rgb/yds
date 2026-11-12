@@ -88,7 +88,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </div>
     </span>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li><div class="ds-list-item" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 단어 30개 외우기</span><span class="ds-list-item__desc">매일</span></span></div></li>
     <li><div class="ds-list-item" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">듣기 강의 2개 듣기</span><span class="ds-list-item__desc">월, 수, 금</span></span></div></li>
     <li><div class="ds-list-item" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">모의고사 한 번 풀기</span><span class="ds-list-item__desc">토요일</span></span></div></li>
@@ -128,7 +128,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </div>
     </span>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">무선 이어폰</span><span class="ds-list-item__desc">11월 3일 주문</span></span><span class="ds-list-item__suffix">배송 중</span></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 단어장 세트</span><span class="ds-list-item__desc">11월 1일 주문</span></span><span class="ds-list-item__suffix">결제 완료</span></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">가벼운 러닝화</span><span class="ds-list-item__desc">10월 28일 주문</span></span><span class="ds-list-item__suffix">배송 중</span></a></li>

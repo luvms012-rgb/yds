@@ -67,7 +67,7 @@ PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을
     <span class="ds-t04 ds-fg-muted">강의 32개</span>
     <button type="button" class="ds-btn" data-variant="neutralOutline" data-size="small" data-ds-open="side-panel-ex1"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i>필터</button>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">어학, 3개월</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">컴퓨터 활용 실무</span><span class="ds-list-item__desc">자격증, 1개월</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
   </ul>
@@ -120,7 +120,7 @@ PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을
     <h3 class="ds-t07 ds-fw-bold">내 강의실</h3>
     <button type="button" class="ds-btn" data-variant="ghost" data-layout="iconOnly" aria-label="알림 열기" data-ds-open="side-panel-ex2"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">9강부터 이어서 보기</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">16강부터 이어서 보기</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
   </ul>
@@ -132,7 +132,7 @@ PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을
       <button type="button" class="ds-sidepanel__close" data-ds-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
     </div>
     <div class="ds-sidepanel__body">
-      <ul class="ds-list" data-variant="inset" data-divider>
+      <ul class="ds-list" data-inset data-divider>
         <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">수강 신청이 확정됐어요</span><span class="ds-list-item__desc">방금</span></span></a></li>
         <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--truck" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">주문한 교재가 출발했어요</span><span class="ds-list-item__desc">1시간 전</span></span></a></li>
         <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">내일 오전 10시에 시험이 있어요</span><span class="ds-list-item__desc">어제</span></span></a></li>

@@ -12,7 +12,7 @@
 <article class="ds-card" [data-variant="elevated"] [data-size="small"]>
   <header class="ds-card__header"><h3 class="ds-card__title">카드 제목</h3>[<p class="ds-card__desc">설명</p>]</header>
   <div class="ds-card__content">…</div>
-  [<footer class="ds-card__footer"><button class="ds-btn" data-variant="neutralWeak" data-width="fill">자세히 보기</button></footer>]
+  [<footer class="ds-card__footer"><button class="ds-btn" data-variant="neutralWeak" data-layout="fill">자세히 보기</button></footer>]
 </article>
 ```
 
@@ -88,10 +88,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <div class="u-flex u-between ds-t05 ds-fw-bold"><span>총 결제 금액</span><span>32,000원</span></div>
     </div>
     <footer class="ds-card__footer">
-      <button class="ds-btn" data-variant="neutralWeak" data-width="fill">쿠폰 바꾸기</button>
+      <button class="ds-btn" data-variant="neutralWeak" data-layout="fill">쿠폰 바꾸기</button>
     </footer>
   </article>
-  <button class="ds-btn" data-size="large" data-width="fill">32,000원 결제하기</button>
+  <button class="ds-btn" data-size="large" data-layout="fill">32,000원 결제하기</button>
 </div>
 ```
 

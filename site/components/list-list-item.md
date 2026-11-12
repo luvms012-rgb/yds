@@ -9,7 +9,7 @@
 아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
-<ul class="ds-list" [data-variant="inset"] [data-divider]>
+<ul class="ds-list" [data-inset] [data-divider]>
   <li>
     <a class="ds-list-item" href="#" [data-size="small"]>
       [<span class="ds-list-item__prefix"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span>]
@@ -41,9 +41,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| 켜고 끄는 속성 | `divider` |
+| 켜고 끄는 속성 | `inset` `divider` |
 
-그 밖에: variant inset, size small, prefix/suffix/chevron
+그 밖에: size small, prefix/suffix/chevron
 
 ## 사용 지침
 
@@ -59,7 +59,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 항목 전체가 하나의 링크일 때는 오른쪽에 값과 꺾쇠만 표시하고 다른 버튼은 넣지 않습니다. 누르는 영역이 하나여서 어디를 눌러도 같은 화면으로 이동합니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--user" aria-hidden="true"></i></span>
@@ -94,7 +94,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 누르는 즉시 반영되는 설정은 항목 끝에 Switch를 배치하고 항목 전체를 `label`로 감쌉니다. 텍스트를 눌러도 켜고 끌 수 있어 누르는 영역이 넓어집니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
@@ -130,7 +130,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 한 항목에 수정, 삭제처럼 동작이 여러 개이면 항목을 링크로 만들지 않고 버튼을 항목 끝에 배치합니다. 누를 수 있는 요소는 한 항목에 3개까지만 둡니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">

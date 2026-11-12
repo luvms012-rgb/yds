@@ -53,7 +53,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <button type="button" class="ds-chip" data-variant="outlineWeak" aria-haspopup="dialog">최근 3개월<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
     <button type="button" class="ds-chip" data-variant="outlineWeak" aria-haspopup="dialog">배송 완료<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">

@@ -221,7 +221,7 @@ function example(previewHtml, code, cls = '') {
   <div class="site-example__code" hidden>${codeblock(code)}</div>
 </div>`;
 }
-const table = (head, rows) => `<div class="ds-table-wrap"><table class="ds-table" data-density="compact">
+const table = (head, rows) => `<div class="ds-table-wrap"><table class="ds-table" data-size="small">
 <thead><tr>${head.map((h) => `<th scope="col">${h}</th>`).join('')}</tr></thead>
 <tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('\n')}</tbody></table></div>`;
 const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
@@ -427,6 +427,7 @@ const LLMS_RULES = `## 지킬 것
 - 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
 - 캐러셀: 자동 넘김(data-autoplay)은 큰 배너에만 쓰고, 멈춤 버튼(.ds-carousel__play)을 꼭 함께 둔다.
+- 같은 기능, 다른 모양: 값 차이는 컴포넌트 변수로, 구조 차이는 data-layout 으로 고른다. 비슷한 컴포넌트를 새로 만들거나 서비스 이름으로 모양을 나누지 않는다.
 - 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 옅은 회색 칸(트랙, 빈 칸, 자리 표시, 회색 박스 안의 칸)은 --ds-color-bg-neutral-weak-alpha를 쓴다. 불투명 --ds-color-bg-neutral은 같은 회색 바탕 위에서 사라진다.
@@ -1120,7 +1121,7 @@ if (SHOW_THEMES) write({
     <p class="site-themes__desc">테마별로 실제 사이트 화면을 확인할 수 있습니다. 테마는 브랜드 색, 바탕 색, 모서리만 바꾸고 컴포넌트는 그대로 유지합니다. 원하는 테마 파일을 복사해 사용하세요.</p>
     <a class="ds-link" data-size="small" href="../index.html#custom-theme">테마 사용방법</a>
   </div>
-  <div class="site-themes__acts"><a class="ds-btn" data-variant="neutralSolid" data-size="small" data-width="fill" href="${GITHUB}/blob/main/dist/themes/${firstTheme.slug}.css" target="_blank" rel="noopener" data-site-theme-file>이 테마 쓰기</a><a class="ds-btn" data-variant="neutralWeak" data-size="small" data-width="fill" href="pages/${firstTheme.slug}.html" target="_blank" rel="noopener" data-site-theme-open>새 창으로 보기</a></div>
+  <div class="site-themes__acts"><a class="ds-btn" data-variant="neutralSolid" data-size="small" data-layout="fill" href="${GITHUB}/blob/main/dist/themes/${firstTheme.slug}.css" target="_blank" rel="noopener" data-site-theme-file>이 테마 쓰기</a><a class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill" href="pages/${firstTheme.slug}.html" target="_blank" rel="noopener" data-site-theme-open>새 창으로 보기</a></div>
   <div class="site-themes__list" role="group" aria-label="테마">${THEME_CARDS.map((t, i) => themeCard(t, i === 1)).join('')}</div>
 </div></aside>
 <div class="site-themes__stage"><iframe src="pages/${firstTheme.slug}.html" title="${esc(firstTheme.name)} 테마를 입힌 화면" scrolling="no" data-site-frame data-site-nomono data-site-theme-frame></iframe></div>

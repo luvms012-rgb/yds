@@ -36,7 +36,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <input class="ds-input__control" id="prefix-select-ex1-phone" type="tel" inputmode="numeric" placeholder="010-0000-0000" required>
     </div>
   </div>
-  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">인증번호 받기</button>
+  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">인증번호 받기</button>
 </div>
 ```
 

@@ -261,8 +261,8 @@
 
 <section class="pv-sec" id="c-24" data-no="24"><header><h2><small>24</small>Snackbar</h2></header>
   <div class="pv-stage">
-    <button class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('저장했어요', { variant: 'positive' })">positive 띄우기</button>
-    <button class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('네트워크 연결을 확인해 주세요', { variant: 'critical', action: '다시 시도' })">critical 띄우기</button>
+    <button class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('저장했어요', { tone: 'positive' })">positive 띄우기</button>
+    <button class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('네트워크 연결을 확인해 주세요', { tone: 'critical', action: '다시 시도' })">critical 띄우기</button>
     <button class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('링크를 복사했어요')">default 띄우기</button>
   </div>
 </section>
@@ -347,7 +347,7 @@
 
 <section class="pv-sec" id="c-34" data-no="34"><header><h2><small>34</small>Progress Circle</h2></header>
   <div class="pv-stage">
-    <span class="ds-progress-circle" role="progressbar" aria-label="불러오는 중" data-type="indeterminate"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
+    <span class="ds-progress-circle" role="progressbar" aria-label="불러오는 중" data-indeterminate><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
     <span class="ds-progress-circle" data-size="40" data-tone="brand" role="progressbar" aria-valuenow="40" aria-label="40%" style="--ds-progress-value: 40"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
     <span class="ds-progress-circle" data-size="56" data-tone="brand" role="progressbar" aria-valuenow="75" aria-label="75%" style="--ds-progress-value: 75"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
   </div>
@@ -394,7 +394,7 @@
 
 <section class="pv-sec" id="c-39" data-no="39"><header><h2><small>39</small>Card</h2></header>
   <div class="pv-stage" style="align-items:flex-start">
-    <article class="ds-card pv-w"><header class="ds-card__header"><h3 class="ds-card__title">주말 디자인 워크숍</h3><p class="ds-card__desc">2026.11.08 (일) · 서울</p></header><div class="ds-card__content">신청 마감까지 3일 남았어요.</div><footer class="ds-card__footer"><button class="ds-btn" data-variant="neutralWeak" data-width="fill">자세히 보기</button></footer></article>
+    <article class="ds-card pv-w"><header class="ds-card__header"><h3 class="ds-card__title">주말 디자인 워크숍</h3><p class="ds-card__desc">2026.11.08 (일) · 서울</p></header><div class="ds-card__content">신청 마감까지 3일 남았어요.</div><footer class="ds-card__footer"><button class="ds-btn" data-variant="neutralWeak" data-layout="fill">자세히 보기</button></footer></article>
     <article class="ds-card pv-w" data-variant="elevated" data-size="small"><header class="ds-card__header"><h3 class="ds-card__title">elevated · small</h3><p class="ds-card__desc">elevation raised</p></header></article>
   </div>
   <div class="pv-stage"><article class="ds-card pv-w" data-size="small"><header class="ds-card__header"><h3 class="ds-card__title">이번 달 주문</h3><p class="ds-card__desc">지난달보다 12% 늘었어요.</p></header><div class="ds-card__content">1,284건</div></article></div>
@@ -409,7 +409,7 @@
 <section class="pv-sec" id="c-41" data-no="41"><header><h2><small>41</small>Pagination</h2></header>
   <div class="pv-stage pv-col">
     <nav class="ds-pagination" aria-label="페이지"><a class="ds-pagination__item" data-type="first" aria-label="첫 페이지" aria-disabled="true"></a><a class="ds-pagination__item" data-type="prev" aria-label="이전 페이지" aria-disabled="true"></a><a class="ds-pagination__item" href="#" aria-current="page">1</a><a class="ds-pagination__item" href="#">2</a><a class="ds-pagination__item" href="#">3</a><span class="ds-pagination__item" data-type="ellipsis" aria-hidden="true"></span><a class="ds-pagination__item" href="#">10</a><a class="ds-pagination__item" data-type="next" href="#" aria-label="다음 페이지"></a><a class="ds-pagination__item" data-type="last" href="#" aria-label="마지막 페이지"></a></nav>
-    <nav class="ds-pagination" data-type="simple" aria-label="페이지"><a class="ds-pagination__item" data-type="prev" href="#" aria-label="이전 페이지"></a><span class="ds-pagination__indicator"><b>3</b> / 10</span><a class="ds-pagination__item" data-type="next" href="#" aria-label="다음 페이지"></a></nav>
+    <nav class="ds-pagination" data-layout="simple" aria-label="페이지"><a class="ds-pagination__item" data-type="prev" href="#" aria-label="이전 페이지"></a><span class="ds-pagination__indicator"><b>3</b> / 10</span><a class="ds-pagination__item" data-type="next" href="#" aria-label="다음 페이지"></a></nav>
   </div>
 </section>
 
@@ -461,7 +461,7 @@
 
 <section class="pv-sec" id="c-45" data-no="45"><header><h2><small>45</small>List · List Item</h2></header>
   <div class="pv-stage" style="align-items:flex-start">
-    <ul class="ds-list pv-w" data-variant="inset" data-divider>
+    <ul class="ds-list pv-w" data-inset data-divider>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--id-card" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">내 정보</span><span class="ds-list-item__desc">이름 · 연락처 · 이메일</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">결제 수단</span></span><span class="ds-list-item__suffix">카드 2개</span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
       <li><label class="ds-list-item"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--message-circle" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">알림 받기</span></span><span class="ds-list-item__suffix"><span class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" checked aria-label="알림 받기"></span></span></label></li>
@@ -518,8 +518,8 @@
   </div>
   <div class="pv-stage pv-col">
     <div class="ds-selectbox-group pv-w" style="--ds-selectbox-columns: 2" aria-label="관심 분야">
-      <label class="ds-selectbox" data-layout="vertical"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">읽기</span><span class="ds-selectbox__desc">글을 빠르게 이해해요</span></span><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span></label>
-      <label class="ds-selectbox" data-layout="vertical"><i class="ds-icon ds-icon--message-circle" aria-hidden="true"></i><span class="ds-selectbox__texts"><span class="ds-selectbox__label">말하기</span><span class="ds-selectbox__desc">자연스럽게 대화해요</span></span><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span></label>
+      <label class="ds-selectbox" data-orientation="vertical"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">읽기</span><span class="ds-selectbox__desc">글을 빠르게 이해해요</span></span><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span></label>
+      <label class="ds-selectbox" data-orientation="vertical"><i class="ds-icon ds-icon--message-circle" aria-hidden="true"></i><span class="ds-selectbox__texts"><span class="ds-selectbox__label">말하기</span><span class="ds-selectbox__desc">자연스럽게 대화해요</span></span><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span></label>
     </div>
   </div>
 </section>
@@ -590,7 +590,7 @@
       <p class="ds-chat-system">오늘</p>
       <div class="ds-chat-bubble">안녕하세요! 무엇을 도와드릴까요?</div>
       <div style="display:flex;align-items:flex-end;justify-content:flex-end;gap:var(--ds-space-x1_5)"><span class="ds-chat-meta" data-status="read"><b class="ds-chat-meta__status">읽음</b><time>오후 3:24</time></span><div class="ds-chat-bubble" data-sender="user" style="margin-left:0">이번 주 일정 정리해 줘</div></div>
-      <p class="ds-chat-system" data-variant="divider">대화가 종료되었어요</p>
+      <p class="ds-chat-system" data-layout="divider">대화가 종료되었어요</p>
       <div style="display:flex;gap:var(--ds-space-x4)"><span class="ds-chat-meta" data-status="sending"><b class="ds-chat-meta__status">전송 중</b><time>오후 3:24</time></span><span class="ds-chat-meta" data-status="sent"><time>오후 3:24</time></span><span class="ds-chat-meta" data-status="error"><b class="ds-chat-meta__status">전송 실패</b><time>오후 3:24</time></span></div>
       <div style="display:flex;gap:var(--ds-space-x3)"><button type="button" class="ds-chat-send" aria-label="보내기"></button><button type="button" class="ds-chat-send" data-state="stop" aria-label="답변 멈추기"></button><button type="button" class="ds-chat-send" aria-label="보내기" disabled></button></div>
     </div>
@@ -695,7 +695,7 @@
           <span class="ds-fileitem__texts"><span class="ds-fileitem__name">회의록_10월_전체_정리본.docx</span><span class="ds-fileitem__size">2.4MB</span></span>
           <button type="button" class="ds-fileitem__remove" aria-label="회의록_10월_전체_정리본.docx 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
         </div>
-        <div class="ds-fileitem" data-type="image">
+        <div class="ds-fileitem" data-layout="image">
           <span class="ds-fileitem__thumbnail" style="width:100%;height:100%;background:none"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></span>
           <span class="ds-fileitem__badge">대표</span>
           <button type="button" class="ds-fileitem__remove" aria-label="사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>

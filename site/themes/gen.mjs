@@ -419,7 +419,7 @@ const violet = () => {
     <div class="th-chat" role="group" aria-label="대화 미리 보기">
       <div class="th-chat__head">${avatar('토키', 42)}<div><b>토키 튜터</b><small>● 지금 대화 중 · 비즈니스 영어</small></div><div style="margin-left: auto">${badge('Day 12', 'brand')}</div></div>
       <div class="th-chat__log">
-        <p class="ds-chat-system" data-variant="divider">오늘</p>
+        <p class="ds-chat-system" data-layout="divider">오늘</p>
         <div class="ds-chat-bubble">Good morning! Tell me about a meeting you had this week.</div>
         <div class="ds-chat-bubble" data-sender="user">I had meeting with my team on Monday. We discussed about the new project.</div>
         <div class="ds-chat-bubble">Nice! Two small fixes 👇<br><span class="th-fix">${icon('check', 'sm')} I had <b>a</b> meeting</span> <span class="th-fix">${icon('check', 'sm')} We discussed the project (no “about”)</span><br><br>What was the most important decision?</div>

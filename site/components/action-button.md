@@ -22,8 +22,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | `variant` | brandSolid brandOutline neutralSolid neutralWeak neutralOutline criticalSolid ghost |
 | `size` | xsmall small medium large |
-| `layout` | iconOnly |
-| `width` | fill |
+| `layout` | iconOnly fill |
 
 ## 사용 지침
 
@@ -49,8 +48,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <strong class="ds-t07 ds-fw-bold">32,000원</strong>
   </div>
   <div class="u-flex u-gap-2">
-    <button class="ds-btn" data-variant="neutralWeak" data-size="large" data-width="fill">장바구니 담기</button>
-    <button class="ds-btn" data-size="large" data-width="fill">바로 구매하기</button>
+    <button class="ds-btn" data-variant="neutralWeak" data-size="large" data-layout="fill">장바구니 담기</button>
+    <button class="ds-btn" data-size="large" data-layout="fill">바로 구매하기</button>
   </div>
 </div>
 ```
@@ -65,7 +64,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="u-flex u-gap-2">
     <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="찜하기"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button>
     <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="공유하기"><i class="ds-icon ds-icon--share" aria-hidden="true"></i></button>
-    <button class="ds-btn" data-size="large" data-width="fill">수강 신청하기</button>
+    <button class="ds-btn" data-size="large" data-layout="fill">수강 신청하기</button>
   </div>
 </div>
 ```
@@ -75,7 +74,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록 항목마다 배치하는 버튼은 small 크기의 neutralWeak를 사용해 항목마다 강조가 생기지 않게 합니다. 항목 안에 버튼이 있으면 항목 전체를 링크로 만들지 않습니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -133,7 +132,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```
 variant : brandSolid(기본) / neutralSolid / neutralWeak / criticalSolid / brandOutline / neutralOutline / ghost
 size    : xsmall 32 / small 36 / medium 40(기본) / large 52
-layout  : 기본 withText / data-layout="iconOnly" / data-width="fill"
+layout  : 기본 withText / data-layout="iconOnly" / data-layout="fill" (예전 data-width="fill" 도 읽음)
 Figma: xsmall px14 gap4 t02 Medium shape/xs (iconOnly pill) / icon 16
        small  px14 gap4 t04 SemiBold shape/sm / icon 16 (iconOnly 18)
        medium px16 gap6 t04 SemiBold shape/sm / icon 18 (iconOnly 20)

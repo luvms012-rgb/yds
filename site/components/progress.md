@@ -61,7 +61,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 여러 줄에 반복되는 진행률은 `data-tone="neutral"`과 `data-size="small"`로 약하게 표시합니다. brand는 화면의 대표 진행률 하나에만 사용해야 눈에 띕니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <div class="ds-list-item__content u-gap-1_5">

@@ -95,7 +95,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <hr class="ds-divider">
   <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">밤 9시부터 아침 8시까지는 받지 않기</span></label>
-  <button class="ds-btn" data-size="large" data-width="fill">저장</button>
+  <button class="ds-btn" data-size="large" data-layout="fill">저장</button>
 </div>
 ```
 

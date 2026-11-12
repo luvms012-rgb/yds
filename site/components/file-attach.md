@@ -20,7 +20,7 @@
       <i class="ds-icon ds-icon--plus" aria-hidden="true"></i>
       <span class="ds-fileattach__count"><b>2</b>/10</span>
     </label>
-    <div class="ds-fileitem" [data-type="image"] [data-readonly]>
+    <div class="ds-fileitem" [data-layout="image"] [data-readonly]>
       <span class="ds-fileitem__thumbnail"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span>
       <span class="ds-fileitem__texts"><span class="ds-fileitem__name">보고서.pdf</span><span class="ds-fileitem__size">2.4MB</span></span>
       (image 는 <img class="ds-fileitem__image" src="…" alt="…"> [<span class="ds-fileitem__badge">대표</span>])
@@ -55,7 +55,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 속성 | 값 |
 | --- | --- |
 | `Dropzone state` | enabled dragOver disabled |
-| `Item type` | file image |
+| `Item layout` | image |
 | `state` | enabled readonly |
 | 켜고 끄는 속성 | `badge` |
 
@@ -137,12 +137,12 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
           <i class="ds-icon ds-icon--plus" aria-hidden="true"></i>
           <span class="ds-fileattach__count"><b>2</b>/10</span>
         </label>
-        <div class="ds-fileitem" data-type="image">
+        <div class="ds-fileitem" data-layout="image">
           <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=160&q=70" alt="공책에 단어를 적는 모습">
           <span class="ds-fileitem__badge">대표</span>
           <button type="button" class="ds-fileitem__remove" aria-label="첫 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
         </div>
-        <div class="ds-fileitem" data-type="image">
+        <div class="ds-fileitem" data-layout="image">
           <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=160&q=70" alt="책상 위에 쌓인 책">
           <button type="button" class="ds-fileitem__remove" aria-label="두 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
         </div>
@@ -168,16 +168,16 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
         <i class="ds-icon ds-icon--plus" aria-hidden="true"></i>
         <span class="ds-fileattach__count"><b>3</b>/3</span>
       </label>
-      <div class="ds-fileitem" data-type="image">
+      <div class="ds-fileitem" data-layout="image">
         <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=70" alt="커피 두 잔">
         <span class="ds-fileitem__badge">대표</span>
         <button type="button" class="ds-fileitem__remove" aria-label="첫 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
-      <div class="ds-fileitem" data-type="image">
+      <div class="ds-fileitem" data-layout="image">
         <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=160&q=70" alt="커피 잔을 부딪치는 손">
         <button type="button" class="ds-fileitem__remove" aria-label="두 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
-      <div class="ds-fileitem" data-type="image">
+      <div class="ds-fileitem" data-layout="image">
         <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=160&q=70" alt="샐러드 한 그릇">
         <button type="button" class="ds-fileitem__remove" aria-label="세 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>

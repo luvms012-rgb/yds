@@ -27,7 +27,7 @@
       ],
       "doc": "2481:2",
       "category": "Action",
-      "props": "variant `brandSolid·brandOutline·neutralSolid·neutralWeak·neutralOutline·criticalSolid·ghost` · size `xsmall·small·medium·large` · layout `iconOnly` · width `fill`"
+      "props": "variant `brandSolid·brandOutline·neutralSolid·neutralWeak·neutralOutline·criticalSolid·ghost` · size `xsmall·small·medium·large` · layout `iconOnly·fill`"
     },
     {
       "no": "02",
@@ -459,7 +459,7 @@
       ],
       "doc": "2481:2098",
       "category": "Overlay",
-      "props": "variant `default·positive·critical`"
+      "props": "tone `positive·critical`"
     },
     {
       "no": "25",
@@ -573,7 +573,7 @@
       ],
       "doc": "2481:1721",
       "category": "Container",
-      "props": "variant `separated` · size"
+      "props": "layout `separated` · size"
     },
     {
       "no": "31",
@@ -641,7 +641,7 @@
       ],
       "doc": "2481:1942",
       "category": "Feedback & Status",
-      "props": "tone `neutral·brand·staticWhite` · size · type `determinate·indeterminate`"
+      "props": "tone `neutral·brand·staticWhite` · size · indeterminate"
     },
     {
       "no": "35",
@@ -786,7 +786,7 @@
       ],
       "doc": "2481:2007",
       "category": "Navigation",
-      "props": "type `first·prev·next·last·ellipsis·simple` · variant `solid·ghost`"
+      "props": "layout `simple` · item type `first·prev·next·last·ellipsis` · variant `solid·ghost`"
     },
     {
       "no": "42",
@@ -816,7 +816,7 @@
       ],
       "doc": "2481:2137",
       "category": "Table & List",
-      "props": "density `compact` · align"
+      "props": "size `small` · align"
     },
     {
       "no": "43",
@@ -869,7 +869,7 @@
       ],
       "doc": "2481:2124",
       "category": "Table & List",
-      "props": "variant inset · divider · size small · prefix/suffix/chevron"
+      "props": "inset · divider · size small · prefix/suffix/chevron"
     },
     {
       "no": "46",
@@ -942,7 +942,7 @@
       ],
       "doc": "2495:261",
       "category": "Container",
-      "props": "type `check/radio`, state `unchecked/checked/disabled`, layout `horizontal/vertical`"
+      "props": "type `check/radio`, state `unchecked/checked/disabled`, orientation `horizontal/vertical`"
     },
     {
       "no": "50",
@@ -1040,7 +1040,7 @@
       ],
       "doc": "2499:55",
       "category": "Chat",
-      "props": "sender `assistant/user`, status `sending/sent/read/error`, 보내기 `send/stop/disabled`"
+      "props": "sender `assistant/user`, status `sending/sent/read/error`, 보내기 `send/stop/disabled`, 시스템 줄 layout `divider`"
     },
     {
       "no": "54",
@@ -1140,7 +1140,7 @@
       ],
       "doc": "2559:1453",
       "category": "Data Input",
-      "props": "Dropzone state `enabled/dragOver/disabled` / Trigger state / Item type `file/image`, state `enabled/readonly`, badge"
+      "props": "Dropzone state `enabled/dragOver/disabled` / Trigger state / Item layout `image`, state `enabled/readonly`, badge"
     },
     {
       "no": "58",
@@ -1493,7 +1493,7 @@
           "variants": 5
         }
       ],
-      "props": "size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, `__clear`, 표에 `data-ds-selection`",
+      "props": "size `medium/small`, variant `plain/muted`, `data-divider`, layout `floating`, `__clear`, 표에 `data-ds-selection`",
       "doc": "2717:627",
       "category": "Action"
     },

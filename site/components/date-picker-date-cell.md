@@ -79,7 +79,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <button class="ds-date-cell">29</button><button class="ds-date-cell">30</button>
     </div>
   </div>
-  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">다음</button>
+  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">다음</button>
 </div>
 ```
 
@@ -153,7 +153,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <button class="ds-date-cell">29</button><button class="ds-date-cell">30</button>
     </div>
   </div>
-  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">11월 8일부터 7일 멈추기</button>
+  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">11월 8일부터 7일 멈추기</button>
 </div>
 ```
 

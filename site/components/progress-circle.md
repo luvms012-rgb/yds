@@ -28,8 +28,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 속성 | 값 |
 | --- | --- |
 | `tone` | neutral brand staticWhite |
-| `type` | determinate indeterminate |
-| 켜고 끄는 속성 | `size` |
+| 켜고 끄는 속성 | `size` `indeterminate` |
 
 ## 사용 지침
 
@@ -44,7 +43,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 완료 시점을 모를 때는 indeterminate
 
-목록 끝에서 다음 내용을 불러올 때처럼 언제 끝날지 모르면 `data-type="indeterminate"`를 사용합니다. 알 수 없는 진행률을 임의로 채우면 멈춘 것처럼 보입니다.
+목록 끝에서 다음 내용을 불러올 때처럼 언제 끝날지 모르면 `data-indeterminate`를 사용합니다. 알 수 없는 진행률을 임의로 채우면 멈춘 것처럼 보입니다.
 
 ```html
 <div class="u-col u-gap-3 u-full" style="max-width: 420px">
@@ -67,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </li>
   </ul>
   <div class="u-flex u-center">
-    <span class="ds-progress-circle" data-type="indeterminate" role="progressbar" aria-label="공지를 더 불러오는 중"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
+    <span class="ds-progress-circle" data-indeterminate role="progressbar" aria-label="공지를 더 불러오는 중"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
   </div>
 </div>
 ```
@@ -77,7 +76,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 파일을 내려받을 때처럼 진행 정도를 알 수 있으면 determinate를 사용합니다. 옆에 "72%"처럼 값을 함께 표시해 남은 양을 알려 줍니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix">
@@ -121,7 +120,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <div class="ds-imageframe" data-radius="md" style="width: 96px">
       <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=200&q=70" alt="올리는 중인 사진 2">
       <div class="ds-imageframe__floater" data-position="bottom-end">
-        <span class="ds-progress-circle" data-tone="staticWhite" data-type="indeterminate" role="progressbar" aria-label="사진 올리는 중"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
+        <span class="ds-progress-circle" data-tone="staticWhite" data-indeterminate role="progressbar" aria-label="사진 올리는 중"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
       </div>
     </div>
   </div>
@@ -143,7 +142,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```
 tone: neutral(기본) / brand / staticWhite   size: 24(기본) / 40 / 56   type: determinate / indeterminate
-  indeterminate: data-type="indeterminate" (회전하는 25% 호)
+  indeterminate: data-indeterminate (회전하는 25% 호, 예전 data-type="indeterminate" 도 읽음)
 Figma: 두께 24→3 / 40→5 / 56→7 / 둥근 끝 / 12시 시작
   트랙 bg/neutral-weak-alpha(2026-11-11 모든 색 같음) / neutral 호 palette/gray-500 / brand 호 bg/brand-solid
   staticWhite palette/static-white-alpha-300 + palette/static-white (팔레트를 직접 참조하는 것은 의도된 예외)

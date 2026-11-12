@@ -9,7 +9,7 @@
 아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
-<div class="ds-snackbar" role="status" data-variant="positive" data-state="open">
+<div class="ds-snackbar" role="status" data-tone="positive" data-state="open">
   <i class="ds-icon ds-icon--circle-check-solid" aria-hidden="true"></i>
   <span class="ds-snackbar__message">저장했어요</span>
   [<button type="button" class="ds-snackbar__action">확인</button>]
@@ -29,13 +29,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| `variant` | default positive critical |
+| `tone` | positive critical |
 
 ## 동작
 
 `ybm-ds.js`를 불러오면 자동으로 동작합니다.
 
-- DS.snackbar("문구", { variant: "positive"|"critical", action: "확인", onAction, duration })
+- DS.snackbar("문구", { tone: "positive"|"critical", action: "확인", onAction, duration })
 
 ## 사용 지침
 
@@ -65,7 +65,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <p class="ds-field__help">게시판과 댓글에 보이는 이름이에요.</p>
     </div>
   </div>
-  <button type="button" class="ds-btn" data-size="large" data-width="fill" onclick="DS.snackbar('저장했어요', { variant: 'positive' })">저장</button>
+  <button type="button" class="ds-btn" data-size="large" data-layout="fill" onclick="DS.snackbar('저장했어요', { tone: 'positive' })">저장</button>
 </div>
 ```
 
@@ -74,7 +74,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 알림을 삭제하면 되돌리기 버튼 하나와 함께 안내합니다. 확인 창으로 흐름을 막지 않으면서 실수를 바로잡을 방법을 제공할 때 사용합니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -122,7 +122,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <p class="ds-card__desc">11월 30일까지 쓸 수 있어요.</p>
   </header>
   <footer class="ds-card__footer">
-    <button type="button" class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('연결이 불안정해 쿠폰을 받지 못했어요', { variant: 'critical', action: '다시 시도' })">쿠폰 받기</button>
+    <button type="button" class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('연결이 불안정해 쿠폰을 받지 못했어요', { tone: 'critical', action: '다시 시도' })">쿠폰 받기</button>
   </footer>
 </article>
 ```

@@ -9,7 +9,7 @@
 아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
-<details class="ds-accordion" [data-variant="separated"] [data-size="large"]>
+<details class="ds-accordion" [data-layout="separated"] [data-size="large"]>
   <summary class="ds-accordion__trigger">
     [<i class="ds-icon ds-icon--… " aria-hidden="true"></i>]
     <span class="ds-accordion__body"><span class="ds-accordion__title">항목</span>[<span class="ds-accordion__desc">설명</span>]</span>
@@ -34,7 +34,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| `variant` | separated |
+| `layout` | separated |
 | 켜고 끄는 속성 | `size` |
 
 ## 사용 지침
@@ -85,8 +85,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 PC 화면에서는 large 크기로 제목과 설명을 크게 표시합니다. 한 화면의 Accordion은 모두 separated로 통일하고 inline과 섞지 않습니다.
 
 ```html
-<div class="ds-accordion-group" data-variant="separated" style="width: 100%; max-width: 640px">
-  <details class="ds-accordion" data-variant="separated" data-size="large" open>
+<div class="ds-accordion-group" data-layout="separated" style="width: 100%; max-width: 640px">
+  <details class="ds-accordion" data-layout="separated" data-size="large" open>
     <summary class="ds-accordion__trigger">
       <span class="ds-accordion__body">
         <span class="ds-accordion__title">1주차 기초 다지기</span>
@@ -95,7 +95,7 @@ PC 화면에서는 large 크기로 제목과 설명을 크게 표시합니다. �
     </summary>
     <div class="ds-accordion__content">자주 쓰는 문장 구조와 시제를 짧은 예문으로 익혀요.</div>
   </details>
-  <details class="ds-accordion" data-variant="separated" data-size="large">
+  <details class="ds-accordion" data-layout="separated" data-size="large">
     <summary class="ds-accordion__trigger">
       <span class="ds-accordion__body">
         <span class="ds-accordion__title">2주차 상황별 표현 익히기</span>
@@ -104,7 +104,7 @@ PC 화면에서는 large 크기로 제목과 설명을 크게 표시합니다. �
     </summary>
     <div class="ds-accordion__content">주문, 길 찾기, 예약처럼 자주 만나는 상황의 대화를 듣고 따라 말해요.</div>
   </details>
-  <details class="ds-accordion" data-variant="separated" data-size="large">
+  <details class="ds-accordion" data-layout="separated" data-size="large">
     <summary class="ds-accordion__trigger">
       <span class="ds-accordion__body">
         <span class="ds-accordion__title">3주차 실력 점검</span>

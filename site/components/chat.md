@@ -11,7 +11,7 @@
 ```html
 <div class="ds-chat-bubble" [data-sender="user"]>안녕하세요! 무엇을 도와드릴까요?</div>
 <span class="ds-chat-meta" data-status="read"><b class="ds-chat-meta__status">읽음</b><time>오후 3:24</time></span>
-<p class="ds-chat-system" [data-variant="divider"]>오늘</p>
+<p class="ds-chat-system" [data-layout="divider"]>오늘</p>
 <button type="button" class="ds-chat-send" aria-label="보내기" [data-state="stop"] [disabled]></button>
 <form class="ds-chat-composer">
   <button type="button" class="ds-chat-composer__attach" aria-label="첨부"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
@@ -40,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `sender` | assistant user |
 | `status` | sending sent read error |
 
-그 밖에: 보내기 `send/stop/disabled`
+그 밖에: 보내기 `send/stop/disabled`, 시스템 줄 layout `divider`
 
 ## 사용 지침
 
@@ -103,7 +103,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
-  <p class="ds-chat-system" data-variant="divider">오늘</p>
+  <p class="ds-chat-system" data-layout="divider">오늘</p>
   <div class="ds-chat-bubble">교환할 상품 사진을 보내 주세요.</div>
   <div class="u-col u-gap-1">
     <div class="ds-chat-bubble" data-sender="user">사진 두 장 보낼게요</div>

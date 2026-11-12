@@ -53,7 +53,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 사진이 없으면 이름 첫 글자를, 이름도 없으면 기본 모양을 표시합니다. 이름이 바로 옆에 있으면 Avatar에 `aria-hidden`을 붙여 이름이 두 번 읽히지 않게 합니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix"><span class="ds-avatar" aria-hidden="true"><span class="ds-avatar__initials">김</span></span></span>

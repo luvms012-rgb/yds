@@ -4,7 +4,7 @@
    원칙: 모양은 CSS, 스크립트는 "CSS만으로 안 되는 동작"만.
      · Text Field clear 버튼 — 값 지우기 (노출/숨김은 CSS 가 처리)
      · Dialog — data-ds-open / data-ds-close 속성으로 열고 닫기, 바깥(dim) 클릭 닫기
-     · Snackbar — DS.snackbar("문구", { variant: "positive"|"critical", action: "확인", onAction, duration })
+     · Snackbar — DS.snackbar("문구", { tone: "positive"|"critical", action: "확인", onAction, duration })
      · Slider — <input class="ds-slider"> 채움 길이(--ds-slider-value) 동기화
      · Checkbox — data-indeterminate 속성 → input.indeterminate
      · Popover — data-ds-popover="id" 로 열고 닫기, 바깥 클릭과 Esc, 안의 data-ds-close 로 닫기
@@ -61,11 +61,13 @@
       document.body.appendChild(el);
     }
     el.textContent = "";
-    if (opts.variant && opts.variant !== "default") el.setAttribute("data-variant", opts.variant);
-    else el.removeAttribute("data-variant");
-    if (SNACK_ICON[opts.variant]) {
+    var tone = opts.tone || opts.variant;   // 예전 이름 variant 도 받는다
+    el.removeAttribute("data-variant");
+    if (tone && tone !== "default") el.setAttribute("data-tone", tone);
+    else el.removeAttribute("data-tone");
+    if (SNACK_ICON[tone]) {
       var icon = document.createElement("i");
-      icon.className = "ds-icon ds-icon--" + SNACK_ICON[opts.variant];
+      icon.className = "ds-icon ds-icon--" + SNACK_ICON[tone];
       icon.setAttribute("aria-hidden", "true");
       el.appendChild(icon);
     }
@@ -439,7 +441,7 @@
     if (pull.d >= size) {
       el.setAttribute("data-state", "refreshing");
       el.style.setProperty("--ds-ptr-displacement", size + "px");
-      if (p.circle) p.circle.setAttribute("data-type", "indeterminate");
+      if (p.circle) p.circle.setAttribute("data-indeterminate", "");
       el.dispatchEvent(new CustomEvent("ds-refresh", { bubbles: true }));
     } else el.style.setProperty("--ds-ptr-displacement", "0px");
     pull = null;
@@ -448,7 +450,7 @@
     var p = ptrParts(el);
     el.removeAttribute("data-state");
     el.style.setProperty("--ds-ptr-displacement", "0px");
-    if (p.circle) { p.circle.removeAttribute("data-type"); p.circle.style.setProperty("--ds-progress-value", 0); }
+    if (p.circle) { p.circle.removeAttribute("data-indeterminate"); p.circle.removeAttribute("data-type"); p.circle.style.setProperty("--ds-progress-value", 0); }
   }
 
   /* ---- Segmented Control: 하나만 누름 + 선택 배경 미끄러짐 ------------------- */

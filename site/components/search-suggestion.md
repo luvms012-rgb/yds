@@ -92,7 +92,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <section class="u-col u-gap-2">
     <h3 class="ds-t05 ds-fw-semibold">인기 강의</h3>
-    <ul class="ds-list" data-variant="inset" data-divider>
+    <ul class="ds-list" data-inset data-divider>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">강의 24개</span></span></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">컴퓨터 활용 실무</span><span class="ds-list-item__desc">강의 30개</span></span></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">강의 16개</span></span></a></li>
@@ -123,7 +123,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <section class="u-col u-gap-2">
     <h3 class="ds-t05 ds-fw-semibold">인기 강의</h3>
-    <ul class="ds-list" data-variant="inset" data-divider>
+    <ul class="ds-list" data-inset data-divider>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">강의 24개</span></span></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">컴퓨터 활용 실무</span><span class="ds-list-item__desc">강의 30개</span></span></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">강의 16개</span></span></a></li>
@@ -150,7 +150,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <section class="u-col u-gap-2">
     <h3 class="ds-t05 ds-fw-semibold">인기 강의</h3>
-    <ul class="ds-list" data-variant="inset" data-divider>
+    <ul class="ds-list" data-inset data-divider>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">강의 24개</span></span></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">컴퓨터 활용 실무</span><span class="ds-list-item__desc">강의 30개</span></span></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">강의 16개</span></span></a></li>

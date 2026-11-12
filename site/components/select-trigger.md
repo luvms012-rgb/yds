@@ -62,7 +62,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <span class="ds-select__value">최신순</span>
     </button>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">

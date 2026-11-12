@@ -73,7 +73,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="u-col u-gap-1 u-full" style="max-width: 360px">
-  <ul class="ds-list" data-variant="inset">
+  <ul class="ds-list" data-inset>
     <li>
       <div class="ds-list-item">
         <span class="ds-list-item__content">

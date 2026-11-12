@@ -111,7 +111,7 @@
     var promptBtn = t.closest("[data-site-prompt-copy]");
     if (promptBtn && navigator.clipboard) {
       var text = promptBtn.closest(".site-prompt").querySelector(".site-prompt__text").textContent;
-      navigator.clipboard.writeText(text).then(function () { if (window.DS) DS.snackbar("안내문을 복사했어요. AI 도구에 붙여 넣으세요.", { variant: "positive" }); });
+      navigator.clipboard.writeText(text).then(function () { if (window.DS) DS.snackbar("안내문을 복사했어요. AI 도구에 붙여 넣으세요.", { tone: "positive" }); });
       return;
     }
 
@@ -257,7 +257,7 @@
       libDraw(); return;
     }
     var code = t.closest(".site-lib__code").querySelector("code").textContent;
-    if (navigator.clipboard) navigator.clipboard.writeText(code).then(function () { if (window.DS) DS.snackbar("복사했어요", { variant: "positive" }); });
+    if (navigator.clipboard) navigator.clipboard.writeText(code).then(function () { if (window.DS) DS.snackbar("복사했어요", { tone: "positive" }); });
   });
   document.addEventListener("input", function (e) { if (e.target.matches("[data-site-lib-q]")) { lib.q = e.target.value; libDraw(); } });
   // 찾기 칸에서 Enter: 걸러진 메뉴의 첫 컴포넌트로
@@ -694,7 +694,7 @@
       var text = "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
         "\n\n'" + name + "' 템플릿을 바탕으로 화면을 만들어 줘. 배치와 컴포넌트는 그대로 두고 내용만 바꿔 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
         "\n바꿀 것: [서비스 이름, 글, 데이터]";
-      var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { variant: ok ? "positive" : "critical" }); };
+      var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
       var legacy = function () {
         var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
         document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); b.focus();
@@ -750,7 +750,7 @@
     var toggles = [].slice.call(document.querySelectorAll("[data-site-md-toggle]")); if (!toggles.length) return;
     function close() { toggles.forEach(function (t) { t.setAttribute("aria-expanded", "false"); t.nextElementSibling.hidden = true; }); }
     var cache = {};
-    function say(msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { variant: ok ? "positive" : "critical" }); }
+    function say(msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); }
     // 클립보드 권한이 없거나 막히면 예전 복사 방식으로 한 번 더 해 본다
     function copy(text, okMsg, el) {
       var legacy = function () {
@@ -833,7 +833,7 @@ document.addEventListener("click", function (e) {
   var hash = "#" + b.getAttribute("data-site-anchor");
   var url = location.href.split("#")[0] + hash;
   history.replaceState(null, "", hash);
-  var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { variant: ok ? "positive" : "critical" }); };
+  var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
   // 클립보드 권한이 없는 곳(앱 안 미리보기 창 등)은 예전 복사 방식으로 한 번 더 해 본다
   var legacy = function () {
     var t = document.createElement("textarea"); t.value = url; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";

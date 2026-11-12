@@ -90,7 +90,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <div class="ds-input" data-variant="outline"><input class="ds-input__control" id="checkbox-ex2-password" type="password" placeholder="비밀번호를 입력해 주세요"></div>
   </div>
   <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">로그인 상태 유지</span></label>
-  <button class="ds-btn" data-size="large" data-width="fill">로그인</button>
+  <button class="ds-btn" data-size="large" data-layout="fill">로그인</button>
 </div>
 ```
 
@@ -104,7 +104,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" data-indeterminate><span class="ds-checkbox__label">전체 선택 (2/3)</span></label>
     <button class="ds-btn" data-variant="ghost" data-size="xsmall">선택 삭제</button>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li>
       <div class="ds-list-item">
         <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked aria-label="무선 이어폰"></label></span>

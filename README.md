@@ -83,7 +83,7 @@ DS 전체가 `@layer ds.tokens, ds.base, ds.icons, ds.components, ds.utilities` 
 | 기능 | 사용 |
 |---|---|
 | Dialog 열기/닫기 | `data-ds-open="dialogId"` / `data-ds-close` 속성, 바깥(dim) 클릭 닫기. 네이티브 `<dialog>.showModal()` |
-| Snackbar | `DS.snackbar("문구", { variant: "positive"\|"critical", action: "확인", onAction, duration })` - 기본 4초 |
+| Snackbar | `DS.snackbar("문구", { tone: "positive"\|"critical", action: "확인", onAction, duration })` - 기본 4초 |
 | Slider | `<input type="range" class="ds-slider">` 채움 길이(`--ds-slider-value`) 동기화 |
 | Checkbox | `data-indeterminate` → `input.indeterminate = true` |
 | Text Field clear | 값 지우기 (노출/숨김은 CSS) |
@@ -335,9 +335,23 @@ Figma의 `dimension/x*` 변수 scopes = `WIDTH_HEIGHT` + `GAP`.
 CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<button class="ds-btn" data-variant="brandSolid" data-size="large">`.
 상태는 가능한 한 네이티브로 표현한다(`:disabled` `:checked` `:focus-within` `[aria-invalid]` `[aria-selected]` `[aria-pressed]` `[aria-current]` `[aria-expanded]`). Figma의 pressed = `:active`(+ 마우스 환경 `:hover`).
 
+#### 같은 기능, 다른 모양 (2026-11-12)
+하는 일이 같으면 컴포넌트는 하나다. 모양 차이는 위에서부터 맞는 칸 하나로만 푼다.
+
+| 차이 | 처리 |
+|---|---|
+| 값(크기, 둥글기, 그림자, 간격, 위치) | 컴포넌트 변수 `--ds-[컴포넌트]-*` 만 덮어쓴다. 새 이름을 만들지 않는다. |
+| 구조(부품 위치, 묶는 방식) | `data-layout` 에 이름 붙인 모양 하나를 더한다. 이름은 생김새나 위치로 짓는다. |
+| 동작 선택 | 모양과 따로 켜는 속성으로 둔다(`data-autoplay`, `data-loop`). 어느 layout 에서나 같이 쓴다. |
+| 하는 일이 다름 | 새 컴포넌트. |
+
+- 속성 이름의 뜻은 고정한다: `data-variant` 강조와 색, `data-tone` 의미 색, `data-layout` 구조, `data-size` 크기.
+- layout 은 컴포넌트마다 3개까지. 새 layout 은 머리 주석 마크업, 예시, 사용 지침 한 줄, 구조 그림 이름, Figma Layout 변형, AI 규칙을 함께 갖춘다.
+- 서비스 요청은 변수로 되면 서비스 CSS 에서, 두 서비스 이상이 같은 구조를 쓰거나 레퍼런스 가이드에 있으면 layout 으로, 아니면 서비스 CSS 에 둔다.
+
 | # | 컴포넌트 | CSS | Figma COMPONENT_SET (ID, 변형 수) | 주요 속성 / 컴포넌트 변수 |
 |---|---|---|---|---|
-| 01 | Action Button | `.ds-btn` | `24:354`, 168 | variant `brandSolid/brandOutline/neutralSolid/neutralWeak/neutralOutline/criticalSolid/ghost`, size `xsmall/small/medium/large`, layout `iconOnly`, width `fill` |
+| 01 | Action Button | `.ds-btn` | `24:354`, 168 | variant `brandSolid/brandOutline/neutralSolid/neutralWeak/neutralOutline/criticalSolid/ghost`, size `xsmall/small/medium/large`, layout `iconOnly/fill` |
 | 02 | Text Link | `.ds-link` | `2493:324`, 2 | size `small`(2026-11-03), 문장 안(p, li)에서는 주변 글자 크기를 따름(2026-11-09), `--ds-link-color(-hover)`, Figma state `enabled/hover` |
 | 03 | Field Label | `.ds-field` (`__header/label/indicator/required/footer/help/error/count`) | `109:1367`, 2 | label-weight `bold` |
 | 04 | Text Field Input | `.ds-input` (`__control/prefix/suffix/icon/clear`) | `108:1325`, 40 | variant `outline/underline`, size |
@@ -359,40 +373,40 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 21 | Tag Group | `.ds-tag-group` | `1240:2176`, 4 / Item `1240:2135`, 4 | 작성자, 날짜, 조회수 |
 | 22 | Avatar | `.ds-avatar` (`__initials` `__status` `__badge`) `.ds-avatar-group` (`__overflow`) | `40:614`, 50 / Status `2357:1206`, 3 / Group `2359:1781`, 21 / Group Overflow `2359:1213`, 7 | size `20/24/36/42/48/56/64/80/96/108`, shape `circle/rounded/square`, status tone `positive/neutral/critical`, group size `20~64` × shape, `+N` |
 | 23 | Callout | `.ds-callout` | `1241:2177`, 5 | tone `neutral/informative/positive/warning/critical` (magic은 CSS만) |
-| 24 | Snackbar | `.ds-snackbar` | `92:1107`, 3 | variant `default/positive/critical` |
+| 24 | Snackbar | `.ds-snackbar` | `92:1107`, 3 | tone `positive/critical` |
 | 25 | Help Bubble | `.ds-helpbubble` | `75:1233`, 12 | `--ds-hb-arrow-offset` |
 | 26 | Menu, Menu Item | `.ds-menu` `.ds-menu-item` (`__label/sub/divider`) | `1246:2183`(COMPONENT) / `1246:2182`, 6 | tone `critical`, `menuitemcheckbox`, `menuitemradio`, 하위 메뉴(2026-11-05) |
 | 27 | Dialog | `.ds-dialog` | `1493:939`, 8 (+ Dialog Body Slot `1528:835`) | size(480/800), `--ds-dialog-width` |
 | 28 | Alert Dialog | `.ds-alertdialog` | `30:540`, 5 | 272 폭, action `pair/critical/nonpreferred` |
 | 29 | Bottom Sheet | `.ds-bottomsheet` | `59:674`, 8 | header-align `center` |
-| 30 | Accordion | `.ds-accordion` (`<details>`) | `282:1996`, 12 | variant `separated`, size |
+| 30 | Accordion | `.ds-accordion` (`<details>`) | `282:1996`, 12 | layout `separated`, size |
 | 31 | Skeleton | `.ds-skeleton` | `1242:2158`, 3 | shape `rect/circle/text` |
 | 32 | Slider | `.ds-slider` | `1243:2168`, 4 | tone |
 | 33 | Progress | `.ds-progress` | `2163:982`, 4 | size, tone |
-| 34 | Progress Circle | `.ds-progress-circle` | `1405:2502`, 18 | tone `neutral/brand/staticWhite`, size, type `determinate/indeterminate` |
+| 34 | Progress Circle | `.ds-progress-circle` | `1405:2502`, 18 | tone `neutral/brand/staticWhite`, size, `data-indeterminate` |
 | 35 | Floating Action Button | `.ds-fab` | `1406:2468`, 4 | layout `iconOnly`(extended=false) |
 | 36 | Date Picker, Date Cell | `.ds-datepicker` `.ds-date-cell` | `1324:2310`, 2 / `1322:2183`, 7 | cell state `today/selected/range-start/range-middle/range-end` |
 | 37 | Bottom Navigation | `.ds-bottomnav` | `1348:2383`, 3 / Item `1347:2416`, 12 | 뱃지 `__badge--dot/--count` (bg/critical-solid) |
 | 38 | Side Navigation | `.ds-sidenav` | `1371:2610`, 4 / Item `1370:2392`, 8 | expanded 240 / collapsed 56 |
 | 39 | Card | `.ds-card` | `2164:1063`, 4 | variant `elevated`(subtle 은 2026-11-04 부터 기본과 같은 모양, 이름만 남김), size(small 모서리 lg), 제목 18/16 |
 | 40 | Empty | `.ds-empty` | `2164:1092`, 2 | size |
-| 41 | Pagination | `.ds-pagination` | `2163:1067`, 2 / Item `2163:1028`, 16 | type `first/prev/next/last/ellipsis/simple` |
-| 42 | Table | `.ds-table` `.ds-table-wrap` | `2164:1271`, 2 / Row `2164:1178`, 8 / Cell `2164:1105`, 6 | density `compact`, align `center/end`, 두 줄 칸 `__stack`, 묶음 행 `tr.__group`, 체크박스 칸 (2026-11-03 개편: 머리줄 바탕 없음, 행 56/48, 2026-11-11 맨 위와 맨 아래 선 stroke/neutral-weak, 행 사이 stroke/neutral-muted) |
+| 41 | Pagination | `.ds-pagination` | `2163:1067`, 2 / Item `2163:1028`, 16 | layout `simple`, item type `first/prev/next/last/ellipsis` |
+| 42 | Table | `.ds-table` `.ds-table-wrap` | `2164:1271`, 2 / Row `2164:1178`, 8 / Cell `2164:1105`, 6 | size `small`, align `center/end`, 두 줄 칸 `__stack`, 묶음 행 `tr.__group`, 체크박스 칸 (2026-11-03 개편: 머리줄 바탕 없음, 행 56/48, 2026-11-11 맨 위와 맨 아래 선 stroke/neutral-weak, 행 사이 stroke/neutral-muted) |
 | 43 | Divider | `.ds-divider` | `2347:1152`, 4 | type `thin/thick/vertical/label` (CSS data-weight / data-orientation / data-label), inset |
 | 44 | Tooltip | `.ds-tooltip` `.ds-tooltip-anchor` | `2348:1145`(COMPONENT) | placement `top/bottom/left/right`(CSS만), hover/focus 때만 표시 |
-| 45 | List, List Item | `.ds-list` `.ds-list-item` | Item `2350:1207`, 4 | size `medium/small`, state, prefix/description/suffix/chevron/divider, list variant `inset` |
+| 45 | List, List Item | `.ds-list` `.ds-list-item` | Item `2350:1207`, 4 | size `medium/small`, state, prefix/description/suffix/chevron/divider, list `data-inset` |
 | 46 | Breadcrumbs | `.ds-breadcrumbs` | `2348:1149`(COMPONENT) | 현재 항목 `aria-current="page"` |
 | 47 | Stepper | `.ds-stepper` (`__step/indicator/label`) | `2351:1211`(COMPONENT) / Step `2351:1210`, 6 | state `complete/current/upcoming`, orientation `vertical` |
 | 48 | Banner | `.ds-banner` (`__inner/message/title/action/close`) | `2349:1217`, 10 | variant `weak/solid`, tone 5 |
-| 49 | Select Box | `.ds-selectbox` `.ds-selectbox-group` | `2495:260`, 12 | type `check/radio`, state, layout `horizontal/vertical` |
+| 49 | Select Box | `.ds-selectbox` `.ds-selectbox-group` | `2495:260`, 12 | type `check/radio`, state, orientation `horizontal/vertical` |
 | 50 | Time Picker | `.ds-timepicker` (`__column/option`) | `2497:979`, 2 | state `enabled/disabled`, 12시간제, 분 간격 5 |
 | 51 | Table Pagination | `.ds-tablepagination` (`__size/label/select/range/position/current/total`) | `2498:1299`, 3 | state `default/unknownTotal/empty`, 최소 폭 640 |
 | 52 | Popover | `.ds-popover` (`__header/texts/title/desc/close/body/footer`) `.ds-popover-anchor` | `2494:473`, 3 | actions `single/pair/none`, 폭 320 |
-| 53 | Chat | `.ds-chat-bubble` `.ds-chat-meta` `.ds-chat-system` `.ds-chat-send` `.ds-chat-composer` | Message Bubble `2499:6`, 2 / Message Metadata `2499:18`, 4 / System Message `2499:25`, 2 / Send Button `2499:35`, 3 / Composer `2499:54`, 2 | sender `assistant/user`, status, 보내기 `send/stop/disabled` |
+| 53 | Chat | `.ds-chat-bubble` `.ds-chat-meta` `.ds-chat-system` `.ds-chat-send` `.ds-chat-composer` | Message Bubble `2499:6`, 2 / Message Metadata `2499:18`, 4 / System Message `2499:25`, 2 / Send Button `2499:35`, 3 / Composer `2499:54`, 2 | sender `assistant/user`, status, 보내기 `send/stop/disabled`, 시스템 줄 layout `divider` |
 | 54 | Top App Bar | `.ds-appbar` (`__left/main/title/subtitle/right/button`) | `2557:1638`, 8 / Button `2557:1501`, 6 | theme `ios/android` (CSS `data-platform`), tone `layer/transparent` + gradient, 높이 56 |
 | 55 | Top Navigation | `.ds-topnav` (`__left/heading/menu/item/end`) | `2557:1648` / Item `2557:1647`, 4 | 선택은 채운 배경 + SemiBold, 오른쪽 끝 버튼은 Action Button xsmall |
 | 56 | Search Suggestion | `.ds-search-anchor` `.ds-search-suggest` (`__heading/list/item/content/label/desc/empty`) | `2558:1321`, 3 / Item `2558:1268`, 2 | 입력 칸은 Text Field + search 아이콘, 화살표 키는 ybm-ds.js |
-| 57 | File Attach | `.ds-fileattach` (`__dropzone/input/label/items/trigger/count`) `.ds-fileitem` (`__thumbnail/texts/name/size/image/badge/remove`) | Dropzone `2558:1328`, 3 / Trigger `2558:1347`, 3 / Item `2558:1384`, 4 | dragOver는 ybm-ds.js, Item file 160×80 / image 80×80 |
+| 57 | File Attach | `.ds-fileattach` (`__dropzone/input/label/items/trigger/count`) `.ds-fileitem` (`__thumbnail/texts/name/size/image/badge/remove`) | Dropzone `2558:1328`, 3 / Trigger `2558:1347`, 3 / Item `2558:1384`, 4 | dragOver는 ybm-ds.js, Item 기본 160×80 / layout `image` 80×80 |
 | 58 | Menu Sheet | `.ds-menusheet` (`__header/title/desc/list/group/item/content/label/item-desc/footer/close`) | `2563:1501` / Item `2563:1495`, 8 / Close Button `2563:1500`, 2 | 네이티브 `<dialog>`, Item tone `neutral/critical`, labelAlign `left/center` |
 | 59 | Result Section | `.ds-result` (`__asset/texts/title/desc/actions`) | `2562:741`, 2 | size `large/medium`, 그림 40 |
 | 60 | Timer | `.ds-timer` | `2563:889`, 2 | format `clock/elapsed`, 시간 갱신은 ybm-ds.js |
@@ -402,7 +416,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 64 | Pull To Refresh | `.ds-ptr` (`__indicator/content`) | `2567:54`, 2 | 위 88 영역 Progress Circle 24, ds-refresh 이벤트, DS.endRefresh |
 | 65 | Side Panel | `.ds-sidepanel` (`__header/texts/title/desc/close/body/footer`) | `2567:862`, 3 / Close Button `2567:782`, 2 | 네이티브 `<dialog>`, 폭 480/720/960, 왼쪽은 data-direction |
 | 66 | Image Frame | `.ds-imageframe` (`__floater/indicator`) | `2567:1928`, 3 | ratio `1:1/4:3/16:9`, radius `none/md/lg/xl`(2026-11-03), stroke |
-| 67 | Carousel | `.ds-carousel` (`__scroller/item/button`) | `2567:1936` / Button `2567:1935`, 2 | 넘김 위치 맞춤, 끝 흐림, 버튼은 ybm-ds.js |
+| 67 | Carousel | `.ds-carousel` (`__scroller/item/button/controls/play/count/all/bar/progress`) | `2567:1936` / Button `2567:1935`, 2 | layout `overlay/bar`, `data-autoplay`, `data-loop`, 넘김 위치 맞춤, 끝 흐림, 버튼은 ybm-ds.js |
 | 68 | Markdown | `.ds-markdown` | `2568:66` | 변환된 HTML을 감싸면 크기와 간격이 맞춰짐 |
 | 69 | Code Block | `.ds-codeblock` (`__header/language/copy/code`) | `2568:57`, 2 | 고정 폭 글꼴, data-ds-copy 복사, data-wrap 긴 줄 줄바꿈 |
 | 70 | Citation | `.ds-citation` (`__icon/label`) | `2568:65`, 2 | type `number/label` |
@@ -411,7 +425,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 73 | Code Input | `.ds-codeinput` (`__cell`) | `2714:1564`, 8 | size `large/medium`, `aria-invalid`, 다 채우면 `ds-code-complete` |
 | 74 | Chart | `.ds-chart` (`__header/title/desc/plot/col/bar/label/svg/line/area/axis/donut/total/legend/swatch`) | `2715:1115`, 3 | type `bar/line/donut`, `data-series` 1~5, `--ds-chart-value`, `--ds-chart-height`, `--ds-chart-size` |
 | 75 | Description List | `.ds-desclist` (`__item/label/value`) | `2716:376`, 4 | layout `start/top`, columns `2/3`, align `end`, `data-divider`, `--ds-desclist-label-width` |
-| 76 | Toolbar | `.ds-toolbar` (`__start/center/end/title/count/separator/clear`) | `2717:624`, 5 | size `medium/small`, variant `plain/muted`, `data-divider`, position `floating`, 표에 `data-ds-selection`, 좌우 화살표 이동 |
+| 76 | Toolbar | `.ds-toolbar` (`__start/center/end/title/count/separator/clear`) | `2717:624`, 5 | size `medium/small`, variant `plain/muted`, `data-divider`, layout `floating`, 표에 `data-ds-selection`, 좌우 화살표 이동 |
 | 77 | Tree | `.ds-tree` (`__node/row/toggle/icon/label/suffix/group`) | `2716:594`, 2 / Item `2716:495`, 12 | size `medium/small`, guides `none`, `aria-expanded`, `aria-selected`, 화살표 키 |
 | 78 | Wheel Picker | `.ds-wheelpicker` (`__column/option`) | `2714:1665`, 2 | Time Picker 와 같은 휠, 열 여러 개, `aria-selected`, change |
 | 79 | Search Field | `.ds-searchfield` (`__cancel`, 칸은 `.ds-input`) | `2714:1744`, 4 | variant `outline/fill`, 칸은 Text Field, cancel |

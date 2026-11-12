@@ -79,7 +79,7 @@ Table Pagination은 데이터 표 전용입니다. 검색 결과나 게시판 �
 
 ```html
 <div class="ds-table-wrap">
-  <table class="ds-table" data-density="compact">
+  <table class="ds-table" data-size="small">
     <thead>
       <tr>
         <th scope="col" style="width: 120px">이름</th>
@@ -146,7 +146,7 @@ Table Pagination은 데이터 표 전용입니다. 검색 결과나 게시판 �
 
 ```html
 <div class="ds-table-wrap">
-  <table class="ds-table" data-density="compact">
+  <table class="ds-table" data-size="small">
     <thead>
       <tr>
         <th scope="col" data-align="center" style="width: 128px">시각</th>

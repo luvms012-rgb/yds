@@ -70,7 +70,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 모바일에서 더보기 버튼을 누르면 Menu Sheet로 할 수 있는 동작을 표시합니다. 몇 가지 동작 중 하나를 선택할 때 사용하고, 입력이나 긴 내용이 필요하면 Bottom Sheet를 사용합니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" style="max-width: 375px">
+<ul class="ds-list u-full" data-inset style="max-width: 375px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></span>

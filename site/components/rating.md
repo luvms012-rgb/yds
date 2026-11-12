@@ -34,7 +34,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록에서는 별 옆에 평점 숫자와 후기 수를 함께 표시합니다. 별만으로는 4.5점과 4점을 구분하기 어렵고, 후기 수가 있어야 평점을 얼마나 믿을지 판단할 수 있습니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content u-gap-1">

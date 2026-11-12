@@ -54,7 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 되돌릴 수 없는 삭제는 Alert Dialog로 확인받고, 실행 버튼은 criticalSolid를 사용합니다. 바깥을 눌러도 닫히지 않아 버튼을 눌러야만 다음으로 진행됩니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset style="width: 100%; max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -109,7 +109,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 버튼 문구가 길어 가로 두 칸에 들어가지 않으면 `stacked`로 세로로 쌓습니다. 해지처럼 잃는 것이 있는 동작은 무엇이 사라지는지 설명에 적습니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">

@@ -75,7 +75,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <i class="ds-icon ds-icon--circle-alert-solid" aria-hidden="true"></i>
     <p class="ds-callout__content">등록한 카드의 유효 기간이 지났어요.  <a class="ds-callout__link" href="#">결제 수단 바꾸기</a></p>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li>
       <div class="ds-list-item">
         <span class="ds-list-item__content"><span class="ds-list-item__title">요금제</span></span>
@@ -102,7 +102,7 @@ Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않�
     <i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i>
     <p class="ds-callout__content"><strong class="ds-callout__title">친구 초대</strong>  친구가 가입하면 둘 다 3,000원을 받아요.</p>
   </a>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content"><span class="ds-list-item__title">주문 내역</span></span>

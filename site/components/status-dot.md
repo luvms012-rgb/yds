@@ -35,7 +35,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 점 옆에 정상, 지연, 중단 같은 글자를 함께 표시합니다. 색을 구분하기 어려운 사람도 글자로 상태를 알 수 있습니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -70,7 +70,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 지금 방송 중인 강의 하나에만 `data-pulse`를 적용합니다. 시작 전인 강의는 깜빡이지 않는 회색 점으로 표시해 진행 중인 강의가 바로 눈에 띄게 합니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content">

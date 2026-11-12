@@ -36,7 +36,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | `size` | medium small |
 | `variant` | plain muted |
-| `position` | floating |
+| `layout` | floating |
 
 그 밖에: `data-divider`, `__clear`, 표에 `data-ds-selection`
 
@@ -81,7 +81,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 행을 선택하면 화면 아래 가운데에 막대를 표시합니다.
 
 ```html
-<div class="u-col u-full"><div class="ds-table-wrap"><table class="ds-table" data-ds-selection="ex-toolbar-sel"><thead><tr><th style="width:52px"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="모두 선택"></label></th><th>시험</th><th>시험일</th><th>상태</th></tr></thead><tbody><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 말하기 시험 선택"></label></td><td>영어 말하기 시험</td><td>11.23</td><td>접수 완료</td></tr><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 읽기 듣기 시험 선택"></label></td><td>영어 읽기 듣기 시험</td><td>12.07</td><td>접수 완료</td></tr><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 쓰기 시험 선택"></label></td><td>영어 쓰기 시험</td><td>12.21</td><td>대기</td></tr></tbody></table></div><div class="ds-toolbar" id="ex-toolbar-sel" role="toolbar" aria-label="고른 항목 작업" data-position="floating" data-count-format="{n}개 선택" hidden><div class="ds-toolbar__start"><span class="ds-toolbar__count" aria-live="polite">0개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--archive" aria-hidden="true"></i>보관</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--trash" aria-hidden="true"></i>삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div></div>
+<div class="u-col u-full"><div class="ds-table-wrap"><table class="ds-table" data-ds-selection="ex-toolbar-sel"><thead><tr><th style="width:52px"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="모두 선택"></label></th><th>시험</th><th>시험일</th><th>상태</th></tr></thead><tbody><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 말하기 시험 선택"></label></td><td>영어 말하기 시험</td><td>11.23</td><td>접수 완료</td></tr><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 읽기 듣기 시험 선택"></label></td><td>영어 읽기 듣기 시험</td><td>12.07</td><td>접수 완료</td></tr><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 쓰기 시험 선택"></label></td><td>영어 쓰기 시험</td><td>12.21</td><td>대기</td></tr></tbody></table></div><div class="ds-toolbar" id="ex-toolbar-sel" role="toolbar" aria-label="고른 항목 작업" data-layout="floating" data-count-format="{n}개 선택" hidden><div class="ds-toolbar__start"><span class="ds-toolbar__count" aria-live="polite">0개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--archive" aria-hidden="true"></i>보관</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--trash" aria-hidden="true"></i>삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div></div>
 ```
 
 ## 규격
@@ -93,7 +93,7 @@ size: medium(기본) 높이 56, 좌우 x4, 사이 x2 / small 높이 48, 좌우 x
 variant: plain(기본, 바탕 없음) / muted(여러 줄을 고른 뒤 잠깐 나오는 막대, bg/neutral-weak-alpha + shape/lg)
   muted 막대 안 버튼은 ghost(마우스를 올릴 때만 바탕)를 사용합니다. 회색 막대 위에 회색 버튼을 겹치지 않습니다 (2026-11-11)
 data-divider: 아래 선 stroke/neutral-muted로 내용과 구분합니다 / 묶음 사이 세로선 stroke/neutral-muted 높이 20
-data-position="floating": 화면 아래 가운데에 떠 있는 막대로 표시합니다, bg/layer-floating + elevation/overlay, [hidden]이면 숨깁니다
+data-layout="floating": 화면 아래 가운데에 떠 있는 막대로 표시합니다, bg/layer-floating + elevation/overlay, [hidden]이면 숨깁니다
 __clear: 끝에 두는 선택 해제 버튼입니다, 누르면 고른 항목을 모두 풀고 막대를 숨깁니다
 data-ds-selection="막대 id": 표(또는 목록)에 붙이면 tbody 체크박스를 세어 막대를 표시하거나 숨깁니다, 헤더 체크박스는 전체 선택, 개수 문구는 막대의 data-count-format="{n}개 선택"으로 바꿉니다
 동작 버튼이 한 줄에 다 들어가지 않으면 겹치지 않고 다음 줄로 넘어갑니다

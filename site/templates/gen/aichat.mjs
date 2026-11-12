@@ -42,7 +42,7 @@ const conversation = () => {
 <div class="tp-chat__body">
   <div class="tp-chat__main">
     <div class="tp-log" role="log" aria-label="대화">
-      <p class="ds-chat-system" data-variant="divider">오늘</p>
+      <p class="ds-chat-system" data-layout="divider">오늘</p>
       <div class="tp-msg-user"><div class="tp-files-row"><span class="tp-file-token">${icon('file-code', 'sm')}auth-service.ts</span><span class="tp-file-token">${icon('file-code', 'sm')}middleware.ts</span></div><div class="ds-chat-bubble" data-sender="user">이 두 파일을 봐 줄래요? 토큰 새로 받기가 가끔 실패하는 것 같아요.</div><span class="ds-chat-meta" data-status="read"><time>오전 10:15</time></span></div>
       <div class="tp-msg-ai">${avatar('AI', 24)}<div class="tp-msg-ai__body"><p>두 파일을 읽어 볼게요. 토큰이 만료되는 순간 요청이 동시에 여러 개 오면 새로 받기를 겹쳐서 하는 것 같아요.</p>
         <details class="tp-tools"><summary>${icon('wand-sparkles', 'sm')}도구 3번 사용 ${icon('chevron-down', 'sm')}</summary><ul><li>${icon('circle-check', 'sm')}읽음 <code>auth-service.ts</code></li><li>${icon('circle-check', 'sm')}읽음 <code>middleware.ts</code></li><li>${icon('circle-check', 'sm')}찾음 <code>refreshToken</code> 6곳</li></ul></details>

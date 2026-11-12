@@ -39,7 +39,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 수량이 1이면 줄이기 버튼에 `disabled`를 붙입니다. 더 줄일 수 없다는 것을 누르기 전에 알 수 있습니다.
 
 ```html
-<ul class="ds-list u-full" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">

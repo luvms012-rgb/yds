@@ -50,7 +50,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 같은 자리의 상태는 모두 배지로 보여 줍니다. 할 일이 남은 상태만 눈에 띄는 색으로 두어, 확인할 줄이 바로 보입니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content">
@@ -89,7 +89,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 강의 이름 앞에 분류를 한두 낱말로 붙입니다. 분류는 모두 같은 기본 색으로 두어 강의 이름이 먼저 읽히게 합니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content">
@@ -114,7 +114,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 새 메뉴 하나에만 진한 브랜드 배지를 붙입니다. 여러 곳에 붙이면 무엇이 새것인지 알 수 없습니다.
 
 ```html
-<ul class="ds-list" data-variant="inset" data-divider style="max-width: 420px">
+<ul class="ds-list" data-inset data-divider style="max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span>

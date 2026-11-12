@@ -94,7 +94,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <input class="ds-input__control" id="multi-select-ex1-nick" value="하나">
     </div>
   </div>
-  <button type="button" class="ds-btn" data-variant="brandSolid" data-size="large" data-width="fill">저장</button>
+  <button type="button" class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">저장</button>
 </form>
 ```
 
@@ -127,7 +127,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </button>
     </div>
   </div>
-  <ul class="ds-list" data-variant="inset" data-divider>
+  <ul class="ds-list" data-inset data-divider>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">종로 스터디룸</span><span class="ds-list-item__desc">서울 종로구, 1.2km</span></span></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">시청역 스터디 카페</span><span class="ds-list-item__desc">서울 중구, 2.4km</span></span></a></li>
     <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">판교 공유 오피스</span><span class="ds-list-item__desc">경기 성남시, 18km</span></span></a></li>

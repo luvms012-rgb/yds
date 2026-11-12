@@ -201,7 +201,7 @@ check('5 싱크', ({ err }) => {
 check('5-1 선 색', ({ err }) => {
   const OUTLINE = 'stroke-neutral-weak', DIVIDER = 'stroke-neutral-muted';
   // 바깥 테두리를 그리는 기본 규칙(상태, 변형 색 말고)
-  const outlines = ['.ds-card', '.ds-list[data-variant="inset"]', '.ds-accordion[data-variant="separated"]', '.ds-popover', '.ds-selectbox', '.ds-input', '.ds-textarea', '.ds-fieldbutton', '.ds-select', '.ds-quantity', '.ds-fileattach__trigger', '.ds-fileitem', '.ds-citation', '.ds-codeblock', '.ds-multiselect__trigger', '.ds-tablepagination__select'];
+  const outlines = ['.ds-card', '.ds-list:is([data-inset], [data-variant="inset"])', '.ds-accordion:is([data-layout="separated"], [data-variant="separated"])', '.ds-popover', '.ds-selectbox', '.ds-input', '.ds-textarea', '.ds-fieldbutton', '.ds-select', '.ds-quantity', '.ds-fileattach__trigger', '.ds-fileitem', '.ds-citation', '.ds-codeblock', '.ds-multiselect__trigger', '.ds-tablepagination__select'];
   const dividers = ['.ds-divider', '.ds-accordion', '.ds-banner', '.ds-menu__divider::before', '.ds-list[data-divider] > li + li > .ds-list-item::before', '.ds-markdown hr', '.ds-codeblock__header'];
   const rules = [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((m) => [m[1].trim(), m[2]]);
   const colorOf = (body) => (body.match(/(?:inset 0 0 0 1px|inset 0 -?1px 0|--ds-[a-z-]*-(?:line|color):|border(?:-top)?: 1px solid|background:)\s*var\(--ds-color-(stroke-[a-z-]+)\)/) || [])[1];
