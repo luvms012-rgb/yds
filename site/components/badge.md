@@ -33,7 +33,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | `variant` | weak solid outline |
 | `tone` | neutral brand informative positive warning critical |
-| 켜고 끄는 속성 | `size` |
+| `size` | medium large xlarge |
 
 ## 사용 지침
 
@@ -150,14 +150,22 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `--ds-badge-bg` | `var(--ds-color-bg-neutral-weak-alpha)` |
 | `--ds-badge-fg` | `var(--ds-color-fg-neutral-muted)` |
 | `--ds-badge-line` | `transparent` |
+| `--ds-badge-height` | `var(--ds-space-x5)` |
+| `--ds-badge-padding-x` | `var(--ds-space-x1_5)` |
+| `--ds-badge-radius` | `var(--ds-shape-2xs)` |
+| `--ds-badge-font-size` | `var(--ds-font-size-t01)` |
+| `--ds-badge-line-height` | `var(--ds-line-height-t01)` |
+| `--ds-badge-icon` | `12px` |
 
 ### 크기와 여백
 
 ```
-size: medium(기본) / large   variant: weak(기본) / solid / outline
+size: medium(기본) / large / xlarge(2026-11-13, 14px 글자가 필요한 PC 화면)   variant: weak(기본) / solid / outline
 tone: neutral(기본) / brand / informative / positive / warning / critical
 Figma medium: py2 px6 / min-h20 / shape/2xs / t01 Medium / 아이콘 12
       large : py4 px8 / min-h24 / shape/xs  / t02 Medium / 아이콘 14
+      xlarge: px10 / min-h28 / shape/sm / t04 Medium / 아이콘 16
+크기 변수: --ds-badge-height, -padding-x, -radius, -font-size, -line-height, -icon (모서리를 알약으로 쓸 때 --ds-badge-radius: var(--ds-shape-pill))
 공통: gap x0_5 / solid 라벨 fg/on-{tone}-solid
 기본 최대 너비는 없습니다. 말줄임이 필요하면 사용하는 곳에서 max-width를 지정하세요.
 ```

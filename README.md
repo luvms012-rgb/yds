@@ -369,7 +369,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 17 | Tabs | `.ds-tabs` (`__trigger`) | `95:1313`, 4 / Tab Trigger `95:1272`, 12 | layout `fill/hug`, size `small 40 글자 14 / medium 48 글자 16`(2026-11-11), inset `none`(hug 일 때, 2026-11-03) |
 | 18 | Segmented Control | `.ds-segmented` | `1239:2152`, 4 / Item `1239:2123`, 6 | layout, size(높이 32/40 고정, 2026-11-03), 선택 배경이 미끄러져 이동(필수 모션, ybm-ds.js) |
 | 19 | Toggle Button | `.ds-toggle` | `1244:2164`, 6 | size |
-| 20 | Badge | `.ds-badge` | `17:87`, 36 | variant `weak/solid/outline`, tone `neutral/brand/informative/positive/warning/critical`, size |
+| 20 | Badge | `.ds-badge` | `17:87`, 36 | variant `weak/solid/outline`, tone `neutral/brand/informative/positive/warning/critical`, size `medium/large/xlarge` |
 | 21 | Tag Group | `.ds-tag-group` | `1240:2176`, 4 / Item `1240:2135`, 4 | 작성자, 날짜, 조회수 |
 | 22 | Avatar | `.ds-avatar` (`__initials` `__status` `__badge`) `.ds-avatar-group` (`__overflow`) | `40:614`, 50 / Status `2357:1206`, 3 / Group `2359:1781`, 21 / Group Overflow `2359:1213`, 7 | size `20/24/36/42/48/56/64/80/96/108`, shape `circle/rounded/square`, status tone `positive/neutral/critical`, group size `20~64` × shape, `+N` |
 | 23 | Callout | `.ds-callout` | `1241:2177`, 5 | tone `neutral/informative/positive/warning/critical` (magic은 CSS만) |

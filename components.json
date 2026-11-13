@@ -366,7 +366,7 @@
       ],
       "doc": "2481:1903",
       "category": "Feedback & Status",
-      "props": "variant `weak·solid·outline` · tone `neutral·brand·informative·positive·warning·critical` · size"
+      "props": "variant `weak·solid·outline` · tone `neutral·brand·informative·positive·warning·critical` · size `medium·large·xlarge`"
     },
     {
       "no": "21",
