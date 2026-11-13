@@ -379,7 +379,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 27 | Dialog | `.ds-dialog` | `1493:939`, 8 (+ Dialog Body Slot `1528:835`) | size(480/800), `--ds-dialog-width` |
 | 28 | Alert Dialog | `.ds-alertdialog` | `30:540`, 5 | 272 폭, action `pair/critical/nonpreferred` |
 | 29 | Bottom Sheet | `.ds-bottomsheet` | `59:674`, 8 | header-align `center` |
-| 30 | Accordion | `.ds-accordion` (`<details>`) | `282:1996`, 12 | layout `separated`, size |
+| 30 | Accordion | `.ds-accordion` (`<details>`) | `282:1996`, 12 | layout `separated`, size, inset `none` |
 | 31 | Skeleton | `.ds-skeleton` | `1242:2158`, 3 | shape `rect/circle/text` |
 | 32 | Slider | `.ds-slider` | `1243:2168`, 4 | tone |
 | 33 | Progress | `.ds-progress` | `2163:982`, 4 | size, tone |

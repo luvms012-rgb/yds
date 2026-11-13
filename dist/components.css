@@ -1958,8 +1958,9 @@ html:has(:is(.ds-dialog, .ds-bottomsheet):modal) { overflow: hidden; }  /* 2026-
 /* --------------------------------------------------------------------------
    30 Accordion — 펼쳐 보는 목록(<details> 사용)
    variant: inline(기본) · separated   size: medium(기본) · large
+   inset: data-inset="none" (2026-11-13) 콘텐츠 칸 안에서 제목과 왼쪽 끝을 맞출 때 제목 줄과 내용의 좌우 여백을 없앱니다. inline 에만 씁니다.
    모션: 열고 닫을 때 높이가 부드럽게 바뀝니다(ybm-ds.js, 2026-11-04). 움직임 줄이기 설정을 켜면 바로 바뀝니다. name이 같은 묶음은 함께 움직입니다.
-     <details class="ds-accordion" [data-layout="separated"] [data-size="large"]>
+     <details class="ds-accordion" [data-layout="separated"] [data-size="large"] [data-inset="none"]>
        <summary class="ds-accordion__trigger">
          [<i class="ds-icon ds-icon--… " aria-hidden="true"></i>]
          <span class="ds-accordion__body"><span class="ds-accordion__title">항목</span>[<span class="ds-accordion__desc">설명</span>]</span>
@@ -1995,6 +1996,7 @@ html:has(:is(.ds-dialog, .ds-bottomsheet):modal) { overflow: hidden; }  /* 2026-
 }
 .ds-accordion:is([data-layout="separated"], [data-variant="separated"]) { border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
 .ds-accordion-group:is([data-layout="separated"], [data-variant="separated"]) { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+.ds-accordion[data-inset="none"] > :is(.ds-accordion__trigger, .ds-accordion__content) { padding-inline: 0; }  /* 2026-11-13: Tabs, Chip Tabs 와 같은 이름. 콘텐츠 칸 안에서 제목과 왼쪽 끝을 맞출 때 */
 .ds-accordion__trigger {
   display: flex;
   align-items: center;

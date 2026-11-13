@@ -573,7 +573,7 @@
       ],
       "doc": "2481:1721",
       "category": "Container",
-      "props": "layout `separated` · size"
+      "props": "layout `separated` · size · inset `none`"
     },
     {
       "no": "31",

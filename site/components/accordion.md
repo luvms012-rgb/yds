@@ -9,7 +9,7 @@
 아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
-<details class="ds-accordion" [data-layout="separated"] [data-size="large"]>
+<details class="ds-accordion" [data-layout="separated"] [data-size="large"] [data-inset="none"]>
   <summary class="ds-accordion__trigger">
     [<i class="ds-icon ds-icon--… " aria-hidden="true"></i>]
     <span class="ds-accordion__body"><span class="ds-accordion__title">항목</span>[<span class="ds-accordion__desc">설명</span>]</span>
@@ -35,6 +35,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 속성 | 값 |
 | --- | --- |
 | `layout` | separated |
+| `inset` | none |
 | 켜고 끄는 속성 | `size` |
 
 ## 사용 지침
@@ -163,6 +164,7 @@ PC 화면에서는 large 크기로 제목과 설명을 크게 표시합니다. �
 
 ```
 variant: inline(기본) / separated   size: medium(기본) / large
+inset: data-inset="none" (2026-11-13) 콘텐츠 칸 안에서 제목과 왼쪽 끝을 맞출 때 제목 줄과 내용의 좌우 여백을 없앱니다. inline 에만 씁니다.
 모션: 열고 닫을 때 높이가 부드럽게 바뀝니다(ybm-ds.js, 2026-11-04). 움직임 줄이기 설정을 켜면 바로 바뀝니다. name이 같은 묶음은 함께 움직입니다.
 Figma medium: trigger 16 사방 / gap x3 / title t05 Medium / desc t03 fg/neutral-subtle / chevron 20 fg/neutral
               content 0/16/16/16 / t04 fg/neutral-subtle
