@@ -88,5 +88,5 @@ variant : outline(기본) / underline      size : large(기본) / medium
 Figma outline large : px16 / py14 / min-h94 / shape/lg / t05
       outline medium: px14 / py12 / min-h82 / shape/sm / t04
       underline large : py8+14 / min-h110 / t06 / 하단 1px / underline medium: py6+12 / min-h94 / t05
-focused 1px stroke/neutral-contrast / invalid 1px stroke/critical-solid / disabled/readOnly bg/disabled
+바탕 bg/layer-default(underline 투명) / focused 1px stroke/neutral-contrast / invalid 1px stroke/critical-solid / disabled/readOnly bg/disabled
 ```

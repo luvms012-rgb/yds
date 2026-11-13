@@ -275,7 +275,7 @@
      underline large : py8 · min-h44 · gap10 · t06 · icon 24 · 하단 1px
      underline medium: py6 · min-h36 · gap8  · t05 · icon 20
      focused 1px stroke/neutral-contrast · invalid 1px stroke/critical-solid
-     disabled (outline) bg/disabled · 글자 fg/disabled / readOnly (outline) bg/disabled
+     outline 바탕 bg/layer-default(underline 투명) / disabled (outline) bg/disabled · 글자 fg/disabled / readOnly (outline) bg/disabled
    -------------------------------------------------------------------------- */
 .ds-input {
   --ds-input-height: 44px;
@@ -336,6 +336,7 @@
   --ds-input-font-size: var(--ds-font-size-t05);
   --ds-input-line-height: var(--ds-line-height-t05);
   --ds-input-icon: 20px;
+  --ds-input-bg: var(--ds-color-bg-layer-default);
   box-shadow: inset 0 0 0 1px var(--ds-input-line);
 }
 .ds-input[data-variant="outline"][data-size="medium"] {
@@ -422,7 +423,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
    Figma outline large : px16 · py14 · min-h94 · shape/lg · t05
          outline medium: px14 · py12 · min-h82 · shape/sm · t04
          underline large : py8+14 · min-h110 · t06 · 하단 1px / underline medium: py6+12 · min-h94 · t05
-   focused 1px stroke/neutral-contrast · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
+   바탕 bg/layer-default(underline 투명) · focused 1px stroke/neutral-contrast · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
    -------------------------------------------------------------------------- */
 .ds-textarea {
   --ds-textarea-padding: var(--ds-space-x3_5) var(--ds-space-x4);
@@ -439,7 +440,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   padding: var(--ds-textarea-padding);
   border: 0;
   border-radius: var(--ds-textarea-radius);
-  background: var(--ds-color-bg-transparent);
+  background: var(--ds-color-bg-layer-default);
   box-shadow: inset 0 0 0 var(--ds-textarea-line-width) var(--ds-textarea-line);
   color: var(--ds-color-fg-neutral);
   font: inherit;
@@ -462,6 +463,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-textarea-radius: 0px;
   --ds-textarea-font-size: var(--ds-font-size-t06);
   --ds-textarea-line-height: var(--ds-line-height-t06);
+  background: var(--ds-color-bg-transparent);
   box-shadow: inset 0 calc(var(--ds-textarea-line-width) * -1) 0 var(--ds-textarea-line);
 }
 .ds-textarea[data-variant="underline"][data-size="medium"] {
@@ -488,7 +490,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
        <i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i>
      </button>
    Figma large : h52 · px16 · gap10 · shape/lg · t05 · icon 20 / medium: h40 · px14 · gap8 · shape/sm · t04 · icon 16
-          1px stroke/neutral-weak · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
+          바탕 bg/layer-default · 1px stroke/neutral-weak · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
           affix·아이콘 fg/neutral-subtle · placeholder fg/placeholder · 값 fg/neutral
    readOnly: aria-readonly="true" (폼 제출이 필요하면 disabled 대신 readOnly, DS §6.4)
    -------------------------------------------------------------------------- */
@@ -502,7 +504,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-fb-icon: 20px;
   --ds-fb-line: var(--ds-color-stroke-neutral-weak);
   --ds-fb-line-width: 1px;
-  --ds-fb-bg: var(--ds-color-bg-transparent);
+  --ds-fb-bg: var(--ds-color-bg-layer-default);
   display: flex;
   align-items: center;
   gap: var(--ds-fb-gap);
@@ -571,7 +573,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
        <span class="ds-select__value" data-placeholder="선택해 주세요"></span>
      </button>
    Figma large: h52 · px16 · gap10 · shape/lg · t05 · chevron 20 / medium: h40 · px14 · gap8 · shape/sm · t04 · chevron 16
-          chevron fg/neutral(열림 = chevron-up) · invalid 1px critical · disabled·readOnly bg/disabled
+          바탕 bg/layer-default · chevron fg/neutral(열림 = chevron-up) · invalid 1px critical · disabled·readOnly bg/disabled
    -------------------------------------------------------------------------- */
 .ds-select {
   --ds-select-height: 52px;
@@ -583,7 +585,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-select-icon: 20px;
   --ds-select-line: var(--ds-color-stroke-neutral-weak);
   --ds-select-line-width: 1px;
-  --ds-select-bg: var(--ds-color-bg-transparent);
+  --ds-select-bg: var(--ds-color-bg-layer-default);
   display: flex;
   align-items: center;
   gap: var(--ds-select-gap);
@@ -4228,7 +4230,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
          <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span><span class="ds-multiselect__label">디자인</span></label>
        </div>
      </div>
-   Figma: Trigger 높이 40, padding x2 x3_5, gap x2, shape/sm, 1px stroke/neutral-weak (열림 stroke/neutral-contrast), 값 사이 x1, +N t04 Medium fg/neutral-muted
+   Figma: Trigger 높이 40, padding x2 x3_5, gap x2, shape/sm, bg/layer-default, 1px stroke/neutral-weak (열림 stroke/neutral-contrast), 값 사이 x1, +N t04 Medium fg/neutral-muted
      Panel padding x1, shape/lg, bg/layer-floating, elevation overlay, 최대 높이 300 / heading padding x1 x2, t02 fg/neutral-muted
      Option padding x1_5 x2, gap x2, shape/sm, t04 Medium / highlighted bg/transparent-pressed / disabled fg/disabled
    -------------------------------------------------------------------------- */
@@ -4241,6 +4243,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   min-height: var(--ds-space-x10);
   padding: var(--ds-space-x2) var(--ds-space-x3_5);
   border-radius: var(--ds-shape-sm);
+  background: var(--ds-color-bg-layer-default);
   box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak);
   color: var(--ds-color-fg-neutral);
   font-size: var(--ds-font-size-t04);

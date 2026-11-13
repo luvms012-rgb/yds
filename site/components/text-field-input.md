@@ -169,5 +169,5 @@ Figma
   underline large : py8 / min-h44 / gap10 / t06 / icon 24 / 하단 1px
   underline medium: py6 / min-h36 / gap8  / t05 / icon 20
   focused 1px stroke/neutral-contrast / invalid 1px stroke/critical-solid
-  disabled (outline) bg/disabled / 글자 fg/disabled / readOnly (outline) bg/disabled
+  outline 바탕 bg/layer-default(underline 투명) / disabled (outline) bg/disabled / 글자 fg/disabled / readOnly (outline) bg/disabled
 ```

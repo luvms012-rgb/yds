@@ -27,6 +27,10 @@
             [
               "DS",
               "Result Section large 의 제목을 t09 로 키우고 아이콘 48, 글자와 버튼 사이 여백을 줄였습니다."
+            ],
+            [
+              "DS",
+              "Text Field Input, Text Field Textarea, Field Button, Select Trigger, Multi Select 의 바탕을 투명에서 bg/layer-default 로 바꿨습니다. underline 은 그대로 투명합니다."
             ]
           ]
         }

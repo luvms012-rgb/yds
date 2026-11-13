@@ -150,8 +150,6 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 @media (max-width: 599px) { .site-cover .site-tile__inner { padding: var(--ds-space-x4); } }  /* 휴대폰에서 큰 그림이 칸 밖으로 넘치지 않게 (11-10 전체 검사) */
 /* 대표 그림(목록 카드와 상세 첫 그림): 바탕이 투명한 부품도 흰 바탕으로 보여 준다 (11-05 사용자) */
 .site-tile__inner .ds-input:not([data-variant="fill"]) { --ds-input-bg: var(--ds-color-bg-layer-default); }
-.site-tile__inner .ds-select { --ds-select-bg: var(--ds-color-bg-layer-default); }
-.site-tile__inner .ds-fieldbutton { --ds-fb-bg: var(--ds-color-bg-layer-default); }
 .site-tile__inner :is(.ds-textarea, .ds-fileattach__dropzone, .ds-fileitem, .ds-citation) { background-color: var(--ds-color-bg-layer-default); }
 .site-tile__inner .ds-btn:is([data-variant="neutralOutline"], [data-variant="brandOutline"]) { --ds-btn-bg: var(--ds-color-bg-layer-default); }  /* 외곽선 버튼, 선택된 라디오 가운데도 흰색 (11-06 사용자) */
 .site-tile__inner .ds-chiptabs[data-variant="neutralOutline"] .ds-chiptabs__trigger { --ds-ct-bg: var(--ds-color-bg-layer-default); }

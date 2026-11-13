@@ -138,7 +138,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```
 Figma large : h52 / px16 / gap10 / shape/lg / t05 / icon 20 / medium: h40 / px14 / gap8 / shape/sm / t04 / icon 16
-       1px stroke/neutral-weak / invalid 1px stroke/critical-solid / disabled/readOnly bg/disabled
+       바탕 bg/layer-default / 1px stroke/neutral-weak / invalid 1px stroke/critical-solid / disabled/readOnly bg/disabled
        affix/아이콘 fg/neutral-subtle / placeholder fg/placeholder / 값 fg/neutral
 readOnly: aria-readonly="true" (폼 제출이 필요하면 disabled 대신 readOnly, DS §6.4)
 ```

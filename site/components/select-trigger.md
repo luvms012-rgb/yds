@@ -122,11 +122,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `--ds-select-icon` | `20px` |
 | `--ds-select-line` | `var(--ds-color-stroke-neutral-weak)` |
 | `--ds-select-line-width` | `1px` |
-| `--ds-select-bg` | `var(--ds-color-bg-transparent)` |
+| `--ds-select-bg` | `var(--ds-color-bg-layer-default)` |
 
 ### 크기와 여백
 
 ```
 Figma large: h52 / px16 / gap10 / shape/lg / t05 / chevron 20 / medium: h40 / px14 / gap8 / shape/sm / t04 / chevron 16
-       chevron fg/neutral(열림 = chevron-up) / invalid 1px critical / disabled/readOnly bg/disabled
+       바탕 bg/layer-default / chevron fg/neutral(열림 = chevron-up) / invalid 1px critical / disabled/readOnly bg/disabled
 ```
