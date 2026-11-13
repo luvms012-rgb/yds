@@ -1,10 +1,12 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-12 밤 늦게 집 Mac
+- 갱신: 2026-11-13 회사
 - 시작: `git pull` 뒤 이 파일을 읽는다. 지난 기록은 [log.md](log.md) 에서 필요할 때만 찾는다.
 
 ## 한 것
 
+- **Result Section 글자 위계와 여백, 아이콘 크기 (11-13, 사용자가 Figma 미리보기 2753:2227 에서 고친 값 "이 기준으로 ds 전면 수정", "아이콘 크기 조절이 안되는데 추가", "최종 치환까지")**: large 제목 t08 → t09, 글자 사이 x3 → x1, 글자 아래 x7 → x5, 버튼 사이 x5 → x3, 아이콘 40 → 48. medium 은 사용자가 고치지 않아 위계가 뒤집히지 않게 글자 사이 x1, 글자 아래 x4, 버튼 사이 x3, 아이콘 40 으로 맞췄다(다르면 사용자에게). 아이콘 크기 선택 `.ds-result__asset[data-size="32|40|48|64"]`, 변수 --ds-result-icon. Figma: Result Section 세트 두 변형 값과 변수 연결, 새 세트 Result Asset `3398:1128`(size 32/40/48/64, icon 바꾸기 속성, 세트 안에 노출된 인스턴스라 Result Section 인스턴스 패널에서 크기를 고른다), 떼어 낸 미리보기를 인스턴스로 바꿈, 문서 프레임 사용법, 규격 글, 속성 표 asset size 줄, Property - asset size 칸, 59번부터 코드 링크 줄 번호. 다른 변수와 컴포넌트는 Figma 와 코드가 같았다(가벼운 점검 일치).
+- **왼쪽 메뉴 점 (11-13, 사용자 "업데이트도 표시")**: Updates 소식에 이름이 나온 컴포넌트에도 7일 동안 같은 빨간 점(aria-label 바뀐 컴포넌트). 남은 일 4번의 점 규칙을 이것으로 대신한다.
 - **Top Navigation 정리 (11-12 밤, 사용자 캡처 "아바타가 너무 커", "선택 메뉴 bg 삭제", "선택되지 않은 메뉴 옅게", "로고 너무 커", "가운데 정렬 추가") - 배포함(16a27546, 8d4e0209)**: 선택 메뉴는 바탕 없이 fg/neutral + SemiBold, 나머지 메뉴는 fg/neutral-subtle, hover 는 bg/transparent-pressed + fg/neutral. 오른쪽 끝 내 정보 Avatar 는 32(`.ds-topnav__end > .ds-avatar`, 로그인 버튼 xsmall 32 와 같은 높이). 로고 높이 28 → 20(메뉴 글자 14 보다 조금 크게, 사용자가 준 레퍼런스 비율). 새 선택지 `data-layout="center"`: 메뉴를 막대 가운데에 두고 로고는 왼쪽, 버튼은 오른쪽(grid 1fr auto 1fr, `__left` 는 display: contents 라 마크업은 그대로). 예시 로고는 배움터 대신 YBM NET 공식 로고(절대 주소 `site/assets/logo-ybmnet.svg`, 68x20), 예시 "메뉴를 가운데에 두기" 추가, Updates 11-12 새 기능 한 줄, README 6.1 표, components.json props. Figma: Top Navigation Item 세트 2557:1647 네 변형(선택 바탕 없음, 기본 글자 fg/neutral-subtle, hover 글자 fg/neutral), 템플릿 상단 막대 선택 메뉴 23곳 바탕 지움과 나머지 96곳 옅은 글자, 템플릿 상단 아바타 26개 36 → 32, 문서 프레임 2557:2397 예시 3개 다시 그림(세 번째 예시 칸 새로 만듦, 로고는 PNG 로 넣음, 아바타는 Avatar 인스턴스 32), 예시 제목과 설명을 사이트 글로, 예시 코드와 규격 글 새 값, 코드 링크 줄 번호. Top Navigation 컴포넌트 2557:1648 에는 center 변형을 두지 않았다(문서 예시로만 그림, 필요하면 변형 추가). 로고 자리 88x28 은 사이트 대표 그림과 같은 자리 표시라 그대로. 점검: 변수 359, 컴포넌트 117, 링크 170, 템플릿 84 일치.
 - **Figma 싱크 (11-12 저녁, 사용자 "피그마 씽크 계속 진행")**: 아래 남은 일 1번을 끝냈다. 코드 링크 77곳, 속성 이름 정리(세트 10개 변형 이름, 문서 프레임 코드 예시와 속성 표), Text Link, Carousel 문서 프레임 다시 그림, 아이콘 표 play-solid / pause-solid. 코드 쪽 남은 예전 이름(Table, List, Progress Circle 규격 주석, Table 사용 지침)도 줄 수 그대로 고쳐 배포. 변수 359, 세트 118, 템플릿 84 일치. 자세한 것은 log.md.
 - **같은 기능, 다른 모양 규칙과 속성 이름 정리 (11-12 오후, 사용자 "모든 컴포넌트에 적용", "A 전부 진행") - 배포함(221b77b6)**: README 6.1 앞에 규칙 절(값은 컴포넌트 변수, 구조는 `data-layout`, 동작은 따로 켜는 속성, 하는 일이 다르면 새 컴포넌트, `data-variant` 강조와 색 / `data-tone` 의미 색 / `data-layout` 구조 / `data-size` 크기)과 AI 규칙 한 줄(build.mjs)을 넣었다. 84개 점검 결과는 [layout-audit.md](layout-audit.md). 그중 A 11건 이름을 바꿨다: Snackbar `data-tone`(JS `{ tone }`), Pagination `data-layout="simple"`, File Attach 항목 `data-layout="image"`, Toolbar `data-layout="floating"`, Accordion `data-layout="separated"`, List `data-inset`, Select Box `data-orientation="vertical"`, Action Button `data-layout="fill"`, Table `data-size="small"`, Progress Circle `data-indeterminate`, Chat 시스템 줄 `data-layout="divider"`. CSS 는 `:is(새 이름, 예전 이름)` 이라 예전 마크업도 그대로 보이고, ybm-ds.js 도 예전 `variant` 를 받는다. 예시, 대표 그림, 구조 그림, 루트 index.html, 템플릿 생성기, site.js, README 표, components.json, tools/check.mjs 선 색 검사 선택자까지 바꿨다. 템플릿 6종을 예전/새 마크업으로 캡처해 픽셀 비교, 화면 변화 없음. Updates 한 줄 더함. Updates 페이지는 항목마다 첫 문장만 그려서 오늘 Carousel 소식 5줄이 사이트에 안 보이던 것을 찾아, 문장마다 항목을 나눴다(updates.json 한 항목 = ["DS", 문장 하나]). 빌드와 `node sync.mjs check` 통과.
@@ -30,7 +32,6 @@
 1-3. 점검표 B(값이 섞인 속성 5건)는 사용자 결정 대기.
 2. 운영 구조 정리 5단계: 시험지 만들기. Get Started 예시 요청 6개를 yds.txt 주소만 준 새 세션에서 돌려 yds-check 문제 수, hex 직접 쓴 수, 없는 클래스 수를 표로 쌓는다.
 3. 템플릿 2순위 7종(내 강의실, 오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역)과 3순위 3종(오류, 점검, 알림 목록). 사용자 지시 대기.
-4. 새 컴포넌트 점 규칙. 제안(컴포넌트마다 추가일부터 14일, 그 페이지를 한 번 열면 사라짐)에 대한 답 대기. 지금은 가장 최근 묶음만 30일(build.mjs NEW_COMPS).
 5. 템플릿 UI 전체 개선. 사용자가 방향을 줄 때까지 시작하지 않고, 짚은 화면만 고친다.
 6. h1 이 없는 템플릿 9종에 숨김 제목(`tp-sr`) 넣기: ai-chat, canvas-editor, community-home, contact-form, dashboard, documentation, file-explorer, ide, mypage-home.
 7. Figma: 예전 템플릿 사진 칸은 회색, 그림자는 일부만. 라이브러리 다시 게시는 사용자가 한다. 라이브러리 원본(Foundations, Iconography, 컴포넌트) 변수 연결은 사용자 "다음에".

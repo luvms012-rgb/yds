@@ -172,7 +172,7 @@ node sync.mjs release 1.1.0    새 버전: VERSION, DS 머리 버전, Updates �
 | Container | `2479:9` | Accordion, Card, **Select Box** `2495:260` |
 | Content | `2479:10` | Avatar, Empty, Tag Group, **Timer** `2563:889`, **Image Frame** `2567:1928`, **Carousel** `2567:1936` |
 | Data Input | `2479:11` | Checkbox, Date Picker, Field Button, Quantity Picker, Radio Group, Select, Slider, Switch, Text Field, **Time Picker** `2497:979`, **Search Suggestion** `2558:1321`, **File Attach** (Dropzone `2558:1328`, Trigger `2558:1347`, Item `2558:1384`), **Checkbox Group** `2566:1167`, **Multi Select** `2566:1252` |
-| Feedback & Status | `2479:12` | Badge, Banner, Callout, Progress, Skeleton, **Result Section** `2562:741`, **Status Dot** `2562:747`, **Rating** `2579:318` (문서 `2579:319`, 2026-10-30) |
+| Feedback & Status | `2479:12` | Badge, Banner, Callout, Progress, Skeleton, **Result Section** `2562:741` (아이콘 크기 Result Asset `3398:1128`), **Status Dot** `2562:747`, **Rating** `2579:318` (문서 `2579:319`, 2026-10-30) |
 | Layout | `2479:13` | Divider, **Scroll Fog** `2567:33`, **Pull To Refresh** `2567:54` |
 | Navigation | `2479:14` | Bottom Navigation, Breadcrumbs, Chip Tabs, Pagination, Side Navigation, Stepper, Tabs, **Table Pagination** `2498:1299`, **Top App Bar** `2557:1638`, **Top Navigation** `2557:1648` |
 | Overlay | `2479:15` | Bottom Sheet, Dialog, Help Bubble, Snackbar, Tooltip, **Popover** `2494:473`, **Menu Sheet** `2563:1501`, **Side Panel** `2567:862` |
@@ -408,7 +408,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 56 | Search Suggestion | `.ds-search-anchor` `.ds-search-suggest` (`__heading/list/item/content/label/desc/empty`) | `2558:1321`, 3 / Item `2558:1268`, 2 | 입력 칸은 Text Field + search 아이콘, 화살표 키는 ybm-ds.js |
 | 57 | File Attach | `.ds-fileattach` (`__dropzone/input/label/items/trigger/count`) `.ds-fileitem` (`__thumbnail/texts/name/size/image/badge/remove`) | Dropzone `2558:1328`, 3 / Trigger `2558:1347`, 3 / Item `2558:1384`, 4 | dragOver는 ybm-ds.js, Item 기본 160×80 / layout `image` 80×80 |
 | 58 | Menu Sheet | `.ds-menusheet` (`__header/title/desc/list/group/item/content/label/item-desc/footer/close`) | `2563:1501` / Item `2563:1495`, 8 / Close Button `2563:1500`, 2 | 네이티브 `<dialog>`, Item tone `neutral/critical`, labelAlign `left/center` |
-| 59 | Result Section | `.ds-result` (`__asset/texts/title/desc/actions`) | `2562:741`, 2 | size `large/medium`, 그림 40 |
+| 59 | Result Section | `.ds-result` (`__asset/texts/title/desc/actions`) | `2562:741`, 2 / Result Asset `3398:1128`, 4 | size `large/medium`, 그림 size `32/40/48/64` |
 | 60 | Timer | `.ds-timer` | `2563:889`, 2 | format `clock/elapsed`, 시간 갱신은 ybm-ds.js |
 | 61 | Status Dot | `.ds-statusdot` | `2562:747`, 5 | tone 5, 8px, data-pulse |
 | 62 | Checkbox Group | `.ds-checkbox-group` | `2566:1167` | 세로 간격 x1, 묶음 이름은 Field Label |

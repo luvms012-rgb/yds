@@ -10,7 +10,7 @@
 
 ```html
 <section class="ds-result" [data-size="medium"]>
-  [<div class="ds-result__asset"><i class="ds-icon ds-icon--circle-check-solid" aria-hidden="true"></i></div>]
+  [<div class="ds-result__asset" [data-size="48"]><i class="ds-icon ds-icon--circle-check-solid" aria-hidden="true"></i></div>]
   <div class="ds-result__texts">
     <h2 class="ds-result__title">신청을 마쳤어요</h2>
     [<p class="ds-result__desc">처리 결과는 알림으로 알려 드릴게요</p>]
@@ -39,6 +39,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 속성 | 값 |
 | --- | --- |
 | `size` | large medium |
+| `asset size` | 32 40 48 64 |
 | 켜고 끄는 속성 | `asset` `description` |
 
 그 밖에: primary/secondary action
@@ -134,15 +135,16 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 변수 | 기본값 |
 | --- | --- |
-| `--ds-result-gap` | `var(--ds-space-x3)` |
-| `--ds-result-text-bottom` | `var(--ds-space-x7)` |
+| `--ds-result-icon` | `var(--ds-space-x12)` |
+| `--ds-result-text-bottom` | `var(--ds-space-x5)` |
 
 ### 크기와 여백
 
 ```
 size: 기본 large(화면 전체) / data-size="medium"(화면 일부)
-위쪽 그림은 40 아이콘(완료 fg/positive, 오류 fg/critical)이나 Progress Circle 40으로 바꿔 사용합니다.
-Figma: 가운데 정렬, padding x4 x12 / 그림 아래 x4, 아이콘 40
-  large 글자 사이 x3, 아래 x7, 제목 t08 Bold, 설명 t05 fg/neutral-muted / medium 글자 사이 x2, 아래 x6, 제목 t05 Bold, 설명 t04
-  버튼 사이 x5, 주요 버튼(위) Action Button neutralWeak medium, 보조 버튼(아래) ghost small
+위쪽 그림은 아이콘(완료 fg/positive, 오류 fg/critical)이나 Progress Circle 로 바꿔 사용합니다.
+아이콘 크기: 기본은 large 48, medium 40 / 바꿀 때 ds-result__asset 에 data-size="32|40|48|64"
+Figma: 가운데 정렬, padding x4 x12 / 그림 아래 x4, 글자 사이 x1
+  large 아이콘 48, 글자 아래 x5, 제목 t09 Bold, 설명 t05 fg/neutral-muted / medium 아이콘 40, 글자 아래 x4, 제목 t05 Bold, 설명 t04
+  버튼 사이 x3, 주요 버튼(위) Action Button neutralWeak medium, 보조 버튼(아래) ghost small
 ```

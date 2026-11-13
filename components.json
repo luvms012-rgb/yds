@@ -1181,11 +1181,16 @@
           "id": "2562:741",
           "type": "COMPONENT_SET",
           "variants": 2
+        },
+        {
+          "id": "3398:1128",
+          "type": "COMPONENT_SET",
+          "variants": 4
         }
       ],
       "doc": "2562:748",
       "category": "Feedback & Status",
-      "props": "size `large/medium`, asset, description, primary/secondary action"
+      "props": "size `large/medium`, asset, asset size `32/40/48/64`, description, primary/secondary action"
     },
     {
       "no": "60",

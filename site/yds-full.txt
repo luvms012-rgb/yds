@@ -3864,7 +3864,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <section class="ds-result" [data-size="medium"]>
-  [<div class="ds-result__asset"><i class="ds-icon ds-icon--circle-check-solid" aria-hidden="true"></i></div>]
+  [<div class="ds-result__asset" [data-size="48"]><i class="ds-icon ds-icon--circle-check-solid" aria-hidden="true"></i></div>]
   <div class="ds-result__texts">
     <h2 class="ds-result__title">신청을 마쳤어요</h2>
     [<p class="ds-result__desc">처리 결과는 알림으로 알려 드릴게요</p>]
@@ -3883,6 +3883,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 속성 | 값 |
 | --- | --- |
 | `size` | large medium |
+| `asset size` | 32 40 48 64 |
 | 켜고 끄는 속성 | `asset` `description` |
 
 그 밖에: primary/secondary action

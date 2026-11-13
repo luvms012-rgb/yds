@@ -199,6 +199,16 @@ const NEW_COMPS = (() => {
   if (!last || (Date.now() - Date.parse(last)) / 864e5 > 30) return new Set();
   return new Set(added.filter(([, d]) => d === last).map(([n]) => n));
 })();
+// 바뀐 컴포넌트 점 (2026-11-13 사용자 "새로 생긴 컴포넌트만 알림 표시하지 말고 업데이트도 표시"): Updates 소식에 이름이 나온 컴포넌트, 그 날부터 7일 동안
+const UPD_COMPS = (() => {
+  const u = JSON.parse(fs.readFileSync(path.join(SITE, 'src/updates.json'), 'utf8'));
+  const has = (t, n) => { for (let i = t.indexOf(n); i >= 0; i = t.indexOf(n, i + 1)) if (!/[A-Za-z]/.test(t[i - 1] || ' ') && !/[A-Za-z]/.test(t[i + n.length] || ' ')) return true; return false; };
+  const nm = (c) => c.name.split(' · ')[0];
+  const byLen = [...comps].sort((a, b) => nm(b).length - nm(a).length);  // Mega Menu 를 Menu 로 잘못 세지 않게 긴 이름부터
+  const out = new Set();
+  for (const r of u.releases) if ((Date.now() - Date.parse(r.date)) / 864e5 <= 7) for (const sec of r.sections) for (const [, t0] of sec.items) { let t = t0; for (const c of byLen) { const n = c.name.split(' · ')[0]; if (has(t, n)) { out.add(c.no); t = t.split(n).join(' '); } } }
+  return out;
+})();
 // 컴포넌트 목록 분류: Figma 페이지와 같은 이름과 순서 (components.json 의 category, 2026-11-06 사용자 "피그마 페이지와 같은 카테고리로 분리")
 const COMP_CATS = ['Action', 'Chat', 'Container', 'Content', 'Data Input', 'Feedback & Status', 'Layout', 'Navigation', 'Overlay', 'Table & List', 'Etc'];
 const REG_CAT = Object.fromEntries(JSON.parse(fs.readFileSync(path.join(DS, 'components.json'), 'utf8')).components.map((x) => [x.no, x.category]));
@@ -263,7 +273,7 @@ function sideNav(section, file, root) {
   if (section === 'foundations') parts.push(...FD_ORDER.map(([h, l]) => item(h, l)));
   if (section === 'components') {
     parts.push(item('components/index.html', 'Overview'));
-    parts.push(...compsAZ.map((c) => item(`components/${c.slug}.html`, c.name.split(' · ')[0], koKeys(c.name.split(' · ')[0])).replace(/<\/a>$/, NEW_COMPS.has(c.no) ? '<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>' : '</a>')));
+    parts.push(...compsAZ.map((c) => item(`components/${c.slug}.html`, c.name.split(' · ')[0], koKeys(c.name.split(' · ')[0])).replace(/<\/a>$/, NEW_COMPS.has(c.no) || UPD_COMPS.has(c.no) ? '<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="' + (NEW_COMPS.has(c.no) ? '새 컴포넌트' : '바뀐 컴포넌트') + '"></span></a>' : '</a>')));
   }
   if (section === 'themes') parts.push(item('themes/index.html', 'Overview'));
   if (section === 'templates') {

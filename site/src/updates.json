@@ -10,6 +10,19 @@
             [
               "DS",
               "Accordion 에 data-inset=\"none\" 을 더했습니다. 콘텐츠 칸 안에서 제목과 왼쪽 끝을 맞출 때 사용합니다."
+            ],
+            [
+              "DS",
+              "Result Section 그림에 data-size 로 아이콘 크기(32, 40, 48, 64)를 고를 수 있게 했습니다."
+            ]
+          ]
+        },
+        {
+          "type": "변경된 부분",
+          "items": [
+            [
+              "DS",
+              "Result Section large 의 제목을 t09 로 키우고 아이콘 48, 글자와 버튼 사이 여백을 줄였습니다."
             ]
           ]
         }
