@@ -182,6 +182,15 @@
       }
     },
     {
+      "slug": "class-detail",
+      "name": "클래스 상세",
+      "en": "Class Detail",
+      "group": "Learning",
+      "sub": "찾기와 신청",
+      "desc": "온라인 클래스의 소개, 커리큘럼, 강사, 수강평을 보고 신청하는 화면입니다. 가격과 신청 버튼은 넓은 화면에서 옆에 고정됩니다.",
+      "rebuilt": true
+    },
+    {
       "slug": "textbook-detail",
       "name": "교재 상세",
       "en": "Textbook Detail",
@@ -216,6 +225,15 @@
       "figma": {
         "pc": "3195:5343"
       }
+    },
+    {
+      "slug": "my-classroom",
+      "name": "내 강의실",
+      "en": "My Classroom",
+      "group": "Learning",
+      "sub": "수강",
+      "desc": "수강 중인 클래스와 진도, 수료증을 모은 학습자 화면입니다. 마지막에 듣던 강의를 맨 위에 둡니다.",
+      "rebuilt": true
     },
     {
       "slug": "learning-dashboard",
@@ -648,6 +666,42 @@
       "figma": {
         "pc": "3189:2214"
       }
+    },
+    {
+      "slug": "video-home",
+      "name": "영상 홈",
+      "en": "Video Home",
+      "group": "Content",
+      "sub": "영상",
+      "desc": "대표 작품과 이어 보기, 분류별 작품 줄을 모은 영상 서비스 첫 화면입니다. 보던 영상으로 바로 돌아가게 합니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "video-title-detail",
+      "name": "작품 상세",
+      "en": "Title Detail",
+      "group": "Content",
+      "sub": "영상",
+      "desc": "작품 하나의 정보와 시즌별 회차를 보여 주는 상세 화면입니다. 본 회차와 이어 볼 회차를 진행 막대로 구분합니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "video-watch",
+      "name": "영상 시청",
+      "en": "Watch Page",
+      "group": "Content",
+      "sub": "영상",
+      "desc": "영상을 보며 채널, 설명, 댓글을 함께 보는 시청 화면입니다. 다음에 볼 영상은 옆에 모아 둡니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "video-player",
+      "name": "전체 화면 플레이어",
+      "en": "Fullscreen Player",
+      "group": "Content",
+      "sub": "영상",
+      "desc": "영상을 화면 가득 채워 보는 플레이어입니다. 조작 막대와 다음 화는 아래에 모아 둡니다.",
+      "rebuilt": true
     },
     {
       "slug": "product-detail",

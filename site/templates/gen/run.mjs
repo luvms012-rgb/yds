@@ -11,7 +11,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PAGES = path.join(HERE, '..', 'pages');
 const JSON_PATH = path.join(HERE, '..', '..', 'src', 'templates.json');
 const GROUPS = ['Dashboard', 'Table', 'Form', 'Settings', 'Login', 'Tools', 'Content', 'AI Chat', 'Gallery', 'Community', 'Pricing', 'My Page', 'Commerce', 'Exam', 'Education', 'Exam B2B', 'Learning B2B'];
-const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics', 'admin'];
+const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics', 'admin', 'media'];
 
 const all = [];
 for (const m of MODS) {

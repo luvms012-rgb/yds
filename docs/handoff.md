@@ -5,6 +5,8 @@
 
 ## 한 것
 
+- **영상과 온라인 클래스 템플릿 6쪽 (11-14 집)**: media.mjs. 영상 홈, 작품 상세, 영상 시청, 전체 화면 플레이어(콘텐츠 > 영상), 클래스 상세, 내 강의실(학습). 375, 768, 1440 점검 문제 없음. Updates 템플릿 소식 1줄.
+- **템플릿 AI 요청 글 상자 모서리, 문장 (11-14 집, 배포 b7ce0396)**: 코드 탭처럼 모서리 없이, "구성과 내용은 자유롭게 바꿔도 돼" 삭제.
 - **Updates 요청 목록 비움 (11-14 집, 배포 전)**: 사용자 "오늘 기준 모두 삭제" 로 requests.json 5건 삭제. 빈 목록이면 Empty 표시, 새 요청 점 없음.
 - **템플릿 카드 버튼 이름 (11-14 집, 배포 전)**: "문서 보기" 를 "자세히 보기" 로.
 - **Updates 영역 배지 이름 통일 (11-14 집, 배포 전)**: "DS" 를 컴포넌트 22, 규칙 2, 아이콘 1, 토큰 1, 브랜드 1 로 바꿨다(템플릿 1 은 그대로).
@@ -46,6 +48,7 @@
 
 ## 남은 일 (순서대로)
 
+- **Figma 영상, 클래스 템플릿 6쪽**: video-home, video-title-detail, video-watch, video-player, class-detail, my-classroom 을 Templates 페이지에 그린다(편집 계정 필요). 플레이어에 소리, 자막 아이콘이 필요하면 icons.css 에 더할지 사용자에게 묻는다.
 - **Figma 관리자 처리 템플릿 3쪽**: admin-request-list, admin-request-detail, admin-request-form 을 Templates 페이지 Admin 섹션에 그린다(yds-figma-draw, 편집 계정 필요).
 0-2. 사내 확산 다음 단계(사용자 지시 대기): 하려는 일 카드 6개는 구성, 위치(구조 위 또는 아래), 제목 여부를 사용자에게 물어 둔 상태. 토큰 대조표, 디자이너 역할 경계 문구도 사용자 결정 대기.
 0-1. Figma 문서 프레임 예시 맞추기(11-14 예시 정리 1차 12개 + 2차 39개, 지침 19줄. 컴포넌트 목록은 site/CLAUDE.md 와 git log 에 있다): accordion, empty, prefix-select, quantity-picker, bottom-sheet, menu-sheet, pagination, progress, progress-circle, image-frame, skeleton, carousel 의 문서 프레임에서 뺀 예시 1개씩을 지우고, 사용 지침 줄이 늘어난 6개(image-frame, bottom-sheet, menu-sheet, pagination, quantity-picker, prefix-select)의 Do/Don't 줄을 맞춘다. `node sync.mjs docpage <slug>` 뒤 yds-figma-draw 스킬 순서. 편집 가능한 Figma 계정(luvms@ybm.co.kr)으로 연결된 PC 에서 한다.

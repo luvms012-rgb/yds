@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>영상 홈 - YDS 템플릿</title>
+<link rel="stylesheet" href="../../../dist/ybm-ds.css">
+<script src="../../../dist/ybm-ds.js" defer></script>
+<script>/* 문서 사이트 미리보기 안에서는 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다) */try{var f=window.frameElement;if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))document.documentElement.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write('<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">')}}catch(e){}</script>
+<style>
+  /* 템플릿 배치 전용. 값은 모두 --ds-* 토큰.
+     배치(여백, 카드, 구분선)는 레퍼런스 A 템플릿, 한글 글자 위계(크기, 굵기, 색 단계, 자간)는 토스를 따른다 */
+  /* 좌우 기준: 화면 내용은 좌우 여백(--tp-gutter)만 두고 폭을 채운다(2026-11-10 사용자 "이 여백을 비우지마, 템플릿 모두 적용"). 글과 입력 한 줄 화면만 --tp-narrow 720 */
+  :root { --tp-gutter: var(--ds-space-x4); --tp-page: 100%; --tp-narrow: 720px; --tp-page-box: calc(var(--tp-page) + 2 * var(--tp-gutter)); --tp-narrow-box: calc(var(--tp-narrow) + 2 * var(--tp-gutter)); }
+  @media (min-width: 768px) { :root { --tp-gutter: var(--ds-space-x6); } }
+  /* 스크롤바: 페이지 스크롤바는 폭을 차지하면 오른쪽 여백만 넓어져 좌우가 어긋난다. 숨기고, 안쪽 스크롤 영역은 트랙 없이 손잡이만 */
+  html { scrollbar-width: none; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
+  /* 머리글도 내용과 같은 좌우선에 */
+  .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
+  .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
+  body { word-break: keep-all; overflow-wrap: break-word; }
+  .tp-app { display: flex; flex-direction: column; min-height: 100vh; background: var(--ds-color-bg-layer-default); }
+  .tp-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); padding: var(--ds-space-x6) var(--ds-space-x4) 0; }
+  .tp-head__texts { display: flex; flex-direction: column; gap: var(--ds-space-x1_5); min-width: 0; }
+  .tp-head__tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); }
+  .tp-head > .tp-row, .tp-head .tp-between > .tp-row { flex-wrap: wrap; }
+  .ds-tablepagination { flex-wrap: wrap; row-gap: var(--ds-space-x2); min-width: 0; }
+  .tp-between > .tp-row { flex-wrap: wrap; }
+  /* 글자 위계 (2026-11-10 레퍼런스 템플릿 전체 측정): 페이지 제목 24 SemiBold, 섹션 제목 20 SemiBold, 카드 제목 16 Bold, 작은 제목 14 Bold.
+     큰 제목은 SemiBold, 작은 제목은 Bold 로 눈에 보이는 무게를 맞춘다. 본문 14, 보조 글은 옅은 색. 화면 폭이 넓어져도 제목 크기는 그대로 */
+  .tp-h1 { font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; }
+  .tp-h2 { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; }
+  .tp-h3 { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.01em; }
+  .tp-h4 { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-bold); }
+  .tp-sub { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
+  .tp-caption { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-regular); }
+  /* 리스트 글자 위계: 항목 제목은 굵게, 상품 이름은 보통 + 가격은 굵게, 부가 정보는 13 */
+  /* 체크 목록: 누르지 않는 항목이라 List Item(이동용) 대신 글 목록, 아이콘은 첫 줄 가운데 */
+  .tp-checks { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
+  .tp-checks > li { display: flex; align-items: flex-start; gap: var(--ds-space-x2); }
+  .tp-checks .ds-icon { flex: none; --ds-icon-size: 16px; margin-block: calc((var(--ds-line-height-t05) - 16px) / 2); color: var(--ds-color-fg-neutral); }
+  .tp-item-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
+  .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }  /* 2026-11-10 사용자 "타이틀에 얇은 폰트를 쓰지마" */
+  /* 목록에 되풀이되는 항목 이름(인기글, 알림, 설정 줄, 작성자)은 14 Medium. 14 Bold(tp-h4)는 묶음 제목에만 (2026-11-10 사용자 "리스트 폰트 두께 점검") */
+  .tp-label { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
+  .tp-amount { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tp-num { font-variant-numeric: tabular-nums; }
+  /* 표는 DS Table 그대로 쓴다 (2026-11-03 DS 개편). 아래는 표 위, 아래 줄만 */
+  /* 표 위 한 줄: 왼쪽 개수, 오른쪽 고르기 칸과 찾기 (커뮤니티 게시판 btools) */
+  .tp-ttools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
+  .tp-ttools__end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); }
+  .tp-ttools__end > .ds-select { min-width: 120px; }
+  .tp-ttools .ds-input { flex: none; width: 240px; max-width: 100%; }
+  .tp-tfoot { display: flex; justify-content: center; padding-top: var(--ds-space-x2); }
+  /* 배치 (레퍼런스 A): 흰 바탕, 바깥 여백 16 / 24, 묶음 사이 24 / 32 와 구분선 */
+  .tp-body { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
+  .tp-content { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x10); }
+  .tp-panel { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-sec { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; }
+  .tp-sec-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2) var(--ds-space-x3); }
+  .tp-sec-head__texts { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ds-space-x1) var(--ds-space-x2); }
+  .tp-row { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
+  /* 줄 안에 놓인 고르기 칸은 글자만큼만 */
+  :is(.tp-row, .tp-between, .tp-head__tools, .tp-sec-head, .tp-ttools__end) > .ds-select { width: auto; min-width: 140px; }
+  .tp-between { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); }
+  .tp-stack { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
+  .tp-stack > .ds-badge { align-self: flex-start; }
+  .tp-g2, .tp-g3, .tp-g4, .tp-g5, .tp-g6 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x3); }
+  /* 카드 (레퍼런스 A): 흰 바탕 + 옅은 1px 선, 모서리 12 */
+  .tp-card { min-width: 0; }
+  .tp-span2 { grid-column: auto; }
+  .tp-kpi__label { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
+  .tp-kpi__value { font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tp-delta { display: inline-flex; align-items: center; gap: 2px; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tp-delta .ds-icon { --ds-icon-size: 14px; }
+  .tp-delta[data-tone="up"] { color: var(--ds-color-fg-positive); }
+  .tp-delta[data-tone="down"] { color: var(--ds-color-fg-critical); }
+  .tp-delta[data-tone="flat"] { color: var(--ds-color-fg-neutral-muted); }
+  /* 차트: 얇은 선, 옅은 격자, 마우스를 올리면 세로 안내선과 값 풍선 */
+  .tp-chart { display: block; width: 100%; height: auto; overflow: visible; }
+  .tp-chart text { fill: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t01); font-family: inherit; font-variant-numeric: tabular-nums; }
+  .tp-chart .tp-grid-line { stroke: var(--ds-color-stroke-neutral-muted); stroke-width: 1; }
+  .tp-chart [data-i] { transition: opacity var(--ds-duration-fast) var(--ds-easing-standard); }
+  .tp-chart.is-hover [data-i]:not(.is-on) { opacity: .35; }
+  .tp-chart .tp-guide { stroke: var(--ds-color-fg-neutral-subtle); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; pointer-events: none; }
+  .tp-chart .tp-dot { stroke: var(--ds-color-bg-layer-default); stroke-width: 2; opacity: 0; pointer-events: none; }
+  .tp-chart.is-hover .tp-guide, .tp-chart.is-hover .tp-dot { opacity: 1; }
+  .tp-tip { position: fixed; z-index: var(--ds-z-tooltip, 60); display: flex; flex-direction: column; gap: 2px; min-width: 96px; padding: var(--ds-space-x2) var(--ds-space-x2_5); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-on-neutral-solid); box-shadow: var(--ds-elevation-overlay); font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity var(--ds-duration-fast) var(--ds-easing-standard), transform var(--ds-duration-fast) var(--ds-easing-standard); }
+  .tp-tip.is-on { opacity: 1; transform: none; }
+  .tp-tip__t { font-weight: var(--ds-font-weight-semibold); opacity: .8; }
+  .tp-tip__t:only-child { opacity: 1; }
+  [data-tip] { transition: filter var(--ds-duration-fast) var(--ds-easing-standard); }
+  [data-tip]:hover { filter: brightness(0.9); }
+  .tp-tip__r { display: flex; align-items: center; gap: var(--ds-space-x1_5); font-variant-numeric: tabular-nums; }
+  .tp-tip__r b { margin-inline-start: auto; padding-inline-start: var(--ds-space-x3); font-weight: var(--ds-font-weight-semibold); }
+  .tp-tip__r i { flex: none; width: 8px; height: 8px; border-radius: 2px; background: var(--c); }
+  .tp-legend { display: flex; flex-wrap: wrap; gap: var(--ds-space-x1) var(--ds-space-x4); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); }
+  .tp-legend__item { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); }
+  .tp-swatch { flex: none; width: 8px; height: 8px; border-radius: 2px; background: var(--c, var(--ds-color-chart-series-1)); }
+  .tp-split { display: flex; height: 10px; overflow: hidden; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); }
+  .tp-split > span { height: 100%; background: var(--c); }
+  .tp-split > span + span { box-shadow: inset 2px 0 0 var(--ds-color-bg-layer-default); }
+  .tp-ph { display: grid; place-items: center; width: 100%; height: 100%; color: var(--ds-color-fg-neutral-subtle); background: var(--ds-color-bg-neutral); }
+  .tp-ph > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .tp-logo { display: inline-grid; place-items: center; width: 88px; height: 28px; border-radius: var(--ds-shape-xs); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03-static); line-height: var(--ds-line-height-t03-static); font-weight: var(--ds-font-weight-semibold); }
+  .tp-bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
+  .tp-track { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 120px; }
+  .tp-hide-sm { display: none; }
+  .tp-scroll-x { position: relative; overflow-x: auto; } /* 안의 .tp-sr(absolute)이 페이지 폭을 넓히지 않게 */
+  .tp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .tp-zoom { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--ds-shape-xl); background: none; cursor: zoom-in; }
+  .tp-zoom:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
+  .tp-kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: var(--ds-shape-2xs); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t01); font-family: inherit; }
+  @media (min-width: 768px) {
+    .tp-head { padding: var(--ds-space-x6) var(--ds-space-x6) 0; }
+    .tp-content { padding: var(--ds-space-x6) var(--ds-space-x6) var(--ds-space-x12); gap: var(--ds-space-x8); }
+    .tp-panel { padding: var(--ds-space-x6); }
+    .tp-card.ds-card { --ds-card-padding: var(--ds-space-x5); --ds-card-gap: var(--ds-space-x4); }
+    .tp-g2, .tp-g3, .tp-g4, .tp-g5, .tp-g6 { gap: var(--ds-space-x4); }
+    .tp-g2, .tp-g4, .tp-g6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tp-hide-sm { display: revert; }
+  }
+  @media (min-width: 1024px) {
+    .tp-body--panel { flex-direction: row; }
+    .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
+    .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .tp-g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .tp-g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .tp-g6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .tp-span2 { grid-column: span 2; }
+    .tp-span3 { grid-column: span 3; }
+  }
+  @media (min-width: 1280px) { .tp-g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+  /* 위 메뉴 화면 */
+  .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
+  .tp-topbar .ds-topnav__menu { display: none; }
+  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
+  .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
+  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
+  /* 옆 메뉴 화면 */
+  .tp-app.tp-frame { flex-direction: row; min-height: 100vh; }
+  .tp-frame .ds-sidenav__header { justify-content: flex-start; }
+  .tp-frame > .ds-sidenav { display: none; }
+  .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
+  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1024px) {
+    .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
+    .tp-mbar { display: none; }
+  }
+  .tp-org { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x2) var(--ds-space-x1); }
+  .tp-org__mark { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03-static); font-weight: var(--ds-font-weight-bold); }
+  /* 고르기 상자 칸 수: 모바일은 1칸(4칸은 2칸), 768 부터 지정한 칸 */
+  .tp-sb2, .tp-sb3 { --ds-selectbox-columns: 1; } .tp-sb4 { --ds-selectbox-columns: 2; }
+  @media (min-width: 768px) { .tp-sb2 { --ds-selectbox-columns: 2; } .tp-sb3 { --ds-selectbox-columns: 3; } .tp-sb4 { --ds-selectbox-columns: 4; } }
+  /* 옆으로 미는 표는 눌리지 않게 */
+  .tp-scroll-x .ds-table { min-width: 760px; }
+  /* 공통 조각 */
+  .tp-big { font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tp-mid { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tp-rows { display: flex; flex-direction: column; }
+  .tp-rows > * { padding-block: var(--ds-space-x3); }
+  .tp-rows > * + * { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-kv { display: flex; justify-content: space-between; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-kv > :first-child { color: var(--ds-color-fg-neutral-muted); flex: none; }
+  .tp-kv > :last-child { text-align: end; }
+  .tp-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x4); }
+  .tp-stats > * { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
+  @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
+  .tp-thumb-sm { flex: none; width: 96px; }
+  .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+
+  /* 영상 칸: 화면 모드와 상관없이 늘 검정 */
+  .tp-video { position: relative; overflow: hidden; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: var(--ds-shape-xl); background: var(--ds-color-palette-static-black); color: var(--ds-color-palette-static-white); }
+  .tp-video > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .72; }
+  .tp-video__play { position: relative; display: grid; place-items: center; width: 64px; height: 64px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white-alpha-300); }
+  .tp-video__play .ds-icon { --ds-icon-size: 28px; }
+  .tp-video__bar { position: absolute; inset: auto var(--ds-space-x4) var(--ds-space-x3); display: flex; align-items: center; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t03); font-variant-numeric: tabular-nums; }
+  .tp-video__track { flex: 1 1 auto; height: 4px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white-alpha-300); overflow: hidden; }
+  .tp-video__track > span { display: block; width: var(--v, 38%); height: 100%; background: var(--ds-color-palette-static-white); }
+  /* 가로로 넘기는 작품 줄 (Carousel 항목 폭만 템플릿에서 정한다) */
+  .tp-shelf .ds-carousel__item { flex: none; width: 72%; scroll-snap-align: start; }
+  .tp-shelf[data-shape="poster"] .ds-carousel__item { width: 40%; }
+  @media (min-width: 768px) { .tp-shelf .ds-carousel__item { width: calc((100% - 2 * var(--ds-carousel-gap)) / 3); } .tp-shelf[data-shape="poster"] .ds-carousel__item { width: calc((100% - 4 * var(--ds-carousel-gap)) / 5); } }
+  @media (min-width: 1280px) { .tp-shelf .ds-carousel__item { width: calc((100% - 3 * var(--ds-carousel-gap)) / 4); } .tp-shelf[data-shape="poster"] .ds-carousel__item { width: calc((100% - 5 * var(--ds-carousel-gap)) / 6); } }
+  .tp-shelf .ds-carousel { --ds-carousel-gap: var(--ds-space-x3); }
+  .tp-shelf .ds-carousel__item > * { flex: 1 1 auto; min-width: 0; }  /* 사진을 불러오기 전에도 카드가 항목 폭을 채운다 */
+  .tp-tile { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; color: inherit; text-decoration: none; }
+  .tp-tile__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
+  .tp-tile .ds-progress { margin-top: calc(var(--ds-space-x1) * -1); }
+  .tp-rank { position: relative; }
+  .tp-rank__no { position: absolute; left: var(--ds-space-x2); bottom: var(--ds-space-x1); color: var(--ds-color-palette-static-white); font-size: var(--ds-font-size-t11); line-height: 1; font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-shadow: 0 1px 4px var(--ds-color-palette-static-black-alpha-500); }
+  .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); }
+  .tp-article { display: flex; flex-direction: column; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+  .tp-article p { margin: 0; }
+
+  .tp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x5); align-items: center; }
+  @media (min-width: 1024px) { .tp-hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--ds-space-x10); } }
+  .tp-hero__title { margin: 0; font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
+  .tp-hero .tp-row { flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
+  <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#" aria-current="page">홈</a><a class="ds-topnav__item" href="#">시리즈</a><a class="ds-topnav__item" href="#">영화</a><a class="ds-topnav__item" href="#">강의</a><a class="ds-topnav__item" href="#">내가 찜한 콘텐츠</a></nav></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+</header></div>
+<main class="tp-content">
+  <section class="tp-hero" aria-labelledby="vh-hero">
+    <div class="ds-imageframe" data-ratio="16:9" data-radius="xl" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=70" alt="" loading="lazy"></span></div>
+    <div class="tp-stack" style="gap: var(--ds-space-x4)">
+      <div class="tp-row"><span class="ds-badge" data-tone="brand" data-variant="solid">새 시즌</span><span class="ds-tag-group"><span>2026</span><span>시즌 2</span><span>12세</span><span>여행 다큐</span></span></div>
+      <h1 class="tp-hero__title" id="vh-hero">바다 건너 일주일</h1>
+      <div class="tp-row"><button type="button" class="ds-btn" data-variant="brandSolid" data-size="medium"><i class="ds-icon ds-icon--play-solid" aria-hidden="true"></i>3화 이어 보기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>찜하기</button></div>
+    </div>
+  </section>
+  <div class="ds-chiptabs" role="tablist" aria-label="분류" data-inset="none"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true">전체</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">시리즈</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">영화</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">다큐</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">예능</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">애니메이션</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">강의</button></div>
+  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">이어 보기</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">모두 보기</a></div></div><div class="tp-shelf"><div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이어 보기"><div class="ds-carousel__scroller"><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><div class="ds-progress" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="바다 건너 일주일 본 만큼" style="--ds-progress-value: 64%" data-size="small"></div><span class="tp-stack"><span class="tp-tile__title">바다 건너 일주일</span><span class="tp-caption">S2 3화, 남은 18분</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><div class="ds-progress" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="처음 듣는 경제 이야기 본 만큼" style="--ds-progress-value: 40%" data-size="small"></div><span class="tp-stack"><span class="tp-tile__title">처음 듣는 경제 이야기</span><span class="tp-caption">5강, 남은 9분</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><div class="ds-progress" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" aria-label="도시의 밤 본 만큼" style="--ds-progress-value: 22%" data-size="small"></div><span class="tp-stack"><span class="tp-tile__title">도시의 밤</span><span class="tp-caption">S1 7화, 남은 31분</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><div class="ds-progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="주방의 과학 본 만큼" style="--ds-progress-value: 80%" data-size="small"></div><span class="tp-stack"><span class="tp-tile__title">주방의 과학</span><span class="tp-caption">2화, 남은 12분</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><div class="ds-progress" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" aria-label="느리게 걷는 숲 본 만큼" style="--ds-progress-value: 10%" data-size="small"></div><span class="tp-stack"><span class="tp-tile__title">느리게 걷는 숲</span><span class="tp-caption">1화, 남은 40분</span></span></a></div></div><button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button><button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button></div></div></section>
+  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">오늘 많이 본 콘텐츠</h2></div></div><div class="tp-shelf" data-shape="poster"><div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="오늘 많이 본 콘텐츠"><div class="ds-carousel__scroller"><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="1위 도시의 밤"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">1</span></div><span class="tp-tile__title">도시의 밤</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="2위 바다 건너 일주일"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">2</span></div><span class="tp-tile__title">바다 건너 일주일</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="3위 주방의 과학"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">3</span></div><span class="tp-tile__title">주방의 과학</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="4위 느리게 걷는 숲"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">4</span></div><span class="tp-tile__title">느리게 걷는 숲</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="5위 영어로 떠나는 여행"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">5</span></div><span class="tp-tile__title">영어로 떠나는 여행</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="6위 처음 듣는 경제 이야기"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">6</span></div><span class="tp-tile__title">처음 듣는 경제 이야기</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="7위 서점 골목"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">7</span></div><span class="tp-tile__title">서점 골목</span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#" aria-label="8위 작은 공방"><div class="tp-rank"><div class="ds-imageframe" data-ratio="2:3" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-rank__no" aria-hidden="true">8</span></div><span class="tp-tile__title">작은 공방</span></a></div></div><button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button><button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button></div></div></section>
+  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">영어로 보는 다큐</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">모두 보기</a></div></div><div class="tp-shelf"><div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="영어로 보는 다큐"><div class="ds-carousel__scroller"><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tile__title">영어로 떠나는 여행</span><span class="tp-caption">다큐, 6화</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tile__title">느리게 걷는 숲</span><span class="tp-caption">다큐, 4화</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tile__title">서점 골목</span><span class="tp-caption">다큐, 8화</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tile__title">작은 공방</span><span class="tp-caption">다큐, 5화</span></span></a></div><div class="ds-carousel__item"><a class="tp-tile" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tile__title">도시를 그리는 사람들</span><span class="tp-caption">다큐, 6화</span></span></a></div></div><button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button><button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button></div></div></section>
+</main></div>
+</body>
+</html>

@@ -11,8 +11,8 @@ export const GROUPS = [
     ['단체', ['exam-group-apply', 'exam-group-roster', 'exam-group-dashboard']],
   ]],
   ['Learning', '학습', [
-    ['찾기와 신청', ['learning-home', 'learning-catalog', 'textbook-detail', 'lesson-plan']],
-    ['수강', ['learning-player', 'learning-dashboard']],
+    ['찾기와 신청', ['learning-home', 'learning-catalog', 'class-detail', 'textbook-detail', 'lesson-plan']],
+    ['수강', ['learning-player', 'my-classroom', 'learning-dashboard']],
     ['센터', ['consult-booking', 'center-finder']],
     ['운영', ['learning-admin']],
   ]],
@@ -41,6 +41,7 @@ export const GROUPS = [
   ]],
   ['Content', '콘텐츠', [
     ['메인과 이벤트', ['service-home', 'event-page', 'centered-hero', 'gallery-hero']],
+    ['영상', ['video-home', 'video-title-detail', 'video-watch', 'video-player']],
     ['상품', ['product-detail', 'detail-page', 'product-gallery', 'side-gallery']],
     ['갤러리', ['library', 'classic-gallery', 'mixed-gallery']],
     ['문서', ['documentation', 'documentation-design', 'documentation-technical', 'work-item-detail']],
