@@ -48,6 +48,7 @@ export const GROUPS = [
   ]],
   ['Admin', '관리자', [
     ['대시보드', ['dashboard', 'dashboard-progress', 'dashboard-alert-rail']],
+    ['처리', ['admin-request-list', 'admin-request-detail', 'admin-request-form']],
     ['표', ['table-filter', 'table-inbox', 'table-grouped', 'table-collapsible', 'table-tree']],
     ['단계 폼', ['form-wizard', 'form-wizard-dialog', 'form-wizard-inline', 'form-wizard-vertical']],
     ['도구', ['kanban-board', 'editor', 'file-explorer', 'canvas-editor', 'ide']],

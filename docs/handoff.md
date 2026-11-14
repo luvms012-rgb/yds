@@ -5,6 +5,9 @@
 
 ## 한 것
 
+- **관리자 처리 템플릿 3쪽 (11-14 집, 배포 전)**: 사내 업무 사이트 화면을 Chrome 으로 훑어(감독 신청은 따로 로그인이라 못 봄) LMS 관리자용 요청 목록, 요청 상세, 요청 등록을 관리자 > 처리에 더했다(admin.mjs, 87종). 375, 768, 1440 점검 문제 없음. Figma Templates 페이지에는 아직 없다(남은 일).
+- **템플릿 AI 요청 글 단순화 (11-14 집, 배포 전)**: TPL_PROMPT 를 안내서 주소 + "'이름' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘. 구성과 내용은 자유롭게 바꿔도 돼." + 템플릿 주소로 줄였다.
+- **AI 안내서 토큰 줄이기 (11-14 집, 배포 전)**: yds.txt 27.0k 자 → 18.2k 자(33% 줄어듦, 주소 상대화와 템플릿 설명 첫 문장만), yds-full.txt 156.9k 자 → 127.7k 자(19% 줄어듦, 반복 안내 문장 82번씩 2개 빼고 머리에 한 번, Do/Don't 표를 줄 목록으로, 주소 상대화). 옛 파일과 줄 단위 대조해 yds-full 은 빠진 줄 0, yds.txt 는 템플릿 둘째 문장 62줄만 빠짐. 되돌리기: 이 커밋 git revert.
 - **Figma, 개발 절 설명 한 줄 (11-14 집, 사용자 "짧고 직관적이고 쉽게")**: Figma "YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.", 개발 "아래 코드를 <head>에 넣으면 YDS가 바로 적용됩니다." 같은 배포에서 브랜드 만들기 요청 글을 "…[원하는 느낌]에 맞게 정해 줘." 로 끝맺게 고쳤다.
 - **AI 절 설명 한 줄 (11-14 집, 사용자 2안)**: "아래 틀을 참고해 하고 싶은 일을 자유롭게 적어 AI 도구에 붙여 넣으세요." 다른 절은 설명 없음 그대로. 같은 배포에서 요청 글의 먼저 묻기 문장을 뺐다.
 - **메인 요청 글에 자유도 (11-14 집, 사용자 "이대로 써야 할 것 같은 느낌")**: 세 상자의 구체적인 예시 문장을 `[만들고 싶은 화면]`, `[바꿀 부분]`, `[브랜드 이름]` 같은 빈칸으로 바꾸고, 제목의 "예시" 를 뺐다. 먼저 묻기 문장은 공통 한 줄로 두었다가 사용자 "이 문장 전체 삭제" 로 뺐다. 예전 글은 커밋 4384cd3b.
@@ -36,6 +39,7 @@
 
 ## 남은 일 (순서대로)
 
+- **Figma 관리자 처리 템플릿 3쪽**: admin-request-list, admin-request-detail, admin-request-form 을 Templates 페이지 Admin 섹션에 그린다(yds-figma-draw, 편집 계정 필요).
 0-2. 사내 확산 다음 단계(사용자 지시 대기): 하려는 일 카드 6개는 구성, 위치(구조 위 또는 아래), 제목 여부를 사용자에게 물어 둔 상태. 토큰 대조표, 디자이너 역할 경계 문구도 사용자 결정 대기.
 0-1. Figma 문서 프레임 예시 맞추기(11-14 예시 정리 1차 12개 + 2차 39개, 지침 19줄. 컴포넌트 목록은 site/CLAUDE.md 와 git log 에 있다): accordion, empty, prefix-select, quantity-picker, bottom-sheet, menu-sheet, pagination, progress, progress-circle, image-frame, skeleton, carousel 의 문서 프레임에서 뺀 예시 1개씩을 지우고, 사용 지침 줄이 늘어난 6개(image-frame, bottom-sheet, menu-sheet, pagination, quantity-picker, prefix-select)의 Do/Don't 줄을 맞춘다. `node sync.mjs docpage <slug>` 뒤 yds-figma-draw 스킬 순서. 편집 가능한 Figma 계정(luvms@ybm.co.kr)으로 연결된 PC 에서 한다.
 0. 자동 싱크 예약 작업 등록(사용자): Claude 가 대신 등록하면 권한에서 막힌다. 앱의 예약 작업 화면에서 tools/auto-sync-task.md 의 작업 지시문을 붙여 넣어 만든다(평일 18:30). tools/figma-quick.mjs 점검 스크립트는 11-12 Figma 에서 실제로 돌려 일치를 확인했다.

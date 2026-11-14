@@ -842,6 +842,33 @@
       }
     },
     {
+      "slug": "admin-request-list",
+      "name": "요청 목록",
+      "en": "Request List",
+      "group": "Admin",
+      "sub": "처리",
+      "desc": "들어온 요청을 상태별로 보고 처리할 것을 고르는 관리자 목록입니다. 신청, 승인, 진행, 완료처럼 단계가 있는 요청에 사용합니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "admin-request-detail",
+      "name": "요청 상세",
+      "en": "Request Detail",
+      "group": "Admin",
+      "sub": "처리",
+      "desc": "요청 하나의 내용과 처리 단계를 보고 댓글로 주고받는 관리자 화면입니다. 담당자와 진행률은 오른쪽에 모아 둡니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "admin-request-form",
+      "name": "요청 등록",
+      "en": "Request Form",
+      "group": "Admin",
+      "sub": "처리",
+      "desc": "관리자 사이트에서 새 요청을 한 화면에 적어 보내는 등록 폼입니다. 넓은 화면에서는 라벨을 왼쪽에 둡니다.",
+      "rebuilt": true
+    },
+    {
       "slug": "table-filter",
       "name": "필터 표",
       "en": "Filterable Table",
