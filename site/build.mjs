@@ -1264,17 +1264,18 @@ ${LLMS_RULES}
 - 토큰: ${RAW}/dist/tokens.css (표준 형식 ${PUBLIC}/tokens/design-tokens.json, JS ${PUBLIC}/tokens/tokens.js, Tailwind ${PUBLIC}/tokens/tailwind.preset.js)
 
 ${LLMS_RULES}`;
-  const tplList = `## Templates
+  // yds.txt 목차에는 설명 첫 문장만, yds-full.txt 에는 전체 설명 (2026-11-14 토큰 줄이기)
+  const tplList = (short) => `## Templates
 
 템플릿 HTML 원본입니다. 안의 CSS 주소(../../../dist/)는 위 CSS, JS 주소로 바꿔 사용합니다.
 
-${templates.map((t) => `- [${t.name}](${SITE_URL}templates/pages/${t.slug}.html): ${t.desc}`).join('\n')}`;
+${templates.map((t) => `- [${t.name}](${SITE_URL}templates/pages/${t.slug}.html): ${short ? t.desc.split(/(?<=다\.) /)[0] : t.desc}`).join('\n')}`;
   const themeList = `## Themes
 
 DS 다음에 테마 CSS를 붙이고 \`<html data-ds-theme="이름">\`으로 켭니다.
 
 ${themesJson.map((t) => `- [${t.name} ${t.slug}](${PUBLIC}/dist/themes/${t.slug}.css): ${t.desc}`).join('\n')}`;
-  const n = writeMarkdown({ SITE, SITE_URL, intro, extra: SHOW_THEMES ? [tplList, themeList] : [tplList], groups: [{ label: 'Get Started', pages: gs }, { label: 'Foundations', pages: found }, { label: 'Components', pages: compPages }] });
+  const n = writeMarkdown({ SITE, SITE_URL, intro, extra: SHOW_THEMES ? [tplList(false), themeList] : [tplList(false)], extraToc: SHOW_THEMES ? [tplList(true), themeList] : [tplList(true)], groups: [{ label: 'Get Started', pages: gs }, { label: 'Foundations', pages: found }, { label: 'Components', pages: compPages }] });
   console.log(`  ✔ 마크다운 ${n}쪽, yds.txt, yds-full.txt`);
 }
 console.log(`  ✔ 사이트 ${written.length}쪽 생성 (컴포넌트 ${comps.length}, 템플릿 ${templates.length})`);

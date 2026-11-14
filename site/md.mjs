@@ -136,9 +136,28 @@ export function htmlToMd(html, url, mdUrls) {
 const SLIM_DROP = new Set(['예시', '규격', '구조']);
 const slim = (md) => md.split(/\n(?=## )/).filter((s) => !SLIM_DROP.has((s.match(/^## (.+)/) || [])[1])).join('\n').trim() + '\n';
 
+// yds-full.txt 토큰 줄이기 (2026-11-14): 내용은 그대로, 쪽마다 같은 안내 문장, 표 틀, 긴 주소만 뺀다. 각 쪽 .md 는 그대로 둔다
+// 빼는 문장은 FULL_NOTE 로 맨 위에 한 번만 적는다
+const REPEAT = [
+  '아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.',
+  'Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.',
+];
+const FULL_NOTE = (base) => `## 이 파일 읽는 법
+
+- 주소는 ${base} 기준 상대 주소다. 예) components/action-button.md 는 ${base}components/action-button.md
+- 사용법: 구조를 복사해 쓴다. 대괄호 \`[ ]\` 부분은 선택 항목이다. 쓰면 대괄호만 지우고, 안 쓰면 대괄호까지 모두 지운다.
+- 속성: Figma 속성 이름을 그대로 \`data-*\` 속성으로 쓴다.
+- 사용 지침: Do 는 지킬 것, Don't 는 하지 말 것이다.`;
+const compact = (md) => md
+  .split('\n').filter((l) => !REPEAT.includes(l)).join('\n')
+  // Do / Don't 표를 줄 목록으로 (표 틀만 빠지고 문장은 그대로)
+  .replace(/\| 구분 \| 내용 \|\n\| --- \| --- \|\n/g, '')
+  .replace(/^\| \*\*(Do|Don't)\*\* \| (.*) \|$/gm, '- $1: $2')
+  .replace(/\n{3,}/g, '\n\n');
+
 // site 폴더의 문서(시작하기, Foundations, 컴포넌트)를 .md 로 쓰고 llms.txt 두 개를 만든다
 // extra: 두 파일 끝에 붙이는 목록(템플릿, 테마)
-export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [] }) {
+export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [], extraToc = extra }) {
   const index = [];
   const full = [];
   let count = 0;
@@ -151,14 +170,16 @@ export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [] }) {
       if (!md) continue;
       const mdFile = file.replace(/\.html$/, '.md');
       fs.writeFileSync(path.join(SITE, mdFile), `<!-- ${SITE_URL}${file} -->\n\n${md}`);
-      lines.push(`- [${title}](${SITE_URL}${mdFile})${desc ? `: ${desc}` : ''}`);
-      full.push(`<!-- ${SITE_URL}${mdFile} -->\n\n${slim(md)}`);
+      // 목록 주소는 상대 주소: yds.txt 가 있는 곳 기준이라 그대로 열린다
+      lines.push(`- [${title}](${mdFile})${desc ? `: ${desc}` : ''}`);
+      full.push(`<!-- ${mdFile} -->\n\n${compact(slim(md)).split(SITE_URL).join('')}`);
       count++;
     }
     if (lines.length) index.push(`## ${g.label}\n\n${lines.join('\n')}`);
   }
-  const toc = `${intro}\n\n${[...index, ...extra].join('\n\n')}\n`;
-  const all = `${intro}\n\n${[...full, ...extra].join('\n\n---\n\n')}\n`;
+  const rel = (s) => s.split(SITE_URL).join('');
+  const toc = `${intro}\n\n주소는 ${SITE_URL} 기준 상대 주소다.\n\n${[...index, ...extraToc.map(rel)].join('\n\n')}\n`;
+  const all = `${intro}\n\n${FULL_NOTE(SITE_URL)}\n\n${[...full, ...extra.map(rel)].join('\n\n---\n\n')}\n`;
   fs.writeFileSync(path.join(SITE, 'yds.txt'), toc);
   fs.writeFileSync(path.join(SITE, 'yds-full.txt'), all);
   // 예전 이름: 이미 복사해 간 요청 글과 llms.txt 를 찾는 도구가 깨지지 않게 같은 내용으로 남긴다. 화면에는 보이지 않는다
