@@ -261,7 +261,8 @@ const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
 const FOUND = az([['color', 'Color'], ['typography', 'Typography'], ['spacing', 'Spacing'], ['shape', 'Radius'], ['elevation', 'Elevation'], ['motion', 'Motion'], ['icons', 'Iconography'], ['breakpoint', 'Breakpoint']]);
 // 새 소식 표시 (11-09): 맨 위 소식의 날짜와 내용으로 만든 값. 사용자가 마지막으로 본 값과 다르면 site.js 가 Updates 메뉴에 점을 띄운다. 버전 번호만 붙을 때는 바뀌지 않는다
 // 요청 목록이 바뀌면(줄 추가, 상태 변경) 값이 바뀐다. site.js 가 마지막으로 본 값과 비교한다 (11-14)
-const LATEST_REQUEST = crypto.createHash('sha1').update(JSON.stringify(readJson('site/src/requests.json').requests)).digest('hex').slice(0, 10);
+// 요청이 하나도 없으면 빈 값: 지운 것만으로 새 요청 점이 뜨지 않게 (2026-11-14 사용자 "요청 오늘 기준 모두 삭제")
+const LATEST_REQUEST = (() => { const r = readJson('site/src/requests.json').requests; return r.length ? crypto.createHash('sha1').update(JSON.stringify(r)).digest('hex').slice(0, 10) : ''; })();
 const LATEST_UPDATE = (() => { const { date, sections } = readJson('site/src/updates.json').releases[0]; return crypto.createHash('sha1').update(JSON.stringify({ date, sections })).digest('hex').slice(0, 10); })();
 const NAV = [['get-started', 'Get Started', 'index.html'], ['foundations', 'Foundations', `foundations/${FOUND[0][0]}.html`], ['components', 'Components', 'components/index.html'], ['templates', 'Templates', 'templates/index.html'], ['updates', 'Updates', 'updates.html']];
 // Get Started 문서 (왼쪽 메뉴 없음): 첫 화면 하나 (AI & Tools는 11-04 합침)
@@ -1147,7 +1148,7 @@ write({
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
 ${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}
-${table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
+${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
   `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
   esc(r.type),
   `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,

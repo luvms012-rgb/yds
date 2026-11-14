@@ -832,7 +832,7 @@
       } catch (e) { seen = latest; seenReq = latestReq; }
       if (unread) markRelease();
       clear();
-      var newNews = seen !== latest, newReq = seenReq !== latestReq;
+      var newNews = seen !== latest, newReq = !!latestReq && seenReq !== latestReq;
       if (!newNews && !newReq) return;
       document.querySelectorAll("[data-site-updates]").forEach(mark);
       document.querySelectorAll(".site-menu-btn").forEach(dot);
