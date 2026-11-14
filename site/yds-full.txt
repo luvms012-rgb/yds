@@ -50,6 +50,8 @@ YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 
 
 ## AI와 함께 시작하기
 
+아래 틀을 참고해 하고 싶은 일을 자유롭게 적어 AI 도구에 붙여 넣으세요.
+
 ```text
 [새 화면 만들기]
 
@@ -57,8 +59,6 @@ YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
 [만들고 싶은 화면]을 만들어 줘. 비슷한 템플릿이 있으면 출발점으로 써 줘.
-
-정해지지 않은 것은 먼저 물어보고, 첫 결과를 보여 준 뒤 계속해 줘.
 ```
 
 ```text
@@ -68,8 +68,6 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
 [바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [바꿀 부분]만 바꾸고 나머지는 그대로 둬.
-
-정해지지 않은 것은 먼저 물어보고, 첫 결과를 보여 준 뒤 계속해 줘.
 ```
 
 ```text
@@ -79,8 +77,6 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
 [브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색], 모서리와 글꼴은 [원하는 느낌]으로.
-
-정해지지 않은 것은 먼저 물어보고, 첫 결과를 보여 준 뒤 계속해 줘.
 ```
 
 ## Figma로 시작하기

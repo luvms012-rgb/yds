@@ -428,15 +428,13 @@ ${SITE_URL}templates/pages/${t.slug}.html
 const AI_COMMON = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt`;
 // 11-14 사용자 "1, 2 진행" (레퍼런스 A 시작하기 비교): 상자 하나에 요청 하나, 끝에 "먼저 묻기" 한 줄.
-// 같은 날 사용자 "자유도를 줘야, 지금은 이대로 써야 할 것 같은 느낌": 구체적인 예시 문장 대신 바꿀 곳을 [ ] 빈칸으로 둔다. 고정은 안내서 주소와 먼저 묻기뿐.
+// 같은 날 사용자 "자유도를 줘야, 지금은 이대로 써야 할 것 같은 느낌": 구체적인 예시 문장 대신 바꿀 곳을 [ ] 빈칸으로 둔다. 고정은 안내서 주소뿐(먼저 묻기 문장은 사용자 지시로 뺐다).
 // [묶음 이름, 빈칸 있는 요청 하나]
 const AI_EXAMPLES = [
   ['새 화면 만들기', `[만들고 싶은 화면]을 만들어 줘. 비슷한 템플릿이 있으면 출발점으로 써 줘.`],
   ['운영 중인 페이지에 적용하기', `[바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [바꿀 부분]만 바꾸고 나머지는 그대로 둬.`],
   ['브랜드 만들기', `[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색], 모서리와 글꼴은 [원하는 느낌]으로.`],
 ];
-// 모든 상자에 같은 끝 줄: 사람이 먼저 정하고, 첫 결과를 보고 계속한다
-const AI_ASK = `정해지지 않은 것은 먼저 물어보고, 첫 결과를 보여 준 뒤 계속해 줘.`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
@@ -495,7 +493,8 @@ write({
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기</h2>
-${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n\n${ask}\n\n${AI_ASK}`, "text", " data-wrap")).join('\n')}
+<p>아래 틀을 참고해 하고 싶은 일을 자유롭게 적어 AI 도구에 붙여 넣으세요.</p>
+${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n\n${ask}`, "text", " data-wrap")).join('\n')}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <ol class="site-gs__layers">
