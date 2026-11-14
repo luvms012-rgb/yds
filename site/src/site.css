@@ -628,7 +628,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc .ds-codeblock__code, .site-doc .ds-codeblock[data-wrap] .ds-codeblock__code { line-height: var(--ds-line-height-t04); }
 /* 박스: 테두리 없는 회색 면, 모서리 16 */
 .site-doc .ds-codeblock, .site-doc .ds-table-wrap:not(.pv-stage *, .site-example__preview *, .site-tile__inner *), .site-example { border-radius: var(--ds-shape-xl); }
-.site-doc :is(.site-example__code, .site-frame__code) .ds-codeblock { border-radius: 0; }  /* 상자 안 코드 칸은 모서리 없이 머리줄이 구분선에 딱 붙게 (11-10 사용자 "html bg에 라운딩 수정") */
+.site-doc :is(.site-example__code, .site-frame__code, .site-frame__prompt) .ds-codeblock { border-radius: 0; }  /* 상자 안 코드 칸은 모서리 없이 머리줄이 구분선에 딱 붙게 (11-10 사용자 "html bg에 라운딩 수정") */
 .site-grid, .site-grid--hub { gap: var(--ds-space-x3); }
 .site-hub { gap: var(--ds-space-x2); padding: var(--ds-space-x6); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
 .site-hub:hover { background: var(--ds-color-bg-neutral-weak-pressed); }
