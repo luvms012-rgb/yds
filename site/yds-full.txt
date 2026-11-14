@@ -76,10 +76,12 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
 
-[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색], 모서리와 글꼴은 [원하는 느낌]으로.
+[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색]으로, 모서리와 글꼴은 [원하는 느낌]에 맞게 정해 줘.
 ```
 
 ## Figma로 시작하기
+
+YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.
 
 1. **라이브러리 켜기**Figma의 Assets 패널에서 [YDS 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92)를 켭니다.
 2. **화면 그리기**컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.
@@ -87,6 +89,8 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform)로 팀 초대를 요청하세요.
 
 ## 개발 시작하기
+
+아래 코드를 <head>에 넣으면 YDS가 바로 적용됩니다.
 
 **최신**
 

@@ -433,7 +433,7 @@ ${SITE_URL}yds.txt`;
 const AI_EXAMPLES = [
   ['새 화면 만들기', `[만들고 싶은 화면]을 만들어 줘. 비슷한 템플릿이 있으면 출발점으로 써 줘.`],
   ['운영 중인 페이지에 적용하기', `[바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [바꿀 부분]만 바꾸고 나머지는 그대로 둬.`],
-  ['브랜드 만들기', `[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색], 모서리와 글꼴은 [원하는 느낌]으로.`],
+  ['브랜드 만들기', `[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색]으로, 모서리와 글꼴은 [원하는 느낌]에 맞게 정해 줘.`],
 ];
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
@@ -497,6 +497,7 @@ write({
 ${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n\n${ask}`, "text", " data-wrap")).join('\n')}
 
 <h2 id="figma">Figma로 시작하기</h2>
+<p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.</p>
 <ol class="site-gs__layers">
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
@@ -504,6 +505,7 @@ ${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n\n${ask
 <div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
+<p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
 ${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/ybm-ds.`, `${PIN}/dist/ybm-ds.`)}`)], ['규칙 파일', codeblock(`# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
 curl -O ${SITE_URL}ai/AGENTS.md
 curl -O ${SITE_URL}ai/CLAUDE.md
