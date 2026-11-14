@@ -694,7 +694,7 @@
       var fig = card.querySelector('.site-tpl__actions a[target="_blank"]');
       dlg.querySelector(".site-tplv__acts").innerHTML =
         (fig ? '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + fig.getAttribute("href") + '" target="_blank" rel="noopener">Figma에서 열기</a>' : "") +
-        '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + slug + '.html">문서 보기</a>' +
+        '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + slug + '.html">자세히 보기</a>' +
         '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="pages/' + slug + '.html" target="_blank" rel="noopener">새 창으로 보기</a>' +
         '<button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small" data-tplv-copy><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i>AI 요청 글 복사</button>';
       frame.title = card.querySelector(".site-tpl__title").textContent + " 미리보기";

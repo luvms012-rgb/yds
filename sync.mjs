@@ -557,7 +557,7 @@ async function release(ver, message) {
   const top = up.releases[0];
   if (!top || top.version) die('site/src/updates.json 맨 위에 이번 버전 소식(날짜와 항목)을 먼저 적어 주세요.');
   top.version = ver;
-  fs.writeFileSync(path.join(DS, 'site/src/updates.json'), JSON.stringify(up, null, 2).replace(/\[\n\s+"(DS|템플릿|사이트)",\n\s+("[^"]*")\n\s+\]/g, '["$1", $2]') + '\n');
+  fs.writeFileSync(path.join(DS, 'site/src/updates.json'), JSON.stringify(up, null, 2).replace(/\[\n\s+("[^"]*"),\n\s+("[^"]*")\n\s+\]/g, '[$1, $2]') + '\n');
   fs.writeFileSync(path.join(DS, 'VERSION'), ver + '\n');
   const cssF = path.join(DS, 'dist/ybm-ds.css');
   fs.writeFileSync(cssF, fs.readFileSync(cssF, 'utf8').replace(/YDS v\d+\.\d+\.\d+/, 'YDS v' + ver));

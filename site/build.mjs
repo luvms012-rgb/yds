@@ -216,6 +216,15 @@ const missing = comps.filter((c) => !c.desc || !c.example).map((c) => c.no + (c.
 if (missing.length) console.log('  ! 비어 있는 것:', missing.join(', '));
 
 const templates = fs.existsSync(path.join(SITE, 'src/templates.json')) ? JSON.parse(fs.readFileSync(path.join(SITE, 'src/templates.json'), 'utf8')).templates.filter((t) => fs.existsSync(path.join(SITE, 'templates/pages', t.slug + '.html'))) : [];
+// 새 템플릿 점 (2026-11-14 사용자 "템플릿 레프트 메뉴도 컴포넌트처럼 업데이트 표시"): Updates 소식(영역 "템플릿")에 이름이 나온 템플릿, 그 날부터 30일 동안
+const NEW_TPLS = (() => {
+  const u = JSON.parse(fs.readFileSync(path.join(SITE, 'src/updates.json'), 'utf8'));
+  const byLen = [...templates].sort((a, b) => b.name.length - a.name.length);  // '구독 결제' 를 '결제' 로 잘못 세지 않게 긴 이름부터
+  const out = new Set();
+  for (const r of u.releases) if ((Date.now() - Date.parse(r.date)) / 864e5 <= 30) for (const sec of r.sections) for (const [area, t0] of sec.items) { if (area !== '템플릿') continue; let s = t0; for (const x of byLen) if (s.includes(x.name)) { out.add(x.slug); s = s.split(x.name).join(' '); } }
+  return out;
+})();
+const navDot = (label) => `<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="${label}"></span></a>`;
 
 /* ---------------------------------------------------------------- 공통 조각 */
 function codeblock(code, lang = 'html', extra = '') {
@@ -284,12 +293,8 @@ function sideNav(section, file, root) {
     // 11-05 사용자: 목록은 메뉴 없이 분류 탭, 상세는 탭과 같은 분류 묶음(묶음 안은 가나다 순)
     // 11-11 사용자 "카테고리가 더 늘지 않게 서브 카테고리로": 묶음(분류) 안에 하위 분류 이름 줄을 두고 그 아래 항목. 정본은 templates/gen/groups.mjs
     for (const g of [...new Set(templates.map((t) => t.group))].sort((x, y) => tplRank(x) - tplRank(y))) {
-      const rows = []; let last = null;
-      for (const t of templates.filter((x) => x.group === g).sort(tplSort)) {
-        const sub = TPL_PLACE[t.slug]?.sub;
-        if (sub && sub !== last) { rows.push(`<span class="site-nav__sublabel" role="presentation">${esc(sub)}</span>`); last = sub; }
-        rows.push(item(`templates/${t.slug}.html`, t.name));
-      }
+      // 2026-11-14 사용자 "소제목 제거": 하위 분류 이름 줄은 그리지 않는다. 순서는 groups.mjs 그대로(하위 분류끼리 모여 있음)
+      const rows = templates.filter((x) => x.group === g).sort(tplSort).map((t) => { const h = item(`templates/${t.slug}.html`, t.name); return NEW_TPLS.has(t.slug) ? h.replace(/<\/a>$/, navDot('새 템플릿')) : h; });
       parts.push(group(TPL_GROUP_KO[g] || g, rows, 'tpl-' + g));
     }
   }
@@ -1071,7 +1076,7 @@ ${[...templates].sort(tplSort).map((t) => `<article class="site-tpl" data-site-i
   <div class="site-tpl-thumb" aria-hidden="true"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 미리보기" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe></div>
   <div class="site-tpl__scrim">
     <div class="site-tpl__text"><h3 class="site-tpl__title"><a class="site-tpl__link" href="${t.slug}.html">${esc(t.name)}</a></h3><p class="site-tpl__desc">${esc(t.desc)}</p></div>
-    <div class="site-tpl__actions"><a class="site-tpl__btn" href="${t.slug}.html"><i class="ds-icon ds-icon--eye" aria-hidden="true"></i>문서 보기</a>${t.figma ? `<a class="site-tpl__btn" href="${LINKS.figmaUrl(t.figma.pc)}" target="_blank" rel="noopener"><i class="ds-icon site-i--figma" aria-hidden="true"></i>Figma에서 열기</a>` : ''}</div>
+    <div class="site-tpl__actions"><a class="site-tpl__btn" href="${t.slug}.html"><i class="ds-icon ds-icon--eye" aria-hidden="true"></i>자세히 보기</a>${t.figma ? `<a class="site-tpl__btn" href="${LINKS.figmaUrl(t.figma.pc)}" target="_blank" rel="noopener"><i class="ds-icon site-i--figma" aria-hidden="true"></i>Figma에서 열기</a>` : ''}</div>
   </div>
 </article>`).join('\n')}
 </div>
