@@ -18,6 +18,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 그 밖에: 입력 앞 선택(통신사, 국가번호)
 
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 테두리 있는 입력 필드에는 medium을 사용해 글자 크기를 필드와 맞춥니다. |
+
 ## 예시
 
 ### 번호 앞 선택 값을 한 필드에
@@ -38,42 +44,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">인증번호 받기</button>
 </div>
-```
-
-### 테두리 있는 필드에는 한 단계 작게
-
-테두리 있는 입력 필드에는 `data-size="medium"`을 사용해 글자 크기를 필드와 맞춥니다. 누르면 Bottom Sheet에서 국가번호를 선택하고, 선택한 값이 버튼 텍스트로 표시됩니다.
-
-```html
-<div class="ds-field u-full" style="max-width: 360px">
-  <div class="ds-field__header">
-    <label class="ds-field__label" for="prefix-select-ex2-phone">연락처</label>
-  </div>
-  <div class="ds-input" data-variant="outline">
-    <button type="button" class="ds-prefixselect" data-size="medium" aria-haspopup="dialog" aria-label="국가번호 +82" data-ds-open="prefix-select-ex2-sheet">+82</button>
-    <input class="ds-input__control" id="prefix-select-ex2-phone" type="tel" inputmode="numeric" placeholder="10-1234-5678">
-  </div>
-  <div class="ds-field__footer">
-    <p class="ds-field__help">해외 번호는 국가번호를 먼저 바꿔 주세요.</p>
-  </div>
-</div>
-<dialog class="ds-bottomsheet" id="prefix-select-ex2-sheet" aria-labelledby="prefix-select-ex2-title" data-handle>
-  <div class="ds-bottomsheet__header">
-    <h2 class="ds-bottomsheet__title" id="prefix-select-ex2-title">국가번호</h2>
-    <button class="ds-bottomsheet__close" data-ds-close aria-label="닫기"></button>
-  </div>
-  <div class="ds-bottomsheet__body">
-    <div class="ds-radio-group" role="radiogroup" aria-labelledby="prefix-select-ex2-title">
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="prefix-select-ex2-code" checked><span>대한민국 +82</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="prefix-select-ex2-code"><span>일본 +81</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="prefix-select-ex2-code"><span>미국 +1</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="prefix-select-ex2-code"><span>베트남 +84</span></label>
-    </div>
-  </div>
-  <div class="ds-bottomsheet__footer">
-    <button class="ds-btn" data-variant="brandSolid" data-size="large" data-ds-close>적용</button>
-  </div>
-</dialog>
 ```
 
 ## 규격

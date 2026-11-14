@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=8b2d3cf5">
+<link rel="stylesheet" href="../assets/site.css?v=dc0b9ff3">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=8b2d3cf5" defer></script>
+<script src="../assets/site.js?v=dc0b9ff3" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -169,6 +169,7 @@
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>되돌릴 수 없는 동작은 critical로 따로 묶습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>화면이 좁으면 Bottom Sheet로 전환합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>안내 한 줄과 버튼만 있는 시트는 <code>data-header-align=&quot;center&quot;</code>로 제목을 가운데 정렬합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>내용이 길면 단계별 시트로 나누고, 겹치는 시트는 2개까지 둡니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>목록 정렬 선택</h3>
 <p>값을 선택한 뒤 적용 버튼을 눌러 반영하는 경우 Bottom Sheet를 사용합니다. 상단에 닫기 버튼이 있으므로 하단에는 적용 버튼 하나만 배치합니다.</p>
@@ -278,58 +279,6 @@
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__footer&quot;</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralSolid&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-ds-close</span>&gt;저장&lt;/<span class="hl-t">button</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">dialog</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>짧은 안내는 제목 가운데 정렬</h3>
-<p>안내 한 줄과 버튼만 있는 시트는 <code>data-header-align=&quot;center&quot;</code>로 제목을 가운데 정렬합니다. 상단 닫기 버튼은 빼고 하단 버튼으로 닫습니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><article class="ds-card" data-size="small" style="width: 100%; max-width: 375px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">첫 주문 혜택</h3>
-    <p class="ds-card__desc">처음 주문하면 3,000원을 할인해 줘요.</p>
-  </header>
-  <footer class="ds-card__footer">
-    <button class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="bottom-sheet-ex3">쿠폰 받기</button>
-  </footer>
-</article>
-<dialog class="ds-bottomsheet" id="bottom-sheet-ex3" aria-labelledby="bottom-sheet-ex3-title" data-header-align="center" data-handle>
-  <div class="ds-bottomsheet__header">
-    <h2 class="ds-bottomsheet__title" id="bottom-sheet-ex3-title">쿠폰을 받았어요</h2>
-    <p class="ds-bottomsheet__desc">7일 안에 주문하면 할인돼요.</p>
-  </div>
-  <div class="ds-bottomsheet__body">
-    <p class="ds-t12 ds-fw-bold">3,000원</p>
-  </div>
-  <div class="ds-bottomsheet__footer">
-    <button class="ds-btn" data-variant="neutralSolid" data-size="large" data-ds-close>쿠폰함 보기</button>
-    <button class="ds-btn" data-variant="ghost" data-size="large" data-ds-close>닫기</button>
-  </div>
-</dialog></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">article</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%; max-width: 375px&quot;</span>&gt;
-  &lt;<span class="hl-t">header</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h3</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__title&quot;</span>&gt;첫 주문 혜택&lt;/<span class="hl-t">h3</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__desc&quot;</span>&gt;처음 주문하면 3,000원을 할인해 줘요.&lt;/<span class="hl-t">p</span>&gt;
-  &lt;/<span class="hl-t">header</span>&gt;
-  &lt;<span class="hl-t">footer</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__footer&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">data-ds-open</span>=<span class="hl-s">&quot;bottom-sheet-ex3&quot;</span>&gt;쿠폰 받기&lt;/<span class="hl-t">button</span>&gt;
-  &lt;/<span class="hl-t">footer</span>&gt;
-&lt;/<span class="hl-t">article</span>&gt;
-&lt;<span class="hl-t">dialog</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;bottom-sheet-ex3&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;bottom-sheet-ex3-title&quot;</span> <span class="hl-f">data-header-align</span>=<span class="hl-s">&quot;center&quot;</span> <span class="hl-f">data-handle</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h2</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__title&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;bottom-sheet-ex3-title&quot;</span>&gt;쿠폰을 받았어요&lt;/<span class="hl-t">h2</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__desc&quot;</span>&gt;7일 안에 주문하면 할인돼요.&lt;/<span class="hl-t">p</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__body&quot;</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t12 ds-fw-bold&quot;</span>&gt;3,000원&lt;/<span class="hl-t">p</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__footer&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralSolid&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-ds-close</span>&gt;쿠폰함 보기&lt;/<span class="hl-t">button</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;ghost&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-ds-close</span>&gt;닫기&lt;/<span class="hl-t">button</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
 &lt;/<span class="hl-t">dialog</span>&gt;</code></pre>
 </figure></div>

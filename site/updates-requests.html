@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Updates - YDS</title>
+<meta name="description" content="YDS 요청 현황">
+<!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
+<script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+<link rel="icon" href="assets/logo-ybmnet.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Updates - YDS">
+<meta property="og:description" content="YDS 요청 현황">
+<meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../dist/ybm-ds.css">
+<link rel="stylesheet" href="assets/site.css?v=dc0b9ff3">
+<script src="../dist/ybm-ds.js" defer></script>
+<script src="assets/site.js?v=dc0b9ff3" defer></script>
+</head>
+<body class="site">
+<a class="site-skip" href="#main">본문 바로가기</a>
+<header class="site-top" data-site-latest="d0c8e31888">
+  <a class="site-logo" href="index.html"><img src="assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
+  <nav class="site-topnav" aria-label="주요 메뉴">
+    <a class="site-topnav__item" href="index.html">Get Started</a>
+    <a class="site-topnav__item" href="foundations/breakpoint.html">Foundations</a>
+    <a class="site-topnav__item" href="components/index.html">Components</a>
+    <a class="site-topnav__item" href="templates/index.html">Templates</a>
+    <a class="site-topnav__item" href="updates.html" aria-current="page" data-site-updates>Updates</a>
+  </nav>
+  <div class="site-top__end">
+    <button type="button" class="ds-btn site-theme-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="화면 모드 바꾸기" data-site-theme-toggle><i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i></button>
+    <a class="ds-btn site-only-wide" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener" aria-label="Figma 파일"><i class="ds-icon site-i--figma" aria-hidden="true"></i></a>
+    <a class="ds-btn site-only-wide" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="https://github.com/luvms012-rgb/yds" target="_blank" rel="noopener" aria-label="GitHub 저장소"><i class="ds-icon site-i--github" aria-hidden="true"></i></a>
+    <button type="button" class="ds-btn site-menu-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="메뉴 열기" data-site-menu aria-controls="site-side" aria-expanded="false"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button>
+  </div>
+</header>
+<div class="site-body site-body--page">
+<aside class="site-side" id="site-side" aria-label="페이지 목록">
+  <div class="site-side__top"><b>메뉴</b><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" data-site-close aria-label="메뉴 닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
+  <div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴"><a class="site-nav__item" href="index.html">Get Started</a><a class="site-nav__item" href="foundations/breakpoint.html">Foundations</a><a class="site-nav__item" href="components/index.html">Components</a><a class="site-nav__item" href="templates/index.html">Templates</a><a class="site-nav__item" href="updates.html" aria-current="page" data-site-updates>Updates</a></nav><div class="site-nav__sep"></div></div>
+  <nav class="site-nav" aria-label="Updates 메뉴"></nav>
+</aside>
+<div class="site-scrim" data-site-close></div>
+<main class="site-main" id="main">
+<article class="site-doc">
+<header class="site-head"><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p>
+</header>
+<nav class="site-pagetabs" aria-label="Updates 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none"><a class="ds-tabs__trigger" role="tab" href="updates.html" aria-selected="false">소식</a><a class="ds-tabs__trigger" role="tab" href="updates-requests.html" aria-selected="true" aria-current="page">요청</a></div></nav>
+<div class="site-meta site-req__send"><a class="ds-btn" data-variant="neutralSolid" data-size="small" href="https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform" target="_blank" rel="noopener"><i class="ds-icon ds-icon--square-pen ds-icon--sm" aria-hidden="true"></i>의견 보내기</a></div>
+<div class="ds-table-wrap"><table class="ds-table site-req" data-size="small">
+<thead><tr><th scope="col">요청</th><th scope="col">종류</th><th scope="col">상태</th><th scope="col">반영</th></tr></thead>
+<tbody><tr><td><span class="site-req__title">Carousel 이동 버튼 세로 위치 조절, 좁은 화면에서 이동 버튼 숨기기</span><span class="site-req__meta">서비스 개발 / 11.12</span></td><td>컴포넌트</td><td><span class="ds-badge" data-tone="informative">검토 중</span></td><td></td></tr>
+<tr><td><span class="site-req__title">PC 화면에서도 쓸 수 있는 큰 Badge (글자 14 이상)</span><span class="site-req__meta">서비스 개발 / 11.13</span></td><td>컴포넌트</td><td><span class="ds-badge" data-tone="positive">반영됨</span></td><td><span class="site-req__meta">11.13</span>Badge 에 xlarge 크기와 크기 변수를 더했습니다.</td></tr>
+<tr><td><span class="site-req__title">큰 배너를 자동으로 넘기는 Carousel</span><span class="site-req__meta">서비스 개발 / 11.12</span></td><td>컴포넌트</td><td><span class="ds-badge" data-tone="positive">반영됨</span></td><td><span class="site-req__meta">11.12</span>Carousel 에 data-autoplay 와 진행 막대 줄(data-layout=&quot;bar&quot;)을 더했습니다.</td></tr>
+<tr><td><span class="site-req__title">그룹 제목 옆 '전체 보기' 화살표 링크</span><span class="site-req__meta">서비스 개발 / 11.12</span></td><td>컴포넌트</td><td><span class="ds-badge" data-tone="positive">반영됨</span></td><td><span class="site-req__meta">11.12</span>Text Link 끝에 아이콘을 넣으면 화살표 링크가 됩니다.</td></tr>
+<tr><td><span class="site-req__title">다른 팀도 Figma 라이브러리를 켤 수 있게</span><span class="site-req__meta">디자인 / 11.10</span></td><td>Figma</td><td><span class="ds-badge" data-tone="positive">반영됨</span></td><td><span class="site-req__meta">11.10</span>Get Started 의 Figma로 시작하기에 팀 초대 요청 방법을 더했습니다.</td></tr></tbody></table></div>
+
+<footer class="site-footer">
+  <div class="site-footer__brand"><img src="assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
+  <nav class="site-footer__nav" aria-label="사이트 메뉴">
+    <div><p class="site-footer__title">메뉴</p><a href="index.html">Get Started</a><a href="foundations/breakpoint.html">Foundations</a><a href="components/index.html">Components</a><a href="templates/index.html">Templates</a><a href="updates.html">Updates</a></div>
+    <div><p class="site-footer__title">더 보기</p><a href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">Figma</a><a href="https://github.com/luvms012-rgb/yds" target="_blank" rel="noopener">GitHub</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform" target="_blank" rel="noopener">의견 보내기</a></div>
+  </nav>
+</footer>
+</article>
+</main>
+
+</div>
+</body>
+</html>

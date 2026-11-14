@@ -70,31 +70,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </ul>
 ```
 
-### 사진과 같은 모서리
-
-사진 자리는 나중에 들어올 Image Frame과 모서리가 같도록 `--ds-skeleton-radius`를 맞춥니다. 모서리가 다르면 사진이 들어오는 순간 모양이 바뀌어 보입니다.
-
-```html
-<ul class="u-col u-gap-4 u-full" style="max-width: 420px">
-  <li class="u-flex u-gap-4">
-    <div class="ds-imageframe" data-radius="lg" style="width: 88px">
-      <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=200&q=70" alt="">
-    </div>
-    <div class="u-col u-gap-1">
-      <span class="ds-t05 ds-fw-semibold">영어 단어장 기본편</span>
-      <span class="ds-t04 ds-fg-subtle">15,000원</span>
-    </div>
-  </li>
-  <li class="u-flex u-gap-4" aria-busy="true" aria-label="상품 불러오는 중">
-    <span class="ds-skeleton" style="width: 88px; height: 88px; --ds-skeleton-radius: var(--ds-shape-lg)"></span>
-    <div class="u-col u-gap-2 u-grow">
-      <span class="ds-skeleton" style="width: 65%; height: 16px"></span>
-      <span class="ds-skeleton" style="width: 30%; height: 14px"></span>
-    </div>
-  </li>
-</ul>
-```
-
 ### 긴 글은 줄 모양으로 표시
 
 공지 본문처럼 여러 줄 글이 들어올 자리는 `data-shape="text"`로 줄 모양을 표시합니다. 같은 자리에 Progress Circle을 함께 표시하면 로딩을 두 번 알리게 되므로 Skeleton만 사용합니다.

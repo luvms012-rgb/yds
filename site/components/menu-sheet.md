@@ -62,6 +62,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다. |
 | **Do** | 입력이나 긴 내용은 Bottom Sheet에 담습니다. |
 | **Do** | 되돌릴 수 없는 동작은 critical로 따로 묶습니다. |
+| **Do** | 아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 글자를 가운데 정렬합니다. |
 
 ## 예시
 
@@ -128,29 +129,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </div>
     <div class="ds-menusheet__group" role="group">
       <button type="button" class="ds-menusheet__item" data-tone="critical" data-ds-close><i class="ds-icon ds-icon--log-out" aria-hidden="true"></i><span class="ds-menusheet__content"><span class="ds-menusheet__label">대화방 나가기</span><span class="ds-menusheet__item-desc">나가면 대화 내용이 모두 지워져요</span></span></button>
-    </div>
-  </div>
-  <div class="ds-menusheet__footer"><button type="button" class="ds-menusheet__close" data-ds-close>닫기</button></div>
-</dialog>
-```
-
-### 짧은 선택지는 가운데 정렬
-
-아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 텍스트를 가운데 정렬합니다. 사진 변경처럼 방법 하나를 선택하고 바로 다음 화면으로 이동할 때 사용합니다.
-
-```html
-<div class="u-col u-center u-gap-3">
-  <span class="ds-avatar" data-size="80" role="img" aria-label="김하나"><span class="ds-avatar__initials" aria-hidden="true">김</span></span>
-  <button class="ds-btn" data-variant="neutralOutline" data-size="small" aria-haspopup="dialog" data-ds-open="menu-sheet-ex3">사진 바꾸기</button>
-</div>
-<dialog class="ds-menusheet" id="menu-sheet-ex3" aria-label="프로필 사진 바꾸기">
-  <div class="ds-menusheet__list">
-    <div class="ds-menusheet__group" role="group">
-      <button type="button" class="ds-menusheet__item" data-label-align="center" data-ds-close><span class="ds-menusheet__content"><span class="ds-menusheet__label">사진 찍기</span></span></button>
-      <button type="button" class="ds-menusheet__item" data-label-align="center" data-ds-close><span class="ds-menusheet__content"><span class="ds-menusheet__label">앨범에서 고르기</span></span></button>
-    </div>
-    <div class="ds-menusheet__group" role="group">
-      <button type="button" class="ds-menusheet__item" data-tone="critical" data-label-align="center" data-ds-close><span class="ds-menusheet__content"><span class="ds-menusheet__label">사진 지우기</span></span></button>
     </div>
   </div>
   <div class="ds-menusheet__footer"><button type="button" class="ds-menusheet__close" data-ds-close>닫기</button></div>

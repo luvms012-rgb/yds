@@ -81,42 +81,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### PC 화면에서는 large 크기
-
-PC 화면에서는 large 크기로 제목과 설명을 크게 표시합니다. 한 화면의 Accordion은 모두 separated로 통일하고 inline과 섞지 않습니다.
-
-```html
-<div class="ds-accordion-group" data-layout="separated" style="width: 100%; max-width: 640px">
-  <details class="ds-accordion" data-layout="separated" data-size="large" open>
-    <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body">
-        <span class="ds-accordion__title">1주차 기초 다지기</span>
-        <span class="ds-accordion__desc">강의 4개, 52분</span>
-      </span>
-    </summary>
-    <div class="ds-accordion__content">자주 쓰는 문장 구조와 시제를 짧은 예문으로 익혀요.</div>
-  </details>
-  <details class="ds-accordion" data-layout="separated" data-size="large">
-    <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body">
-        <span class="ds-accordion__title">2주차 상황별 표현 익히기</span>
-        <span class="ds-accordion__desc">강의 6개, 1시간 20분</span>
-      </span>
-    </summary>
-    <div class="ds-accordion__content">주문, 길 찾기, 예약처럼 자주 만나는 상황의 대화를 듣고 따라 말해요.</div>
-  </details>
-  <details class="ds-accordion" data-layout="separated" data-size="large">
-    <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body">
-        <span class="ds-accordion__title">3주차 실력 점검</span>
-        <span class="ds-accordion__desc">강의 2개, 40분</span>
-      </span>
-    </summary>
-    <div class="ds-accordion__content">앞에서 배운 내용을 문제로 풀며 다시 확인해요.</div>
-  </details>
-</div>
-```
-
 ### 긴 글은 별도 화면으로
 
 펼친 영역에는 요약 몇 줄만 표시하고, 전문은 Text Link로 연결한 다른 화면에서 보여 줍니다. 펼친 영역 안에 스크롤이 생기면 어디까지 읽었는지 놓치기 쉽습니다.

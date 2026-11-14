@@ -1,10 +1,12 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-13 회사
+- 갱신: 2026-11-14 집 Mac
 - 시작: `git pull` 뒤 이 파일을 읽는다. 지난 기록은 [log.md](log.md) 에서 필요할 때만 찾는다.
 
 ## 한 것
 
+- **Updates 요청 탭 (11-14 집, 사용자 "요청 현황 공개, 추천대로")**: Updates 에 소식 / 요청 탭. 목록은 `site/src/requests.json`(실제 요청 5건으로 시작). 운영 방법은 site/CLAUDE.md "Updates > 요청 탭". 같은 대화에서 정리한 사내 확산 방향(사용자와 합의, 아직 안 만듦): ① 토큰 대조표(쉬운 말 / Figma 이름 / 코드 이름 / 견본, 말하는 규칙 세 줄) ② 하려는 일 카드 6개(이벤트, 공지, 시험 접수, 회원가입, FAQ, 서비스 메인 → 템플릿 보기 창 → AI 요청 글 복사) ③ 적용 사례 ④ 브랜드 등록 절차 ⑤ 디자이너 역할 경계(기획자는 템플릿으로 초안, 디자이너는 검토와 새 흐름, 새 컴포넌트, 캠페인 화면). 검사 페이지는 사용자가 어렵다고 해서 뺐다.
+- **컴포넌트 예시 기준과 정리 (11-14 집, 사용자 "디자인 시스템은 기능 중심으로 정의하고 시안에서 디자이너나 기획자가 수정", "이 방향성 기준으로 전체 검토", "정리 진행")**: README "예시를 더하는 기준" 절을 더했다(예시는 동작이나 구조가 다를 때만, 값만 다르면 속성 표, 변수 표, 6.2 사용 지침 한 줄). 예시 218개를 검토해 값만 다른 12개를 뺐다(206개): Accordion large, Empty small, Prefix Select medium, Quantity Picker large, Bottom Sheet 제목 가운데, Menu Sheet 가운데, Pagination ghost, Progress neutral, Progress Circle staticWhite, Image Frame 모서리, Skeleton 모서리, Carousel 스와이프. 지침이 없던 6개 규칙은 README 6.2 에 한 줄씩 옮겼다(Image Frame, Bottom Sheet, Menu Sheet, Pagination, Quantity Picker, Prefix Select). 구조나 플랫폼이 다른 예시는 남겼다. 사이트 빌드와 검사 통과. **Figma 는 못 맞췄다**: 집 Mac 의 Figma 커넥터가 편집 권한 없는 계정(jincc)이라 막혔다. 남은 일 0-1.
 - **Badge xlarge 와 크기 변수 (11-13, YBM Family 세션 요청 "PC 14px 미만 금지라 Badge 를 못 씀")**: data-size="xlarge" (높이 28, 좌우 x2_5, shape/sm, t04 Medium, 아이콘 16). 크기 변수 --ds-badge-height, -padding-x, -radius, -font-size, -line-height, -icon (알약은 --ds-badge-radius: var(--ds-shape-pill)). medium, large 는 픽셀 비교로 변화 없음. README, components.json(size 값), Updates. 미배포면 사용자 승인 뒤 배포하고 YBM Family 세션에 알린다.
 - **Result Section 글자 위계와 여백, 아이콘 크기 (11-13, 사용자가 Figma 미리보기 2753:2227 에서 고친 값 "이 기준으로 ds 전면 수정", "아이콘 크기 조절이 안되는데 추가", "최종 치환까지")**: large 제목 t08 → t09, 글자 사이 x3 → x1, 글자 아래 x7 → x5, 버튼 사이 x5 → x3, 아이콘 40 → 48. medium 은 사용자가 고치지 않아 위계가 뒤집히지 않게 글자 사이 x1, 글자 아래 x4, 버튼 사이 x3, 아이콘 40 으로 맞췄다(다르면 사용자에게). 아이콘 크기 선택 `.ds-result__asset[data-size="32|40|48|64"]`, 변수 --ds-result-icon. Figma: Result Section 세트 두 변형 값과 변수 연결, 새 세트 Result Asset `3398:1128`(size 32/40/48/64, icon 바꾸기 속성, 세트 안에 노출된 인스턴스라 Result Section 인스턴스 패널에서 크기를 고른다), 떼어 낸 미리보기를 인스턴스로 바꿈, 문서 프레임 사용법, 규격 글, 속성 표 asset size 줄, Property - asset size 칸, 59번부터 코드 링크 줄 번호. 다른 변수와 컴포넌트는 Figma 와 코드가 같았다(가벼운 점검 일치).
 - **왼쪽 메뉴 점 (11-13, 사용자 "업데이트도 표시")**: Updates 소식에 이름이 나온 컴포넌트에도 7일 동안 같은 빨간 점(aria-label 바뀐 컴포넌트). 남은 일 4번의 점 규칙을 이것으로 대신한다.
@@ -26,6 +28,8 @@
 
 ## 남은 일 (순서대로)
 
+0-2. 사내 확산 다음 단계(사용자 지시 대기): 하려는 일 카드 6개는 구성, 위치(구조 위 또는 아래), 제목 여부를 사용자에게 물어 둔 상태. 토큰 대조표, 디자이너 역할 경계 문구도 사용자 결정 대기.
+0-1. Figma 문서 프레임 12개 예시 맞추기(11-14 예시 정리): accordion, empty, prefix-select, quantity-picker, bottom-sheet, menu-sheet, pagination, progress, progress-circle, image-frame, skeleton, carousel 의 문서 프레임에서 뺀 예시 1개씩을 지우고, 사용 지침 줄이 늘어난 6개(image-frame, bottom-sheet, menu-sheet, pagination, quantity-picker, prefix-select)의 Do/Don't 줄을 맞춘다. `node sync.mjs docpage <slug>` 뒤 yds-figma-draw 스킬 순서. 편집 가능한 Figma 계정(luvms@ybm.co.kr)으로 연결된 PC 에서 한다.
 0. 자동 싱크 예약 작업 등록(사용자): Claude 가 대신 등록하면 권한에서 막힌다. 앱의 예약 작업 화면에서 tools/auto-sync-task.md 의 작업 지시문을 붙여 넣어 만든다(평일 18:30). tools/figma-quick.mjs 점검 스크립트는 11-12 Figma 에서 실제로 돌려 일치를 확인했다.
 1. Figma 남은 작은 차이(필요할 때만): Text Link 세트 2493:324 에 화살표 변형은 두지 않았다(문서 예시는 링크 + 아이콘 인스턴스로 그림). Carousel 큰 배너 예시의 멈춤 버튼은 멈춘 상태(재생 아이콘)로 그려졌다. Figma 의 play / pause 채운 모양은 Lucide Solid 변형이라 YDS 아이콘과 모양이 조금 다르다. List Item 세트에는 inset 속성이 원래 없다(목록 틀의 속성).
 1-0. Figma 템플릿 싱크(사용자가 걸 때): 수업 옵션 선택(lesson-plan) 방식 줄을 세그먼트에서 칩(전화, 화상)으로 바꿨다(11-13 사용자 "방식도 같은 레이아웃으로").

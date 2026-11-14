@@ -189,47 +189,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 터치 화면에서는 스와이프로 넘기기
-
-터치 화면에서는 넘기기 버튼을 빼고 스와이프로 넘깁니다. 다음 항목이 조금 보이게 해 옆에 더 있다는 것을 알립니다.
-
-```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
-  <h3 class="ds-t06 ds-fw-bold">진행 중인 이벤트</h3>
-  <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="진행 중인 이벤트">
-    <div class="ds-carousel__scroller">
-      <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 260px">
-          <div class="ds-imageframe" data-ratio="16:9" data-radius="md"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=520&q=70" alt=""></div>
-          <header class="ds-card__header">
-            <h4 class="ds-card__title">주말 장보기 할인</h4>
-            <p class="ds-card__desc">11월 30일까지</p>
-          </header>
-        </a>
-      </div>
-      <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 260px">
-          <div class="ds-imageframe" data-ratio="16:9" data-radius="md"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=520&q=70" alt=""></div>
-          <header class="ds-card__header">
-            <h4 class="ds-card__title">커피 원두 1+1</h4>
-            <p class="ds-card__desc">12월 7일까지</p>
-          </header>
-        </a>
-      </div>
-      <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 260px">
-          <div class="ds-imageframe" data-ratio="16:9" data-radius="md"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=520&q=70" alt=""></div>
-          <header class="ds-card__header">
-            <h4 class="ds-card__title">겨울 독서 챌린지</h4>
-            <p class="ds-card__desc">12월 31일까지</p>
-          </header>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
 ### 큰 배너를 자동으로 넘기기
 
 큰 배너만 자동으로 넘기고, 멈춤 버튼을 번호 옆에 함께 둡니다. 끝없이 넘기면 첫 장과 마지막 장에서도 양옆 배너가 보입니다.

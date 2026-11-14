@@ -106,28 +106,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </ul>
 ```
 
-### 사진 위에서는 staticWhite 사용
-
-사진처럼 어두운 바탕 위에서는 `data-tone="staticWhite"`를 사용합니다. 다크 모드에서도 흰색을 유지하므로 사진 위에서 늘 잘 보입니다.
-
-```html
-<div class="u-col u-gap-2 u-full" style="max-width: 420px">
-  <span class="ds-t05 ds-fw-medium">사진 첨부</span>
-  <div class="u-flex u-gap-2">
-    <div class="ds-imageframe" data-radius="md" style="width: 96px">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=200&q=70" alt="첨부한 사진 1">
-    </div>
-    <div class="ds-imageframe" data-radius="md" style="width: 96px">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=200&q=70" alt="올리는 중인 사진 2">
-      <div class="ds-imageframe__floater" data-position="bottom-end">
-        <span class="ds-progress-circle" data-tone="staticWhite" data-indeterminate role="progressbar" aria-label="사진 올리는 중"><svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
-      </div>
-    </div>
-  </div>
-  <p class="ds-t03 ds-fg-subtle">사진 2장 중 1장을 올리고 있어요</p>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

@@ -56,51 +56,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </article>
 ```
 
-### 목록 안 진행률은 neutral 사용
-
-여러 줄에 반복되는 진행률은 `data-tone="neutral"`과 `data-size="small"`로 약하게 표시합니다. brand는 화면의 대표 진행률 하나에만 사용해야 눈에 띕니다.
-
-```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
-  <li>
-    <a class="ds-list-item" href="#">
-      <div class="ds-list-item__content u-gap-1_5">
-        <span class="ds-list-item__title">영어 회화 기초</span>
-        <div class="u-flex u-center u-gap-3">
-          <div class="ds-progress u-grow" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="20" aria-label="영어 회화 기초 진도" style="--ds-progress-value: 40%" data-tone="neutral" data-size="small"></div>
-          <span class="ds-list-item__desc">8/20강</span>
-        </div>
-      </div>
-      <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="ds-list-item" href="#">
-      <div class="ds-list-item__content u-gap-1_5">
-        <span class="ds-list-item__title">비즈니스 이메일 쓰기</span>
-        <div class="u-flex u-center u-gap-3">
-          <div class="ds-progress u-grow" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="16" aria-label="비즈니스 이메일 쓰기 진도" style="--ds-progress-value: 94%" data-tone="neutral" data-size="small"></div>
-          <span class="ds-list-item__desc">15/16강</span>
-        </div>
-      </div>
-      <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="ds-list-item" href="#">
-      <div class="ds-list-item__content u-gap-1_5">
-        <span class="ds-list-item__title">실전 모의고사</span>
-        <div class="u-flex u-center u-gap-3">
-          <div class="ds-progress u-grow" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="12" aria-label="실전 모의고사 진도" style="--ds-progress-value: 17%" data-tone="neutral" data-size="small"></div>
-          <span class="ds-list-item__desc">2/12회</span>
-        </div>
-      </div>
-      <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-    </a>
-  </li>
-</ul>
-```
-
 ### 시작 전에도 바탕 막대 표시
 
 아직 시작하지 않아 0%여도 바탕 막대(track)는 그대로 표시합니다. 막대가 사라지면 이 자리에 진행률이 채워진다는 것을 알 수 없습니다.

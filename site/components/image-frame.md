@@ -38,6 +38,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. |
 | **Do** | 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. |
 | **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
+| **Do** | 카드 안 사진은 `data-radius`로 카드 모서리와 맞춥니다. |
 
 ## 예시
 
@@ -75,20 +76,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </a>
   </li>
 </ul>
-```
-
-### 카드 안 사진은 카드 모서리와 맞추기
-
-카드 안 사진은 16:9 프레임에 넣고 `data-radius="lg"`로 카드 모서리와 맞춥니다. 사진이 길거나 넓어도 프레임 밖으로 넘치지 않고 가운데가 보입니다.
-
-```html
-<a class="ds-card u-full" data-size="small" href="#" style="max-width: 320px">
-  <div class="ds-imageframe" data-ratio="16:9" data-radius="lg"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=640&q=70" alt=""></div>
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">핸드드립 원데이 클래스</h3>
-    <p class="ds-card__desc">11월 14일 (토) 오후 2시, 8명 모집</p>
-  </header>
-</a>
 ```
 
 ### 흰 배경 사진에는 테두리

@@ -1103,15 +1103,37 @@ fs.rmSync(path.join(SITE, 'get-started/ai.md'), { force: true });
 // 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 목록 하나. 종류 이름(새 기능, 변경된 부분)은 순서만 정하고 화면에 쓰지 않는다(11-10 사용자 "타이틀 완전 제거"). 영역 거르기 탭은 11-04 사용자 지시로 뺐다
 // 소식은 site/src/updates.json releases 맨 위에 날짜를 더한다
 const RELEASES = readJson('site/src/updates.json').releases;
+const updTabs = (file) => `<nav class="site-pagetabs" aria-label="Updates 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none">${[['updates.html', '소식'], ['updates-requests.html', '요청']].map(([f, l]) => `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${f === file}"${f === file ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</div></nav>`;
 const fmtDate = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${y}. ${m}. ${dd}`; };
 write({
   file: 'updates.html', section: 'updates', title: 'Updates', desc: 'YDS 업데이트 소식', layout: 'page',
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">업데이트 소식과 변경 기록입니다.</p></header>
+${updTabs('updates.html')}
 ${RELEASES.map((r) => `<section class="site-group site-release">
 <h2 id="${r.version ? 'v' + r.version : 'd-' + r.date}">${r.version ? `<span class="site-release__ver">v${esc(r.version)}</span> ` : ''}<time datetime="${r.date}">${fmtDate(r.date)}</time></h2>
 <ul class="site-list">${r.sections.flatMap((s) => s.items).map(([a, t]) => `<li><span class="ds-badge" data-size="medium">${esc(a)}</span> ${inline(t)}</li>`).join('')}</ul>
 </section>`).join('\n')}
 <p class="site-note">자세한 변경 기록은 <a class="ds-link" href="${GITHUB}/commits/main" target="_blank" rel="noopener">GitHub</a>에 있습니다.</p>`,
+});
+
+// 요청 (2026-11-14 사용자 "요청 현황 공개", 추천대로 Updates 안 두 번째 탭, 목록은 site/src/requests.json 을 담당자가 고친다)
+// 요청 → 반영 → 소식이 한 곳에서 이어진다. 상태 순서: 검토 중, 접수, 반영됨(최근 반영 먼저), 보류
+const REQUESTS = readJson('site/src/requests.json').requests;
+const REQ_ORDER = ['검토 중', '접수', '반영됨', '보류'];
+const REQ_TONE = { '검토 중': 'informative', '접수': 'neutral', '반영됨': 'positive', '보류': 'warning' };
+const shortDate = (d) => d.slice(5).replace('-', '.');
+const reqRows = [...REQUESTS].sort((x, y) => REQ_ORDER.indexOf(x.status) - REQ_ORDER.indexOf(y.status) || ((y.done || [y.date])[0]).localeCompare((x.done || [x.date])[0]));
+write({
+  file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 현황', layout: 'page',
+  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
+${updTabs('updates-requests.html')}
+${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}
+${table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
+  `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
+  esc(r.type),
+  `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
+  r.done ? `<span class="site-req__meta">${shortDate(r.done[0])}</span>${inline(r.done[1])}` : '',
+])).replace('class="ds-table"', 'class="ds-table site-req"')}`,
 });
 
 /* ---------------------------------------------------------------- Themes */

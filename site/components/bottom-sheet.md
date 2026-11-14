@@ -48,6 +48,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 되돌릴 수 없는 동작은 critical로 따로 묶습니다. |
 | **Do** | PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. |
 | **Do** | 화면이 좁으면 Bottom Sheet로 전환합니다. |
+| **Do** | 안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다. |
 | **Do** | 내용이 길면 단계별 시트로 나누고, 겹치는 시트는 2개까지 둡니다. |
 
 ## 예시
@@ -110,35 +111,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <div class="ds-bottomsheet__footer">
     <button class="ds-btn" data-variant="neutralSolid" data-size="large" data-ds-close>저장</button>
-  </div>
-</dialog>
-```
-
-### 짧은 안내는 제목 가운데 정렬
-
-안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다. 상단 닫기 버튼은 빼고 하단 버튼으로 닫습니다.
-
-```html
-<article class="ds-card" data-size="small" style="width: 100%; max-width: 375px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">첫 주문 혜택</h3>
-    <p class="ds-card__desc">처음 주문하면 3,000원을 할인해 줘요.</p>
-  </header>
-  <footer class="ds-card__footer">
-    <button class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="bottom-sheet-ex3">쿠폰 받기</button>
-  </footer>
-</article>
-<dialog class="ds-bottomsheet" id="bottom-sheet-ex3" aria-labelledby="bottom-sheet-ex3-title" data-header-align="center" data-handle>
-  <div class="ds-bottomsheet__header">
-    <h2 class="ds-bottomsheet__title" id="bottom-sheet-ex3-title">쿠폰을 받았어요</h2>
-    <p class="ds-bottomsheet__desc">7일 안에 주문하면 할인돼요.</p>
-  </div>
-  <div class="ds-bottomsheet__body">
-    <p class="ds-t12 ds-fw-bold">3,000원</p>
-  </div>
-  <div class="ds-bottomsheet__footer">
-    <button class="ds-btn" data-variant="neutralSolid" data-size="large" data-ds-close>쿠폰함 보기</button>
-    <button class="ds-btn" data-variant="ghost" data-size="large" data-ds-close>닫기</button>
   </div>
 </dialog>
 ```

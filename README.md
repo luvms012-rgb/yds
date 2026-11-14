@@ -349,6 +349,14 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 - layout 은 컴포넌트마다 3개까지. 새 layout 은 머리 주석 마크업, 예시, 사용 지침 한 줄, 구조 그림 이름, Figma Layout 변형, AI 규칙을 함께 갖춘다.
 - 서비스 요청은 변수로 되면 서비스 CSS 에서, 두 서비스 이상이 같은 구조를 쓰거나 레퍼런스 가이드에 있으면 layout 으로, 아니면 서비스 CSS 에 둔다.
 
+#### 예시를 더하는 기준 (2026-11-14)
+디자인 시스템은 기능(동작, 구조, 상태, 접근성)과 바꿔도 되는 범위를 정한다. 화면마다의 모양은 시안에서 디자이너와 기획자가 그 범위 안에서 정한다.
+
+- 예시는 **동작이나 구조가 다를 때만** 더한다(다른 쓰임, 다른 `data-layout`, 켜는 동작 속성, 다른 상태).
+- 크기, 정렬, 색, 모서리처럼 **값만 다르면 예시를 만들지 않는다**. 속성 표나 변수 표에 두고, 언제 쓰는지는 6.2 사용 지침 한 줄로 적는다.
+- 컴포넌트마다 기본 예시 하나는 완성도 높게 둔다.
+- 시안에서 변수 범위를 벗어난 모양이 필요하면 의견 보내기로 요청하고, 두 서비스 이상에서 반복되면 위 표의 규칙대로 layout 으로 올린다.
+
 | # | 컴포넌트 | CSS | Figma COMPONENT_SET (ID, 변형 수) | 주요 속성 / 컴포넌트 변수 |
 |---|---|---|---|---|
 | 01 | Action Button | `.ds-btn` | `24:354`, 168 | variant `brandSolid/brandOutline/neutralSolid/neutralWeak/neutralOutline/criticalSolid/ghost`, size `xsmall/small/medium/large`, layout `iconOnly/fill` |
@@ -475,6 +483,12 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 - **Pull To Refresh** - 최신 내용을 다시 불러오는 목록 화면에만 사용합니다. 텍스트를 드래그해 선택하는 영역에서는 data-disabled로 비활성화합니다.
 - **Side Panel vs Bottom Sheet** - PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. 화면이 좁으면 Bottom Sheet로 전환합니다.
 - **Image Frame / Carousel** - 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다.
+- **Image Frame** - 카드 안 사진은 `data-radius`로 카드 모서리와 맞춥니다.
+- **Bottom Sheet** - 안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다.
+- **Menu Sheet** - 아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 글자를 가운데 정렬합니다.
+- **Pagination** - 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에는 ghost를 사용합니다.
+- **Quantity Picker** - 구매 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다.
+- **Prefix Select** - 테두리 있는 입력 필드에는 medium을 사용해 글자 크기를 필드와 맞춥니다.
 - **Markdown / Code Block / Citation** - AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. 코드는 Code Block에 넣습니다. 근거는 번호나 출처 칩(Citation)으로 표시합니다.
 - **Multi Select vs Select** - 여러 개를 선택할 때만 Multi Select를 사용합니다. 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다.
 - **Chat** - 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다. 입력란이 비어 있으면 보내기 버튼을 비활성화합니다. 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다.

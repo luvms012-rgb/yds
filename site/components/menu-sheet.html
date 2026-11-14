@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=8b2d3cf5">
+<link rel="stylesheet" href="../assets/site.css?v=dc0b9ff3">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=8b2d3cf5" defer></script>
+<script src="../assets/site.js?v=dc0b9ff3" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -188,7 +188,8 @@
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>입력이나 긴 내용은 Bottom Sheet에 담습니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>되돌릴 수 없는 동작은 critical로 따로 묶습니다.</td></tr></tbody></table></div>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>되돌릴 수 없는 동작은 critical로 따로 묶습니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>아이콘 없이 짧은 동작 몇 개만 있으면 <code>data-label-align=&quot;center&quot;</code>로 글자를 가운데 정렬합니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>더보기 버튼으로 동작 선택</h3>
 <p>모바일에서 더보기 버튼을 누르면 Menu Sheet로 할 수 있는 동작을 표시합니다. 몇 가지 동작 중 하나를 선택할 때 사용하고, 입력이나 긴 내용이 필요하면 Bottom Sheet를 사용합니다.</p>
 <div class="site-example">
@@ -309,46 +310,6 @@
     &lt;/<span class="hl-t">div</span>&gt;
     &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__group&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;group&quot;</span>&gt;
       &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__item&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;critical&quot;</span> <span class="hl-f">data-ds-close</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--log-out&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__label&quot;</span>&gt;대화방 나가기&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__item-desc&quot;</span>&gt;나가면 대화 내용이 모두 지워져요&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__footer&quot;</span>&gt;&lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__close&quot;</span> <span class="hl-f">data-ds-close</span>&gt;닫기&lt;/<span class="hl-t">button</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">dialog</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>짧은 선택지는 가운데 정렬</h3>
-<p>아이콘 없이 짧은 동작 몇 개만 있으면 <code>data-label-align=&quot;center&quot;</code>로 텍스트를 가운데 정렬합니다. 사진 변경처럼 방법 하나를 선택하고 바로 다음 화면으로 이동할 때 사용합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage"><div class="u-col u-center u-gap-3">
-  <span class="ds-avatar" data-size="80" role="img" aria-label="김하나"><span class="ds-avatar__initials" aria-hidden="true">김</span></span>
-  <button class="ds-btn" data-variant="neutralOutline" data-size="small" aria-haspopup="dialog" data-ds-open="menu-sheet-ex3">사진 바꾸기</button>
-</div>
-<dialog class="ds-menusheet" id="menu-sheet-ex3" aria-label="프로필 사진 바꾸기">
-  <div class="ds-menusheet__list">
-    <div class="ds-menusheet__group" role="group">
-      <button type="button" class="ds-menusheet__item" data-label-align="center" data-ds-close><span class="ds-menusheet__content"><span class="ds-menusheet__label">사진 찍기</span></span></button>
-      <button type="button" class="ds-menusheet__item" data-label-align="center" data-ds-close><span class="ds-menusheet__content"><span class="ds-menusheet__label">앨범에서 고르기</span></span></button>
-    </div>
-    <div class="ds-menusheet__group" role="group">
-      <button type="button" class="ds-menusheet__item" data-tone="critical" data-label-align="center" data-ds-close><span class="ds-menusheet__content"><span class="ds-menusheet__label">사진 지우기</span></span></button>
-    </div>
-  </div>
-  <div class="ds-menusheet__footer"><button type="button" class="ds-menusheet__close" data-ds-close>닫기</button></div>
-</dialog></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-center u-gap-3&quot;</span>&gt;
-  &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-avatar&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;80&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;img&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;김하나&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-avatar__initials&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;김&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-  &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralOutline&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">aria-haspopup</span>=<span class="hl-s">&quot;dialog&quot;</span> <span class="hl-f">data-ds-open</span>=<span class="hl-s">&quot;menu-sheet-ex3&quot;</span>&gt;사진 바꾸기&lt;/<span class="hl-t">button</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;
-&lt;<span class="hl-t">dialog</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;menu-sheet-ex3&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;프로필 사진 바꾸기&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__list&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__group&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;group&quot;</span>&gt;
-      &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__item&quot;</span> <span class="hl-f">data-label-align</span>=<span class="hl-s">&quot;center&quot;</span> <span class="hl-f">data-ds-close</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__label&quot;</span>&gt;사진 찍기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-      &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__item&quot;</span> <span class="hl-f">data-label-align</span>=<span class="hl-s">&quot;center&quot;</span> <span class="hl-f">data-ds-close</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__label&quot;</span>&gt;앨범에서 고르기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__group&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;group&quot;</span>&gt;
-      &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__item&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;critical&quot;</span> <span class="hl-f">data-label-align</span>=<span class="hl-s">&quot;center&quot;</span> <span class="hl-f">data-ds-close</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__label&quot;</span>&gt;사진 지우기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
     &lt;/<span class="hl-t">div</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__footer&quot;</span>&gt;&lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-menusheet__close&quot;</span> <span class="hl-f">data-ds-close</span>&gt;닫기&lt;/<span class="hl-t">button</span>&gt;&lt;/<span class="hl-t">div</span>&gt;

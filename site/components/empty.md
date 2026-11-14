@@ -65,26 +65,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 카드 안 좁은 영역에는 small
-
-카드나 목록 안의 좁은 영역에는 `data-size="small"`을 사용합니다. 화면 전체가 아니라 한 영역이 비어 있다는 것만 가볍게 알립니다.
-
-```html
-<article class="ds-card u-full" data-size="small" style="max-width: 360px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">다가오는 수업</h3>
-  </header>
-  <div class="ds-card__content">
-    <div class="ds-empty" data-size="small">
-      <span class="ds-empty__media"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span>
-      <p class="ds-empty__title">예약한 수업이 없어요</p>
-      <p class="ds-empty__desc">수업을 예약하면 여기에 보여요.</p>
-      <div class="ds-empty__actions"><button class="ds-btn" data-variant="neutralWeak" data-size="small">수업 예약하기</button></div>
-    </div>
-  </div>
-</article>
-```
-
 ### 상황에 맞는 아이콘과 버튼 하나
 
 쿠폰함이 비어 있으면 쿠폰을 떠올리게 하는 아이콘을 사용하고, 쿠폰을 받을 수 있는 곳으로 이동하는 버튼 하나를 배치합니다. 버튼이 많으면 무엇을 먼저 할지 알기 어려우므로 두 개를 넘기지 않습니다.

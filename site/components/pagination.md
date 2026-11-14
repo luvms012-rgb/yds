@@ -48,6 +48,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
+| **Do** | 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에는 ghost를 사용합니다. |
 | **Do** | 페이지 번호는 현재 페이지를 포함해 5개(넓은 화면에서는 7개)까지 표시합니다. 나머지는 말줄임표로 줄입니다. 첫 번호와 마지막 번호는 항상 표시합니다. |
 | **Do** | 목록 아래 가운데에 배치합니다. 페이지를 이동하면 목록 맨 위로 스크롤합니다. |
 | **Do** | 현재 페이지 번호는 누를 수 없게 하고 aria-current="page"를 붙입니다. |
@@ -145,24 +146,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </nav>
   </footer>
 </article>
-```
-
-### 가벼운 화면에는 ghost
-
-선택한 페이지만 옅은 회색 면으로 표시합니다. 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에 사용합니다.
-
-```html
-<nav class="ds-pagination" data-variant="ghost" aria-label="페이지">
-  <a class="ds-pagination__item" data-type="prev" href="?p=2" aria-label="이전 페이지"></a>
-  <a class="ds-pagination__item" href="?p=1">1</a>
-  <a class="ds-pagination__item" href="?p=2">2</a>
-  <a class="ds-pagination__item" href="?p=3" aria-current="page">3</a>
-  <a class="ds-pagination__item" href="?p=4">4</a>
-  <a class="ds-pagination__item" href="?p=5">5</a>
-  <span class="ds-pagination__item" data-type="ellipsis" aria-hidden="true"></span>
-  <a class="ds-pagination__item" href="?p=20">20</a>
-  <a class="ds-pagination__item" data-type="next" href="?p=4" aria-label="다음 페이지"></a>
-</nav>
 ```
 
 ## 규격

@@ -32,6 +32,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | `layout` | fill |
 | 켜고 끄는 속성 | `size` |
 
+## 사용 지침
+
+| 구분 | 내용 |
+| --- | --- |
+| **Do** | 구매 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다. |
+
 ## 예시
 
 ### 최소 수량에서 줄이기 버튼 비활성화
@@ -86,27 +92,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-field__footer">
     <p class="ds-field__help">한 번에 10개까지 담을 수 있어요</p>
     <p class="ds-field__error" id="quantity-picker-ex2-error">남은 수량은 3개예요</p>
-  </div>
-</div>
-```
-
-### 구매 버튼과 높이 맞추기
-
-구매 버튼 옆에 배치할 때는 버튼과 높이가 같은 `data-size="large"`를 사용합니다. 높이가 같아야 한 줄로 읽히고 누르는 영역도 넉넉합니다.
-
-```html
-<div class="u-col u-gap-3 u-full" style="max-width: 375px">
-  <div class="u-flex u-center u-between">
-    <span class="ds-t04 ds-fg-muted">총 2개</span>
-    <span class="ds-t06 ds-fw-bold">30,000원</span>
-  </div>
-  <div class="u-flex u-gap-2">
-    <div class="ds-quantity" data-size="large">
-      <button type="button" class="ds-quantity__btn" aria-label="수량 줄이기"><i class="ds-icon ds-icon--minus" aria-hidden="true"></i></button>
-      <input class="ds-quantity__value" inputmode="numeric" value="2" aria-label="수량">
-      <button type="button" class="ds-quantity__btn" aria-label="수량 늘리기"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
-    </div>
-    <button type="button" class="ds-btn u-grow" data-size="large">바로 구매하기</button>
   </div>
 </div>
 ```

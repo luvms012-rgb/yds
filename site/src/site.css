@@ -484,6 +484,14 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc > .site-pagetabs { margin-top: var(--ds-space-x8); }
 .site-pagetabs .ds-tabs__trigger { text-decoration: none; }
 .site-pagetabs + p { margin-top: var(--ds-space-x8); }
+/* Updates > 요청 (11-14): 요청 이름 아래 소속과 날짜, 반영 칸은 날짜 아래 내용 */
+.site-req__send { margin-top: var(--ds-space-x8); }
+.site-doc .site-req { min-width: 640px; }
+.site-req td { vertical-align: top; }
+.site-req__title { display: block; color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
+.site-req__meta { display: block; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-variant-numeric: tabular-nums; }
+.site-doc .site-req :is(td, th):is(:nth-child(2), :nth-child(3)) { white-space: nowrap; word-break: keep-all; }
+.site-req th:first-child, .site-req th:last-child { width: 40%; }
 
 /* ---- Color Roles: 역할마다 대표 토큰 견본, 토큰 표 설명 ---- */
 .site-rolechips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); margin-top: var(--ds-space-x3); }
