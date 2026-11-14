@@ -82,9 +82,10 @@
     if (view) {
       press(view);
       var box = view.closest(".site-example, .site-frame");
-      var code = view.getAttribute("data-site-view") === "code";
-      box.querySelectorAll(".site-example__preview, .site-frame__stage").forEach(function (el) { el.hidden = code; });
+      var v = view.getAttribute("data-site-view"), code = v === "code";  // preview / code / prompt(템플릿 AI 요청 글, 11-14)
+      box.querySelectorAll(".site-example__preview, .site-frame__stage").forEach(function (el) { el.hidden = v !== "preview"; });
       box.querySelectorAll(".site-example__code, .site-frame__code").forEach(function (el) { el.hidden = !code; });
+      box.querySelectorAll(".site-frame__prompt").forEach(function (el) { el.hidden = v !== "prompt"; });
       if (code) loadSource(box);
       return;
     }
@@ -640,9 +641,10 @@
   // 주소에 ?preview=이름 을 남겨 그대로 공유할 수 있다. 새 탭으로 열기(Ctrl, Cmd, 가운데 버튼)는 상세 페이지로 간다.
   // 템플릿 AI 요청 글 복사 (11-11 사용자, 11-14 문서 보기에도): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다
   function copyTplPrompt(b, name, slug) {
-    var text = "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
-      "\n\n'" + name + "' 템플릿을 참고해서 화면을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
-      "\n템플릿은 출발점이야. 서비스의 목적과 쓰는 사람에 맞게 구성, 배치, 내용을 자유롭게 다시 짜 줘. 컴포넌트, 토큰, 아이콘은 YDS 에 있는 것만 쓰고, 필요하면 다른 YDS 컴포넌트와 템플릿도 함께 써 줘.";
+    var shown = document.querySelector(".site-frame__prompt code");
+    var text = shown ? shown.textContent : "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
+      "\n\n'" + name + "' 템플릿을 바탕으로 [내가 원하는] 화면을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
+      "\n템플릿은 출발점이야. 목적과 쓰는 사람에 맞게 구성, 배치, 내용을 새롭게 다시 만들어줘. 컴포넌트, 토큰, 아이콘은 YDS 에 있는 것만 써 줘.";
     var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
     var legacy = function () {
       var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";

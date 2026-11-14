@@ -343,7 +343,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-frame__stage iframe { display: block; flex: none; width: 1440px; height: 900px; border: 0; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: var(--ds-elevation-raised); transform-origin: 0 0; }
 .site-frame__stage[data-device="tablet"] iframe { width: 768px; height: 1024px; }
 .site-frame__stage[data-device="mobile"] iframe { width: 375px; height: 760px; }
-.site-frame__code[hidden], .site-frame__stage[hidden] { display: none; }
+.site-frame__code[hidden], .site-frame__stage[hidden], .site-frame__prompt[hidden] { display: none; }
+.site-frame__prompt .ds-codeblock { margin: 0; border: 0; border-radius: 0; }  /* AI 요청 글 탭 (11-14): 코드 칸과 같은 자리, 모서리 없이 */
 .site-frame__code .ds-codeblock { margin: 0; border: 0; border-radius: 0; }
 .site-frame__code .ds-codeblock__code { max-height: 720px; overflow: auto; }
 .site-frame__code .ds-codeblock__code code { white-space: pre-wrap; overflow-wrap: anywhere; }  /* 템플릿 원본은 한 줄이 매우 길어(style 묶음) 옆으로 밀지 않고 접어서 보인다 (11-11) */
