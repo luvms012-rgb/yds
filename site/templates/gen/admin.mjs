@@ -3,7 +3,7 @@
 // 사내 업무 관리 화면의 공통 구조(상태 목록, 처리 단계, 댓글과 이력, 라벨 왼쪽 등록 폼)만 따르고 서비스 이름과 글은 넣지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, sidenav, frame } from './frame.mjs';
-const { icon, btn, iconBtn, badge, avatar, avatars, head, input, select, search, checkbox, radios, chiptabs, tabs, stepper, progress, pagination, checkOnly, divider, esc } = K;
+const { icon, btn, iconBtn, badge, avatar, avatars, head, input, select, search, checkbox, radios, chiptabs, tabs, stepper, progress, checkOnly, divider, esc } = K;
 
 const ORG = '한빛아카데미';
 const nav = (cur) => sidenav(ORG, [['', [['홈', 'house', cur === 0], ['과정 개설 요청', 'inbox', cur === 1], ['과정 운영', 'book-open', cur === 2], ['수강생', 'users', cur === 3], ['출석', 'calendar', cur === 4], ['통계', 'chart-column', cur === 5]]]], [['설정', 'settings', false]]);
@@ -59,7 +59,7 @@ const list = () => {
   <div class="ds-table-wrap tp-scroll-x tp-rql"><table class="ds-table" data-size="small"><caption class="tp-sr">과정 개설 요청 목록</caption><thead><tr>
     <th scope="col"><span class="tp-sr">북마크</span></th><th scope="col">번호</th><th scope="col">상태</th><th scope="col">요청</th><th scope="col">요청한 사람</th><th scope="col">요청일</th><th scope="col">완료 희망일</th><th scope="col">담당자</th>
   </tr></thead><tbody>${trs}</tbody></table></div>
-  <div class="tp-tfoot">${pagination(1, 13)}</div>
+  ${K.tablePager(128, 10)}
 </main>`;
   return { slug: 'admin-request-list', en: 'Request List', name: '요청 목록', group: 'Admin', desc: '들어온 요청을 상태별로 보고 처리할 것을 고르는 관리자 목록입니다. 신청, 승인, 진행, 완료처럼 단계가 있는 요청에 사용합니다.', css, body: frame(nav(1), '과정 개설 요청', main) };
 };

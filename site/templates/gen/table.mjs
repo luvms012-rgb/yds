@@ -55,7 +55,7 @@ const filter = () => {
     <div class="tp-ttools"><span class="tp-sub">작업 ${T('55')}개 / ${link('조건 지우기')}</span><div class="tp-ttools__end">${K.even(select('모든 우선순위', { aria: '우선순위' }) + select('모든 담당자', { aria: '담당자' }) + select('지점 3곳', { aria: '지점' }) + select('이번 주', { aria: '기간' }) + search('q', '작업 찾기'))}</div></div>
   </div>
   <div class="ds-table-wrap"><table class="ds-table tp-ftable" data-ds-selection="tf-sel">${thead([checkOnly('모든 행 선택'), '작업', '담당자', '상태', '우선순위', ['일정', 'end']])}<tbody>${groups.map(([g, rows]) => grow(6, g, rows.length) + rows.map(([id, n, who, [st, tn], [pt, pl], when]) => `<tr><td>${checkOnly(id + ' ' + n + ' 선택')}</td><td><span class="ds-table__stack"><span>${n}</span><span>${id}</span></span></td><td><span class="tp-row">${avatar(who)}${who}</span></td><td>${badge(st, tn)}</td><td><span class="tp-row">${dot(pt, pl)}${pl}</span></td><td data-align="end">${T(when)}</td></tr>`).join('')).join('')}</tbody></table></div>
-  <div class="tp-tfoot">${K.pagination(1, 6)}</div>
+  ${K.tablePager(55, 10)}
 </main>
 ${K.selectionBar('tf-sel', [['상태 바꾸기', 'circle-dot'], ['담당자 지정', 'user'], ['삭제', 'trash']], '고른 작업')}
 </div>`;
