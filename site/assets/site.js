@@ -638,9 +638,34 @@
 
   // 템플릿 보기 창: 목록에서 카드를 누르면 화면 100% 가 아닌 정해진 크기의 큰 창에서 템플릿을 보여 준다.
   // 주소에 ?preview=이름 을 남겨 그대로 공유할 수 있다. 새 탭으로 열기(Ctrl, Cmd, 가운데 버튼)는 상세 페이지로 간다.
+  // 템플릿 AI 요청 글 복사 (11-11 사용자, 11-14 문서 보기에도): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다
+  function copyTplPrompt(b, name, slug) {
+    var text = "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
+      "\n\n'" + name + "' 템플릿을 참고해서 화면을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
+      "\n템플릿은 출발점이야. 서비스의 목적과 쓰는 사람에 맞게 구성, 배치, 내용을 자유롭게 다시 짜 줘. 컴포넌트, 토큰, 아이콘은 YDS 에 있는 것만 쓰고, 필요하면 다른 YDS 컴포넌트와 템플릿도 함께 써 줘.";
+    var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
+    var legacy = function () {
+      var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+      document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); b.focus();
+      say(ok ? "요청 글을 복사했어요. AI 도구에 붙여 넣으세요." : "복사하지 못했어요. 새 창으로 열어 주소를 복사해 주세요.", ok);
+    };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say("요청 글을 복사했어요. AI 도구에 붙여 넣으세요.", true); }, legacy); else legacy();
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-site-tpl-prompt]");
+    if (b) copyTplPrompt(b, b.getAttribute("data-name"), b.getAttribute("data-site-tpl-prompt"));
+  });
+
+  // 2026-11-14 사용자 "모달보다 바로 문서 보기 화면으로, 왼쪽 메뉴가 있어 면밀히 관찰하기 좋다": 보기 창을 끈다.
+  // 되돌리기: TPL_VIEWER 를 true 로 바꾸면 예전처럼 보기 창이 열린다(아래 코드는 그대로 둔다).
+  var TPL_VIEWER = false;
   (function () {
     var cards = [].slice.call(document.querySelectorAll(".site-tpl"));
     if (!cards.length) return;
+    if (!TPL_VIEWER) {
+      try { var go = new URL(location.href).searchParams.get("preview"); if (go && /^[a-z0-9-]+$/.test(go)) location.replace(go + ".html"); } catch (e) {}
+      return;
+    }
     var dlg = document.createElement("div");
     dlg.className = "site-tplv"; dlg.hidden = true;
     dlg.setAttribute("role", "dialog"); dlg.setAttribute("aria-modal", "true"); dlg.setAttribute("aria-labelledby", "site-tplv-title");
@@ -690,17 +715,7 @@
     // AI 요청 글 복사 (11-11 사용자): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다. 내려받을 것 없이 AI 도구에 붙여 넣는다
     function copyPrompt(b) {
       if (!cur) return;
-      var slug = slugOf(cur), name = cur.querySelector(".site-tpl__title").textContent;
-      var text = "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
-        "\n\n'" + name + "' 템플릿을 참고해서 화면을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
-        "\n템플릿은 출발점이야. 서비스의 목적과 쓰는 사람에 맞게 구성, 배치, 내용을 자유롭게 다시 짜 줘. 컴포넌트, 토큰, 아이콘은 YDS 에 있는 것만 쓰고, 필요하면 다른 YDS 컴포넌트와 템플릿도 함께 써 줘.";
-      var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
-      var legacy = function () {
-        var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
-        document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); b.focus();
-        say(ok ? "요청 글을 복사했어요. AI 도구에 붙여 넣으세요." : "복사하지 못했어요. 새 창으로 열어 주소를 복사해 주세요.", ok);
-      };
-      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say("요청 글을 복사했어요. AI 도구에 붙여 넣으세요.", true); }, legacy); else legacy();
+      copyTplPrompt(b, cur.querySelector(".site-tpl__title").textContent, slugOf(cur));
     }
     dlg.addEventListener("click", function (e) {
       if (e.target.closest("[data-tplv-close]")) close();
