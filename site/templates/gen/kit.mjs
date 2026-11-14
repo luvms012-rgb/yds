@@ -159,8 +159,8 @@ export const stripCopy = (html) => {
   return out + html.slice(at);
 };
 
-// 템플릿 정의 (사용자 2026-11-09): 모든 템플릿 HTML 머리에 그대로 들어간다. 템플릿을 만들고 고칠 때의 기준이다
-// 템플릿 정의 (2026-11-11 사용자 "템플릿이나 디자인 구성할 때 아래 지침을 참고해"). 모든 템플릿 HTML 맨 위 주석으로 들어간다.
+// 템플릿을 만들고 고칠 때의 기준 (2026-11-11 사용자 지침, 원문은 site/CLAUDE.md "템플릿과 디자인 작업 지침").
+// 2026-11-14 사용자 "코드엔 순수 기술적인 부분만": 템플릿 HTML 에는 넣지 않는다. 만드는 사람(사람, AI)이 이 파일과 site/CLAUDE.md 에서 읽는다.
 // 사용자 원문의 "DESIGN.md" 는 이 저장소에 없어 YDS 규칙(yds.txt)으로 적었고, 가운뎃점은 검사 규칙대로 쉼표로 바꿨다.
 export const PRINCIPLE = `목적, 구조, 디자인, 코드 모두 단순하게 만들어줘.
 
@@ -179,9 +179,6 @@ export const PRINCIPLE = `목적, 구조, 디자인, 코드 모두 단순하게 
 - 애매한 부분이나 YDS 규칙(yds.txt)이 내 서비스와 안 맞는 부분은 혼자 추측해서 정하지 말고, 작업 전에 나한테 질문해.`;
 
 export const page = ({ title, css = '', body, bodyClass = '' }) => `<!doctype html>
-<!--
-${PRINCIPLE}
--->
 <html lang="ko">
 <head>
 <meta charset="utf-8">

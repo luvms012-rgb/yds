@@ -1086,7 +1086,7 @@ templates.forEach((t) => {
   <p class="site-eyebrow"><a href="index.html">Templates</a> / ${esc(t.group)}</p>
   <h1 class="site-h1">${esc(t.name)}</h1>
   <p class="site-lead">${esc(t.desc)}</p>
-  <div class="site-meta"><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small" data-site-tpl-prompt="${t.slug}" data-name="${esc(t.name)}"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i>AI 요청 글 복사</button>${btn(`pages/${t.slug}.html`, '새 창으로 보기', 'neutralWeak', 'small', 'external-link').replace('href="pages', 'target="_blank" rel="noopener" href="pages')}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}${metaLink(`${GITHUB}/blob/main/site/templates/pages/${t.slug}.html`, '코드', 'site-i--github')}</div>
+  <div class="site-meta">${btn(`pages/${t.slug}.html`, '새 창으로 보기', 'neutralSolid', 'small', 'external-link').replace('href="pages', 'target="_blank" rel="noopener" href="pages')}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}${metaLink(`${GITHUB}/blob/main/site/templates/pages/${t.slug}.html`, '코드', 'site-i--github')}</div>
 </header>
 <div class="site-frame">
   <div class="site-frame__bar">

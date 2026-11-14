@@ -189,50 +189,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 큰 배너를 자동으로 넘기기
-
-큰 배너만 자동으로 넘기고, 멈춤 버튼을 번호 옆에 함께 둡니다. 끝없이 넘기면 첫 장과 마지막 장에서도 양옆 배너가 보입니다.
-
-```html
-<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-autoplay="5000" data-loop style="width: 100%; max-width: 560px; --ds-carousel-padding: var(--ds-space-x8)">
-  <div class="ds-carousel__scroller">
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
-        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=960&q=70" alt="산으로 둘러싸인 호수">
-      </a>
-    </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=960&q=70" alt="구름 위로 솟은 산">
-      </a>
-    </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
-        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=960&q=70" alt="안개 낀 산자락">
-      </a>
-    </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=960&q=70" alt="햇살이 드는 숲">
-      </a>
-    </div>
-  </div>
-  <button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i></button>
-  <button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음"><i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></button>
-  <div class="ds-carousel__controls">
-    <button type="button" class="ds-carousel__play" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button>
-    <button type="button" class="ds-carousel__count" data-ds-open="carousel-all" aria-label="전체 배너 보기">1/4<i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
-  </div>
-</div>
-<dialog class="ds-dialog" id="carousel-all" data-size="large" aria-labelledby="carousel-all-title">
-  <div class="ds-dialog__header">
-    <h2 class="ds-dialog__title" id="carousel-all-title">전체 보기</h2>
-    <button class="ds-dialog__close" data-ds-close aria-label="닫기"></button>
-  </div>
-  <div class="ds-dialog__body"><div class="ds-carousel__all"></div></div>
-</dialog>
-```
-
 ### 배너 아래 진행 막대로 넘기기
 
 배너 아래 한 줄에 진행 막대, 번호, 이동과 멈춤 버튼을 둡니다. 막대가 지금 몇 번째까지 왔는지 채워 보여 줍니다.

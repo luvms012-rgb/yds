@@ -27,6 +27,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | **Do** | 색만으로 뜻을 전하지 않도록 글자와 함께 사용합니다. |
 | **Do** | 프로필 사진 위의 상태는 Avatar의 Status를 사용합니다. |
+| **Do** | 표의 상태 열에도 점과 글자를 함께 넣고 가운데 정렬합니다. |
 
 ## 예시
 
@@ -102,45 +103,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </a>
   </li>
 </ul>
-```
-
-### 표의 상태 열
-
-관리 표의 상태 열에도 점과 글자를 함께 넣고 가운데 정렬합니다. 상태처럼 짧고 길이가 비슷한 값은 가운데 정렬해야 위아래로 비교하기 쉽습니다.
-
-```html
-<div class="ds-table-wrap">
-  <table class="ds-table">
-    <thead>
-      <tr>
-        <th scope="col">장비</th>
-        <th scope="col">위치</th>
-        <th scope="col" data-align="center" style="width: 136px">상태</th>
-        <th scope="col" data-align="center" style="width: 120px">마지막 확인</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1강의실 프로젝터</td>
-        <td>본관 2층</td>
-        <td data-align="center"><span class="u-flex u-center u-gap-1_5"><span class="ds-statusdot" data-tone="positive"></span>정상</span></td>
-        <td data-align="center">10분 전</td>
-      </tr>
-      <tr>
-        <td>2강의실 마이크</td>
-        <td>본관 2층</td>
-        <td data-align="center"><span class="u-flex u-center u-gap-1_5"><span class="ds-statusdot" data-tone="warning"></span>점검 필요</span></td>
-        <td data-align="center">1시간 전</td>
-      </tr>
-      <tr>
-        <td>3강의실 카메라</td>
-        <td>별관 1층</td>
-        <td data-align="center"><span class="u-flex u-center u-gap-1_5"><span class="ds-statusdot" data-tone="critical"></span>연결 끊김</span></td>
-        <td data-align="center">어제</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 ```
 
 ## 규격

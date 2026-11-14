@@ -99,34 +99,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 값 선택은 Select에, 실행은 Menu에
-
-정렬처럼 값을 선택하는 일은 Select를 사용하고, Menu에는 바로 실행하는 동작만 담습니다. 아이콘 없이도 뜻이 분명하면 모든 항목에서 아이콘을 빼 모양을 통일합니다.
-
-```html
-<div class="u-col u-gap-1 u-full" style="max-width: 420px">
-  <div class="u-flex u-center u-between u-gap-2">
-    <span class="ds-t05 ds-fw-bold">주문 내역 24건</span>
-    <div class="u-flex u-gap-2">
-      <div style="width: 120px">
-        <button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-label="정렬">
-          <span class="ds-select__value">최신순</span>
-        </button>
-      </div>
-      <button class="ds-btn" data-variant="neutralOutline" data-layout="iconOnly" aria-label="더보기" aria-haspopup="menu" aria-expanded="true"><i class="ds-icon ds-icon--ellipsis" aria-hidden="true"></i></button>
-    </div>
-  </div>
-  <div class="u-flex">
-    <span class="u-grow"></span>
-    <div class="ds-menu" role="menu">
-      <button class="ds-menu-item" role="menuitem">내려받기</button>
-      <button class="ds-menu-item" role="menuitem">인쇄하기</button>
-      <button class="ds-menu-item" role="menuitem">메일로 보내기</button>
-    </div>
-  </div>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

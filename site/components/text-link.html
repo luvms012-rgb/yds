@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -145,7 +145,8 @@
 <tbody><tr><td><code>Figma state</code></td><td><span class="ds-badge">enabled</span> <span class="ds-badge">hover</span></td></tr></tbody></table></div><p class="site-note">그 밖에: <code>--ds-link-color(-hover)</code></p>
 <h2 id="guide">사용 지침<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="guide"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><div class="ds-table-wrap"><table class="ds-table" data-size="small">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
-<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>링크 글에는 이동할 화면을 작성합니다. &quot;여기&quot;, &quot;더 보기&quot;만 사용하지 않습니다.</td></tr>
+<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>체크박스 옆 약관 링크는 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>링크 글에는 이동할 화면을 작성합니다. &quot;여기&quot;, &quot;더 보기&quot;만 사용하지 않습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>전체 보기처럼 묶음 밖으로 이동하는 링크는 끝에 chevron-right 아이콘을 붙입니다. 화살표가 있으면 밑줄 없이 표시됩니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>화면을 이동하지 않는 동작에는 사용하지 않습니다. 동작에는 Action Button을 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>문장 안 링크에는 화살표를 붙이지 않습니다. 문장 안 링크는 밑줄로 구분합니다.</td></tr></tbody></table></div>
@@ -251,42 +252,6 @@
     &lt;/<span class="hl-t">li</span>&gt;
   &lt;/<span class="hl-t">ul</span>&gt;
 &lt;/<span class="hl-t">section</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>동의 항목 옆 약관 원문 링크</h3>
-<p>동의 체크박스 오른쪽에 작은 Text Link를 배치해 약관 원문을 엽니다. 링크를 체크박스 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-2" style="width: 100%; max-width: 360px">
-  <div class="u-flex u-center u-between u-gap-3">
-    <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="text-link-ex3-terms"><span class="ds-checkbox__label">(필수) 이용 약관에 동의해요</span></label>
-    <a class="ds-link" data-size="small" href="#" aria-label="이용 약관 보기">보기</a>
-  </div>
-  <div class="u-flex u-center u-between u-gap-3">
-    <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="text-link-ex3-privacy"><span class="ds-checkbox__label">(필수) 개인 정보 수집과 이용에 동의해요</span></label>
-    <a class="ds-link" data-size="small" href="#" aria-label="개인 정보 수집과 이용 보기">보기</a>
-  </div>
-  <div class="u-flex u-center u-between u-gap-3">
-    <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="text-link-ex3-ads"><span class="ds-checkbox__label">(선택) 할인과 이벤트 소식을 받을래요</span></label>
-    <a class="ds-link" data-size="small" href="#" aria-label="마케팅 정보 수신 보기">보기</a>
-  </div>
-</div></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-2&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%; max-width: 360px&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-center u-between u-gap-3&quot;</span>&gt;
-    &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;text-link-ex3-terms&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;(필수) 이용 약관에 동의해요&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-link&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;이용 약관 보기&quot;</span>&gt;보기&lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-center u-between u-gap-3&quot;</span>&gt;
-    &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;text-link-ex3-privacy&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;(필수) 개인 정보 수집과 이용에 동의해요&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-link&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;개인 정보 수집과 이용 보기&quot;</span>&gt;보기&lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-center u-between u-gap-3&quot;</span>&gt;
-    &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;text-link-ex3-ads&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;(선택) 할인과 이벤트 소식을 받을래요&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-link&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;마케팅 정보 수신 보기&quot;</span>&gt;보기&lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>
 <h2 id="spec">규격<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="spec"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>CSS 변수</h3><p>서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.</p><div class="ds-table-wrap"><table class="ds-table" data-size="small">

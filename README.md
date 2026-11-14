@@ -489,6 +489,19 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 - **Pagination** - 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에는 ghost를 사용합니다.
 - **Quantity Picker** - 구매 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다.
 - **Prefix Select** - 테두리 있는 입력 필드에는 medium을 사용해 글자 크기를 필드와 맞춥니다.
+- **Badge** - 분류처럼 반복되는 배지는 기본 색 하나로 통일하고, 진한 solid 배지는 새 메뉴처럼 한 곳에만 사용합니다.
+- **Chip Tabs** - 제목 아래 영역에 둘 때는 `data-inset="none"`으로 제목과 왼쪽 끝을 맞춥니다.
+- **Skeleton** - 여러 줄 글이 들어올 자리는 `data-shape="text"`로 줄 모양을 표시합니다.
+- **Snackbar** - 요청이 실패하면 실패 이유를 짧게 적고 다시 시도 버튼을 함께 둡니다.
+- **Status Dot** - 표의 상태 열에도 점과 글자를 함께 넣고 가운데 정렬합니다.
+- **Text Link** - 체크박스 옆 약관 링크는 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다.
+- **Top Navigation** - 로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 둡니다.
+- **Alert Dialog** - 확인 버튼에는 "나가기"처럼 실제로 일어나는 동작을 적습니다.
+- **Banner** - 바로 알아야 하는 장애 공지는 critical 톤과 `role="alert"`로 표시하고, 지금 쓸 수 있는 다른 방법까지 안내합니다.
+- **Action Button** - 목록 항목마다 두는 버튼은 small 크기의 neutralWeak를 사용합니다.
+- **Image Frame** - 흰 배경 사진에는 `data-stroke`로 옅은 테두리를 둘러 화면 배경과 구분합니다.
+- **Select Trigger** - 목록 위 정렬처럼 좁은 영역에는 medium을 사용합니다.
+- **Tree** - 좁은 영역에서는 연결선 없이 들여쓰기만 사용합니다.
 - **Markdown / Code Block / Citation** - AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. 코드는 Code Block에 넣습니다. 근거는 번호나 출처 칩(Citation)으로 표시합니다.
 - **Multi Select vs Select** - 여러 개를 선택할 때만 Multi Select를 사용합니다. 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다.
 - **Chat** - 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다. 입력란이 비어 있으면 보내기 버튼을 비활성화합니다. 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다.

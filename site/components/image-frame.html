@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -158,7 +158,8 @@
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>사진은 Image Frame의 비율에 맞춰 꽉 채웁니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>카드 안 사진은 <code>data-radius</code>로 카드 모서리와 맞춥니다.</td></tr></tbody></table></div>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>카드 안 사진은 <code>data-radius</code>로 카드 모서리와 맞춥니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>흰 배경 사진에는 <code>data-stroke</code>로 옅은 테두리를 둘러 화면 배경과 구분합니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>목록 썸네일 비율 통일</h3>
 <p>목록 썸네일은 1:1 프레임에 사진을 꽉 채워, 올린 사진의 비율이 달라도 목록이 가지런합니다. 작은 썸네일에는 <code>data-radius=&quot;md&quot;</code>처럼 작은 모서리를 사용합니다.</p>
 <div class="site-example">
@@ -223,46 +224,6 @@
     &lt;/<span class="hl-t">a</span>&gt;
   &lt;/<span class="hl-t">li</span>&gt;
 &lt;/<span class="hl-t">ul</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>흰 배경 사진에는 테두리</h3>
-<p>흰 배경의 상품 사진은 <code>data-stroke</code>로 옅은 테두리를 둘러 화면 배경과 구분합니다. 사진과 화면이 같은 색이라 사진의 경계를 알기 어려울 때 사용합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-flex u-gap-3 u-full" style="max-width: 420px">
-  <div class="u-col u-gap-2 u-grow">
-    <div class="ds-imageframe" data-radius="md" data-stroke><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=70" alt="검은색 러닝화"></div>
-    <div class="u-col u-gap-0_5">
-      <span class="ds-t04">가벼운 러닝화</span>
-      <span class="ds-t05 ds-fw-bold">59,000원</span>
-    </div>
-  </div>
-  <div class="u-col u-gap-2 u-grow">
-    <div class="ds-imageframe" data-radius="md" data-stroke><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=70" alt="흰색 손목시계"></div>
-    <div class="u-col u-gap-0_5">
-      <span class="ds-t04">흰색 스마트 워치</span>
-      <span class="ds-t05 ds-fw-bold">129,000원</span>
-    </div>
-  </div>
-</div></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-gap-3 u-full&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 420px&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-2 u-grow&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-imageframe&quot;</span> <span class="hl-f">data-radius</span>=<span class="hl-s">&quot;md&quot;</span> <span class="hl-f">data-stroke</span>&gt;&lt;<span class="hl-t">img</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&amp;fit=crop&amp;w=400&amp;q=70&quot;</span> <span class="hl-f">alt</span>=<span class="hl-s">&quot;검은색 러닝화&quot;</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-0_5&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t04&quot;</span>&gt;가벼운 러닝화&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t05 ds-fw-bold&quot;</span>&gt;59,000원&lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-2 u-grow&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-imageframe&quot;</span> <span class="hl-f">data-radius</span>=<span class="hl-s">&quot;md&quot;</span> <span class="hl-f">data-stroke</span>&gt;&lt;<span class="hl-t">img</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&amp;fit=crop&amp;w=400&amp;q=70&quot;</span> <span class="hl-f">alt</span>=<span class="hl-s">&quot;흰색 손목시계&quot;</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-0_5&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t04&quot;</span>&gt;흰색 스마트 워치&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t05 ds-fw-bold&quot;</span>&gt;129,000원&lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>
 <h2 id="spec">규격<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="spec"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>CSS 변수</h3><p>서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.</p><div class="ds-table-wrap"><table class="ds-table" data-size="small">

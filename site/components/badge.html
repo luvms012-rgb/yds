@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -162,6 +162,7 @@
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>누를 수 없는 표시용 라벨로만 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>같은 위치의 상태는 모두 배지로 표시하고, 강약은 색으로만 구분합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>분류처럼 반복되는 배지는 기본 색 하나로 통일하고, 진한 solid 배지는 새 메뉴처럼 한 곳에만 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>1~2단어로 작성합니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>목록의 상태를 같은 모양으로 알리기</h3>
 <p>같은 자리의 상태는 모두 배지로 보여 줍니다. 할 일이 남은 상태만 눈에 띄는 색으로 두어, 확인할 줄이 바로 보입니다.</p>
@@ -229,104 +230,6 @@
         &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;12월 14일 오전 10시&lt;/<span class="hl-t">span</span>&gt;
       &lt;/<span class="hl-t">span</span>&gt;
       &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__suffix&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-badge&quot;</span>&gt;접수 완료&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
-    &lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-&lt;/<span class="hl-t">ul</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>분류를 짧게 붙이기</h3>
-<p>강의 이름 앞에 분류를 한두 낱말로 붙입니다. 분류는 모두 같은 기본 색으로 두어 강의 이름이 먼저 읽히게 합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><ul class="ds-list" data-inset data-divider style="max-width: 420px">
-  <li>
-    <a class="ds-list-item" href="#">
-      <span class="ds-list-item__content">
-        <span class="ds-list-item__title"><span class="ds-badge">어학</span> 토익 실전 문제 풀이</span>
-        <span class="ds-list-item__desc">강의 24개, 12시간</span>
-      </span>
-    </a>
-  </li>
-  <li>
-    <a class="ds-list-item" href="#">
-      <span class="ds-list-item__content">
-        <span class="ds-list-item__title"><span class="ds-badge">자격증</span> 컴퓨터 활용 능력 1급</span>
-        <span class="ds-list-item__desc">강의 30개, 18시간</span>
-      </span>
-    </a>
-  </li>
-</ul></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">ul</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list&quot;</span> <span class="hl-f">data-inset</span> <span class="hl-f">data-divider</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 420px&quot;</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-badge&quot;</span>&gt;어학&lt;/<span class="hl-t">span</span>&gt; 토익 실전 문제 풀이&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;강의 24개, 12시간&lt;/<span class="hl-t">span</span>&gt;
-      &lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-badge&quot;</span>&gt;자격증&lt;/<span class="hl-t">span</span>&gt; 컴퓨터 활용 능력 1급&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;강의 30개, 18시간&lt;/<span class="hl-t">span</span>&gt;
-      &lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-&lt;/<span class="hl-t">ul</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>새로 생긴 메뉴 하나만 강조하기</h3>
-<p>새 메뉴 하나에만 진한 브랜드 배지를 붙입니다. 여러 곳에 붙이면 무엇이 새것인지 알 수 없습니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><ul class="ds-list" data-inset data-divider style="max-width: 420px">
-  <li>
-    <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span>
-      <span class="ds-list-item__content"><span class="ds-list-item__title">내 강의실</span></span>
-      <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--sparkles" aria-hidden="true"></i></span>
-      <span class="ds-list-item__content"><span class="ds-list-item__title">AI 학습 도우미 <span class="ds-badge" data-variant="solid" data-tone="brand">NEW</span></span></span>
-      <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-    </a>
-  </li>
-  <li>
-    <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--settings" aria-hidden="true"></i></span>
-      <span class="ds-list-item__content"><span class="ds-list-item__title">설정</span></span>
-      <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-    </a>
-  </li>
-</ul></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">ul</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list&quot;</span> <span class="hl-f">data-inset</span> <span class="hl-f">data-divider</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 420px&quot;</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__prefix&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--book-open&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;내 강의실&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
-    &lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__prefix&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--sparkles&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;AI 학습 도우미 &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-badge&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;solid&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;brand&quot;</span>&gt;NEW&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
-    &lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__prefix&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--settings&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;설정&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
       &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
     &lt;/<span class="hl-t">a</span>&gt;
   &lt;/<span class="hl-t">li</span>&gt;

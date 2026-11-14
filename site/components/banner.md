@@ -41,6 +41,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | **Do** | Banner는 화면 맨 위에 전체 폭으로 배치하고, 한 번에 하나만 표시합니다. |
 | **Do** | 본문 안의 안내는 Callout을 사용합니다. |
+| **Do** | 바로 알아야 하는 장애 공지는 critical 톤과 `role="alert"`로 표시하고, 지금 쓸 수 있는 다른 방법까지 안내합니다. |
 | **Do** | 같은 상태의 배너는 하나로 합칩니다. |
 | **Don't** | 오류 배너는 해결될 때까지 닫기 버튼을 두지 않습니다. |
 
@@ -86,36 +87,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       </a>
     </li>
   </ul>
-</div>
-```
-
-### 긴급 장애 공지
-
-결제 장애처럼 바로 알아야 하는 공지는 critical 톤과 `role="alert"`로 표시합니다. 문구에는 지금 사용할 수 있는 다른 방법까지 안내합니다.
-
-```html
-<div style="width: 100%">
-  <div class="ds-banner" role="alert" data-tone="critical">
-    <div class="ds-banner__inner">
-      <i class="ds-icon ds-icon--circle-alert-solid" aria-hidden="true"></i>
-      <p class="ds-banner__message"><strong class="ds-banner__title">결제 장애</strong>  일부 카드 결제가 되지 않아요. 계좌 이체나 간편 결제를 써 주세요.</p>
-    </div>
-  </div>
-  <header class="ds-topnav">
-    <div class="ds-topnav__left">
-      <a class="ds-topnav__heading" href="#"><span class="ds-t06 ds-fw-bold">서비스 이름</span></a>
-      <nav class="ds-topnav__menu u-show-from-md" aria-label="주요 메뉴">
-        <a class="ds-topnav__item" href="#" aria-current="page">홈</a>
-        <a class="ds-topnav__item" href="#">쇼핑</a>
-        <a class="ds-topnav__item" href="#">주문 내역</a>
-        <a class="ds-topnav__item" href="#">고객센터</a>
-      </nav>
-    </div>
-    <div class="ds-topnav__end">
-      <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="검색"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
-      <a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="#">로그인</a>
-    </div>
-  </header>
 </div>
 ```
 

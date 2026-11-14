@@ -27,6 +27,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
+| **Do** | 목록 위 정렬처럼 좁은 영역에는 medium을 사용합니다. |
 | **Do** | 선택지가 2개면 Segmented Control이나 Radio Group을, 예와 아니오는 Switch나 Checkbox를 사용합니다. |
 | **Do** | 선택지가 8개를 넘으면 묶음 제목으로 나눕니다. |
 
@@ -47,41 +48,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-field__footer">
     <p class="ds-field__help" id="select-trigger-ex1-help">가까운 시험장을 먼저 보여 드려요</p>
   </div>
-</div>
-```
-
-### 목록 위 정렬 선택
-
-목록 위 정렬처럼 좁은 영역에는 `data-size="medium"`을 사용합니다. 정렬은 값을 선택하는 동작이므로 Menu가 아닌 Select를 사용합니다.
-
-```html
-<div class="u-col u-gap-3 u-full" style="max-width: 420px">
-  <div class="u-flex u-center u-between">
-    <span class="ds-t04 ds-fg-muted">강의 32개</span>
-    <button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-label="정렬 기준" style="width: 128px">
-      <span class="ds-select__value">최신순</span>
-    </button>
-  </div>
-  <ul class="ds-list" data-inset data-divider>
-    <li>
-      <a class="ds-list-item" href="#">
-        <span class="ds-list-item__content">
-          <span class="ds-list-item__title">여행 영어 첫걸음</span>
-          <span class="ds-list-item__desc">11월 3일 열림</span>
-        </span>
-        <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li>
-      <a class="ds-list-item" href="#">
-        <span class="ds-list-item__content">
-          <span class="ds-list-item__title">비즈니스 이메일 쓰기</span>
-          <span class="ds-list-item__desc">10월 27일 열림</span>
-        </span>
-        <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-      </a>
-    </li>
-  </ul>
 </div>
 ```
 

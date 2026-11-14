@@ -95,36 +95,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 여러 카드는 variant 하나로 통일
-
-나란히 놓는 요약 카드는 variant 하나로 통일하고 같은 목록 안에서 섞지 않습니다. 모양이 같아야 카드가 많아도 한 묶음으로 읽힙니다.
-
-```html
-<div class="u-flex u-wrap u-gap-3" style="width: 100%; max-width: 624px">
-  <article class="ds-card" data-size="small" style="width: 100%; max-width: 200px">
-    <header class="ds-card__header">
-      <h3 class="ds-card__title">이번 달 주문</h3>
-      <p class="ds-card__desc">지난달보다 12% 늘었어요</p>
-    </header>
-    <div class="ds-card__content ds-t09 ds-fw-bold">1,284건</div>
-  </article>
-  <article class="ds-card" data-size="small" style="width: 100%; max-width: 200px">
-    <header class="ds-card__header">
-      <h3 class="ds-card__title">새 회원</h3>
-      <p class="ds-card__desc">지난달보다 4% 늘었어요</p>
-    </header>
-    <div class="ds-card__content ds-t09 ds-fw-bold">312명</div>
-  </article>
-  <article class="ds-card" data-size="small" style="width: 100%; max-width: 200px">
-    <header class="ds-card__header">
-      <h3 class="ds-card__title">환불 요청</h3>
-      <p class="ds-card__desc">지난달과 같아요</p>
-    </header>
-    <div class="ds-card__content ds-t09 ds-fw-bold">8건</div>
-  </article>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

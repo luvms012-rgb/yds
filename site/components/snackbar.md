@@ -42,6 +42,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 4초 동안 표시하고, 한 번에 하나만 띄웁니다. |
+| **Do** | 요청이 실패하면 실패 이유를 짧게 적고 다시 시도 버튼을 함께 둡니다. |
 | **Do** | 결과만 몇 단어로 알립니다. |
 | **Do** | 되돌릴 수 있는 작업에는 "실행 취소" 버튼을 제공합니다. |
 | **Do** | 입력 오류는 입력 필드 아래 안내 글로, 작업을 막는 오류는 Banner로 알립니다. 이때 Snackbar는 사용하지 않습니다. |
@@ -109,22 +110,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </div>
   </li>
 </ul>
-```
-
-### 실패 시 다시 시도 제공
-
-요청이 실패하면 critical 아이콘과 다시 시도 버튼을 함께 표시합니다. 문구에는 실패한 이유를 짧게 적고, 버튼으로 바로 다시 시도할 수 있게 합니다.
-
-```html
-<article class="ds-card" data-size="small" style="width: 100%; max-width: 360px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">신규 회원 10% 할인 쿠폰</h3>
-    <p class="ds-card__desc">11월 30일까지 쓸 수 있어요.</p>
-  </header>
-  <footer class="ds-card__footer">
-    <button type="button" class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('연결이 불안정해 쿠폰을 받지 못했어요', { tone: 'critical', action: '다시 시도' })">쿠폰 받기</button>
-  </footer>
-</article>
 ```
 
 ## 규격

@@ -54,6 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 메뉴는 7개까지 둡니다. |
 | **Do** | 현재 화면이 속한 메뉴에는 `aria-current="page"`를 붙입니다. |
 | **Do** | 화면이 좁아지면 Top App Bar와 메뉴 버튼으로 전환합니다. |
+| **Do** | 로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 둡니다. |
 
 ## 예시
 
@@ -76,31 +77,6 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
   <div class="ds-topnav__end">
     <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="검색"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
     <a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="#">로그인</a>
-  </div>
-</header>
-```
-
-### 로그인 후 알림과 내 정보 버튼
-
-로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 표시합니다. 메뉴는 7개까지만 두고, 더 많으면 묶어서 하위 화면으로 옮깁니다.
-
-```html
-<header class="ds-topnav" style="width: 100%">
-  <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://luvms012-rgb.github.io/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
-    <nav class="ds-topnav__menu" aria-label="주요 메뉴">
-      <a class="ds-topnav__item" href="#">홈</a>
-      <a class="ds-topnav__item" href="#">강의</a>
-      <a class="ds-topnav__item" href="#">자격증</a>
-      <a class="ds-topnav__item" href="#" aria-current="page">커뮤니티</a>
-      <a class="ds-topnav__item" href="#">이벤트</a>
-      <a class="ds-topnav__item" href="#">고객센터</a>
-    </nav>
-  </div>
-  <div class="ds-topnav__end">
-    <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="검색"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
-    <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button>
-    <a class="ds-avatar" href="#" aria-label="내 정보"></a>
   </div>
 </header>
 ```

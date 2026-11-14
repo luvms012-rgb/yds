@@ -29,6 +29,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 콘텐츠 분류를 바꿀 때 사용합니다. |
+| **Do** | 제목 아래 영역에 둘 때는 `data-inset="none"`으로 제목과 왼쪽 끝을 맞춥니다. |
 | **Do** | 선택은 항상 하나만 유지합니다. 여러 개를 선택하려면 Chip을 사용하세요. |
 | **Don't** | 화면의 주요 메뉴로는 사용하지 않습니다. 주요 메뉴는 Tabs를 사용합니다. Chip Tabs는 한 화면 안에서 필터링하거나 하위 내용을 바꿀 때 사용합니다. |
 | **Don't** | 한 줄 안에서 variant와 size를 섞지 않습니다. |
@@ -113,36 +114,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </li>
   </ul>
 </div>
-```
-
-### 제목 아래 영역에 배치
-
-제목 아래 영역에 배치할 때는 `data-inset="none"`으로 좌우 여백을 없애 제목과 왼쪽 끝을 맞춥니다. 한 줄 안의 항목은 모두 같은 variant와 크기로 통일합니다.
-
-```html
-<section class="u-col u-gap-4" style="width: 100%; max-width: 640px">
-  <h3 class="ds-t07 ds-fw-bold">이번 주 인기 강의</h3>
-  <div class="ds-chiptabs" role="tablist" aria-label="강의 분류" data-variant="neutralOutline" data-inset="none">
-    <button class="ds-chiptabs__trigger" role="tab" aria-selected="true">전체</button>
-    <button class="ds-chiptabs__trigger" role="tab" aria-selected="false">어학</button>
-    <button class="ds-chiptabs__trigger" role="tab" aria-selected="false">자격증</button>
-    <button class="ds-chiptabs__trigger" role="tab" aria-selected="false">취업</button>
-  </div>
-  <div class="u-flex u-gap-3">
-    <a class="ds-card u-grow" data-size="small" href="#">
-      <header class="ds-card__header">
-        <h4 class="ds-card__title">영어 회화 첫걸음</h4>
-        <p class="ds-card__desc">강의 24개, 12시간</p>
-      </header>
-    </a>
-    <a class="ds-card u-grow" data-size="small" href="#">
-      <header class="ds-card__header">
-        <h4 class="ds-card__title">엑셀 실무 기초</h4>
-        <p class="ds-card__desc">강의 18개, 9시간</p>
-      </header>
-    </a>
-  </div>
-</section>
 ```
 
 ## 규격

@@ -43,6 +43,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | --- | --- |
 | **Do** | 되돌릴 수 없는 작업을 확인받을 때 사용합니다. |
 | **Do** | 바깥을 눌러도 닫히지 않고 버튼으로만 닫힙니다. |
+| **Do** | 확인 버튼에는 "나가기"처럼 실제로 일어나는 동작을 적습니다. |
 | **Do** | 설명에는 버튼을 누르면 일어나는 결과를 적습니다. |
 | **Do** | 처음 포커스는 취소 버튼에 둡니다. |
 | **Don't** | 작업이 끝날 때까지 창을 닫지 않습니다. |
@@ -73,33 +74,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-alertdialog__footer" data-action="critical">
     <button class="ds-btn" data-variant="neutralWeak" data-ds-close>취소</button>
     <button class="ds-btn" data-variant="criticalSolid" data-ds-close>삭제</button>
-  </div>
-</dialog>
-```
-
-### 작성 중 나가기 확인
-
-작성 중인 내용이 사라지는 동작 전에 한 번 더 확인하고, 두 버튼은 가로(`pair`)로 나란히 배치합니다. 확인 버튼에는 "나가기"처럼 실제로 일어나는 동작을 적습니다.
-
-```html
-<div style="width: 100%; max-width: 375px">
-  <header class="ds-appbar" data-platform="android">
-    <div class="ds-appbar__left"></div>
-    <div class="ds-appbar__main"><h1 class="ds-appbar__title">후기 쓰기</h1></div>
-    <div class="ds-appbar__right">
-      <button type="button" class="ds-appbar__button" aria-label="닫기" data-ds-open="alert-dialog-ex2"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
-    </div>
-  </header>
-  <textarea class="ds-textarea" rows="4" aria-label="후기">배송이 빠르고 포장도 꼼꼼했어요.</textarea>
-</div>
-<dialog class="ds-dialog ds-alertdialog" id="alert-dialog-ex2" role="alertdialog" aria-labelledby="alert-dialog-ex2-title" aria-describedby="alert-dialog-ex2-desc">
-  <div class="ds-alertdialog__header">
-    <h2 id="alert-dialog-ex2-title" class="ds-alertdialog__title">후기 쓰기를 그만둘까요?</h2>
-    <p id="alert-dialog-ex2-desc" class="ds-alertdialog__desc">지금 나가면 쓴 내용이 사라져요.</p>
-  </div>
-  <div class="ds-alertdialog__footer" data-action="pair">
-    <button class="ds-btn" data-variant="neutralWeak" data-ds-close>계속 쓰기</button>
-    <button class="ds-btn" data-variant="neutralSolid" data-ds-close>나가기</button>
   </div>
 </dialog>
 ```

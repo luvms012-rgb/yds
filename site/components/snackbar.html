@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -158,6 +158,7 @@
 <h2 id="guide">사용 지침<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="guide"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><div class="ds-table-wrap"><table class="ds-table" data-size="small">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>4초 동안 표시하고, 한 번에 하나만 띄웁니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>요청이 실패하면 실패 이유를 짧게 적고 다시 시도 버튼을 함께 둡니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>결과만 몇 단어로 알립니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>되돌릴 수 있는 작업에는 &quot;실행 취소&quot; 버튼을 제공합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>입력 오류는 입력 필드 아래 안내 글로, 작업을 막는 오류는 Banner로 알립니다. 이때 Snackbar는 사용하지 않습니다.</td></tr></tbody></table></div>
@@ -273,32 +274,6 @@
     &lt;/<span class="hl-t">div</span>&gt;
   &lt;/<span class="hl-t">li</span>&gt;
 &lt;/<span class="hl-t">ul</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>실패 시 다시 시도 제공</h3>
-<p>요청이 실패하면 critical 아이콘과 다시 시도 버튼을 함께 표시합니다. 문구에는 실패한 이유를 짧게 적고, 버튼으로 바로 다시 시도할 수 있게 합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><article class="ds-card" data-size="small" style="width: 100%; max-width: 360px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">신규 회원 10% 할인 쿠폰</h3>
-    <p class="ds-card__desc">11월 30일까지 쓸 수 있어요.</p>
-  </header>
-  <footer class="ds-card__footer">
-    <button type="button" class="ds-btn" data-variant="neutralWeak" onclick="DS.snackbar('연결이 불안정해 쿠폰을 받지 못했어요', { tone: 'critical', action: '다시 시도' })">쿠폰 받기</button>
-  </footer>
-</article></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">article</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%; max-width: 360px&quot;</span>&gt;
-  &lt;<span class="hl-t">header</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h3</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__title&quot;</span>&gt;신규 회원 10% 할인 쿠폰&lt;/<span class="hl-t">h3</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__desc&quot;</span>&gt;11월 30일까지 쓸 수 있어요.&lt;/<span class="hl-t">p</span>&gt;
-  &lt;/<span class="hl-t">header</span>&gt;
-  &lt;<span class="hl-t">footer</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-card__footer&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">onclick</span>=<span class="hl-s">&quot;DS.snackbar('연결이 불안정해 쿠폰을 받지 못했어요', { tone: 'critical', action: '다시 시도' })&quot;</span>&gt;쿠폰 받기&lt;/<span class="hl-t">button</span>&gt;
-  &lt;/<span class="hl-t">footer</span>&gt;
-&lt;/<span class="hl-t">article</span>&gt;</code></pre>
 </figure></div>
 </div>
 <h2 id="spec">규격<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="spec"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>크기와 여백</h3><pre class="site-spec">variant: default / positive / critical

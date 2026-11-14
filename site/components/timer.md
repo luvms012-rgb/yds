@@ -65,30 +65,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </script>
 ```
 
-### 할인 종료까지 남은 시간 강조
-
-할인이 끝날 때까지 남은 시간을 굵고 큰 글자로 표시합니다. 배치되는 위치에 맞춰 `ds-t09`, `ds-fw-bold` 같은 글자 클래스로 크기와 색을 바꿉니다.
-
-```html
-<article class="ds-card" style="width: 100%; max-width: 360px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">오늘만 30% 할인</h3>
-    <p class="ds-card__desc">자정이 지나면 원래 가격으로 돌아가요.</p>
-  </header>
-  <div class="ds-card__content u-flex u-center u-between">
-    <span class="ds-fg-muted">남은 시간</span>
-    <time class="ds-timer ds-t09 ds-fw-bold ds-fg-neutral" id="timer-ex2">0:00:00</time>
-  </div>
-  <footer class="ds-card__footer">
-    <button type="button" class="ds-btn">할인가로 신청하기</button>
-  </footer>
-</article>
-<script>
-  // 미리보기 전용 - 오늘 자정까지 남은 시간
-  document.getElementById('timer-ex2').setAttribute('data-end', String(new Date().setHours(24, 0, 0, 0)));
-</script>
-```
-
 ### 공부한 시간 표시
 
 경과 시간은 `data-start`에 시작 시각을 넣고 `data-format="elapsed"`로 분과 초를 표시합니다. 공부한 시간처럼 시간의 길이를 읽어야 할 때 사용합니다.

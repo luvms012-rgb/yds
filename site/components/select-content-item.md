@@ -95,27 +95,6 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 </div>
 ```
 
-### "선택 안 함" 항목 제공
-
-쿠폰처럼 사용하지 않는 것도 답이 되는 경우에는 맨 위에 "선택 안 함"을 배치합니다. 지금 사용할 수 없는 쿠폰은 `disabled`로 비활성화하고 이유를 보조 설명에 표시합니다.
-
-```html
-<div class="ds-field u-full" style="max-width: 360px">
-  <div class="ds-field__header">
-    <span class="ds-field__label" id="select-content-item-ex3-label">쿠폰</span>
-  </div>
-  <button type="button" class="ds-select" aria-haspopup="listbox" aria-expanded="true" aria-controls="select-content-item-ex3" aria-labelledby="select-content-item-ex3-label select-content-item-ex3-value"><span class="ds-select__value" id="select-content-item-ex3-value">3,000원 할인 쿠폰</span></button>
-  <div class="ds-select-content" role="listbox" id="select-content-item-ex3" aria-labelledby="select-content-item-ex3-label">
-    <ul class="ds-select-list">
-      <li><button type="button" class="ds-select-item" role="option" aria-selected="false"><span class="ds-select-item__body"><span class="ds-select-item__label">선택 안 함</span></span></button></li>
-      <li><button type="button" class="ds-select-item" role="option" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">3,000원 할인 쿠폰</span><span class="ds-select-item__desc">11월 15일까지</span></span></button></li>
-      <li><button type="button" class="ds-select-item" role="option" aria-selected="false"><span class="ds-select-item__body"><span class="ds-select-item__label">신규 가입 쿠폰</span><span class="ds-select-item__desc">10% 할인, 11월 30일까지</span></span></button></li>
-      <li><button type="button" class="ds-select-item" role="option" aria-selected="false" disabled><span class="ds-select-item__body"><span class="ds-select-item__label">5,000원 할인 쿠폰</span><span class="ds-select-item__desc">5만 원 넘게 주문하면 쓸 수 있어요</span></span></button></li>
-    </ul>
-  </div>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

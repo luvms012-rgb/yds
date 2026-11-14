@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -164,6 +164,7 @@
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>되돌릴 수 없는 작업을 확인받을 때 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>바깥을 눌러도 닫히지 않고 버튼으로만 닫힙니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>확인 버튼에는 &quot;나가기&quot;처럼 실제로 일어나는 동작을 적습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>설명에는 버튼을 누르면 일어나는 결과를 적습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>처음 포커스는 취소 버튼에 둡니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>작업이 끝날 때까지 창을 닫지 않습니다.</td></tr></tbody></table></div>
@@ -213,54 +214,6 @@
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__footer&quot;</span> <span class="hl-f">data-action</span>=<span class="hl-s">&quot;critical&quot;</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-ds-close</span>&gt;취소&lt;/<span class="hl-t">button</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;criticalSolid&quot;</span> <span class="hl-f">data-ds-close</span>&gt;삭제&lt;/<span class="hl-t">button</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">dialog</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>작성 중 나가기 확인</h3>
-<p>작성 중인 내용이 사라지는 동작 전에 한 번 더 확인하고, 두 버튼은 가로(<code>pair</code>)로 나란히 배치합니다. 확인 버튼에는 &quot;나가기&quot;처럼 실제로 일어나는 동작을 적습니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div style="width: 100%; max-width: 375px">
-  <header class="ds-appbar" data-platform="android">
-    <div class="ds-appbar__left"></div>
-    <div class="ds-appbar__main"><h1 class="ds-appbar__title">후기 쓰기</h1></div>
-    <div class="ds-appbar__right">
-      <button type="button" class="ds-appbar__button" aria-label="닫기" data-ds-open="alert-dialog-ex2"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
-    </div>
-  </header>
-  <textarea class="ds-textarea" rows="4" aria-label="후기">배송이 빠르고 포장도 꼼꼼했어요.</textarea>
-</div>
-<dialog class="ds-dialog ds-alertdialog" id="alert-dialog-ex2" role="alertdialog" aria-labelledby="alert-dialog-ex2-title" aria-describedby="alert-dialog-ex2-desc">
-  <div class="ds-alertdialog__header">
-    <h2 id="alert-dialog-ex2-title" class="ds-alertdialog__title">후기 쓰기를 그만둘까요?</h2>
-    <p id="alert-dialog-ex2-desc" class="ds-alertdialog__desc">지금 나가면 쓴 내용이 사라져요.</p>
-  </div>
-  <div class="ds-alertdialog__footer" data-action="pair">
-    <button class="ds-btn" data-variant="neutralWeak" data-ds-close>계속 쓰기</button>
-    <button class="ds-btn" data-variant="neutralSolid" data-ds-close>나가기</button>
-  </div>
-</dialog></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%; max-width: 375px&quot;</span>&gt;
-  &lt;<span class="hl-t">header</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-appbar&quot;</span> <span class="hl-f">data-platform</span>=<span class="hl-s">&quot;android&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-appbar__left&quot;</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-appbar__main&quot;</span>&gt;&lt;<span class="hl-t">h1</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-appbar__title&quot;</span>&gt;후기 쓰기&lt;/<span class="hl-t">h1</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-appbar__right&quot;</span>&gt;
-      &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-appbar__button&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;닫기&quot;</span> <span class="hl-f">data-ds-open</span>=<span class="hl-s">&quot;alert-dialog-ex2&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--x&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">header</span>&gt;
-  &lt;<span class="hl-t">textarea</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-textarea&quot;</span> <span class="hl-f">rows</span>=<span class="hl-s">&quot;4&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;후기&quot;</span>&gt;배송이 빠르고 포장도 꼼꼼했어요.&lt;/<span class="hl-t">textarea</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;
-&lt;<span class="hl-t">dialog</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-dialog ds-alertdialog&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex2&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;alertdialog&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;alert-dialog-ex2-title&quot;</span> <span class="hl-f">aria-describedby</span>=<span class="hl-s">&quot;alert-dialog-ex2-desc&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h2</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex2-title&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__title&quot;</span>&gt;후기 쓰기를 그만둘까요?&lt;/<span class="hl-t">h2</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex2-desc&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__desc&quot;</span>&gt;지금 나가면 쓴 내용이 사라져요.&lt;/<span class="hl-t">p</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__footer&quot;</span> <span class="hl-f">data-action</span>=<span class="hl-s">&quot;pair&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-ds-close</span>&gt;계속 쓰기&lt;/<span class="hl-t">button</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralSolid&quot;</span> <span class="hl-f">data-ds-close</span>&gt;나가기&lt;/<span class="hl-t">button</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
 &lt;/<span class="hl-t">dialog</span>&gt;</code></pre>
 </figure></div>

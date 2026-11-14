@@ -116,35 +116,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 메뉴 이름은 짧게, 비슷한 메뉴는 그룹으로
-
-메뉴 이름은 "주문 내역"처럼 두세 단어로 짧게 작성하고, 성격이 비슷한 메뉴끼리 그룹 이름 아래에 모읍니다. 이름이 길면 240 폭 안에서 잘려 끝까지 읽을 수 없습니다.
-
-```html
-<nav class="ds-sidenav" aria-label="내 메뉴">
-  <div class="ds-sidenav__header">
-    <button type="button" class="ds-sidenav__trigger" aria-label="메뉴 접기"><i class="ds-icon ds-icon--panel-left" aria-hidden="true"></i></button>
-  </div>
-  <div class="ds-sidenav__content">
-    <div class="ds-sidenav__group">
-      <div class="ds-sidenav__group-label">학습</div>
-      <a class="ds-sidenav__item" href="#" aria-current="page"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--house-solid" aria-hidden="true"></i></span><span class="ds-sidenav__label">홈</span></a>
-      <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span><span class="ds-sidenav__label">내 강의실</span></a>
-      <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span><span class="ds-sidenav__label">시험 일정</span></a>
-    </div>
-    <div class="ds-sidenav__group">
-      <div class="ds-sidenav__group-label">내 정보</div>
-      <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--receipt" aria-hidden="true"></i></span><span class="ds-sidenav__label">주문 내역</span></a>
-      <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--tag" aria-hidden="true"></i></span><span class="ds-sidenav__label">쿠폰</span></a>
-      <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--settings" aria-hidden="true"></i></span><span class="ds-sidenav__label">설정</span></a>
-    </div>
-  </div>
-  <div class="ds-sidenav__footer">
-    <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--headset" aria-hidden="true"></i></span><span class="ds-sidenav__label">고객센터</span></a>
-  </div>
-</nav>
-```
-
 ## 규격
 
 ### 크기와 여백

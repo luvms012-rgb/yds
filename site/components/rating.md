@@ -94,33 +94,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 점수와 관계없이 같은 별 색
-
-점수가 낮은 후기도 높은 점수와 같은 색으로 별을 채웁니다. 낮은 점수만 빨간색으로 바꾸면 오류나 경고로 읽힙니다.
-
-```html
-<ul class="ds-list u-full" data-divider style="max-width: 420px">
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content u-gap-1">
-        <span class="ds-rating" data-size="small" style="--ds-rating-value: 5" role="img" aria-label="5점 만점에 5점"><span class="ds-rating__stars"></span><span class="ds-rating__value">5.0</span></span>
-        <span class="ds-list-item__title">예문이 많아서 바로 따라 할 수 있었어요.</span>
-        <span class="ds-tag-group"><span>김하늘</span><span>11월 2일</span></span>
-      </span>
-    </div>
-  </li>
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content u-gap-1">
-        <span class="ds-rating" data-size="small" style="--ds-rating-value: 2" role="img" aria-label="5점 만점에 2점"><span class="ds-rating__stars"></span><span class="ds-rating__value">2.0</span></span>
-        <span class="ds-list-item__title">진도가 빨라서 따라가기 힘들었어요.</span>
-        <span class="ds-tag-group"><span>이준</span><span>10월 30일</span></span>
-      </span>
-    </div>
-  </li>
-</ul>
-```
-
 ## 규격
 
 ### CSS 변수

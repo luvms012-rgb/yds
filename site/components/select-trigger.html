@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -147,7 +147,8 @@
 <tbody><tr><td>켜고 끄는 속성</td><td><code>size</code></td></tr></tbody></table></div>
 <h2 id="guide">사용 지침<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="guide"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><div class="ds-table-wrap"><table class="ds-table" data-size="small">
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
-<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>선택지가 2개면 Segmented Control이나 Radio Group을, 예와 아니오는 Switch나 Checkbox를 사용합니다.</td></tr>
+<tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>목록 위 정렬처럼 좁은 영역에는 medium을 사용합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>선택지가 2개면 Segmented Control이나 Radio Group을, 예와 아니오는 Switch나 Checkbox를 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>선택지가 8개를 넘으면 묶음 제목으로 나눕니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>선택지가 많을 때는 Select</h3>
 <p>지역처럼 선택지가 6개보다 많거나 늘어날 수 있으면 Select 하나에 담습니다. 2~6개라면 Radio Group으로 모두 펼쳐 보여야 더 빠르게 선택할 수 있습니다.</p>
@@ -176,70 +177,6 @@
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__footer&quot;</span>&gt;
     &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__help&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;select-trigger-ex1-help&quot;</span>&gt;가까운 시험장을 먼저 보여 드려요&lt;/<span class="hl-t">p</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>목록 위 정렬 선택</h3>
-<p>목록 위 정렬처럼 좁은 영역에는 <code>data-size=&quot;medium&quot;</code>을 사용합니다. 정렬은 값을 선택하는 동작이므로 Menu가 아닌 Select를 사용합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-3 u-full" style="max-width: 420px">
-  <div class="u-flex u-center u-between">
-    <span class="ds-t04 ds-fg-muted">강의 32개</span>
-    <button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-label="정렬 기준" style="width: 128px">
-      <span class="ds-select__value">최신순</span>
-    </button>
-  </div>
-  <ul class="ds-list" data-inset data-divider>
-    <li>
-      <a class="ds-list-item" href="#">
-        <span class="ds-list-item__content">
-          <span class="ds-list-item__title">여행 영어 첫걸음</span>
-          <span class="ds-list-item__desc">11월 3일 열림</span>
-        </span>
-        <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li>
-      <a class="ds-list-item" href="#">
-        <span class="ds-list-item__content">
-          <span class="ds-list-item__title">비즈니스 이메일 쓰기</span>
-          <span class="ds-list-item__desc">10월 27일 열림</span>
-        </span>
-        <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
-      </a>
-    </li>
-  </ul>
-</div></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-3 u-full&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 420px&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-center u-between&quot;</span>&gt;
-    &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t04 ds-fg-muted&quot;</span>&gt;강의 32개&lt;/<span class="hl-t">span</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-select&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;medium&quot;</span> <span class="hl-f">aria-haspopup</span>=<span class="hl-s">&quot;listbox&quot;</span> <span class="hl-f">aria-expanded</span>=<span class="hl-s">&quot;false&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;정렬 기준&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 128px&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-select__value&quot;</span>&gt;최신순&lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">button</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">ul</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list&quot;</span> <span class="hl-f">data-inset</span> <span class="hl-f">data-divider</span>&gt;
-    &lt;<span class="hl-t">li</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;
-          &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;여행 영어 첫걸음&lt;/<span class="hl-t">span</span>&gt;
-          &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;11월 3일 열림&lt;/<span class="hl-t">span</span>&gt;
-        &lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
-      &lt;/<span class="hl-t">a</span>&gt;
-    &lt;/<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">li</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;
-          &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;비즈니스 이메일 쓰기&lt;/<span class="hl-t">span</span>&gt;
-          &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;10월 27일 열림&lt;/<span class="hl-t">span</span>&gt;
-        &lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
-      &lt;/<span class="hl-t">a</span>&gt;
-    &lt;/<span class="hl-t">li</span>&gt;
-  &lt;/<span class="hl-t">ul</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>

@@ -56,21 +56,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </article>
 ```
 
-### 시작 전에도 바탕 막대 표시
-
-아직 시작하지 않아 0%여도 바탕 막대(track)는 그대로 표시합니다. 막대가 사라지면 이 자리에 진행률이 채워진다는 것을 알 수 없습니다.
-
-```html
-<div class="u-col u-gap-2 u-full" style="max-width: 420px">
-  <div class="u-flex u-center u-between">
-    <span class="ds-t05 ds-fw-semibold">이번 주 학습 목표</span>
-    <span class="ds-t04 ds-fg-muted">0/5시간</span>
-  </div>
-  <div class="ds-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5" aria-label="이번 주 학습 목표" style="--ds-progress-value: 0%"></div>
-  <p class="ds-t03 ds-fg-subtle">첫 강의를 들으면 바로 채워져요</p>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

@@ -76,25 +76,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </ul>
 ```
 
-### 카드 안 기능을 라벨과 함께 켜고 끄기
-
-카드 안에서 자동 연장 같은 기능 하나를 라벨이 있는 Switch로 켜고 끕니다. 켜는 즉시 적용되고 언제든 다시 끌 수 있는 기능에 사용합니다.
-
-```html
-<article class="ds-card" style="width: 100%; max-width: 360px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">프리미엄 이용권</h3>
-    <p class="ds-card__desc">다음 결제일 12월 4일</p>
-  </header>
-  <div class="ds-card__content">
-    <label class="ds-switch u-full u-between">
-      <span class="ds-switch__label">자동 연장</span>
-      <input type="checkbox" role="switch" class="ds-switch__control" checked>
-    </label>
-  </div>
-</article>
-```
-
 ### 변경할 수 없는 설정은 이유 안내
 
 기기에서 알림을 꺼 두어 변경할 수 없는 항목은 Switch를 disabled 상태로 표시하고 이유를 설명에 적습니다. 바로 아래에 기기 설정으로 이동하는 항목을 배치해 다음 동작을 안내합니다.

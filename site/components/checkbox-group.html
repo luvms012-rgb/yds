@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -222,40 +222,6 @@
     &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__help&quot;</span>&gt;답변이 오면 고른 방법으로 알려 줘요.&lt;/<span class="hl-t">p</span>&gt;
     &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__error&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;checkbox-group-ex2-error&quot;</span>&gt;답변 받을 방법을 하나 이상 골라 주세요.&lt;/<span class="hl-t">p</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>성격이 다른 선택은 그룹 밖에</h3>
-<p>수신할 소식처럼 같은 종류만 그룹으로 묶고, 성격이 다른 선택은 Divider 아래에 따로 배치합니다. 저장 버튼으로 한 번에 반영하는 설정이므로 Switch 대신 Checkbox를 사용합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-5" style="width: 100%; max-width: 375px">
-  <div class="ds-field">
-    <div class="ds-field__header"><span class="ds-field__label" id="checkbox-group-ex3-label">받을 소식</span></div>
-    <fieldset class="ds-checkbox-group" aria-labelledby="checkbox-group-ex3-label">
-      <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">주문 진행</span></label>
-      <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">배송 출발</span></label>
-      <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">할인과 이벤트</span></label>
-    </fieldset>
-  </div>
-  <hr class="ds-divider">
-  <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">밤 9시부터 아침 8시까지는 받지 않기</span></label>
-  <button class="ds-btn" data-size="large" data-layout="fill">저장</button>
-</div></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-5&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%; max-width: 375px&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__header&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__label&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;checkbox-group-ex3-label&quot;</span>&gt;받을 소식&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">fieldset</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox-group&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;checkbox-group-ex3-label&quot;</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;neutral&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span> <span class="hl-f">checked</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;주문 진행&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;neutral&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span> <span class="hl-f">checked</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;배송 출발&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;neutral&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;할인과 이벤트&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-    &lt;/<span class="hl-t">fieldset</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">hr</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-divider&quot;</span>&gt;
-  &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;neutral&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;checkbox&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__control&quot;</span> <span class="hl-f">checked</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-checkbox__label&quot;</span>&gt;밤 9시부터 아침 8시까지는 받지 않기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-  &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;fill&quot;</span>&gt;저장&lt;/<span class="hl-t">button</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>

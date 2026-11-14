@@ -65,25 +65,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 상황에 맞는 아이콘과 버튼 하나
-
-쿠폰함이 비어 있으면 쿠폰을 떠올리게 하는 아이콘을 사용하고, 쿠폰을 받을 수 있는 곳으로 이동하는 버튼 하나를 배치합니다. 버튼이 많으면 무엇을 먼저 할지 알기 어려우므로 두 개를 넘기지 않습니다.
-
-```html
-<div class="u-col u-full" style="max-width: 420px">
-  <div class="ds-tabs" role="tablist">
-    <button class="ds-tabs__trigger" role="tab" aria-selected="true">쓸 수 있는 쿠폰</button>
-    <button class="ds-tabs__trigger" role="tab" aria-selected="false">지난 쿠폰</button>
-  </div>
-  <div class="ds-empty">
-    <span class="ds-empty__media"><i class="ds-icon ds-icon--tag" aria-hidden="true"></i></span>
-    <p class="ds-empty__title">쓸 수 있는 쿠폰이 없어요</p>
-    <p class="ds-empty__desc">이벤트에 참여하면 쿠폰을 받을 수 있어요.</p>
-    <div class="ds-empty__actions"><button class="ds-btn" data-variant="neutralWeak">이벤트 보기</button></div>
-  </div>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

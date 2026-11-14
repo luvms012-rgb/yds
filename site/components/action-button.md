@@ -29,6 +29,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | 구분 | 내용 |
 | --- | --- |
 | **Do** | 강조 버튼(High emphasis)은 한 화면에 하나만 사용합니다. |
+| **Do** | 목록 항목마다 두는 버튼은 small 크기의 neutralWeak를 사용합니다. |
 | **Do** | 라벨에는 누르면 일어나는 결과를 동사로 작성합니다. 예) "삭제", "초대 보내기" |
 | **Do** | 아이콘만 있는 버튼의 aria-label에는 대상까지 적습니다. 예) "대화 삭제" |
 | **Do** | 되돌릴 수 없는 critical 동작은 Alert Dialog로 한 번 더 확인받습니다. |
@@ -67,42 +68,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <button class="ds-btn" data-size="large" data-layout="fill">수강 신청하기</button>
   </div>
 </div>
-```
-
-### 목록 항목 안의 작은 보조 버튼
-
-목록 항목마다 배치하는 버튼은 small 크기의 neutralWeak를 사용해 항목마다 강조가 생기지 않게 합니다. 항목 안에 버튼이 있으면 항목 전체를 링크로 만들지 않습니다.
-
-```html
-<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content">
-        <span class="ds-list-item__title">무선 이어폰</span>
-        <span class="ds-list-item__desc">11월 2일 도착</span>
-      </span>
-      <span class="ds-list-item__suffix"><button class="ds-btn" data-variant="neutralWeak" data-size="small">리뷰 쓰기</button></span>
-    </div>
-  </li>
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content">
-        <span class="ds-list-item__title">보온 텀블러</span>
-        <span class="ds-list-item__desc">내일 도착 예정</span>
-      </span>
-      <span class="ds-list-item__suffix"><button class="ds-btn" data-variant="neutralWeak" data-size="small">배송 조회</button></span>
-    </div>
-  </li>
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content">
-        <span class="ds-list-item__title">노트 3권 세트</span>
-        <span class="ds-list-item__desc">10월 28일 도착</span>
-      </span>
-      <span class="ds-list-item__suffix"><button class="ds-btn" data-variant="neutralWeak" data-size="small">다시 담기</button></span>
-    </div>
-  </li>
-</ul>
 ```
 
 ## 규격

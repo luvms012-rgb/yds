@@ -110,38 +110,6 @@ PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을
 </div>
 ```
 
-### 보조 내용을 옆에 모아 표시
-
-알림처럼 하던 일과 별개로 보는 보조 내용은 Side Panel에 모읍니다. 닫으면 보던 화면이 그대로 남아 있어 하던 일로 바로 돌아갈 수 있습니다.
-
-```html
-<div class="u-col u-gap-3 u-full" style="max-width: 480px">
-  <div class="u-flex u-center u-between">
-    <h3 class="ds-t07 ds-fw-bold">내 강의실</h3>
-    <button type="button" class="ds-btn" data-variant="ghost" data-layout="iconOnly" aria-label="알림 열기" data-ds-open="side-panel-ex2"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button>
-  </div>
-  <ul class="ds-list" data-inset data-divider>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">9강부터 이어서 보기</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">16강부터 이어서 보기</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
-  </ul>
-  <dialog class="ds-sidepanel" id="side-panel-ex2" data-size="small" aria-labelledby="side-panel-ex2-title">
-    <div class="ds-sidepanel__header">
-      <div class="ds-sidepanel__texts">
-        <h2 class="ds-sidepanel__title" id="side-panel-ex2-title">알림</h2>
-      </div>
-      <button type="button" class="ds-sidepanel__close" data-ds-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
-    </div>
-    <div class="ds-sidepanel__body">
-      <ul class="ds-list" data-inset data-divider>
-        <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">수강 신청이 확정됐어요</span><span class="ds-list-item__desc">방금</span></span></a></li>
-        <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--truck" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">주문한 교재가 출발했어요</span><span class="ds-list-item__desc">1시간 전</span></span></a></li>
-        <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">내일 오전 10시에 시험이 있어요</span><span class="ds-list-item__desc">어제</span></span></a></li>
-      </ul>
-    </div>
-  </dialog>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

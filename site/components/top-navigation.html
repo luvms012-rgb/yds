@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -174,7 +174,8 @@
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>PC 화면에서만 사용합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>메뉴는 7개까지 둡니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>현재 화면이 속한 메뉴에는 <code>aria-current=&quot;page&quot;</code>를 붙입니다.</td></tr>
-<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>화면이 좁아지면 Top App Bar와 메뉴 버튼으로 전환합니다.</td></tr></tbody></table></div>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>화면이 좁아지면 Top App Bar와 메뉴 버튼으로 전환합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 둡니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>PC 화면 상단의 전체 메뉴</h3>
 <p>PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 배치합니다. 현재 화면이 속한 메뉴에 <code>aria-current=&quot;page&quot;</code>를 붙여 위치를 알립니다.</p>
 <div class="site-example">
@@ -211,50 +212,6 @@
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__end&quot;</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;ghost&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;xsmall&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;검색&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--search&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
     &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;xsmall&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;로그인&lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-&lt;/<span class="hl-t">header</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>로그인 후 알림과 내 정보 버튼</h3>
-<p>로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 표시합니다. 메뉴는 7개까지만 두고, 더 많으면 묶어서 하위 화면으로 옮깁니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><header class="ds-topnav" style="width: 100%">
-  <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://luvms012-rgb.github.io/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
-    <nav class="ds-topnav__menu" aria-label="주요 메뉴">
-      <a class="ds-topnav__item" href="#">홈</a>
-      <a class="ds-topnav__item" href="#">강의</a>
-      <a class="ds-topnav__item" href="#">자격증</a>
-      <a class="ds-topnav__item" href="#" aria-current="page">커뮤니티</a>
-      <a class="ds-topnav__item" href="#">이벤트</a>
-      <a class="ds-topnav__item" href="#">고객센터</a>
-    </nav>
-  </div>
-  <div class="ds-topnav__end">
-    <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="검색"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
-    <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button>
-    <a class="ds-avatar" href="#" aria-label="내 정보"></a>
-  </div>
-</header></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">header</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__left&quot;</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__heading&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;&lt;<span class="hl-t">img</span> <span class="hl-f">src</span>=<span class="hl-s">&quot;https://luvms012-rgb.github.io/yds/site/assets/logo-ybmnet.svg&quot;</span> <span class="hl-f">alt</span>=<span class="hl-s">&quot;YBM NET&quot;</span> <span class="hl-f">width</span>=<span class="hl-s">&quot;68&quot;</span> <span class="hl-f">height</span>=<span class="hl-s">&quot;20&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">nav</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__menu&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;주요 메뉴&quot;</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;홈&lt;/<span class="hl-t">a</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;강의&lt;/<span class="hl-t">a</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;자격증&lt;/<span class="hl-t">a</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-current</span>=<span class="hl-s">&quot;page&quot;</span>&gt;커뮤니티&lt;/<span class="hl-t">a</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;이벤트&lt;/<span class="hl-t">a</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;고객센터&lt;/<span class="hl-t">a</span>&gt;
-    &lt;/<span class="hl-t">nav</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__end&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;ghost&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;xsmall&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;검색&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--search&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;ghost&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;xsmall&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;알림&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--bell&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-avatar&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;내 정보&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
 &lt;/<span class="hl-t">header</span>&gt;</code></pre>
 </figure></div>

@@ -26,6 +26,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
+| **Do** | 여러 줄 글이 들어올 자리는 `data-shape="text"`로 줄 모양을 표시합니다. |
 | **Do** | 목록이나 카드처럼 곧 나타날 모양을 미리 표시할 수 있는 곳에 사용합니다. |
 | **Do** | 모서리는 나중에 들어올 콘텐츠와 똑같이 맞춥니다. |
 | **Do** | 로딩이 1~10초 걸리고 모양을 미리 표시할 수 있으면 Skeleton을 사용합니다. 1~4초 동안 기다림만 알리면 될 때는 Progress Circle을 사용합니다. |
@@ -68,22 +69,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </div>
   </li>
 </ul>
-```
-
-### 긴 글은 줄 모양으로 표시
-
-공지 본문처럼 여러 줄 글이 들어올 자리는 `data-shape="text"`로 줄 모양을 표시합니다. 같은 자리에 Progress Circle을 함께 표시하면 로딩을 두 번 알리게 되므로 Skeleton만 사용합니다.
-
-```html
-<article class="u-col u-gap-4 u-full" aria-busy="true" aria-label="공지 불러오는 중" style="max-width: 420px">
-  <div class="u-col u-gap-2">
-    <span class="ds-skeleton" style="width: 75%; height: 24px"></span>
-    <span class="ds-skeleton" style="width: 35%; height: 14px"></span>
-  </div>
-  <hr class="ds-divider">
-  <span class="ds-skeleton" data-shape="text"></span>
-  <span class="ds-skeleton" data-shape="text"></span>
-</article>
 ```
 
 ## 규격

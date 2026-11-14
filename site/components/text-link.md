@@ -27,6 +27,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
+| **Do** | 체크박스 옆 약관 링크는 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다. |
 | **Do** | 링크 글에는 이동할 화면을 작성합니다. "여기", "더 보기"만 사용하지 않습니다. |
 | **Do** | 전체 보기처럼 묶음 밖으로 이동하는 링크는 끝에 chevron-right 아이콘을 붙입니다. 화살표가 있으면 밑줄 없이 표시됩니다. |
 | **Don't** | 화면을 이동하지 않는 동작에는 사용하지 않습니다. 동작에는 Action Button을 사용합니다. |
@@ -90,27 +91,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </li>
   </ul>
 </section>
-```
-
-### 동의 항목 옆 약관 원문 링크
-
-동의 체크박스 오른쪽에 작은 Text Link를 배치해 약관 원문을 엽니다. 링크를 체크박스 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다.
-
-```html
-<div class="u-col u-gap-2" style="width: 100%; max-width: 360px">
-  <div class="u-flex u-center u-between u-gap-3">
-    <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="text-link-ex3-terms"><span class="ds-checkbox__label">(필수) 이용 약관에 동의해요</span></label>
-    <a class="ds-link" data-size="small" href="#" aria-label="이용 약관 보기">보기</a>
-  </div>
-  <div class="u-flex u-center u-between u-gap-3">
-    <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="text-link-ex3-privacy"><span class="ds-checkbox__label">(필수) 개인 정보 수집과 이용에 동의해요</span></label>
-    <a class="ds-link" data-size="small" href="#" aria-label="개인 정보 수집과 이용 보기">보기</a>
-  </div>
-  <div class="u-flex u-center u-between u-gap-3">
-    <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="text-link-ex3-ads"><span class="ds-checkbox__label">(선택) 할인과 이벤트 소식을 받을래요</span></label>
-    <a class="ds-link" data-size="small" href="#" aria-label="마케팅 정보 수신 보기">보기</a>
-  </div>
-</div>
 ```
 
 ## 규격

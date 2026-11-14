@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -233,54 +233,6 @@
     &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;ellipsis&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
     &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=12&quot;</span>&gt;12&lt;/<span class="hl-t">a</span>&gt;
     &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;next&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=2&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;다음 페이지&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
-  &lt;/<span class="hl-t">nav</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>넓은 화면에서는 현재 페이지 양옆까지 표시</h3>
-<p>넓은 화면에서는 번호를 7칸까지 표시하고 현재 페이지 양옆 번호와 첫 번호, 마지막 번호를 남깁니다. 현재 페이지에는 <code>aria-current=&quot;page&quot;</code>를 붙여 누를 수 없게 합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-6 u-full" style="max-width: 640px">
-  <ul class="ds-list" data-inset data-divider>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 영어 메일 쓰기</span><span class="ds-list-item__desc">강의 18개, 9시간</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">발표가 쉬워지는 영어 표현</span><span class="ds-list-item__desc">강의 14개, 7시간</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">회의에서 바로 쓰는 영어</span><span class="ds-list-item__desc">강의 20개, 10시간</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
-  </ul>
-  <nav class="ds-pagination" aria-label="강의 목록 페이지">
-    <a class="ds-pagination__item" data-type="first" href="?p=1" aria-label="첫 페이지"></a>
-    <a class="ds-pagination__item" data-type="prev" href="?p=5" aria-label="이전 페이지"></a>
-    <a class="ds-pagination__item" href="?p=1">1</a>
-    <span class="ds-pagination__item" data-type="ellipsis" aria-hidden="true"></span>
-    <a class="ds-pagination__item" href="?p=5">5</a>
-    <a class="ds-pagination__item" href="?p=6" aria-current="page">6</a>
-    <a class="ds-pagination__item" href="?p=7">7</a>
-    <span class="ds-pagination__item" data-type="ellipsis" aria-hidden="true"></span>
-    <a class="ds-pagination__item" href="?p=12">12</a>
-    <a class="ds-pagination__item" data-type="next" href="?p=7" aria-label="다음 페이지"></a>
-    <a class="ds-pagination__item" data-type="last" href="?p=12" aria-label="마지막 페이지"></a>
-  </nav>
-</div></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-6 u-full&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 640px&quot;</span>&gt;
-  &lt;<span class="hl-t">ul</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list&quot;</span> <span class="hl-f">data-inset</span> <span class="hl-f">data-divider</span>&gt;
-    &lt;<span class="hl-t">li</span>&gt;&lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;비즈니스 영어 메일 쓰기&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;강의 18개, 9시간&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">a</span>&gt;&lt;/<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">li</span>&gt;&lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;발표가 쉬워지는 영어 표현&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;강의 14개, 7시간&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">a</span>&gt;&lt;/<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">li</span>&gt;&lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;회의에서 바로 쓰는 영어&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;강의 20개, 10시간&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">a</span>&gt;&lt;/<span class="hl-t">li</span>&gt;
-  &lt;/<span class="hl-t">ul</span>&gt;
-  &lt;<span class="hl-t">nav</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;강의 목록 페이지&quot;</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;first&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=1&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;첫 페이지&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;prev&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=5&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;이전 페이지&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=1&quot;</span>&gt;1&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;ellipsis&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=5&quot;</span>&gt;5&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=6&quot;</span> <span class="hl-f">aria-current</span>=<span class="hl-s">&quot;page&quot;</span>&gt;6&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=7&quot;</span>&gt;7&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;ellipsis&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=12&quot;</span>&gt;12&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;next&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=7&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;다음 페이지&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
-    &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-pagination__item&quot;</span> <span class="hl-f">data-type</span>=<span class="hl-s">&quot;last&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;?p=12&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;마지막 페이지&quot;</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
   &lt;/<span class="hl-t">nav</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>

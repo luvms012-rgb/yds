@@ -81,47 +81,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 긴 글은 별도 화면으로
-
-펼친 영역에는 요약 몇 줄만 표시하고, 전문은 Text Link로 연결한 다른 화면에서 보여 줍니다. 펼친 영역 안에 스크롤이 생기면 어디까지 읽었는지 놓치기 쉽습니다.
-
-```html
-<div style="width: 100%; max-width: 420px">
-  <details class="ds-accordion" open>
-    <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body">
-        <span class="ds-accordion__title">개인 정보 수집과 이용 (필수)</span>
-      </span>
-    </summary>
-    <div class="ds-accordion__content">
-      <p>주문과 배송을 위해 이름, 연락처, 주소를 모아요. 모은 정보는 주문이 끝나고 5년 동안 보관해요.</p>
-      <p class="u-mt-2"><a class="ds-link" data-size="small" href="#">전문 보기</a></p>
-    </div>
-  </details>
-  <details class="ds-accordion">
-    <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body">
-        <span class="ds-accordion__title">개인 정보 제3자 제공 (필수)</span>
-      </span>
-    </summary>
-    <div class="ds-accordion__content">
-      <p>상품을 보내기 위해 택배 회사에 이름, 연락처, 주소를 전해요.</p>
-      <p class="u-mt-2"><a class="ds-link" data-size="small" href="#">전문 보기</a></p>
-    </div>
-  </details>
-  <details class="ds-accordion">
-    <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body">
-        <span class="ds-accordion__title">할인과 이벤트 소식 받기 (선택)</span>
-      </span>
-    </summary>
-    <div class="ds-accordion__content">
-      <p>할인 쿠폰과 이벤트 소식을 문자와 이메일로 보내요. 언제든 설정에서 끌 수 있어요.</p>
-    </div>
-  </details>
-</div>
-```
-
 ## 규격
 
 ### 크기와 여백

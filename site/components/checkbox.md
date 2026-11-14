@@ -75,25 +75,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 버튼을 눌러야 반영되는 선택
-
-로그인처럼 버튼을 눌러야 반영되는 선택은 Switch가 아닌 Checkbox를 사용합니다. Switch는 누르는 즉시 바뀌는 설정에만 사용합니다.
-
-```html
-<div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
-  <div class="ds-field">
-    <div class="ds-field__header"><label class="ds-field__label" for="checkbox-ex2-id">아이디</label></div>
-    <div class="ds-input" data-variant="outline"><input class="ds-input__control" id="checkbox-ex2-id" placeholder="아이디를 입력해 주세요"></div>
-  </div>
-  <div class="ds-field">
-    <div class="ds-field__header"><label class="ds-field__label" for="checkbox-ex2-password">비밀번호</label></div>
-    <div class="ds-input" data-variant="outline"><input class="ds-input__control" id="checkbox-ex2-password" type="password" placeholder="비밀번호를 입력해 주세요"></div>
-  </div>
-  <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">로그인 상태 유지</span></label>
-  <button class="ds-btn" data-size="large" data-layout="fill">로그인</button>
-</div>
-```
-
 ### 여러 항목을 선택해 한 번에 처리
 
 목록 위에 전체 선택 체크박스를 두고, 일부만 선택했으면 가로선(`data-indeterminate`)으로 표시합니다. 선택한 항목은 상단 버튼으로 한 번에 처리합니다.

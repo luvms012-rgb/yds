@@ -84,49 +84,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 다시 시도할 수 있는 오류
-
-결제처럼 다시 시도할 수 있는 오류는 주요 버튼을 '다시 시도'로 표시합니다. '문의하기' 같은 보조 동작은 ghost 버튼으로 아래에 배치합니다.
-
-```html
-<section class="ds-result u-full" style="max-width: 420px">
-  <div class="ds-result__asset ds-fg-critical"><i class="ds-icon ds-icon--circle-alert-solid" aria-hidden="true"></i></div>
-  <div class="ds-result__texts">
-    <h2 class="ds-result__title">결제를 마치지 못했어요</h2>
-    <p class="ds-result__desc">카드 한도를 확인하고 다시 시도해 주세요</p>
-  </div>
-  <div class="ds-result__actions">
-    <button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium">다시 결제하기</button>
-    <button type="button" class="ds-btn" data-variant="ghost" data-size="small">고객센터에 문의하기</button>
-  </div>
-</section>
-```
-
-### 검색 결과가 없을 때 대안 안내
-
-검색 결과가 화면의 전부일 때는 Result Section으로 이유와 다음 동작을 안내합니다. 목록 일부가 비었다는 짧은 안내라면 Empty를 사용하세요.
-
-```html
-<div class="u-col u-gap-4 u-full" style="max-width: 420px">
-  <div class="ds-input" data-variant="outline" data-size="medium">
-    <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
-    <input class="ds-input__control" type="search" aria-label="강의 검색" value="주말 원어민 회화 심화반">
-    <button type="button" class="ds-input__clear" aria-label="지우기"></button>
-  </div>
-  <section class="ds-result" data-size="medium">
-    <div class="ds-result__asset ds-fg-subtle"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></div>
-    <div class="ds-result__texts">
-      <h2 class="ds-result__title">찾는 강의가 없어요</h2>
-      <p class="ds-result__desc">검색어를 줄이거나 다른 말로 찾아보세요</p>
-    </div>
-    <div class="ds-result__actions">
-      <button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium">전체 강의 보기</button>
-      <button type="button" class="ds-btn" data-variant="ghost" data-size="small">강의 요청하기</button>
-    </div>
-  </section>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

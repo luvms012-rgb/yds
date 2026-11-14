@@ -5,6 +5,7 @@
 
 ## 한 것
 
+- **예시 2차 정리, 복사 버튼, 템플릿 주석 (11-14 집)**: ① 사용자 "전수 검사해서 예시 기준으로 반영": 같은 구조와 동작에 내용이나 자리만 다른 예시와 값만 다른 예시 39개를 더 뺐다(206 → 167, Carousel 3개). 빠진 규칙 13줄은 README 6.2 로. 뺀 목록과 판단 기준은 site/CLAUDE.md "컴포넌트 예시는 동작이나 구조가 다를 때만". ② 문서 보기 머리의 "AI 요청 글 복사" 버튼을 뺐다(탭 안 복사만). ③ 템플릿 HTML 맨 위 지침 주석을 뺐다(kit.mjs `page()`, 원문은 kit.mjs `PRINCIPLE` 과 site/CLAUDE.md). **Figma 는 아직**: 1차 12개, 2차 39개 예시가 빠진 문서 프레임과 새 지침 19줄 맞추기가 남은 일 0-1 이다(편집 가능한 계정에서).
 - **템플릿 문서 보기에 AI 요청 글 탭 (11-14 집, 사용자 문구 그대로)**: 미리보기 | 코드 | AI 요청 글. 글의 정본은 site/build.mjs `TPL_PROMPT`("[내가 원하는] 화면", 템플릿 주소, "템플릿은 출발점이야" 문장). 머리의 "AI 요청 글 복사" 버튼은 탭에 보이는 글을 그대로 복사한다(남겨 둠, 빼려면 build.mjs 머리 버튼 줄에서 지운다). 되돌리기: 이 커밋만 revert.
 - **템플릿 카드는 문서 보기로 바로 (11-14 집, 사용자 요청)**: 목록 카드와 "문서 보기" 버튼을 누르면 보기 창 대신 문서 보기 페이지로 간다. AI 요청 글 복사는 문서 보기 머리로 옮겼고, 예전 `?preview=` 주소는 문서 보기로 넘긴다. **되돌리기**: site/src/site.js `TPL_VIEWER` 를 true 로 바꾸고 build.mjs 의 카드 버튼 글자를 "미리보기" 로(또는 이 변경 커밋만 revert).
 - **메인 요청 글: 상자 하나에 요청 하나, 먼저 묻기 (11-14 집, 레퍼런스 A 시작하기 비교, 사용자 "1, 2 진행, 원복할 수 있으니 염두")**: AI와 함께 시작하기의 상자 3개(새 화면 만들기, 운영 중인 페이지에 적용하기, 브랜드 만들기)마다 요청을 하나로 줄이고, 끝에 "먼저 묻기" 한 줄(정해지지 않은 것은 먼저 묻고, 첫 결과를 보여 준 뒤 계속)을 더했다. 바꾼 곳은 site/build.mjs `AI_EXAMPLES` 와 그 출력 한 줄뿐이다. **되돌리기**: 이 변경은 커밋 하나로 따로 올린다. 되돌릴 때는 그 커밋(4384cd3b)만 `git revert 4384cd3b` 하고 `node site/build.mjs`, 배포. 예전 글(한 상자에 요청 2~3개)은 커밋 a42bd197 의 site/build.mjs 에 있다. 템플릿 보기 창의 "AI 요청 글 복사"(site.js copyPrompt)에는 먼저 묻기를 아직 넣지 않았다.
@@ -32,7 +33,7 @@
 ## 남은 일 (순서대로)
 
 0-2. 사내 확산 다음 단계(사용자 지시 대기): 하려는 일 카드 6개는 구성, 위치(구조 위 또는 아래), 제목 여부를 사용자에게 물어 둔 상태. 토큰 대조표, 디자이너 역할 경계 문구도 사용자 결정 대기.
-0-1. Figma 문서 프레임 12개 예시 맞추기(11-14 예시 정리): accordion, empty, prefix-select, quantity-picker, bottom-sheet, menu-sheet, pagination, progress, progress-circle, image-frame, skeleton, carousel 의 문서 프레임에서 뺀 예시 1개씩을 지우고, 사용 지침 줄이 늘어난 6개(image-frame, bottom-sheet, menu-sheet, pagination, quantity-picker, prefix-select)의 Do/Don't 줄을 맞춘다. `node sync.mjs docpage <slug>` 뒤 yds-figma-draw 스킬 순서. 편집 가능한 Figma 계정(luvms@ybm.co.kr)으로 연결된 PC 에서 한다.
+0-1. Figma 문서 프레임 예시 맞추기(11-14 예시 정리 1차 12개 + 2차 39개, 지침 19줄. 컴포넌트 목록은 site/CLAUDE.md 와 git log 에 있다): accordion, empty, prefix-select, quantity-picker, bottom-sheet, menu-sheet, pagination, progress, progress-circle, image-frame, skeleton, carousel 의 문서 프레임에서 뺀 예시 1개씩을 지우고, 사용 지침 줄이 늘어난 6개(image-frame, bottom-sheet, menu-sheet, pagination, quantity-picker, prefix-select)의 Do/Don't 줄을 맞춘다. `node sync.mjs docpage <slug>` 뒤 yds-figma-draw 스킬 순서. 편집 가능한 Figma 계정(luvms@ybm.co.kr)으로 연결된 PC 에서 한다.
 0. 자동 싱크 예약 작업 등록(사용자): Claude 가 대신 등록하면 권한에서 막힌다. 앱의 예약 작업 화면에서 tools/auto-sync-task.md 의 작업 지시문을 붙여 넣어 만든다(평일 18:30). tools/figma-quick.mjs 점검 스크립트는 11-12 Figma 에서 실제로 돌려 일치를 확인했다.
 1. Figma 남은 작은 차이(필요할 때만): Text Link 세트 2493:324 에 화살표 변형은 두지 않았다(문서 예시는 링크 + 아이콘 인스턴스로 그림). Carousel 큰 배너 예시의 멈춤 버튼은 멈춘 상태(재생 아이콘)로 그려졌다. Figma 의 play / pause 채운 모양은 Lucide Solid 변형이라 YDS 아이콘과 모양이 조금 다르다. List Item 세트에는 inset 속성이 원래 없다(목록 틀의 속성).
 1-0. Figma 템플릿 싱크(사용자가 걸 때): 수업 옵션 선택(lesson-plan) 방식 줄을 세그먼트에서 칩(전화, 화상)으로 바꿨다(11-13 사용자 "방식도 같은 레이아웃으로").

@@ -76,27 +76,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 짧은 선택지 2~4개 중 하나 선택
-
-기간처럼 짧은 선택지를 2~4개만 제공합니다. 선택지가 더 많거나 라벨이 길면 Select를 사용하세요.
-
-```html
-<article class="ds-card u-full" style="max-width: 420px">
-  <header class="u-flex u-center u-between">
-    <h3 class="ds-card__title">학습 시간</h3>
-    <div class="ds-segmented" role="group" aria-label="기간">
-      <button type="button" class="ds-segmented__item" aria-pressed="false">1주</button>
-      <button type="button" class="ds-segmented__item" aria-pressed="true">1개월</button>
-      <button type="button" class="ds-segmented__item" aria-pressed="false">3개월</button>
-    </div>
-  </header>
-  <div class="ds-card__content u-col u-gap-1">
-    <span class="ds-t10 ds-fw-bold">12시간 30분</span>
-    <span class="ds-fg-subtle">지난달보다 2시간 늘었어요</span>
-  </div>
-</article>
-```
-
 ### 좁은 화면에서는 전체 폭 사용
 
 모바일처럼 폭이 좁으면 `data-layout="fill"`로 각 항목이 폭을 똑같이 나눠 채웁니다. 한 화면에 하나만 배치해 지금 무엇을 바꾸는지 분명하게 합니다.

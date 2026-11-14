@@ -73,34 +73,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 자주 선택하는 값을 기본값으로
-
-처음 사용하는 사람이 자주 선택하는 값을 기본값으로 지정합니다. 그대로 두거나 필요할 때만 조절하면 되므로 수고와 실수가 줄어듭니다.
-
-```html
-<article class="ds-card u-full" style="max-width: 360px">
-  <header class="ds-card__header">
-    <h3 class="ds-card__title">하루 학습 목표</h3>
-    <p class="ds-card__desc">나중에 설정에서 바꿀 수 있어요</p>
-  </header>
-  <div class="ds-card__content">
-    <div class="ds-field">
-      <div class="ds-field__header u-between">
-        <label class="ds-field__label" for="slider-ex3">목표 시간</label>
-        <output class="ds-t04 ds-fg-muted" id="slider-ex3-value" for="slider-ex3">30분</output>
-      </div>
-      <input type="range" class="ds-slider" data-tone="brand" id="slider-ex3" min="10" max="120" step="10" value="30" oninput="document.getElementById('slider-ex3-value').value = this.value + '분'">
-      <div class="ds-field__footer">
-        <p class="ds-field__help">처음 시작하는 분께 30분을 권해요</p>
-      </div>
-    </div>
-  </div>
-  <footer class="ds-card__footer">
-    <button type="button" class="ds-btn" data-variant="neutralWeak">이대로 시작하기</button>
-  </footer>
-</article>
-```
-
 ## 규격
 
 ### CSS 변수

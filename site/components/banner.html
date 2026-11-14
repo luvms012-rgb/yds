@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -165,6 +165,7 @@
 <thead><tr><th scope="col">구분</th><th scope="col">내용</th></tr></thead>
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>Banner는 화면 맨 위에 전체 폭으로 배치하고, 한 번에 하나만 표시합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>본문 안의 안내는 Callout을 사용합니다.</td></tr>
+<tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>바로 알아야 하는 장애 공지는 critical 톤과 <code>role=&quot;alert&quot;</code>로 표시하고, 지금 쓸 수 있는 다른 방법까지 안내합니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="positive">Do</b></td><td>같은 상태의 배너는 하나로 합칩니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>오류 배너는 해결될 때까지 닫기 버튼을 두지 않습니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>화면 맨 위 점검 공지</h3>
@@ -244,60 +245,6 @@
       &lt;/<span class="hl-t">a</span>&gt;
     &lt;/<span class="hl-t">li</span>&gt;
   &lt;/<span class="hl-t">ul</span>&gt;
-&lt;/<span class="hl-t">div</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>긴급 장애 공지</h3>
-<p>결제 장애처럼 바로 알아야 하는 공지는 critical 톤과 <code>role=&quot;alert&quot;</code>로 표시합니다. 문구에는 지금 사용할 수 있는 다른 방법까지 안내합니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><div style="width: 100%">
-  <div class="ds-banner" role="alert" data-tone="critical">
-    <div class="ds-banner__inner">
-      <i class="ds-icon ds-icon--circle-alert-solid" aria-hidden="true"></i>
-      <p class="ds-banner__message"><strong class="ds-banner__title">결제 장애</strong>  일부 카드 결제가 되지 않아요. 계좌 이체나 간편 결제를 써 주세요.</p>
-    </div>
-  </div>
-  <header class="ds-topnav">
-    <div class="ds-topnav__left">
-      <a class="ds-topnav__heading" href="#"><span class="ds-t06 ds-fw-bold">서비스 이름</span></a>
-      <nav class="ds-topnav__menu u-show-from-md" aria-label="주요 메뉴">
-        <a class="ds-topnav__item" href="#" aria-current="page">홈</a>
-        <a class="ds-topnav__item" href="#">쇼핑</a>
-        <a class="ds-topnav__item" href="#">주문 내역</a>
-        <a class="ds-topnav__item" href="#">고객센터</a>
-      </nav>
-    </div>
-    <div class="ds-topnav__end">
-      <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="검색"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
-      <a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="#">로그인</a>
-    </div>
-  </header>
-</div></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%&quot;</span>&gt;
-  &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-banner&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;alert&quot;</span> <span class="hl-f">data-tone</span>=<span class="hl-s">&quot;critical&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-banner__inner&quot;</span>&gt;
-      &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--circle-alert-solid&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
-      &lt;<span class="hl-t">p</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-banner__message&quot;</span>&gt;&lt;<span class="hl-t">strong</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-banner__title&quot;</span>&gt;결제 장애&lt;/<span class="hl-t">strong</span>&gt;  일부 카드 결제가 되지 않아요. 계좌 이체나 간편 결제를 써 주세요.&lt;/<span class="hl-t">p</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">div</span>&gt;
-  &lt;<span class="hl-t">header</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav&quot;</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__left&quot;</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__heading&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t06 ds-fw-bold&quot;</span>&gt;서비스 이름&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">a</span>&gt;
-      &lt;<span class="hl-t">nav</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__menu u-show-from-md&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;주요 메뉴&quot;</span>&gt;
-        &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span> <span class="hl-f">aria-current</span>=<span class="hl-s">&quot;page&quot;</span>&gt;홈&lt;/<span class="hl-t">a</span>&gt;
-        &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;쇼핑&lt;/<span class="hl-t">a</span>&gt;
-        &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;주문 내역&lt;/<span class="hl-t">a</span>&gt;
-        &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__item&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;고객센터&lt;/<span class="hl-t">a</span>&gt;
-      &lt;/<span class="hl-t">nav</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-topnav__end&quot;</span>&gt;
-      &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;ghost&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;xsmall&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;검색&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--search&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
-      &lt;<span class="hl-t">a</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;xsmall&quot;</span> <span class="hl-f">href</span>=<span class="hl-s">&quot;#&quot;</span>&gt;로그인&lt;/<span class="hl-t">a</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">header</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>

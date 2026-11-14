@@ -79,26 +79,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 성격이 다른 선택은 그룹 밖에
-
-수신할 소식처럼 같은 종류만 그룹으로 묶고, 성격이 다른 선택은 Divider 아래에 따로 배치합니다. 저장 버튼으로 한 번에 반영하는 설정이므로 Switch 대신 Checkbox를 사용합니다.
-
-```html
-<div class="u-col u-gap-5" style="width: 100%; max-width: 375px">
-  <div class="ds-field">
-    <div class="ds-field__header"><span class="ds-field__label" id="checkbox-group-ex3-label">받을 소식</span></div>
-    <fieldset class="ds-checkbox-group" aria-labelledby="checkbox-group-ex3-label">
-      <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">주문 진행</span></label>
-      <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">배송 출발</span></label>
-      <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">할인과 이벤트</span></label>
-    </fieldset>
-  </div>
-  <hr class="ds-divider">
-  <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">밤 9시부터 아침 8시까지는 받지 않기</span></label>
-  <button class="ds-btn" data-size="large" data-layout="fill">저장</button>
-</div>
-```
-
 ## 규격
 
 ### 크기와 여백

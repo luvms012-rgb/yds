@@ -62,24 +62,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </div>
 ```
 
-### 두 줄 넘는 설명은 Help Bubble로
-
-설명이 두 줄을 넘으면 Tooltip 대신 Help Bubble을 사용하고, 안내 아이콘 옆에 배치해 꼬리가 아이콘을 향하게 합니다. 아이콘 버튼에는 `aria-describedby`로 말풍선을 연결합니다.
-
-```html
-<div class="u-flex u-center u-gap-1">
-  <span class="ds-t04 ds-fg-muted">적립 예정 포인트</span>
-  <span class="ds-t04 ds-fw-bold">320P</span>
-  <button class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="포인트 적립 안내" aria-describedby="help-bubble-ex2"><i class="ds-icon ds-icon--info" aria-hidden="true"></i></button>
-  <div class="ds-helpbubble" id="help-bubble-ex2" role="tooltip" data-placement="right">
-    <div class="ds-helpbubble__body">
-      <strong class="ds-helpbubble__title">결제 금액의 1%를 모아 드려요</strong>
-      <p class="ds-helpbubble__desc">구매를 확정한 다음 날 들어오고, 1년 동안 쓸 수 있어요.</p>
-    </div>
-  </div>
-</div>
-```
-
 ## 규격
 
 ### 크기와 여백

@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=46761caf">
+<link rel="stylesheet" href="../assets/site.css?v=a0e714d2">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=46761caf" defer></script>
+<script src="../assets/site.js?v=a0e714d2" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -261,54 +261,6 @@
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralSolid&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span>&gt;후기 올리기&lt;/<span class="hl-t">button</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
-</figure></div>
-</div>
-<h3>점수와 관계없이 같은 별 색</h3>
-<p>점수가 낮은 후기도 높은 점수와 같은 색으로 별을 채웁니다. 낮은 점수만 빨간색으로 바꾸면 오류나 경고로 읽힙니다.</p>
-<div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
-  <div class="site-example__preview"><div class="pv-stage pv-wide"><ul class="ds-list u-full" data-divider style="max-width: 420px">
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content u-gap-1">
-        <span class="ds-rating" data-size="small" style="--ds-rating-value: 5" role="img" aria-label="5점 만점에 5점"><span class="ds-rating__stars"></span><span class="ds-rating__value">5.0</span></span>
-        <span class="ds-list-item__title">예문이 많아서 바로 따라 할 수 있었어요.</span>
-        <span class="ds-tag-group"><span>김하늘</span><span>11월 2일</span></span>
-      </span>
-    </div>
-  </li>
-  <li>
-    <div class="ds-list-item">
-      <span class="ds-list-item__content u-gap-1">
-        <span class="ds-rating" data-size="small" style="--ds-rating-value: 2" role="img" aria-label="5점 만점에 2점"><span class="ds-rating__stars"></span><span class="ds-rating__value">2.0</span></span>
-        <span class="ds-list-item__title">진도가 빨라서 따라가기 힘들었어요.</span>
-        <span class="ds-tag-group"><span>이준</span><span>10월 30일</span></span>
-      </span>
-    </div>
-  </li>
-</ul></div></div>
-  <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
-  <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">ul</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list u-full&quot;</span> <span class="hl-f">data-divider</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 420px&quot;</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content u-gap-1&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-rating&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;--ds-rating-value: 5&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;img&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;5점 만점에 5점&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-rating__stars&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-rating__value&quot;</span>&gt;5.0&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;예문이 많아서 바로 따라 할 수 있었어요.&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-tag-group&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;김하늘&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;11월 2일&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-  &lt;<span class="hl-t">li</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content u-gap-1&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-rating&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;--ds-rating-value: 2&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;img&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;5점 만점에 2점&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-rating__stars&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-rating__value&quot;</span>&gt;2.0&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;진도가 빨라서 따라가기 힘들었어요.&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-tag-group&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;이준&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;10월 30일&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
-      &lt;/<span class="hl-t">span</span>&gt;
-    &lt;/<span class="hl-t">div</span>&gt;
-  &lt;/<span class="hl-t">li</span>&gt;
-&lt;/<span class="hl-t">ul</span>&gt;</code></pre>
 </figure></div>
 </div>
 <h2 id="spec">규격<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="spec"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>CSS 변수</h3><p>서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.</p><div class="ds-table-wrap"><table class="ds-table" data-size="small">

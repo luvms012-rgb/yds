@@ -48,27 +48,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </article>
 ```
 
-### 독립적인 보기 옵션 켜고 끄기
-
-해석 보기, 단어 뜻 보기처럼 서로 독립적인 옵션을 하나씩 켜고 끕니다. 여러 개 중 하나만 선택하는 보기 방식은 Segmented Control을 사용하세요.
-
-```html
-<div class="u-col u-gap-5" style="width: 100%; max-width: 420px">
-  <div class="u-flex u-gap-2" role="group" aria-label="보기 옵션">
-    <button type="button" class="ds-toggle" aria-pressed="true">해석 보기</button>
-    <button type="button" class="ds-toggle" aria-pressed="false">단어 뜻 보기</button>
-  </div>
-  <div class="u-col u-gap-1">
-    <p class="ds-t05">Could you send me the file by Friday?</p>
-    <p class="ds-t04 ds-fg-muted">금요일까지 파일을 보내 줄 수 있나요?</p>
-  </div>
-  <div class="u-col u-gap-1">
-    <p class="ds-t05">I'll check the schedule and let you know.</p>
-    <p class="ds-t04 ds-fg-muted">일정을 확인하고 알려 줄게요.</p>
-  </div>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

@@ -128,35 +128,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </dialog>
 ```
 
-### 선택 가능 기간을 Callout으로 먼저 안내
-
-기간의 최대 길이 같은 조건은 달력 위 Callout으로 미리 안내하고, 선택한 기간은 띠로 이어 표시합니다. 시작일만 선택한 동안에는 확인 버튼을 비활성화하고, 종료일까지 선택하면 활성화합니다.
-
-```html
-<div class="u-col u-gap-4 u-full" style="max-width: 320px">
-  <div class="ds-callout" data-tone="informative">
-    <i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i>
-    <p class="ds-callout__content">수강은 한 번에 7일까지 멈출 수 있어요.</p>
-  </div>
-  <div class="ds-datepicker">
-    <div class="ds-datepicker__header">
-      <button class="ds-datepicker__nav" aria-label="이전 달" disabled><i class="ds-icon ds-icon--chevron-left ds-icon--lg" aria-hidden="true"></i></button>
-      <strong class="ds-datepicker__title">2026년 11월</strong>
-      <button class="ds-datepicker__nav" aria-label="다음 달"><i class="ds-icon ds-icon--chevron-right ds-icon--lg" aria-hidden="true"></i></button>
-    </div>
-    <div class="ds-datepicker__weekdays"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
-    <div class="ds-datepicker__grid" role="grid">
-      <button class="ds-date-cell" disabled>1</button><button class="ds-date-cell" disabled>2</button><button class="ds-date-cell" disabled>3</button><button class="ds-date-cell" data-state="today">4</button><button class="ds-date-cell">5</button><button class="ds-date-cell">6</button><button class="ds-date-cell">7</button>
-      <button class="ds-date-cell" data-state="range-start">8</button><button class="ds-date-cell" data-state="range-middle">9</button><button class="ds-date-cell" data-state="range-middle">10</button><button class="ds-date-cell" data-state="range-middle">11</button><button class="ds-date-cell" data-state="range-middle">12</button><button class="ds-date-cell" data-state="range-middle">13</button><button class="ds-date-cell" data-state="range-end">14</button>
-      <button class="ds-date-cell">15</button><button class="ds-date-cell">16</button><button class="ds-date-cell">17</button><button class="ds-date-cell">18</button><button class="ds-date-cell">19</button><button class="ds-date-cell">20</button><button class="ds-date-cell">21</button>
-      <button class="ds-date-cell">22</button><button class="ds-date-cell">23</button><button class="ds-date-cell">24</button><button class="ds-date-cell">25</button><button class="ds-date-cell">26</button><button class="ds-date-cell">27</button><button class="ds-date-cell">28</button>
-      <button class="ds-date-cell">29</button><button class="ds-date-cell">30</button>
-    </div>
-  </div>
-  <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">11월 8일부터 7일 멈추기</button>
-</div>
-```
-
 ## 규격
 
 ### CSS 변수

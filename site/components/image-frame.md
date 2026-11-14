@@ -39,6 +39,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. |
 | **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
 | **Do** | 카드 안 사진은 `data-radius`로 카드 모서리와 맞춥니다. |
+| **Do** | 흰 배경 사진에는 `data-stroke`로 옅은 테두리를 둘러 화면 배경과 구분합니다. |
 
 ## 예시
 
@@ -76,29 +77,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </a>
   </li>
 </ul>
-```
-
-### 흰 배경 사진에는 테두리
-
-흰 배경의 상품 사진은 `data-stroke`로 옅은 테두리를 둘러 화면 배경과 구분합니다. 사진과 화면이 같은 색이라 사진의 경계를 알기 어려울 때 사용합니다.
-
-```html
-<div class="u-flex u-gap-3 u-full" style="max-width: 420px">
-  <div class="u-col u-gap-2 u-grow">
-    <div class="ds-imageframe" data-radius="md" data-stroke><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=70" alt="검은색 러닝화"></div>
-    <div class="u-col u-gap-0_5">
-      <span class="ds-t04">가벼운 러닝화</span>
-      <span class="ds-t05 ds-fw-bold">59,000원</span>
-    </div>
-  </div>
-  <div class="u-col u-gap-2 u-grow">
-    <div class="ds-imageframe" data-radius="md" data-stroke><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=70" alt="흰색 손목시계"></div>
-    <div class="u-col u-gap-0_5">
-      <span class="ds-t04">흰색 스마트 워치</span>
-      <span class="ds-t05 ds-fw-bold">129,000원</span>
-    </div>
-  </div>
-</div>
 ```
 
 ## 규격
