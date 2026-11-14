@@ -244,6 +244,7 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 // 11-04 집, 사용자 "테스트용 테마 10개": Themes 페이지는 다시 켜되 상단 메뉴는 다섯 개 그대로(Templates 머리말과 푸터 더 보기에서 간다)
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "YDS 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기, "푸터로 통일"): 입구는 푸터 더 보기 하나. 폼 주소가 비어 있으면 만들지 않는다
+// 11-14 사용자 "의견 보내기 고도화가 안 보인다": 푸터 의견 보내기 바로 뒤에 요청 현황(Updates > 요청 탭) 링크를 둔다
 const FEEDBACK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
@@ -329,7 +330,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a><a href="${root}updates-requests.html">요청 현황</a>` : ''}</div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
