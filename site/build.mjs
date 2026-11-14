@@ -244,13 +244,15 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 // 11-04 집, 사용자 "테스트용 테마 10개": Themes 페이지는 다시 켜되 상단 메뉴는 다섯 개 그대로(Templates 머리말과 푸터 더 보기에서 간다)
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "YDS 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기, "푸터로 통일"): 입구는 푸터 더 보기 하나. 폼 주소가 비어 있으면 만들지 않는다
-// 11-14 사용자 "의견 보내기 고도화가 안 보인다": 푸터 의견 보내기 바로 뒤에 요청 현황(Updates > 요청 탭) 링크를 둔다
+// 요청 현황은 Updates > 요청 탭에서만 보인다(11-14 사용자 "푸터에 요청 현황 제거, 업데이트에서만"). 새 소식이나 새 요청은 Updates 메뉴와 탭에 점으로 알린다
 const FEEDBACK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
 // 파운데이션: 항목마다 한 페이지 (슬러그, 영문 이름)
 const FOUND = az([['color', 'Color'], ['typography', 'Typography'], ['spacing', 'Spacing'], ['shape', 'Radius'], ['elevation', 'Elevation'], ['motion', 'Motion'], ['icons', 'Iconography'], ['breakpoint', 'Breakpoint']]);
 // 새 소식 표시 (11-09): 맨 위 소식의 날짜와 내용으로 만든 값. 사용자가 마지막으로 본 값과 다르면 site.js 가 Updates 메뉴에 점을 띄운다. 버전 번호만 붙을 때는 바뀌지 않는다
+// 요청 목록이 바뀌면(줄 추가, 상태 변경) 값이 바뀐다. site.js 가 마지막으로 본 값과 비교한다 (11-14)
+const LATEST_REQUEST = crypto.createHash('sha1').update(JSON.stringify(readJson('site/src/requests.json').requests)).digest('hex').slice(0, 10);
 const LATEST_UPDATE = (() => { const { date, sections } = readJson('site/src/updates.json').releases[0]; return crypto.createHash('sha1').update(JSON.stringify({ date, sections })).digest('hex').slice(0, 10); })();
 const NAV = [['get-started', 'Get Started', 'index.html'], ['foundations', 'Foundations', `foundations/${FOUND[0][0]}.html`], ['components', 'Components', 'components/index.html'], ['templates', 'Templates', 'templates/index.html'], ['updates', 'Updates', 'updates.html']];
 // Get Started 문서 (왼쪽 메뉴 없음): 첫 화면 하나 (AI & Tools는 11-04 합침)
@@ -330,7 +332,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a><a href="${root}updates-requests.html">요청 현황</a>` : ''}</div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
@@ -365,7 +367,7 @@ ${desc ? `<meta property="og:description" content="${esc(desc)}">
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
-<header class="site-top" data-site-latest="${LATEST_UPDATE}">
+<header class="site-top" data-site-latest="${LATEST_UPDATE}" data-site-latest-req="${LATEST_REQUEST}">
   <a class="site-logo" href="${root}index.html"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
   <nav class="site-topnav" aria-label="주요 메뉴">
     ${NAV.map(([k, l, h]) => `<a class="site-topnav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('\n    ')}

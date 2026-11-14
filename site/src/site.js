@@ -796,12 +796,13 @@
   })();
 
 
-  /* 새 소식 표시: 맨 위 소식이 마지막으로 본 것과 다르면 Updates 메뉴에 점을 띄운다. 처음 온 사람에게는 띄우지 않는다 */
+  /* 새 소식 표시: 맨 위 소식이나 요청 목록이 마지막으로 본 것과 다르면 Updates 메뉴에 표시하고, Updates 안에서는 새 내용이 있는 탭(소식, 요청)에 점을 찍는다.
+     소식은 소식 탭을, 요청은 요청 탭을 열면 본 것으로 친다. 처음 온 사람에게는 띄우지 않는다 (11-14 요청 더함) */
   (function () {
-    var UPDATES_KEY = "ybm-site-updates-seen";
+    var UPDATES_KEY = "ybm-site-updates-seen", REQ_KEY = "ybm-site-requests-seen";
     var top = document.querySelector("[data-site-latest]");
     if (!top) return;
-    var latest = top.getAttribute("data-site-latest");
+    var latest = top.getAttribute("data-site-latest"), latestReq = top.getAttribute("data-site-latest-req") || "";
     function clear() { document.querySelectorAll(".site-newdot, .site-newbadge, .site-newdot-text").forEach(function (n) { n.remove(); }); }
     function newBadge(cls) {
       var b = document.createElement("span"); b.className = "ds-badge " + cls; b.setAttribute("data-variant", "solid"); b.setAttribute("data-tone", "critical"); b.setAttribute("aria-hidden", "true"); b.textContent = "NEW";
@@ -821,20 +822,25 @@
       r.classList.add("site-release--new");
       var h = r.querySelector("h2 time") || r.querySelector("h2"); if (h) { var nb = newBadge("site-release__new"); if (h.tagName === "TIME") h.after(nb); else h.appendChild(nb); }  /* 날짜 바로 뒤에 둔다(제목 끝의 링크 단추 뒤로 밀리지 않게) */
     }
+    function onTab(href) { return !!document.querySelector('.site-pagetabs [aria-current="page"][href="' + href + '"]'); }
     function sync() {
-      var seen = null, unread = false;
+      var seen = null, seenReq = null, unread = false;
       try {
-        seen = localStorage.getItem(UPDATES_KEY);
-        if (seen === null || document.querySelector('.site-topnav__item[data-site-updates][aria-current="page"]')) {
-          unread = seen !== null && seen !== latest;
-          localStorage.setItem(UPDATES_KEY, latest); seen = latest;
-        }
-      } catch (e) { seen = latest; }
+        seen = localStorage.getItem(UPDATES_KEY); seenReq = localStorage.getItem(REQ_KEY);
+        if (seen === null || onTab("updates.html")) { unread = seen !== null && seen !== latest; localStorage.setItem(UPDATES_KEY, latest); seen = latest; }
+        if (seenReq === null || onTab("updates-requests.html")) { localStorage.setItem(REQ_KEY, latestReq); seenReq = latestReq; }
+      } catch (e) { seen = latest; seenReq = latestReq; }
       if (unread) markRelease();
       clear();
-      if (seen === latest) return;
+      var newNews = seen !== latest, newReq = seenReq !== latestReq;
+      if (!newNews && !newReq) return;
       document.querySelectorAll("[data-site-updates]").forEach(mark);
       document.querySelectorAll(".site-menu-btn").forEach(dot);
+      /* Updates 안의 탭: 새 내용이 있는 탭에 점 */
+      document.querySelectorAll(".site-pagetabs a[href]").forEach(function (a) {
+        var h = a.getAttribute("href");
+        if ((h === "updates.html" && newNews) || (h === "updates-requests.html" && newReq)) dot(a);
+      });
     }
     sync();
     window.addEventListener("pageshow", sync);  // 뒤로 가기로 돌아온 페이지에도 본 상태를 맞춘다

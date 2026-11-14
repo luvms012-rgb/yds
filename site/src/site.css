@@ -487,6 +487,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-pagetabs + p { margin-top: var(--ds-space-x8); }
 /* Updates > 요청 (11-14): 요청 이름 아래 소속과 날짜, 반영 칸은 날짜 아래 내용 */
 .site-req__send { margin-top: var(--ds-space-x8); }
+.site-pagetabs .site-newdot { margin-left: var(--ds-space-x1); }  /* Updates 탭의 새 내용 점 (11-14) */
 .site-doc .site-req { min-width: 640px; }
 .site-req td { vertical-align: top; }
 .site-req__title { display: block; color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
