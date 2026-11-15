@@ -186,7 +186,7 @@ const applyDone = () => {
     <div class="tp-actions">${btn('내 시험', { size: 'large' })}${btn('수험표 보기', { variant: 'brandSolid', size: 'large' })}</div>
   </div>
 </main>`);
-  return { slug: 'exam-apply-done', en: 'Registration Complete', name: '접수 완료', group: 'Exam', desc: '결제를 마친 뒤 접수 번호와 접수, 결제 내용, 다음 일정을 보여 주는 화면입니다. 수험표와 내 시험으로 이어집니다.', css, body };
+  return { slug: 'exam-apply-done', en: 'Registration Complete', name: '시험 접수 완료', group: 'Exam', desc: '결제를 마친 뒤 접수 번호와 접수, 결제 내용, 다음 일정을 보여 주는 화면입니다. 수험표와 내 시험으로 이어집니다.', css, body };
 };
 
 /* ===================================================================== 고객센터 */
@@ -226,7 +226,7 @@ ${head('공지사항')}
   <div class="tp-nlist">${NOTICES.map((r) => `<a href="#"><span class="tp-row">${r[4] ? badge('공지', 'neutral', true) : badge(r[0])}<span class="tp-item-title">${r[1]}</span></span><span class="tp-meta"><span>${r[0]}</span><span>${r[2]}</span><span>조회 ${r[3]}</span></span></a>`).join('')}</div>
   <div class="tp-pager">${pagination(1, 13)}</div>
 </main>`);
-  return { slug: 'notice-list', en: 'Notice List', name: '공지사항 목록', group: 'Support', desc: '분류와 찾기로 공지를 고르고 고정 공지를 맨 위에 두는 공지사항 목록입니다. 넓은 화면은 표, 좁은 화면은 두 줄 목록으로 보입니다.', css, body };
+  return { slug: 'notice-list', en: 'Notice List', name: '공지 목록', group: 'Support', desc: '분류와 찾기로 공지를 고르고 고정 공지를 맨 위에 두는 공지사항 목록입니다. 넓은 화면은 표, 좁은 화면은 두 줄 목록으로 보입니다.', css, body };
 };
 
 /* 7. 공지사항 상세: 분류와 제목, 등록일과 조회, 일정 요약, 본문, 첨부, 이전 글과 다음 글, 목록 */
@@ -259,7 +259,7 @@ const noticeDetail = () => {
     <div class="tp-center">${btn('목록', { size: 'medium' })}</div>
   </article>
 </main>`);
-  return { slug: 'notice-detail', en: 'Notice Detail', name: '공지사항 상세', group: 'Support', desc: '공지 본문과 일정 요약, 첨부 파일, 이전 글과 다음 글을 보여 주는 공지사항 상세 화면입니다.', css, body };
+  return { slug: 'notice-detail', en: 'Notice Detail', name: '공지 상세', group: 'Support', desc: '공지 본문과 일정 요약, 첨부 파일, 이전 글과 다음 글을 보여 주는 공지사항 상세 화면입니다.', css, body };
 };
 
 /* 8. 자주 묻는 질문: 찾기와 분류를 한 판에, 많이 찾는 질문, 전체 목록(펼침), 옆에 문의 */
@@ -355,7 +355,7 @@ const serviceHome = () => {
   </div>
   <section class="tp-sec">${secHead('추천 강의', { tools: link('더 보기') })}<div class="tp-courses">${courses.map(([th, i, t, who]) => `<a class="tp-course" href="#">${thumb('16:9', '', photo(th, i, 480), 'md')}<span class="tp-item-title">${t}</span><span class="tp-caption">${who}</span></a>`).join('')}</div></section>
 </main>`);
-  return { slug: 'service-home', en: 'Service Home', name: '서비스 메인', group: 'Content', desc: '큰 배너, 바로 가기, 내 시험, 시험 일정, 공지, 추천 강의를 모은 서비스 첫 화면입니다.', css, body };
+  return { slug: 'service-home', en: 'Service Home', name: '서비스 홈', group: 'Content', desc: '큰 배너, 바로 가기, 내 시험, 시험 일정, 공지, 추천 강의를 모은 서비스 첫 화면입니다.', css, body };
 };
 
 /* 10. 이벤트 페이지: 이벤트 탭, 제목과 기간, 큰 혜택, 응모, 혜택 카드(EVENT 1, 2), 참여 방법, 조건 표, 유의사항 */
@@ -392,7 +392,7 @@ const eventPage = () => {
     <section class="tp-sec">${secHead('유의사항')}<ul class="tp-ev-terms"><li>쿠폰은 한 사람이 한 번만 받을 수 있어요.</li><li>다른 할인 쿠폰과 함께 쓸 수 없어요.</li><li>접수를 취소하면 쓴 쿠폰은 돌려받지 못해요.</li></ul></section>
   </div>
 </main>`);
-  return { slug: 'event-page', en: 'Event Page', name: '이벤트 페이지', group: 'Content', desc: '혜택, 참여 방법, 이벤트 정보, 유의사항을 한 장에 모은 이벤트 화면입니다. 응모 버튼을 위와 아래에 둡니다.', css, body };
+  return { slug: 'event-page', en: 'Event Page', name: '이벤트 상세', group: 'Content', desc: '혜택, 참여 방법, 이벤트 정보, 유의사항을 한 장에 모은 이벤트 화면입니다. 응모 버튼을 위와 아래에 둡니다.', css, body };
 };
 
 export const templates = [signup, findAccount, ticket, scoreLookup, applyDone, noticeList, noticeDetail, faq, serviceHome, eventPage].map((f) => f());

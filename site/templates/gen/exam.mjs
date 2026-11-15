@@ -205,7 +205,7 @@ const groupDash = () => {
     ${card(`<div class="tp-between"><span class="tp-h3">재응시가 필요한 학생</span>${badge('42명', 'warning')}</div><div class="tp-rows">${[['박지후', '국제통상학과', '612점'], ['정민재', '컴퓨터공학과', '598점'], ['한지아', '컴퓨터공학과', '575점']].map(([n, d, s]) => `<div class="tp-between"><div class="tp-row">${avatar(n, 24)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-amount">${s}</span></div>`).join('')}</div>${btn('안내 보내기', { variant: 'neutralSolid', ic: 'mail', fill: true })}`)}
   </div>
 </main>`;
-  return { slug: 'exam-group-dashboard', en: 'Group Score Dashboard', name: '단체 성적 대시보드', group: 'Exam', desc: '기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.', css, body: frame(orgNav(3), '성적 리포트', main) };
+  return { slug: 'exam-group-dashboard', en: 'Group Score Dashboard', name: '단체 응시 현황', group: 'Exam', desc: '기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.', css, body: frame(orgNav(3), '성적 리포트', main) };
 };
 
 export const templates = [apply, mine, score, groupApply, roster, groupDash].map((f) => f());

@@ -15,7 +15,7 @@
     },
     {
       "slug": "exam-schedule",
-      "name": "시험 일정표",
+      "name": "시험 일정",
       "en": "Exam Schedule",
       "group": "Exam",
       "sub": "접수",
@@ -27,7 +27,7 @@
     },
     {
       "slug": "exam-apply-done",
-      "name": "접수 완료",
+      "name": "시험 접수 완료",
       "en": "Registration Complete",
       "group": "Exam",
       "sub": "접수",
@@ -147,7 +147,7 @@
     },
     {
       "slug": "learning-catalog",
-      "name": "과정 찾기",
+      "name": "과정 목록",
       "en": "Course Catalog",
       "group": "Learning",
       "sub": "찾기와 신청",
@@ -171,7 +171,7 @@
     },
     {
       "slug": "lesson-plan",
-      "name": "수업 옵션 선택",
+      "name": "수업 신청",
       "en": "Lesson Plan Picker",
       "group": "Learning",
       "sub": "찾기와 신청",
@@ -183,7 +183,7 @@
     },
     {
       "slug": "learning-player",
-      "name": "강의 보기",
+      "name": "강의 시청",
       "en": "Course Player",
       "group": "Learning",
       "sub": "수강",
@@ -255,7 +255,7 @@
     },
     {
       "slug": "book-audio",
-      "name": "교재 음원",
+      "name": "교재 음원 듣기",
       "en": "Book Audio",
       "group": "Books",
       "sub": "학습 지원",
@@ -291,7 +291,7 @@
     },
     {
       "slug": "payment-form",
-      "name": "결제 폼",
+      "name": "결제 (한 화면)",
       "en": "Checkout Form",
       "group": "Payment",
       "sub": "결제",
@@ -303,7 +303,7 @@
     },
     {
       "slug": "checkout-wizard",
-      "name": "결제 단계",
+      "name": "결제 (단계별)",
       "en": "Checkout Wizard",
       "group": "Payment",
       "sub": "결제",
@@ -339,7 +339,7 @@
     },
     {
       "slug": "subscription-settings",
-      "name": "내 구독",
+      "name": "구독 관리",
       "en": "Subscription Settings",
       "group": "Payment",
       "sub": "구독",
@@ -363,7 +363,7 @@
     },
     {
       "slug": "login-card",
-      "name": "로그인 카드",
+      "name": "로그인 (기본)",
       "en": "Login Card",
       "group": "Account",
       "sub": "로그인",
@@ -375,7 +375,7 @@
     },
     {
       "slug": "login-sso",
-      "name": "로그인 (SSO)",
+      "name": "로그인 (회사 계정)",
       "en": "Login SSO",
       "group": "Account",
       "sub": "로그인",
@@ -387,7 +387,7 @@
     },
     {
       "slug": "login-split",
-      "name": "로그인 (화면 분할)",
+      "name": "로그인 (사진형)",
       "en": "Login Split",
       "group": "Account",
       "sub": "로그인",
@@ -423,7 +423,7 @@
     },
     {
       "slug": "mypage-home",
-      "name": "마이페이지 홈",
+      "name": "마이페이지",
       "en": "My Page Home",
       "group": "Account",
       "sub": "마이페이지",
@@ -459,7 +459,7 @@
     },
     {
       "slug": "settings-sidebar",
-      "name": "설정 패널",
+      "name": "설정",
       "en": "Settings Panels",
       "group": "Account",
       "sub": "설정",
@@ -483,7 +483,7 @@
     },
     {
       "slug": "community-board",
-      "name": "게시판 목록",
+      "name": "게시글 목록",
       "en": "Board List",
       "group": "Community",
       "sub": "게시판",
@@ -507,7 +507,7 @@
     },
     {
       "slug": "community-write",
-      "name": "글쓰기",
+      "name": "게시글 쓰기",
       "en": "Write Post",
       "group": "Community",
       "sub": "글",
@@ -519,7 +519,7 @@
     },
     {
       "slug": "notice-list",
-      "name": "공지사항 목록",
+      "name": "공지 목록",
       "en": "Notice List",
       "group": "Support",
       "sub": "공지",
@@ -531,7 +531,7 @@
     },
     {
       "slug": "notice-detail",
-      "name": "공지사항 상세",
+      "name": "공지 상세",
       "en": "Notice Detail",
       "group": "Support",
       "sub": "공지",
@@ -543,7 +543,7 @@
     },
     {
       "slug": "help-center",
-      "name": "고객센터",
+      "name": "고객센터 홈",
       "en": "Help Center",
       "group": "Support",
       "sub": "도움말",
@@ -567,7 +567,7 @@
     },
     {
       "slug": "contact-form",
-      "name": "문의 폼",
+      "name": "1:1 문의",
       "en": "Contact Form",
       "group": "Support",
       "sub": "문의",
@@ -579,7 +579,7 @@
     },
     {
       "slug": "service-home",
-      "name": "서비스 메인",
+      "name": "서비스 홈",
       "en": "Service Home",
       "group": "Content",
       "sub": "메인과 이벤트",
@@ -591,7 +591,7 @@
     },
     {
       "slug": "event-page",
-      "name": "이벤트 페이지",
+      "name": "이벤트 상세",
       "en": "Event Page",
       "group": "Content",
       "sub": "메인과 이벤트",
@@ -615,7 +615,7 @@
     },
     {
       "slug": "video-title-detail",
-      "name": "작품 상세",
+      "name": "영상 상세",
       "en": "Title Detail",
       "group": "Content",
       "sub": "영상",
@@ -639,7 +639,7 @@
     },
     {
       "slug": "video-player",
-      "name": "전체 화면 플레이어",
+      "name": "영상 시청 (전체 화면)",
       "en": "Fullscreen Player",
       "group": "Content",
       "sub": "영상",
@@ -663,7 +663,7 @@
     },
     {
       "slug": "product-gallery",
-      "name": "상품 갤러리",
+      "name": "상품 목록",
       "en": "Product Gallery",
       "group": "Content",
       "sub": "상품",
@@ -687,7 +687,7 @@
     },
     {
       "slug": "ai-chat-landing",
-      "name": "AI 첫 화면",
+      "name": "AI 홈",
       "en": "AI Chat Landing",
       "group": "Content",
       "sub": "AI",
@@ -699,10 +699,10 @@
     },
     {
       "slug": "dashboard",
-      "name": "분석 대시보드",
+      "name": "서비스 이용 현황",
       "en": "Analytics Dashboard",
       "group": "Admin",
-      "sub": "대시보드",
+      "sub": "현황",
       "desc": "서비스 이용 흐름을 한눈에 보는 기본 분석 대시보드입니다. 추이 그래프와 핵심 지표를 먼저 보여 줍니다.",
       "rebuilt": true,
       "figma": {
@@ -711,10 +711,10 @@
     },
     {
       "slug": "learning-dashboard",
-      "name": "학습 현황 대시보드",
+      "name": "학습 현황",
       "en": "Learning Dashboard",
       "group": "Admin",
-      "sub": "대시보드",
+      "sub": "현황",
       "desc": "교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.",
       "rebuilt": true,
       "figma": {
@@ -723,10 +723,10 @@
     },
     {
       "slug": "exam-group-dashboard",
-      "name": "단체 성적 대시보드",
+      "name": "단체 응시 현황",
       "en": "Group Score Dashboard",
       "group": "Admin",
-      "sub": "대시보드",
+      "sub": "현황",
       "desc": "기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.",
       "rebuilt": true,
       "figma": {
@@ -735,10 +735,10 @@
     },
     {
       "slug": "dashboard-progress",
-      "name": "프로젝트 현황 대시보드",
+      "name": "프로젝트 현황",
       "en": "Project Status Dashboard",
       "group": "Admin",
-      "sub": "대시보드",
+      "sub": "현황",
       "desc": "프로젝트가 어디까지 왔는지 일정과 진행률로 보여 주는 대시보드입니다.",
       "rebuilt": true,
       "figma": {
@@ -747,10 +747,10 @@
     },
     {
       "slug": "dashboard-alert-rail",
-      "name": "서비스 모니터링 대시보드",
+      "name": "서비스 상태 현황",
       "en": "Service Monitoring Dashboard",
       "group": "Admin",
-      "sub": "대시보드",
+      "sub": "현황",
       "desc": "서비스 상태를 지켜보며 문제를 바로 알아채는 모니터링 화면입니다. 알림은 오른쪽에 따로 모아 둡니다.",
       "rebuilt": true,
       "figma": {
@@ -795,7 +795,7 @@
     },
     {
       "slug": "learning-admin",
-      "name": "과정 운영",
+      "name": "과정 관리",
       "en": "Course Operations",
       "group": "Admin",
       "sub": "처리",
@@ -807,7 +807,7 @@
     },
     {
       "slug": "detail-page",
-      "name": "주문 상세",
+      "name": "주문 처리",
       "en": "Order Detail",
       "group": "Admin",
       "sub": "처리",
@@ -819,10 +819,10 @@
     },
     {
       "slug": "table-filter",
-      "name": "필터 표",
+      "name": "작업 목록 (필터)",
       "en": "Filterable Table",
       "group": "Admin",
-      "sub": "표",
+      "sub": "목록 관리",
       "desc": "검색과 조건으로 필요한 행만 보여 주는 표입니다. 행이 많고 필터 기준이 여러 개일 때 사용합니다.",
       "rebuilt": true,
       "figma": {
@@ -834,7 +834,7 @@
       "name": "응시자 관리",
       "en": "Candidate Roster",
       "group": "Admin",
-      "sub": "표",
+      "sub": "목록 관리",
       "desc": "단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.",
       "rebuilt": true,
       "figma": {
@@ -843,10 +843,10 @@
     },
     {
       "slug": "table-inbox",
-      "name": "받은함 표",
+      "name": "문의함",
       "en": "Inbox Table",
       "group": "Admin",
-      "sub": "표",
+      "sub": "목록 관리",
       "desc": "왼쪽 목록에서 선택한 항목을 오른쪽에서 바로 읽는 받은 편지함입니다. 메일이나 문의처럼 하나씩 열어 처리할 때 사용합니다.",
       "rebuilt": true,
       "figma": {
@@ -855,10 +855,10 @@
     },
     {
       "slug": "table-grouped",
-      "name": "묶음 표",
+      "name": "이슈 목록 (상태별 묶음)",
       "en": "Grouped Table",
       "group": "Admin",
-      "sub": "표",
+      "sub": "목록 관리",
       "desc": "행을 상태별로 묶어 보여 주는 표입니다. 긴 목록을 몇 덩어리로 나눠 읽을 때 사용합니다.",
       "rebuilt": true,
       "figma": {
@@ -867,10 +867,10 @@
     },
     {
       "slug": "table-collapsible",
-      "name": "접는 표",
+      "name": "계좌 관리 (접는 목록)",
       "en": "Collapsible Table",
       "group": "Admin",
-      "sub": "표",
+      "sub": "목록 관리",
       "desc": "열 구성이 다른 표 여러 개를 접고 펼치며 보는 화면입니다. 표 하나로 합치면 빈칸이 많아질 때 사용합니다.",
       "rebuilt": true,
       "figma": {
@@ -879,10 +879,10 @@
     },
     {
       "slug": "table-tree",
-      "name": "트리 표",
+      "name": "파일 목록 (계층)",
       "en": "Tree Table",
       "group": "Admin",
-      "sub": "표",
+      "sub": "목록 관리",
       "desc": "상위 행을 펼치면 하위 행이 나오는 계층 표입니다. 폴더처럼 단계가 있는 목록에 사용합니다.",
       "rebuilt": true,
       "figma": {
@@ -891,10 +891,10 @@
     },
     {
       "slug": "form-wizard",
-      "name": "단계 폼",
+      "name": "등록 (단계별)",
       "en": "Form Wizard",
       "group": "Admin",
-      "sub": "단계 폼",
+      "sub": "등록",
       "desc": "한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.",
       "rebuilt": true,
       "figma": {
@@ -903,10 +903,10 @@
     },
     {
       "slug": "form-wizard-vertical",
-      "name": "세로 단계 폼",
+      "name": "등록 (세로 단계)",
       "en": "Vertical Wizard",
       "group": "Admin",
-      "sub": "단계 폼",
+      "sub": "등록",
       "desc": "왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.",
       "rebuilt": true,
       "figma": {

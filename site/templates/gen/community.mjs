@@ -160,7 +160,7 @@ const board = () => {
     <div class="tp-bfoot">${pagination(1, 242)}${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil' })}</div>
   </main>
 </div></div>`;
-  return { slug: 'community-board', en: 'Board List', name: '게시판 목록', group: 'Community', desc: '카페형 게시판의 글 목록입니다. 말머리로 필터링하고 공지는 위에 고정합니다.', css, body };
+  return { slug: 'community-board', en: 'Board List', name: '게시글 목록', group: 'Community', desc: '카페형 게시판의 글 목록입니다. 말머리로 필터링하고 공지는 위에 고정합니다.', css, body };
 };
 
 /* 3. 게시글 상세 ------------------------------------------------- */
@@ -246,7 +246,7 @@ const write = () => {
   </form>
 </main>
 </div>`;
-  return { slug: 'community-write', en: 'Write Post', name: '글쓰기', group: 'Community', desc: '커뮤니티에 새 글을 작성하는 화면입니다. 게시판을 고른 뒤 제목과 본문을 씁니다.', css, body };
+  return { slug: 'community-write', en: 'Write Post', name: '게시글 쓰기', group: 'Community', desc: '커뮤니티에 새 글을 작성하는 화면입니다. 게시판을 고른 뒤 제목과 본문을 씁니다.', css, body };
 };
 
 export const templates = [home(), board(), post(), write()];

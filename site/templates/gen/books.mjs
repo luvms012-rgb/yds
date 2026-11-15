@@ -150,7 +150,7 @@ const audio = () => {
   ${progress(36, { tone: 'neutral', label: '재생 위치' })}<time>03:08 / 08:40</time>
   ${btn('1.0x', { variant: 'ghost', aria: '재생 속도 1.0배' })}
 </div>`);
-  return { slug: 'book-audio', en: 'Book Audio', name: '교재 음원', group: 'Books', desc: '교재에 딸린 음원을 바로 듣거나 내려받는 화면입니다. 재생 막대는 아래에 고정하고 학습 자료는 옆에 모아 둡니다.', css, body };
+  return { slug: 'book-audio', en: 'Book Audio', name: '교재 음원 듣기', group: 'Books', desc: '교재에 딸린 음원을 바로 듣거나 내려받는 화면입니다. 재생 막대는 아래에 고정하고 학습 자료는 옆에 모아 둡니다.', css, body };
 };
 
 /* 4. 교재 로드맵 ----------------------------------------------------- */

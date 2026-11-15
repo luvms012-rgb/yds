@@ -45,7 +45,7 @@ const orderDetail = () => {
   </aside>
 </div>
 </div>`;
-  return { slug: 'detail-page', en: 'Order Detail', name: '주문 상세', group: 'Content', desc: '주문 한 건을 자세히 보고 처리하는 화면입니다. 상품과 진행 기록, 고객 정보를 한곳에서 확인합니다.', css, body };
+  return { slug: 'detail-page', en: 'Order Detail', name: '주문 처리', group: 'Content', desc: '주문 한 건을 자세히 보고 처리하는 화면입니다. 상품과 진행 기록, 고객 정보를 한곳에서 확인합니다.', css, body };
 };
 
 /* 6. 상품 상세 -------------------------------------------------- */

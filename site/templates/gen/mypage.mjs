@@ -100,7 +100,7 @@ const home = () => {
     <section class="tp-sec">${secHead('찜한 상품', { tools: link('전체 보기') })}
       <div class="tp-wish">${wish.map(([th, i, n, p]) => `<a href="#">${thumb('1:1', '', K.photo(th, i, 400), 'lg')}<span class="tp-stack" style="gap: 2px"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></span></a>`).join('')}</div>
     </section>`);
-  return { slug: 'mypage-home', h1: '마이페이지 홈', en: 'My Page Home', name: '마이페이지 홈', group: 'Account', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
+  return { slug: 'mypage-home', h1: '마이페이지 홈', en: 'My Page Home', name: '마이페이지', group: 'Account', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
 };
 
 /* 2. 주문 내역 --------------------------------------------------- */

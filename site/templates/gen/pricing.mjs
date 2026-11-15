@@ -184,7 +184,7 @@ const manage = () => {
     <div class="tp-between"><div class="tp-stack"><span class="tp-h4">구독 해지</span></div>${btn('구독 해지하기', { variant: 'ghost' })}</div>
   </main>
 </div>`;
-  return { slug: 'subscription-settings', en: 'Subscription Settings', name: '내 구독', group: 'Payment', desc: '지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.', css, body };
+  return { slug: 'subscription-settings', en: 'Subscription Settings', name: '구독 관리', group: 'Payment', desc: '지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.', css, body };
 };
 
 /* 4. 구독 해지 ---------------------------------------------------- */

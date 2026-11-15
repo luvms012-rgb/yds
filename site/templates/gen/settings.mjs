@@ -43,7 +43,7 @@ const panels = () => {
   </main>
 </div>
 </div>`;
-  return { slug: 'settings-sidebar', en: 'Settings Panels', name: '설정 패널', group: 'Account', desc: '왼쪽 메뉴로 설정 묶음을 오가는 설정 화면입니다. 항목은 그 자리에서 바로 수정합니다.', css, body };
+  return { slug: 'settings-sidebar', en: 'Settings Panels', name: '설정', group: 'Account', desc: '왼쪽 메뉴로 설정 묶음을 오가는 설정 화면입니다. 항목은 그 자리에서 바로 수정합니다.', css, body };
 };
 
 export const templates = [panels].map((f) => f());

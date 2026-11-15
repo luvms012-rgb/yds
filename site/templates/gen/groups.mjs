@@ -47,10 +47,10 @@ export const GROUPS = [
     ['AI', ['ai-chat', 'ai-chat-landing']],
   ]],
   ['Admin', '관리자', [
-    ['대시보드', ['dashboard', 'learning-dashboard', 'exam-group-dashboard', 'dashboard-progress', 'dashboard-alert-rail']],
+    ['현황', ['dashboard', 'learning-dashboard', 'exam-group-dashboard', 'dashboard-progress', 'dashboard-alert-rail']],
     ['처리', ['admin-request-list', 'admin-request-detail', 'admin-request-form', 'learning-admin', 'detail-page']],
-    ['표', ['table-filter', 'exam-group-roster', 'table-inbox', 'table-grouped', 'table-collapsible', 'table-tree']],
-    ['단계 폼', ['form-wizard', 'form-wizard-vertical']],
+    ['목록 관리', ['table-filter', 'exam-group-roster', 'table-inbox', 'table-grouped', 'table-collapsible', 'table-tree']],
+    ['등록', ['form-wizard', 'form-wizard-vertical']],
   ]],
 ];
 

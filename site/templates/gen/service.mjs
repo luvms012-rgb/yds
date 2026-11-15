@@ -44,7 +44,7 @@ ${head('시험 일정', { tools: btn('알림 설정', { ic: 'bell' }) })}
     <div class="tp-scroll-x tp-sched">${table(['회차', '시험일', '접수 기간', '성적 발표', '상태', ['<span class="tp-sr">동작</span>', 'end']], rows, { caption: '시험 일정' })}</div>
   </section>
 </main>`);
-  return { slug: 'exam-schedule', en: 'Exam Schedule', name: '시험 일정표', group: 'Exam', desc: '회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.', css, body };
+  return { slug: 'exam-schedule', en: 'Exam Schedule', name: '시험 일정', group: 'Exam', desc: '회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.', css, body };
 };
 
 /* 3. 수업 옵션 선택 -------------------------------------------------- */
@@ -75,7 +75,7 @@ ${head('수업 옵션 선택')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 옵션 선택', group: 'Learning', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.', css, body };
+  return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 신청', group: 'Learning', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.', css, body };
 };
 
 /* 4. 교재 상세 ------------------------------------------------------ */
@@ -163,7 +163,7 @@ ${head('고객센터')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'help-center', en: 'Help Center', name: '고객센터', group: 'Support', desc: '자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.', css, body };
+  return { slug: 'help-center', en: 'Help Center', name: '고객센터 홈', group: 'Support', desc: '자주 묻는 질문을 찾고 1:1 문의나 전화 상담으로 이어지는 고객센터 첫 화면입니다.', css, body };
 };
 
 export const templates = [schedule, plan, book, consult, help].map((f) => f());

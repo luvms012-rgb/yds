@@ -99,7 +99,7 @@ const detail = () => {
   </section>
   <section class="tp-sec">${secHead('비슷한 콘텐츠')}<div class="tp-g4">${[['캠퍼스 일주일: 영국편', 'campus', 1], ['교실 밖 영어 회화', 'lecture', 3], ['도서관에서 만난 사람들', 'book', 5], ['영어로 일하는 사람들', 'work', 2]].map(([t, th, i]) => tile(t, photo(th, i, 720))).join('')}</div></section>
 </main></div>`;
-  return { slug: 'video-title-detail', en: 'Title Detail', name: '작품 상세', group: 'Content', desc: '작품 하나의 정보와 시즌별 회차를 보여 주는 상세 화면입니다. 본 회차와 이어 볼 회차를 진행 막대로 구분합니다.', css, body };
+  return { slug: 'video-title-detail', en: 'Title Detail', name: '영상 상세', group: 'Content', desc: '작품 하나의 정보와 시즌별 회차를 보여 주는 상세 화면입니다. 본 회차와 이어 볼 회차를 진행 막대로 구분합니다.', css, body };
 };
 
 /* 3. 영상 시청 ------------------------------------------------------- */
@@ -185,7 +185,7 @@ const player = () => {
     </div>
   </div>
 </div>`;
-  return { slug: 'video-player', en: 'Fullscreen Player', name: '전체 화면 플레이어', group: 'Content', desc: '영상을 화면 가득 채워 보는 플레이어입니다. 조작 막대와 다음 화는 아래에 모아 둡니다.', css, body };
+  return { slug: 'video-player', en: 'Fullscreen Player', name: '영상 시청 (전체 화면)', group: 'Content', desc: '영상을 화면 가득 채워 보는 플레이어입니다. 조작 막대와 다음 화는 아래에 모아 둡니다.', css, body };
 };
 
 /* 5. 클래스 상세 ----------------------------------------------------- */
