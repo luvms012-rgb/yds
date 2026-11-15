@@ -106,15 +106,15 @@ const item = ([name, opt, img, now, was, n, soldout]) => `<div class="tp-item"${
   <span class="tp-item__del">${iconBtn('x', name + ' 빼기', { size: 'xsmall' })}</span>
 </div>`;
 const rec = ([name, img, now, was]) => `<article class="tp-rec"><a href="#" tabindex="-1">${thumb('1:1', '', K.photo('product', img, 480), 'lg')}</a><a class="tp-rec__name" href="#">${name}</a>${price(now, was, 1).replace('class="tp-price"', 'class="tp-price" style="align-items:flex-start"')}${btn('담기', { variant: 'neutralWeak', ic: 'shopping-cart', fill: true })}</article>`;
-const RECS = [['가벼운 러닝화', 3, 79000, 99000], ['즉석 카메라 필름 20장', 2, 24000, 0], ['원두 커피 200g', 5, 16900, 18900], ['가죽 시계줄 20mm', 0, 19800, 0]];
+const RECS = [['ETS 토익 단기공략 750+', 3, 16200, 18000], ['토익 스피킹 실전 모의고사', 2, 17100, 0], ['영어 회화 패턴 100', 5, 13500, 15000], ['유선 학습용 이어폰', 1, 19800, 0]];
 const NOTES = ['장바구니에 담은 상품은 30일 동안 보관해요.', '쿠폰과 적립금은 주문 결제 단계에서 쓸 수 있어요.', '상품 가격과 할인은 바뀔 수 있어서, 결제할 때의 금액으로 주문돼요.'];
 
 /* 1. 장바구니 ---------------------------------------------------- */
 const cart = () => {
   const groups = [
-    ['빠른 배송', badge('내일 도착', 'positive'), '무료 배송', [['노이즈 캔슬링 무선 헤드폰', '블랙 / 1개', 1, 189000, 239000, 1], ['즉석 카메라', '화이트 / 1개', 2, 129000, 0, 1]]],
-    ['한빛 상회', badge('판매자 배송'), '무료 배송', [['클래식 가죽 손목시계', '브라운 / 38mm', 0, 89000, 119000, 1], ['편광 선글라스', '블랙 / 기본', 4, 45000, 0, 1, true]]],
-    ['아침 로스터리', badge('판매자 배송'), '배송비 3,000원', [['원두 커피 드립백 20개입', '고소한 맛 / 20개입', 5, 12900, 14900, 2]]],
+    ['빠른 배송', badge('내일 도착', 'positive'), '무료 배송', [['ETS 토익 정기시험 기출문제집 4', '1권', 2, 19800, 22000, 1], ['노이즈 캔슬링 무선 헤드폰', '블랙 / 1개', 0, 189000, 239000, 1]]],
+    ['한빛 상회', badge('판매자 배송'), '무료 배송', [['토익 보카 2000 단어장', '1권', 3, 13500, 15000, 1], ['스프링 학습 노트 5권 세트', 'A5 / 기본', 4, 9900, 0, 1, true]]],
+    ['한빛 문구', badge('판매자 배송'), '배송비 3,000원', [['영어 원서 읽기 세트', '3권 / 기본', 5, 25800, 28800, 1]]],
   ];
   const n = groups.reduce((a, g) => a + g[3].length, 0);
   const on = groups.reduce((a, g) => a + g[3].filter((r) => !r[6]).length, 0);
@@ -125,13 +125,13 @@ const cart = () => {
   <div class="tp-cart">
     <div class="tp-cart__main">
       <div class="tp-selbar">${checkbox(`전체 고르기 ${T(on + '/' + n)}`, { checked: true })}<div class="tp-row">${btn('품절 상품 빼기', { variant: 'ghost', attrs: 'class="tp-only-md"' }).replace('class="ds-btn" ', 'class="ds-btn tp-only-md" ').replace(' class="tp-only-md"', '')}${btn('고른 상품 빼기', { variant: 'neutralOutline' })}</div></div>
-      <div class="ds-callout tp-freeship" data-tone="informative">${icon('truck')}<div class="tp-freeship__body"><p class="ds-callout__content">아침 로스터리 상품을 <b>${won(4200)}</b> 더 담으면 <b>무료 배송</b>이에요.</p>${progress(86, { label: '무료 배송까지' })}<span class="tp-freeship__ends"><span>0원</span><span>30,000원</span></span></div></div>
+      <div class="ds-callout tp-freeship" data-tone="informative">${icon('truck')}<div class="tp-freeship__body"><p class="ds-callout__content">한빛 문구 상품을 <b>${won(4200)}</b> 더 담으면 <b>무료 배송</b>이에요.</p>${progress(86, { label: '무료 배송까지' })}<span class="tp-freeship__ends"><span>0원</span><span>30,000원</span></span></div></div>
       ${groups.map(([seller, tag, ship, rows]) => card(`<div class="tp-grp__head"><span class="tp-row">${checkOnly(seller + ' 상품 모두 고르기', true)}<h2 class="tp-h4">${seller}</h2>${tag}</span><span class="tp-caption">${ship}</span></div>${rows.map(item).join('')}`, { cls: 'tp-grp', attrs: `aria-label="${esc(seller)}"` })).join('')}
       <ul class="tp-notes">${NOTES.map((t) => `<li>${t}</li>`).join('')}</ul>
     </div>
     <aside class="tp-cart__aside" aria-label="결제 예정 금액">
-      ${card(`<h2 class="tp-h3">결제 예정 금액</h2><dl class="tp-sum"><div><dt>상품 금액</dt><dd>${won(516800)}</dd></div><div><dt>할인 금액</dt><dd class="tp-off">-${won(84000)}</dd></div><div><dt>배송비</dt><dd>${won(3000)}</dd></div><div class="tp-sum__total"><dt>결제 예정 금액</dt><dd>${won(435800)}</dd></div></dl><p class="tp-tip">${icon('tag')}<span>쿠폰을 쓰면 최대 ${won(12000)} 더 아낄 수 있어요. 주문 결제 단계에서 골라 주세요.</span></p>`, { size: 'medium' })}
-      ${btn(`${won(435800)} 주문하기`, { variant: 'brandSolid', size: 'large' }).replace('class="ds-btn"', 'class="ds-btn tp-cart__order"')}
+      ${card(`<h2 class="tp-h3">결제 예정 금액</h2><dl class="tp-sum"><div><dt>상품 금액</dt><dd>${won(304800)}</dd></div><div><dt>할인 금액</dt><dd class="tp-off">-${won(56700)}</dd></div><div><dt>배송비</dt><dd>${won(3000)}</dd></div><div class="tp-sum__total"><dt>결제 예정 금액</dt><dd>${won(251100)}</dd></div></dl><p class="tp-tip">${icon('tag')}<span>쿠폰을 쓰면 최대 ${won(12000)} 더 아낄 수 있어요. 주문 결제 단계에서 골라 주세요.</span></p>`, { size: 'medium' })}
+      ${btn(`${won(251100)} 주문하기`, { variant: 'brandSolid', size: 'large' }).replace('class="ds-btn"', 'class="ds-btn tp-cart__order"')}
     </aside>
   </div>
   <section class="tp-sec" aria-labelledby="recs">${secHead('함께 사면 좋은 상품', { id: 'recs', cls: 'tp-h2' })}<div class="tp-recs">${RECS.map(rec).join('')}</div></section>

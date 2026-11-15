@@ -47,16 +47,16 @@ const home = () => {
   .tp-hero__title { margin: 0; font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
   .tp-hero .tp-row { flex-wrap: wrap; }
 `;
-  const cont = [['바다 건너 일주일', 'mix', 3, 'S2 3화, 남은 18분', 64], ['처음 듣는 경제 이야기', 'study', 2, '5강, 남은 9분', 40], ['도시의 밤', 'city', 1, 'S1 7화, 남은 31분', 22], ['주방의 과학', 'food', 4, '2화, 남은 12분', 80], ['느리게 걷는 숲', 'nature', 2, '1화, 남은 40분', 10]];
-  const top = [['도시의 밤', 'city', 0], ['바다 건너 일주일', 'mix', 5], ['주방의 과학', 'food', 2], ['느리게 걷는 숲', 'nature', 0], ['영어로 떠나는 여행', 'mix', 2], ['처음 듣는 경제 이야기', 'study', 0], ['서점 골목', 'book', 1], ['작은 공방', 'product', 2]];
-  const docs = [['영어로 떠나는 여행', 'mix', 1, '다큐, 6화'], ['느리게 걷는 숲', 'nature', 3, '다큐, 4화'], ['서점 골목', 'book', 3, '다큐, 8화'], ['작은 공방', 'product', 1, '다큐, 5화'], ['도시를 그리는 사람들', 'city', 3, '다큐, 6화']];
+  const cont = [['캠퍼스 일주일: 미국 어학연수', 'campus', 0, 'S2 3화, 남은 18분', 64], ['처음 듣는 비즈니스 영어', 'work', 0, '5강, 남은 9분', 40], ['토익 LC 파트 2 실전', 'listen', 0, '7강, 남은 31분', 22], ['교실 밖 영어 회화', 'lecture', 4, '2화, 남은 12분', 80], ['하루 10분 영문법', 'book', 1, '1강, 남은 40분', 10]];
+  const top = [['토익 900 실전 특강', 'lecture', 0], ['캠퍼스 일주일: 미국 어학연수', 'campus', 0], ['교실 밖 영어 회화', 'lecture', 3], ['토익 스피킹 사진 묘사', 'listen', 2], ['영어 인터뷰 완벽 대비', 'work', 1], ['처음 듣는 비즈니스 영어', 'work', 0], ['원서로 읽는 영어', 'book', 2], ['하루 10분 영문법', 'book', 1]];
+  const docs = [['캠퍼스 일주일: 영국편', 'campus', 1, '다큐, 6화'], ['도서관에서 만난 사람들', 'book', 5, '다큐, 4화'], ['선생님의 하루', 'lecture', 7, '다큐, 8화'], ['영어로 일하는 사람들', 'work', 2, '다큐, 5화'], ['시험장 가는 길', 'exam', 2, '다큐, 6화']];
   const body = `<div class="tp-app">${topbar(OTT_MENU, 0, ottEnd)}
 <main class="tp-content">
   <section class="tp-hero" aria-labelledby="vh-hero">
-    ${thumb('16:9', '', photo('mix', 0, 1600), 'xl')}
+    ${thumb('16:9', '', photo('campus', 0, 1600), 'xl')}
     <div class="tp-stack" style="gap: var(--ds-space-x4)">
-      <div class="tp-row">${badge('새 시즌', 'brand', true)}${tags(['2026', '시즌 2', '12세', '여행 다큐'])}</div>
-      <h1 class="tp-hero__title" id="vh-hero">바다 건너 일주일</h1>
+      <div class="tp-row">${badge('새 시즌', 'brand', true)}${tags(['2026', '시즌 2', '전체 관람가', '어학연수 다큐'])}</div>
+      <h1 class="tp-hero__title" id="vh-hero">캠퍼스 일주일: 미국 어학연수</h1>
       <div class="tp-row">${btn('3화 이어 보기', { variant: 'brandSolid', size: 'medium', ic: 'play-solid' })}${btn('찜하기', { size: 'medium', ic: 'plus' })}</div>
     </div>
   </section>
@@ -81,23 +81,23 @@ const detail = () => {
   .tp-ep .ds-progress { margin-top: var(--ds-space-x2); }
   .tp-ep__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ds-space-x3); }
 `;
-  const eps = [['1화', '떠나기 전날', '52분', '작은 배낭 하나로 일주일을 버틸 수 있을까요. 두 친구가 첫 항구에서 만납니다.', 100], ['2화', '바람이 바뀌는 섬', '48분', '태풍 소식에 배가 묶이고, 섬 사람들의 저녁 식탁에 초대받습니다.', 100], ['3화', '말이 통하지 않을 때', '55분', '처음 가는 시장에서 손짓만으로 장을 보는 하루입니다.', 64], ['4화', '등대지기의 노트', '50분', '서른 해 동안 등대를 지킨 사람이 남긴 기록을 따라갑니다.', -1], ['5화', '돌아오는 배', '58분', '마지막 날, 처음 만났던 항구로 돌아갑니다.', -1]];
+  const eps = [['1화', '출국 전날', '52분', '짐을 싸며 영어 자기소개를 연습합니다. 두 친구가 공항에서 처음 만납니다.', 100], ['2화', '반 배정 시험', '48분', '첫날 아침 반 배정 시험을 보고, 같은 반 친구들과 점심을 먹습니다.', 100], ['3화', '말이 통하지 않을 때', '55분', '수업 시간에 하고 싶은 말이 떠오르지 않아 손짓으로 설명하는 하루입니다.', 64], ['4화', '도서관의 밤', '50분', '발표 준비로 늦게까지 남은 도서관에서 새 친구를 사귑니다.', -1], ['5화', '수료식', '58분', '마지막 날, 수료증을 받고 처음 만났던 공항으로 돌아갑니다.', -1]];
   const body = `<div class="tp-app">${topbar(OTT_MENU, 1, ottEnd)}
 <main class="tp-content">
   <div class="tp-td">
-    ${video(photo('mix', 0, 1600), '64%', ['35:12', '55:00'])}
+    ${video(photo('campus', 0, 1600), '64%', ['35:12', '55:00'])}
     <div class="tp-stack" style="gap: var(--ds-space-x4)">
-      <h1 class="tp-h1">바다 건너 일주일</h1>
-      ${tags(['2026', '시즌 2', '12세', '여행 다큐', '자막 4개'])}
+      <h1 class="tp-h1">캠퍼스 일주일: 미국 어학연수</h1>
+      ${tags(['2026', '시즌 2', '전체 관람가', '어학연수 다큐', '자막 4개'])}
       <div class="tp-row">${btn('3화 이어 보기', { variant: 'brandSolid', size: 'medium', ic: 'play-solid' })}${iconBtn('plus', '찜하기', { variant: 'neutralWeak', size: 'medium' })}${iconBtn('thumbs-up', '좋아요', { variant: 'neutralWeak', size: 'medium' })}${iconBtn('share', '공유', { variant: 'neutralWeak', size: 'medium' })}</div>
-      <div class="tp-article"><p>두 친구가 배낭 하나씩 메고 일주일 동안 섬과 항구를 옮겨 다니며 만난 사람들의 이야기입니다.</p></div>
+      <div class="tp-article"><p>두 친구가 일주일 동안 미국 대학의 어학연수 과정을 함께 다니며 만난 선생님과 친구들, 수업 이야기입니다.</p></div>
       <dl class="ds-desclist">${[['출연', '한지아, 오도윤'], ['연출', '정민재'], ['음성', '한국어, 영어']].map(([k, v]) => `<div class="ds-desclist__item"><dt class="ds-desclist__label">${k}</dt><dd class="ds-desclist__value">${v}</dd></div>`).join('')}</dl>
     </div>
   </div>
   <section class="tp-sec">${secHead('회차', { tools: select('시즌 2', { aria: '시즌' }) })}
-    <div>${eps.map(([n, t, d, s, v], i) => `<a class="tp-ep" href="#">${thumb('16:9', '', photo('mix', i + 1, 480), 'md')}<div class="tp-stack"><div class="tp-ep__head"><span class="tp-item-title">${n} ${t}</span><span class="tp-caption">${T(d)}</span></div><p class="tp-ep__desc">${s}</p>${v >= 0 ? progress(v, { label: n + ' 본 만큼' }) : ''}</div></a>`).join('')}</div>
+    <div>${eps.map(([n, t, d, s, v], i) => `<a class="tp-ep" href="#">${thumb('16:9', '', photo('lecture', i + 1, 480), 'md')}<div class="tp-stack"><div class="tp-ep__head"><span class="tp-item-title">${n} ${t}</span><span class="tp-caption">${T(d)}</span></div><p class="tp-ep__desc">${s}</p>${v >= 0 ? progress(v, { label: n + ' 본 만큼' }) : ''}</div></a>`).join('')}</div>
   </section>
-  <section class="tp-sec">${secHead('비슷한 콘텐츠')}<div class="tp-g4">${[['느리게 걷는 숲', 'nature', 3], ['영어로 떠나는 여행', 'mix', 1], ['서점 골목', 'book', 3], ['도시를 그리는 사람들', 'city', 3]].map(([t, th, i]) => tile(t, photo(th, i, 720))).join('')}</div></section>
+  <section class="tp-sec">${secHead('비슷한 콘텐츠')}<div class="tp-g4">${[['캠퍼스 일주일: 영국편', 'campus', 1], ['교실 밖 영어 회화', 'lecture', 3], ['도서관에서 만난 사람들', 'book', 5], ['영어로 일하는 사람들', 'work', 2]].map(([t, th, i]) => tile(t, photo(th, i, 720))).join('')}</div></section>
 </main></div>`;
   return { slug: 'video-title-detail', en: 'Title Detail', name: '작품 상세', group: 'Content', desc: '작품 하나의 정보와 시즌별 회차를 보여 주는 상세 화면입니다. 본 회차와 이어 볼 회차를 진행 막대로 구분합니다.', css, body };
 };
@@ -117,12 +117,12 @@ const watch = () => {
   .tp-up__title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
   .tp-opt { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
 `;
-  const next = [['영어 인터뷰에서 자주 나오는 질문 10가지', '말하기 연구소', '조회수 12만회', 'study', 1], ['10분 만에 끝내는 비즈니스 이메일', '오피스 영어', '조회수 8.4만회', 'work', 0], ['여행 영어, 공항에서 쓰는 문장', '여행하는 영어', '조회수 31만회', 'city', 2], ['발음이 좋아지는 하루 루틴', '말하기 연구소', '조회수 5.2만회', 'study', 3], ['영어 뉴스로 듣기 연습', '듣기 클럽', '조회수 2.9만회', 'book', 0]];
+  const next = [['영어 인터뷰에서 자주 나오는 질문 10가지', '말하기 연구소', '조회수 12만회', 'study', 1], ['10분 만에 끝내는 비즈니스 이메일', '오피스 영어', '조회수 8.4만회', 'work', 0], ['여행 영어, 공항에서 쓰는 문장', '여행하는 영어', '조회수 31만회', 'campus', 2], ['발음이 좋아지는 하루 루틴', '말하기 연구소', '조회수 5.2만회', 'listen', 3], ['영어 뉴스로 듣기 연습', '듣기 클럽', '조회수 2.9만회', 'listen', 0]];
   const body = `<div class="tp-app">${topbar(OTT_MENU, 3, ottEnd)}
 <main class="tp-content">
   <div class="tp-wt">
     <div class="tp-wt__main">
-      ${video(photo('study', 2, 1600), '24%', ['03:08', '13:42'])}
+      ${video(photo('work', 0, 1600), '24%', ['03:08', '13:42'])}
       <h1 class="tp-h1">영어 회의에서 바로 쓰는 표현 20가지</h1>
       <div class="tp-channel"><div class="tp-row">${avatar('말하기 연구소', 40)}<div class="tp-stack"><span class="tp-item-title">말하기 연구소</span><span class="tp-caption">구독자 24만명</span></div>${btn('구독', { variant: 'neutralSolid' })}</div>
         <div class="tp-row">${btn('1.2만', { ic: 'thumbs-up', aria: '좋아요 1.2만' })}${btn('공유', { ic: 'share' })}${btn('저장', { ic: 'bookmark' })}</div></div>
@@ -173,11 +173,11 @@ const player = () => {
 `;
   const pc = (ic, label, { main = false, text = '', cls = '' } = {}) => `<button type="button" class="tp-pc${cls ? ' ' + cls : ''}"${main ? ' data-main' : ''} aria-label="${esc(label)}">${text || icon(ic)}</button>`;
   const body = `<div class="tp-fp">
-  <img src="${photo('mix', 0, 1920)}" alt="">
-  <div class="tp-fp__top">${pc('arrow-left', '뒤로')}<div class="tp-fp__title"><b>바다 건너 일주일</b><span>시즌 2, 3화 말이 통하지 않을 때</span></div></div>
-  <h1 class="tp-sr">바다 건너 일주일 시즌 2 3화 보기</h1>
+  <img src="${photo('campus', 0, 1920)}" alt="">
+  <div class="tp-fp__top">${pc('arrow-left', '뒤로')}<div class="tp-fp__title"><b>캠퍼스 일주일: 미국 어학연수</b><span>시즌 2, 3화 말이 통하지 않을 때</span></div></div>
+  <h1 class="tp-sr">캠퍼스 일주일: 미국 어학연수 시즌 2 3화 보기</h1>
   <div class="tp-fp__bottom">
-    <a class="tp-fp__next" href="#">${thumb('16:9', '', photo('mix', 4, 480), 'md')}<span class="tp-stack"><b>다음 화</b><span>4화 등대지기의 노트</span></span></a>
+    <a class="tp-fp__next" href="#">${thumb('16:9', '', photo('book', 5, 480), 'md')}<span class="tp-stack"><b>다음 화</b><span>4화 도서관의 밤</span></span></a>
     <div class="tp-fp__time"><span>${'25:18'}</span><span class="tp-fp__track" role="slider" aria-label="재생 위치" aria-valuemin="0" aria-valuemax="3300" aria-valuenow="1518" aria-valuetext="25분 18초" tabindex="0"><span></span><i></i></span><span>55:00</span></div>
     <div class="tp-fp__bar">
       <div>${pc('pause-solid', '멈춤', { main: true })}${pc('rotate-ccw', '10초 뒤로')}${pc('redo-2', '10초 앞으로')}</div>
@@ -255,7 +255,7 @@ const classroom = () => {
   .tp-cls__title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
   .tp-cert { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; }
 `;
-  const cls = [['영어 회의, 오늘부터 말하기', '한지아', 42, 'work', 2, ''], ['비즈니스 이메일 한 번에 쓰기', '오도윤', 75, 'work', 0, ''], ['토익 실전 900 전략', '정민재', 18, 'study', 1, 'D-12'], ['여행 영어 첫걸음', '윤채원', 6, 'city', 2, '']];
+  const cls = [['영어 회의, 오늘부터 말하기', '한지아', 42, 'work', 2, ''], ['비즈니스 이메일 한 번에 쓰기', '오도윤', 75, 'work', 0, ''], ['토익 실전 900 전략', '정민재', 18, 'exam', 0, 'D-12'], ['여행 영어 첫걸음', '윤채원', 6, 'campus', 2, '']];
   const meter = (v, label) => `<div class="tp-prog">${progress(v, { label })}<span class="tp-caption tp-num">${v}%</span></div>`;
   const body = `<div class="tp-app">${topbar(CLASS_MENU, 2, classEnd)}
 ${head('내 강의실')}

@@ -4,9 +4,9 @@ import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, field, input, select, chip, chiptabs, segmented, avatar, avatars, callout, link, thumb, pagination, search, sw, meter, esc } = K;
 
-const MENU = ['홈', '게시판', '인기글', '모임'];
-const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('주말산책', 24)}`;
-const BOARDS = [['전체글', 'list'], ['인기글', 'star-solid'], ['공지사항', 'bell'], ['자유게시판', 'message-circle'], ['질문과 답변', 'info'], ['정보 나눔', 'bookmark'], ['후기', 'thumbs-up'], ['모임 모집', 'users']];
+const MENU = ['홈', '게시판', '인기글', '스터디'];
+const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('새벽공부', 24)}`;
+const BOARDS = [['전체글', 'list'], ['인기글', 'star-solid'], ['공지사항', 'bell'], ['자유게시판', 'message-circle'], ['질문과 답변', 'info'], ['정보 나눔', 'bookmark'], ['후기', 'thumbs-up'], ['스터디 모집', 'users']];
 
 const CSS = FRAME_CSS + `
   /* 커뮤니티 배치: 모바일 1열, 1280 부터 게시판 메뉴 220 | 본문, 1280 부터 오른쪽 칸 300 */
@@ -66,7 +66,7 @@ const CSS = FRAME_CSS + `
 `;
 
 const boardNav = (cur) => `<nav class="ds-sidenav" aria-label="게시판"><div class="ds-sidenav__content"><div class="ds-sidenav__group"><div class="ds-sidenav__group-label">게시판</div>${BOARDS.map(([t, ic], i) => `<a class="ds-sidenav__item" href="#"${i === cur ? ' aria-current="page"' : ''}><span class="ds-sidenav__prefix">${icon(ic)}</span><span class="ds-sidenav__label">${t}</span></a>`).join('')}</div></div></nav>`;
-const me = () => card(`<div class="tp-me"><div class="tp-row">${avatar('주말산책', 40)}<div class="tp-stack"><span class="tp-h4">주말산책</span><span class="tp-caption">글 ${T('12')} / 댓글 ${T('48')}</span></div></div>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil', fill: true })}</div>`);
+const me = () => card(`<div class="tp-me"><div class="tp-row">${avatar('새벽공부', 40)}<div class="tp-stack"><span class="tp-h4">새벽공부</span><span class="tp-caption">글 ${T('12')} / 댓글 ${T('48')}</span></div></div>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil', fill: true })}</div>`);
 const leftNav = (cur) => `<aside class="tp-cm__nav" aria-label="내 정보와 게시판">${me()}${boardNav(cur)}</aside>`;
 const mobileBoards = (cur) => `<div class="tp-cm__chips">${chiptabs(BOARDS.map(([t]) => t), cur, '게시판')}</div>`;
 const who = (name, time, { lv = '', extra = '' } = {}) => `<div class="tp-who">${avatar(name, 24)}<span class="tp-label">${name}</span>${lv ? badge(lv) : ''}<span class="tp-caption">${time}</span>${extra}</div>`;
@@ -76,18 +76,18 @@ const rank = (items) => `<ol class="tp-rank">${items.map(([t, c]) => `<li><a hre
 const trend = (rows, ranked = false) => `<ol class="tp-trend"${ranked ? ' data-ranked' : ''}>${rows.map(([t, c, infos, ph], i) => `<li><a href="#">${ranked ? `<span class="tp-trend__no">${i + 1}</span>` : ''}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-trend__line"><span class="tp-item-title tp-trend__t">${t}</span>${c ? badge(c) : ''}</div><div class="tp-meta">${infos.map((x) => `<span>${x}</span>`).join('')}</div></div>${ph >= 0 ? `<div class="tp-trend__thumb">${thumb('1:1', '', K.photo('mix', ph, 160), 'md')}</div>` : '<span></span>'}</a></li>`).join('')}</ol>`;
 const MOVES = [['same', 'minus'], ['up', 'chevron-up'], ['up', 'chevron-up'], ['down', 'chevron-down'], ['up', 'chevron-up']];
 const boardRank = () => `<ol class="tp-brank">${BOARDS.slice(3).concat(BOARDS.slice(1, 3)).slice(0, 5).map(([n, ic], i) => `<li><a href="#"><b>${i + 1}</b><span data-move="${MOVES[i][0]}">${icon(MOVES[i][1])}</span>${icon(ic)}${n}</a></li>`).join('')}</ol>`;
-const HOT = [['처음 가 본 둘레길, 생각보다 쉬웠어요', 42], ['홈카페 원두 추천해 주세요', 31], ['이번 주말 비 온대요, 실내 데이트 어디 가요?', 28], ['반려식물 잎이 노랗게 변해요', 19], ['책 모임 3월 도서 투표 결과', 16]];
+const HOT = [['처음 본 토익, 생각보다 시간이 부족했어요', 42], ['LC 파트 2 듣기 요령 알려 주세요', 31], ['이번 주말 시험 전날 뭐 하세요?', 28], ['단어 외우는 앱 추천해 주세요', 19], ['스터디 3월 교재 투표 결과', 16]];
 
 /* 1. 커뮤니티 홈 ------------------------------------------------- */
 const home = () => {
   const posts = [
-    ['정보 나눔', '초보도 바로 가는 서울 근교 둘레길 5곳', '지하철로 갈 수 있고 두세 시간이면 끝나는 길만 골랐어요. 길마다 화장실과 카페 위치도 같이 적었어요.', '하늘바라기', '20분 전', '128', '24', '1,920', 0],
-    ['질문과 답변', '홈카페 처음인데 그라인더부터 사야 할까요?', '캡슐 머신만 써 봤는데 원두로 바꿔 보고 싶어요. 예산은 20만 원 정도예요.', '커피한잔', '1시간 전', '36', '18', '842', -1],
-    ['후기', '주말 캠핑 장비, 이것만 챙기면 충분했어요', '처음 캠핑 갈 때 짐이 너무 많았는데 세 번 다녀오고 나서 줄인 목록이에요.', '캠핑초보', '3시간 전', '87', '12', '1,204', 1],
-    ['자유게시판', '퇴근하고 30분 걷기, 한 달 해 본 이야기', '처음엔 귀찮았는데 지금은 안 걸으면 잠이 안 와요. 같이 걸을 분 계세요?', '초록손', '5시간 전', '54', '9', '611', -1],
-    ['모임 모집', '토요일 아침 독서 모임 2명 더 모여요', '한 달에 한 권, 카페에서 두 시간 이야기 나눠요. 이번 달 책은 투표로 정해요.', '책읽는밤', '어제', '22', '7', '388', 2],
+    ['정보 나눔', '토익 RC 파트 5 자주 나오는 문법 정리', '시험마다 나오는 품사, 시제, 접속사 문제만 골랐어요. 문제마다 교재 해설 쪽수도 같이 적었어요.', '토익900목표', '20분 전', '128', '24', '1,920', 0],
+    ['질문과 답변', '토익 스피킹 처음인데 교재부터 사야 할까요?', '인강만 들어 봤는데 혼자 말하기 연습을 해 보고 싶어요. 시험까지 한 달 남았어요.', '스피킹연습', '1시간 전', '36', '18', '842', -1],
+    ['후기', '첫 토익 650점, 준비하며 챙긴 것들', '처음 시험 볼 때 챙긴 것이 너무 많았는데 세 번 보고 나서 줄인 목록이에요.', '첫토익', '3시간 전', '87', '12', '1,204', 1],
+    ['자유게시판', '출근 전 30분 영어 듣기, 한 달 해 본 이야기', '처음엔 졸렸는데 지금은 안 들으면 허전해요. 같이 들을 분 계세요?', '출근전영어', '5시간 전', '54', '9', '611', -1],
+    ['스터디 모집', '토요일 아침 토익 스터디 2명 더 모여요', '한 주에 모의고사 한 회를 강의실에서 함께 풀고 오답을 나눠요. 이번 달 교재는 투표로 정해요.', '책읽는밤', '어제', '22', '7', '388', 2],
   ];
-  const HOT_ROWS = [['새벽 산에서 본 구름바다, 사진 남겨요', 42, ['자유게시판', '조회 2.1만'], 1], ['바닷가 캠핑장 세 곳 다녀온 비교 후기', 31, ['후기', '조회 1.9만'], 4], ['동네 공원 산책 코스 지도로 정리했어요', 28, ['정보 나눔', '조회 1.6만'], 6], ['봄맞이 사진 공모전 수상작 모음', 16, ['공지사항', '조회 4,480'], 2], ['이번 달 읽을 책 같이 골라요', 9, ['모임 모집', '조회 2,086'], -1]];
+  const HOT_ROWS = [['인강 들으며 정리한 노트, 사진 남겨요', 42, ['자유게시판', '조회 2.1만'], 1], ['종로, 강남, 신촌 고사장 세 곳 다녀온 비교 후기', 31, ['후기', '조회 1.9만'], 4], ['파트별 듣기 연습 순서 표로 정리했어요', 28, ['정보 나눔', '조회 1.6만'], 6], ['봄맞이 영어 말하기 대회 수상작 모음', 16, ['공지사항', '조회 4,480'], 2], ['이번 달 풀 모의고사 같이 골라요', 9, ['스터디 모집', '조회 2,086'], -1]];
   const css = CSS;
   const body = `<div class="tp-app">${topbar(MENU, 0, END)}
 <div class="tp-cm tp-cm--aside">
@@ -141,8 +141,8 @@ const board = () => {
   .tp-bfoot { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x4); }
   @media (min-width: 768px) { .tp-bfoot { position: relative; } .tp-bfoot > .ds-btn { position: absolute; right: 0; top: 0; } }
 `;
-  const pins = [['공지', '커뮤니티 이용 규칙 안내 (3월 바뀐 내용)', '운영자', '03.02', '4,812', '36', 0], ['공지', '봄맞이 사진 공모전, 3월 31일까지 받아요', '운영자', '03.05', '2,930', '58', 12]];
-  const rows = [[2418, '잡담', '퇴근하고 30분 걷기, 한 달 해 본 이야기', '초록손', '14:52', '611', '54', 9, true, true], [2417, '질문', '홈카페 처음인데 그라인더부터 사야 할까요?', '커피한잔', '14:20', '842', '36', 18, false, true], [2416, '정보', '초보도 바로 가는 서울 근교 둘레길 5곳', '하늘바라기', '13:47', '1,920', '128', 24, true, false], [2415, '잡담', '이번 주말 비 온대요, 실내 데이트 어디 가요?', '주말산책', '13:05', '402', '12', 28, false, false], [2414, '후기', '주말 캠핑 장비, 이것만 챙기면 충분했어요', '캠핑초보', '11:38', '1,204', '87', 12, true, false], [2413, '질문', '반려식물 잎이 노랗게 변해요, 물을 줄여야 할까요?', '초록손', '10:12', '377', '8', 19, true, false], [2412, '잡담', '오늘 점심 뭐 드셨어요?', '배고픈곰', '09:40', '215', '3', 41, false, false], [2411, '정보', '도서관 전자책 무료로 빌리는 법', '책읽는밤', '어제', '1,508', '96', 15, false, false], [2410, '후기', '처음 가 본 둘레길, 생각보다 쉬웠어요', '하늘바라기', '어제', '2,102', '142', 42, true, false], [2409, '잡담', '봄옷 정리하다 찾은 옛날 사진', '주말산책', '어제', '388', '21', 6, true, false]];
+  const pins = [['공지', '커뮤니티 이용 규칙 안내 (3월 바뀐 내용)', '운영자', '03.02', '4,812', '36', 0], ['공지', '봄맞이 영어 말하기 대회, 3월 31일까지 받아요', '운영자', '03.05', '2,930', '58', 12]];
+  const rows = [[2418, '잡담', '출근 전 30분 영어 듣기, 한 달 해 본 이야기', '출근전영어', '14:52', '611', '54', 9, true, true], [2417, '질문', '토익 스피킹 처음인데 교재부터 사야 할까요?', '스피킹연습', '14:20', '842', '36', 18, false, true], [2416, '정보', '토익 RC 파트 5 자주 나오는 문법 정리', '토익900목표', '13:47', '1,920', '128', 24, true, false], [2415, '잡담', '이번 주말 시험 전날 뭐 하세요?', '새벽공부', '13:05', '402', '12', 28, false, false], [2414, '후기', '첫 토익 650점, 준비하며 챙긴 것들', '첫토익', '11:38', '1,204', '87', 12, true, false], [2413, '질문', '단어 외우는 앱, 하루에 몇 개가 적당할까요?', '출근전영어', '10:12', '377', '8', 19, true, false], [2412, '잡담', '오늘 모의고사 몇 점 나오셨어요?', '단어장', '09:40', '215', '3', 41, false, false], [2411, '정보', '도서관에서 토익 교재 무료로 빌리는 법', '책읽는밤', '어제', '1,508', '96', 15, false, false], [2410, '후기', '처음 본 토익, 생각보다 시간이 부족했어요', '토익900목표', '어제', '2,102', '142', 42, true, false], [2409, '잡담', '예전에 쓰던 단어장을 찾았어요', '새벽공부', '어제', '388', '21', 6, true, false]];
   const head = `<li class="tp-board__head" aria-hidden="true"><span class="c-no">번호</span><span>말머리</span><span class="c-title" style="justify-content:center;color:inherit">제목</span><span>글쓴이</span><span class="c-date">작성일</span><span class="c-view">조회</span><span class="c-like">좋아요</span></li>`;
   const pin = ([b, t, n, d, v, l, c]) => `<li data-pinned><span class="c-no">${badge('공지', 'critical')}</span><span class="c-cat">${b}</span><span class="c-title"><a href="#">${t}</a>${c ? badge(c) : ''}</span><span class="c-author">${n}</span><span class="c-date">${d}</span><span class="c-view"><span class="tp-m">조회 </span>${v}</span><span class="c-like"><span class="tp-m">좋아요 </span>${l}</span></li>`;
   const row = ([no, b, t, n, d, v, l, c, ph, isNew]) => `<li><span class="c-no">${no}</span><span class="c-cat">${b}</span><span class="c-title"><a href="#">${t}</a>${ph ? icon('image') : ''}${c ? badge(c) : ''}${isNew ? badge('새 글', 'brand') : ''}</span><span class="c-author">${n}</span><span class="c-date">${d}</span><span class="c-view"><span class="tp-m">조회 </span>${v}</span><span class="c-like"><span class="tp-m">좋아요 </span>${l}</span></li>`;
@@ -194,31 +194,31 @@ const post = () => {
   <main class="tp-cm__main">
     <article class="tp-article">
       ${K.breadcrumbs(['커뮤니티', '질문과 답변'])}
-      <div class="tp-stack" style="gap: var(--ds-space-x3)">${badge('질문')}<h1 class="tp-h1">홈카페 처음인데 그라인더부터 사야 할까요?</h1>
-        <div class="tp-between">${who('커피한잔', '1시간 전', { lv: '새싹 멤버' })}<div class="tp-row"><span class="tp-meta"><span>조회 ${T('842')}</span></span>${iconBtn('ellipsis-vertical', '글 더 보기', { size: 'xsmall' })}</div></div>
+      <div class="tp-stack" style="gap: var(--ds-space-x3)">${badge('질문')}<h1 class="tp-h1">토익 스피킹 처음인데 교재부터 사야 할까요?</h1>
+        <div class="tp-between">${who('스피킹연습', '1시간 전', { lv: '새싹 멤버' })}<div class="tp-row"><span class="tp-meta"><span>조회 ${T('842')}</span></span>${iconBtn('ellipsis-vertical', '글 더 보기', { size: 'xsmall' })}</div></div>
       </div>
       <div class="tp-article__text">
-        <p>지금까지는 캡슐 머신만 써 봤는데, 원두를 직접 갈아서 내려 보고 싶어졌어요. 예산은 20만 원 정도예요.</p>
-        <p>그라인더를 먼저 사고 드리퍼는 싼 것으로 시작할지, 아니면 둘 다 중간 가격으로 맞출지 고민이에요. 처음 시작할 때 어떻게 하셨는지 궁금해요.</p>
-        ${thumb('16:9', '', K.photo('food', 3, 960), 'lg')}
+        <p>지금까지는 인강만 들어 봤는데, 혼자 말하기 연습을 해 보고 싶어졌어요. 시험까지 한 달 남았어요.</p>
+        <p>교재를 먼저 사서 혼자 연습할지, 아니면 인강으로 문제 유형부터 익힐지 고민이에요. 처음 시작할 때 어떻게 하셨는지 궁금해요.</p>
+        ${thumb('16:9', '', K.photo('book', 0, 960), 'lg')}
       </div>
-      ${card(`<div class="tp-between"><span class="tp-h4">투표</span><span class="tp-caption">${T('36')}명 참여</span></div>${meter('그라인더에 먼저 투자', 58, '58%')}${meter('둘 다 중간 가격', 31, '31%')}${meter('일단 원두를 사서 갈아 달라고 하기', 11, '11%')}`)}
+      ${card(`<div class="tp-between"><span class="tp-h4">투표</span><span class="tp-caption">${T('36')}명 참여</span></div>${meter('교재부터 사서 혼자 연습', 58, '58%')}${meter('인강으로 유형부터 익히기', 31, '31%')}${meter('말하기 스터디부터 찾기', 11, '11%')}`)}
       <div class="tp-acts">${btn('좋아요 36', { variant: 'neutralOutline', ic: 'thumbs-up' })}${btn('스크랩', { variant: 'neutralOutline', ic: 'bookmark' })}<div class="tp-acts__end">${iconBtn('share', '공유하기')}${iconBtn('flag', '신고하기')}</div></div>
     </article>
     <section class="tp-sec" aria-labelledby="c-title">${secHead(`댓글 ${T('18')}`, { id: 'c-title', cls: 'tp-h3', tools: segmented(['등록순', '최신순'], 0, '댓글 정렬') })}
       <div class="tp-cform"><textarea class="ds-textarea" id="c-new" placeholder="따뜻한 댓글을 남겨 주세요" aria-label="댓글 쓰기"></textarea><div class="tp-between"><span class="tp-caption">${T('0')} / 500</span>${btn('등록', { variant: 'neutralSolid' })}</div></div>
       <ul class="tp-cmts">
-        ${cmt('하늘바라기', '50분 전', '그라인더가 맛을 제일 많이 바꿔요. 드리퍼는 플라스틱도 충분해요.', 12, { replies: [['커피한잔', '40분 전', '플라스틱도 괜찮군요. 그럼 그라인더에 더 쓸게요!', 3, true]] })}
-        ${cmt('주말산책', '35분 전', '저는 핸드 그라인더로 시작했어요. 아침마다 가는 시간이 은근히 좋아요.', 8)}
-        ${cmt('책읽는밤', '12분 전', '원두는 볶은 날짜를 꼭 보세요. 2주 안쪽이 맛있어요.', 5)}
+        ${cmt('토익900목표', '50분 전', '교재 한 권을 정해서 유형별 답변 틀을 먼저 외우는 게 제일 빨랐어요.', 12, { replies: [['스피킹연습', '40분 전', '유형별 틀부터군요. 그럼 교재부터 살게요!', 3, true]] })}
+        ${cmt('새벽공부', '35분 전', '저는 녹음하면서 연습했어요. 다시 들어 보면 고칠 곳이 바로 보여요.', 8)}
+        ${cmt('책읽는밤', '12분 전', '시험 일주일 전에는 실전 모의고사를 꼭 한 번 풀어 보세요.', 5)}
       </ul>
       ${btn('댓글 더 보기', { fill: true, icEnd: 'chevron-down' })}
     </section>
-    <nav class="tp-adj" aria-label="이전, 다음 글"><a href="#"><span class="tp-caption">이전 글</span><span>반려식물 잎이 노랗게 변해요, 물을 줄여야 할까요?</span></a><a href="#"><span class="tp-caption">다음 글</span><span>도서관 전자책 무료로 빌리는 법</span></a></nav>
+    <nav class="tp-adj" aria-label="이전, 다음 글"><a href="#"><span class="tp-caption">이전 글</span><span>단어 외우는 앱, 하루에 몇 개가 적당할까요?</span></a><a href="#"><span class="tp-caption">다음 글</span><span>도서관에서 토익 교재 무료로 빌리는 법</span></a></nav>
   </main>
   <aside class="tp-cm__aside" aria-label="이 게시판 인기글">
     ${card(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><span class="tp-h3">이 게시판 인기글</span>${rank(HOT)}</div>`)}
-    ${card(`<div class="tp-stack" style="gap: var(--ds-space-x3)"><div class="tp-row">${avatar('커피한잔', 40)}<div class="tp-stack"><span class="tp-h4">커피한잔</span><span class="tp-caption">글 ${T('8')} / 댓글 ${T('31')}</span></div></div>${btn('다른 글 보기', { fill: true })}</div>`)}
+    ${card(`<div class="tp-stack" style="gap: var(--ds-space-x3)"><div class="tp-row">${avatar('스피킹연습', 40)}<div class="tp-stack"><span class="tp-h4">스피킹연습</span><span class="tp-caption">글 ${T('8')} / 댓글 ${T('31')}</span></div></div>${btn('다른 글 보기', { fill: true })}</div>`)}
   </aside>
 </div></div>`;
   return { slug: 'community-post', en: 'Post Detail', name: '게시글 상세', group: 'Community', desc: '게시글 하나를 읽고 댓글로 이야기를 나누는 화면입니다.', css, body };

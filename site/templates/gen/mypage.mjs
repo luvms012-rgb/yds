@@ -76,17 +76,17 @@ ${main}
 </div></div>`;
 
 const ITEMS = [
-  ['product', 0, '무선 이어폰 프로 2세대', '화이트 / 1개', '189,000원', '배송 중', 'informative', ['배송 조회', '문의하기']],
-  ['product', 2, '데일리 백팩 18L', '차콜 / 1개', '59,000원', '배송 완료', '', ['리뷰 쓰기', '교환, 반품']],
+  ['book', 2, 'ETS 토익 정기시험 기출문제집 4', '1권', '19,800원', '배송 중', 'informative', ['배송 조회', '문의하기']],
+  ['product', 0, '노이즈 캔슬링 무선 헤드폰', '블랙 / 1개', '189,000원', '배송 완료', '', ['리뷰 쓰기', '교환, 반품']],
   ['book', 1, '처음 시작하는 기록 습관', '1권', '16,800원', '구매 확정', '', ['다시 담기']],
-  ['product', 4, '스테인리스 텀블러 500ml', '실버 / 2개', '38,000원', '상품 준비 중', '', ['주문 취소']],
+  ['product', 4, '스프링 학습 노트 5권 세트', 'A5 / 2개', '19,800원', '상품 준비 중', '', ['주문 취소']],
 ];
 const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span>${K.badge(st, tone || 'neutral')}</span><span class="tp-name">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
 
 /* 1. 마이페이지 홈 ------------------------------------------------ */
 const home = () => {
   const flow = [['결제 완료', 0], ['상품 준비 중', 1], ['배송 중', 1], ['배송 완료', 3], ['구매 확정', 0]];
-  const wish = [['product', 1, '라탄 수납 바구니', '24,900원'], ['product', 3, '세라믹 머그 2개 세트', '18,000원'], ['book', 2, '하루 10분 글쓰기', '14,400원'], ['product', 5, '접이식 캠핑 의자', '42,000원']];
+  const wish = [['book', 3, 'ETS 토익 단기공략 750+', '16,200원'], ['book', 4, '토익 보카 2000 단어장', '13,500원'], ['book', 2, '하루 10분 글쓰기', '14,400원'], ['product', 1, '유선 학습용 이어폰', '19,800원']];
   const body = shell('', `    <section class="tp-sec" aria-label="내 프로필">${card(`<div class="tp-stack" style="gap: var(--ds-space-x5)">
       <div class="tp-prof"><div class="tp-prof__who">${avatar('와이비엠', 56)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-h2">와이비엠 님</span>${badge('일반 회원')}</span><span class="tp-caption">ybm@example.com</span></div></div>${btn('내 정보 수정', { icEnd: 'chevron-right' })}</div>
       <div class="tp-stats" style="--n: 4">${[['포인트', '3,200P'], ['쿠폰', '4장'], ['찜한 상품', '12개'], ['쓸 수 있는 리뷰', '2개']].map(([l, v]) => `<a class="tp-stat-link" href="#"><span class="tp-caption">${l}</span><span class="tp-mid">${v}</span></a>`).join('')}</div>

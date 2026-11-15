@@ -240,16 +240,25 @@ export const callout = (title, desc, tone = 'informative', ic = 'info-solid') =>
 export const empty = (title, desc, ic = 'inbox', action = '') => `<div class="ds-empty"><span class="ds-empty__media">${icon(ic)}</span><p class="ds-empty__title">${title}</p>${desc ? `<p class="ds-empty__desc">${desc}</p>` : ''}${action ? `<div class="ds-empty__actions">${action}</div>` : ''}</div>`;
 // 사진: Unsplash(무료 사용 허락) 사진을 주소로 불러온다. 주제별 목록에서 번호로 고른다.
 export const unsplash = (id, w = 960) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
+// 2026-11-15 사용자 "더미 이미지가 연관성이 없어 이질감, YBM 계열사를 검토해 유사한 이미지로": YBM 화면의 주제(강의와 강사, 공부하는 수강생,
+// 시험, 교재, 듣기와 말하기, 어학연수 캠퍼스, 비즈니스 영어)로 모두 바꿨다. 주제 이름은 그대로 두고 사진만 교육 장면으로 바꾼다(nature 는 캠퍼스, food 는 공부 책상).
 export const PHOTOS = {
-  nature: ['1506905925346-21bda4d32df4', '1501785888041-af3ef285b470', '1470071459604-3b5ec3a7fe05', '1441974231531-c6227db76b6e', '1507525428034-b723cf961d3e', '1469474968028-56623f02e42e', '1500530855697-b586d89ba3ee', '1447752875215-b2761acb3c5d', '1433086966358-54859d0ed716', '1472214103451-9374bd1c798e'],
+  lecture: ['1524178232363-1fb2b075b655', '1509062522246-3755977927d7', '1577896851231-70ef18881754', '1571260899304-425eee4c7efc', '1543269865-cbf427effbad', '1522202176988-66273c2fd55f', '1523240795612-9a054b0db644', '1596495577886-d920f1fb7238'],
+  study: ['1513258496099-48168024aec0', '1501504905252-473c47e087f8', '1488190211105-8b0e65b80b4e', '1522202176988-66273c2fd55f', '1552664730-d307ca884978', '1596495577886-d920f1fb7238', '1517842645767-c639042777db', '1516534775068-ba3e7458af70', '1600880292203-757bb62b4baf', '1571260899304-425eee4c7efc', '1543269865-cbf427effbad', '1524178232363-1fb2b075b655'],
+  exam: ['1606326608690-4e0281b1e588', '1606326608606-aa0b62935f2b', '1580582932707-520aed937b7b', '1510531704581-5b2870972060'],
+  book: ['1456513080510-7bf3a84b82f8', '1455390582262-044cdead277a', '1497633762265-9d179a990aa6', '1503676260728-1c00da094a0b', '1512820790803-83ca734da794', '1481627834876-b7833e8f5570', '1513475382585-d06e58bcb0e0', '1495446815901-a7297e633e8d', '1589998059171-988d887df646', '1516979187457-637abb4f9353', '1524995997946-a1c2e315a42f'],
+  listen: ['1484704849700-f032a568e944', '1505740420928-5e560c06d30e', '1516280440614-37939bbacd81', '1590602847861-f357a9332bbc'],
+  campus: ['1562774053-701939374585', '1541339907198-e08756dedf3f', '1523240795612-9a054b0db644', '1427504494785-3a9ca7044f45'],
+  work: ['1552664730-d307ca884978', '1600880292203-757bb62b4baf', '1521737604893-d14cc237f11d', '1556761175-b413da4baf72', '1497366216548-37526070297c', '1501504905252-473c47e087f8', '1524178232363-1fb2b075b655'],
+  person: ['1573496359142-b8d87734a5a2', '1580489944761-15a19d654956', '1507003211169-0a1dd7228f2d', '1500648767791-00dcc994a43e', '1544005313-94ddf0286df2', '1438761681033-6461ffad8d80'],
+  // 토익 스피킹 사진 묘사 문항은 일상 장면 사진을 쓴다
   city: ['1477959858617-67f85cf4f1df', '1449824913935-59a10b8d2000', '1480714378408-67cf0d13bc1b', '1514565131-fce0801e5785', '1486406146926-c627a92ad1ab'],
-  food: ['1504674900247-0877df9cc836', '1546069901-ba9599a7e63c', '1512621776951-a57141f2eefd', '1495474472287-4d71bcdd2085', '1509042239860-f550ce710b93'],
-  product: ['1523275335684-37898b6baf30', '1505740420928-5e560c06d30e', '1526170375885-4d8ecf77b99f', '1491553895911-0055eca6402d', '1572635196237-14b3f281503f', '1495474472287-4d71bcdd2085'],
-  book: ['1456513080510-7bf3a84b82f8', '1455390582262-044cdead277a', '1434030216411-0b793f4b4173', '1503676260728-1c00da094a0b', '1512820790803-83ca734da794', '1481627834876-b7833e8f5570', '1513475382585-d06e58bcb0e0'],
-  study: ['1516321318423-f06f85e504b3', '1460925895917-afdab827c52f', '1551288049-bebda4e38f71', '1498050108023-c5249f4df085', '1521737604893-d14cc237f11d', '1557804506-669a67965ba0', '1455390582262-044cdead277a', '1517694712202-14dd9538aa97', '1552664730-d307ca884978', '1522202176988-66273c2fd55f', '1519389950473-47ba0277781c', '1456513080510-7bf3a84b82f8'],
-  work: ['1497366216548-37526070297c', '1497366811353-6870744d04b2', '1531482615713-2afd69097998', '1552664730-d307ca884978', '1521737604893-d14cc237f11d', '1501504905252-473c47e087f8', '1524178232363-1fb2b075b655'],
+  // 공부와 관련된 상품: 헤드폰, 교재, 필기구
+  product: ['1505740420928-5e560c06d30e', '1484704849700-f032a568e944', '1503676260728-1c00da094a0b', '1512820790803-83ca734da794', '1517842645767-c639042777db', '1516979187457-637abb4f9353'],
 };
-PHOTOS.mix = [PHOTOS.nature[1], PHOTOS.work[0], PHOTOS.city[0], PHOTOS.food[1], PHOTOS.nature[4], PHOTOS.work[1], PHOTOS.nature[2], PHOTOS.city[2], PHOTOS.food[3], PHOTOS.nature[7], PHOTOS.city[1], PHOTOS.nature[9]];
+PHOTOS.nature = PHOTOS.campus;
+PHOTOS.food = ['1501504905252-473c47e087f8', '1517842645767-c639042777db', '1488190211105-8b0e65b80b4e', '1434030216411-0b793f4b4173', '1455390582262-044cdead277a'];
+PHOTOS.mix = [PHOTOS.lecture[0], PHOTOS.study[0], PHOTOS.lecture[1], PHOTOS.book[0], PHOTOS.lecture[3], PHOTOS.campus[1], PHOTOS.listen[0], PHOTOS.lecture[7], PHOTOS.lecture[5], PHOTOS.exam[0], PHOTOS.lecture[4], PHOTOS.campus[0]];
 export const photo = (theme, i = 0, w) => unsplash(PHOTOS[theme][((i % PHOTOS[theme].length) + PHOTOS[theme].length) % PHOTOS[theme].length], w);
 export const thumb = (ratio = '16:9', cls = '', src = '', radius = '') => `<div class="ds-imageframe${cls ? ' ' + cls : ''}" data-ratio="${ratio}"${radius ? ` data-radius="${radius}"` : ''} aria-hidden="true"><span class="tp-ph">${src ? `<img src="${src}" alt="" loading="lazy">` : icon('image')}</span></div>`;
 export const breadcrumbs = (items) => `<nav class="ds-breadcrumbs" aria-label="현재 위치"><ol>${items.map((t, i) => `<li>${i === items.length - 1 ? `<span aria-current="page">${t}</span>` : `<a href="#">${t}</a>`}</li>`).join('')}</ol></nav>`;

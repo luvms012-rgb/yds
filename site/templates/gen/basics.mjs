@@ -342,7 +342,7 @@ const serviceHome = () => {
 <main class="tp-content">
   <h1 class="tp-sr">서비스 메인</h1>
   <div class="tp-hero">
-    <section class="tp-banner" aria-roledescription="carousel" aria-label="주요 소식">${thumb('16:9', '', photo('study', 11, 1400), 'none')}<div class="tp-banner__text"><b>12월 정기 시험 접수 시작</b><span>11월 28일까지</span></div><div class="tp-banner__ctrl"><span>01 / 05</span>${iconBtn('pause', '자동 넘김 멈춤', { size: 'xsmall' })}</div></section>
+    <section class="tp-banner" aria-roledescription="carousel" aria-label="주요 소식">${thumb('16:9', '', photo('exam', 2, 1400), 'none')}<div class="tp-banner__text"><b>12월 정기 시험 접수 시작</b><span>11월 28일까지</span></div><div class="tp-banner__ctrl"><span>01 / 05</span>${iconBtn('pause', '자동 넘김 멈춤', { size: 'xsmall' })}</div></section>
     <div class="tp-side">
       ${card(`<span class="tp-dday">D-7</span><span class="tp-item-title">영어 말하기 시험</span>${kvs([['날짜', T('11월 18일 (수) 13:00')], ['고사장', '강남 시험장']])}${btn('수험표 보기', { variant: 'neutralSolid', size: 'medium', fill: true })}`)}
       ${card(`<span class="tp-item-title">성적 발표</span>${kvs([['제 110회', T('11월 4일')]])}${btn('성적 확인', { size: 'medium', fill: true })}`)}
