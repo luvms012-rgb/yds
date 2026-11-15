@@ -402,7 +402,7 @@ ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">
 </div>
 <dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
   <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input><kbd class="ds-command__kbd site-search__esc">Esc</kbd></div>
-  <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>
+  <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small" data-inset="none">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>
   <div class="ds-command__list" id="site-search-list" role="listbox" aria-label="찾은 결과" data-site-search-list data-root="${root}"></div>
   <div class="site-search__keys" aria-hidden="true"><span><kbd class="ds-command__kbd">↑</kbd><kbd class="ds-command__kbd">↓</kbd>이동</span><span><kbd class="ds-command__kbd">Enter</kbd>열기</span><span><kbd class="ds-command__kbd">Esc</kbd>닫기</span></div>
 </dialog>
