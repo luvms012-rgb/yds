@@ -328,7 +328,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
     MD_PAGES.push({ file, title, desc, section });
     const menu = mdMenu(path.basename(file).replace(/\.html$/, '.md'), root);
     if (/<header class="site-head">[\s\S]*?<div class="site-meta">/.test(body)) body = body.replace(/(<header class="site-head">[\s\S]*?<div class="site-meta">[\s\S]*?)(<\/div>)/, (m, a, b) => a + menu + b);
-    else body = body.replace('</header>', `<div class="site-meta">${menu}</div></header>`);
+    else if (file !== 'index.html') body = body.replace('</header>', `<div class="site-meta">${menu}</div></header>`);  // 첫 화면은 버튼 줄 없음 (2026-11-15 사용자)
   }
   // 이전 / 다음 문서 (레퍼런스 B)
   const [prev, next] = pager;
@@ -423,8 +423,9 @@ const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
 // 11-11 사용자 "합쳐져 있는데 나눠줘, 3개로, 공통은 모두 포함, 제목은 대괄호": 묶음마다 상자 하나, 안은 [묶음 이름 예시] → 공통 글 → 예시 목록(- 줄)
 // 템플릿 AI 요청 글 (2026-11-14 사용자 문구를 "내용은 자유롭게, 규칙은 지켜서" 로 다듬은 판, 사용자 "진행". "[내가 원하는 서비스 화면]" 자리는 쓰는 사람이 바꾼다). 문서 보기의 AI 요청 글 탭이 보여 주고, 머리 버튼은 이 글을 복사한다
-// 2026-11-15 사용자 "3줄 이어서, 줄바꿈 제거, 공통 적용": 안내서 문장, 주소, 요청을 한 줄로 잇는다(메인 요청 글도 같다)
-const TPL_PROMPT = (t) => `아래 안내서를 읽고 YDS 규칙을 지켜 줘. ${SITE_URL}yds.txt '${t.name}' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘. ${SITE_URL}templates/pages/${t.slug}.html`;
+// 2026-11-15 사용자 "3줄 이어서, 줄바꿈 제거, 공통 적용", 이어서 "요청 문장부터 줄바꿈": 안내서 문장과 주소는 한 줄, 요청 문장은 다음 줄(메인 요청 글도 같다)
+const TPL_PROMPT = (t) => `아래 안내서를 읽고 YDS 규칙을 지켜 줘. ${SITE_URL}yds.txt
+'${t.name}' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘. ${SITE_URL}templates/pages/${t.slug}.html`;
 // 2026-11-14 사용자 "템플릿 프롬프팅도 자유도를 주어서 좀 더 단순하게": 메인 요청 글처럼 빈칸 하나만 둔다. 같은 날 "구성과 내용은 자유롭게 바꿔도 돼" 는 사용자 "전문성이 없어 보임" 으로 뺐다("참고해" 로 충분). YDS 것만 쓰기 같은 규칙은 yds.txt "지킬 것" 에 있어 뺐다.
 const AI_COMMON = `아래 안내서를 읽고 YDS 규칙을 지켜 줘. ${SITE_URL}yds.txt`;
 // 11-14 사용자 "1, 2 진행" (레퍼런스 A 시작하기 비교): 상자 하나에 요청 하나, 끝에 "먼저 묻기" 한 줄.
@@ -482,7 +483,6 @@ write({
   body: `<header>
   <h1 class="site-h1">Get Started</h1>
   <p class="site-lead">YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
-  ${metaLinks({ figma: FIGMA_HOME, code: GITHUB })}
 </header>
 
 <h2 id="structure">구조</h2>
@@ -493,8 +493,8 @@ write({
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기</h2>
-<p>아래 틀을 참고해 하고 싶은 일을 자유롭게 적어 AI 도구에 붙여 넣으세요.</p>
-${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON} ${ask}`, "text", " data-wrap")).join('\n')}
+<p>아래 예시를 참고해 하고 싶은 일을 자유롭게 적어 AI 도구에 붙여 넣으세요.</p>
+${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n${ask}`, "text", " data-wrap")).join('\n')}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.</p>
