@@ -1,5 +1,5 @@
 import * as K from './kit.mjs';
-const { icon, btn, iconBtn, badge, avatar, codeblock, chip, esc } = K;
+const { icon, btn, iconBtn, badge, avatar, codeblock, chip, progress, esc } = K;
 
 const CHAT_CSS = `
   .tp-chat { box-sizing: border-box; display: flex; flex-direction: column; width: min(100%, var(--tp-max)); height: 100vh; margin-inline: auto; overflow: hidden; background: var(--ds-color-bg-layer-default); }
@@ -82,4 +82,69 @@ const landing = () => {
   return { slug: 'ai-chat-landing', en: 'AI Chat Landing', name: 'AI 홈', group: 'Content', desc: '대화를 시작하기 전에 보여 주는 AI 첫 화면입니다. 입력창과 추천 버튼으로 바로 시작합니다.', css, body };
 };
 
-export const templates = [conversation, landing].map((f) => f());
+/* 3. AI 튜터 대화 (학습 > 수강) ---------------------------------- */
+// 2026-11-16 사용자 "학습용 채팅 UI (챗튜터 방식)". 레퍼런스는 UI 패턴 카탈로그의 말하기 앱 AI 튜터, AI 발음 코치, 학습 사이트 AI 챗봇, 말하기 연습 결과 화면(서비스 이름은 적지 않는다).
+// 튜터 말풍선 아래 듣기와 번역, 내 말 아래 "더 자연스럽게" 고쳐 주기, 다음에 말해 볼 문장 칩, 아래 큰 마이크. 넓은 화면에서는 오른쪽에 오늘의 미션.
+const tutor = () => {
+  const css = CHAT_CSS + `
+  .tp-tutor-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); }
+  .tp-tutor-head .tp-stack { gap: 0; }
+  .tp-tutor-prog { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); padding: 0 var(--ds-space-x4) var(--ds-space-x3); }
+  .tp-msg-ai__body > .ds-chat-bubble { align-self: flex-start; }
+  .tp-trans { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-fix { display: flex; flex-direction: column; gap: var(--ds-space-x2); width: min(100%, 420px); padding: var(--ds-space-x3) var(--ds-space-x4); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
+  .tp-fix__line { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+  .tp-fix del { color: var(--ds-color-fg-critical); text-decoration-thickness: 1px; }
+  .tp-fix ins { color: var(--ds-color-fg-positive); text-decoration: none; font-weight: var(--ds-font-weight-semibold); }
+  .tp-fix__why { margin: 0; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
+  /* 채팅은 최신 대화가 보이게 아래부터(column-reverse 스크롤) */
+  .tp-log--end { flex-direction: column-reverse; }
+  .tp-log__in { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
+  .tp-say { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+  .tp-say__chips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
+  .tp-voice { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--ds-space-x4); padding: var(--ds-space-x3) var(--ds-space-x4) var(--ds-space-x5); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-voice > :first-child { justify-self: end; }
+  .tp-voice > :last-child { justify-self: start; }
+  .tp-voice__mic { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x1); }
+  .tp-mic { width: var(--ds-space-x16); height: var(--ds-space-x16); border-radius: var(--ds-shape-pill); }
+  .tp-mic .ds-icon { --ds-icon-size: 28px; }
+  .tp-mission { display: none; flex: none; width: 320px; flex-direction: column; gap: var(--ds-space-x6); padding: var(--ds-space-x6) var(--ds-space-x5); overflow: auto; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) { .tp-mission { display: flex; } }
+  .tp-mission ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  .tp-mission li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-mission li .ds-icon { --ds-icon-size: 20px; color: var(--ds-color-fg-neutral-subtle); }
+  .tp-mission li[data-done] .ds-icon { color: var(--ds-color-fg-positive); }
+  .tp-mission li[data-done] span { color: var(--ds-color-fg-neutral-muted); }
+  .tp-kv { display: flex; justify-content: space-between; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-kv > :first-child { color: var(--ds-color-fg-neutral-muted); }
+`;
+  const tools = (n) => `<div class="tp-row">${iconBtn('volume-2', '듣기', { size: 'xsmall' })}${iconBtn('globe', '번역 보기', { size: 'xsmall' })}${n ? iconBtn('rotate-ccw', '천천히 다시 듣기', { size: 'xsmall' }) : ''}</div>`;
+  const ai = (en, ko, more = '') => `<div class="tp-msg-ai">${avatar('AI 튜터', 36)}<div class="tp-msg-ai__body"><div class="ds-chat-bubble">${en}</div>${ko ? `<p class="tp-trans">${ko}</p>` : ''}${tools(1)}${more}</div></div>`;
+  const me = (t, time, fix = '') => `<div class="tp-msg-user"><div class="ds-chat-bubble" data-sender="user">${t}</div><span class="ds-chat-meta"><time>${time}</time></span>${fix}</div>`;
+  const fix = `<div class="tp-fix"><div class="tp-between"><span class="tp-h4">더 자연스럽게</span>${iconBtn('volume-2', '고친 문장 듣기', { size: 'xsmall' })}</div><p class="tp-fix__line"><del>I want</del> <ins>Could I get</ins> a large latte<ins>, please</ins>?</p><p class="tp-fix__why">주문할 때는 Could I get ~ 이 더 부드럽게 들려요</p></div>`;
+  const mission = [['Could I get ~, please?', true], ['For here or to go?', true], ['Can I pay by card?', false]];
+  const body = `<div class="tp-chat">
+<header class="tp-tutor-head">${iconBtn('x', '나가기')}<div class="tp-stack"><h1 class="tp-h4">카페에서 주문하기</h1><span class="tp-caption">AI 튜터와 말하기 / 4 / 8</span></div><span class="tp-row">${iconBtn('captions', '번역 모두 보기')}${iconBtn('settings', '말하기 설정')}</span></header>
+<div class="tp-tutor-prog">${progress(50, { tone: 'neutral', label: '대화 진행' })}</div>
+<div class="tp-chat__body">
+  <div class="tp-chat__main">
+    <div class="tp-log tp-log--end" role="log" aria-label="대화"><div class="tp-log__in">
+      <p class="ds-chat-system">상황: 카페 점원과 대화해요</p>
+      ${ai('Hi there! What can I get for you today?', '안녕하세요, 오늘 뭐로 드릴까요?')}
+      ${me('I want a large latte.', '오후 3:20', fix)}
+      ${ai('Sure! Would you like that for here or to go?', '', '')}
+      ${me('For here, please.', '오후 3:21')}
+      ${ai('Great choice. Anything else? We have fresh muffins today.', '좋아요. 더 필요한 건 없으세요? 오늘 갓 구운 머핀이 있어요.', `<div class="tp-say" role="group" aria-label="말해 볼 문장"><div class="tp-say__chips">${['No, that’s all.', 'Can I pay by card?', 'A blueberry muffin, please.'].map((t) => chip(t, { size: 'medium' })).join('')}</div></div>`)}
+    </div></div>
+    <div class="tp-voice">${btn('힌트', { ic: 'lightbulb', size: 'medium' })}<div class="tp-voice__mic"><button type="button" class="ds-btn tp-mic" data-variant="brandSolid" data-size="large" data-layout="iconOnly" aria-label="눌러서 말하기">${icon('mic')}</button><span class="tp-caption">눌러서 말하기</span></div>${btn('글로 쓰기', { ic: 'type', size: 'medium' })}</div>
+  </div>
+  <aside class="tp-mission" aria-label="오늘의 미션">
+    <div class="tp-stack" style="gap: var(--ds-space-x3)"><h2 class="tp-h4">오늘의 미션</h2><ul>${mission.map(([t, d]) => `<li${d ? ' data-done' : ''}>${icon(d ? 'circle-check-solid' : 'circle')}<span>${t}</span></li>`).join('')}</ul></div>
+    <div class="tp-stack" style="gap: var(--ds-space-x3)"><h2 class="tp-h4">내 말하기</h2>${[['말한 문장', '2'], ['고친 문장', '1'], ['발음 점수', '86점']].map(([k, v]) => `<div class="tp-kv"><span>${k}</span><span class="tp-num">${v}</span></div>`).join('')}</div>
+  </aside>
+</div>
+</div>`;
+  return { slug: 'ai-tutor-chat', en: 'AI Tutor Chat', name: 'AI 튜터 대화', group: 'Learning', desc: 'AI 튜터와 상황극으로 말하며 배우는 대화 화면입니다. 내 말은 바로 더 자연스럽게 고쳐 주고, 다음에 말해 볼 문장을 칩으로 보여 줍니다.', css, body };
+};
+
+export const templates = [conversation, landing, tutor].map((f) => f());

@@ -215,6 +215,15 @@
       }
     },
     {
+      "slug": "ai-tutor-chat",
+      "name": "AI 튜터 대화",
+      "en": "AI Tutor Chat",
+      "group": "Learning",
+      "sub": "수강",
+      "desc": "AI 튜터와 상황극으로 말하며 배우는 대화 화면입니다. 내 말은 바로 더 자연스럽게 고쳐 주고, 다음에 말해 볼 문장을 칩으로 보여 줍니다.",
+      "rebuilt": true
+    },
+    {
       "slug": "class-survey",
       "name": "수강 설문 쓰기",
       "en": "Course Survey",

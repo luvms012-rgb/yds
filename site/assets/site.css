@@ -302,34 +302,17 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-empty-result[hidden] { display: none; }
 
 /* 템플릿 목록: 레퍼런스 A 실측 (1440 기준 3열 443×278, 1024 2열, 375 1열 / 칸 사이 24 / 둥글기 16 / 미리보기 1440×900 축소) */
-.site-tpl-grid { display: grid; grid-template-columns: 1fr; gap: var(--ds-space-x6); margin-top: var(--ds-space-x10); }
+/* 템플릿 목록: 컴포넌트 목록처럼 미리보기 아래에 이름만 둔다. 덮개, 설명, 버튼, 마우스 효과 없음(2026-11-16 사용자 "상세 화면에 다 있으니") */
+.site-tpl-grid { display: grid; grid-template-columns: 1fr; gap: var(--ds-space-x10) var(--ds-space-x6); margin-top: var(--ds-space-x10); }
 @media (min-width: 768px) { .site-tpl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1280px) { .site-tpl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.site-tpl { position: relative; overflow: hidden; border: 1px solid var(--site-box-line); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-layer-default); isolation: isolate; }
+.site-tpl { display: flex; flex-direction: column; gap: var(--ds-space-x2); color: var(--ds-color-fg-neutral); text-decoration: none; }
 .site-tpl[hidden] { display: none; }
-.site-tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--ds-color-bg-canvas); }
+.site-tpl:focus-visible { outline: none; }
+.site-tpl:focus-visible .site-tpl-thumb { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
+.site-tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-canvas); }
 .site-tpl-thumb iframe { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
-.site-tpl__scrim { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--ds-space-x4); padding: var(--ds-space-x5); background: var(--ds-color-palette-static-black-alpha-900); color: var(--ds-color-palette-static-white); opacity: 0; transition: opacity var(--ds-duration-fast) var(--ds-easing-standard); }
-.site-tpl:hover .site-tpl__scrim, .site-tpl:focus-within .site-tpl__scrim { opacity: 1; }
-.site-tpl__text { display: flex; flex-direction: column; gap: 2px; }
-.site-doc .site-tpl__title { margin: 0; font-size: var(--ds-font-size-t05); line-height: 24px; font-weight: var(--ds-font-weight-medium); letter-spacing: 0; color: var(--ds-color-palette-static-white); }
-.site-tpl__link { color: inherit; text-decoration: none; }
-.site-tpl__link::after { content: ""; position: absolute; inset: 0; z-index: 0; }  /* 카드 어디를 눌러도 상세로 */
-.site-tpl__link:focus-visible { outline: none; }
-.site-tpl:has(.site-tpl__link:focus-visible) { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
-.site-doc .site-tpl__desc { display: -webkit-box; margin: 0; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); letter-spacing: 0; color: var(--ds-color-palette-static-white); }
-.site-tpl__actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
-.site-tpl__btn { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); height: 32px; padding: 0 var(--ds-space-x3); border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white-alpha-300); color: var(--ds-color-palette-static-white); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-regular); text-decoration: none; transition: background-color var(--ds-duration-fast) var(--ds-easing-standard); }
-.site-tpl__btn:hover { background: var(--ds-color-palette-static-white-alpha-400); }
-.site-tpl__btn:focus-visible { outline: 2px solid var(--ds-color-palette-static-white); outline-offset: 2px; }
-.site-tpl__btn .ds-icon { --ds-icon-size: 16px; width: 16px; height: 16px; color: inherit; }
-/* 마우스가 없는 기기: 덮개 대신 미리보기 아래에 제목과 설명을 글자로 둔다 (카드 전체를 누르면 상세) */
-@media (hover: none) {
-  .site-tpl__scrim { position: static; gap: 0; padding: var(--ds-space-x4); background: none; color: var(--ds-color-fg-neutral); opacity: 1; box-shadow: inset 0 1px 0 var(--site-box-line); }
-  .site-doc .site-tpl__title { color: var(--ds-color-fg-neutral); }
-  .site-doc .site-tpl__desc { color: var(--ds-color-fg-neutral-muted); }
-  .site-tpl__actions { display: none; }
-}
+.site-tpl-thumb::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--site-box-line); pointer-events: none; }  /* 선이 미리보기 위에 보이게 */
 .site-doc > .site-hero--tpl .site-lead { margin-top: var(--ds-space-x4); }  /* 설명은 Components 와 같은 17/28 */
 .site-toolbar--wrap .ds-chiptabs { --ds-ct-height: 32px; --ds-ct-padding-x: 12px; flex-wrap: wrap; overflow: visible; gap: var(--ds-space-x1); }
 

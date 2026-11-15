@@ -13,7 +13,7 @@ export const GROUPS = [
   ]],
   ['Learning', '학습', [
     ['찾기와 신청', ['learning-home', 'learning-catalog', 'class-detail', 'lesson-plan']],
-    ['수강', ['learning-player', 'my-classroom', 'class-survey', 'class-review-write']],
+    ['수강', ['learning-player', 'my-classroom', 'ai-tutor-chat', 'class-survey', 'class-review-write']],
     ['센터', ['consult-booking']],
   ]],
   // 2026-11-15 사용자 "쇼핑 카테고리는 YBM 에 어울리지 않는다, 북스 화면으로 대신": 쇼핑(Commerce)을 교재(Books)로 바꿨다. 장바구니와 요금제 비교는 결제로 옮겼다.
