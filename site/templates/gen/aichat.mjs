@@ -2,7 +2,8 @@ import * as K from './kit.mjs';
 const { icon, btn, iconBtn, badge, avatar, codeblock, chip, esc } = K;
 
 const CHAT_CSS = `
-  .tp-chat { display: flex; flex-direction: column; height: 100vh; overflow: hidden; background: var(--ds-color-bg-layer-default); }
+  .tp-chat { box-sizing: border-box; display: flex; flex-direction: column; width: min(100%, var(--tp-max)); height: 100vh; margin-inline: auto; overflow: hidden; background: var(--ds-color-bg-layer-default); }
+  @media (min-width: 1441px) { .tp-chat { box-shadow: -1px 0 0 var(--ds-color-stroke-neutral-muted), 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-chat__body { display: flex; flex: 1 1 auto; min-height: 0; }
   .tp-chat__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
   .tp-log { flex: 1 1 auto; overflow: auto; display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x6) var(--ds-space-x4); }

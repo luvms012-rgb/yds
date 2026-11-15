@@ -14,9 +14,10 @@ export const FRAME_CSS = `
   .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
-  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   /* 옆 메뉴 화면 */
-  .tp-app.tp-frame { flex-direction: row; min-height: 100vh; }
+  .tp-app.tp-frame { box-sizing: border-box; flex-direction: row; width: min(100%, var(--tp-max)); min-height: 100vh; margin-inline: auto; }
+  /* 1440 보다 넓은 화면: 옆 메뉴 화면 전체(메뉴 + 본문)를 1440 틀 안에 두고 양옆에 선 */
+  @media (min-width: 1441px) { .tp-app.tp-frame { box-shadow: -1px 0 0 var(--ds-color-stroke-neutral-muted), 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }

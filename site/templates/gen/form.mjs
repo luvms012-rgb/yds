@@ -121,6 +121,8 @@ const wizard = () => {
   .tp-wz { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-wz-head { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 768px) { .tp-wz-head { padding: var(--ds-space-x6); } }
+  /* 아래 선은 화면 끝까지, 글은 1440 틀 안 (2026-11-15) */
+  .tp-wz-head { padding-inline: max(var(--tp-gutter), calc((100% - var(--tp-page)) / 2)); }
 `;
   const body = `<div class="tp-app" style="min-height: 100vh">
 <header class="tp-wz-head"><div class="tp-between"><h1 class="tp-h1">워크스페이스 만들기</h1>${btn('나가기', { variant: 'ghost', ic: 'x' })}</div>${stepper(['워크스페이스', '팀원 초대', '요금제', '확인'], 0, '워크스페이스 만들기 단계')}</header>

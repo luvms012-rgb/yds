@@ -123,7 +123,7 @@ const audio = () => {
   .tp-chap { padding: var(--ds-space-x4) var(--ds-space-x2) var(--ds-space-x1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-semibold); }
   .tp-file-row { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   /* 아래 고정 재생 막대 */
-  .tp-pbar { position: fixed; inset: auto 0 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-pbar { position: fixed; inset: auto 0 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; gap: var(--ds-space-x3); padding: var(--ds-space-x3) max(var(--tp-gutter), calc((100% - var(--tp-page)) / 2)); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-pbar__now { display: none; flex-direction: column; flex: none; width: 200px; min-width: 0; }
   .tp-pbar__now b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); }
   .tp-pbar .ds-progress { flex: 1 1 auto; min-width: 48px; }
