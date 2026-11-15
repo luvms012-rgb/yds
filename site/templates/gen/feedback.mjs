@@ -16,9 +16,11 @@ const CSS = FRAME_CSS + `
   .tp-q__title { display: flex; gap: var(--ds-space-x2); padding: 0; margin-block-end: var(--ds-space-x4); font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-semibold); }
   .tp-q__no { flex: none; color: var(--ds-color-fg-neutral-subtle); font-variant-numeric: tabular-nums; }
   .tp-q__title .ds-field__required { align-self: flex-start; }
-  .tp-scale { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
-  .tp-scale .ds-chip { min-width: var(--ds-space-x10); justify-content: center; }
-  .tp-scale__ends { display: flex; justify-content: space-between; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
+  /* 점수 칩은 칸 폭을 같은 몫으로 채워 양끝 글이 첫 칩, 끝 칩 아래에 오게 한다(11-16 사용자 "1 ~ 5 와 싱크") */
+  .tp-scale { display: grid; grid-template-columns: repeat(var(--tp-scale-n), minmax(0, 1fr)); gap: var(--ds-space-x2); }
+  .tp-scale[style*="11"] { gap: var(--ds-space-x1); }
+  .tp-scale .ds-chip { width: 100%; min-width: 0; justify-content: center; padding-inline: 0; }
+  .tp-scale__ends { display: flex; justify-content: space-between; gap: var(--ds-space-x4); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
   .tp-count { align-self: flex-end; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); font-variant-numeric: tabular-nums; }
   .tp-fb__foot { display: flex; justify-content: flex-end; gap: var(--ds-space-x2); padding-top: var(--ds-space-x6); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (max-width: 767px) { .tp-fb__foot > * { flex: 1 1 0; } }
@@ -33,7 +35,7 @@ const survey = () => {
   const css = CSS;
   const course = `<div class="tp-fb__course">${thumb('16:9', '', photo('lecture', 1, 360), 'md')}<div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-caption">데이터로 말하는 보고서 쓰기 3기</span><h1 class="tp-h1">수강 설문</h1><div class="tp-row">${tags(['문항 5개', '3분'])}${badge('11월 30일까지', 'warning')}</div></div></div>`;
   // 점수는 하나만 고르는 칩(role=radio, 고른 것만 aria-checked=true)
-  const scale = (name, n, cur, ends) => `<div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-scale" role="radiogroup" aria-label="${name}">${Array.from({ length: n }, (_, i) => `<button type="button" role="radio" class="ds-chip" data-variant="outlineStrong" data-size="medium" aria-checked="${i === cur}"${i === cur ? ' aria-pressed="true"' : ''}>${i + (n === 11 ? 0 : 1)}</button>`).join('')}</div><div class="tp-scale__ends"><span>${ends[0]}</span><span>${ends[1]}</span></div></div>`;
+  const scale = (name, n, cur, ends) => `<div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-scale" role="radiogroup" aria-label="${name}" style="--tp-scale-n: ${n}">${Array.from({ length: n }, (_, i) => `<button type="button" role="radio" class="ds-chip" data-variant="outlineStrong" data-size="medium" aria-checked="${i === cur}"${i === cur ? ' aria-pressed="true"' : ''}>${i + (n === 11 ? 0 : 1)}</button>`).join('')}</div><div class="tp-scale__ends" aria-hidden="true"><span>${ends[0]}</span><span>${ends[1]}</span></div></div>`;
   const body = `<div class="tp-app">${topbar(LEARN_MENU, 2, learnEnd)}
 <main class="tp-content"><form class="tp-fb" aria-label="수강 설문" onsubmit="return false">
   <div class="tp-fb__head">${course}<div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-between"><span class="tp-caption">2 / 5 문항 답함</span><span class="tp-caption tp-num">40%</span></div>${progress(40, { tone: 'neutral', label: '설문 진행' })}</div></div>
