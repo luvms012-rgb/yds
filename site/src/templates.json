@@ -14,6 +14,15 @@
       }
     },
     {
+      "slug": "exam-venue",
+      "name": "고사장 신청 (지도)",
+      "en": "Exam Venue Map",
+      "group": "Exam",
+      "sub": "접수",
+      "desc": "지도와 목록으로 가까운 고사장을 찾아 고르는 화면입니다. 남은 자리와 거리를 보고 바로 신청합니다.",
+      "rebuilt": true
+    },
+    {
       "slug": "exam-schedule",
       "name": "시험 일정",
       "en": "Exam Schedule",
@@ -204,6 +213,24 @@
       "figma": {
         "pc": "3422:4592"
       }
+    },
+    {
+      "slug": "class-survey",
+      "name": "수강 설문 쓰기",
+      "en": "Course Survey",
+      "group": "Learning",
+      "sub": "수강",
+      "desc": "수강을 마친 뒤 만족도와 의견을 답하는 설문 화면입니다. 점수, 여러 개 고르기, 하나 고르기, 자유 의견을 한 화면에 둡니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "class-review-write",
+      "name": "수강평 쓰기",
+      "en": "Write a Review",
+      "group": "Learning",
+      "sub": "수강",
+      "desc": "들은 강의에 별점과 좋았던 점, 수강평, 사진을 남기는 화면입니다. 다른 수강생이 강의를 고를 때 참고합니다.",
+      "rebuilt": true
     },
     {
       "slug": "consult-booking",

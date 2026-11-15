@@ -73,6 +73,76 @@ const apply = () => {
   return { slug: 'exam-apply', en: 'Exam Application', name: '시험 신청', group: 'Exam', desc: '시험 종류부터 결제까지 한 화면에서 차례로 선택하는 신청 화면입니다. 선택한 내용과 금액은 옆 요약에 바로 표시됩니다.', css, body };
 };
 
+/* 1-2. 고사장 신청 (지도) ------------------------------------------- */
+// 2026-11-16 사용자 "고사장 고르기(지도)". 레퍼런스는 UI 패턴 카탈로그의 매장 찾기 화면(서비스 이름은 적지 않는다).
+// 넓은 화면: 왼쪽 목록 + 오른쪽 지도(고른 고사장 카드). 좁은 화면: 지도 위, 목록 아래, 아래 고정 막대.
+// 지도는 실제 지도 SDK 자리라 토큰 색 도형으로만 그린다(길, 강, 공원). 핀은 DS 에 없는 지도 전용 요소라 tp-pin.
+const venue = () => {
+  const css = CSS + `
+  .tp-vn { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "map" "list"; gap: var(--ds-space-x4); }
+  @media (min-width: 1280px) { .tp-vn { grid-template-columns: 360px minmax(0, 1fr); grid-template-rows: auto 1fr; grid-template-areas: "head map" "list map"; column-gap: var(--ds-space-x6); align-items: start; } }
+  .tp-vn__head { grid-area: head; }
+  .tp-vn__meta { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-variant-numeric: tabular-nums; }
+  .ds-selectbox:has(:disabled) .tp-vn__meta { color: var(--ds-color-fg-disabled); }
+  .tp-vn__list { grid-area: list; display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; }
+  .tp-vn__filters { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
+  .tp-vn .ds-selectbox-group { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+  .tp-vn .ds-selectbox__label { display: flex; align-items: center; gap: var(--ds-space-x2); }
+  .tp-vmap { grid-area: map; position: relative; overflow: hidden; height: 280px; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
+  @media (min-width: 768px) { .tp-vmap { height: 400px; } }
+  @media (min-width: 1280px) { .tp-vmap { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); height: min(720px, calc(100dvh - var(--ds-space-x32))); min-height: 480px; } }
+  .tp-vmap__art { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .tp-vmap__road { fill: none; stroke: var(--ds-color-bg-layer-default); stroke-linecap: round; }
+  .tp-vmap__river { fill: none; stroke: var(--ds-color-bg-informative-weak); stroke-width: 36; }
+  .tp-vmap__park { fill: var(--ds-color-bg-positive-weak); }
+  .tp-pin { position: absolute; translate: -50% -100%; display: inline-flex; align-items: center; gap: var(--ds-space-x1); padding: var(--ds-space-x1) var(--ds-space-x2); border: 0; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-layer-floating); color: var(--ds-color-fg-neutral); box-shadow: var(--ds-elevation-2); font: inherit; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-semibold); white-space: nowrap; cursor: pointer; }
+  .tp-pin .ds-icon { --ds-icon-size: 16px; }
+  .tp-pin[aria-pressed="true"] { z-index: 1; background: var(--ds-color-bg-brand-solid); color: var(--ds-color-fg-neutral-inverted); }
+  .tp-pin:disabled { color: var(--ds-color-fg-disabled); cursor: default; }
+  .tp-me { position: absolute; translate: -50% -50%; width: var(--ds-space-x4); height: var(--ds-space-x4); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-informative-solid); box-shadow: 0 0 0 var(--ds-space-x1) var(--ds-color-bg-layer-default), 0 0 0 var(--ds-space-x4) var(--ds-color-bg-informative-weak); }
+  .tp-vmap__tools { position: absolute; top: var(--ds-space-x3); right: var(--ds-space-x3); display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+  .tp-vmap__zoom { display: flex; flex-direction: column; border-radius: var(--ds-shape-md); background: var(--ds-color-bg-layer-floating); box-shadow: var(--ds-elevation-2); }
+  .tp-vmap__tools > .ds-btn { background: var(--ds-color-bg-layer-floating); box-shadow: var(--ds-elevation-2); }
+  .tp-vmap__card { position: absolute; left: var(--ds-space-x4); bottom: var(--ds-space-x4); width: min(360px, calc(100% - var(--ds-space-x8))); box-shadow: var(--ds-elevation-3); }
+  @media (max-width: 1279px) { .tp-vmap__card { display: none; } }
+  .tp-vbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); margin-inline: calc(var(--tp-gutter) * -1); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) { .tp-vbar { display: none; } }
+`;
+  // [이름, 구, 거리, 남은 자리, 지도 위치 x%, y%]
+  const VENUES = [['강남 시험장', '서울 강남구', '1.3km', 12, 62, 64], ['서초 시험장', '서울 서초구', '2.4km', 3, 48, 76], ['잠실 시험장', '서울 송파구', '4.1km', 26, 84, 58], ['여의도 시험장', '서울 영등포구', '5.8km', 8, 24, 50], ['종로 시험장', '서울 종로구', '6.7km', 0, 46, 22], ['신촌 시험장', '서울 서대문구', '9.8km', 20, 22, 30], ['목동 시험장', '서울 양천구', '11.2km', 15, 8, 58], ['노원 시험장', '서울 노원구', '14.5km', 0, 74, 10]];
+  const CUR = 0;
+  const seat = (n) => n === 0 ? badge('마감') : n <= 5 ? badge(`${n}석 남음`, 'warning') : '';
+  const items = VENUES.map(([name, gu, km, n], i) => `<label class="ds-selectbox"><span class="ds-selectbox__texts"><span class="ds-selectbox__label">${name}${seat(n)}</span><span class="tp-vn__meta">${gu} / ${km}${n > 5 ? ` / 남은 자리 ${n}석` : ''}</span></span><span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="venue"${i === CUR ? ' checked' : ''}${n === 0 ? ' disabled' : ''}></span></label>`).join('');
+  const pins = VENUES.map(([name, , , n, x, y], i) => `<button type="button" class="tp-pin" style="left: ${x}%; top: ${y}%"${i === CUR ? ' aria-pressed="true"' : ''}${n === 0 ? ' disabled' : ''} aria-label="${name}">${icon('map-pin')}<span>${name.replace(' 시험장', '')}</span></button>`).join('');
+  const art = `<svg class="tp-vmap__art" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect class="tp-vmap__park" x="560" y="150" width="180" height="120" rx="24"/><rect class="tp-vmap__park" x="90" y="560" width="150" height="100" rx="24"/>
+    <path class="tp-vmap__river" d="M-20 420 C 180 360, 340 470, 520 420 S 820 330, 1020 380"/>
+    <g class="tp-vmap__road" stroke-width="18"><path d="M0 250 H1000"/><path d="M0 560 H1000"/><path d="M300 0 V700"/><path d="M700 0 V700"/><path d="M0 700 L 520 0"/></g>
+    <g class="tp-vmap__road" stroke-width="8"><path d="M0 120 H1000"/><path d="M0 660 H1000"/><path d="M150 0 V700"/><path d="M500 0 V700"/><path d="M860 0 V700"/><path d="M380 700 L 1000 180"/></g>
+  </svg>`;
+  const [cn, cg, ck, cs] = VENUES[CUR];
+  const body = `<div class="tp-app">${topbar(USER_MENU, 1, userEnd)}<main class="tp-content">
+  <div class="tp-vn">
+    <div class="tp-vn__head tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-h1">고사장 고르기</h1><div class="tp-row">${tags(['영어 말하기 시험', '11월 18일 (수) 13:00'])}</div></div>
+    <div class="tp-vn__list">
+      ${search('vn-q', '지역, 고사장 이름')}
+      <div class="tp-vn__filters">${['자리 있는 곳', '주차 가능', '역에서 5분'].map((l, i) => chip(l, { on: i === 0 })).join('')}</div>
+      <div class="tp-between"><span class="tp-caption">고사장 ${VENUES.length}곳</span>${select('가까운 순', { id: 'vn-sort', aria: '정렬' })}</div>
+      <div class="ds-selectbox-group" role="radiogroup" aria-label="고사장">${items}</div>
+    </div>
+    <div class="tp-vmap" role="region" aria-label="고사장 지도">
+      ${art}
+      <span class="tp-me" style="left: 56%; top: 54%" role="img" aria-label="내 위치"></span>
+      ${pins}
+      <div class="tp-vmap__tools"><div class="tp-vmap__zoom">${iconBtn('zoom-in', '크게 보기', { size: 'medium' })}${iconBtn('zoom-out', '작게 보기', { size: 'medium' })}</div>${iconBtn('circle-dot', '내 위치로', { size: 'medium' })}</div>
+      ${card(`<div class="tp-between"><span class="tp-h3">${cn}</span>${badge(`남은 자리 ${cs}석`, 'informative')}</div><span class="tp-caption">${cg} / 내 위치에서 ${ck}</span>${tags(['주차 가능', '엘리베이터', '지하철역 3분'])}<div class="tp-row">${btn('길 찾기', { size: 'large', ic: 'map-pin' })}${btn('이 고사장으로 신청', { variant: 'brandSolid', size: 'large', fill: true })}</div>`, { cls: 'tp-vmap__card', variant: '', size: 'medium', tag: 'div' })}
+    </div>
+  </div>
+  <div class="tp-vbar"><div class="tp-stack" style="gap: 0"><span class="tp-label">${cn}</span><span class="tp-caption">${ck} / 남은 자리 ${cs}석</span></div>${btn('신청하기', { variant: 'brandSolid', size: 'large' })}</div>
+</main></div>`;
+  return { slug: 'exam-venue', en: 'Exam Venue Map', name: '고사장 신청 (지도)', group: 'Exam', desc: '지도와 목록으로 가까운 고사장을 찾아 고르는 화면입니다. 남은 자리와 거리를 보고 바로 신청합니다.', css, body };
+};
+
 /* 2. 내 시험 (개인 대시보드) ---------------------------------------- */
 const mine = () => {
   const css = CSS + `
@@ -208,4 +278,4 @@ const groupDash = () => {
   return { slug: 'exam-group-dashboard', en: 'Group Score Dashboard', name: '단체 응시 현황', group: 'Exam', desc: '기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.', css, body: frame(orgNav(3), '성적 리포트', main) };
 };
 
-export const templates = [apply, mine, score, groupApply, roster, groupDash].map((f) => f());
+export const templates = [apply, venue, mine, score, groupApply, roster, groupDash].map((f) => f());

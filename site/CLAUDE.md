@@ -95,7 +95,8 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 분류 기준은 쓰는 사람: 시험, 학습, 교재 등에는 고객이 쓰는 화면만, 운영자와 담당자 화면은 주제와 상관없이 관리자.
 - 교재 분류는 쇼핑이 아니라 교재를 찾고 음원, 자료, 강의로 공부를 돕는 화면(장바구니, 요금제는 결제 분류).
 - 뺀 템플릿은 groups.mjs `REMOVED`(생성기 코드도 지움, 되살리려면 git 기록). 다시 넣자고 하기 전에는 편집기 도구, 문서 사이트, 모양만 다른 변형을 템플릿 목록에 더하지 않는다(시안에서 배치를 여러 개 내는 것은 괜찮다).
-- 생성기: kit.mjs(공용 CSS, 부품, 차트), frame.mjs(위 메뉴, 옆 메뉴, 고르기 상자, 달력), 분류별 dashboard, table, form, settings, login, content, aichat, gallery, community, pricing, mypage, commerce, exam, test, learning, service, basics, admin, media, books. pages/ HTML 은 직접 고치지 않는다.
+- 생성기: kit.mjs(공용 CSS, 부품, 차트), frame.mjs(위 메뉴, 옆 메뉴, 고르기 상자, 달력), 분류별 dashboard, table, form, settings, login, content, aichat, gallery, community, pricing, mypage, commerce, exam, test, learning, service, basics, admin, media, books, feedback(설문, 수강평). pages/ HTML 은 직접 고치지 않는다.
+- 새 템플릿은 늘 UI 패턴 카탈로그에서 레퍼런스를 먼저 모은다(사용자 "템플릿 만들 때는 항상 uipattern 에서 수집"). `uipatterns/web/data.js`, `mo/data.js` 에서 이름으로 찾고 그림은 imagesisa 주소 `uipatterns/{web|mo}/<경로>` 로 받아 본다. 본 서비스 이름은 저장소에 적지 않고 구조만 가져온다.
 - 새 템플릿을 더하면 Updates 에 "템플릿" 소식 한 줄, Figma Templates 는 남은 일에 적는다.
 
 ## 템플릿 목록과 문서 보기

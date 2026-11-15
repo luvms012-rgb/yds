@@ -22,7 +22,7 @@
   html { scrollbar-width: none; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
   /* 머리글도 내용과 같은 좌우선에 */
   .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
-  .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
+  .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact, .tp-fb)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
   body { word-break: keep-all; overflow-wrap: break-word; }
   .tp-app { display: flex; flex-direction: column; min-height: 100vh; background: var(--ds-color-bg-layer-default); }
   .tp-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); padding: var(--ds-space-x6) var(--ds-space-x4) 0; }

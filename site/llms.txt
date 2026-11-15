@@ -157,6 +157,7 @@
 템플릿 HTML 원본입니다. 안의 CSS 주소(../../../dist/)는 위 CSS, JS 주소로 바꿔 사용합니다.
 
 - [시험 신청](templates/pages/exam-apply.html): 시험 종류부터 결제까지 한 화면에서 차례로 선택하는 신청 화면입니다.
+- [고사장 신청 (지도)](templates/pages/exam-venue.html): 지도와 목록으로 가까운 고사장을 찾아 고르는 화면입니다.
 - [시험 일정](templates/pages/exam-schedule.html): 회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.
 - [시험 접수 완료](templates/pages/exam-apply-done.html): 결제를 마친 뒤 접수 번호와 접수, 결제 내용, 다음 일정을 보여 주는 화면입니다.
 - [수험표](templates/pages/exam-ticket.html): 수험 번호, 시험 시간, 고사장과 좌석을 한 장에 모은 수험표 화면입니다.
@@ -173,6 +174,8 @@
 - [수업 신청](templates/pages/lesson-plan.html): 수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.
 - [강의 시청](templates/pages/learning-player.html): 강의를 들으며 AI 튜터에게 요약과 퀴즈를 받는 화면입니다.
 - [내 강의실](templates/pages/my-classroom.html): 수강 중인 클래스와 진도, 수료증을 모은 학습자 화면입니다.
+- [수강 설문 쓰기](templates/pages/class-survey.html): 수강을 마친 뒤 만족도와 의견을 답하는 설문 화면입니다.
+- [수강평 쓰기](templates/pages/class-review-write.html): 들은 강의에 별점과 좋았던 점, 수강평, 사진을 남기는 화면입니다.
 - [상담 예약](templates/pages/consult-booking.html): 설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.
 - [교재 홈](templates/pages/book-home.html): 교재 찾기, 학습 지원 바로 가기, 새 교재, 단계별 추천을 모은 교재 사이트 첫 화면입니다.
 - [교재 목록](templates/pages/book-list.html): 단계와 학습 지원 조건으로 교재를 고르는 목록 화면입니다.
