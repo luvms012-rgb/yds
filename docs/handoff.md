@@ -1,6 +1,6 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-15 집 Mac. 마지막 배포 `821fab27`, 버전 v1.2.0(태그). 시작은 `git pull` 뒤 이 파일. 지난 기록은 [log.md](log.md) 에서 필요할 때만.
+- 갱신: 2026-11-15 집 Mac. 마지막 배포 `57a51b8f`(이 인수인계 커밋 앞), 버전 v1.2.0(태그, v1.2.0 뒤 변경은 최신 주소에만 있다: Avatar 40, 템플릿 규칙 맞춤, 안내서 문장). 커밋 안 된 변경 없음. 시작은 `git pull` 뒤 이 파일. 지난 기록은 [log.md](log.md) 에서 필요할 때만.
 
 ## 한 것 (11-14 ~ 11-15, 모두 배포됨)
 
@@ -9,11 +9,12 @@
 - **DS 추가와 변경**: Image Frame 3:4, 2:3 / Radio Group 가로 / 아이콘 volume-2, captions, headphones / Avatar 42 → 40(42 도 40 으로 보임) / 사용 지침 4개.
 - **AI 안내서**: 토큰 줄이기(yds.txt 41k → 30k, yds-full 225k → 180k), 요청 글 줄바꿈 규칙, AI 시험 3개(셋 다 검사 오류 0) 결과로 규칙 문장 고침, 브랜드를 "모양만 바꾸는 값의 묶음" 으로 설명. 기본 브랜드 색은 파랑 그대로(사용자 결정).
 - **사이트**: 첫 화면 버튼 줄 제거, 템플릿 카드 "자세히 보기", Updates 배지 이름(컴포넌트, 템플릿 등)과 요청 목록 비움, 템플릿 왼쪽 메뉴 점.
-- **시안 제약 풀기(11-15)**: 템플릿의 기능 안내 글(Callout, 입력 도움말, 빈 화면 안내)은 지우지 않는다. 안내서에 없는 요소를 만드는 비상구, Lucide 아이콘 더하기, 템플릿은 출발점이고 배치는 자유라는 문장을 더했다. 큰 제목 허용과 배치 기준 화면 완화는 사용자가 아직 고르지 않았다.
-- **규칙 문서 줄이기(11-15, 커밋 전)**: 루트 CLAUDE.md 5.0k → 2.8k 자, site/CLAUDE.md 32.6k → 10.5k 자(지금 규칙만, 원문은 log.md 에 보관), 이 파일도 다시 씀.
+- **시안 제약 풀기(11-15)**: 템플릿의 기능 안내 글(Callout, 입력 도움말, 빈 화면 안내)은 지우지 않는다. 안내서에 없는 요소를 만드는 비상구, Lucide 아이콘 더하기, 템플릿은 출발점이고 배치는 자유라는 문장을 더했다. 메인과 이벤트 화면의 큰 제목 허용, 배치 기준 화면과 사진 목록 완화는 사용자가 고르지 않아 그대로다(필요하면 말한다고 함).
+- **규칙 문서 줄이기(11-15)**: 루트 CLAUDE.md 5.0k → 2.8k 자, site/CLAUDE.md 32.6k → 10.5k 자(지금 규칙만, 원문은 log.md 에 보관), 이 파일도 다시 씀.
 
 ## 남은 일
 
+0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만, 바꾼 묶음마다 따로 커밋. 다음 버전을 올릴 때(`node sync.mjs release 1.2.1` 또는 1.3.0, 사용자 확인 뒤) v1.2.0 뒤 변경이 고정 주소에 들어간다.
 1. **Figma 한 번에 맞추기**(편집 계정 luvms@ybm.co.kr 로 연결된 PC, 사용자가 싱크를 걸 때, yds-figma-draw 스킬):
    - 템플릿: 뺀 21개 프레임 지우기(지우기 전 사용자 확인), 새 13쪽 그리기(book-home, book-list, book-audio, book-roadmap, video-home, video-title-detail, video-watch, video-player, class-detail, my-classroom, admin-request-list, admin-request-detail, admin-request-form), 섹션 이름 Commerce → Books 와 groups.mjs 순서, 규칙 맞춤(Top App Bar, 상태 Badge 색, 화살표), lesson-plan 방식 줄은 칩.
    - 컴포넌트 세트: Avatar 와 Avatar Group 42 → 40, Image Frame 3:4, 2:3, Radio Group 가로 예시, 아이콘 3개, Accordion inset none, Badge xlarge(18개), 폼 필드 바탕 bg/layer-default(underline 은 투명).
