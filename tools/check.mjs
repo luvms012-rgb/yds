@@ -10,6 +10,7 @@
 //   3 템플릿    템플릿 67종과 컴포넌트 예시를 site/ai/yds-check.mjs 로 검사 (서비스 화면과 같은 규칙)
 //   4 마크다운  .md 위치, 머리 주소, 화면 코드와 예시 코드가 글자 그대로 있는지, .md 링크, yds.txt 주소
 //   5 싱크      components.json, components.css 머리 주석, README, index.html, 사이트 페이지, 템플릿 목록, 진입 파일, 이름
+//   5-1d 한 줄 버튼 높이  한 칸 안 버튼의 data-size 가 섞이지 않았는지 (사이트, 템플릿 화면)
 //   5-2 브랜드  brands/*.json 이 허용된 값만 쓰는지, dist/brands 가 원본과 같은지, 글자 대비
 //   6 새 컴포넌트  컴포넌트마다 넣어야 하는 9곳이 다 있는지 (README "새 컴포넌트 넣기")
 //   7 빌드 경고  site/build.mjs 의 "!" 경고 (부품 설명, 한글 찾기 낱말, 아이콘 쓰임 등)
@@ -265,6 +266,25 @@ check('6 컴포넌트 9곳', ({ err, warn }) => {
     const dos = Object.keys(notes.dos).some((k) => k === c.no || k.startsWith(c.no + ' ')) || g62.includes(`**${base}**`);
     if (!dos) warn(`${c.no} ${c.name}: 사용 지침(figma-notes dos 또는 README 6.2) 없음`);
   }
+});
+
+// 5-1d. 한 줄 버튼 높이 (2026-11-16 사용자 "높이가 다름, 이런 사례가 많은데 재발 방지")
+// 사이트 페이지와 템플릿 화면에서 가장 안쪽 칸 하나에 든 ds-btn 의 data-size 가 섞이면 오류.
+// 세로로 쌓는 DS 칸(ds-result__actions)만 뺀다. 높이를 맞출 때는 작은 쪽이 아니라 그 줄의 쓰임에 맞는 크기 하나로 통일한다.
+check('5-1d 한 줄 버튼 높이', ({ err }) => {
+  const BLOCK = /<(div|p|header|footer|nav|li|td|th|section|aside)\b([^>]*)>((?:(?!<\/?(?:div|p|header|footer|nav|li|td|th|section|aside|ul|ol|table|form|fieldset)\b)[\s\S])*?)<\/\1>/g;
+  const STACKED = /class="[^"]*\bds-result__actions\b/;
+  const pages = [...sitePages, ...walk(path.join(SITE, 'templates', 'pages')).filter((f) => f.endsWith('.html'))];
+  const bad = new Map();
+  for (const f of pages) {
+    const h = fs.readFileSync(f, 'utf8');
+    for (const m of h.matchAll(BLOCK)) {
+      if (STACKED.test(m[2])) continue;
+      const sizes = new Set([...m[3].matchAll(/<(?:a|button)\b[^>]*class="ds-btn\b[^"]*"[^>]*>/g)].map((b) => (b[0].match(/data-size="([^"]+)"/) || [, 'medium'])[1]));
+      if (sizes.size > 1) bad.set(rel(f), [...sizes].join(' + '));
+    }
+  }
+  for (const [f, s] of bad) err(`${f} 한 줄에 버튼 크기 ${s}`);
 });
 
 // 7. 빌드 경고 (--regen 이 아니면 사이트만 한 번 더 만들어 본다. 결과 파일은 같다)
