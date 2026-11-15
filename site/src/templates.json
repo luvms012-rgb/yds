@@ -191,6 +191,15 @@
       }
     },
     {
+      "slug": "lesson-home",
+      "name": "레슨 홈",
+      "en": "Lesson Home",
+      "group": "Learning",
+      "sub": "수강",
+      "desc": "매일 레슨을 이어서 하는 학습 앱의 첫 화면입니다. 단원의 레슨 경로와 오늘의 목표, 연속 학습, 복습할 단어를 함께 보여 줍니다.",
+      "rebuilt": true
+    },
+    {
       "slug": "learning-player",
       "name": "강의 시청",
       "en": "Course Player",
@@ -216,11 +225,11 @@
     },
     {
       "slug": "ai-tutor-chat",
-      "name": "AI 튜터 대화",
-      "en": "AI Tutor Chat",
+      "name": "AI 학습 대화",
+      "en": "AI Learning Chat",
       "group": "Learning",
       "sub": "수강",
-      "desc": "AI 튜터와 상황극으로 말하며 배우는 대화 화면입니다. 내 말은 바로 더 자연스럽게 고쳐 주고, 다음에 말해 볼 문장을 칩으로 보여 줍니다.",
+      "desc": "AI와 대화하며 배우는 학습 화면입니다. 내 말은 바로 더 자연스럽게 고쳐 주고, 다음에 말해 볼 문장을 칩으로 보여 줍니다.",
       "rebuilt": true
     },
     {
