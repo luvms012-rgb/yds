@@ -445,8 +445,8 @@ const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 // yds.txt 머리에 붙는 규칙 (AI가 요청 글 대신 여기서 읽는다)
 const LLMS_RULES = `## 지킬 것
 
-- 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓴다.
-- 규칙 파일: 설치할 때 규칙 파일(${SITE_URL}ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다.
+- 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓴다. 문서와 마크업은 최신 기준이라, 고정 주소에서는 그 버전 뒤에 더한 속성이 동작하지 않을 수 있다(Updates 에서 버전별로 확인).
+- 규칙 파일: 설치할 때 규칙 파일(${SITE_URL}ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다. 파일 하나만 만드는 일이면 받지 않아도 된다.
 - 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
 - 캐러셀: 자동 넘김(data-autoplay)은 큰 배너에만 쓰고, 멈춤 버튼(.ds-carousel__play)을 꼭 함께 둔다.
@@ -457,19 +457,19 @@ const LLMS_RULES = `## 지킬 것
 - 원본: YDS 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. YDS 자체를 바꿔야 하면 담당자에게 요청한다.
 - 모양을 바꿀 때는 컴포넌트 변수(--ds-[컴포넌트]-*)만 덮어쓴다. 새 ds- 클래스나 !important를 만들지 않는다.
 - 브랜드: 브랜드 파일(${PUBLIC}/dist/brands/브랜드이름.css)을 YDS CSS 다음, 서비스 CSS 앞에 불러오고 <html>에 data-ds-brand="브랜드이름"을 단다. 브랜드 값을 서비스 CSS에 따로 적지 않는다.
-- 새 브랜드: 브랜드 파일(JSON)에는 YDS와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
+- 새 브랜드: 브랜드 파일(JSON)에는 YDS와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일 이름과 data-ds-brand 값은 영문 소문자, 숫자, - 로 짓는다(한글 이름은 name 에만). 예) my-brand.json: {"name": "내 브랜드", "color": "#00843d", "shapeScale": 1.25, "font": "SUITE"}. 글꼴 파일은 서비스가 불러오고 font 에는 글꼴 이름만 적는다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
 - 브랜드 값을 받지 못했으면 시작 전에 브랜드 이름과 대표색을 묻는다. 모서리와 글꼴은 말이 없으면 YDS 값을 쓴다. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 고칠 색을 제안한다.
-- 시작: 무엇을 만들지 듣지 못했으면 먼저 묻는다. 다 만들면 고친 곳을 알려 준다.
-- 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다.
+- 시작: 무엇을 만들지 듣지 못했으면 먼저 묻는다. 물을 수 없는 환경이면 스스로 정하고, 정한 값을 결과에 적는다. 다 만들면 고친 곳을 알려 준다.
+- 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다. 템플릿과 이 규칙이 다르면 이 규칙을 따른다.
 - 글자: 한국어. 제목 Bold, 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
-- 점검: 끝내기 전에 검사 스크립트(${SITE_URL}ai/yds-check.mjs)를 받아 node로 돌리고, 나온 문제를 모두 고친다.
+- 점검: 끝내기 전에 검사 스크립트(${SITE_URL}ai/yds-check.mjs)를 받아 node로 돌리고, 이번에 만들거나 바꾼 범위 안의 문제를 모두 고친다. 범위 밖 기존 코드에서 나온 문제는 고치지 않고 목록으로 알린다. 스크립트를 돌릴 수 없으면 그렇다고 알린다.
 
 ## 운영 중인 사이트에 옮길 때
 
 - 한 번에 다 바꾸지 않는다. 살펴보기, YDS 넣기, 브랜드, 화면 하나씩, 점검 순서로 간다.
 - 원래 되던 기능은 그대로 동작해야 한다. 애매한 부분은 혼자 정하지 말고 물어본다.
-- DS는 @layer 안에 있어 기존 CSS가 늘 이긴다. 그래서 DS를 넣기만 해서는 지금 화면이 바뀌지 않는다. 기존 규칙이 DS 컴포넌트를 덮으면 그 화면의 기존 규칙만 걷어 낸다.
-- 서버 코드(PHP, JSP 등)의 로직은 바꾸지 않는다. 스크립트와 서버가 쓰는 class, id, name 속성은 그대로 두고, 필요하면 DS 클래스를 함께 붙인다.
+- DS는 @layer 안에 있어 기존 CSS가 늘 이긴다. 다만 기존 CSS가 적지 않은 속성은 DS 기본 스타일이 정한다(제목과 문단 여백 0, 줄 높이, box-sizing, word-break). 그래서 DS를 넣은 직후 전후 화면을 비교하고, 바뀐 곳은 그 화면 CSS에서 원래 값으로 되돌린다. 기존 규칙이 DS 컴포넌트를 덮으면 그 화면의 기존 규칙만 걷어 낸다.
+- 서버 코드(PHP, JSP 등)의 로직은 바꾸지 않는다. 스크립트와 서버가 쓰는 class, id, name 속성은 그대로 두고, 필요하면 DS 클래스를 함께 붙인다. <input type="button"> 은 스크립트가 value 를 쓰지 않을 때만 <button> 으로 바꾼다.
 - 기존 CSS의 hex 색은 가까운 --ds-color-* 역할 토큰으로 바꾸고, 바꾼 짝은 목록으로 남긴다.
 - 화면을 바꿀 때마다 바꾸기 전후 화면을 비교해 보여 주고 확인을 받는다.`;
 // 반응형 기준점 (Foundations Breakpoint, 11-04 시작하기에서 옮김)
@@ -822,7 +822,7 @@ const ICON_GROUPS = [
   ['상태', { 'circle-check': '성공, 완료', 'circle-check-solid': '성공, 완료 (채움, Callout과 Snackbar)', 'circle-alert': '오류, 주의', 'circle-alert-solid': '오류, 주의 (채움)', 'triangle-alert': '경고', 'triangle-alert-solid': '경고 (채움)', info: '안내', 'info-solid': '안내 (채움)', 'circle-x': '실패, 입력 지우기', inbox: '비어 있음 (Empty)', sparkles: 'AI 기능, 새 기능' }],
   ['사물', { calendar: '날짜 선택', clock: '시간 선택, 시각', 'file-text': '문서, 파일', 'id-card': '계정, 신분 정보', 'credit-card': '결제, 카드', globe: '언어, 지역', monitor: 'PC 화면 보기', smartphone: '모바일 화면 보기', headset: '고객센터', 'message-circle': '댓글, 대화', 'map-pin': '위치, 주소', 'shopping-cart': '장바구니' }],
   ['앱', { folder: '폴더', 'folder-open': '열린 폴더', 'folder-tree': '폴더 구조', 'folder-input': '폴더로 옮기기', file: '파일', 'file-code': '코드 파일', archive: '보관', download: '내려받기', save: '저장', printer: '인쇄', mail: '메일', bell: '알림', settings: '설정', 'log-out': '로그아웃', user: '사람, 내 정보', users: '여러 사람, 팀', lock: '잠금, 보안', 'key-round': '열쇠, SSO 로그인', 'shield-check': '안전, 인증됨', building: '회사, 기업', package: '상품, 꾸러미', truck: '배송', receipt: '영수증, 청구', wallet: '지갑, 자산', tag: '태그, 분류', flag: '깃발, 표시', 'at-sign': '아이디, 멘션', phone: '전화', cloud: '클라우드', database: '데이터베이스', server: '서버', 'globe-lock': '보안 연결', 'link-2': '연결된 계정', 'book-open': '문서, 배우기', lightbulb: '도움말, 팁', rocket: '빠르게, 시작', bug: '버그, 문제', 'wand-sparkles': 'AI 도구 사용', sparkle: '반짝, 새로움' }],
-  ['편집', { 'layout-grid': '바둑판 보기', list: '목록 보기', 'list-checks': '체크 목록', 'list-filter': '목록 필터', 'list-music': '재생 목록', 'columns-3': '열 보기', 'grip-vertical': '끌어 옮기기 손잡이', move: '옮기기', 'zoom-in': '확대', 'zoom-out': '축소', type: '글자 도구', layers: '레이어', 'pen-tool': '펜 도구', 'mouse-pointer-2': '선택 도구', hand: '화면 이동 도구', crop: '자르기', scissors: '잘라내기', palette: '색, 만들기', 'square-pen': '새로 쓰기', pencil: '수정', 'text-align-start': '글 블록', italic: '기울임', 'undo-2': '되돌리기', 'redo-2': '다시 하기', undo: '되돌리기', terminal: '터미널', code: '코드', 'git-branch': '브랜치', 'git-commit-horizontal': '커밋', 'git-pull-request': '풀 리퀘스트', 'panel-right': '오른쪽 패널, 태블릿 보기', 'maximize-2': '크게 보기', play: '실행, 재생', 'play-solid': '재생 (채움)', pause: '멈춤', 'pause-solid': '멈춤 (채움)', video: '영상', mic: '말로 입력', 'chart-line': '선 그래프', 'chart-column': '막대 그래프', 'chart-pie': '원 그래프', 'calendar-days': '달력 보기' }],
+  ['편집', { 'layout-grid': '바둑판 보기', list: '목록 보기', 'list-checks': '체크 목록', 'list-filter': '목록 필터', 'list-music': '재생 목록', 'volume-2': '소리, 음량', captions: '자막', headphones: '음원 듣기', 'columns-3': '열 보기', 'grip-vertical': '끌어 옮기기 손잡이', move: '옮기기', 'zoom-in': '확대', 'zoom-out': '축소', type: '글자 도구', layers: '레이어', 'pen-tool': '펜 도구', 'mouse-pointer-2': '선택 도구', hand: '화면 이동 도구', crop: '자르기', scissors: '잘라내기', palette: '색, 만들기', 'square-pen': '새로 쓰기', pencil: '수정', 'text-align-start': '글 블록', italic: '기울임', 'undo-2': '되돌리기', 'redo-2': '다시 하기', undo: '되돌리기', terminal: '터미널', code: '코드', 'git-branch': '브랜치', 'git-commit-horizontal': '커밋', 'git-pull-request': '풀 리퀘스트', 'panel-right': '오른쪽 패널, 태블릿 보기', 'maximize-2': '크게 보기', play: '실행, 재생', 'play-solid': '재생 (채움)', pause: '멈춤', 'pause-solid': '멈춤 (채움)', video: '영상', mic: '말로 입력', 'chart-line': '선 그래프', 'chart-column': '막대 그래프', 'chart-pie': '원 그래프', 'calendar-days': '달력 보기' }],
   ['그 밖에', { funnel: '필터', 'sliders-horizontal': '보기 설정, 고급 검색', 'arrow-down': '아래로', 'arrow-left': '왼쪽, 이전', 'arrow-up-down': '정렬', 'chevrons-up-down': '모두 펼치기', 'ellipsis-vertical': '세로 더 보기', 'refresh-cw': '새로 고침', circle: '빈 동그라미', 'circle-dot': '선택된 동그라미', 'circle-dashed': '예정, 빈 상태', sun: '밝은 화면', moon: '어두운 화면', command: '명령, 단축키' }],
   ['반응', { heart: '좋아요, 찜', 'heart-solid': '좋아요, 찜 (선택됨)', bookmark: '저장, 북마크', 'bookmark-solid': '저장, 북마크 (선택됨)', star: '평점, 즐겨찾기', 'star-solid': '평점, 즐겨찾기 (채움)', 'thumbs-up': '도움이 됐어요', 'thumbs-down': '도움이 안 됐어요' }],
 ];

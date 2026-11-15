@@ -112,37 +112,7 @@ const contact = () => {
     
   </form>
 </div></main></div>`;
-  return { slug: 'contact-form', en: 'Contact Form', name: '문의 폼', group: 'Support', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
-};
-
-/* 4. 대화상자 단계 폼 ------------------------------------------ */
-const dialogWizard = () => {
-  const css = FORM_CSS + `
-  .tp-under { opacity: .55; pointer-events: none; }
-  .tp-modal { position: fixed; inset: 0; z-index: var(--ds-z-dialog); display: grid; place-items: center; padding: var(--ds-space-x4); background: var(--ds-color-bg-overlay); }
-  .tp-modal .ds-dialog { position: static; display: flex; opacity: 1; transform: none; animation: none; width: min(560px, 100%); max-height: calc(100vh - var(--ds-space-x8)); margin: 0; box-shadow: var(--ds-elevation-5, 0 16px 48px var(--ds-color-palette-static-black-alpha-600)); }
-  .tp-modal .ds-dialog__body { display: flex; flex-direction: column; gap: var(--ds-space-x5); overflow: auto; }
-  .tp-dlg-steps { padding: 0 var(--ds-space-x5) var(--ds-space-x2); }
-  .tp-modal .ds-dialog__footer { flex-direction: row; justify-content: space-between; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); padding-block: var(--ds-space-x4); }
-  .tp-modal .ds-dialog__footer > .ds-btn { flex: none; width: auto; }
-`;
-  const secs = [['핵심 요약', '주요 숫자와 지난주 대비 변화', 1], ['파이프라인 단계', '단계별 건수와 금액', 1], ['새로 생긴 기회', '이번 주 새로 들어온 건', 0], ['잃은 기회', '사유와 금액', 0], ['담당자별 순위', '담당자별 성과', 1]];
-  const body = `<div class="tp-app">
-<div class="tp-under" aria-hidden="true">${head('리포트', { tools: btn('리포트 예약', { variant: 'neutralSolid', ic: 'plus' }) })}<main class="tp-content"><div class="tp-g3">${['주간 수강 현황', '월간 매출', '기업 고객 리포트'].map((t) => card(`<span class="tp-h4">${t}</span><span class="tp-sub">매주 월요일 오전 9시</span>`)).join('')}</div></main></div>
-<div class="tp-modal">
-  <div class="ds-dialog" open role="dialog" aria-modal="true" aria-labelledby="dlg-t">
-    <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="dlg-t">리포트 예약</h2><button type="button" class="ds-dialog__close" aria-label="닫기"></button></div>
-    <div class="tp-dlg-steps">${stepper(['리포트', '일정', '받는 사람', '확인'], 0, '리포트 예약 단계')}</div>
-    <div class="ds-dialog__body">
-      ${req('r-name', '리포트 이름', inp('r-name', '주간 수강 현황', 'value="주간 수강 현황"'), '이메일 제목으로 써요.')}
-      ${field('r-data', '데이터', sel('r-data', '수강과 결제'))}
-      <fieldset class="ds-field" style="border:0;padding:0;margin:0"><legend class="ds-field__label">포함할 내용</legend>${secs.map(([t, d, c]) => opt(t, d, !!c)).join('')}</fieldset>
-    </div>
-    <div class="ds-dialog__footer">${btn('취소', { size: 'medium' })}<span></span>${btn('다음', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div>
-  </div>
-</div>
-</div>`;
-  return { slug: 'form-wizard-dialog', en: 'Dialog Wizard', name: '대화상자 단계 폼', group: 'Admin', desc: '보던 화면 위에 창을 띄워 짧은 단계를 진행하는 폼입니다. 화면을 떠나지 않고 간단한 설정을 마칠 때 사용합니다.', css, body };
+  return { slug: 'contact-form', h1: '문의하기', en: 'Contact Form', name: '문의 폼', group: 'Support', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
 };
 
 /* 5. 단계 폼 (가로 진행) ---------------------------------------- */
@@ -166,30 +136,6 @@ const wizard = () => {
 <footer class="tp-footer-bar" style="position: sticky; bottom: 0"><span class="tp-sub tp-num">4단계 중 1단계</span><div class="tp-row">${btn('이전', { size: 'medium', attrs: 'disabled' })}${btn('다음', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div></footer>
 </div>`;
   return { slug: 'form-wizard', en: 'Form Wizard', name: '단계 폼', group: 'Admin', desc: '한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.', css, body };
-};
-
-/* 6. 펼치는 단계 폼 (아코디언) ---------------------------------- */
-const inlineWizard = () => {
-  const css = FORM_CSS + `
-  .tp-iw { width: min(100%, var(--tp-narrow)); margin-inline: auto; }
-  .tp-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-  .tp-step { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--ds-space-x4); }
-  .tp-step__rail { display: flex; flex-direction: column; align-items: center; }
-  .tp-step__rail::after { content: ""; flex: 1 1 auto; width: 2px; margin-block: var(--ds-space-x1); background: var(--ds-color-stroke-neutral-muted); }
-  .tp-step:last-child .tp-step__rail::after { display: none; }
-  .tp-step__no { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-semibold); }
-  .tp-step[data-state="done"] .tp-step__no { background: var(--ds-color-bg-brand-solid); color: var(--ds-color-fg-on-brand-solid); }
-  .tp-step[data-state="current"] .tp-step__no { box-shadow: inset 0 0 0 2px var(--ds-color-stroke-brand-solid); background: var(--ds-color-bg-layer-default); color: var(--ds-color-fg-brand); }
-  .tp-step__main { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding-bottom: var(--ds-space-x6); min-width: 0; }
-  .tp-step__head { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); min-height: 28px; }
-`;
-  const steps = [['저장소', 'done', '가나다/학습-웹 / main 브랜치'], ['실행 조건', 'current', ''], ['빌드 환경', '', ''], ['테스트', '', ''], ['배포 대상', '', ''], ['알림', '', ''], ['확인', '', '']];
-  const cur = `<div class="tp-form">${field('ci-ev', '파이프라인을 돌릴 때', `<div>${[['풀 리퀘스트', '열린 풀 리퀘스트가 있는 브랜치에 올릴 때마다', 1], ['기본 브랜치에 올릴 때', 'main 브랜치에 합쳐질 때', 1], ['태그를 만들 때', 'v로 시작하는 태그를 만들 때', 0], ['정해진 시간', '매일 새벽 3시', 0]].map(([t, d, c]) => opt(t, d, !!c)).join('')}</div>`)}<div>${btn('다음', { variant: 'brandSolid', size: 'medium' })}</div></div>`;
-  const body = `<div class="tp-app">
-${head('자동 빌드 설정')}
-<main class="tp-content"><div class="tp-iw"><ol class="tp-steps" aria-label="자동 빌드 설정 단계">${steps.map(([t, st, res], i) => `<li class="tp-step" data-state="${st}"${st === 'current' ? ' aria-current="step"' : ''}><div class="tp-step__rail"><span class="tp-step__no">${st === 'done' ? icon('check', 'sm') : i + 1}</span></div><div class="tp-step__main"><div class="tp-step__head"><span class="tp-stack"><span class="tp-h4"${st ? '' : ' style="color: var(--ds-color-fg-neutral-muted)"'}>${t}</span>${res ? `<span class="tp-caption">${res}</span>` : ''}</span>${st === 'done' ? btn('고치기', { variant: 'ghost', size: 'xsmall', ic: 'pencil' }) : ''}</div>${st === 'current' ? cur : ''}</div></li>`).join('')}</ol></div></main>
-</div>`;
-  return { slug: 'form-wizard-inline', en: 'Inline Wizard', name: '펼치는 단계 폼', group: 'Admin', desc: '모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.', css, body };
 };
 
 /* 7. 두 칸 폼 --------------------------------------------------- */
@@ -233,4 +179,4 @@ const vertical = () => {
   return { slug: 'form-wizard-vertical', en: 'Vertical Wizard', name: '세로 단계 폼', group: 'Admin', desc: '왼쪽에 단계 목록을 세로로 두는 폼입니다. 입력 항목이 많아 지금 위치를 자주 확인해야 할 때 사용합니다.', css, body };
 };
 
-export const templates = [payment, checkoutWizard, contact, dialogWizard, wizard, inlineWizard, vertical].map((f) => f());
+export const templates = [payment, checkoutWizard, contact, wizard, vertical].map((f) => f());

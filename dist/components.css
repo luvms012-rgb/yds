@@ -802,8 +802,8 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 
 /* --------------------------------------------------------------------------
    11 Radio Group — 택일 선택
-   size: large(기본 24) · medium(20)   tone: brand(기본) · neutral
-     <div class="ds-radio-group" role="radiogroup">
+   size: large(기본 24) · medium(20)   tone: brand(기본) · neutral   orientation: 기본 세로 / data-orientation="horizontal"(짧은 선택지 2~4개, 좁으면 줄바꿈, 2026-11-15 추가)
+     <div class="ds-radio-group" role="radiogroup" [data-orientation="horizontal"]>
        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="g"><span>라벨</span></label>
      </div>
    Figma: 행 min-h 36/32 · 위 6 · gap x2 · 원 bg/layer-default + 1px stroke/neutral-weak · label t05/t04
@@ -811,6 +811,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
      disabled bg/disabled + stroke/neutral-muted · disabledChecked 고리 bg/disabled, 가운데 투명
    -------------------------------------------------------------------------- */
 .ds-radio-group { display: flex; flex-direction: column; }
+.ds-radio-group[data-orientation="horizontal"] { flex-direction: row; flex-wrap: wrap; column-gap: var(--ds-space-x5); }
 .ds-radio {
   --ds-radio-size: 24px;
   --ds-radio-dot: 10px;
@@ -3944,7 +3945,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 
 /* --------------------------------------------------------------------------
    66 Image Frame - 사용자가 올린 사진을 정해진 비율로 보여 주는 틀 (2026-10-29 추가)
-   ratio: 기본 1:1 / data-ratio="4:3" / data-ratio="16:9" (그 밖은 --ds-imageframe-ratio)   stroke: data-stroke
+   ratio: 기본 1:1 / data-ratio="4:3" / data-ratio="16:9" / data-ratio="3:4"(책 표지) / data-ratio="2:3"(포스터, 2026-11-15 추가) (그 밖은 --ds-imageframe-ratio)   stroke: data-stroke
    radius: sm(기본) · none · md · lg · xl (2026-11-03 추가, 작은 썸네일 sm/md, 카드 안 사진 lg, 큰 대표 사진 xl)
      <div class="ds-imageframe" data-ratio="4:3" [data-radius="lg"] [data-stroke]>
        <img src="…" alt="…">
@@ -3956,6 +3957,8 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-imageframe { --ds-imageframe-ratio: 1; --ds-imageframe-radius: var(--ds-shape-sm); position: relative; overflow: hidden; aspect-ratio: var(--ds-imageframe-ratio); border-radius: var(--ds-imageframe-radius); background: var(--ds-color-bg-neutral-weak-alpha); }
 .ds-imageframe[data-ratio="4:3"] { --ds-imageframe-ratio: 4 / 3; }
 .ds-imageframe[data-ratio="16:9"] { --ds-imageframe-ratio: 16 / 9; }
+.ds-imageframe[data-ratio="3:4"] { --ds-imageframe-ratio: 3 / 4; }
+.ds-imageframe[data-ratio="2:3"] { --ds-imageframe-ratio: 2 / 3; }
 .ds-imageframe[data-radius="none"] { --ds-imageframe-radius: 0; }
 .ds-imageframe[data-radius="md"] { --ds-imageframe-radius: var(--ds-shape-md); }
 .ds-imageframe[data-radius="lg"] { --ds-imageframe-radius: var(--ds-shape-lg); }

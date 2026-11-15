@@ -40,6 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 | **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
 | **Do** | 카드 안 사진은 `data-radius`로 카드 모서리와 맞춥니다. |
 | **Do** | 흰 배경 사진에는 `data-stroke`로 옅은 테두리를 둘러 화면 배경과 구분합니다. |
+| **Do** | 책 표지는 `data-ratio="3:4"`, 포스터는 `data-ratio="2:3"`을 사용합니다. |
 
 ## 예시
 
@@ -93,7 +94,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-ratio: 기본 1:1 / data-ratio="4:3" / data-ratio="16:9" (그 밖은 --ds-imageframe-ratio)   stroke: data-stroke
+ratio: 기본 1:1 / data-ratio="4:3" / data-ratio="16:9" / data-ratio="3:4"(책 표지) / data-ratio="2:3"(포스터, 2026-11-15 추가) (그 밖은 --ds-imageframe-ratio)   stroke: data-stroke
 radius: sm(기본) / none / md / lg / xl (2026-11-03 추가, 작은 썸네일 sm/md, 카드 안 사진 lg, 큰 대표 사진 xl)
 Figma: shape/sm / 빈 자리 bg/neutral / stroke 안쪽 1px stroke/neutral-subtle
   얹는 표시는 가장자리에서 x1_5 / indicator padding x0_5 x1_5, pill, palette/static-black-alpha-800, Static t01 Medium 흰색

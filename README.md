@@ -369,7 +369,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 08 | Select Trigger | `.ds-select` | `119:1605`, 20 | size |
 | 09 | Select Content, Item | `.ds-select-content` `.ds-select-item` | `125:1717`, 2 / `124:1769`, 12 | |
 | 10 | Checkbox | `.ds-checkbox` | `61:995`, 40 / Mark `2525:995`, 6 | variant `square/ghost`, tone, size |
-| 11 | Radio Group | `.ds-radio-group` `.ds-radio` | `1224:2164`, 16 | tone, size |
+| 11 | Radio Group | `.ds-radio-group` `.ds-radio` | `1224:2164`, 16 | tone, size, orientation `horizontal`(2026-11-15) |
 | 12 | Switch | `.ds-switch` | `93:1271`, 24 | size `16/24/32`, tone |
 | 13 | Quantity Picker | `.ds-quantity` | `1184:2146`, 18 | size, layout `fill` |
 | 15 | Chip | `.ds-chip` `.ds-chip-group` | `69:964`, 54 | variant `solid/outlineStrong/outlineWeak`, size, layout `iconOnly` |
@@ -423,7 +423,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 | 63 | Scroll Fog | `.ds-scrollfog` | `2567:33`, 2 | mask로 끝 20 흐림, 흐린 쪽에 여백 20 이상 |
 | 64 | Pull To Refresh | `.ds-ptr` (`__indicator/content`) | `2567:54`, 2 | 위 88 영역 Progress Circle 24, ds-refresh 이벤트, DS.endRefresh |
 | 65 | Side Panel | `.ds-sidepanel` (`__header/texts/title/desc/close/body/footer`) | `2567:862`, 3 / Close Button `2567:782`, 2 | 네이티브 `<dialog>`, 폭 480/720/960, 왼쪽은 data-direction |
-| 66 | Image Frame | `.ds-imageframe` (`__floater/indicator`) | `2567:1928`, 3 | ratio `1:1/4:3/16:9`, radius `none/md/lg/xl`(2026-11-03), stroke |
+| 66 | Image Frame | `.ds-imageframe` (`__floater/indicator`) | `2567:1928`, 3 | ratio `1:1/4:3/16:9/3:4/2:3`, radius `none/md/lg/xl`(2026-11-03), stroke |
 | 67 | Carousel | `.ds-carousel` (`__scroller/item/button/controls/play/count/all/bar/progress`) | `2567:1936` / Button `2567:1935`, 2 | layout `overlay/bar`, `data-autoplay`, `data-loop`, 넘김 위치 맞춤, 끝 흐림, 버튼은 ybm-ds.js |
 | 68 | Markdown | `.ds-markdown` | `2568:66` | 변환된 HTML을 감싸면 크기와 간격이 맞춰짐 |
 | 69 | Code Block | `.ds-codeblock` (`__header/language/copy/code`) | `2568:57`, 2 | 고정 폭 글꼴, data-ds-copy 복사, data-wrap 긴 줄 줄바꿈 |
@@ -506,6 +506,12 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 - **Multi Select vs Select** - 여러 개를 선택할 때만 Multi Select를 사용합니다. 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다.
 - **Chat** - 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다. 입력란이 비어 있으면 보내기 버튼을 비활성화합니다. 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다.
 - 닫기 버튼(Dialog/Bottom Sheet): 40×40 투명 + 24px `Lucide/x`, 색 `fg/neutral`.
+- **Chip** - 조건을 켜고 끄는 선택에 사용합니다. 선택 상태는 `aria-pressed`로 알립니다. 화면 분류를 바꿀 때는 Chip Tabs를, 누를 수 없는 표시에는 Badge를 사용합니다.
+- **Help Bubble** - 처음 보는 기능을 한 번 짚어 줄 때 사용합니다. 한 화면에 하나만 띄우고 닫기 버튼을 둡니다. 꼭 읽어야 하는 내용은 넣지 않습니다.
+- **List** - 설정, 메뉴처럼 한 줄에 하나씩 고르는 목록에 사용합니다. 여러 값을 나란히 비교할 때는 Table을 사용합니다. 한 목록 안에서 줄 높이(size)를 섞지 않습니다.
+- **Markdown** - 변환된 HTML을 감싸는 틀로만 사용합니다. 안쪽 제목, 문단, 목록의 크기와 간격을 직접 바꾸지 않습니다. 화면 제목이나 버튼 같은 UI 글자에는 사용하지 않습니다.
+- **Radio Group** - 짧은 선택지 2~4개는 `data-orientation="horizontal"`로 한 줄에 둘 수 있습니다. 선택지가 길거나 5개 이상이면 세로로 둡니다.
+- **Image Frame** - 책 표지는 `data-ratio="3:4"`, 포스터는 `data-ratio="2:3"`을 사용합니다.
 
 ---
 

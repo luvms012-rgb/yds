@@ -7,11 +7,10 @@ import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, avatar, card, head, secHead, select, chiptabs, tabs, progress, thumb, photo, checkbox, pagination, link, esc } = K;
 
 const MENU = ['토익', '말하기', '영어', '일본어', '무료 강의', '로드맵'];
-const end = `${btn('MP3 음원', { size: 'xsmall', ic: 'list-music' })}${iconBtn('heart', '찜한 교재', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const end = `${btn('MP3 음원', { size: 'xsmall', ic: 'headphones' })}${iconBtn('heart', '찜한 교재', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
 const app = (cur, inner) => `<div class="tp-app">${topbar(MENU, cur, end)}${inner}</div>`;
 
 const CSS = FRAME_CSS + `
-  .tp-cover { --ds-imageframe-ratio: 3 / 4; }
   .tp-book { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; color: inherit; text-decoration: none; }
   .tp-book__title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }
   .tp-book__price { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
@@ -32,7 +31,7 @@ const BOOKS = [
   ['영어 회화 50일 완성', '오도윤', '17,000원', ['MP3']],
   ['말하기 시험 기출 공략', '어학연구소', '21,000원', ['MP3']],
 ];
-const book = (i, { price = true, tag = true } = {}) => { const [t, who, p, m] = BOOKS[i % BOOKS.length]; return `<a class="tp-book" href="#">${thumb('1:1', 'tp-cover', photo('book', i, 480), 'md')}<span class="tp-stack">${tag ? marks(m) : ''}<span class="tp-book__title">${t}</span><span class="tp-caption">${who}</span>${price ? `<span class="tp-book__price">${p}</span>` : ''}</span></a>`; };
+const book = (i, { price = true, tag = true } = {}) => { const [t, who, p, m] = BOOKS[i % BOOKS.length]; return `<a class="tp-book" href="#">${thumb('3:4', '', photo('book', i, 480), 'md')}<span class="tp-stack">${tag ? marks(m) : ''}<span class="tp-book__title">${t}</span><span class="tp-caption">${who}</span>${price ? `<span class="tp-book__price">${p}</span>` : ''}</span></a>`; };
 
 /* 1. 교재 홈 --------------------------------------------------------- */
 const home = () => {
@@ -46,7 +45,7 @@ const home = () => {
   .tp-step { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: var(--ds-space-x4); align-items: center; color: inherit; text-decoration: none; }
   .tp-lec { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; color: inherit; text-decoration: none; }
 `;
-  const quick = [['list-music', 'MP3 음원'], ['folder-open', '학습 자료실'], ['video', '무료 강의'], ['flag', '교재 로드맵']];
+  const quick = [['headphones', 'MP3 음원'], ['folder-open', '학습 자료실'], ['video', '무료 강의'], ['flag', '교재 로드맵']];
   const steps = [['1단계', '단어', 2], ['2단계', '전략', 3], ['3단계', '실전', 0]];
   const lecs = [['토익 단기 공략 750+', '전체 15강', 'study', 0], ['토익 기출 단어장', '전체 11강', 'study', 2], ['영어 회화 50일 완성', '전체 54강', 'work', 2], ['토익 실전 1000 읽기', '전체 12강', 'study', 3]];
   const body = app(-1, `
@@ -62,7 +61,7 @@ const home = () => {
     <div class="tp-books">${[0, 1, 2, 3, 4].map((i) => book(i)).join('')}</div>
   </section>
   <section class="tp-sec">${secHead('단계별 추천', { tools: link('로드맵 보기') })}
-    <div class="tp-g3">${steps.map(([n, t, i]) => card(`<a class="tp-step" href="#">${thumb('1:1', 'tp-cover', photo('book', i, 240), 'md')}<span class="tp-stack"><span class="tp-row">${badge(n, 'brand')}<span class="tp-caption">${t}</span></span><span class="tp-book__title">${BOOKS[i][0]}</span></span></a>`)).join('')}</div>
+    <div class="tp-g3">${steps.map(([n, t, i]) => card(`<a class="tp-step" href="#">${thumb('3:4', '', photo('book', i, 240), 'md')}<span class="tp-stack"><span class="tp-row">${badge(n, 'brand')}<span class="tp-caption">${t}</span></span><span class="tp-book__title">${BOOKS[i][0]}</span></span></a>`)).join('')}</div>
   </section>
   <section class="tp-sec">${secHead('무료 강의', { tools: link('모두 보기') })}
     <div class="tp-g4">${lecs.map(([t, n, th, i]) => `<a class="tp-lec" href="#">${thumb('16:9', '', photo(th, i, 720), 'lg')}<span class="tp-stack"><span class="tp-book__title">${t}</span><span class="tp-caption">${T(n)}</span></span></a>`).join('')}</div>
@@ -89,7 +88,7 @@ const list = () => {
 `;
   const group = (name, title, items) => `<fieldset class="ds-checkbox-group"><legend>${title}</legend>${items.map(([l, n, on]) => checkbox(`${l}<span class="tp-cnt">${n}</span>`, { name, checked: !!on })).join('')}</fieldset>`;
   const rows = [[0, '2026.10.15', true], [1, '2026.10.15', true], [2, '2026.08.24', false], [3, '2026.07.15', true], [5, '2026.06.30', false], [4, '2026.05.12', false]];
-  const row = ([i, date, audio]) => { const [t, who, p, m] = BOOKS[i]; return `<article class="tp-brow">${thumb('1:1', 'tp-cover', photo('book', i, 360), 'md')}<div class="tp-brow__body">${marks(m)}<a class="tp-brow__title" href="#">${t}</a><span class="tp-caption">${who} / ${T(date)}</span><div class="tp-brow__foot"><span class="tp-book__price">${p}</span><div class="tp-row">${iconBtn('heart', t + ' 찜하기', { variant: 'neutralWeak' })}${audio ? btn('MP3', { ic: 'list-music' }) : ''}${btn('학습 자료', { ic: 'folder-open' })}${btn('교재 보기', { variant: 'neutralSolid' })}</div></div></div></article>`; };
+  const row = ([i, date, audio]) => { const [t, who, p, m] = BOOKS[i]; return `<article class="tp-brow">${thumb('3:4', '', photo('book', i, 360), 'md')}<div class="tp-brow__body">${marks(m)}<a class="tp-brow__title" href="#">${t}</a><span class="tp-caption">${who} / ${T(date)}</span><div class="tp-brow__foot"><span class="tp-book__price">${p}</span><div class="tp-row">${iconBtn('heart', t + ' 찜하기', { variant: 'neutralWeak' })}${audio ? btn('MP3', { ic: 'headphones' }) : ''}${btn('학습 자료', { ic: 'folder-open' })}${btn('교재 보기', { variant: 'neutralSolid' })}</div></div></div></article>`; };
   const body = app(0, `
 ${head('토익 교재')}
 <main class="tp-content">
@@ -138,7 +137,7 @@ const audio = () => {
 <main class="tp-content">
   <div class="tp-ba">
     <div class="tp-stack" style="gap: var(--ds-space-x5)">
-      <header class="tp-ba__head">${thumb('1:1', 'tp-cover', photo('book', 1, 240), 'md')}<div class="tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-h1">토익 기출 문제집 1000 듣기</h1><div class="tp-row">${btn('전체 내려받기', { ic: 'download' })}${btn('교재 보기')}</div></div></header>
+      <header class="tp-ba__head">${thumb('3:4', '', photo('book', 1, 240), 'md')}<div class="tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-h1">토익 기출 문제집 1000 듣기</h1><div class="tp-row">${btn('전체 내려받기', { ic: 'download' })}${btn('교재 보기')}</div></div></header>
       ${tabs(['문제 음원 40', '단어장 음원 20'], 0, '음원 종류', { layout: 'hug', inset: 'none' })}
       <div>${tests.map(([t, ls]) => `<div class="tp-chap">${t}</div>${ls.map(([a, b, c]) => trk(a, b, c)).join('')}`).join('')}</div>
     </div>

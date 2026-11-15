@@ -9,7 +9,7 @@
 아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
-<div class="ds-radio-group" role="radiogroup">
+<div class="ds-radio-group" role="radiogroup" [data-orientation="horizontal"]>
   <label class="ds-radio"><input type="radio" class="ds-radio__control" name="g"><span>라벨</span></label>
 </div>
 ```
@@ -26,6 +26,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 구분 | 내용 |
 | --- | --- |
+| **Do** | 짧은 선택지 2~4개는 `data-orientation="horizontal"`로 한 줄에 둘 수 있습니다. |
+| **Do** | 선택지가 길거나 5개 이상이면 세로로 둡니다. |
 | **Do** | 같은 묶음에서는 항상 하나만 선택된 상태를 유지합니다. |
 | **Do** | 누르는 영역은 라벨까지 포함합니다. List 안에서는 줄 전체를 누를 수 있습니다. |
 | **Do** | 여러 개를 선택해야 하면 Checkbox를 사용하세요. |
@@ -137,7 +139,7 @@ List 안에 배치할 때는 `label.ds-list-item`으로 줄 전체를 라벨로 
 ### 크기와 여백
 
 ```
-size: large(기본 24) / medium(20)   tone: brand(기본) / neutral
+size: large(기본 24) / medium(20)   tone: brand(기본) / neutral   orientation: 기본 세로 / data-orientation="horizontal"(짧은 선택지 2~4개, 좁으면 줄바꿈, 2026-11-15 추가)
 Figma: 행 min-h 36/32 / 위 6 / gap x2 / 원 bg/layer-default + 1px stroke/neutral-weak / label t05/t04
   checked 고리(두께 7/6, 가운데 10/8 은 투명) brand bg/brand-solid / neutral bg/neutral-solid (2026-10-31 흰 점 → 투명)
   disabled bg/disabled + stroke/neutral-muted / disabledChecked 고리 bg/disabled, 가운데 투명

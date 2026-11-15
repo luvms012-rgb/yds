@@ -40,7 +40,7 @@ const analytics = () => {
   </section>
 </main>
 </div>`;
-  return { slug: 'dashboard', en: 'Analytics Dashboard', name: '분석 대시보드', group: 'Admin', desc: '서비스 이용 흐름을 한눈에 보는 기본 분석 대시보드입니다. 추이 그래프와 핵심 지표를 먼저 보여 줍니다.', css, body };
+  return { slug: 'dashboard', h1: '분석 대시보드', en: 'Analytics Dashboard', name: '분석 대시보드', group: 'Admin', desc: '서비스 이용 흐름을 한눈에 보는 기본 분석 대시보드입니다. 추이 그래프와 핵심 지표를 먼저 보여 줍니다.', css, body };
 };
 
 /* 2. 프로젝트 현황 ----------------------------------------------- */

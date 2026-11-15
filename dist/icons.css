@@ -290,6 +290,9 @@
   --ds-icon-git-pull-request: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2218%22 cy=%2218%22 r=%223%22/%3E%3Ccircle cx=%226%22 cy=%226%22 r=%223%22/%3E%3Cpath d=%22M13 6h3a2 2 0 0 1 2 2v7%22/%3E%3Cline x1=%226%22 x2=%226%22 y1=%229%22 y2=%2221%22/%3E%3C/svg%3E");
   --ds-icon-list-music: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M16 5H3%22/%3E%3Cpath d=%22M11 12H3%22/%3E%3Cpath d=%22M11 19H3%22/%3E%3Cpath d=%22M21 16V5%22/%3E%3Ccircle cx=%2218%22 cy=%2216%22 r=%223%22/%3E%3C/svg%3E");
   --ds-icon-undo: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3 7v6h6%22/%3E%3Cpath d=%22M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13%22/%3E%3C/svg%3E");
+  --ds-icon-volume-2: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z%22/%3E%3Cpath d=%22M16 9a5 5 0 0 1 0 6%22/%3E%3Cpath d=%22M19.364 18.364a9 9 0 0 0 0-12.728%22/%3E%3C/svg%3E");
+  --ds-icon-captions: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Crect width=%2218%22 height=%2214%22 x=%223%22 y=%225%22 rx=%222%22 ry=%222%22/%3E%3Cpath d=%22M7 15h4M15 15h2M7 11h2M13 11h4%22/%3E%3C/svg%3E");
+  --ds-icon-headphones: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3%22/%3E%3C/svg%3E");
 }
 .ds-icon--folder { --ds-icon: var(--ds-icon-folder); }
 .ds-icon--folder-open { --ds-icon: var(--ds-icon-folder-open); }
@@ -386,3 +389,6 @@
 .ds-icon--git-pull-request { --ds-icon: var(--ds-icon-git-pull-request); }
 .ds-icon--list-music { --ds-icon: var(--ds-icon-list-music); }
 .ds-icon--undo { --ds-icon: var(--ds-icon-undo); }
+.ds-icon--volume-2 { --ds-icon: var(--ds-icon-volume-2); }
+.ds-icon--captions { --ds-icon: var(--ds-icon-captions); }
+.ds-icon--headphones { --ds-icon: var(--ds-icon-headphones); }

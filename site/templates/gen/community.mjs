@@ -109,7 +109,7 @@ const home = () => {
     
   </aside>
 </div></div>`;
-  return { slug: 'community-home', en: 'Community Home', name: '커뮤니티 홈', group: 'Community', desc: '게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.', css, body };
+  return { slug: 'community-home', h1: '커뮤니티', en: 'Community Home', name: '커뮤니티 홈', group: 'Community', desc: '게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.', css, body };
 };
 
 /* 2. 게시판 목록 ------------------------------------------------- */

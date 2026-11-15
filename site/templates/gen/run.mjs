@@ -11,7 +11,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PAGES = path.join(HERE, '..', 'pages');
 const JSON_PATH = path.join(HERE, '..', '..', 'src', 'templates.json');
 const GROUPS = ['Dashboard', 'Table', 'Form', 'Settings', 'Login', 'Tools', 'Content', 'AI Chat', 'Gallery', 'Community', 'Pricing', 'My Page', 'Commerce', 'Exam', 'Education', 'Exam B2B', 'Learning B2B'];
-const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics', 'admin', 'media', 'books'];
+const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics', 'admin', 'media', 'books'];
 
 const all = [];
 for (const m of MODS) {
@@ -28,7 +28,7 @@ all.sort((a, b) => (PLACE[a.slug]?.rank ?? 999) - (PLACE[b.slug]?.rank ?? 999) |
 
 const old = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
 const keepFigma = Object.fromEntries((old.templates || []).filter((t) => t.figma && t.rebuilt).map((t) => [t.slug, t.figma]));
-for (const t of all) fs.writeFileSync(path.join(PAGES, t.slug + '.html'), page({ title: t.name, css: t.css || '', body: t.body, bodyClass: t.bodyClass || '' }));
+for (const t of all) fs.writeFileSync(path.join(PAGES, t.slug + '.html'), page({ title: t.name, css: t.css || '', body: t.body, bodyClass: t.bodyClass || '', h1: t.h1 || '' }));
 const slugs = new Set(all.map((t) => t.slug));
 let removed = 0;
 for (const f of fs.readdirSync(PAGES)) if (f.endsWith('.html') && !slugs.has(f.slice(0, -5))) { fs.unlinkSync(path.join(PAGES, f)); removed++; }

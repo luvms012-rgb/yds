@@ -178,7 +178,9 @@ export const PRINCIPLE = `목적, 구조, 디자인, 코드 모두 단순하게 
 - 원래 되던 기능은 절대 망가지면 안 돼.
 - 애매한 부분이나 YDS 규칙(yds.txt)이 내 서비스와 안 맞는 부분은 혼자 추측해서 정하지 말고, 작업 전에 나한테 질문해.`;
 
-export const page = ({ title, css = '', body, bodyClass = '' }) => `<!doctype html>
+// h1: 보이는 제목이 없는 화면의 숨김 제목(2026-11-15). 본문에 h1 이 없을 때만 main 맨 앞(main 이 없으면 본문 맨 앞)에 넣는다
+const withH1 = (body, h1) => { if (!h1 || /<h1[\s>]/.test(body)) return body; const tag = `<h1 class="tp-sr">${esc(h1)}</h1>`; return /<main[^>]*>/.test(body) ? body.replace(/<main[^>]*>/, (m) => m + tag) : tag + body; };
+export const page = ({ title, css = '', body, bodyClass = '', h1 = '' }) => `<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -191,7 +193,7 @@ export const page = ({ title, css = '', body, bodyClass = '' }) => `<!doctype ht
 ${BASE_CSS}${css}</style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
-${stripCopy(body)}
+${stripCopy(withH1(body, h1))}
 </body>
 </html>
 `;
@@ -223,7 +225,7 @@ export const textarea = (id, attrs = '') => `<textarea class="ds-textarea" id="$
 export const checkbox = (label, { checked = false, name = '', size = '' } = {}) => `<label class="ds-checkbox"${size ? ` data-size="${size}"` : ''}><input type="checkbox" class="ds-checkbox__control"${name ? ` name="${name}"` : ''}${checked ? ' checked' : ''}>${label ? `<span class="ds-checkbox__label">${label}</span>` : ''}</label>`;
 export const checkOnly = (aria, checked = false) => `<label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="${esc(aria)}"${checked ? ' checked' : ''}></label>`;
 export const sw = (aria, on = false) => `<label class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" aria-label="${esc(aria)}"${on ? ' checked' : ''}></label>`;
-export const radios = (name, items, cur = 0, dir = '') => `<div class="ds-radio-group" role="radiogroup" data-size="medium"${dir ? ` data-direction="${dir}"` : ''}>${items.map((l, i) => `<label class="ds-radio"><input type="radio" class="ds-radio__control" name="${name}"${i === cur ? ' checked' : ''}><span>${l}</span></label>`).join('')}</div>`;
+export const radios = (name, items, cur = 0, dir = '') => `<div class="ds-radio-group" role="radiogroup" data-size="medium"${dir ? ` data-orientation="${dir}"` : ''}>${items.map((l, i) => `<label class="ds-radio"><input type="radio" class="ds-radio__control" name="${name}"${i === cur ? ' checked' : ''}><span>${l}</span></label>`).join('')}</div>`;
 // 항목은 글자나 HTML, 아이콘만 있으면 [아이콘 HTML, 이름] 으로 넘겨 aria-label 을 붙인다 (11-10 점검: 이름 없는 버튼)
 export const segmented = (items, cur = 0, aria = '보기', size = 'small') => `<div class="ds-segmented" role="group" aria-label="${esc(aria)}" data-size="${size}">${items.map((it, i) => { const [l, name] = Array.isArray(it) ? it : [it]; return `<button type="button" class="ds-segmented__item" aria-pressed="${i === cur}"${name ? ` aria-label="${esc(name)}"` : ''}>${l}</button>`; }).join('')}</div>`;
 export const chiptabs = (items, cur = 0, aria = '분류', { size = '', inset = 'none' } = {}) => `<div class="ds-chiptabs" role="tablist" aria-label="${esc(aria)}"${size ? ` data-size="${size}"` : ''}${inset ? ` data-inset="${inset}"` : ''}>${items.map((l, i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === cur}">${l}</button>`).join('')}</div>`;

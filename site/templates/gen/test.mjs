@@ -129,7 +129,7 @@ const mockPbt = () => {
   </div>
   <div class="tp-navbar"><div class="tp-row">${btn('이전 지문', { variant: 'neutralWeak', ic: 'chevron-left' })}</div><div class="tp-row">${btn('다음 지문', { variant: 'brandSolid', icEnd: 'chevron-right' })}</div></div>
 </main></div>`;
-  return { slug: 'mock-exam-pbt', en: 'Mock Exam PBT', name: '모의고사 PBT', group: 'Exam', desc: '종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.', css, body };
+  return { slug: 'mock-exam-pbt', h1: '읽기 듣기 모의고사', en: 'Mock Exam PBT', name: '모의고사 PBT', group: 'Exam', desc: '종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.', css, body };
 };
 
 /* 3. 모의고사 CBT 형 (말하기, 한 문항씩 준비 시간과 답변 시간) ------------- */
@@ -176,7 +176,7 @@ const mockCbt = () => {
     </aside>
   </div>
 </main></div>`;
-  return { slug: 'mock-exam-cbt', en: 'Mock Exam CBT', name: '모의고사 CBT', group: 'Exam', desc: '컴퓨터로 보는 말하기 모의고사 화면입니다. 한 문항씩 준비 시간과 답변 시간을 큰 시계로 보여 주고, 옆에서 진행과 장비 상태를 확인합니다.', css, body };
+  return { slug: 'mock-exam-cbt', h1: '말하기 모의고사', en: 'Mock Exam CBT', name: '모의고사 CBT', group: 'Exam', desc: '컴퓨터로 보는 말하기 모의고사 화면입니다. 한 문항씩 준비 시간과 답변 시간을 큰 시계로 보여 주고, 옆에서 진행과 장비 상태를 확인합니다.', css, body };
 };
 
 export const templates = [levelTest, mockPbt, mockCbt].map((f) => f());

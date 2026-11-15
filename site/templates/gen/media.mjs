@@ -30,7 +30,6 @@ const CSS = FRAME_CSS + `
   .tp-tile__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
   .tp-tile .ds-progress { margin-top: calc(var(--ds-space-x1) * -1); }
   .tp-rank { position: relative; }
-  .tp-poster { --ds-imageframe-ratio: 2 / 3; }
   .tp-rank__no { position: absolute; left: var(--ds-space-x2); bottom: var(--ds-space-x1); color: var(--ds-color-palette-static-white); font-size: var(--ds-font-size-t11); line-height: 1; font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-shadow: 0 1px 4px var(--ds-color-palette-static-black-alpha-500); }
   .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); }
   .tp-article { display: flex; flex-direction: column; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
@@ -38,7 +37,7 @@ const CSS = FRAME_CSS + `
 `;
 const tile = (title, img, { sub = '', v = -1, ratio = '16:9' } = {}) => `<a class="tp-tile" href="#">${thumb(ratio, '', img, 'lg')}${v >= 0 ? progress(v, { label: title + ' 본 만큼' }) : ''}<span class="tp-stack"><span class="tp-tile__title">${title}</span>${sub ? `<span class="tp-caption">${sub}</span>` : ''}</span></a>`;
 const shelf = (label, items, shape = '') => `<div class="tp-shelf"${shape ? ` data-shape="${shape}"` : ''}><div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="${esc(label)}"><div class="ds-carousel__scroller">${items.map((x) => `<div class="ds-carousel__item">${x}</div>`).join('')}</div><button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전">${icon('chevron-left', 'sm')}</button><button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음">${icon('chevron-right', 'sm')}</button></div></div>`;
-const video = (img, v = '38%', time = ['04:31', '12:08']) => `<div class="tp-video" role="img" aria-label="영상">${img ? `<img src="${img}" alt="">` : ''}<span class="tp-video__play">${icon('play-solid')}</span><div class="tp-video__bar"><span>${time[0]}</span><span class="tp-video__track" style="--v:${v}"><span></span></span><span>${time[1]}</span>${icon('maximize-2', 'sm')}</div></div>`;
+const video = (img, v = '38%', time = ['04:31', '12:08']) => `<div class="tp-video" role="img" aria-label="영상">${img ? `<img src="${img}" alt="">` : ''}<span class="tp-video__play">${icon('play-solid')}</span><div class="tp-video__bar"><span>${time[0]}</span><span class="tp-video__track" style="--v:${v}"><span></span></span><span>${time[1]}</span>${icon('volume-2', 'sm')}${icon('maximize-2', 'sm')}</div></div>`;
 
 /* 1. 영상 홈 --------------------------------------------------------- */
 const home = () => {
@@ -63,7 +62,7 @@ const home = () => {
   </section>
   ${chiptabs(['전체', '시리즈', '영화', '다큐', '예능', '애니메이션', '강의'], 0, '분류')}
   <section class="tp-sec">${secHead('이어 보기', { tools: link('모두 보기') })}${shelf('이어 보기', cont.map(([t, th, i, s, v]) => tile(t, photo(th, i, 720), { sub: s, v })))}</section>
-  <section class="tp-sec">${secHead('오늘 많이 본 콘텐츠')}${shelf('오늘 많이 본 콘텐츠', top.map(([t, th, i], n) => `<a class="tp-tile" href="#" aria-label="${n + 1}위 ${t}"><div class="tp-rank">${thumb('1:1', 'tp-poster', photo(th, i, 480), 'lg')}<span class="tp-rank__no" aria-hidden="true">${n + 1}</span></div><span class="tp-tile__title">${t}</span></a>`), 'poster')}</section>
+  <section class="tp-sec">${secHead('오늘 많이 본 콘텐츠')}${shelf('오늘 많이 본 콘텐츠', top.map(([t, th, i], n) => `<a class="tp-tile" href="#" aria-label="${n + 1}위 ${t}"><div class="tp-rank">${thumb('2:3', '', photo(th, i, 480), 'lg')}<span class="tp-rank__no" aria-hidden="true">${n + 1}</span></div><span class="tp-tile__title">${t}</span></a>`), 'poster')}</section>
   <section class="tp-sec">${secHead('영어로 보는 다큐', { tools: link('모두 보기') })}${shelf('영어로 보는 다큐', docs.map(([t, th, i, s]) => tile(t, photo(th, i, 720), { sub: s })))}</section>
 </main></div>`;
   return { slug: 'video-home', en: 'Video Home', name: '영상 홈', group: 'Content', desc: '대표 작품과 이어 보기, 분류별 작품 줄을 모은 영상 서비스 첫 화면입니다. 보던 영상으로 바로 돌아가게 합니다.', css, body };
@@ -182,7 +181,7 @@ const player = () => {
     <div class="tp-fp__time"><span>${'25:18'}</span><span class="tp-fp__track" role="slider" aria-label="재생 위치" aria-valuemin="0" aria-valuemax="3300" aria-valuenow="1518" aria-valuetext="25분 18초" tabindex="0"><span></span><i></i></span><span>55:00</span></div>
     <div class="tp-fp__bar">
       <div>${pc('pause-solid', '멈춤', { main: true })}${pc('rotate-ccw', '10초 뒤로')}${pc('redo-2', '10초 앞으로')}</div>
-      <div>${pc('', '자막', { text: '자막', cls: 'tp-hide-xs' })}${pc('', '재생 속도 1.0배', { text: '1.0x' })}${pc('list', '회차 목록')}${pc('chevrons-right', '다음 화')}${pc('maximize-2', '전체 화면 끝내기')}</div>
+      <div>${pc('volume-2', '소리', { cls: 'tp-hide-xs' })}${pc('captions', '자막')}${pc('', '재생 속도 1.0배', { text: '1.0x' })}${pc('list', '회차 목록')}${pc('chevrons-right', '다음 화')}${pc('maximize-2', '전체 화면 끝내기')}</div>
     </div>
   </div>
 </div>`;

@@ -55,7 +55,7 @@ export const GROUPS = [
 ];
 
 // 뺀 템플릿 (2026-11-15 사용자 "템플릿 카테고리 정리, 실제로 잘 쓰이지 않는 것은 삭제, 중복 제거"). run.mjs 가 만들지 않는다.
-// 생성기 코드는 그대로 있어서, 되살리려면 여기서 지우고 위 GROUPS 에 자리를 넣으면 된다.
+// 2026-11-15 사용자 "유지하기 쉽게도 진행" 으로 이 템플릿들을 만드는 생성기 코드도 지웠다(tools.mjs 전체 포함). 되살리려면 git 기록(ea268f15 이전)에서 가져온다.
 export const REMOVED = [
   // 서비스 화면이 아닌 도구, 문서 사이트 화면
   'editor', 'file-explorer', 'canvas-editor', 'ide', 'kanban-board', 'documentation', 'documentation-design', 'documentation-technical',

@@ -143,7 +143,7 @@ const form = () => {
   @media (min-width: 768px) {
     .tp-rqf .ds-field { display: grid; grid-template-columns: 160px minmax(0, 1fr); align-items: start; column-gap: var(--ds-space-x6); }
     .tp-rqf .ds-field__header { padding-top: var(--ds-space-x2_5); }
-    .tp-rqf .ds-field[role="group"] .ds-field__header { padding-top: var(--ds-space-x1); }
+    .tp-rqf .ds-field[role="group"] .ds-field__header { padding-top: var(--ds-space-x1_5); }
     .tp-rqf .ds-field > :not(.ds-field__header) { grid-column: 2; }
   }
 `;
@@ -154,7 +154,7 @@ const form = () => {
   <form class="tp-rqf" aria-label="과정 개설 요청 등록">
     ${row('rqf-name', '과정 이름', `<div class="tp-grow">${input('rqf-name', 'required')}${checkbox('중요')}</div>`, { required: true })}
     ${row('rqf-cat', '분류', `<div class="tp-short">${select('분류 고르기', { id: 'rqf-cat' })}</div>`, { required: true })}
-    ${row('rqf-type', '운영 방식', radios('rqf-type', ['온라인', '오프라인', '혼합'], 0), { group: true })}
+    ${row('rqf-type', '운영 방식', radios('rqf-type', ['온라인', '오프라인', '혼합'], 0, 'horizontal'), { group: true })}
     ${row('rqf-date', '희망 개설일', `<div class="ds-input ds-datefield tp-short" data-variant="outline" data-size="medium"><input class="ds-input__control ds-datefield__control" id="rqf-date" type="text" inputmode="numeric" maxlength="10" placeholder="YYYY.MM.DD" required><button type="button" class="ds-datefield__picker" aria-label="달력에서 고르기">${icon('calendar')}</button></div>`, { required: true })}
     ${row('rqf-cnt', '예상 인원', `<div class="ds-input tp-short" data-variant="outline" data-size="medium"><input class="ds-input__control" id="rqf-cnt" type="text" inputmode="numeric"><span class="ds-input__suffix">명</span></div>`)}
     ${row('rqf-ref', '참조', input('rqf-ref', 'placeholder="이름으로 찾기"', { ic: 'search' }))}

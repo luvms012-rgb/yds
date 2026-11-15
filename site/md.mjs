@@ -148,6 +148,8 @@ const FULL_NOTE = (base) => `## 이 파일 읽는 법
 - 사용법: 구조를 복사해 쓴다. 대괄호 \`[ ]\` 부분은 선택 항목이다. 쓰면 대괄호만 지우고, 안 쓰면 대괄호까지 모두 지운다.
 - 속성: Figma 속성 이름을 그대로 \`data-*\` 속성으로 쓴다.
 - 사용 지침: Do 는 지킬 것, Don't 는 하지 말 것이다.`;
+// 링크 주소 "](https://.../site/x" 만 상대 주소로 줄인다. 코드 예시 안 주소(curl 등)는 그대로 둔다(2026-11-15, 줄였더니 받기 명령이 동작하지 않았다)
+const relLinks = (s, base) => s.split('](' + base).join('](');
 const compact = (md) => md
   .split('\n').filter((l) => !REPEAT.includes(l)).join('\n')
   // Do / Don't 표를 줄 목록으로 (표 틀만 빠지고 문장은 그대로)
@@ -172,14 +174,13 @@ export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [], extra
       fs.writeFileSync(path.join(SITE, mdFile), `<!-- ${SITE_URL}${file} -->\n\n${md}`);
       // 목록 주소는 상대 주소: yds.txt 가 있는 곳 기준이라 그대로 열린다
       lines.push(`- [${title}](${mdFile})${desc ? `: ${desc}` : ''}`);
-      full.push(`<!-- ${mdFile} -->\n\n${compact(slim(md)).split(SITE_URL).join('')}`);
+      full.push(`<!-- ${mdFile} -->\n\n${relLinks(compact(slim(md)), SITE_URL)}`);
       count++;
     }
     if (lines.length) index.push(`## ${g.label}\n\n${lines.join('\n')}`);
   }
-  const rel = (s) => s.split(SITE_URL).join('');
-  const toc = `${intro}\n\n주소는 ${SITE_URL} 기준 상대 주소다.\n\n${[...index, ...extraToc.map(rel)].join('\n\n')}\n`;
-  const all = `${intro}\n\n${FULL_NOTE(SITE_URL)}\n\n${[...full, ...extra.map(rel)].join('\n\n---\n\n')}\n`;
+  const toc = `${intro}\n\n주소는 ${SITE_URL} 기준 상대 주소다.\n\n${[...index, ...extraToc.map((s) => relLinks(s, SITE_URL))].join('\n\n')}\n`;
+  const all = `${intro}\n\n${FULL_NOTE(SITE_URL)}\n\n${[...full, ...extra.map((s) => relLinks(s, SITE_URL))].join('\n\n---\n\n')}\n`;
   fs.writeFileSync(path.join(SITE, 'yds.txt'), toc);
   fs.writeFileSync(path.join(SITE, 'yds-full.txt'), all);
   // 예전 이름: 이미 복사해 간 요청 글과 llms.txt 를 찾는 도구가 깨지지 않게 같은 내용으로 남긴다. 화면에는 보이지 않는다

@@ -1,6 +1,6 @@
 {
   "$note": "YDS 에서 바로 쓸 수 있는 아이콘입니다. <i class=\"ds-icon ds-icon--이름\" aria-hidden=\"true\"></i> 로 쓰고, 여기에 없는 이름은 쓰지 않습니다. 채움 모양은 이름 끝이 -solid 입니다.",
-  "count": 157,
+  "count": 160,
   "icons": [
     {
       "name": "archive",
@@ -91,6 +91,12 @@
       "class": "ds-icon--calendar-days",
       "solid": false,
       "use": "달력 보기"
+    },
+    {
+      "name": "captions",
+      "class": "ds-icon--captions",
+      "solid": false,
+      "use": "자막"
     },
     {
       "name": "chart-column",
@@ -397,6 +403,12 @@
       "class": "ds-icon--hand",
       "solid": false,
       "use": "화면 이동 도구"
+    },
+    {
+      "name": "headphones",
+      "class": "ds-icon--headphones",
+      "solid": false,
+      "use": "음원 듣기"
     },
     {
       "name": "headset",
@@ -913,6 +925,12 @@
       "class": "ds-icon--video",
       "solid": false,
       "use": "영상"
+    },
+    {
+      "name": "volume-2",
+      "class": "ds-icon--volume-2",
+      "solid": false,
+      "use": "소리, 음량"
     },
     {
       "name": "wallet",

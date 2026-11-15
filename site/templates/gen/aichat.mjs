@@ -60,7 +60,7 @@ const conversation = () => {
   </aside>
 </div>
 </div>`;
-  return { slug: 'ai-chat', en: 'AI Chat Conversation', name: 'AI 대화', group: 'Content', desc: 'AI와 주고받은 대화와 결과물을 함께 보는 화면입니다. 결과물은 옆 패널에서 따로 엽니다.', css, body };
+  return { slug: 'ai-chat', h1: 'AI 대화', en: 'AI Chat Conversation', name: 'AI 대화', group: 'Content', desc: 'AI와 주고받은 대화와 결과물을 함께 보는 화면입니다. 결과물은 옆 패널에서 따로 엽니다.', css, body };
 };
 
 /* 2. AI 첫 화면 ------------------------------------------------- */

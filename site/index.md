@@ -58,12 +58,12 @@ Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://
 <link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/toeic.css">
 ```
 
-**v1.1.0 고정**
+**v1.2.0 고정**
 
 ```html
 <!-- 서비스 CSS보다 앞에 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.css">
-<script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.1.0/dist/ybm-ds.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.2.0/dist/ybm-ds.css">
+<script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.2.0/dist/ybm-ds.js" defer></script>
 <!-- 브랜드가 있으면 그다음에, <html data-ds-brand="toeic"> -->
 <link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/toeic.css">
 ```
