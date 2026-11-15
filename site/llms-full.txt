@@ -2098,7 +2098,7 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 
 | 속성 | 값 |
 | --- | --- |
-| `size` | 20 24 36 42 48 56 64 80 96 108 |
+| `size` | 20 24 36 40 48 56 64 80 96 108 |
 | `shape` | circle rounded square |
 | `status tone` | positive neutral critical |
 | `group size` | 20~64 × shape |

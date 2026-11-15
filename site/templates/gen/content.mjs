@@ -41,7 +41,7 @@ const orderDetail = () => {
     <section class="tp-sec">${secHead('활동')}<ol class="tp-tl">${acts.map(([t, d, w]) => `<li><div class="tp-stack"><span class="tp-label">${t}</span><span class="tp-sub">${d}</span><span class="tp-caption">${w}</span></div></li>`).join('')}</ol></section>
   </main>
   <aside class="tp-panel">
-    ${accordion([['메모', '', true], ['고객', `<div class="tp-row">${avatar('와이비엠', 42)}<div class="tp-stack"><span>와이비엠</span><span class="tp-caption">ybm@example.com / 주문 12번</span></div></div>`, true], ['배송지', '<p class="tp-sub">서울시 종로구 종로 104, 3층<br>010-1234-5678</p>', true], ['태그', `<div class="tp-row">${badge('단골', 'brand')}${badge('선물')}</div>`, false]], 'separated')}
+    ${accordion([['메모', '', true], ['고객', `<div class="tp-row">${avatar('와이비엠', 40)}<div class="tp-stack"><span>와이비엠</span><span class="tp-caption">ybm@example.com / 주문 12번</span></div></div>`, true], ['배송지', '<p class="tp-sub">서울시 종로구 종로 104, 3층<br>010-1234-5678</p>', true], ['태그', `<div class="tp-row">${badge('단골', 'brand')}${badge('선물')}</div>`, false]], 'separated')}
   </aside>
 </div>
 </div>`;

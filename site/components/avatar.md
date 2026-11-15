@@ -31,7 +31,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
-| `size` | 20 24 36 42 48 56 64 80 96 108 |
+| `size` | 20 24 36 40 48 56 64 80 96 108 |
 | `shape` | circle rounded square |
 | `status tone` | positive neutral critical |
 | `group size` | 20~64 × shape |
@@ -95,7 +95,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 <ul class="ds-list" data-divider style="width: 100%; max-width: 420px">
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="42" aria-hidden="true"><span class="ds-avatar__initials">정</span><span class="ds-avatar__status" data-tone="positive"></span></span></span>
+      <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="40" aria-hidden="true"><span class="ds-avatar__initials">정</span><span class="ds-avatar__status" data-tone="positive"></span></span></span>
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">정하늘</span>
         <span class="ds-list-item__desc">온라인</span>
@@ -104,7 +104,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </li>
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="42" aria-hidden="true"><span class="ds-avatar__initials">한</span><span class="ds-avatar__status" data-tone="neutral"></span></span></span>
+      <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="40" aria-hidden="true"><span class="ds-avatar__initials">한</span><span class="ds-avatar__status" data-tone="neutral"></span></span></span>
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">한지우</span>
         <span class="ds-list-item__desc">자리 비움</span>
@@ -113,7 +113,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </li>
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="42" aria-hidden="true"><span class="ds-avatar__initials">오</span><span class="ds-avatar__status" data-tone="critical"></span></span></span>
+      <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="40" aria-hidden="true"><span class="ds-avatar__initials">오</span><span class="ds-avatar__status" data-tone="critical"></span></span></span>
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">오세진</span>
         <span class="ds-list-item__desc">방해 금지, 오후 6시까지</span>
@@ -168,7 +168,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ### 크기와 여백
 
 ```
-size : 20 / 24 / 36(기본) / 42 / 48 / 56 / 64 / 80 / 96 / 108
+size : 20 / 24 / 36(기본) / 40 / 48 / 56 / 64 / 80 / 96 / 108   (모두 4의 배수, 2026-11-15 42 를 40 으로 바꿈. 예전 data-size="42" 도 40 으로 보인다)
 shape: circle(기본) / rounded(크기의 1/4, 곡률 노브 따름) / square
 내용 우선순위: 사진 > 이니셜 > 기본 실루엣(사진/이니셜이 없으면 자동)
 ※ 이니셜은 반드시 .ds-avatar__initials로 감쌉니다(글자만 바로 넣으면 실루엣과 겹칩니다).

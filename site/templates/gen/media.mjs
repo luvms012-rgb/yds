@@ -124,7 +124,7 @@ const watch = () => {
     <div class="tp-wt__main">
       ${video(photo('study', 2, 1600), '24%', ['03:08', '13:42'])}
       <h1 class="tp-h1">영어 회의에서 바로 쓰는 표현 20가지</h1>
-      <div class="tp-channel"><div class="tp-row">${avatar('말하기 연구소', 42)}<div class="tp-stack"><span class="tp-item-title">말하기 연구소</span><span class="tp-caption">구독자 24만명</span></div>${btn('구독', { variant: 'neutralSolid' })}</div>
+      <div class="tp-channel"><div class="tp-row">${avatar('말하기 연구소', 40)}<div class="tp-stack"><span class="tp-item-title">말하기 연구소</span><span class="tp-caption">구독자 24만명</span></div>${btn('구독', { variant: 'neutralSolid' })}</div>
         <div class="tp-row">${btn('1.2만', { ic: 'thumbs-up', aria: '좋아요 1.2만' })}${btn('공유', { ic: 'share' })}${btn('저장', { ic: 'bookmark' })}</div></div>
       <div class="tp-about"><span class="tp-label">${T('조회수 18만회')} / ${T('2026.11.10')}</span><div class="tp-article"><p>회의를 시작할 때, 의견을 낼 때, 정리할 때 쓰는 표현을 상황별로 모았어요. 영상 아래 자막에서 문장을 바로 복사할 수 있어요.</p></div></div>
       <section class="tp-sec">${secHead('댓글 412', { level: 2, cls: 'tp-h3', tools: select('인기순', { aria: '댓글 정렬' }) })}
@@ -228,7 +228,7 @@ const classDetail = () => {
     ${thumb('16:9', '', photo('work', 2, 1200), 'xl')}
     ${buy}
     <div class="tp-cd__main">
-      <div class="tp-row">${avatar('한지아', 42)}<div class="tp-stack"><span class="tp-item-title">한지아</span><span class="tp-caption">비즈니스 영어 강사</span></div></div>
+      <div class="tp-row">${avatar('한지아', 40)}<div class="tp-stack"><span class="tp-item-title">한지아</span><span class="tp-caption">비즈니스 영어 강사</span></div></div>
       ${tabs(['클래스 소개', '커리큘럼', '강사', '수강평 1,204'], 0, '클래스 정보')}
       <section class="tp-sec">${secHead('이런 걸 배워요', { cls: 'tp-h3' })}${checks(['회의를 열고 닫는 기본 문장 40개', '의견을 내고 반대하는 표현', '회의 뒤 정리 메일 쓰기'])}</section>
       <section class="tp-sec">${secHead('커리큘럼', { cls: 'tp-h3', tools: `<span class="tp-caption">${T('3장, 24강')}</span>` })}<div>${accordion(chapters.map(([t, ls, open]) => [t, ls.map(([a, b, p]) => L(a, b, p)).join(''), open, `${ls.length}강`]))}</div></section>

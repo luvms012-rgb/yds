@@ -1371,7 +1371,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 
 /* --------------------------------------------------------------------------
    22 Avatar — 사람·팀 프로필
-   size : 20 · 24 · 36(기본) · 42 · 48 · 56 · 64 · 80 · 96 · 108
+   size : 20 · 24 · 36(기본) · 40 · 48 · 56 · 64 · 80 · 96 · 108   (모두 4의 배수, 2026-11-15 42 를 40 으로 바꿈. 예전 data-size="42" 도 40 으로 보인다)
    shape: circle(기본) · rounded(크기의 1/4, 곡률 노브 따름) · square
    내용 우선순위: 사진 > 이니셜 > 기본 실루엣(사진·이니셜이 없으면 자동)
 
@@ -1433,7 +1433,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 /* 크기 */
 .ds-avatar[data-size="20"]  { --ds-avatar-size: 20px; }
 .ds-avatar[data-size="24"]  { --ds-avatar-size: 24px;  --ds-avatar-badge: 10px; }
-.ds-avatar[data-size="42"]  { --ds-avatar-size: 42px;  --ds-avatar-badge: 16px; }
+.ds-avatar:is([data-size="40"], [data-size="42"])  { --ds-avatar-size: 40px;  --ds-avatar-badge: 16px; }
 .ds-avatar[data-size="48"]  { --ds-avatar-size: 48px;  --ds-avatar-badge: 18px; }
 .ds-avatar[data-size="56"]  { --ds-avatar-size: 56px;  --ds-avatar-badge: 20px; }
 .ds-avatar[data-size="64"]  { --ds-avatar-size: 64px;  --ds-avatar-badge: 22px; }
@@ -1533,7 +1533,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 .ds-avatar-group > :focus-visible { z-index: 1; }
 .ds-avatar-group[data-size="20"]  { --ds-avatar-group-size: 20px; }
 .ds-avatar-group[data-size="24"]  { --ds-avatar-group-size: 24px; }
-.ds-avatar-group[data-size="42"]  { --ds-avatar-group-size: 42px; }
+.ds-avatar-group:is([data-size="40"], [data-size="42"])  { --ds-avatar-group-size: 40px; }
 .ds-avatar-group[data-size="48"]  { --ds-avatar-group-size: 48px; }
 .ds-avatar-group[data-size="56"]  { --ds-avatar-group-size: 56px; }
 .ds-avatar-group[data-size="64"]  { --ds-avatar-group-size: 64px; }

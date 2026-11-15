@@ -66,7 +66,7 @@ const CSS = FRAME_CSS + `
 `;
 
 const boardNav = (cur) => `<nav class="ds-sidenav" aria-label="게시판"><div class="ds-sidenav__content"><div class="ds-sidenav__group"><div class="ds-sidenav__group-label">게시판</div>${BOARDS.map(([t, ic], i) => `<a class="ds-sidenav__item" href="#"${i === cur ? ' aria-current="page"' : ''}><span class="ds-sidenav__prefix">${icon(ic)}</span><span class="ds-sidenav__label">${t}</span></a>`).join('')}</div></div></nav>`;
-const me = () => card(`<div class="tp-me"><div class="tp-row">${avatar('주말산책', 42)}<div class="tp-stack"><span class="tp-h4">주말산책</span><span class="tp-caption">글 ${T('12')} / 댓글 ${T('48')}</span></div></div>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil', fill: true })}</div>`);
+const me = () => card(`<div class="tp-me"><div class="tp-row">${avatar('주말산책', 40)}<div class="tp-stack"><span class="tp-h4">주말산책</span><span class="tp-caption">글 ${T('12')} / 댓글 ${T('48')}</span></div></div>${btn('글쓰기', { variant: 'brandSolid', ic: 'pencil', fill: true })}</div>`);
 const leftNav = (cur) => `<aside class="tp-cm__nav" aria-label="내 정보와 게시판">${me()}${boardNav(cur)}</aside>`;
 const mobileBoards = (cur) => `<div class="tp-cm__chips">${chiptabs(BOARDS.map(([t]) => t), cur, '게시판')}</div>`;
 const who = (name, time, { lv = '', extra = '' } = {}) => `<div class="tp-who">${avatar(name, 24)}<span class="tp-label">${name}</span>${lv ? badge(lv) : ''}<span class="tp-caption">${time}</span>${extra}</div>`;
@@ -218,7 +218,7 @@ const post = () => {
   </main>
   <aside class="tp-cm__aside" aria-label="이 게시판 인기글">
     ${card(`<div class="tp-stack" style="gap: var(--ds-space-x4)"><span class="tp-h3">이 게시판 인기글</span>${rank(HOT)}</div>`)}
-    ${card(`<div class="tp-stack" style="gap: var(--ds-space-x3)"><div class="tp-row">${avatar('커피한잔', 42)}<div class="tp-stack"><span class="tp-h4">커피한잔</span><span class="tp-caption">글 ${T('8')} / 댓글 ${T('31')}</span></div></div>${btn('다른 글 보기', { fill: true })}</div>`)}
+    ${card(`<div class="tp-stack" style="gap: var(--ds-space-x3)"><div class="tp-row">${avatar('커피한잔', 40)}<div class="tp-stack"><span class="tp-h4">커피한잔</span><span class="tp-caption">글 ${T('8')} / 댓글 ${T('31')}</span></div></div>${btn('다른 글 보기', { fill: true })}</div>`)}
   </aside>
 </div></div>`;
   return { slug: 'community-post', en: 'Post Detail', name: '게시글 상세', group: 'Community', desc: '게시글 하나를 읽고 댓글로 이야기를 나누는 화면입니다.', css, body };
