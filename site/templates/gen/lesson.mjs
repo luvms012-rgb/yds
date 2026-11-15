@@ -1,67 +1,81 @@
-// 어학 앱 학습자 템플릿: 레슨 홈(학습 > 수강).
-// 2026-11-16 사용자 "스픽이나 링고 같은 대표 서비스에서 템플릿으로 넣을 요소, 대표로 하나 더 추가". 레퍼런스는 UI 패턴 카탈로그의 어학 앱 학습 중 메인, 레슨 학습, 학습 통계, 학습 목표 화면(서비스 이름은 적지 않는다).
-// 단원 레슨 경로(끝남 / 지금 / 잠김)와 이어서 하기가 주인공. 넓은 화면에서는 오른쪽에 오늘의 목표, 연속 학습, 복습할 단어.
+// 어학 앱 학습자 템플릿: AI 학습 리포트(학습 > 수강). 레슨 홈은 2026-11-16 사용자 지시로 뺐다(groups.mjs REMOVED).
 import * as K from './kit.mjs';
 import { FRAME_CSS, topbar, tags } from './frame.mjs';
-const { icon, btn, iconBtn, badge, avatar, card, progress, ring } = K;
+const { icon, btn, iconBtn, avatar, card } = K;
 
 const MENU = ['홈', '레슨', '복습', '리포트'];
 const end = `${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 
-const lessonHome = () => {
+// AI 학습 리포트(학습 > 수강, AI 학습 대화 다음). 2026-11-16 사용자 "AI 학습 후 리포트 보기 화면, 레퍼런스를 충분히", "리포트에 그래프나 차트 포함".
+// 레퍼런스는 UI 패턴 카탈로그의 AI 수업 요약(어휘, 표현, 고칠 문장), 학습 리포트와 레벨 결과 리포트(점수 목록, 추이 그래프), 말하기 연습 완료, 진단 결과(영역별 막대, 도넛) 화면(서비스 이름은 적지 않는다).
+// 위에서부터 이번 학습 요약 숫자 → 영역별 점수와 점수 변화 그래프 → 고칠 문장. 넓은 화면 오른쪽에 말한 비율, 새로 익힌 표현, 다음 학습.
+const aiReport = () => {
   const css = FRAME_CSS + `
-  .tp-lh { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); padding-block: var(--ds-space-x6) var(--ds-space-x12); }
-  @media (min-width: 1280px) { .tp-lh { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
-  .tp-lh__main { display: flex; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; }
-  .tp-unit { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
-  .tp-path { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-  .tp-path > li { position: relative; display: grid; grid-template-columns: var(--ds-space-x10) minmax(0, 1fr) auto; align-items: center; gap: var(--ds-space-x4); padding-block: var(--ds-space-x3); }
-  /* 노드를 잇는 세로선 */
-  .tp-path > li::before, .tp-path > li::after { content: ""; position: absolute; left: calc(var(--ds-space-x5) - 1px); width: 2px; background: var(--ds-color-stroke-neutral-weak); }
-  .tp-path > li::before { top: 50%; bottom: 0; }
-  .tp-path > li::after { top: 0; height: 50%; }
-  .tp-path > li:last-child::before, .tp-path > li:first-child::after { display: none; }
-  .tp-path > li[data-state="done"]::before, .tp-path > li[data-state="done"] + li::after { background: var(--ds-color-bg-neutral-solid); }
-  .tp-node { position: relative; z-index: 1; }
-  .tp-node { display: grid; place-items: center; width: var(--ds-space-x10); height: var(--ds-space-x10); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-subtle); }
-  .tp-node .ds-icon { --ds-icon-size: 20px; }
-  [data-state="done"] > .tp-node { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
-  [data-state="now"] > .tp-node { background: var(--ds-color-bg-brand-solid); color: var(--ds-color-fg-on-brand-solid); box-shadow: 0 0 0 var(--ds-space-x1) var(--ds-color-bg-brand-weak); }
-  [data-state="lock"] .tp-path__name { color: var(--ds-color-fg-neutral-subtle); }
-  .tp-path__name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }
-  .tp-path__now { grid-column: 2 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding: var(--ds-space-x4); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
-  .tp-path > li[data-state="now"] { grid-template-columns: var(--ds-space-x10) minmax(0, 1fr); }
-  .tp-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--ds-space-x1); text-align: center; }
-  .tp-week span { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x1); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); }
-  .tp-week i.tp-day { display: grid; place-items: center; width: var(--ds-space-x8); height: var(--ds-space-x8); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); }
-  .tp-week [data-done] i.tp-day { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
-  .tp-week [data-today] i.tp-day { box-shadow: inset 0 0 0 2px var(--ds-color-stroke-neutral-solid); }
-  .tp-week .ds-icon { --ds-icon-size: 16px; }
-  .tp-goal { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--ds-space-x4); }
-  .tp-lh__side { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
+  .tp-rp { display: flex; flex-direction: column; gap: var(--ds-space-x6); padding-block: var(--ds-space-x6) var(--ds-space-x12); }
+  .tp-rp__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x4); }
+  .tp-rp__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
+  @media (min-width: 1280px) { .tp-rp__grid { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
+  .tp-rp__kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x3); }
+  @media (min-width: 768px) { .tp-rp__kpis { gap: var(--ds-space-x4); } }
+  @media (min-width: 1280px) { .tp-rp__kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tp-rp__main, .tp-rp__side { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
+  /* 태블릿에서는 오른쪽 카드를 두 칸으로 */
+  @media (min-width: 768px) and (max-width: 1279px) { .tp-rp__side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+  .tp-rp__charts { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
+  @media (min-width: 768px) { .tp-rp__charts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .tp-fixes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .tp-fixes > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x1) var(--ds-space-x3); padding-block: var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-fixes > li:last-child { padding-bottom: 0; box-shadow: none; }
+  .tp-fixes > li:first-child { padding-top: 0; }
+  .tp-fix__line { margin: 0; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
+  .tp-fix__line del { color: var(--ds-color-fg-critical); text-decoration-thickness: 1px; }
+  .tp-fix__line ins { color: var(--ds-color-fg-positive); text-decoration: none; font-weight: var(--ds-font-weight-semibold); }
+  .tp-fix__why { grid-column: 1; margin: 0; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-fixes .ds-btn { grid-column: 2; grid-row: 1 / span 2; align-self: start; }
+  .tp-ratio { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--ds-space-x5); }
+  .tp-ratio .tp-legend { flex-direction: column; }
+  .tp-phrases { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  .tp-phrases > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--ds-space-x2); }
+  .tp-next { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  .tp-next > li { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--ds-space-x3); }
+  .tp-next .tp-node { display: grid; place-items: center; width: var(--ds-space-x10); height: var(--ds-space-x10); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-muted); }
+  .tp-next .tp-node .ds-icon { --ds-icon-size: 20px; }
 `;
-  // [이름, 종류 아이콘, 분, 상태]
-  const UNIT3 = [['오늘의 단어 10개', 'book-open', 5, 'done'], ['공항에서 듣기', 'headphones', 6, 'done'], ['체크인 대화 말하기', 'mic', 8, 'now'], ['AI와 상황극', 'message-circle', 10, 'lock'], ['틀린 문장 복습', 'rotate-ccw', 5, 'lock'], ['단원 테스트', 'flag', 12, 'lock']];
-  const row = ([name, ic, min, st], i) => st === 'now'
-    ? `<li data-state="now"><span class="tp-node">${icon(ic)}</span><div class="tp-path__now"><div class="tp-stack"><span class="tp-caption">레슨 ${i + 1} / ${UNIT3.length}</span><span class="tp-path__name">${name}</span><span class="tp-caption">${min}분</span></div>${btn('이어서 하기', { variant: 'brandSolid', size: 'large', ic: 'play' })}</div></li>`
-    : `<li data-state="${st}"><span class="tp-node">${icon(st === 'done' ? 'check' : st === 'lock' ? 'lock' : ic)}</span><div class="tp-stack"><span class="tp-path__name">${name}</span><span class="tp-caption">${min}분</span></div>${st === 'done' ? iconBtn('rotate-ccw', name + ' 다시 하기', { size: 'small' }) : ''}</li>`;
-  const DAYS = ['월', '화', '수', '목', '금', '토', '일'];
-  const week = `<div class="tp-week">${DAYS.map((d, i) => `<span${i < 3 ? ' data-done' : ''}${i === 3 ? ' data-today' : ''}><i class="tp-day">${i < 3 ? icon('check') : ''}</i>${d}</span>`).join('')}</div>`;
-  const body = `<div class="tp-app">${topbar(MENU, 0, end)}
-<main class="tp-content"><div class="tp-lh">
-  <div class="tp-lh__main">
-    <div class="tp-stack" style="gap: var(--ds-space-x1)"><h1 class="tp-h1">영어 회화 기초</h1><div class="tp-row">${tags(['3단원 / 8단원', '진도 34%'])}</div></div>
-    ${progress(34, { tone: 'neutral', label: '코스 진도' })}
-    ${card(`<div class="tp-unit"><div class="tp-between"><div class="tp-stack"><span class="tp-caption">3단원</span><h2 class="tp-h3">여행에서 말하기</h2></div>${badge('진행 중', 'informative')}</div><ol class="tp-path">${UNIT3.map(row).join('')}</ol></div>`, { size: 'medium' })}
-    ${card(`<div class="tp-between"><div class="tp-row" style="gap: var(--ds-space-x3)"><span class="tp-node">${icon('lock')}</span><div class="tp-stack"><span class="tp-caption">4단원</span><h2 class="tp-h3">식당에서 주문하기</h2></div></div><span class="tp-caption">레슨 6개</span></div>`, { size: 'medium' })}
+  const { kpi, spark, barChart, lineChart, donut, legend, C } = K;
+  // [이름, 값, 지난번 대비, 추이]
+  const tiles = [['종합 점수', '86점', '+6', [70, 72, 71, 75, 78, 77, 80, 86]], ['발음', '88점', '+4', [78, 80, 79, 82, 83, 84, 84, 88]], ['문법 정확도', '80%', '+10', [62, 65, 64, 70, 68, 72, 70, 80]], ['말한 시간', '6분 32초', '+1:10', [3.2, 3.8, 4.1, 4.0, 4.6, 5.1, 5.4, 6.5]]];
+  const SKILLS = ['발음', '유창성', '문법', '어휘', '이해'];
+  const now = [88, 82, 80, 85, 92], before = [84, 75, 70, 83, 90];
+  const fixes = [
+    ['<del>I want</del> <ins>Could I get</ins> a large latte<ins>, please</ins>?', '주문할 때는 Could I get ~ 이 더 부드럽게 들려요'],
+    ['For here<del>, I eat</del>.', 'For here 만으로 매장에서 먹는다는 뜻이 돼요'],
+    ['Can I pay <del>with</del> <ins>by</ins> card?', '카드로 낼 때는 by card 를 써요'],
+  ];
+  const phrases = [['Could I get ~, please?', '~ 주시겠어요?'], ['For here or to go?', '드시고 가세요, 가져가세요?'], ['That’s all.', '그거면 돼요']];
+  const next = [['rotate-ccw', '틀린 문장 복습', '5분'], ['message-circle', 'AI와 상황극: 식당에서 주문하기', '10분']];
+  const body = `<div class="tp-app">${topbar(MENU, 3, end)}
+<main class="tp-content"><div class="tp-rp">
+  <div class="tp-rp__head">
+    <div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-caption">AI와 말하기 / 11월 16일</span><h1 class="tp-h1">카페에서 주문하기</h1><div class="tp-row">${tags(['12분', '문장 12개'])}</div></div>
+    <div class="tp-row">${btn('다시 하기', { size: 'medium', ic: 'rotate-ccw' })}${btn('다음 레슨', { variant: 'brandSolid', size: 'medium' })}</div>
   </div>
-  <aside class="tp-lh__side" aria-label="오늘의 학습">
-    ${card(`<h2 class="tp-h3">오늘의 목표</h2><div class="tp-goal">${ring(66, 56)}<div class="tp-stack"><span class="tp-label">레슨 2 / 3개</span><span class="tp-caption">13분 학습</span></div></div>`)}
-    ${card(`<div class="tp-between"><h2 class="tp-h3">연속 학습</h2><span class="tp-label tp-num">3일째</span></div>${week}`)}
-    ${card(`<div class="tp-between"><h2 class="tp-h3">복습할 단어</h2><span class="tp-label tp-num">12개</span></div>${tags(['boarding pass', 'aisle seat', 'delay'])}${btn('복습하기', { size: 'medium', fill: true })}`)}
-  </aside>
+  <div class="tp-rp__kpis">${tiles.map(([l, v, d, s], i) => kpi(l, v, { d, chart: spark(s, C(0), { h: 36, label: l + ' 추이' }) })).join('')}</div>
+  <div class="tp-rp__grid">
+    <div class="tp-rp__main">
+      <div class="tp-rp__charts">
+        ${card(`<h2 class="tp-h3">영역별 점수</h2>${barChart(SKILLS.map((_, i) => [now[i], before[i]]), { w: 420, h: 200, x: SKILLS, names: ['이번', '지난 학습'], colors: [C(0), 'var(--ds-color-bg-neutral-solid)'], unit: '점', label: '영역별 점수' })}${legend([['이번', 0], ['지난 학습', 'var(--ds-color-bg-neutral-solid)']])}`)}
+        ${card(`<h2 class="tp-h3">점수 변화</h2>${lineChart([{ name: '종합 점수', data: tiles[0][3] }], { w: 420, h: 200, x: ['10.06', '10.20', '11.06', '11.16'], xs: ['10.06', '10.13', '10.20', '10.27', '11.03', '11.06', '11.10', '11.16'], area: true, unit: '점', label: '종합 점수 변화' })}${legend([['종합 점수', 0]])}`)}
+      </div>
+      ${card(`<div class="tp-between"><h2 class="tp-h3">고칠 문장</h2><span class="tp-label tp-num">${fixes.length}개</span></div><ul class="tp-fixes">${fixes.map(([line, why]) => `<li><p class="tp-fix__line">${line}</p><p class="tp-fix__why">${why}</p>${iconBtn('volume-2', '고친 문장 듣기', { size: 'small' })}</li>`).join('')}</ul>`, { size: 'medium' })}
+    </div>
+    <aside class="tp-rp__side" aria-label="이번 학습 더 보기">
+      ${card(`<h2 class="tp-h3">말한 비율</h2><div class="tp-ratio">${donut([['나', 58, C(0)], ['AI', 42, 'var(--ds-color-bg-neutral-solid)']], { size: 120, thick: 14, center: '58%', unit: '%', label: '말한 비율' })}${legend([['나', 0, '3분 48초'], ['AI', 'var(--ds-color-bg-neutral-solid)', '2분 44초']])}</div>`)}
+      ${card(`<div class="tp-between"><h2 class="tp-h3">새로 익힌 표현</h2><span class="tp-label tp-num">${phrases.length}개</span></div><ul class="tp-phrases">${phrases.map(([en, ko]) => `<li><div class="tp-stack"><span class="tp-label">${en}</span><span class="tp-caption">${ko}</span></div>${iconBtn('volume-2', en + ' 듣기', { size: 'small' })}</li>`).join('')}</ul>${btn('단어장에 담기', { size: 'medium', fill: true })}`)}
+      ${card(`<h2 class="tp-h3">다음 학습</h2><ul class="tp-next">${next.map(([ic, t, m]) => `<li><span class="tp-node">${icon(ic)}</span><div class="tp-stack"><span class="tp-label">${t}</span><span class="tp-caption">${m}</span></div></li>`).join('')}</ul>`)}
+    </aside>
+  </div>
 </div></main></div>`;
-  return { slug: 'lesson-home', en: 'Lesson Home', name: '레슨 홈', group: 'Learning', desc: '매일 레슨을 이어서 하는 학습 앱의 첫 화면입니다. 단원의 레슨 경로와 오늘의 목표, 연속 학습, 복습할 단어를 함께 보여 줍니다.', css, body };
+  return { slug: 'ai-tutor-report', en: 'AI Learning Report', name: 'AI 학습 리포트', group: 'Learning', desc: 'AI와 학습을 마친 뒤 결과를 보는 화면입니다. 영역별 점수와 점수 변화를 그래프로 보여 주고 고칠 문장과 새로 익힌 표현을 함께 정리합니다.', css, body };
 };
 
-export const templates = [lessonHome].map((f) => f());
+export const templates = [aiReport].map((f) => f());

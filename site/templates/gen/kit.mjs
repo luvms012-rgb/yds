@@ -140,7 +140,7 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
 // 생성기 자료에 문장이 남아 있어도 화면에는 나오지 않는다. 글이나 댓글, 문서 본문처럼 화면의 내용 자체는 COPY_KEEP 안에서 그대로 둔다
 const COPY_ALWAYS = /(^| )(ds-selectbox__desc|tp-notes|tp-tip|tp-lead|tp-vw__help)( |$)/;
 const COPY_SENTENCE = /(^| )(tp-sub|tp-caption)( |$)/;
-const COPY_KEEP = /(^| )(tp-post__body|ds-accordion__content|tp-stepdoc|tp-ex|tp-cmt|tp-article|ds-markdown|tp-doc|tp-inbox__row)( |$)/;
+const COPY_KEEP = /(^| )(tp-post__body|ds-accordion__content|tp-stepdoc|tp-ex|tp-cmt|tp-article|ds-markdown|tp-doc|tp-inbox__row|tp-phrases)( |$)/;
 const SENTENCE = /[요다니까][.?!]?$|[.?!]$/;
 const VOID_TAG = /^(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)$/i;
 export const stripCopy = (html) => {

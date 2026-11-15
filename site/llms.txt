@@ -172,10 +172,10 @@
 - [과정 목록](templates/pages/learning-catalog.html): 듣고 싶은 과정을 찾는 목록입니다.
 - [클래스 상세](templates/pages/class-detail.html): 온라인 클래스의 소개, 커리큘럼, 강사, 수강평을 보고 신청하는 화면입니다.
 - [수업 신청](templates/pages/lesson-plan.html): 수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.
-- [레슨 홈](templates/pages/lesson-home.html): 매일 레슨을 이어서 하는 학습 앱의 첫 화면입니다.
 - [강의 시청](templates/pages/learning-player.html): 강의를 들으며 AI 튜터에게 요약과 퀴즈를 받는 화면입니다.
 - [내 강의실](templates/pages/my-classroom.html): 수강 중인 클래스와 진도, 수료증을 모은 학습자 화면입니다.
 - [AI 학습 대화](templates/pages/ai-tutor-chat.html): AI와 대화하며 배우는 학습 화면입니다.
+- [AI 학습 리포트](templates/pages/ai-tutor-report.html): AI와 학습을 마친 뒤 결과를 보는 화면입니다.
 - [수강 설문 쓰기](templates/pages/class-survey.html): 수강을 마친 뒤 만족도와 의견을 답하는 설문 화면입니다.
 - [수강평 쓰기](templates/pages/class-review-write.html): 들은 강의에 별점과 좋았던 점, 수강평, 사진을 남기는 화면입니다.
 - [상담 예약](templates/pages/consult-booking.html): 설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.

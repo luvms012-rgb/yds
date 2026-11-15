@@ -13,7 +13,7 @@ export const GROUPS = [
   ]],
   ['Learning', '학습', [
     ['찾기와 신청', ['learning-home', 'learning-catalog', 'class-detail', 'lesson-plan']],
-    ['수강', ['lesson-home', 'learning-player', 'my-classroom', 'ai-tutor-chat', 'class-survey', 'class-review-write']],
+    ['수강', ['learning-player', 'my-classroom', 'ai-tutor-chat', 'ai-tutor-report', 'class-survey', 'class-review-write']],
     ['센터', ['consult-booking']],
   ]],
   // 2026-11-15 사용자 "쇼핑 카테고리는 YBM 에 어울리지 않는다, 북스 화면으로 대신": 쇼핑(Commerce)을 교재(Books)로 바꿨다. 장바구니와 요금제 비교는 결제로 옮겼다.
@@ -63,6 +63,8 @@ export const REMOVED = [
   'work-item-detail', 'classic-gallery', 'mixed-gallery', 'side-gallery', 'library', 'centered-hero', 'gallery-hero', 'form-wizard-dialog', 'form-wizard-inline', 'settings', 'settings-dialog', 'cart-empty',
   // 2026-11-15 사용자 "센터 찾기 삭제"
   'center-finder',
+  // 2026-11-16 사용자 "레슨홈은 삭제" (lesson.mjs 의 생성기 코드도 지움, 되살리려면 c98ca3f2)
+  'lesson-home',
 ];
 
 // slug → { group, sub, rank } (rank = 전체 순서)
