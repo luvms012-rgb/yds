@@ -34,8 +34,10 @@ alwaysApply: true
 - 새 브랜드: 브랜드 파일(JSON)에는 YDS와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일 이름과 data-ds-brand 값은 영문 소문자, 숫자, - 로 짓는다(한글 이름은 name 에만). 예) my-brand.json: {"name": "내 브랜드", "color": "#00843d", "shapeScale": 1.25, "font": "SUITE"}. 글꼴 파일은 서비스가 불러오고 font 에는 글꼴 이름만 적는다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
 - 브랜드 값을 받지 못했으면 시작 전에 브랜드 이름과 대표색을 묻는다. 모서리와 글꼴은 말이 없으면 YDS 값을 쓴다. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 고칠 색을 제안한다.
 - 시작: 무엇을 만들지 듣지 못했으면 먼저 묻는다. 물을 수 없는 환경이면 스스로 정하고, 정한 값을 결과에 적는다. 다 만들면 고친 곳을 알려 준다.
-- 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다. 템플릿과 이 규칙이 다르면 이 규칙을 따른다.
-- 글자: 한국어. 제목 Bold, 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
+- 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다(Breakpoint 의 480, 768, 1280, 1440 만 쓴다). 위 막대는 768 미만 Top App Bar, 768부터 Top Navigation. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다. 템플릿과 이 규칙이 다르면 이 규칙을 따른다.
+- 글자: 한국어. 큰 제목(페이지, 섹션)은 SemiBold, 작은 제목(카드, 16px 이하)은 Bold, 목록 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
+- 상태: 표와 목록에서 같은 자리의 상태는 모두 Badge로 표시한다. 색은 해야 할 일이 남은 상태 warning, 진행 중 informative, 끝난 상태 neutral, 실패, 취소, 반려 critical, 합격처럼 좋은 결과만 positive.
+- 줄마다 반복되는 버튼은 small neutralWeak로 두고 강조하지 않는다. 강조 버튼(brandSolid)은 화면에 하나만 둔다.
 - 점검: 끝내기 전에 검사 스크립트(https://luvms012-rgb.github.io/yds/site/ai/yds-check.mjs)를 받아 node로 돌리고, 이번에 만들거나 바꾼 범위 안의 문제를 모두 고친다. 범위 밖 기존 코드에서 나온 문제는 고치지 않고 목록으로 알린다. 스크립트를 돌릴 수 없으면 그렇다고 알린다.
 
 ## 운영 중인 사이트에 옮길 때

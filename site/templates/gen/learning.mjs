@@ -5,7 +5,7 @@ import { T, FRAME_CSS, topbar, sidenav, frame, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, checkbox, divider, chip, chiptabs, tabs, segmented, progress, table, tablePager, avatar, callout, dot, link, lineChart, barChart, donut, legend, meter, kpi, search, sw, thumb, pagination, C, esc } = K;
 
 const LEARN_MENU = ['홈', '과정 찾기', '내 학습', '지식 공유'];
-const learnEnd = `${btn('AI 어드바이저', { size: 'xsmall', ic: 'sparkles' })}${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const learnEnd = `${btn('AI 어드바이저', { size: 'xsmall', ic: 'sparkles' })}${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const ORG = '한빛전자';
 const adminNav = (cur) => sidenav(ORG, [['', [['홈', 'house', cur === 0], ['과정 운영', 'book-open', cur === 1], ['학습자', 'users', cur === 2], ['필수 교육', 'shield-check', cur === 3], ['학습 현황', 'chart-column', cur === 4]]], ['지식', [['사내 지식', 'lightbulb', false], ['AI 튜터 설정', 'sparkles', false]]]], [['설정', 'settings', false]]);
 const CSS = FRAME_CSS + `
@@ -29,7 +29,7 @@ const course = (i, title, meta, { b = '', r = '4.8', n = '1,204', prog = -1 } = 
 const home = () => {
   const css = CSS + `
   .tp-hello { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: center; }
-  @media (min-width: 1024px) { .tp-hello { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+  @media (min-width: 1280px) { .tp-hello { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
   .tp-resume { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x5); align-items: center; }
   @media (min-width: 768px) { .tp-resume { grid-template-columns: 280px minmax(0, 1fr); } }
   .tp-must { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x2) var(--ds-space-x4); align-items: center; }
@@ -73,7 +73,7 @@ const catalog = () => {
   .tp-filter__row > .ds-select { flex: 0 1 160px; width: auto; min-width: 140px; }
   .tp-results { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
   .tp-g4c { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x8) var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-g4c { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-x10) var(--ds-space-x6); } }
+  @media (min-width: 1280px) { .tp-g4c { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-x10) var(--ds-space-x6); } }
 `;
   const items = [['처음 만나는 생성형 AI 업무 활용', ['3시간', '입문'], '신규'], ['엑셀 함수와 피벗 한 번에', ['6시간', '입문'], ''], ['데이터로 말하는 보고서 쓰기', ['4시간', '중급'], ''], ['개인정보 보호 교육', ['1시간', '필수'], '필수'], ['팀장의 1:1 대화법', ['2시간', '중급'], '인기'], ['설득하는 프레젠테이션 구조 잡기', ['5시간', '중급'], ''], ['비즈니스 영어 이메일 바로 쓰기', ['8시간', '입문'], ''], ['파이썬으로 하는 업무 자동화', ['12시간', '중급'], '신규'], ['직장 내 괴롭힘 예방 교육', ['1시간', '필수'], '필수'], ['고객의 말을 듣는 인터뷰', ['3시간', '입문'], ''], ['프로젝트 일정과 위험 관리', ['4시간', '중급'], ''], ['일본어 업무 회화 첫걸음', ['10시간', '입문'], '']];
   const tone = { 신규: 'brand', 필수: 'critical', 인기: 'warning' };
@@ -117,7 +117,7 @@ const player = () => {
   .tp-chap { padding: var(--ds-space-x4) var(--ds-space-x3) var(--ds-space-x1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-semibold); }
   .tp-tutor { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x5); border-radius: var(--ds-shape-2xl); background: var(--ds-color-bg-neutral-muted); }
   .tp-tutor ul { margin: 0; padding-inline-start: 1.2em; display: flex; flex-direction: column; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
-  @media (min-width: 1024px) { .tp-pl__body { flex-direction: row; } .tp-curr { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-pl__main { padding: var(--ds-space-x8) var(--ds-space-x10) var(--ds-space-x16); } }
+  @media (min-width: 1280px) { .tp-pl__body { flex-direction: row; } .tp-curr { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-pl__main { padding: var(--ds-space-x8) var(--ds-space-x10) var(--ds-space-x16); } }
 `;
   const L = (t, d, st = '') => `<a class="tp-lesson" href="#"${st === 'done' ? ' data-done' : ''}${st === 'cur' ? ' aria-current="true"' : ''}>${icon(st === 'done' ? 'circle-check-solid' : st === 'cur' ? 'play' : 'circle')}<span>${t}</span><span class="tp-caption tp-num">${d}</span></a>`;
   const body = `<div class="tp-pl">
@@ -189,7 +189,7 @@ const dash = () => {
   </div>
   <div class="tp-g2">
     ${card(`<div class="tp-between"><span class="tp-h3">부서별 필수 교육 이수율</span>${select('개인정보 보호 교육', { id: 'ld-must', aria: '필수 교육' })}</div><div class="tp-stack" style="gap: var(--ds-space-x4)">${deps.map(([d, v]) => meter(d, v, v + '%')).join('')}</div>`)}
-    ${card(`<div class="tp-between"><span class="tp-h3">마감이 다가오는 미이수자</span>${badge('224명', 'critical')}</div><div class="tp-rows">${[['오도윤', '생산본부', 20], ['윤채원', '고객경험팀', 0], ['한지아', '생산본부', 35], ['정민재', '경영지원', 10]].map(([n, d, v]) => `<div class="tp-due"><div class="tp-row">${avatar(n, 28)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-caption tp-num">진도 ${v}%</span></div>`).join('')}</div>${btn('독려 알림 보내기', { variant: 'neutralSolid', ic: 'bell', fill: true })}`)}
+    ${card(`<div class="tp-between"><span class="tp-h3">마감이 다가오는 미이수자</span>${badge('224명', 'critical')}</div><div class="tp-rows">${[['오도윤', '생산본부', 20], ['윤채원', '고객경험팀', 0], ['한지아', '생산본부', 35], ['정민재', '경영지원', 10]].map(([n, d, v]) => `<div class="tp-due"><div class="tp-row">${avatar(n, 24)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-caption tp-num">진도 ${v}%</span></div>`).join('')}</div>${btn('독려 알림 보내기', { variant: 'neutralSolid', ic: 'bell', fill: true })}`)}
   </div>
   <div class="tp-g3">
     ${card(`<div class="tp-between"><span class="tp-h3">많이 들은 과정</span>${link('모두 보기')}</div>${table([['과정'], ['분야'], ['수강', 'right'], ['만족도', 'right']], top.map(([n, c, p, r]) => [n, badge(c), T(p), `<span class="tp-star">${icon('star-solid')}${r}</span>`]))}`, { cls: 'tp-span2' })}

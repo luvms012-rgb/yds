@@ -6,11 +6,11 @@ import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, checkbox, checkOnly, tabs, progress, thumb, link, avatar, esc } = K;
 
 const MENU = ['홈', '카테고리', '베스트', '혜택'];
-const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('heart', '찜한 상품', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('heart', '찜한 상품', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const won = (n) => T(n.toLocaleString('ko-KR') + '원');
 
 const CSS = FRAME_CSS + `
-  /* 쇼핑 배치: 가운데 1200, 1024 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
+  /* 쇼핑 배치: 가운데 1200, 1280 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
   .tp-shop { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
   .tp-shop__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
   /* 단계 표시: 장바구니 > 주문 결제 > 주문 완료 */
@@ -24,7 +24,7 @@ const CSS = FRAME_CSS + `
   .tp-cart__main { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
   .tp-cart__aside { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-cart__order { display: none; }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-cart { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
     .tp-cart__aside { position: sticky; top: 88px; }
     .tp-cart__order { display: flex; }
@@ -77,11 +77,11 @@ const CSS = FRAME_CSS + `
   .tp-tip { display: flex; align-items: flex-start; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); }
   .tp-tip .ds-icon { flex: none; margin-top: 2px; --ds-icon-size: 16px; }
   .tp-cart__order.ds-btn { width: 100%; }
-  /* 모바일 아래 고정 주문 막대 (1024 부터는 오른쪽 결제 금액의 버튼을 쓴다) */
+  /* 모바일 아래 고정 주문 막대 (1280 부터는 오른쪽 결제 금액의 버튼을 쓴다) */
   .tp-orderbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-orderbar .tp-stack { gap: 0; }
   .tp-orderbar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
-  @media (min-width: 1024px) { .tp-orderbar { display: none; } }
+  @media (min-width: 1280px) { .tp-orderbar { display: none; } }
   /* 안내 글 */
   .tp-notes { display: flex; flex-direction: column; gap: var(--ds-space-x1_5); margin: 0; padding-inline-start: var(--ds-space-x5); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
   /* 추천 상품 */

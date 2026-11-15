@@ -75,7 +75,7 @@ const levelTest = () => {
 const mockPbt = () => {
   const css = CSS + `
   .tp-pbt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: start; }
-  @media (min-width: 1024px) { .tp-pbt { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .tp-pbt__sheet { grid-column: 1 / -1; } .tp-pbt__sheet .tp-omr { grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); } }
+  @media (min-width: 1280px) { .tp-pbt { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); } .tp-pbt__sheet { grid-column: 1 / -1; } .tp-pbt__sheet .tp-omr { grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); } }
   @media (min-width: 1280px) { .tp-pbt { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) 300px; } .tp-pbt__sheet { grid-column: auto; position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
   .tp-passage { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t06); color: var(--ds-color-fg-neutral); }
   .tp-passage p + p { margin-top: var(--ds-space-x3); }
@@ -136,7 +136,7 @@ const mockPbt = () => {
 const mockCbt = () => {
   const css = CSS + `
   .tp-cbt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page)); margin-inline: auto; align-items: start; }
-  @media (min-width: 1024px) { .tp-cbt { grid-template-columns: minmax(0, 1fr) 320px; } }
+  @media (min-width: 1280px) { .tp-cbt { grid-template-columns: minmax(0, 1fr) 320px; } }
   .tp-cbt__stage { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
   .tp-cbt__pic { width: min(100%, 560px); margin-inline: auto; }
   .tp-cbt__prompt { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); text-align: center; }

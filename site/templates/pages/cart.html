@@ -121,7 +121,7 @@
     .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tp-hide-sm { display: revert; }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-body--panel { flex-direction: row; }
     .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -136,8 +136,10 @@
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  .tp-topbar .ds-topnav__menu { display: none; }
-  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
+  .tp-topbar > .ds-topnav { display: none; }
+  @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
+  .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
@@ -146,8 +148,8 @@
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
-  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) {
+  .tp-mbar { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) {
     .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mbar { display: none; }
   }
@@ -172,9 +174,9 @@
   @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-thumb-sm { flex: none; width: 96px; }
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+  @media (min-width: 1280px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
-  /* 쇼핑 배치: 가운데 1200, 1024 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
+  /* 쇼핑 배치: 가운데 1200, 1280 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
   .tp-shop { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
   .tp-shop__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
   /* 단계 표시: 장바구니 > 주문 결제 > 주문 완료 */
@@ -188,7 +190,7 @@
   .tp-cart__main { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
   .tp-cart__aside { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-cart__order { display: none; }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-cart { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
     .tp-cart__aside { position: sticky; top: 88px; }
     .tp-cart__order { display: flex; }
@@ -241,11 +243,11 @@
   .tp-tip { display: flex; align-items: flex-start; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); }
   .tp-tip .ds-icon { flex: none; margin-top: 2px; --ds-icon-size: 16px; }
   .tp-cart__order.ds-btn { width: 100%; }
-  /* 모바일 아래 고정 주문 막대 (1024 부터는 오른쪽 결제 금액의 버튼을 쓴다) */
+  /* 모바일 아래 고정 주문 막대 (1280 부터는 오른쪽 결제 금액의 버튼을 쓴다) */
   .tp-orderbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-orderbar .tp-stack { gap: 0; }
   .tp-orderbar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
-  @media (min-width: 1024px) { .tp-orderbar { display: none; } }
+  @media (min-width: 1280px) { .tp-orderbar { display: none; } }
   /* 안내 글 */
   .tp-notes { display: flex; flex-direction: column; gap: var(--ds-space-x1_5); margin: 0; padding-inline-start: var(--ds-space-x5); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
   /* 추천 상품 */
@@ -262,8 +264,8 @@
 <body>
 <div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
   <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">홈</a><a class="ds-topnav__item" href="#">카테고리</a><a class="ds-topnav__item" href="#">베스트</a><a class="ds-topnav__item" href="#">혜택</a></nav></div>
-  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 상품"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="장바구니"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
-</header></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 상품"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="장바구니"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+</header><header class="ds-appbar" data-platform="android"><div class="ds-appbar__left"><button type="button" class="ds-appbar__button" aria-label="메뉴 열기"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button></div><div class="ds-appbar__main"><a class="tp-appbar-logo" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a></div><div class="ds-appbar__right"><button type="button" class="ds-appbar__button" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button></div></header></div>
 <main class="tp-shop" aria-label="장바구니">
   <header class="tp-shop__head"><h1 class="tp-h1">장바구니</h1><ol class="tp-steps" aria-label="주문 단계"><li aria-current="step"><b>1</b>장바구니</li><li><b>2</b>주문 결제</li><li><b>3</b>주문 완료</li></ol></header>
   <div class="ds-tabs" role="tablist" aria-label="배송 종류"><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="true">일반 배송 5</button><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">정기 배송 0</button></div>

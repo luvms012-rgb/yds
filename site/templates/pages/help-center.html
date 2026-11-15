@@ -121,7 +121,7 @@
     .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tp-hide-sm { display: revert; }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-body--panel { flex-direction: row; }
     .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -136,8 +136,10 @@
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  .tp-topbar .ds-topnav__menu { display: none; }
-  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
+  .tp-topbar > .ds-topnav { display: none; }
+  @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
+  .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
@@ -146,8 +148,8 @@
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
-  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) {
+  .tp-mbar { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) {
     .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mbar { display: none; }
   }
@@ -172,10 +174,10 @@
   @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-thumb-sm { flex: none; width: 96px; }
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+  @media (min-width: 1280px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
   .tp-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-two { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
+  @media (min-width: 1280px) { .tp-two { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
   .tp-chips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
   .tp-total { display: flex; align-items: baseline; justify-content: space-between; }
   .tp-map { position: relative; overflow: hidden; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); min-height: 320px; display: grid; place-items: center; color: var(--ds-color-fg-neutral-subtle); }
@@ -188,8 +190,8 @@
 <body>
 <div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
   <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">강의</a><a class="ds-topnav__item" href="#">교재</a><a class="ds-topnav__item" href="#">시험</a><a class="ds-topnav__item" href="#">센터</a><a class="ds-topnav__item" href="#" aria-current="page">고객센터</a></nav></div>
-  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="장바구니"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
-</header></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="장바구니"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+</header><header class="ds-appbar" data-platform="android"><div class="ds-appbar__left"><button type="button" class="ds-appbar__button" aria-label="메뉴 열기"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button></div><div class="ds-appbar__main"><a class="tp-appbar-logo" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a></div><div class="ds-appbar__right"><button type="button" class="ds-appbar__button" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button></div></header></div>
 <header class="tp-head">
   <div class="tp-head__texts"><h1 class="tp-h1">고객센터</h1></div>
   
@@ -199,7 +201,7 @@
   <div class="tp-two">
     <div class="tp-stack" style="gap: var(--ds-space-x8)">
       <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">자주 묻는 질문</h2></div></div><div class="ds-chiptabs" role="tablist" aria-label="질문 분류" data-inset="none"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true">전체</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">접수</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">결제와 환불</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">성적</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">계정</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">교재</button></div><div><details class="ds-accordion" data-inset="none" open><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">수험표는 언제 출력할 수 있나요?</span></span></summary><div class="ds-accordion__content"><p>시험 7일 전부터 내 시험에서 출력할 수 있어요.</p></div></details><details class="ds-accordion" data-inset="none"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">접수를 취소하면 응시료는 얼마나 돌려받나요?</span></span></summary><div class="ds-accordion__content"><p>접수 마감 전까지는 전액, 마감 뒤에는 응시료의 절반을 돌려드려요.</p></div></details><details class="ds-accordion" data-inset="none"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">고사장을 바꿀 수 있나요?</span></span></summary><div class="ds-accordion__content"><p>접수 마감 전까지 내 시험에서 바꿀 수 있어요.</p></div></details><details class="ds-accordion" data-inset="none"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">성적표를 다시 받을 수 있나요?</span></span></summary><div class="ds-accordion__content"><p>성적 확인에서 발급을 신청할 수 있어요.</p></div></details><details class="ds-accordion" data-inset="none"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">교재 음원은 어디에서 받나요?</span></span></summary><div class="ds-accordion__content"><p>교재 상세의 자료 탭에서 받을 수 있어요.</p></div></details></div></section>
-      <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">공지</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">모두 보기</a></div></div><div class="tp-rows"><a class="tp-notice" href="#" style="color: inherit; text-decoration: none"><span class="tp-name">설 연휴 상담 시간 안내</span><span class="tp-caption"><span class="tp-num">01.20</span></span></a><a class="tp-notice" href="#" style="color: inherit; text-decoration: none"><span class="tp-name">12월 정기 시험 고사장 추가</span><span class="tp-caption"><span class="tp-num">11.04</span></span></a><a class="tp-notice" href="#" style="color: inherit; text-decoration: none"><span class="tp-name">결제 수단 점검 안내</span><span class="tp-caption"><span class="tp-num">10.28</span></span></a></div></section>
+      <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">공지</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">모두 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a></div></div><div class="tp-rows"><a class="tp-notice" href="#" style="color: inherit; text-decoration: none"><span class="tp-name">설 연휴 상담 시간 안내</span><span class="tp-caption"><span class="tp-num">01.20</span></span></a><a class="tp-notice" href="#" style="color: inherit; text-decoration: none"><span class="tp-name">12월 정기 시험 고사장 추가</span><span class="tp-caption"><span class="tp-num">11.04</span></span></a><a class="tp-notice" href="#" style="color: inherit; text-decoration: none"><span class="tp-name">결제 수단 점검 안내</span><span class="tp-caption"><span class="tp-num">10.28</span></span></a></div></section>
     </div>
     <aside class="tp-aside-sticky">
       <section class="ds-card tp-card" data-variant="subtle" data-size="small"><span class="tp-h3">전화 상담</span><span class="tp-tel">1588-0000</span><div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-kv"><span>평일</span><span><span class="tp-num">09:00 ~ 18:00</span></span></div><div class="tp-kv"><span>점심</span><span><span class="tp-num">12:00 ~ 13:00</span></span></div></div><div class="tp-row"><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small"><i class="ds-icon ds-icon--square-pen" aria-hidden="true"></i>1:1 문의</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small"><i class="ds-icon ds-icon--message-circle" aria-hidden="true"></i>채팅 상담</button></div></section>

@@ -9,7 +9,8 @@ const ORG = '한빛아카데미';
 const nav = (cur) => sidenav(ORG, [['', [['홈', 'house', cur === 0], ['과정 개설 요청', 'inbox', cur === 1], ['과정 운영', 'book-open', cur === 2], ['수강생', 'users', cur === 3], ['출석', 'calendar', cur === 4], ['통계', 'chart-column', cur === 5]]]], [['설정', 'settings', false]]);
 
 // 상태: 신청 → 승인 → 진행 → 완료 (반려는 따로)
-const STATUS = { 신청: 'neutral', 승인: 'informative', 진행: 'brand', 완료: 'positive', 반려: 'critical' };
+// 상태 색 (2026-11-15 규칙): 해야 할 일이 남은 상태 warning, 진행 중 informative, 끝난 상태 neutral, 반려 critical
+const STATUS = { 신청: 'warning', 승인: 'neutral', 진행: 'informative', 완료: 'neutral', 반려: 'critical' };
 const st = (s) => badge(s, STATUS[s]);
 
 const CSS = FRAME_CSS + `
@@ -89,7 +90,7 @@ const detail = () => {
   .tp-owner .ds-progress { width: 64px; }
 `;
   const file = (n, size) => `<a class="tp-file" href="#" download>${icon('file-text', 'sm')}<span class="tp-file__name">${n}</span><span class="tp-caption tp-num">${size}</span>${icon('download', 'sm')}</a>`;
-  const cmt = (who, when, text, f = '') => `<div class="tp-cmt">${avatar(who, 32)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-row"><span class="tp-name">${who}</span><span class="tp-caption">${T(when)}</span></div><p>${text}</p>${f}</div></div>`;
+  const cmt = (who, when, text, f = '') => `<div class="tp-cmt">${avatar(who, 36)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-row"><span class="tp-name">${who}</span><span class="tp-caption">${T(when)}</span></div><p>${text}</p>${f}</div></div>`;
   const dl = [
     ['상태', st('진행')],
     ['요청한 사람', '박지후 / 교육운영팀'],
@@ -122,7 +123,7 @@ const detail = () => {
   <h2 class="tp-h3" id="rqd-info">처리 정보</h2>
   <dl class="ds-desclist">${dl.map(([k, v]) => `<div class="ds-desclist__item"><dt class="ds-desclist__label">${k}</dt><dd class="ds-desclist__value">${v}</dd></div>`).join('')}</dl>
   ${divider()}
-  <div class="tp-stack" style="gap: var(--ds-space-x3)"><h3 class="tp-h4">담당자</h3>${[['정민재', 60], ['오도윤', 20]].map(([n, v]) => `<div class="tp-owner">${avatar(n, 28)}<span class="tp-name">${n}</span><span class="tp-row">${progress(v, { label: n + ' 진행' })}<span class="tp-caption tp-num">${v}%</span></span></div>`).join('')}</div>
+  <div class="tp-stack" style="gap: var(--ds-space-x3)"><h3 class="tp-h4">담당자</h3>${[['정민재', 60], ['오도윤', 20]].map(([n, v]) => `<div class="tp-owner">${avatar(n, 24)}<span class="tp-name">${n}</span><span class="tp-row">${progress(v, { label: n + ' 진행' })}<span class="tp-caption tp-num">${v}%</span></span></div>`).join('')}</div>
   <div class="tp-stack" style="gap: var(--ds-space-x2)">${btn('완료 처리', { variant: 'neutralSolid', size: 'medium', fill: true })}${btn('담당자 바꾸기', { size: 'medium', fill: true })}</div>
 </aside>
 </div>`;

@@ -4,7 +4,7 @@ import { T, FRAME_CSS, topbar, sidenav, frame, selectbox, tags, calendar } from 
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, checkbox, divider, chip, chiptabs, tabs, segmented, progress, ring, table, tablePager, stepper, avatar, callout, dot, link, breadcrumbs, lineChart, barChart, donut, legend, meter, kpi, search, C, esc } = K;
 
 const USER_MENU = ['시험 일정', '시험 접수', '성적 확인', '내 시험'];
-const userEnd = `${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const userEnd = `${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const ORG = '한빛대학교';
 const orgNav = (cur) => sidenav(ORG, [['', [['홈', 'house', cur === 0], ['단체 접수', 'square-pen', cur === 1], ['응시자 관리', 'users', cur === 2], ['성적 리포트', 'chart-column', cur === 3]]], ['운영', [['정산', 'receipt', false], ['공지 보내기', 'mail', false]]]], [['설정', 'settings', false]]);
 const CSS = FRAME_CSS + `
@@ -18,7 +18,7 @@ const CSS = FRAME_CSS + `
 const apply = () => {
   const css = CSS + `
   .tp-ea { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page)); margin-inline: auto; }
-  @media (min-width: 1024px) { .tp-ea { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
+  @media (min-width: 1280px) { .tp-ea { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
   .tp-step-h { display: flex; align-items: center; gap: var(--ds-space-x3); }
   .tp-step-no { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); }
   .tp-step-h .ds-icon { --ds-icon-size: 24px; color: var(--ds-color-fg-neutral); }
@@ -26,11 +26,11 @@ const apply = () => {
   .tp-step-h > .tp-h2 { flex: 1 1 auto; font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); }
   /* 좁은 화면: 제목 옆 세그먼트는 아래 줄로 (11-10 사용자 점검, 제목이 두 줄로 꺾이던 것) */
   @media (max-width: 767px) { .tp-step-h { flex-wrap: wrap; } .tp-step-h > .ds-segmented { flex: 1 0 100%; } }
-  /* 1) 모바일 아래 고정 결제 막대 (장바구니 tp-orderbar 와 같은 틀, 1024 부터는 오른쪽 요약의 버튼) */
+  /* 1) 모바일 아래 고정 결제 막대 (장바구니 tp-orderbar 와 같은 틀, 1280 부터는 오른쪽 요약의 버튼) */
   .tp-paybar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); margin-inline: calc(var(--tp-gutter) * -1); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-paybar .tp-stack { gap: 0; }
   .tp-paybar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
-  @media (min-width: 1024px) { .tp-paybar { display: none; } }
+  @media (min-width: 1280px) { .tp-paybar { display: none; } }
   .tp-ds { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
   @media (min-width: 768px) { .tp-ds { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .tp-total { display: flex; align-items: baseline; justify-content: space-between; }
@@ -77,7 +77,7 @@ const apply = () => {
 const mine = () => {
   const css = CSS + `
   .tp-next { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }  /* 11-11: 768 에서 왼쪽 칸이 눌려 1024 부터 */
+  @media (min-width: 1280px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }  /* 11-11: 768 에서 왼쪽 칸이 눌려 1280 부터 */
   .tp-dday { display: inline-flex; align-self: flex-start; padding: 2px var(--ds-space-x2); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-check { display: flex; align-items: center; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-check .ds-icon { color: var(--ds-color-fg-neutral); }
@@ -170,7 +170,7 @@ const groupApply = () => {
 /* 5. 응시자 관리 (기관) -------------------------------------------- */
 const roster = () => {
   const people = [['김민준', '20231042', '경영학과', 'A-012', true, '접수 완료'], ['이서연', '20231107', '경영학과', 'A-013', true, '접수 완료'], ['박지후', '20220388', '국제통상학과', 'A-021', false, '접수 완료'], ['최하은', '20240215', '영어영문학과', 'B-004', true, '접수 완료'], ['정민재', '20230877', '컴퓨터공학과', 'B-011', true, '접수 완료'], ['한지아', '20230561', '컴퓨터공학과', 'B-012', false, '접수 완료'], ['오도윤', '20221190', '경제학과', '-', false, '취소'], ['윤채원', '20240033', '경제학과', 'C-002', true, '접수 완료']];
-  const rows = people.map(([n, id, dep, seat, sent, st]) => [K.checkOnly(n + ' 고르기'), `<div class="tp-row">${avatar(n, 28)}<span>${n}</span></div>`, T(id), dep, T(seat), `<span class="tp-row">${dot(sent ? 'positive' : 'warning')}${sent ? '보냄' : '안 보냄'}</span>`, badge(st, st === '취소' ? '' : 'informative'), iconBtn('ellipsis', '더 보기', { size: 'xsmall' })]);
+  const rows = people.map(([n, id, dep, seat, sent, st]) => [K.checkOnly(n + ' 고르기'), `<div class="tp-row">${avatar(n, 24)}<span>${n}</span></div>`, T(id), dep, T(seat), `<span class="tp-row">${dot(sent ? 'positive' : 'warning')}${sent ? '보냄' : '안 보냄'}</span>`, badge(st, st === '취소' ? '' : 'informative'), iconBtn('ellipsis', '더 보기', { size: 'xsmall' })]);
   const css = CSS;
   const main = `${head('응시자 관리', { tools: `${btn('명단 내려받기', { ic: 'download' })}${btn('수험표 보내기', { variant: 'brandSolid', ic: 'mail' })}` })}
 <main class="tp-content">
@@ -201,8 +201,8 @@ const groupDash = () => {
     ${card(`<div class="tp-between"><span class="tp-h3">회차별 평균</span>${legend([['우리 기관', 0], ['전체 응시자', 1]])}</div>${lineChart([{ name: '우리 기관', data: [648, 671, 688, 712] }, { name: '전체 응시자', data: [655, 660, 662, 668], dash: true }], { h: 200, x: ['3월', '6월', '9월', '12월'], label: '회차별 평균 점수' })}`)}
   </div>
   <div class="tp-g2">
-    ${card(`<div class="tp-between"><span class="tp-h3">점수가 오른 학생</span>${link('모두 보기')}</div><div class="tp-rows">${[['이서연', '경영학과', '+135점'], ['최하은', '영어영문학과', '+110점'], ['김민준', '경영학과', '+95점'], ['윤채원', '경제학과', '+80점']].map(([n, d, v], i) => `<div class="tp-rank"><span>${i + 1}</span><div class="tp-row">${avatar(n, 28)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div>${K.delta(v)}</div>`).join('')}</div>`)}
-    ${card(`<div class="tp-between"><span class="tp-h3">재응시가 필요한 학생</span>${badge('42명', 'warning')}</div><div class="tp-rows">${[['박지후', '국제통상학과', '612점'], ['정민재', '컴퓨터공학과', '598점'], ['한지아', '컴퓨터공학과', '575점']].map(([n, d, s]) => `<div class="tp-between"><div class="tp-row">${avatar(n, 28)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-amount">${s}</span></div>`).join('')}</div>${btn('안내 보내기', { variant: 'neutralSolid', ic: 'mail', fill: true })}`)}
+    ${card(`<div class="tp-between"><span class="tp-h3">점수가 오른 학생</span>${link('모두 보기')}</div><div class="tp-rows">${[['이서연', '경영학과', '+135점'], ['최하은', '영어영문학과', '+110점'], ['김민준', '경영학과', '+95점'], ['윤채원', '경제학과', '+80점']].map(([n, d, v], i) => `<div class="tp-rank"><span>${i + 1}</span><div class="tp-row">${avatar(n, 24)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div>${K.delta(v)}</div>`).join('')}</div>`)}
+    ${card(`<div class="tp-between"><span class="tp-h3">재응시가 필요한 학생</span>${badge('42명', 'warning')}</div><div class="tp-rows">${[['박지후', '국제통상학과', '612점'], ['정민재', '컴퓨터공학과', '598점'], ['한지아', '컴퓨터공학과', '575점']].map(([n, d, s]) => `<div class="tp-between"><div class="tp-row">${avatar(n, 24)}<div class="tp-stack"><span class="tp-item-title">${n}</span><span class="tp-caption">${d}</span></div></div><span class="tp-amount">${s}</span></div>`).join('')}</div>${btn('안내 보내기', { variant: 'neutralSolid', ic: 'mail', fill: true })}`)}
   </div>
 </main>`;
   return { slug: 'exam-group-dashboard', en: 'Group Score Dashboard', name: '단체 성적 대시보드', group: 'Exam', desc: '기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.', css, body: frame(orgNav(3), '성적 리포트', main) };

@@ -5,7 +5,7 @@ import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, select, chiptabs, segmented, avatar, link, thumb, pagination, sw, esc } = K;
 
 const MENU = ['홈', '카테고리', '혜택', '마이페이지'];
-const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const NAV = [
   ['쇼핑', [['주문 내역', 'list'], ['취소, 반품 내역', 'rotate-ccw'], ['찜한 상품', 'heart'], ['최근 본 상품', 'eye']]],
   ['혜택', [['쿠폰', 'tag'], ['포인트', 'star-solid']]],
@@ -14,13 +14,13 @@ const NAV = [
 const NAV_FLAT = NAV.flatMap(([, items]) => items.map(([t]) => t));
 
 const CSS = FRAME_CSS + `
-  /* 마이페이지 배치: 모바일 1열 + 위 칩 메뉴, 1024 부터 왼쪽 메뉴 200 | 본문 (커뮤니티와 같은 칸, 여백) */
+  /* 마이페이지 배치: 모바일 1열 + 위 칩 메뉴, 1280 부터 왼쪽 메뉴 200 | 본문 (커뮤니티와 같은 칸, 여백) */
   .tp-mp { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); padding-inline: var(--tp-gutter); }
   .tp-mp__main { display: flex; flex-direction: column; gap: var(--ds-space-x10); min-width: 0; }
   .tp-mp__nav { display: none; }
   .tp-mp__chips { overflow-x: auto; scrollbar-width: none; }
   @media (min-width: 768px) { .tp-mp { padding: var(--ds-space-x8) var(--ds-space-x6) var(--ds-space-x16); } }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-mp { grid-template-columns: 200px minmax(0, 1fr); gap: var(--ds-space-x10); }
     .tp-mp__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; box-sizing: border-box; min-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); padding-right: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }  /* 11-11 사용자 "좌우 레이아웃 분리": 설정 패널처럼 메뉴 칸 오른쪽 세로 선 */
     .tp-mp__chips { display: none; }
@@ -49,9 +49,6 @@ const CSS = FRAME_CSS + `
     .tp-oitem { grid-template-columns: 80px minmax(0, 1fr) 128px; }
     .tp-oitem__acts { grid-column: auto; flex-direction: column; }
   }
-  .tp-ostate { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-semibold); color: var(--ds-color-fg-neutral); }
-  .tp-ostate[data-tone="brand"] { color: var(--ds-color-fg-brand); }
-  .tp-ostate[data-tone="muted"] { color: var(--ds-color-fg-neutral-subtle); }
   /* 주문 묶음: 위 날짜와 주문 번호, 아래 상품 줄 (줄 사이 선은 줄 자체에) */
   .tp-order { display: flex; flex-direction: column; }
   .tp-order__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding-bottom: var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -79,12 +76,12 @@ ${main}
 </div></div>`;
 
 const ITEMS = [
-  ['product', 0, '무선 이어폰 프로 2세대', '화이트 / 1개', '189,000원', '배송 중', 'brand', ['배송 조회', '문의하기']],
+  ['product', 0, '무선 이어폰 프로 2세대', '화이트 / 1개', '189,000원', '배송 중', 'informative', ['배송 조회', '문의하기']],
   ['product', 2, '데일리 백팩 18L', '차콜 / 1개', '59,000원', '배송 완료', '', ['리뷰 쓰기', '교환, 반품']],
-  ['book', 1, '처음 시작하는 기록 습관', '1권', '16,800원', '구매 확정', 'muted', ['다시 담기']],
+  ['book', 1, '처음 시작하는 기록 습관', '1권', '16,800원', '구매 확정', '', ['다시 담기']],
   ['product', 4, '스테인리스 텀블러 500ml', '실버 / 2개', '38,000원', '상품 준비 중', '', ['주문 취소']],
 ];
-const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span class="tp-ostate"${tone ? ` data-tone="${tone}"` : ''}>${st}</span><span class="tp-name">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
+const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span>${K.badge(st, tone || 'neutral')}</span><span class="tp-name">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
 
 /* 1. 마이페이지 홈 ------------------------------------------------ */
 const home = () => {

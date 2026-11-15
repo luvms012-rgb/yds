@@ -121,7 +121,7 @@
     .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tp-hide-sm { display: revert; }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-body--panel { flex-direction: row; }
     .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -136,8 +136,10 @@
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  .tp-topbar .ds-topnav__menu { display: none; }
-  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
+  .tp-topbar > .ds-topnav { display: none; }
+  @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
+  .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
@@ -146,8 +148,8 @@
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
-  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) {
+  .tp-mbar { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) {
     .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mbar { display: none; }
   }
@@ -172,7 +174,7 @@
   @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-thumb-sm { flex: none; width: 96px; }
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+  @media (min-width: 1280px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
   .tp-pr-wrap { box-sizing: border-box; width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-pr-narrow { box-sizing: border-box; width: min(100%, var(--tp-narrow)); margin-inline: auto; }
@@ -187,7 +189,7 @@
   .tp-notes { display: flex; flex-direction: column; gap: var(--ds-space-x1_5); margin: 0; padding-inline-start: var(--ds-space-x5); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
 
   .tp-manage { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-manage { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+  @media (min-width: 1280px) { .tp-manage { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
   .tp-cardmark { display: grid; place-items: center; flex: none; width: 48px; height: 32px; border-radius: var(--ds-shape-xs); background: var(--ds-color-bg-neutral); }
 </style>
 </head>
@@ -214,7 +216,7 @@
       <section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-between"><div class="tp-row" style="gap: var(--ds-space-x3)"><span class="tp-cardmark"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span><span class="tp-stack"><span class="tp-h4">신용카드 **** 4821</span><span class="tp-caption">유효 기간 08/29</span></span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">바꾸기</button></div></section>
     </section>
     <section class="tp-sec" aria-labelledby="hist"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2" id="hist">결제 내역</h2></div><div class="tp-row"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>전체 내려받기</button></div></div>
-      <div class="tp-scroll-x"><div class="ds-table-wrap"><table class="ds-table" data-size="small"><caption class="tp-sr">결제 내역</caption><thead><tr><th scope="col">결제일</th><th scope="col">내용</th><th scope="col" data-align="right">금액</th><th scope="col">상태</th><th scope="col" data-align="center">영수증</th></tr></thead><tbody><tr><td><span class="tp-num">2026.10.09</span></td><td>프로 연 결제</td><td data-align="right"><span class="tp-num">94,800원</span></td><td><span class="ds-badge" data-tone="positive">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.10.09</span></td><td>프로 연 결제</td><td data-align="right"><span class="tp-num">94,800원</span></td><td><span class="ds-badge" data-tone="positive">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.09.09</span></td><td>베이직 월 결제</td><td data-align="right"><span class="tp-num">5,900원</span></td><td><span class="ds-badge" data-tone="positive">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.08.09</span></td><td>베이직 월 결제</td><td data-align="right"><span class="tp-num">5,900원</span></td><td><span class="ds-badge" data-tone="neutral">환불</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.07.09</span></td><td>베이직 월 결제</td><td data-align="right"><span class="tp-num">5,900원</span></td><td><span class="ds-badge" data-tone="positive">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr></tbody></table></div></div>
+      <div class="tp-scroll-x"><div class="ds-table-wrap"><table class="ds-table" data-size="small"><caption class="tp-sr">결제 내역</caption><thead><tr><th scope="col">결제일</th><th scope="col">내용</th><th scope="col" data-align="right">금액</th><th scope="col">상태</th><th scope="col" data-align="center">영수증</th></tr></thead><tbody><tr><td><span class="tp-num">2026.10.09</span></td><td>프로 연 결제</td><td data-align="right"><span class="tp-num">94,800원</span></td><td><span class="ds-badge" data-tone="neutral">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.10.09</span></td><td>프로 연 결제</td><td data-align="right"><span class="tp-num">94,800원</span></td><td><span class="ds-badge" data-tone="neutral">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.09.09</span></td><td>베이직 월 결제</td><td data-align="right"><span class="tp-num">5,900원</span></td><td><span class="ds-badge" data-tone="positive">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.08.09</span></td><td>베이직 월 결제</td><td data-align="right"><span class="tp-num">5,900원</span></td><td><span class="ds-badge" data-tone="neutral">환불</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr><tr><td><span class="tp-num">2025.07.09</span></td><td>베이직 월 결제</td><td data-align="right"><span class="tp-num">5,900원</span></td><td><span class="ds-badge" data-tone="positive">결제 완료</span></td><td data-align="center"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="영수증 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></td></tr></tbody></table></div></div>
     </section>
     <hr class="ds-divider">
     <div class="tp-between"><div class="tp-stack"><span class="tp-h4">구독 해지</span></div><button type="button" class="ds-btn" data-variant="ghost" data-size="small">구독 해지하기</button></div>

@@ -6,12 +6,12 @@ import { T, FRAME_CSS, topbar, selectbox, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, checkbox, divider, chip, chiptabs, tabs, segmented, table, avatar, link, breadcrumbs, search, accordion, list, listItem, textarea, thumb, photo, esc } = K;
 
 const MENU = ['강의', '교재', '시험', '센터', '고객센터'];
-const end = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const end = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const app = (cur, inner) => `<div class="tp-app">${topbar(MENU, cur, end)}${inner}</div>`;
 // 본문 + 오른쪽 요약 두 칸 (시험 신청과 같은 틀)
 const CSS = FRAME_CSS + `
   .tp-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-two { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
+  @media (min-width: 1280px) { .tp-two { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
   .tp-chips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
   .tp-total { display: flex; align-items: baseline; justify-content: space-between; }
   .tp-map { position: relative; overflow: hidden; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); min-height: 320px; display: grid; place-items: center; color: var(--ds-color-fg-neutral-subtle); }

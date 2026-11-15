@@ -19,7 +19,7 @@ const orderDetail = () => {
   const acts = [['주문 접수', '와이비엠 님이 주문했어요', '10.31 오후 2:04'], ['결제 완료', '카드 결제 89,500원', '10.31 오후 2:05'], ['메모 추가', '"선물 포장 부탁드려요"', '10.31 오후 2:06'], ['재고 확인 필요', '독서대 재고 1개 남음', '10.31 오후 4:30']];
   const css = `
   .tp-od { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-od { grid-template-columns: minmax(0, 1fr) 360px; } }
+  @media (min-width: 1280px) { .tp-od { grid-template-columns: minmax(0, 1fr) 360px; } }
   .tp-meta-line { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); }
   .tp-meta-line .tp-sep { color: var(--ds-color-stroke-neutral-weak); }
   .tp-line { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; padding-block: var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -37,7 +37,7 @@ const orderDetail = () => {
 <div class="tp-od">
   <main class="tp-content tp-wi__main">
     <section class="tp-sec">${secHead(`<span class="tp-row">상품 ${badge('배송 준비 전', 'warning')}</span>`, { tools: `${btn('송장 출력', { ic: 'printer' })}${btn('배송 처리', { variant: 'neutralSolid' })}` })}<div>${items.map(([n, p, q]) => `<div class="tp-line">${thumb('1:1', '', K.photo('book', BK++, 240))}<div class="tp-stack"><span class="tp-name">${n}</span><span class="tp-caption tp-num">${p} × ${q}</span></div><span class="tp-amount">${(parseInt(p.replace(/\D/g, '')) * q).toLocaleString()}원</span></div>`).join('')}</div></section>
-    <section class="tp-sec">${secHead('결제', { tools: badge('결제 완료', 'positive') })}${card(`${[['상품 금액', '89,000원'], ['배송비', '3,000원'], ['할인', '-2,500원']].map(([k, v]) => `<div class="tp-between"><span class="tp-sub">${k}</span>${T(v)}</div>`).join('')}${divider()}<div class="tp-between"><b>합계</b><b class="tp-num">89,500원</b></div>`)}</section>
+    <section class="tp-sec">${secHead('결제', { tools: badge('결제 완료') })}${card(`${[['상품 금액', '89,000원'], ['배송비', '3,000원'], ['할인', '-2,500원']].map(([k, v]) => `<div class="tp-between"><span class="tp-sub">${k}</span>${T(v)}</div>`).join('')}${divider()}<div class="tp-between"><b>합계</b><b class="tp-num">89,500원</b></div>`)}</section>
     <section class="tp-sec">${secHead('활동')}<ol class="tp-tl">${acts.map(([t, d, w]) => `<li><div class="tp-stack"><span class="tp-label">${t}</span><span class="tp-sub">${d}</span><span class="tp-caption">${w}</span></div></li>`).join('')}</ol></section>
   </main>
   <aside class="tp-panel">
@@ -52,7 +52,7 @@ const orderDetail = () => {
 const productDetail = () => {
   const css = `
   .tp-pd { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
-  @media (min-width: 1024px) { .tp-pd { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  @media (min-width: 1280px) { .tp-pd { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
   .tp-pd__media { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--ds-space-x2); }
   .tp-thumbs .ds-imageframe[aria-current="true"] { outline: 2px solid var(--ds-color-stroke-neutral-contrast); outline-offset: 2px; }

@@ -121,7 +121,7 @@
     .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tp-hide-sm { display: revert; }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-body--panel { flex-direction: row; }
     .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -136,8 +136,10 @@
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  .tp-topbar .ds-topnav__menu { display: none; }
-  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
+  .tp-topbar > .ds-topnav { display: none; }
+  @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
+  .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
@@ -146,8 +148,8 @@
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
-  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) {
+  .tp-mbar { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) {
     .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mbar { display: none; }
   }
@@ -172,12 +174,12 @@
   @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-thumb-sm { flex: none; width: 96px; }
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+  @media (min-width: 1280px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
   /* 가운데 한 줄 화면 (좁은 폭 720) */
   .tp-nw { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-two { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; } }
+  @media (min-width: 1280px) { .tp-two { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; } }
   .tp-inline { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x2); align-items: center; }
   .tp-inline > .ds-btn { white-space: nowrap; }
   .tp-meta { display: flex; flex-wrap: wrap; gap: var(--ds-space-x3); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-variant-numeric: tabular-nums; }
@@ -187,10 +189,10 @@
   .tp-map { display: grid; place-items: center; min-height: 200px; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-subtle); }
 
   .tp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-hero { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+  @media (min-width: 1280px) { .tp-hero { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
   .tp-banner { position: relative; overflow: hidden; border-radius: var(--ds-shape-xl); }
   .tp-banner .ds-imageframe { --ds-imageframe-ratio: 16 / 9; }
-  @media (min-width: 1024px) { .tp-banner .ds-imageframe { --ds-imageframe-ratio: 21 / 9; } }
+  @media (min-width: 1280px) { .tp-banner .ds-imageframe { --ds-imageframe-ratio: 21 / 9; } }
   .tp-banner__text { position: absolute; inset: auto var(--ds-space-x5) var(--ds-space-x5); display: flex; flex-direction: column; gap: var(--ds-space-x1); color: var(--ds-color-palette-static-white); }
   .tp-banner__text b { font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
   .tp-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--ds-color-palette-static-black-alpha-600), transparent 60%); pointer-events: none; }
@@ -198,19 +200,19 @@
   .tp-banner__ctrl { position: absolute; right: var(--ds-space-x4); top: var(--ds-space-x4); display: flex; align-items: center; gap: var(--ds-space-x1); padding: var(--ds-space-x1) var(--ds-space-x1) var(--ds-space-x1) var(--ds-space-x3); border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-black-alpha-600); color: var(--ds-color-palette-static-white); font-size: var(--ds-font-size-t03); font-variant-numeric: tabular-nums; }
   .tp-banner__ctrl .ds-btn { --ds-btn-fg: var(--ds-color-palette-static-white); }
   .tp-side { display: none; }
-  @media (min-width: 1024px) { .tp-side { display: flex; flex-direction: column; gap: var(--ds-space-x4); } }
+  @media (min-width: 1280px) { .tp-side { display: flex; flex-direction: column; gap: var(--ds-space-x4); } }
   .tp-quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-x4) var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
   @media (min-width: 768px) { .tp-quick { grid-template-columns: repeat(8, minmax(0, 1fr)); } }
   .tp-quick a { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x2); color: inherit; text-decoration: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); text-align: center; }
   .tp-quick span:first-child { display: grid; place-items: center; width: 52px; height: 52px; border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
   .tp-quick .ds-icon { --ds-icon-size: 24px; }
   .tp-g2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-g2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  @media (min-width: 1280px) { .tp-g2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
   .tp-dday { display: inline-flex; align-self: flex-start; padding: 2px var(--ds-space-x2); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-nrow { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); color: inherit; text-decoration: none; }
   .tp-nrow .tp-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tp-courses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x6) var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-courses { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 1280px) { .tp-courses { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .tp-course { display: flex; flex-direction: column; gap: var(--ds-space-x2); color: inherit; text-decoration: none; }
   .tp-course .tp-item-title { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .tp-scroll-x .ds-table { min-width: 560px; }
@@ -219,8 +221,8 @@
 <body>
 <div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
   <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">강의</a><a class="ds-topnav__item" href="#">교재</a><a class="ds-topnav__item" href="#">시험</a><a class="ds-topnav__item" href="#">센터</a><a class="ds-topnav__item" href="#">고객센터</a></nav></div>
-  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
-</header></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="알림"><i class="ds-icon ds-icon--bell" aria-hidden="true"></i></button><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+</header><header class="ds-appbar" data-platform="android"><div class="ds-appbar__left"><button type="button" class="ds-appbar__button" aria-label="메뉴 열기"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button></div><div class="ds-appbar__main"><a class="tp-appbar-logo" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a></div><div class="ds-appbar__right"><button type="button" class="ds-appbar__button" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button></div></header></div>
 <main class="tp-content">
   <h1 class="tp-sr">서비스 메인</h1>
   <div class="tp-hero">
@@ -233,9 +235,9 @@
   <nav aria-label="바로 가기"><ul class="tp-quick"><li><a href="#"><span><i class="ds-icon ds-icon--square-pen" aria-hidden="true"></i></span><span>시험 접수</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--id-card" aria-hidden="true"></i></span><span>수험표</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--chart-column" aria-hidden="true"></i></span><span>성적 조회</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--calendar-days" aria-hidden="true"></i></span><span>시험 일정</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--map-pin" aria-hidden="true"></i></span><span>고사장 찾기</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--play" aria-hidden="true"></i></span><span>강의</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span><span>교재</span></a></li><li><a href="#"><span><i class="ds-icon ds-icon--headset" aria-hidden="true"></i></span><span>고객센터</span></a></li></ul></nav>
   <div class="tp-g2">
     <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">시험 일정</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">전체 일정</a></div></div><div class="tp-scroll-x"><div class="ds-table-wrap"><table class="ds-table" data-size="small"><caption class="tp-sr">시험 일정</caption><thead><tr><th scope="col">회차</th><th scope="col">접수 기간</th><th scope="col">시험일</th><th scope="col" data-align="end">성적 발표</th></tr></thead><tbody><tr><td>제 112회</td><td><span class="tp-num">10.20 ~ 11.07</span></td><td><span class="tp-num">11.18 (수)</span></td><td data-align="end"><span class="tp-num">12.02</span></td></tr><tr><td>제 113회</td><td><span class="tp-num">11.10 ~ 11.28</span></td><td><span class="tp-num">12.14 (일)</span></td><td data-align="end"><span class="tp-num">12.26</span></td></tr><tr><td>제 114회</td><td><span class="tp-num">12.01 ~ 12.19</span></td><td><span class="tp-num">01.11 (일)</span></td><td data-align="end"><span class="tp-num">01.23</span></td></tr></tbody></table></div></div></section>
-    <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">공지</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">전체 보기</a></div></div><div class="ds-chiptabs" role="tablist" aria-label="공지 분류" data-inset="none"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true">전체</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">시험</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">접수</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">성적</button></div><div class="tp-rows"><a class="tp-nrow" href="#"><span class="tp-name">12월 정기 시험 고사장 추가 안내</span><span class="tp-caption tp-num">11.04</span></a><a class="tp-nrow" href="#"><span class="tp-name">11월 15일 새벽 서비스 점검</span><span class="tp-caption tp-num">11.03</span></a><a class="tp-nrow" href="#"><span class="tp-name">추가 접수 기간 안내 (제 113회)</span><span class="tp-caption tp-num">11.01</span></a><a class="tp-nrow" href="#"><span class="tp-name">제 110회 성적 발표 일정</span><span class="tp-caption tp-num">10.28</span></a><a class="tp-nrow" href="#"><span class="tp-name">신분증 인정 범위 변경</span><span class="tp-caption tp-num">10.21</span></a></div></section>
+    <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">공지</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a></div></div><div class="ds-chiptabs" role="tablist" aria-label="공지 분류" data-inset="none"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true">전체</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">시험</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">접수</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">성적</button></div><div class="tp-rows"><a class="tp-nrow" href="#"><span class="tp-name">12월 정기 시험 고사장 추가 안내</span><span class="tp-caption tp-num">11.04</span></a><a class="tp-nrow" href="#"><span class="tp-name">11월 15일 새벽 서비스 점검</span><span class="tp-caption tp-num">11.03</span></a><a class="tp-nrow" href="#"><span class="tp-name">추가 접수 기간 안내 (제 113회)</span><span class="tp-caption tp-num">11.01</span></a><a class="tp-nrow" href="#"><span class="tp-name">제 110회 성적 발표 일정</span><span class="tp-caption tp-num">10.28</span></a><a class="tp-nrow" href="#"><span class="tp-name">신분증 인정 범위 변경</span><span class="tp-caption tp-num">10.21</span></a></div></section>
   </div>
-  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">추천 강의</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">더 보기</a></div></div><div class="tp-courses"><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">처음 보는 듣기 시험 4주 완성</span><span class="tp-caption">와이비엠 강사</span></a><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">읽기 파트 문법 핵심 정리</span><span class="tp-caption">한빛 강사</span></a><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">말하기 시험 답변 틀 만들기</span><span class="tp-caption">와이비엠 강사</span></a><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">실전 모의고사 10회분 풀이</span><span class="tp-caption">한빛 강사</span></a></div></section>
+  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">추천 강의</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">더 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a></div></div><div class="tp-courses"><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">처음 보는 듣기 시험 4주 완성</span><span class="tp-caption">와이비엠 강사</span></a><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">읽기 파트 문법 핵심 정리</span><span class="tp-caption">한빛 강사</span></a><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">말하기 시험 답변 틀 만들기</span><span class="tp-caption">와이비엠 강사</span></a><a class="tp-course" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-item-title">실전 모의고사 10회분 풀이</span><span class="tp-caption">한빛 강사</span></a></div></section>
 </main></div>
 </body>
 </html>

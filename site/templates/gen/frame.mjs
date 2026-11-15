@@ -8,8 +8,10 @@ export const FRAME_CSS = `
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  .tp-topbar .ds-topnav__menu { display: none; }
-  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
+  .tp-topbar > .ds-topnav { display: none; }
+  @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
+  .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
@@ -18,8 +20,8 @@ export const FRAME_CSS = `
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
-  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) {
+  .tp-mbar { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) {
     .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mbar { display: none; }
   }
@@ -44,14 +46,17 @@ export const FRAME_CSS = `
   @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-thumb-sm { flex: none; width: 96px; }
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+  @media (min-width: 1280px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 `;
 
 const topItem = (t, cur) => `<a class="ds-topnav__item" href="#"${cur ? ' aria-current="page"' : ''}>${t}</a>`;
+// 모바일 위 막대: Top App Bar (왼쪽 메뉴 열기, 가운데 로고나 제목, 오른쪽 버튼)
+const abBtn = ([ic, label]) => `<button type="button" class="ds-appbar__button" aria-label="${esc(label)}">${icon(ic)}</button>`;
+export const appbar = (main, right = []) => `<header class="ds-appbar" data-platform="android"><div class="ds-appbar__left">${abBtn(['menu', '메뉴 열기'])}</div><div class="ds-appbar__main">${main}</div><div class="ds-appbar__right">${right.map(abBtn).join('')}</div></header>`;
 export const topbar = (menu, cur, end) => `<div class="tp-topbar"><header class="ds-topnav">
   <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴">${menu.map((t, i) => topItem(t, i === cur)).join('')}</nav></div>
   <div class="ds-topnav__end">${end}</div>
-</header></div>`;
+</header>${appbar(`<a class="tp-appbar-logo" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a>`, [['search', '찾기']])}</div>`;
 
 const sideItem = ([t, ic, cur]) => `<a class="ds-sidenav__item" href="#"${cur ? ' aria-current="page"' : ''}><span class="ds-sidenav__prefix">${icon(ic)}</span><span class="ds-sidenav__label">${t}</span></a>`;
 // groups: [[묶음 이름 | '', [[메뉴, 아이콘, 지금?], ...]], ...]
@@ -60,7 +65,7 @@ export const sidenav = (org, groups, footer = []) => `<nav class="ds-sidenav" ar
   <div class="ds-sidenav__content">${groups.map(([g, items]) => `<div class="ds-sidenav__group">${g ? `<div class="ds-sidenav__group-label">${g}</div>` : ''}${items.map(sideItem).join('')}</div>`).join('')}</div>
   ${footer.length ? `<div class="ds-sidenav__footer">${footer.map(sideItem).join('')}</div>` : ''}
 </nav>`;
-export const mbar = (title) => `<div class="tp-mbar"><span class="tp-h4">${title}</span><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="메뉴 열기">${icon('menu')}</button></div>`;
+export const mbar = (title) => `<div class="tp-mbar">${appbar(`<span class="ds-appbar__title">${title}</span>`)}</div>`;
 export const frame = (nav, title, main) => `<div class="tp-app tp-frame">${nav}<div class="tp-frame__main">${mbar(title)}${main}</div></div>`;
 
 export const selectbox = (name, items, cur = 0, { cols = 0, type = 'radio', vertical = false } = {}) => `<div class="ds-selectbox-group${cols ? ' tp-sb' + cols : ''}">${items.map(([l, d, ic], i) => `<label class="ds-selectbox"${vertical ? ' data-orientation="vertical"' : ''}>${ic ? icon(ic) : ''}<span class="ds-selectbox__texts"><span class="ds-selectbox__label">${l}</span>${d ? `<span class="ds-selectbox__desc">${d}</span>` : ''}</span>${type === 'radio' ? `<span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="${name}"${i === cur ? ' checked' : ''}></span>` : `<span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"${(Array.isArray(cur) ? cur.includes(i) : i === cur) ? ' checked' : ''}></span>`}</label>`).join('')}</div>`;

@@ -29,7 +29,7 @@ const ITEMS = [['TOEIC 실전 모의고사 1000제', '교재 / 2권 세트', '38
 const payment = () => {
   const css = FORM_CSS + `
   .tp-pay { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
-  @media (min-width: 1024px) { .tp-pay { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-pay__aside { position: sticky; top: var(--ds-space-x6); } }
+  @media (min-width: 1280px) { .tp-pay { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-pay__aside { position: sticky; top: var(--ds-space-x6); } }
 `;
   const body = `<div class="tp-app"><main class="tp-content">
   <div class="tp-pay">
@@ -64,7 +64,7 @@ const payment = () => {
 const checkoutWizard = () => {
   const css = FORM_CSS + `
   .tp-cw { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
-  @media (min-width: 1024px) { .tp-cw { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-cw__aside { position: sticky; top: var(--ds-space-x6); } }
+  @media (min-width: 1280px) { .tp-cw { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-cw__aside { position: sticky; top: var(--ds-space-x6); } }
   .tp-cart { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--ds-space-x4); padding-block: var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-promo { display: flex; gap: var(--ds-space-x2); align-items: flex-end; }
   .tp-promo .ds-field { flex: 1 1 auto; }
@@ -143,12 +143,12 @@ const wizard = () => {
 const vertical = () => {
   const css = FORM_CSS + `
   .tp-vw { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr); } }
+  @media (min-width: 1280px) { .tp-vw { grid-template-columns: 260px minmax(0, 1fr); } }
   .tp-vw__steps { padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) { .tp-vw__steps { padding: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-vw__steps .ds-stepper { position: sticky; top: var(--ds-space-x6); } }
+  @media (min-width: 1280px) { .tp-vw__steps { padding: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); } .tp-vw__steps .ds-stepper { position: sticky; top: var(--ds-space-x6); } }
   .tp-vw__main { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--tp-gutter) var(--ds-space-x12); }
   .tp-vw__help { display: none; }
-  @media (min-width: 1024px) { .tp-vw__help { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x6); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
+  @media (min-width: 1280px) { .tp-vw__help { display: flex; flex-direction: column; gap: var(--ds-space-x4); padding: var(--ds-space-x6); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-num-input { max-width: 160px; }
 `;
   const body = `<div class="tp-app">

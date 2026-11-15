@@ -7,7 +7,7 @@ import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, avatar, card, head, secHead, select, chiptabs, tabs, progress, thumb, photo, checkbox, pagination, link, esc } = K;
 
 const MENU = ['토익', '말하기', '영어', '일본어', '무료 강의', '로드맵'];
-const end = `${btn('MP3 음원', { size: 'xsmall', ic: 'headphones' })}${iconBtn('heart', '찜한 교재', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const end = `${btn('MP3 음원', { size: 'xsmall', ic: 'headphones' })}${iconBtn('heart', '찜한 교재', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const app = (cur, inner) => `<div class="tp-app">${topbar(MENU, cur, end)}${inner}</div>`;
 
 const CSS = FRAME_CSS + `
@@ -75,7 +75,7 @@ const list = () => {
   const css = CSS + `
   .tp-bl { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: start; }
   .tp-bl__filter { display: none; flex-direction: column; gap: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-bl { grid-template-columns: 220px minmax(0, 1fr); gap: var(--ds-space-x10); } .tp-bl__filter { display: flex; } .tp-bl__open { display: none; } }
+  @media (min-width: 1280px) { .tp-bl { grid-template-columns: 220px minmax(0, 1fr); gap: var(--ds-space-x10); } .tp-bl__filter { display: flex; } .tp-bl__open { display: none; } }
   .tp-bl__filter legend { padding: 0; margin-bottom: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-bold); }
   .tp-cnt { margin-inline-start: var(--ds-space-x1); color: var(--ds-color-fg-neutral-subtle); font-variant-numeric: tabular-nums; }
   .tp-brow { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: var(--ds-space-x4); align-items: start; padding-block: var(--ds-space-x5); }
@@ -114,7 +114,7 @@ ${head('토익 교재')}
 const audio = () => {
   const css = CSS + `
   .tp-ba { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: start; padding-bottom: var(--ds-space-x20); }
-  @media (min-width: 1024px) { .tp-ba { grid-template-columns: minmax(0, 1fr) 340px; gap: var(--ds-space-x10); } }
+  @media (min-width: 1280px) { .tp-ba { grid-template-columns: minmax(0, 1fr) 340px; gap: var(--ds-space-x10); } }
   .tp-ba__head { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--ds-space-x4); align-items: center; }
   .tp-ba__head .tp-row { flex-wrap: wrap; }
   .tp-trk { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; padding: var(--ds-space-x2) var(--ds-space-x2); border-radius: var(--ds-shape-md); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }

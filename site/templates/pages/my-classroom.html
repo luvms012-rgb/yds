@@ -121,7 +121,7 @@
     .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tp-hide-sm { display: revert; }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-body--panel { flex-direction: row; }
     .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -136,8 +136,10 @@
   /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  .tp-topbar .ds-topnav__menu { display: none; }
-  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
+  .tp-topbar > .ds-topnav { display: none; }
+  @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
+  .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
   .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
@@ -146,8 +148,8 @@
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
   .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
-  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) {
+  .tp-mbar { box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1280px) {
     .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mbar { display: none; }
   }
@@ -172,7 +174,7 @@
   @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-thumb-sm { flex: none; width: 96px; }
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
+  @media (min-width: 1280px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
   /* 영상 칸: 화면 모드와 상관없이 늘 검정 */
   .tp-video { position: relative; overflow: hidden; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: var(--ds-shape-xl); background: var(--ds-color-palette-static-black); color: var(--ds-color-palette-static-white); }
@@ -211,8 +213,8 @@
 <body>
 <div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
   <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">클래스</a><a class="ds-topnav__item" href="#">커뮤니티</a><a class="ds-topnav__item" href="#" aria-current="page">내 강의실</a></nav></div>
-  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 클래스"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
-</header></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 클래스"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="24" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+</header><header class="ds-appbar" data-platform="android"><div class="ds-appbar__left"><button type="button" class="ds-appbar__button" aria-label="메뉴 열기"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button></div><div class="ds-appbar__main"><a class="tp-appbar-logo" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a></div><div class="ds-appbar__right"><button type="button" class="ds-appbar__button" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button></div></header></div>
 <header class="tp-head">
   <div class="tp-head__texts"><h1 class="tp-h1">내 강의실</h1></div>
   
@@ -226,7 +228,7 @@
     <div class="ds-tabs" role="tablist" aria-label="내 클래스"><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="true">수강 중 4</button><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">완료 7</button><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">찜 12</button></div>
     <div class="tp-g4"><a class="tp-cls" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-caption">한지아</span></span><span class="tp-cls__title">영어 회의, 오늘부터 말하기</span></span><div class="tp-prog"><div class="ds-progress" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" aria-label="영어 회의, 오늘부터 말하기 진도" style="--ds-progress-value: 42%" data-size="small"></div><span class="tp-caption tp-num">42%</span></div></a><a class="tp-cls" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-caption">오도윤</span></span><span class="tp-cls__title">비즈니스 이메일 한 번에 쓰기</span></span><div class="tp-prog"><div class="ds-progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="비즈니스 이메일 한 번에 쓰기 진도" style="--ds-progress-value: 75%" data-size="small"></div><span class="tp-caption tp-num">75%</span></div></a><a class="tp-cls" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="ds-badge" data-tone="warning">D-12</span><span class="tp-caption">정민재</span></span><span class="tp-cls__title">토익 실전 900 전략</span></span><div class="tp-prog"><div class="ds-progress" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" aria-label="토익 실전 900 전략 진도" style="--ds-progress-value: 18%" data-size="small"></div><span class="tp-caption tp-num">18%</span></div></a><a class="tp-cls" href="#"><div class="ds-imageframe" data-ratio="16:9" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=720&q=70" alt="" loading="lazy"></span></div><span class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-caption">윤채원</span></span><span class="tp-cls__title">여행 영어 첫걸음</span></span><div class="tp-prog"><div class="ds-progress" role="progressbar" aria-valuenow="6" aria-valuemin="0" aria-valuemax="100" aria-label="여행 영어 첫걸음 진도" style="--ds-progress-value: 6%" data-size="small"></div><span class="tp-caption tp-num">6%</span></div></a></div>
   </section>
-  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">수료증</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">모두 보기</a></div></div>
+  <section class="tp-sec"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2">수료증</h2></div><div class="tp-row"><a class="ds-link" href="#" data-size="small">모두 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a></div></div>
     <section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-rows"><div class="tp-cert"><div class="tp-stack"><span class="tp-item-title">비즈니스 영어 프레젠테이션</span><span class="tp-caption"><span class="tp-num">2026.10.28</span> 발급</span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>받기</button></div><div class="tp-cert"><div class="tp-stack"><span class="tp-item-title">영어 문법 다시 보기</span><span class="tp-caption"><span class="tp-num">2026.09.14</span> 발급</span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>받기</button></div></div></section>
   </section>
 </main></div>

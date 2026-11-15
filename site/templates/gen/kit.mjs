@@ -116,7 +116,7 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
     .tp-g3, .tp-g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tp-hide-sm { display: revert; }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .tp-body--panel { flex-direction: row; }
     .tp-body--panel > .tp-panel { flex: none; width: 360px; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -208,9 +208,11 @@ export const btn = (label, { variant = 'neutralWeak', size = 'small', href, fill
 export const iconBtn = (ic, aria, { variant = 'ghost', size = 'small', attrs = '' } = {}) => `<button type="button" class="ds-btn" data-variant="${variant}" data-size="${size}" data-layout="iconOnly" aria-label="${esc(aria)}"${attrs ? ' ' + attrs : ''}>${icon(ic)}</button>`;
 export const badge = (t, tone = 'neutral', solid = false) => `<span class="ds-badge" data-tone="${tone}"${solid ? ' data-variant="solid"' : ''}>${t}</span>`;
 export const dot = (tone, label = '') => `<span class="ds-statusdot" data-tone="${tone}"${label ? ` role="img" aria-label="${esc(label)}"` : ' aria-hidden="true"'}></span>`;
-export const avatar = (name, size = 24) => `<span class="ds-avatar" data-size="${size}" role="img" aria-label="${esc(name)}"><span class="ds-avatar__initials" aria-hidden="true">${esc(name.slice(0, 1))}</span></span>`;
+// 크기는 DS 에 있는 값만(20, 24, 42, 48, 56, 64, 80, 96, 108). 36 은 기본이라 data-size 를 쓰지 않는다
+export const avatar = (name, size = 24) => `<span class="ds-avatar"${String(size) === '36' ? '' : ` data-size="${size}"`} role="img" aria-label="${esc(name)}"><span class="ds-avatar__initials" aria-hidden="true">${esc(name.slice(0, 1))}</span></span>`;
 export const avatars = (names, size = 24, more = 0) => `<div class="ds-avatar-group" data-size="${size}" role="group" aria-label="참여자">${names.map((n) => avatar(n, size)).join('')}${more ? `<span class="ds-avatar-group__overflow" role="img" aria-label="그 외 ${more}명">+${more}</span>` : ''}</div>`;
-export const link = (t, href = '#', size = 'small') => `<a class="ds-link" href="${href}"${size ? ` data-size="${size}"` : ''}>${t}</a>`;
+// 이동을 알리는 링크(모두 보기, 전체 보기, 더 보기)는 끝에 chevron-right (yds.txt 지킬 것)
+export const link = (t, href = '#', size = 'small') => `<a class="ds-link" href="${href}"${size ? ` data-size="${size}"` : ''}>${t}${/^(모두|전체|더) 보기$/.test(t) ? icon('chevron-right') : ''}</a>`;
 export const divider = () => `<hr class="ds-divider">`;
 // 고르기 칸과 입력칸은 large 52 / medium 40 두 가지뿐이라 small 은 medium 으로 받는다
 const field40 = (size) => (size === 'small' ? 'medium' : size);

@@ -7,7 +7,7 @@ const CSS = `
   .tp-gal { display: flex; flex-direction: column; gap: var(--ds-space-x10); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x10) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
   @media (min-width: 768px) { .tp-gal { padding: var(--ds-space-x16) var(--ds-space-x6) var(--ds-space-x24); } }
   .tp-hero-t { font-size: var(--ds-font-size-t12); line-height: var(--ds-line-height-t12); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
-  @media (min-width: 1024px) { .tp-hero-t { font-size: var(--ds-font-size-t14); line-height: var(--ds-line-height-t14); } }
+  @media (min-width: 1280px) { .tp-hero-t { font-size: var(--ds-font-size-t14); line-height: var(--ds-line-height-t14); } }
   .tp-lead { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); color: var(--ds-color-fg-neutral-muted); }
   .tp-center { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x4); text-align: center; }
   .tp-center .tp-lead { max-width: 640px; }
@@ -29,10 +29,10 @@ const HERO = {
 // 벽돌형 갤러리 사진: [비율, 제목]. 사진을 누르면 Lightbox 로 크게 본다
 const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 갤러리', group: 'Content', desc: '같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.', css: CSS + `
   .tp-pg-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); align-items: end; }
-  @media (min-width: 1024px) { .tp-pg-head { grid-template-columns: 2fr 1fr; } .tp-pg-head > :last-child { justify-self: end; } }
+  @media (min-width: 1280px) { .tp-pg-head { grid-template-columns: 2fr 1fr; } .tp-pg-head > :last-child { justify-self: end; } }
   .tp-grid3 { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: var(--ds-space-x6); }
   @media (min-width: 640px) { .tp-grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (min-width: 1024px) { .tp-grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1280px) { .tp-grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .tp-pcard__text { display: flex; flex-direction: column; gap: var(--ds-space-x1); }
   .tp-pcard__price { margin-top: var(--ds-space-x1); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.01em; }
   .tp-pcard { display: flex; flex-direction: column; gap: var(--ds-space-x3); color: inherit; text-decoration: none; }

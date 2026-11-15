@@ -43,7 +43,7 @@ ${head('연결된 계좌', { tools: `${btn('계좌 연결', { variant: 'neutralS
 
 /* 2. 필터 표 ----------------------------------------------------- */
 const filter = () => {
-  const groups = [['강남점', [['SJ-2139', '제빙기 작동 안 함', '김도윤', ['예정', 'informative'], ['critical', '긴급'], '11.13 오후 1:42'], ['SJ-2141', '주방 후드 소음', '이서연', ['진행', 'brand'], ['warning', '높음'], '11.13 오후 3:10'], ['SJ-2150', '냉장고 온도 경보', '김도윤', ['예정', 'informative'], ['critical', '긴급'], '11.14 오전 9:00']]], ['판교점', [['SJ-2102', '출입문 센서 교체', '박지후', ['완료', 'positive'], ['neutral', '보통'], '11.10 오전 11:20'], ['SJ-2118', '조명 일부 깜빡임', '최하은', ['진행', 'brand'], ['neutral', '보통'], '11.12 오후 2:30'], ['SJ-2133', '에어컨 필터 청소', '박지후', ['대기', 'neutral'], ['neutral', '낮음'], '11.15 오전 10:00']]], ['성수점', [['SJ-2097', '배수구 막힘', '정민재', ['완료', 'positive'], ['warning', '높음'], '11.09 오후 4:05'], ['SJ-2126', '키오스크 결제 오류', '한지아', ['진행', 'brand'], ['critical', '긴급'], '11.13 오전 8:40']]]];
+  const groups = [['강남점', [['SJ-2139', '제빙기 작동 안 함', '김도윤', ['예정', 'neutral'], ['critical', '긴급'], '11.13 오후 1:42'], ['SJ-2141', '주방 후드 소음', '이서연', ['진행', 'informative'], ['warning', '높음'], '11.13 오후 3:10'], ['SJ-2150', '냉장고 온도 경보', '김도윤', ['예정', 'neutral'], ['critical', '긴급'], '11.14 오전 9:00']]], ['판교점', [['SJ-2102', '출입문 센서 교체', '박지후', ['완료', 'neutral'], ['neutral', '보통'], '11.10 오전 11:20'], ['SJ-2118', '조명 일부 깜빡임', '최하은', ['진행', 'informative'], ['neutral', '보통'], '11.12 오후 2:30'], ['SJ-2133', '에어컨 필터 청소', '박지후', ['대기', 'warning'], ['neutral', '낮음'], '11.15 오전 10:00']]], ['성수점', [['SJ-2097', '배수구 막힘', '정민재', ['완료', 'neutral'], ['warning', '높음'], '11.09 오후 4:05'], ['SJ-2126', '키오스크 결제 오류', '한지아', ['진행', 'informative'], ['critical', '긴급'], '11.13 오전 8:40']]]];
   const css = TABLE_CSS + `
   .tp-ftable th:nth-child(2) { width: 40%; }
 `;
@@ -90,9 +90,9 @@ const inbox = () => {
   const css = TABLE_CSS + `
   /* 탭은 제목 묶음과 떼어 둔다(11-10 사용자 "탭을 위 그룹과 여백을 더 주어 분리") */
   .tp-ibx-tabs { padding-inline: var(--tp-gutter); margin-top: var(--ds-space-x6); }
-  @media (min-width: 1024px) { .tp-ibx-app { height: 100vh; } }
+  @media (min-width: 1280px) { .tp-ibx-app { height: 100vh; } }
   .tp-inbox { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); min-height: 0; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) { .tp-inbox { grid-template-columns: minmax(0, 1fr) 8px minmax(0, 1.5fr); } }
+  @media (min-width: 1280px) { .tp-inbox { grid-template-columns: minmax(0, 1fr) 8px minmax(0, 1.5fr); } }
   .tp-inbox__list { overflow: auto; }
   .tp-inbox__list .ds-table { border-top: 0; }  /* 진한 윗선 없이 칸 경계의 옅은 선 하나만 (카드 안 표와 같음) */
   .tp-inbox__list .ds-table th:first-child, .tp-inbox__list .ds-table td:first-child { box-sizing: content-box; width: 8px; padding-inline-end: var(--ds-space-x1); overflow: visible; }
@@ -104,9 +104,9 @@ const inbox = () => {
   .tp-inbox__when { justify-content: flex-end; white-space: nowrap; color: var(--ds-color-fg-neutral-muted); }
   .tp-handle { display: none; place-items: center; cursor: col-resize; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
   .tp-handle::after { content: ""; width: 4px; height: 32px; border-radius: 2px; background: var(--ds-color-stroke-neutral-weak); }
-  @media (min-width: 1024px) { .tp-handle { display: grid; } }
+  @media (min-width: 1280px) { .tp-handle { display: grid; } }
   .tp-read { display: flex; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; padding: var(--ds-space-x6) var(--tp-gutter) var(--ds-space-x10); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) { .tp-read { box-shadow: none; } }
+  @media (min-width: 1280px) { .tp-read { box-shadow: none; } }
   .tp-read__head { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-read__title { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--ds-space-x4); }
   .tp-read__title > .tp-row { flex: none; gap: var(--ds-space-x1); }

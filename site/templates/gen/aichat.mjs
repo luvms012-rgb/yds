@@ -32,7 +32,7 @@ const composer = (ph = '무엇이든 물어보세요', files = []) => `<form cla
 const conversation = () => {
   const css = CHAT_CSS + `
   .tp-artifact { display: none; flex: none; width: min(46%, 600px); flex-direction: column; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) { .tp-artifact { display: flex; } }
+  @media (min-width: 1280px) { .tp-artifact { display: flex; } }
   .tp-artifact__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-artifact__doc { flex: 1 1 auto; overflow: auto; padding: var(--ds-space-x6); }
   .tp-chat-head { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }

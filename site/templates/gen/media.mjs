@@ -6,9 +6,9 @@ import { T, FRAME_CSS, topbar, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, avatar, card, head, secHead, select, search, chiptabs, tabs, progress, thumb, photo, accordion, checks, link, divider, esc } = K;
 
 const OTT_MENU = ['홈', '시리즈', '영화', '강의', '내가 찜한 콘텐츠'];
-const ottEnd = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const ottEnd = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const CLASS_MENU = ['클래스', '커뮤니티', '내 강의실'];
-const classEnd = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('heart', '찜한 클래스', { size: 'xsmall' })}${avatar('와이비엠', 28)}`;
+const classEnd = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('heart', '찜한 클래스', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 
 const CSS = FRAME_CSS + `
   /* 영상 칸: 화면 모드와 상관없이 늘 검정 */
@@ -43,7 +43,7 @@ const video = (img, v = '38%', time = ['04:31', '12:08']) => `<div class="tp-vid
 const home = () => {
   const css = CSS + `
   .tp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x5); align-items: center; }
-  @media (min-width: 1024px) { .tp-hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--ds-space-x10); } }
+  @media (min-width: 1280px) { .tp-hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--ds-space-x10); } }
   .tp-hero__title { margin: 0; font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
   .tp-hero .tp-row { flex-wrap: wrap; }
 `;
@@ -72,7 +72,7 @@ const home = () => {
 const detail = () => {
   const css = CSS + `
   .tp-td { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: start; }
-  @media (min-width: 1024px) { .tp-td { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--ds-space-x10); } }
+  @media (min-width: 1280px) { .tp-td { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--ds-space-x10); } }
   .tp-td .tp-row { flex-wrap: wrap; }
   .tp-ep { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: var(--ds-space-x4); align-items: start; padding-block: var(--ds-space-x4); color: inherit; text-decoration: none; }
   .tp-ep + .tp-ep { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -124,12 +124,12 @@ const watch = () => {
     <div class="tp-wt__main">
       ${video(photo('study', 2, 1600), '24%', ['03:08', '13:42'])}
       <h1 class="tp-h1">영어 회의에서 바로 쓰는 표현 20가지</h1>
-      <div class="tp-channel"><div class="tp-row">${avatar('말하기 연구소', 40)}<div class="tp-stack"><span class="tp-item-title">말하기 연구소</span><span class="tp-caption">구독자 24만명</span></div>${btn('구독', { variant: 'neutralSolid' })}</div>
+      <div class="tp-channel"><div class="tp-row">${avatar('말하기 연구소', 42)}<div class="tp-stack"><span class="tp-item-title">말하기 연구소</span><span class="tp-caption">구독자 24만명</span></div>${btn('구독', { variant: 'neutralSolid' })}</div>
         <div class="tp-row">${btn('1.2만', { ic: 'thumbs-up', aria: '좋아요 1.2만' })}${btn('공유', { ic: 'share' })}${btn('저장', { ic: 'bookmark' })}</div></div>
       <div class="tp-about"><span class="tp-label">${T('조회수 18만회')} / ${T('2026.11.10')}</span><div class="tp-article"><p>회의를 시작할 때, 의견을 낼 때, 정리할 때 쓰는 표현을 상황별로 모았어요. 영상 아래 자막에서 문장을 바로 복사할 수 있어요.</p></div></div>
       <section class="tp-sec">${secHead('댓글 412', { level: 2, cls: 'tp-h3', tools: select('인기순', { aria: '댓글 정렬' }) })}
-        <div class="tp-cmt" style="align-items:center">${avatar('와이비엠', 32)}${K.input('wt-cmt', 'placeholder="댓글 쓰기" aria-label="댓글"')}</div>
-        ${[['한지아', '2일 전', '회의 마무리 표현이 특히 좋았어요. 다음 주 회의에서 바로 써 볼게요.', 128], ['오도윤', '5일 전', '자막을 켜고 두 번 보니 귀에 잘 들어와요.', 64]].map(([w, t, c, n]) => `<div class="tp-cmt">${avatar(w, 32)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-row"><span class="tp-label">${w}</span><span class="tp-caption">${t}</span></div><p>${c}</p><div class="tp-row">${btn(String(n), { variant: 'ghost', size: 'xsmall', ic: 'thumbs-up', aria: '좋아요 ' + n })}${btn('답글', { variant: 'ghost', size: 'xsmall' })}</div></div></div>`).join('')}
+        <div class="tp-cmt" style="align-items:center">${avatar('와이비엠', 36)}${K.input('wt-cmt', 'placeholder="댓글 쓰기" aria-label="댓글"')}</div>
+        ${[['한지아', '2일 전', '회의 마무리 표현이 특히 좋았어요. 다음 주 회의에서 바로 써 볼게요.', 128], ['오도윤', '5일 전', '자막을 켜고 두 번 보니 귀에 잘 들어와요.', 64]].map(([w, t, c, n]) => `<div class="tp-cmt">${avatar(w, 36)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-row"><span class="tp-label">${w}</span><span class="tp-caption">${t}</span></div><p>${c}</p><div class="tp-row">${btn(String(n), { variant: 'ghost', size: 'xsmall', ic: 'thumbs-up', aria: '좋아요 ' + n })}${btn('답글', { variant: 'ghost', size: 'xsmall' })}</div></div></div>`).join('')}
       </section>
     </div>
     <aside class="tp-stack" style="gap: var(--ds-space-x4)" aria-labelledby="wt-next">
@@ -192,10 +192,10 @@ const player = () => {
 const classDetail = () => {
   const css = CSS + `
   .tp-cd { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: start; }
-  @media (min-width: 1024px) { .tp-cd { grid-template-columns: minmax(0, 1fr) 360px; gap: var(--ds-space-x10); } }
+  @media (min-width: 1280px) { .tp-cd { grid-template-columns: minmax(0, 1fr) 360px; gap: var(--ds-space-x10); } }
   .tp-cd__main { display: flex; flex-direction: column; gap: var(--ds-space-x10); min-width: 0; }
   .tp-buy { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-buy { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } .tp-cd > .tp-buy { grid-column: 2; grid-row: 1 / span 2; } }
+  @media (min-width: 1280px) { .tp-buy { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } .tp-cd > .tp-buy { grid-column: 2; grid-row: 1 / span 2; } }
   .tp-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ds-space-x2); }
   .tp-price b { font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-price s { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t04); }
@@ -228,14 +228,14 @@ const classDetail = () => {
     ${thumb('16:9', '', photo('work', 2, 1200), 'xl')}
     ${buy}
     <div class="tp-cd__main">
-      <div class="tp-row">${avatar('한지아', 40)}<div class="tp-stack"><span class="tp-item-title">한지아</span><span class="tp-caption">비즈니스 영어 강사</span></div></div>
+      <div class="tp-row">${avatar('한지아', 42)}<div class="tp-stack"><span class="tp-item-title">한지아</span><span class="tp-caption">비즈니스 영어 강사</span></div></div>
       ${tabs(['클래스 소개', '커리큘럼', '강사', '수강평 1,204'], 0, '클래스 정보')}
       <section class="tp-sec">${secHead('이런 걸 배워요', { cls: 'tp-h3' })}${checks(['회의를 열고 닫는 기본 문장 40개', '의견을 내고 반대하는 표현', '회의 뒤 정리 메일 쓰기'])}</section>
       <section class="tp-sec">${secHead('커리큘럼', { cls: 'tp-h3', tools: `<span class="tp-caption">${T('3장, 24강')}</span>` })}<div>${accordion(chapters.map(([t, ls, open]) => [t, ls.map(([a, b, p]) => L(a, b, p)).join(''), open, `${ls.length}강`]))}</div></section>
       <section class="tp-sec">${secHead('강사', { cls: 'tp-h3' })}<div class="tp-row" style="align-items:flex-start; gap: var(--ds-space-x4)">${avatar('한지아', 56)}<div class="tp-stack" style="gap: var(--ds-space-x2)"><span class="tp-item-title">한지아</span><div class="tp-article"><p>외국계 회사에서 10년 동안 회의를 이끌었고, 지금은 직장인 영어 말하기를 가르쳐요.</p></div></div></div></section>
       <section class="tp-sec">${secHead('수강평', { cls: 'tp-h3', tools: select('최신순', { aria: '수강평 정렬' }) })}
         <div class="tp-score"><b>4.8</b>${rating('4.8', '1,204', 'medium')}</div>
-        <div>${[['오도윤', '11.08', '5.0', '회의 시작 문장만 외워도 첫마디가 훨씬 편해졌어요.'], ['윤채원', '11.02', '4.5', '강의가 짧아서 출퇴근길에 듣기 좋아요. 예문이 실제 회의 같아요.']].map(([w, d, v, c]) => `<div class="tp-rv">${avatar(w, 32)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-row"><span class="tp-label">${w}</span>${rating(v, '')}<span class="tp-caption">${T(d)}</span></div><p>${c}</p></div></div>`).join('')}</div>
+        <div>${[['오도윤', '11.08', '5.0', '회의 시작 문장만 외워도 첫마디가 훨씬 편해졌어요.'], ['윤채원', '11.02', '4.5', '강의가 짧아서 출퇴근길에 듣기 좋아요. 예문이 실제 회의 같아요.']].map(([w, d, v, c]) => `<div class="tp-rv">${avatar(w, 36)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-row"><span class="tp-label">${w}</span>${rating(v, '')}<span class="tp-caption">${T(d)}</span></div><p>${c}</p></div></div>`).join('')}</div>
       </section>
     </div>
   </div>

@@ -97,7 +97,7 @@ document.addEventListener('click', function (e) { var b = e.target.closest('[dat
 const checkout = () => {
   const css = PR_CSS + `
   .tp-sub-pay { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); }
-  @media (min-width: 1024px) { .tp-sub-pay { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-sub-pay__aside { position: sticky; top: var(--ds-space-x6); } }
+  @media (min-width: 1280px) { .tp-sub-pay { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .tp-sub-pay__aside { position: sticky; top: var(--ds-space-x6); } }
   .tp-sub-form { display: flex; flex-direction: column; gap: var(--ds-space-x5); min-width: 0; }
   .tp-sub-form .ds-selectbox__label { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); }
   .tp-pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
@@ -149,12 +149,12 @@ const checkout = () => {
 const manage = () => {
   const css = PR_CSS + `
   .tp-manage { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
-  @media (min-width: 1024px) { .tp-manage { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+  @media (min-width: 1280px) { .tp-manage { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
   .tp-cardmark { display: grid; place-items: center; flex: none; width: 48px; height: 32px; border-radius: var(--ds-shape-xs); background: var(--ds-color-bg-neutral); }
 `;
   const hist = [
-    ['2026.10.09', '프로 연 결제', '94,800원', badge('결제 완료', 'positive')],
-    ['2025.10.09', '프로 연 결제', '94,800원', badge('결제 완료', 'positive')],
+    ['2026.10.09', '프로 연 결제', '94,800원', badge('결제 완료')],
+    ['2025.10.09', '프로 연 결제', '94,800원', badge('결제 완료')],
     ['2025.09.09', '베이직 월 결제', '5,900원', badge('결제 완료', 'positive')],
     ['2025.08.09', '베이직 월 결제', '5,900원', badge('환불', 'neutral')],
     ['2025.07.09', '베이직 월 결제', '5,900원', badge('결제 완료', 'positive')],
