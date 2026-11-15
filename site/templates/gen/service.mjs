@@ -144,7 +144,7 @@ const book = () => {
       <div class="tp-stack" style="gap: var(--ds-space-x2)">${badge('신간', 'brand')}<h1 class="tp-h1">토익 실전 모의고사 1000제</h1>${tags(['어학연구소 지음', '2026.10', '384쪽'], 't4')}<span class="ds-rating" data-size="small" style="--ds-rating-value: 4.6" role="img" aria-label="5점 만점에 4.6점, 후기 214개"><span class="ds-rating__stars"></span><span class="ds-rating__value">4.6</span><span class="ds-rating__count">(214)</span></span></div>
       <div class="tp-row" style="align-items: baseline"><span class="tp-mid">${T('23,400원')}</span><span class="tp-caption" style="text-decoration: line-through">${T('26,000원')}</span>${badge('10%', 'critical')}</div>
       ${kvs([['ISBN', T('979-11-0000-000-0')], ['구성', '본책 + 해설집'], ['음원', 'MP3 무료']])}
-      <div class="tp-bk__buy">${btn('장바구니', { size: 'large' })}${btn('바로 구매', { variant: 'brandSolid', size: 'large' })}${iconBtn('heart', '찜하기', { variant: 'neutralWeak', size: 'large' })}</div>
+      <div class="tp-bk__buy">${btn('구매하기', { variant: 'brandSolid', size: 'large' })}${btn('미리보기', { size: 'large', ic: 'book-open' })}${iconBtn('heart', '찜하기', { variant: 'neutralWeak', size: 'large' })}</div>
     </div>
   </div>
   ${tabs(['자료', '목차', '소개'], 0, '교재 정보', { layout: 'hug', inset: 'none' })}

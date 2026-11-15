@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>설정 폼 - YDS 템플릿</title>
+<title>교재 로드맵 - YDS 템플릿</title>
 <link rel="stylesheet" href="../../../dist/ybm-ds.css">
 <script src="../../../dist/ybm-ds.js" defer></script>
 <script>/* 문서 사이트 미리보기 안에서는 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다) */try{var f=window.frameElement;if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))document.documentElement.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write('<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">')}}catch(e){}</script>
@@ -133,42 +133,81 @@
   }
   @media (min-width: 1280px) { .tp-g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
-  /* 설정 틀: 왼쪽 메뉴 + 오른쪽 내용. 설정 폼과 설정 패널이 함께 쓴다 */
-  .tp-sp { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
-  @media (min-width: 1024px) { .tp-sp { grid-template-columns: 280px minmax(0, 1fr); } }
-  .tp-sp__side { display: flex; flex-direction: column; gap: var(--ds-space-x3); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 1024px) { .tp-sp__side { padding: var(--ds-space-x8) var(--ds-space-x5); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); } }
-  .tp-sp__main { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, 720px); padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x12); }
-  @media (min-width: 1024px) { .tp-sp__main { padding: var(--ds-space-x8) var(--ds-space-x10); } }
-  .tp-snav { display: flex; flex-direction: column; gap: var(--ds-space-x1); }
-  .tp-snav__group { font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); padding: var(--ds-space-x3) var(--ds-space-x2) var(--ds-space-x1); }
-  .tp-snav__item { display: flex; align-items: center; gap: var(--ds-space-x2); width: 100%; min-height: 36px; padding: 0 var(--ds-space-x2); border: 0; border-radius: var(--ds-shape-sm); background: none; color: var(--ds-color-fg-neutral-muted); font: inherit; font-size: var(--ds-font-size-t04); text-align: left; text-decoration: none; cursor: pointer; }
-  .tp-snav__item:hover { background: var(--ds-color-bg-transparent-pressed); }
-  .tp-snav__item[aria-current="page"] { background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
-  .tp-srow { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x3); padding-block: var(--ds-space-x4); }
-  .tp-srow + .tp-srow { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  @media (min-width: 768px) { .tp-srow { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; } }
-  .tp-srow__label { display: flex; gap: var(--ds-space-x3); align-items: flex-start; }
-  .tp-srow__label > .ds-icon { margin-top: 2px; color: var(--ds-color-fg-neutral-muted); }
+  /* 위 메뉴 화면 */
+  .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
+  .tp-topbar .ds-topnav__menu { display: none; }
+  @media (min-width: 768px) { .tp-topbar .ds-topnav__menu { display: flex; } }
+  .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
+  .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
+  .tp-topbar ~ .tp-head, .tp-topbar ~ .tp-content { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
+  /* 옆 메뉴 화면 */
+  .tp-app.tp-frame { flex-direction: row; min-height: 100vh; }
+  .tp-frame .ds-sidenav__header { justify-content: flex-start; }
+  .tp-frame > .ds-sidenav { display: none; }
+  .tp-frame__main { display: flex; flex: 1 1 auto; flex-direction: column; min-width: 0; }
+  .tp-mbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+  @media (min-width: 1024px) {
+    .tp-frame > .ds-sidenav { display: flex; position: sticky; top: 0; flex: none; height: 100vh; background: var(--ds-color-bg-layer-default); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
+    .tp-mbar { display: none; }
+  }
+  .tp-org { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x2) var(--ds-space-x1); }
+  .tp-org__mark { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03-static); font-weight: var(--ds-font-weight-bold); }
+  /* 고르기 상자 칸 수: 모바일은 1칸(4칸은 2칸), 768 부터 지정한 칸 */
+  .tp-sb2, .tp-sb3 { --ds-selectbox-columns: 1; } .tp-sb4 { --ds-selectbox-columns: 2; }
+  @media (min-width: 768px) { .tp-sb2 { --ds-selectbox-columns: 2; } .tp-sb3 { --ds-selectbox-columns: 3; } .tp-sb4 { --ds-selectbox-columns: 4; } }
+  /* 옆으로 미는 표는 눌리지 않게 */
+  .tp-scroll-x .ds-table { min-width: 760px; }
+  /* 공통 조각 */
+  .tp-big { font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tp-mid { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .tp-rows { display: flex; flex-direction: column; }
+  .tp-rows > * { padding-block: var(--ds-space-x3); }
+  .tp-rows > * + * { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-kv { display: flex; justify-content: space-between; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-kv > :first-child { color: var(--ds-color-fg-neutral-muted); flex: none; }
+  .tp-kv > :last-child { text-align: end; }
+  .tp-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x4); }
+  .tp-stats > * { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
+  @media (min-width: 768px) { .tp-stats { grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); } .tp-stats > * + * { padding-inline-start: var(--ds-space-x4); box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
+  .tp-thumb-sm { flex: none; width: 96px; }
+  .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+  @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
-  .tp-sf-stick { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  @media (min-width: 1024px) { .tp-sf-stick { position: sticky; top: var(--ds-space-x8); } }
-  .tp-ssec { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
-  .tp-ssec > .ds-btn { align-self: flex-start; }
+  .tp-cover { --ds-imageframe-ratio: 3 / 4; }
+  .tp-book { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; color: inherit; text-decoration: none; }
+  .tp-book__title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }
+  .tp-book__price { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
+  .tp-tags { display: flex; flex-wrap: wrap; gap: var(--ds-space-x1); }
+  .tp-books { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x6) var(--ds-space-x4); }
+  @media (min-width: 768px) { .tp-books { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1280px) { .tp-books { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--ds-space-x8) var(--ds-space-x6); } }
+
+  .tp-road { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+  .tp-road > li { position: relative; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--ds-space-x4); padding-bottom: var(--ds-space-x10); }
+  .tp-road > li:last-child { padding-bottom: 0; }
+  .tp-road > li::before { content: ""; position: absolute; top: 40px; bottom: 0; left: 19px; width: 2px; background: var(--ds-color-stroke-neutral-muted); }
+  .tp-road > li:last-child::before { display: none; }
+  .tp-road__no { display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-on-neutral-solid); font-size: var(--ds-font-size-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
+  .tp-road__body { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
+  .tp-road__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); min-height: 40px; }
+  .tp-road .tp-books { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 768px) { .tp-road .tp-books { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 1280px) { .tp-road .tp-books { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 </style>
 </head>
 <body>
-<div class="tp-app">
-<div class="tp-sp">
-  <aside class="tp-sp__side"><div class="tp-sf-stick"><h1 class="tp-h2">설정</h1><nav class="tp-snav" aria-label="설정 메뉴"><a class="tp-snav__item" href="#" aria-current="page"><i class="ds-icon ds-icon--user ds-icon--sm" aria-hidden="true"></i>기본 정보</a><a class="tp-snav__item" href="#"><i class="ds-icon ds-icon--lock ds-icon--sm" aria-hidden="true"></i>비밀번호</a><a class="tp-snav__item" href="#"><i class="ds-icon ds-icon--bell ds-icon--sm" aria-hidden="true"></i>알림</a><a class="tp-snav__item" href="#"><i class="ds-icon ds-icon--shield-check ds-icon--sm" aria-hidden="true"></i>개인정보</a><a class="tp-snav__item" href="#"><i class="ds-icon ds-icon--smartphone ds-icon--sm" aria-hidden="true"></i>연결된 앱</a><a class="tp-snav__item" href="#"><i class="ds-icon ds-icon--credit-card ds-icon--sm" aria-hidden="true"></i>결제</a><a class="tp-snav__item" href="#"><i class="ds-icon ds-icon--sliders-horizontal ds-icon--sm" aria-hidden="true"></i>고급 설정</a></nav></div></aside>
-  <main class="tp-sp__main">
-    <section class="tp-ssec"><h2 class="tp-h2">기본 정보</h2><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="u-id">아이디</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="u-id" value="ybm" ></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="u-name">이름</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="u-name" value="와이비엠" ></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="u-mail">이메일</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="u-mail" value="ybm@example.com" type="email"></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="u-tel">휴대폰</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="u-tel" value="010-1234-5678" type="tel"></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="u-lang">언어</label></div><button type="button" class="ds-select" data-size="medium" id="u-lang" aria-haspopup="listbox" aria-expanded="false"><span class="ds-select__value">한국어</span></button></div><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="medium">저장</button></section>
-    <hr class="ds-divider">
-    <section class="tp-ssec"><h2 class="tp-h2">비밀번호 변경</h2><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="p-cur">지금 비밀번호</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="p-cur" type="password"></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="p-new">새 비밀번호</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="p-new" type="password"></div></div><div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="p-new2">새 비밀번호 확인</label></div><div class="ds-input" data-variant="outline" data-size="medium"><input class="ds-input__control" id="p-new2" type="password"></div></div><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="medium">비밀번호 변경</button></section>
-    <hr class="ds-divider">
-    <section class="tp-ssec"><h2 class="tp-h2">고급 설정</h2><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">데이터 내보내기 허용</span></label><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">2단계 인증</span></label><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">새 기기 로그인 알림</span></label><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">검색 엔진에 프로필 숨기기</span></label><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="medium">설정 저장</button></section>
-  </main>
-</div>
-</div>
+<div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
+  <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">토익</a><a class="ds-topnav__item" href="#">말하기</a><a class="ds-topnav__item" href="#">영어</a><a class="ds-topnav__item" href="#">일본어</a><a class="ds-topnav__item" href="#">무료 강의</a><a class="ds-topnav__item" href="#" aria-current="page">로드맵</a></nav></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall"><i class="ds-icon ds-icon--list-music" aria-hidden="true"></i>MP3 음원</button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 교재"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+</header></div>
+<header class="tp-head">
+  <div class="tp-head__texts"><h1 class="tp-h1">토익 교재 로드맵</h1></div>
+  
+</header>
+<main class="tp-content">
+  <div class="ds-chiptabs" role="tablist" aria-label="목표 점수" data-inset="none"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">처음 시작</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">600점 목표</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true">750점 목표</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false">900점 목표</button></div>
+  <ol class="tp-road"><li><span class="tp-road__no" aria-hidden="true">1</span><div class="tp-road__body"><div class="tp-road__head"><h2 class="tp-h3">1단계 단어 익히기</h2><span class="ds-badge" data-tone="neutral">2주</span></div><div class="tp-books"><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">MP3</span></span><span class="tp-book__title">토익 기출 단어장</span><span class="tp-caption">어학연구소</span></span></a></div></div></li><li><span class="tp-road__no" aria-hidden="true">2</span><div class="tp-road__body"><div class="tp-road__head"><h2 class="tp-h3">2단계 기본기 다지기</h2><span class="ds-badge" data-tone="neutral">4주</span></div><div class="tp-books"><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 입문 20일 완성</span><span class="tp-caption">한지아</span></span></a><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">MP3</span><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 단기 공략 750+</span><span class="tp-caption">어학연구소</span></span></a></div></div></li><li><span class="tp-road__no" aria-hidden="true">3</span><div class="tp-road__body"><div class="tp-road__head"><h2 class="tp-h3">3단계 영역별 보완</h2><span class="ds-badge" data-tone="neutral">3주</span></div><div class="tp-books"><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">MP3</span><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 기출 문제집 1000 듣기</span><span class="tp-caption">어학연구소</span></span></a><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">MP3</span><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 기출 문제집 1000 읽기</span><span class="tp-caption">어학연구소</span></span></a></div></div></li><li><span class="tp-road__no" aria-hidden="true">4</span><div class="tp-road__body"><div class="tp-road__head"><h2 class="tp-h3">4단계 실전 연습</h2><span class="ds-badge" data-tone="neutral">3주</span></div><div class="tp-books"><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 실전 1000 읽기</span><span class="tp-caption">어학연구소</span></span></a><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">MP3</span><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 기출 문제집 1000 읽기</span><span class="tp-caption">어학연구소</span></span></a><a class="tp-book" href="#"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div><span class="tp-stack"><span class="tp-tags"><span class="ds-badge" data-tone="neutral">MP3</span><span class="ds-badge" data-tone="neutral">무료 강의</span></span><span class="tp-book__title">토익 기출 문제집 1000 듣기</span><span class="tp-caption">어학연구소</span></span></a></div></div></li></ol>
+</main></div>
 </body>
 </html>

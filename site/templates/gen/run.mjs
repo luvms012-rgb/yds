@@ -5,20 +5,20 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { page } from './kit.mjs';
-import { PLACE } from './groups.mjs';
+import { PLACE, REMOVED } from './groups.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PAGES = path.join(HERE, '..', 'pages');
 const JSON_PATH = path.join(HERE, '..', '..', 'src', 'templates.json');
 const GROUPS = ['Dashboard', 'Table', 'Form', 'Settings', 'Login', 'Tools', 'Content', 'AI Chat', 'Gallery', 'Community', 'Pricing', 'My Page', 'Commerce', 'Exam', 'Education', 'Exam B2B', 'Learning B2B'];
-const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics', 'admin', 'media'];
+const MODS = ['dashboard', 'table', 'form', 'settings', 'login', 'tools', 'content', 'aichat', 'gallery', 'community', 'pricing', 'mypage', 'commerce', 'exam', 'service', 'learning', 'test', 'basics', 'admin', 'media', 'books'];
 
 const all = [];
 for (const m of MODS) {
   const f = path.join(HERE, m + '.mjs');
   if (!fs.existsSync(f)) continue;
   const { templates } = await import(pathToFileURL(f).href);
-  all.push(...templates);
+  all.push(...templates.filter((t) => !REMOVED.includes(t.slug)));  // 뺀 템플릿은 만들지 않는다 (groups.mjs REMOVED)
 }
 // 분류와 하위 분류는 groups.mjs 가 정본이다 (생성기의 group 값보다 우선)
 const unplaced = all.filter((t) => !PLACE[t.slug]).map((t) => t.slug);

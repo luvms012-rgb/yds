@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>빈 장바구니 - YDS 템플릿</title>
+<title>교재 음원 - YDS 템플릿</title>
 <link rel="stylesheet" href="../../../dist/ybm-ds.css">
 <script src="../../../dist/ybm-ds.js" defer></script>
 <script>/* 문서 사이트 미리보기 안에서는 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다) */try{var f=window.frameElement;if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))document.documentElement.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write('<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">')}}catch(e){}</script>
@@ -174,105 +174,53 @@
   .tp-aside-sticky { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   @media (min-width: 1024px) { .tp-aside-sticky { position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); } }
 
-  /* 쇼핑 배치: 가운데 1200, 1024 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
-  .tp-shop { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
-  .tp-shop__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
-  /* 단계 표시: 장바구니 > 주문 결제 > 주문 완료 */
-  .tp-steps { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); }
-  .tp-steps li { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); }
-  .tp-steps li + li::before { content: ''; width: 16px; height: 1px; margin-inline-end: var(--ds-space-x0_5); background: var(--ds-color-stroke-neutral-weak); }
-  .tp-steps b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); font-size: var(--ds-font-size-t01); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
-  .tp-steps [aria-current] { color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
-  .tp-steps [aria-current] b { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
-  .tp-cart { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  .tp-cart__main { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
-  .tp-cart__aside { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  .tp-cart__order { display: none; }
-  @media (min-width: 1024px) {
-    .tp-cart { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
-    .tp-cart__aside { position: sticky; top: 88px; }
-    .tp-cart__order { display: flex; }
-  }
-  /* 전체 고르기 줄 */
-  .tp-selbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
-  /* 무료 배송까지 남은 금액 */
-  /* 무료 배송까지 남은 금액: DS Callout 상자 안에 문구, 얇은 막대, 양 끝 금액 */
-  .tp-freeship__body { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
-  .tp-freeship b { font-weight: var(--ds-font-weight-bold); color: var(--ds-color-fg-brand); }
-  .tp-freeship__ends { display: flex; justify-content: space-between; font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); font-variant-numeric: tabular-nums; }
-  /* 배송 묶음과 상품 줄 */
-  .tp-grp.ds-card { gap: 0; }
-  .tp-grp__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding-bottom: var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-grp__head .tp-row { flex-wrap: wrap; }
-  .tp-item { display: grid; grid-template-columns: auto 72px minmax(0, 1fr) auto; grid-template-areas: "chk img info del" "chk ctl ctl ctl"; align-items: start; gap: var(--ds-space-x3); padding-block: var(--ds-space-x4); }
-  .tp-item + .tp-item { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-item:last-child { padding-bottom: 0; }
-  .tp-item__chk { grid-area: chk; padding-top: 2px; }
-  .tp-item__img { grid-area: img; }
-  .tp-item__info { grid-area: info; display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
-  .tp-item__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); color: var(--ds-color-fg-neutral); text-decoration: none; }
-  .tp-item__opt { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); }
-  .tp-item__del { grid-area: del; margin-top: -6px; }
-  .tp-item__ctl { grid-area: ctl; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
-  .tp-item__info > .ds-btn { align-self: flex-start; margin-top: var(--ds-space-x1); }
-  .tp-selbar .ds-checkbox { white-space: nowrap; }
-  .tp-only-md { display: none; }
-  .tp-price { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-  .tp-price__was { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); text-decoration: line-through; }
-  .tp-price__now { display: flex; align-items: baseline; gap: var(--ds-space-x1); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); }
-  .tp-off { color: var(--ds-color-fg-critical); }
-  .tp-item[data-soldout] :is(.tp-item__img, .tp-item__name, .tp-price) { opacity: 0.4; }
-  @media (min-width: 768px) {
-    .tp-item { grid-template-columns: auto 88px minmax(0, 1fr) auto auto; grid-template-areas: "chk img info ctl del"; align-items: center; column-gap: var(--ds-space-x4); }
-    .tp-item__chk { align-self: center; padding-top: 0; }
-    .tp-item__del { margin-top: 0; }
-    .tp-item__ctl { gap: var(--ds-space-x6); }
-    .tp-price { min-width: 140px; }
-    .tp-only-md { display: inline-flex; }
-  }
-  /* 결제 예정 금액 */
-  .tp-sum { display: flex; flex-direction: column; gap: var(--ds-space-x3); margin: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
-  .tp-sum > div { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ds-space-x3); }
-  .tp-sum dt { color: var(--ds-color-fg-neutral-muted); }
-  .tp-sum dd { margin: 0; text-align: end; }
-  .tp-sum__total { margin-top: var(--ds-space-x1); padding-top: var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-sum__total dt { color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
-  .tp-sum__total dd { font-size: var(--ds-font-size-t08); line-height: var(--ds-line-height-t08); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; }
-  .tp-tip { display: flex; align-items: flex-start; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); }
-  .tp-tip .ds-icon { flex: none; margin-top: 2px; --ds-icon-size: 16px; }
-  .tp-cart__order.ds-btn { width: 100%; }
-  /* 모바일 아래 고정 주문 막대 (1024 부터는 오른쪽 결제 금액의 버튼을 쓴다) */
-  .tp-orderbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  .tp-orderbar .tp-stack { gap: 0; }
-  .tp-orderbar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
-  @media (min-width: 1024px) { .tp-orderbar { display: none; } }
-  /* 안내 글 */
-  .tp-notes { display: flex; flex-direction: column; gap: var(--ds-space-x1_5); margin: 0; padding-inline-start: var(--ds-space-x5); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
-  /* 추천 상품 */
-  .tp-recs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x6) var(--ds-space-x4); }
-  @media (min-width: 768px) { .tp-recs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .tp-rec { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
-  .tp-rec__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); color: var(--ds-color-fg-neutral); text-decoration: none; }
-  /* 할인 없는 상품도 가격 줄 높이를 같게, 담기 버튼은 카드 맨 아래 한 줄로 */
-  .tp-rec .tp-price { align-items: flex-start; gap: 0; margin-top: calc(-1 * var(--ds-space-x1)); }
-  .tp-rec .tp-price__was { order: 2; }
-  .tp-rec .ds-btn { margin-top: auto; }
+  .tp-cover { --ds-imageframe-ratio: 3 / 4; }
+  .tp-book { display: flex; flex-direction: column; gap: var(--ds-space-x3); min-width: 0; color: inherit; text-decoration: none; }
+  .tp-book__title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }
+  .tp-book__price { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
+  .tp-tags { display: flex; flex-wrap: wrap; gap: var(--ds-space-x1); }
+  .tp-books { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x6) var(--ds-space-x4); }
+  @media (min-width: 768px) { .tp-books { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 1280px) { .tp-books { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--ds-space-x8) var(--ds-space-x6); } }
 
-  .tp-cart-empty { padding-block: var(--ds-space-x12); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral-weak-alpha); }
+  .tp-ba { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: start; padding-bottom: var(--ds-space-x20); }
+  @media (min-width: 1024px) { .tp-ba { grid-template-columns: minmax(0, 1fr) 340px; gap: var(--ds-space-x10); } }
+  .tp-ba__head { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--ds-space-x4); align-items: center; }
+  .tp-ba__head .tp-row { flex-wrap: wrap; }
+  .tp-trk { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; padding: var(--ds-space-x2) var(--ds-space-x2); border-radius: var(--ds-shape-md); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  .tp-trk[aria-current] { background: var(--ds-color-bg-neutral-weak-alpha); font-weight: var(--ds-font-weight-semibold); }
+  .tp-trk > span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tp-chap { padding: var(--ds-space-x4) var(--ds-space-x2) var(--ds-space-x1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-semibold); }
+  .tp-file-row { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+  /* 아래 고정 재생 막대 */
+  .tp-pbar { position: fixed; inset: auto 0 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
+  .tp-pbar__now { display: none; flex-direction: column; flex: none; width: 200px; min-width: 0; }
+  .tp-pbar__now b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); }
+  .tp-pbar .ds-progress { flex: 1 1 auto; min-width: 48px; }
+  .tp-pbar time { flex: none; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (min-width: 768px) { .tp-pbar__now { display: flex; } }
 </style>
 </head>
 <body>
 <div class="tp-app"><div class="tp-topbar"><header class="ds-topnav">
-  <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#">홈</a><a class="ds-topnav__item" href="#">카테고리</a><a class="ds-topnav__item" href="#">베스트</a><a class="ds-topnav__item" href="#">혜택</a></nav></div>
-  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 상품"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="장바구니"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
+  <div class="ds-topnav__left"><a class="ds-topnav__heading" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a><nav class="ds-topnav__menu" aria-label="주요 메뉴"><a class="ds-topnav__item" href="#" aria-current="page">토익</a><a class="ds-topnav__item" href="#">말하기</a><a class="ds-topnav__item" href="#">영어</a><a class="ds-topnav__item" href="#">일본어</a><a class="ds-topnav__item" href="#">무료 강의</a><a class="ds-topnav__item" href="#">로드맵</a></nav></div>
+  <div class="ds-topnav__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall"><i class="ds-icon ds-icon--list-music" aria-hidden="true"></i>MP3 음원</button><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찜한 교재"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button><span class="ds-avatar" data-size="28" role="img" aria-label="와이비엠"><span class="ds-avatar__initials" aria-hidden="true">와</span></span></div>
 </header></div>
-<main class="tp-shop" aria-label="장바구니">
-  <header class="tp-shop__head"><h1 class="tp-h1">장바구니</h1><ol class="tp-steps" aria-label="주문 단계"><li aria-current="step"><b>1</b>장바구니</li><li><b>2</b>주문 결제</li><li><b>3</b>주문 완료</li></ol></header>
-  <div class="ds-tabs" role="tablist" aria-label="배송 종류"><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="true">일반 배송 0</button><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">정기 배송 0</button></div>
-  <div class="tp-cart-empty"><div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i></span><p class="ds-empty__title">장바구니가 비어 있어요</p><div class="ds-empty__actions"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">찜한 상품 보기</button><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small">쇼핑 계속하기</button></div></div></div>
-  
-  <section class="tp-sec" aria-labelledby="recs"><div class="tp-sec-head"><div class="tp-sec-head__texts"><h2 class="tp-h2" id="recs">이런 상품은 어때요</h2></div></div><div class="tp-recs"><article class="tp-rec"><a href="#" tabindex="-1"><div class="ds-imageframe" data-ratio="1:1" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div></a><a class="tp-rec__name" href="#">가벼운 러닝화</a><div class="tp-price" style="align-items:flex-start"><span class="tp-price__was tp-num">99,000원</span><span class="tp-price__now"><span class="tp-off tp-num">20%</span><span class="tp-num">79,000원</span></span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i>담기</button></article><article class="tp-rec"><a href="#" tabindex="-1"><div class="ds-imageframe" data-ratio="1:1" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div></a><a class="tp-rec__name" href="#">즉석 카메라 필름 20장</a><div class="tp-price" style="align-items:flex-start"><span class="tp-price__now"><span class="tp-num">24,000원</span></span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i>담기</button></article><article class="tp-rec"><a href="#" tabindex="-1"><div class="ds-imageframe" data-ratio="1:1" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div></a><a class="tp-rec__name" href="#">원두 커피 200g</a><div class="tp-price" style="align-items:flex-start"><span class="tp-price__was tp-num">18,900원</span><span class="tp-price__now"><span class="tp-off tp-num">11%</span><span class="tp-num">16,900원</span></span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i>담기</button></article><article class="tp-rec"><a href="#" tabindex="-1"><div class="ds-imageframe" data-ratio="1:1" data-radius="lg" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=480&q=70" alt="" loading="lazy"></span></div></a><a class="tp-rec__name" href="#">가죽 시계줄 20mm</a><div class="tp-price" style="align-items:flex-start"><span class="tp-price__now"><span class="tp-num">19,800원</span></span></div><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill"><i class="ds-icon ds-icon--shopping-cart" aria-hidden="true"></i>담기</button></article></div></section>
+<main class="tp-content">
+  <div class="tp-ba">
+    <div class="tp-stack" style="gap: var(--ds-space-x5)">
+      <header class="tp-ba__head"><div class="ds-imageframe tp-cover" data-ratio="1:1" data-radius="md" aria-hidden="true"><span class="tp-ph"><img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=240&q=70" alt="" loading="lazy"></span></div><div class="tp-stack" style="gap: var(--ds-space-x2)"><h1 class="tp-h1">토익 기출 문제집 1000 듣기</h1><div class="tp-row"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>전체 내려받기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">교재 보기</button></div></div></header>
+      <div class="ds-tabs" role="tablist" aria-label="음원 종류" data-layout="hug" data-inset="none"><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="true">문제 음원 40</button><button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">단어장 음원 20</button></div>
+      <div><div class="tp-chap">Test 1</div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 1 사진 묘사 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 1 사진 묘사</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">03:12</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 1 사진 묘사 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-trk" aria-current="true"><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="xsmall" data-layout="iconOnly" aria-label="Part 2 질의응답 멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button><span>Part 2 질의응답</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">08:40</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 2 질의응답 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 3 짧은 대화 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 3 짧은 대화</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">17:25</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 3 짧은 대화 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 4 설명문 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 4 설명문</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">15:08</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 4 설명문 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-chap">Test 2</div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 1 사진 묘사 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 1 사진 묘사</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">03:05</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 1 사진 묘사 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 2 질의응답 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 2 질의응답</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">08:52</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 2 질의응답 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 3 짧은 대화 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 3 짧은 대화</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">17:10</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 3 짧은 대화 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-trk"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" data-layout="iconOnly" aria-label="Part 4 설명문 듣기"><i class="ds-icon ds-icon--play" aria-hidden="true"></i></button><span>Part 4 설명문</span><span class="tp-row"><span class="tp-caption"><span class="tp-num">15:21</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="Part 4 설명문 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div></div>
+    </div>
+    <aside class="tp-stack" style="gap: var(--ds-space-x3)" aria-labelledby="ba-files"><h2 class="tp-h3" id="ba-files">학습 자료</h2><section class="ds-card tp-card" data-variant="subtle" data-size="small"><div class="tp-rows"><div class="tp-file-row"><span class="tp-row" style="gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i><span>정답표</span></span><span class="tp-row"><span class="tp-caption"><span class="tp-num">0.2MB</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="정답표 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-file-row"><span class="tp-row" style="gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i><span>듣기 대본과 번역</span></span><span class="tp-row"><span class="tp-caption"><span class="tp-num">3.8MB</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="듣기 대본과 번역 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-file-row"><span class="tp-row" style="gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i><span>단어장</span></span><span class="tp-row"><span class="tp-caption"><span class="tp-num">1.1MB</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="단어장 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div><div class="tp-file-row"><span class="tp-row" style="gap: var(--ds-space-x3)"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i><span>연습용 답안지</span></span><span class="tp-row"><span class="tp-caption"><span class="tp-num">0.3MB</span></span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="연습용 답안지 내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button></span></div></div></section></aside>
+  </div>
 </main>
-</div>
+<div class="tp-pbar" role="group" aria-label="재생">
+  <button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="이전 음원"><i class="ds-icon ds-icon--chevrons-left" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="medium" data-layout="iconOnly" aria-label="멈춤"><i class="ds-icon ds-icon--pause-solid" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="다음 음원"><i class="ds-icon ds-icon--chevrons-right" aria-hidden="true"></i></button>
+  <div class="tp-pbar__now"><b>Part 2 질의응답</b><span class="tp-caption">Test 1</span></div>
+  <div class="ds-progress" role="progressbar" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100" aria-label="재생 위치" style="--ds-progress-value: 36%" data-tone="neutral" data-size="small"></div><time>03:08 / 08:40</time>
+  <button type="button" class="ds-btn" data-variant="ghost" data-size="small" aria-label="재생 속도 1.0배">1.0x</button>
+</div></div>
 </body>
 </html>

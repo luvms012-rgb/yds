@@ -30,6 +30,7 @@ const CSS = FRAME_CSS + `
   .tp-tile__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
   .tp-tile .ds-progress { margin-top: calc(var(--ds-space-x1) * -1); }
   .tp-rank { position: relative; }
+  .tp-poster { --ds-imageframe-ratio: 2 / 3; }
   .tp-rank__no { position: absolute; left: var(--ds-space-x2); bottom: var(--ds-space-x1); color: var(--ds-color-palette-static-white); font-size: var(--ds-font-size-t11); line-height: 1; font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-shadow: 0 1px 4px var(--ds-color-palette-static-black-alpha-500); }
   .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); }
   .tp-article { display: flex; flex-direction: column; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
@@ -62,7 +63,7 @@ const home = () => {
   </section>
   ${chiptabs(['전체', '시리즈', '영화', '다큐', '예능', '애니메이션', '강의'], 0, '분류')}
   <section class="tp-sec">${secHead('이어 보기', { tools: link('모두 보기') })}${shelf('이어 보기', cont.map(([t, th, i, s, v]) => tile(t, photo(th, i, 720), { sub: s, v })))}</section>
-  <section class="tp-sec">${secHead('오늘 많이 본 콘텐츠')}${shelf('오늘 많이 본 콘텐츠', top.map(([t, th, i], n) => `<a class="tp-tile" href="#" aria-label="${n + 1}위 ${t}"><div class="tp-rank">${thumb('2:3', '', photo(th, i, 480), 'lg')}<span class="tp-rank__no" aria-hidden="true">${n + 1}</span></div><span class="tp-tile__title">${t}</span></a>`), 'poster')}</section>
+  <section class="tp-sec">${secHead('오늘 많이 본 콘텐츠')}${shelf('오늘 많이 본 콘텐츠', top.map(([t, th, i], n) => `<a class="tp-tile" href="#" aria-label="${n + 1}위 ${t}"><div class="tp-rank">${thumb('1:1', 'tp-poster', photo(th, i, 480), 'lg')}<span class="tp-rank__no" aria-hidden="true">${n + 1}</span></div><span class="tp-tile__title">${t}</span></a>`), 'poster')}</section>
   <section class="tp-sec">${secHead('영어로 보는 다큐', { tools: link('모두 보기') })}${shelf('영어로 보는 다큐', docs.map(([t, th, i, s]) => tile(t, photo(th, i, 720), { sub: s })))}</section>
 </main></div>`;
   return { slug: 'video-home', en: 'Video Home', name: '영상 홈', group: 'Content', desc: '대표 작품과 이어 보기, 분류별 작품 줄을 모은 영상 서비스 첫 화면입니다. 보던 영상으로 바로 돌아가게 합니다.', css, body };

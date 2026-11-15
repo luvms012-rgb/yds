@@ -134,30 +134,6 @@
       }
     },
     {
-      "slug": "exam-group-roster",
-      "name": "응시자 관리",
-      "en": "Candidate Roster",
-      "group": "Exam",
-      "sub": "단체",
-      "desc": "단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3194:5129"
-      }
-    },
-    {
-      "slug": "exam-group-dashboard",
-      "name": "단체 성적 대시보드",
-      "en": "Group Score Dashboard",
-      "group": "Exam",
-      "sub": "단체",
-      "desc": "기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3195:3698"
-      }
-    },
-    {
       "slug": "learning-home",
       "name": "학습 홈",
       "en": "Learning Home",
@@ -189,18 +165,6 @@
       "sub": "찾기와 신청",
       "desc": "온라인 클래스의 소개, 커리큘럼, 강사, 수강평을 보고 신청하는 화면입니다. 가격과 신청 버튼은 넓은 화면에서 옆에 고정됩니다.",
       "rebuilt": true
-    },
-    {
-      "slug": "textbook-detail",
-      "name": "교재 상세",
-      "en": "Textbook Detail",
-      "group": "Learning",
-      "sub": "찾기와 신청",
-      "desc": "책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3194:4824"
-      }
     },
     {
       "slug": "lesson-plan",
@@ -236,18 +200,6 @@
       "rebuilt": true
     },
     {
-      "slug": "learning-dashboard",
-      "name": "학습 현황 대시보드",
-      "en": "Learning Dashboard",
-      "group": "Learning",
-      "sub": "수강",
-      "desc": "교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3195:5534"
-      }
-    },
-    {
       "slug": "consult-booking",
       "name": "상담 예약",
       "en": "Consultation Booking",
@@ -260,63 +212,63 @@
       }
     },
     {
-      "slug": "center-finder",
-      "name": "센터 찾기",
-      "en": "Center Finder",
-      "group": "Learning",
-      "sub": "센터",
-      "desc": "지역과 과정으로 가까운 센터를 찾고 상담을 예약하는 화면입니다.",
+      "slug": "book-home",
+      "name": "교재 홈",
+      "en": "Book Home",
+      "group": "Books",
+      "sub": "찾기",
+      "desc": "교재 찾기, 학습 지원 바로 가기, 새 교재, 단계별 추천을 모은 교재 사이트 첫 화면입니다. 찾기 칸을 맨 위에 둡니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "book-list",
+      "name": "교재 목록",
+      "en": "Book List",
+      "group": "Books",
+      "sub": "찾기",
+      "desc": "단계와 학습 지원 조건으로 교재를 고르는 목록 화면입니다. 교재마다 음원과 학습 자료로 바로 갑니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "textbook-detail",
+      "name": "교재 상세",
+      "en": "Textbook Detail",
+      "group": "Books",
+      "sub": "찾기",
+      "desc": "책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.",
       "rebuilt": true,
       "figma": {
-        "pc": "3168:45"
+        "pc": "3194:4824"
       }
     },
     {
-      "slug": "learning-admin",
-      "name": "과정 운영",
-      "en": "Course Operations",
-      "group": "Learning",
-      "sub": "운영",
-      "desc": "교육 담당자가 과정과 차수를 운영하는 화면입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3195:4885"
-      }
+      "slug": "book-audio",
+      "name": "교재 음원",
+      "en": "Book Audio",
+      "group": "Books",
+      "sub": "학습 지원",
+      "desc": "교재에 딸린 음원을 바로 듣거나 내려받는 화면입니다. 재생 막대는 아래에 고정하고 학습 자료는 옆에 모아 둡니다.",
+      "rebuilt": true
+    },
+    {
+      "slug": "book-roadmap",
+      "name": "교재 로드맵",
+      "en": "Book Roadmap",
+      "group": "Books",
+      "sub": "학습 지원",
+      "desc": "목표에 맞춰 어떤 교재를 어떤 순서로 볼지 단계별로 보여 주는 화면입니다. 처음 온 사람이 교재를 고르기 쉽게 합니다.",
+      "rebuilt": true
     },
     {
       "slug": "cart",
       "name": "장바구니",
       "en": "Cart",
-      "group": "Commerce",
-      "sub": "장바구니",
+      "group": "Payment",
+      "sub": "결제",
       "desc": "담은 상품을 확인하고 수량과 옵션을 바꾸는 장바구니입니다. 결제 예정 금액을 보며 바로 주문합니다.",
       "rebuilt": true,
       "figma": {
         "pc": "3191:4187"
-      }
-    },
-    {
-      "slug": "cart-empty",
-      "name": "빈 장바구니",
-      "en": "Empty Cart",
-      "group": "Commerce",
-      "sub": "장바구니",
-      "desc": "담은 상품이 없을 때의 장바구니입니다. 추천 상품을 보여 주어 쇼핑을 이어 가게 합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3193:2850"
-      }
-    },
-    {
-      "slug": "pricing-plans",
-      "name": "요금제 비교",
-      "en": "Pricing Plans",
-      "group": "Commerce",
-      "sub": "요금제",
-      "desc": "요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제의 가격을 바꿔 가며 비교합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3190:4103"
       }
     },
     {
@@ -353,6 +305,18 @@
       "rebuilt": true,
       "figma": {
         "pc": "3191:2497"
+      }
+    },
+    {
+      "slug": "pricing-plans",
+      "name": "요금제 비교",
+      "en": "Pricing Plans",
+      "group": "Payment",
+      "sub": "구독",
+      "desc": "요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제의 가격을 바꿔 가며 비교합니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3190:4103"
       }
     },
     {
@@ -476,18 +440,6 @@
       }
     },
     {
-      "slug": "settings",
-      "name": "설정 폼",
-      "en": "Settings Form",
-      "group": "Account",
-      "sub": "설정",
-      "desc": "모든 설정을 한 페이지에 이어 놓은 가장 단순한 설정 화면입니다. 설정 항목이 많지 않을 때 사용합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:2152"
-      }
-    },
-    {
       "slug": "settings-sidebar",
       "name": "설정 패널",
       "en": "Settings Panels",
@@ -497,18 +449,6 @@
       "rebuilt": true,
       "figma": {
         "pc": "3185:2481"
-      }
-    },
-    {
-      "slug": "settings-dialog",
-      "name": "설정 대화상자",
-      "en": "Settings Dialog",
-      "group": "Account",
-      "sub": "설정",
-      "desc": "보던 화면을 떠나지 않고 창 안에서 설정을 바꾸는 화면입니다. 바꾼 값은 바로 적용됩니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:1846"
       }
     },
     {
@@ -644,30 +584,6 @@
       }
     },
     {
-      "slug": "centered-hero",
-      "name": "가운데 히어로",
-      "en": "Centered Hero",
-      "group": "Content",
-      "sub": "메인과 이벤트",
-      "desc": "큰 제목과 버튼을 가운데 두고 아래에 넓은 사진을 놓은 첫 화면입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3188:3137"
-      }
-    },
-    {
-      "slug": "gallery-hero",
-      "name": "사진 히어로",
-      "en": "Gallery Hero",
-      "group": "Content",
-      "sub": "메인과 이벤트",
-      "desc": "제목 아래에 사진 여러 장을 모아 놓은 첫 화면입니다. 다양한 장면을 한 번에 보여 줄 때 사용합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3189:2214"
-      }
-    },
-    {
       "slug": "video-home",
       "name": "영상 홈",
       "en": "Video Home",
@@ -716,18 +632,6 @@
       }
     },
     {
-      "slug": "detail-page",
-      "name": "주문 상세",
-      "en": "Order Detail",
-      "group": "Content",
-      "sub": "상품",
-      "desc": "주문 한 건을 자세히 보고 처리하는 화면입니다. 상품과 진행 기록, 고객 정보를 한곳에서 확인합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3188:1915"
-      }
-    },
-    {
       "slug": "product-gallery",
       "name": "상품 갤러리",
       "en": "Product Gallery",
@@ -737,102 +641,6 @@
       "rebuilt": true,
       "figma": {
         "pc": "3189:2321"
-      }
-    },
-    {
-      "slug": "side-gallery",
-      "name": "필터 갤러리",
-      "en": "Side Gallery",
-      "group": "Content",
-      "sub": "상품",
-      "desc": "한쪽에 제목과 설명, 반대쪽에 사진 묶음을 둔 첫 화면입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3189:2646"
-      }
-    },
-    {
-      "slug": "library",
-      "name": "카드 그리드",
-      "en": "Card Grid",
-      "group": "Content",
-      "sub": "갤러리",
-      "desc": "카드를 훑어보며 원하는 항목을 찾는 목록 화면입니다. 분류 탭으로 범위를 좁힐 수 있습니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:2878"
-      }
-    },
-    {
-      "slug": "classic-gallery",
-      "name": "바둑판 갤러리",
-      "en": "Classic Gallery",
-      "group": "Content",
-      "sub": "갤러리",
-      "desc": "같은 비율의 사진을 바둑판처럼 배치한 갤러리입니다. 분류 탭으로 원하는 사진만 볼 수 있습니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3189:2157"
-      }
-    },
-    {
-      "slug": "mixed-gallery",
-      "name": "벽돌형 갤러리",
-      "en": "Mixed Gallery",
-      "group": "Content",
-      "sub": "갤러리",
-      "desc": "높이가 다른 사진을 자르지 않고 쌓아 올린 벽돌형 갤러리입니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3189:2256"
-      }
-    },
-    {
-      "slug": "documentation",
-      "name": "문서 목록",
-      "en": "Documentation Catalog",
-      "group": "Content",
-      "sub": "문서",
-      "desc": "문서 사이트의 첫 화면입니다. 분류별 카드로 원하는 문서에 바로 들어갑니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:3761"
-      }
-    },
-    {
-      "slug": "documentation-design",
-      "name": "디자인 문서",
-      "en": "Documentation Design",
-      "group": "Content",
-      "sub": "문서",
-      "desc": "설명 사이에 실제로 동작하는 예시를 넣은 디자인 문서입니다. 컴포넌트 사용법을 정리할 때 사용합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:4252"
-      }
-    },
-    {
-      "slug": "documentation-technical",
-      "name": "기술 문서",
-      "en": "Documentation Technical",
-      "group": "Content",
-      "sub": "문서",
-      "desc": "단계마다 번호와 코드를 붙인 따라 하기 문서입니다. 처음부터 끝까지 순서대로 따라가게 합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:4547"
-      }
-    },
-    {
-      "slug": "work-item-detail",
-      "name": "할 일 상세",
-      "en": "Work Item Detail",
-      "group": "Content",
-      "sub": "문서",
-      "desc": "할 일 하나를 자세히 보고 진행 상황을 공유하는 화면입니다. 하위 할 일과 댓글로 함께 일합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3188:2608"
       }
     },
     {
@@ -869,6 +677,30 @@
       "rebuilt": true,
       "figma": {
         "pc": "3170:147"
+      }
+    },
+    {
+      "slug": "learning-dashboard",
+      "name": "학습 현황 대시보드",
+      "en": "Learning Dashboard",
+      "group": "Admin",
+      "sub": "대시보드",
+      "desc": "교육 담당자가 전체 학습 현황을 보는 대시보드입니다. 마감이 가까운 미이수자를 바로 찾습니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3195:5534"
+      }
+    },
+    {
+      "slug": "exam-group-dashboard",
+      "name": "단체 성적 대시보드",
+      "en": "Group Score Dashboard",
+      "group": "Admin",
+      "sub": "대시보드",
+      "desc": "기관이 단체 응시 결과를 한눈에 보는 대시보드입니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3195:3698"
       }
     },
     {
@@ -923,6 +755,30 @@
       "rebuilt": true
     },
     {
+      "slug": "learning-admin",
+      "name": "과정 운영",
+      "en": "Course Operations",
+      "group": "Admin",
+      "sub": "처리",
+      "desc": "교육 담당자가 과정과 차수를 운영하는 화면입니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3195:4885"
+      }
+    },
+    {
+      "slug": "detail-page",
+      "name": "주문 상세",
+      "en": "Order Detail",
+      "group": "Admin",
+      "sub": "처리",
+      "desc": "주문 한 건을 자세히 보고 처리하는 화면입니다. 상품과 진행 기록, 고객 정보를 한곳에서 확인합니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3188:1915"
+      }
+    },
+    {
       "slug": "table-filter",
       "name": "필터 표",
       "en": "Filterable Table",
@@ -932,6 +788,18 @@
       "rebuilt": true,
       "figma": {
         "pc": "3172:2975"
+      }
+    },
+    {
+      "slug": "exam-group-roster",
+      "name": "응시자 관리",
+      "en": "Candidate Roster",
+      "group": "Admin",
+      "sub": "표",
+      "desc": "단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.",
+      "rebuilt": true,
+      "figma": {
+        "pc": "3194:5129"
       }
     },
     {
@@ -995,30 +863,6 @@
       }
     },
     {
-      "slug": "form-wizard-dialog",
-      "name": "대화상자 단계 폼",
-      "en": "Dialog Wizard",
-      "group": "Admin",
-      "sub": "단계 폼",
-      "desc": "보던 화면 위에 창을 띄워 짧은 단계를 진행하는 폼입니다. 화면을 떠나지 않고 간단한 설정을 마칠 때 사용합니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3184:5854"
-      }
-    },
-    {
-      "slug": "form-wizard-inline",
-      "name": "펼치는 단계 폼",
-      "en": "Inline Wizard",
-      "group": "Admin",
-      "sub": "단계 폼",
-      "desc": "모든 단계를 한 페이지에 펼쳐 놓고 차례로 입력하는 폼입니다. 끝난 단계는 입력한 내용만 짧게 보여 줍니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:1340"
-      }
-    },
-    {
       "slug": "form-wizard-vertical",
       "name": "세로 단계 폼",
       "en": "Vertical Wizard",
@@ -1028,66 +872,6 @@
       "rebuilt": true,
       "figma": {
         "pc": "3185:1492"
-      }
-    },
-    {
-      "slug": "kanban-board",
-      "name": "칸반 보드",
-      "en": "Kanban Board",
-      "group": "Admin",
-      "sub": "도구",
-      "desc": "할 일을 상태별 열에 카드로 배치한 보드입니다. 카드를 다른 열로 옮기면 상태가 바뀝니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:1658"
-      }
-    },
-    {
-      "slug": "editor",
-      "name": "페이지 편집기",
-      "en": "Page Editor",
-      "group": "Admin",
-      "sub": "도구",
-      "desc": "블록을 끌어다 놓아 페이지를 만드는 편집기입니다. 선택한 블록의 속성은 오른쪽에서 바꿉니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3187:2424"
-      }
-    },
-    {
-      "slug": "file-explorer",
-      "name": "파일 탐색기",
-      "en": "File Explorer",
-      "group": "Admin",
-      "sub": "도구",
-      "desc": "폴더를 열 때마다 옆 칸에 이어 보여 주는 파일 탐색기입니다. 깊은 폴더도 경로를 놓치지 않고 찾아갑니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:3220"
-      }
-    },
-    {
-      "slug": "canvas-editor",
-      "name": "캔버스 편집기",
-      "en": "Canvas Editor",
-      "group": "Admin",
-      "sub": "도구",
-      "desc": "정해진 크기의 화면 위에서 디자인하는 편집기입니다. 레이어와 속성을 양옆에 둡니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:2936"
-      }
-    },
-    {
-      "slug": "ide",
-      "name": "코드 편집기",
-      "en": "IDE",
-      "group": "Admin",
-      "sub": "도구",
-      "desc": "파일 목록, 편집 창, 터미널을 한 화면에 둔 코드 편집기입니다. 칸마다 크기를 바꾸고 접을 수 있습니다.",
-      "rebuilt": true,
-      "figma": {
-        "pc": "3185:3514"
       }
     }
   ]
