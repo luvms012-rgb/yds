@@ -361,7 +361,7 @@
         {
           "id": "17:87",
           "type": "COMPONENT_SET",
-          "variants": 36
+          "variants": 54
         }
       ],
       "doc": "2481:1903",
@@ -568,7 +568,7 @@
         {
           "id": "282:1996",
           "type": "COMPONENT_SET",
-          "variants": 12
+          "variants": 18
         }
       ],
       "doc": "2481:1721",

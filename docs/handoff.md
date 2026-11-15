@@ -1,6 +1,12 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-15 집 Mac. 마지막 배포 `57a51b8f`(이 인수인계 커밋 앞), 버전 v1.2.0(태그, v1.2.0 뒤 변경은 최신 주소에만 있다: Avatar 40, 템플릿 규칙 맞춤, 안내서 문장). 커밋 안 된 변경 없음. 시작은 `git pull` 뒤 이 파일. 지난 기록은 [log.md](log.md) 에서 필요할 때만.
+- 갱신: 2026-11-15 밤 집 Mac. 커밋은 했고 배포(push)는 아직 안 함(사용자 "배포" 때). 시작은 `git pull` 뒤 이 파일. 지난 기록은 [log.md](log.md) 에서 필요할 때만.
+
+## 한 것 (11-15 밤, 커밋만 함, 배포 전)
+
+- **사이트**: 상단 메뉴 지금 페이지 글자 SemiBold(695b44f4). AI 요청 글을 안내서 문장 / 주소 / 요청 세 줄로 통일하고 안내 문장에 "[ ] 안에 자유롭게" 추가(템플릿 요청 글 포함, 6a3c7b42).
+- **템플릿 사진과 내용(1184d4d2)**: 사용자 "더미 이미지가 연관성이 없어 이질감, YBM 계열사 검토". YBM 화면(강의와 강사, 수강생, 시험, 교재, 듣기와 말하기, 어학연수, 비즈니스 영어)에 맞춰 kit.mjs `PHOTOS` 를 모두 교육 장면으로 바꿨다(lecture, study, exam, book, listen, campus, work, person 등, Unsplash 34장 모두 열림 확인). 영상 템플릿은 어학연수 다큐와 강의로, 커뮤니티 4쪽은 영어 공부 커뮤니티로(사용자 고름), 장바구니, 주문, 상품 갤러리는 교재와 학습 용품으로(합계 다시 계산), 서비스 메인 배너는 시험장 사진.
+- **Figma(진행 중, 사용자 "피그마 작업 우선 후순위로 보류")**: Get Started 프레임 3069:2 를 사이트와 같게(구조 카드 문구, 절 리드 문장 3개, 요청 글 3개, v1.2.0 고정 탭). 폼 필드 바탕 bg/layer-default 48변형(underline 제외), Badge xlarge 18개(세 크기 높이 20/24/28 로 CSS 와 같게, 위아래 여백 0), Accordion inset=default/none(인라인 6개 추가), Avatar 와 Avatar Group, Overflow 42 → 40, Image Frame 3:4, 2:3, 아이콘 표 편집 묶음에 volume-2, captions, headphones. components.json 변형 수 Badge 54, Accordion 18. 템플릿: 뺀 21개 프레임 지움(사용자 확인), 새 13쪽 빈 COMPONENT(3422:4591 ~ 3422:4603, templates.json figma.pc 에 넣음, 페이지 왼쪽 x -6000), 76쪽을 사이트(새 사진)로 다시 그리는 중 1 ~ 62번째까지 그림(groups.mjs 순서, 바탕 bg/canvas 까지).
 
 ## 한 것 (11-14 ~ 11-15, 모두 배포됨)
 
@@ -15,11 +21,11 @@
 ## 남은 일
 
 0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만, 바꾼 묶음마다 따로 커밋. 다음 버전을 올릴 때(`node sync.mjs release 1.2.1` 또는 1.3.0, 사용자 확인 뒤) v1.2.0 뒤 변경이 고정 주소에 들어간다.
-1. **Figma 한 번에 맞추기**(편집 계정 luvms@ybm.co.kr 로 연결된 PC, 사용자가 싱크를 걸 때, yds-figma-draw 스킬):
-   - 템플릿: 뺀 21개 프레임 지우기(지우기 전 사용자 확인), 새 13쪽 그리기(book-home, book-list, book-audio, book-roadmap, video-home, video-title-detail, video-watch, video-player, class-detail, my-classroom, admin-request-list, admin-request-detail, admin-request-form), 섹션 이름 Commerce → Books 와 groups.mjs 순서, 규칙 맞춤(Top App Bar, 상태 Badge 색, 화살표), lesson-plan 방식 줄은 칩.
-   - 컴포넌트 세트: Avatar 와 Avatar Group 42 → 40, Image Frame 3:4, 2:3, Radio Group 가로 예시, 아이콘 3개, Accordion inset none, Badge xlarge(18개), 폼 필드 바탕 bg/layer-default(underline 은 투명).
-   - 문서 프레임: 예시 정리 51개 반영과 지침 줄 맞춤(accordion, empty, prefix-select, quantity-picker, bottom-sheet, menu-sheet, pagination, progress, progress-circle, image-frame, skeleton, carousel 외 2차 39개는 git log 참고), 새 지침 6줄(Chip, Help Bubble, List, Markdown, Radio Group, Image Frame), Get Started 구조 카드 문구, 코드 링크 줄 번호(`node sync.mjs links`).
-   - 작은 차이(필요할 때만): Text Link 화살표 변형 없음, Carousel 멈춤 버튼 상태, play/pause 채운 모양, 예전 템플릿 사진 칸 회색. 라이브러리 다시 게시는 사용자.
+1. **Figma 이어서(보류 중, 사용자가 다시 말할 때)**: 편집 계정 luvms@ybm.co.kr, yds-figma-draw 스킬.
+   - 템플릿 그리기 나머지: groups.mjs 순서 63 ~ 76번째. Templates 페이지 x -9000 의 `_payload 0 ~ 75` 사각형(3423:3423 + 순번)에 자료가 이미 올라가 있고, 공유 데이터 `yds/tplbatch` 로 `B(시작, 끝)` 을 돌리면 이어서 그린다(0부터 센 번호, 끝은 포함 안 함). 사이트를 그 사이에 고쳤으면 자료를 다시 만들어 올린다.
+   - 그린 뒤: 사진 칸 목록이 공유 데이터 `yds/tplimgs`([노드 id, U:사진] 목록)에 쌓여 있다 → 사진을 받아 upload_assets nodeIds 로 넣기. 경고가 난 쪽 확인(my-classroom, book-audio, video-home, video-title-detail). 넘침과 글자 대조 검사. 섹션 9개를 groups.mjs 순서로 다시 묶고 Commerce 섹션 이름을 Books 로, 새 13쪽(x -6000)도 섹션 안으로. 끝나면 `_payload` 76개와 공유 데이터(unpack, tplrun, tplbatch, tplimgs) 지우기.
+   - 문서 프레임: 예시 정리 51개 반영과 지침 줄 맞춤(git log 의 11-13 ~ 11-15 예시 정리 커밋), 새 지침 6줄(Chip, Help Bubble, List, Markdown, Radio Group, Image Frame), Radio Group 가로 예시, Badge xlarge 와 Accordion inset 예시, 코드 링크 줄 번호(75곳 밀림, `node sync.mjs links`).
+   - 작은 차이(필요할 때만): Text Link 화살표 변형 없음, Carousel 멈춤 버튼 상태, play/pause 채운 모양. Avatar 40 의 상태 점은 rescale 로 약 15 가 됐다(CSS 16). 라이브러리 다시 게시는 사용자.
 2. **toeic 브랜드 다크 버튼 대비 3.64**(기준 4.5): 색 값 결정이라 사용자에게 묻는다.
 3. **사용자 결정 대기**: 사내 확산(하려는 일 카드 6개의 구성과 위치, 토큰 대조표, 디자이너 역할 경계), 점검표 B(값이 섞인 속성 5건), 남은 템플릿 후보(오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역, 오류, 점검, 알림 목록, 기간별 통계 표, 월 달력 출석, 날짜별 명단, 좌석 배치도), 템플릿 UI 전체 개선(방향을 줄 때까지 짚은 화면만).
 4. **YBM Family 세션**: 속성 이름 정리(221b77b6) 알리기, Carousel 이동 버튼 세로 위치 변수 `--ds-carousel-button-top` 과 좁은 화면 이동 버튼 숨기기 요청 검토.

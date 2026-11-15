@@ -164,7 +164,10 @@
       "group": "Learning",
       "sub": "찾기와 신청",
       "desc": "온라인 클래스의 소개, 커리큘럼, 강사, 수강평을 보고 신청하는 화면입니다. 가격과 신청 버튼은 넓은 화면에서 옆에 고정됩니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4591"
+      }
     },
     {
       "slug": "lesson-plan",
@@ -197,7 +200,10 @@
       "group": "Learning",
       "sub": "수강",
       "desc": "수강 중인 클래스와 진도, 수료증을 모은 학습자 화면입니다. 마지막에 듣던 강의를 맨 위에 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4592"
+      }
     },
     {
       "slug": "consult-booking",
@@ -218,7 +224,10 @@
       "group": "Books",
       "sub": "찾기",
       "desc": "교재 찾기, 학습 지원 바로 가기, 새 교재, 단계별 추천을 모은 교재 사이트 첫 화면입니다. 찾기 칸을 맨 위에 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4593"
+      }
     },
     {
       "slug": "book-list",
@@ -227,7 +236,10 @@
       "group": "Books",
       "sub": "찾기",
       "desc": "단계와 학습 지원 조건으로 교재를 고르는 목록 화면입니다. 교재마다 음원과 학습 자료로 바로 갑니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4594"
+      }
     },
     {
       "slug": "textbook-detail",
@@ -248,7 +260,10 @@
       "group": "Books",
       "sub": "학습 지원",
       "desc": "교재에 딸린 음원을 바로 듣거나 내려받는 화면입니다. 재생 막대는 아래에 고정하고 학습 자료는 옆에 모아 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4595"
+      }
     },
     {
       "slug": "book-roadmap",
@@ -257,7 +272,10 @@
       "group": "Books",
       "sub": "학습 지원",
       "desc": "목표에 맞춰 어떤 교재를 어떤 순서로 볼지 단계별로 보여 주는 화면입니다. 처음 온 사람이 교재를 고르기 쉽게 합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4596"
+      }
     },
     {
       "slug": "cart",
@@ -590,7 +608,10 @@
       "group": "Content",
       "sub": "영상",
       "desc": "대표 작품과 이어 보기, 분류별 작품 줄을 모은 영상 서비스 첫 화면입니다. 보던 영상으로 바로 돌아가게 합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4597"
+      }
     },
     {
       "slug": "video-title-detail",
@@ -599,7 +620,10 @@
       "group": "Content",
       "sub": "영상",
       "desc": "작품 하나의 정보와 시즌별 회차를 보여 주는 상세 화면입니다. 본 회차와 이어 볼 회차를 진행 막대로 구분합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4598"
+      }
     },
     {
       "slug": "video-watch",
@@ -608,7 +632,10 @@
       "group": "Content",
       "sub": "영상",
       "desc": "영상을 보며 채널, 설명, 댓글을 함께 보는 시청 화면입니다. 다음에 볼 영상은 옆에 모아 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4599"
+      }
     },
     {
       "slug": "video-player",
@@ -617,7 +644,10 @@
       "group": "Content",
       "sub": "영상",
       "desc": "영상을 화면 가득 채워 보는 플레이어입니다. 조작 막대와 다음 화는 아래에 모아 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4600"
+      }
     },
     {
       "slug": "product-detail",
@@ -734,7 +764,10 @@
       "group": "Admin",
       "sub": "처리",
       "desc": "들어온 요청을 상태별로 보고 처리할 것을 고르는 관리자 목록입니다. 신청, 승인, 진행, 완료처럼 단계가 있는 요청에 사용합니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4601"
+      }
     },
     {
       "slug": "admin-request-detail",
@@ -743,7 +776,10 @@
       "group": "Admin",
       "sub": "처리",
       "desc": "요청 하나의 내용과 처리 단계를 보고 댓글로 주고받는 관리자 화면입니다. 담당자와 진행률은 오른쪽에 모아 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4602"
+      }
     },
     {
       "slug": "admin-request-form",
@@ -752,7 +788,10 @@
       "group": "Admin",
       "sub": "처리",
       "desc": "관리자 사이트에서 새 요청을 한 화면에 적어 보내는 등록 폼입니다. 넓은 화면에서는 라벨을 왼쪽에 둡니다.",
-      "rebuilt": true
+      "rebuilt": true,
+      "figma": {
+        "pc": "3422:4603"
+      }
     },
     {
       "slug": "learning-admin",
