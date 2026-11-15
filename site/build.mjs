@@ -309,6 +309,8 @@ function sideNav(section, file, root) {
 </aside>`;
 }
 
+// 사이트 찾기 범위 (site.js 의 종류 이름과 같다)
+const SEARCH_SCOPES = [['all', '전체'], ['comp', '컴포넌트'], ['tpl', '템플릿'], ['found', 'Foundations'], ['token', '토큰'], ['icon', '아이콘'], ['start', '시작하기']];
 const iconBtn = (attrs, label, inner) => `<button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="${esc(label)}" ${attrs}>${inner}</button>`;
 // Best Practices 표 - [할 것(true) / 하지 말 것(false), 문장]
 const practices = (items) => table(['구분', '내용'], [...items.filter(([ok]) => ok), ...items.filter(([ok]) => !ok)].map(([ok, text]) => [`<b class="ds-badge site-practice" data-tone="${ok ? 'positive' : 'critical'}">${ok ? 'Do' : 'Don\'t'}</b>`, inline(text)]));
@@ -379,6 +381,7 @@ ${desc ? `<meta property="og:description" content="${esc(desc)}">
     ${NAV.map(([k, l, h]) => `<a class="site-topnav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('\n    ')}
   </nav>
   <div class="site-top__end">
+    ${iconBtn('data-ds-open="site-search" aria-keyshortcuts="Control+K Meta+K"', '찾기', '<i class="ds-icon ds-icon--search" aria-hidden="true"></i>')}
     ${iconBtn('data-site-theme-toggle', '화면 모드 바꾸기', '<i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-theme-btn"')}
     ${iconLink(FIGMA_HOME, 'Figma 파일', 'site-i--figma', ' site-only-wide')}
     ${iconLink(GITHUB, 'GitHub 저장소', 'site-i--github', ' site-only-wide')}
@@ -397,6 +400,12 @@ ${footer}
 </main>
 ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">${hasToc ? `<nav><span class="site-toc__indicator" aria-hidden="true"></span>${heads.map(([id, t]) => `<a href="#${id}">${esc(t)}</a>`).join('')}</nav>` : ''}</aside>` : ''}
 </div>
+<dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
+  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input><kbd class="ds-command__kbd site-search__esc">Esc</kbd></div>
+  <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>
+  <div class="ds-command__list" id="site-search-list" role="listbox" aria-label="찾은 결과" data-site-search-list data-root="${root}"></div>
+  <div class="site-search__keys" aria-hidden="true"><span><kbd class="ds-command__kbd">↑</kbd><kbd class="ds-command__kbd">↓</kbd>이동</span><span><kbd class="ds-command__kbd">Enter</kbd>열기</span><span><kbd class="ds-command__kbd">Esc</kbd>닫기</span></div>
+</dialog>
 </body>
 </html>
 `;
@@ -1285,3 +1294,39 @@ ${themesJson.map((t) => `- [${t.name} ${t.slug}](${PUBLIC}/dist/themes/${t.slug}
   console.log(`  ✔ 마크다운 ${n}쪽, yds.txt, yds-full.txt`);
 }
 console.log(`  ✔ 사이트 ${written.length}쪽 생성 (컴포넌트 ${comps.length}, 템플릿 ${templates.length})`);
+
+// ---------------------------------------------------------------- 사이트 찾기 목록
+// 2026-11-15 사용자 "검색 기능, 레퍼런스 A B 검색을 고려해서 유용하게": 상단 돋보기와 Ctrl/Command + K 가 여는 창(site.js "사이트 찾기")이
+// 처음 열 때 이 파일을 읽는다. 한 줄 = [종류, 이름, 주소(site/ 기준), 한 줄 설명, 더 찾을 낱말]
+{
+  const items = [];
+  const add = (type, title, url, desc = '', keys = '') => items.push([type, title, url, String(desc || '').replace(/\s+/g, ' ').trim(), keys]);
+  const read = (f) => fs.readFileSync(path.join(SITE, f), 'utf8');
+  const heads = (f) => [...read(f).matchAll(/<h2 id="([^"]+)">([^<]+)/g)].map((m) => [m[1], m[2].trim()]);
+  const first = (s) => String(s || '').split(/(?<=다\.) /)[0];
+  // 시작하기: 절마다
+  for (const [id, t] of heads('index.html')) add('start', t, `index.html#${id}`, 'Get Started');
+  // Foundations: 쪽과 절
+  for (const p of MD_PAGES.filter((x) => x.file.startsWith('foundations/'))) {
+    add('found', p.title, p.file, p.desc);
+    for (const [id, t] of heads(p.file)) if (!['overview', 'related', 'code', 'guide'].includes(id)) add('found', `${p.title} / ${t}`, `${p.file}#${id}`, '');
+  }
+  // 컴포넌트: 이름, 설명, 한글 낱말 / 예시는 제목마다 (컴포넌트 쪽 예시 절로)
+  for (const p of MD_PAGES.filter((x) => x.section === 'components' && !x.file.endsWith('index.html'))) {
+    add('comp', p.title, p.file, p.desc, SEARCH_KO[p.title] || '');
+    const slug = path.basename(p.file, '.html');
+    for (const e of EXAMPLES[slug] || []) if (e.title) add('ex', `${p.title} / ${e.title}`, `${p.file}#examples`, first(plain(inline(e.desc || ''))), SEARCH_KO[p.title] || '');
+  }
+  // 템플릿: 이름, 영어 이름, 분류
+  for (const t of templates) add('tpl', t.name, `templates/${t.slug}.html`, first(t.desc), `${t.en} ${TPL_GROUP_KO[t.group] || ''} ${t.sub || ''}`);
+  // 토큰: Foundations 표에 나오는 이름, 처음 나온 쪽으로
+  const seen = new Set();
+  for (const f of ['color-roles', 'color-palette', 'typography', 'spacing', 'shape', 'elevation', 'motion', 'breakpoint'].map((s) => `foundations/${s}.html`)) {
+    const title = (MD_PAGES.find((x) => x.file === f) || {}).title || '';
+    for (const m of read(f).matchAll(/<code>(--ds-[a-z0-9-]+)<\/code>/g)) if (!seen.has(m[1])) { seen.add(m[1]); add('token', m[1], `${f}#t=${m[1]}`, title); }
+  }
+  // 아이콘: 이름과 쓰임 (아이콘 Library 의 찾기 칸에 넣어 연다)
+  for (const [g, m] of ICON_GROUPS) for (const [n, use] of Object.entries(m)) add('icon', n, `foundations/icons-library.html#q=${n}`, use, g);
+  fs.writeFileSync(path.join(SITE, 'assets/search.json'), JSON.stringify(items));
+  console.log(`  ✔ 사이트 찾기 목록 ${items.length}개 (assets/search.json)`);
+}

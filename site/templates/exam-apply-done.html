@@ -14,9 +14,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=dd672371">
+<link rel="stylesheet" href="../assets/site.css?v=5a275fb6">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=dd672371" defer></script>
+<script src="../assets/site.js?v=5a275fb6" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -30,6 +30,7 @@
     <a class="site-topnav__item" href="../updates.html" data-site-updates>Updates</a>
   </nav>
   <div class="site-top__end">
+    <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기" data-ds-open="site-search" aria-keyshortcuts="Control+K Meta+K"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
     <button type="button" class="ds-btn site-theme-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="화면 모드 바꾸기" data-site-theme-toggle><i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i></button>
     <a class="ds-btn site-only-wide" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener" aria-label="Figma 파일"><i class="ds-icon site-i--figma" aria-hidden="true"></i></a>
     <a class="ds-btn site-only-wide" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="https://github.com/luvms012-rgb/yds" target="_blank" rel="noopener" aria-label="GitHub 저장소"><i class="ds-icon site-i--github" aria-hidden="true"></i></a>
@@ -92,5 +93,11 @@ https://luvms012-rgb.github.io/yds/site/templates/pages/exam-apply-done.html</co
 </main>
 
 </div>
+<dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
+  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input><kbd class="ds-command__kbd site-search__esc">Esc</kbd></div>
+  <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-search-scope="all">전체</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="comp">컴포넌트</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="tpl">템플릿</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="found">Foundations</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="token">토큰</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="icon">아이콘</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="start">시작하기</button></div></div>
+  <div class="ds-command__list" id="site-search-list" role="listbox" aria-label="찾은 결과" data-site-search-list data-root="../"></div>
+  <div class="site-search__keys" aria-hidden="true"><span><kbd class="ds-command__kbd">↑</kbd><kbd class="ds-command__kbd">↓</kbd>이동</span><span><kbd class="ds-command__kbd">Enter</kbd>열기</span><span><kbd class="ds-command__kbd">Esc</kbd>닫기</span></div>
+</dialog>
 </body>
 </html>

@@ -865,3 +865,129 @@ document.addEventListener("click", function (e) {
   };
   if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { say("링크를 복사했어요", true); }, legacy); else legacy();
 });
+
+/* 사이트 찾기 (2026-11-15): 상단 돋보기, Ctrl/Command + K. 창과 키보드(위아래, Enter, Esc)는 DS Command Palette 가 맡고,
+   여기서는 assets/search.json 을 읽어 결과를 그린다. 레퍼런스 B 처럼 범위 칩과 종류별 묶음, 찾은 글자 강조, 레퍼런스 A 처럼 한 줄 결과와 종류 표시 */
+(function () {
+  "use strict";
+  var box = document.getElementById("site-search");
+  if (!box) return;
+  var list = box.querySelector("[data-site-search-list]");
+  var input = box.querySelector("[data-site-search-input]");
+  var ROOT = list.getAttribute("data-root") || "";
+  var TYPES = { comp: ["컴포넌트", "layout-grid"], tpl: ["템플릿", "monitor"], ex: ["예시", "code"], found: ["Foundations", "palette"], token: ["토큰", "tag"], icon: ["아이콘", "image"], start: ["시작하기", "book-open"] };
+  var ORDER = ["comp", "tpl", "ex", "found", "token", "icon", "start"];
+  var SCOPE = { all: ORDER, comp: ["comp", "ex"], tpl: ["tpl"], found: ["found"], token: ["token"], icon: ["icon"], start: ["start"] };
+  var RECENT = "ybm-site-search-recent";
+  var data = null, loading = null, scope = "all";
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function norm(s) { return String(s || "").toLowerCase(); }
+  function load() {
+    if (data || loading) return loading;
+    loading = fetch(ROOT + "assets/search.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (a) {
+      data = a.map(function (x) { return { type: x[0], title: x[1], url: x[2], desc: x[3], keys: x[4], t: norm(x[1]), k: norm(x[4]), d: norm(x[3]) }; });
+      render();
+    }).catch(function () { list.innerHTML = '<p class="ds-command__empty">찾기 목록을 불러오지 못했어요. 새로 고친 뒤 다시 열어 주세요.</p>'; });
+    return loading;
+  }
+  function recent() { try { return JSON.parse(localStorage.getItem(RECENT)) || []; } catch (e) { return []; } }
+  function remember(it) {
+    try { var r = recent().filter(function (x) { return x.url !== it.url; }); r.unshift({ type: it.type, title: it.title, url: it.url, desc: it.desc }); localStorage.setItem(RECENT, JSON.stringify(r.slice(0, 5))); } catch (e) {}
+  }
+  // 점수: 이름이 같음 > 이름으로 시작 > 이름에 있음 > 한글 낱말 > 설명. 낱말이 여럿이면 모두 어딘가에 있어야 한다
+  function score(it, terms, flat) {
+    var s = 0, tf = it.t.replace(/\s+/g, "");
+    for (var i = 0; i < terms.length; i++) {
+      var w = terms[i];
+      if (it.t === w) s += 100; else if (it.t.indexOf(w) === 0) s += 60; else if (it.t.indexOf(w) >= 0) s += 40;
+      else if (it.k.indexOf(w) >= 0) { var kw = it.k.split(/\s+/); s += (kw.indexOf(w) >= 0 ? 35 : 25) + (it.k.indexOf(w) === 0 ? 10 : 0); }
+      else if (it.d.indexOf(w) >= 0) s += 8; else return 0;
+    }
+    if (terms.length > 1 && tf.indexOf(flat) >= 0) s += 30;
+    return s;
+  }
+  function hit(text, terms) {
+    var out = esc(text), low = norm(text);
+    var spans = [];
+    terms.forEach(function (w) { var i = low.indexOf(w); if (i >= 0) spans.push([i, i + w.length]); });
+    if (!spans.length) return out;
+    spans.sort(function (a, b) { return a[0] - b[0]; });
+    var html = "", at = 0;
+    spans.forEach(function (sp) { if (sp[0] < at) return; html += esc(text.slice(at, sp[0])) + '<mark class="site-search__hit">' + esc(text.slice(sp[0], sp[1])) + "</mark>"; at = sp[1]; });
+    return html + esc(text.slice(at));
+  }
+  var n = 0;
+  function row(it, terms) {
+    var ty = TYPES[it.type] || ["", "file-text"];
+    var lead = it.type === "icon" ? '<i class="ds-icon ds-icon--' + esc(it.title) + '" aria-hidden="true"></i>'
+      : it.type === "token" && it.title.indexOf("--ds-color-") === 0 ? '<span class="site-search__swatch" style="background: var(' + esc(it.title) + ')" aria-hidden="true"></span>'
+      : '<i class="ds-icon ds-icon--' + ty[1] + '" aria-hidden="true"></i>';
+    return '<a class="ds-command__item site-search__item" role="option" aria-selected="false" id="ss-' + (n++) + '" href="' + esc(ROOT + it.url) + '" data-ss-url="' + esc(it.url) + '">' + lead +
+      '<span class="ds-command__label"><span class="site-search__title">' + hit(it.title, terms) + "</span>" + (it.desc ? '<span class="site-search__desc">' + hit(it.desc, terms) + "</span>" : "") + "</span>" +
+      '<span class="site-search__type">' + ty[0] + "</span></a>";
+  }
+  function group(title, items, terms, more, key, label) {
+    return '<div class="ds-command__group" role="group" aria-label="' + esc(title) + '"><p class="ds-command__title">' + esc(title) + "</p>" + items.map(function (it) { return row(it, terms); }).join("") +
+      (more > 0 ? '<button type="button" class="ds-command__item site-search__more" role="option" aria-selected="false" id="ss-' + (n++) + '" data-site-search-more="' + key + '"><i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i><span class="ds-command__label">' + esc(label || title) + " " + more + "개 더 보기</span></button>" : "") + "</div>";
+  }
+  function render() {
+    n = 0;
+    if (!data) { list.innerHTML = '<p class="ds-command__empty">불러오는 중</p>'; return; }
+    var q = norm(input.value).trim(), terms = q.split(/\s+/).filter(Boolean), types = SCOPE[scope] || ORDER, html = "";
+    if (!terms.length) {
+      var r = recent();
+      if (r.length) html += group("최근 연 것", r, [], 0);
+      var pick = data.filter(function (it) { return types.indexOf(it.type) >= 0; });
+      if (scope === "all") pick = data.filter(function (it) { return it.type === "start" || ["Color", "Typography", "Spacing", "Icon Library"].indexOf(it.title) >= 0; });
+      html += group(scope === "all" ? "바로 가기" : (TYPES[types[0]] || ["전체"])[0], pick.slice(0, scope === "all" ? 12 : 30), [], 0);
+    } else {
+      var flat = terms.join(""), found = 0;
+      types.forEach(function (ty) {
+        var hits = data.filter(function (it) { return it.type === ty; }).map(function (it) { return [score(it, terms, flat), it]; })
+          .filter(function (x) { return x[0] > 0; }).sort(function (a, b) { return b[0] - a[0] || a[1].title.length - b[1].title.length; }).map(function (x) { return x[1]; });
+        if (!hits.length) return;
+        found += hits.length;
+        var cap = scope === "all" ? (ty === "comp" || ty === "tpl" ? 5 : 3) : 60;
+        html += group(TYPES[ty][0] + " " + hits.length, hits.slice(0, cap), terms, scope === "all" ? hits.length - cap : 0, ty === "ex" ? "comp" : ty, TYPES[ty][0]);
+      });
+      if (!found) html = '<p class="ds-command__empty">"' + esc(input.value.trim()) + '"(으)로 찾은 결과가 없어요. 다른 낱말이나 한글, 영어 이름으로 찾아보세요.</p>';
+    }
+    list.innerHTML = html;
+    var first = list.querySelector(".ds-command__item");
+    if (first) { first.setAttribute("aria-selected", "true"); input.setAttribute("aria-activedescendant", first.id); } else input.removeAttribute("aria-activedescendant");
+    list.scrollTop = 0;
+  }
+  function setScope(k) {
+    scope = k;
+    box.querySelectorAll("[data-site-search-scope]").forEach(function (b) { b.setAttribute("aria-selected", b.getAttribute("data-site-search-scope") === k ? "true" : "false"); });
+    render(); input.focus();
+  }
+  // DS 가 먼저 낱말로 거르고 나면(같은 input 이벤트, ybm-ds.js 가 먼저 등록) 결과를 새로 그린다
+  document.addEventListener("input", function (e) { if (e.target === input) render(); });
+  // 창이 열리면 목록을 읽고 처음 화면을 그린다
+  new MutationObserver(function () { if (box.open) { scope = "all"; setScope("all"); load(); } }).observe(box, { attributes: true, attributeFilter: ["open"] });
+  // 범위 칩, 더 보기는 창을 닫지 않는다(DS 는 항목을 누르면 닫으므로 먼저 받는다). 결과를 누르면 최근 연 것에 남긴다
+  box.addEventListener("click", function (e) {
+    var sc = e.target.closest("[data-site-search-scope]");
+    if (sc) { setScope(sc.getAttribute("data-site-search-scope")); return; }
+    var more = e.target.closest("[data-site-search-more]");
+    if (more) { e.stopPropagation(); setScope(more.getAttribute("data-site-search-more")); return; }
+    var a = e.target.closest("[data-ss-url]");
+    if (a && data) { var url = a.getAttribute("data-ss-url"); var it = data.filter(function (x) { return x.url === url; })[0]; if (it) remember(it); }
+  }, true);
+  // 토큰(#t=이름)은 그 표 줄로 옮겨 잠깐 칠하고, 아이콘(#q=이름)은 Library 찾기 칸에 넣는다
+  function fromHash() {
+    var h = decodeURIComponent(location.hash || "");
+    var t = h.match(/^#t=(--ds-[a-z0-9-]+)$/);
+    if (t) {
+      var code = [].slice.call(document.querySelectorAll(".site-main code")).filter(function (c) { return c.textContent === t[1]; })[0];
+      if (code) { var tr = code.closest("tr") || code; tr.scrollIntoView({ block: "center" }); tr.classList.remove("site-search-flash"); void tr.offsetWidth; tr.classList.add("site-search-flash"); }
+    }
+    var q = h.match(/^#q=([a-z0-9-]+)$/);
+    var libQ = document.querySelector("[data-site-lib-q]");
+    if (q && libQ) { libQ.value = q[1]; libQ.dispatchEvent(new Event("input", { bubbles: true })); }
+  }
+  window.addEventListener("hashchange", fromHash);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(fromHash, 100); }); else setTimeout(fromHash, 100);
+})();

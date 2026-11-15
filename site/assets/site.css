@@ -678,6 +678,28 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 /* 새 컴포넌트 점 (2026-11-10 사용자 "신규 컴포넌트 레프트 메뉴에 신규(점) 표기"): 이름 바로 뒤 작은 점 */
 .site-nav__item .site-compdot { flex: none; width: 6px; height: 6px; margin-left: calc(var(--ds-space-x1) * -1); }  /* 11-10 사용자 "점이 너무 커, 왼쪽으로 더 붙일것" */
 
+/* 사이트 찾기 (2026-11-15): 창은 DS Command Palette, 여기는 범위 칩, 두 줄 결과, 종류 표시, 아래 키 안내만 */
+.site-search { --ds-command-width: 640px; max-height: min(640px, 80vh); }
+.site-search .ds-command__search .site-search__esc { margin-left: auto; }
+.site-search__scope { flex: none; padding: var(--ds-space-x2) var(--ds-space-x4); overflow-x: auto; scrollbar-width: none; box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
+.site-search__scope::-webkit-scrollbar { display: none; }
+.site-search__scope .ds-chiptabs { flex-wrap: nowrap; }
+.site-search__item { min-height: var(--ds-space-x12); padding-block: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
+.site-search__item .ds-command__label { display: flex; flex-direction: column; }
+.site-search__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--ds-font-weight-medium); }
+.site-search__desc { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
+.site-search__type { flex: none; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); }
+.site-search__hit { padding: 0; border-radius: var(--ds-shape-2xs); background: var(--ds-color-bg-warning-weak); color: inherit; font-weight: var(--ds-font-weight-semibold); }
+.site-search__swatch { flex: none; width: var(--ds-space-x4); height: var(--ds-space-x4); border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-muted); }
+.site-search__more { width: 100%; border: 0; background: none; font: inherit; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); cursor: pointer; text-align: start; }
+.site-search__keys { flex: none; display: none; gap: var(--ds-space-x4); padding: var(--ds-space-x2) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); }
+.site-search__keys > span { display: inline-flex; align-items: center; gap: var(--ds-space-x1); }
+@media (min-width: 768px) { .site-search__keys { display: flex; } }
+@media (max-width: 767px) { .site-search .site-search__esc { display: none; } }
+.site-search-flash { animation: site-search-flash 2.4s var(--ds-easing-standard); }
+@keyframes site-search-flash { 0%, 40% { background: var(--ds-color-bg-warning-weak); } 100% { background: transparent; } }
+@media (prefers-reduced-motion: reduce) { .site-search-flash { animation: none; background: var(--ds-color-bg-warning-weak); } }
+
 /* 가이드는 브랜드 색 없이 모노톤으로 보여 준다 (2026-11-02 사용자 "가이드에 브랜드 컬러 적용 X").
    브랜드 역할 색을 같은 자리의 neutral 색으로 바꾼다. 서비스는 palette/brand 를 바꿔 자기 브랜드 색을 쓴다(Color 페이지).
    site.css 끝에 붙고, 템플릿 미리보기 iframe 에는 site.js 가 assets/brand-mono.css 로 넣는다.

@@ -30,6 +30,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 배치(`page({ layout })`): page(가운데 한 칸: Get Started, Updates) / doc(글 + 목차: Foundations, 컴포넌트 상세) / wide(메뉴 옆 넓은 폭: 컴포넌트 목록, 템플릿 문서 보기) / full(템플릿 목록, 가운데 1552).
 - 왼쪽 메뉴: Foundations, Components 는 ABC 순(컴포넌트 목록 맨 위 찾기 칸, 한글로도 찾기 `search-ko.json`), 템플릿은 groups.mjs 순서와 한국어 이름(분류 칩의 한국어는 build.mjs `TPL_GROUP_KO`), 분류 묶음은 접는 아코디언(접힘 기억, 지금 페이지 묶음은 펼침). 하위 분류 이름 줄은 그리지 않는다.
 - 왼쪽 메뉴 빨간 점: 새 컴포넌트(components.css 머리말 "(날짜 추가)" 가 가장 늦은 묶음, 30일), Updates 문장에 영어 이름이 나온 컴포넌트(7일), Updates "템플릿" 소식에 이름이 나온 템플릿(30일). build.mjs `NEW_COMPS`, `UPD_COMPS`, `NEW_TPLS`.
+- 사이트 찾기: 상단 돋보기와 Ctrl/Command + K 가 여는 DS Command Palette(`#site-search`, 창과 키보드는 ybm-ds.js). 결과는 site.js "사이트 찾기" 가 `assets/search.json`(build.mjs 끝에서 만든다)을 처음 열 때 읽어 그린다. 찾는 대상은 시작하기 절, Foundations 쪽과 절, 컴포넌트(search-ko.json 한글 낱말로도), 컴포넌트 예시, 템플릿(영어 이름, 분류로도), 토큰, 아이콘. 범위 칩, 종류별 묶음과 "n개 더 보기", 찾은 글자 강조, 최근 연 것 5개(localStorage ybm-site-search-recent). 토큰 결과는 `#t=이름` 으로 그 표 줄을 칠하고, 아이콘은 `#q=이름` 으로 Library 찾기 칸에 넣는다. 왼쪽 메뉴의 컴포넌트 찾기 칸은 그대로 둔다.
 - 다크 모드는 기기 설정을 따르고 상단 버튼 선택이 우선(localStorage ybm-site-theme).
 - 코드 상자는 회색 바탕 + 머리 줄, 표는 흰 바탕 + 줄 선으로 구분한다.
 - 사이트 글자는 크기마다 정한 줄높이, 굵기 400/500/600, 자간 0. 전 페이지 검사 스크립트는 `.cache/typo/audit.js`(로컬 전용, 미리보기에서 불러 `window.__audit`).
