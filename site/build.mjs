@@ -491,8 +491,8 @@ write({
 <h2 id="structure">구조</h2>
 <ol class="site-gs__layers">
   <li><strong>YDS</strong><span>모든 서비스가 함께 쓰는 컴포넌트, 토큰, 규칙입니다.</span></li>
-  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 모양만 바꾸는 값을 담은 파일입니다. 여러 서비스가 하나를 같이 쓸 수도, 서비스 하나가 따로 가질 수도 있습니다.</span></li>
-  <li><strong>서비스</strong><span>YDS에 브랜드 하나를 얹어 실제 화면을 만듭니다. 브랜드가 없으면 YDS 기본 모양을 씁니다.</span></li>
+  <li><strong>브랜드</strong><span>색, 모서리, 글꼴처럼 모양만 바꾸는 값을 담은 파일입니다.</span></li>
+  <li><strong>서비스</strong><span>YDS에 브랜드를 더해 실제 화면을 만듭니다.</span></li>
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기</h2>
