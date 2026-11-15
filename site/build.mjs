@@ -447,11 +447,11 @@ const LLMS_RULES = `## 지킬 것
 
 - 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓴다. 문서와 마크업은 최신 기준이라, 고정 주소에서는 그 버전 뒤에 더한 속성이 동작하지 않을 수 있다(Updates 에서 버전별로 확인).
 - 규칙 파일: 설치할 때 규칙 파일(${SITE_URL}ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다. 파일 하나만 만드는 일이면 받지 않아도 된다.
-- 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다.
+- 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다. 목록에 없는 화면 요소(지도, 좌석표, 플레이어 등)는 서비스 클래스로 --ds-* 토큰만 써서 만들고, 만든 것을 결과에 알린다.
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
 - 캐러셀: 자동 넘김(data-autoplay)은 큰 배너에만 쓰고, 멈춤 버튼(.ds-carousel__play)을 꼭 함께 둔다.
 - 같은 기능, 다른 모양: 값 차이는 컴포넌트 변수로, 구조 차이는 data-layout 으로 고른다. 비슷한 컴포넌트를 새로 만들거나 서비스 이름으로 모양을 나누지 않는다.
-- 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름만 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
+- 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름을 먼저 쓴다. 없으면 Lucide 아이콘을 같은 형식(.ds-icon--이름 { --ds-icon: ... })으로 서비스 CSS에 더해 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 옅은 회색 칸(트랙, 빈 칸, 자리 표시, 회색 박스 안의 칸)은 --ds-color-bg-neutral-weak-alpha를 쓴다. 불투명 --ds-color-bg-neutral은 같은 회색 바탕 위에서 사라진다.
 - 원본: YDS 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. YDS 자체를 바꿔야 하면 담당자에게 요청한다.
@@ -461,7 +461,7 @@ const LLMS_RULES = `## 지킬 것
 - 새 브랜드: 브랜드 파일(JSON)에는 YDS와 다른 값만 적는다. 쓸 수 있는 값은 name(필수), color(대표색, 600 단계) 또는 palette(light, dark 각 100~1000), shapeScale(모서리 배수 0~2), font(글꼴)뿐이다. 브랜드 버튼 글자 대비는 4.5 이상이어야 한다. 파일 이름과 data-ds-brand 값은 영문 소문자, 숫자, - 로 짓는다(한글 이름은 name 에만). 예) my-brand.json: {"name": "내 브랜드", "color": "#00843d", "shapeScale": 1.25, "font": "SUITE"}. 글꼴 파일은 서비스가 불러오고 font 에는 글꼴 이름만 적는다. 파일은 담당자가 등록한다. 등록 전까지만 서비스 CSS의 :root에서 --ds-color-palette-brand-100 ~ 1000을 임시로 덮어쓴다.
 - 브랜드 값을 받지 못했으면 시작 전에 브랜드 이름과 대표색을 묻는다. 모서리와 글꼴은 말이 없으면 YDS 값을 쓴다. 브랜드 파일이 없으면 YDS와 다른 값만 담아 먼저 만들고, 글자 대비 수치가 부족하면 고칠 색을 제안한다.
 - 시작: 무엇을 만들지 듣지 못했으면 먼저 묻는다. 물을 수 없는 환경이면 스스로 정하고, 정한 값을 결과에 적는다. 다 만들면 고친 곳을 알려 준다.
-- 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다(Breakpoint 의 480, 768, 1280, 1440 만 쓴다). 위 막대는 768 미만 Top App Bar, 768부터 Top Navigation. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다. 템플릿과 이 규칙이 다르면 이 규칙을 따른다.
+- 화면: 모바일 먼저 만들고 768px, 1280px에서 배치를 바꾼다(Breakpoint 의 480, 768, 1280, 1440 만 쓴다). 위 막대는 768 미만 Top App Bar, 768부터 Top Navigation. 비슷한 화면이 Templates에 있으면 그 HTML에서 시작한다. 템플릿과 이 규칙이 다르면 이 규칙을 따른다. 템플릿은 출발점일 뿐이다. 구성과 배치는 화면의 목적에 맞게 바꾸고, 같은 화면을 여러 배치로 제안해도 된다. 쓰는 사람에게 필요한 글(입력 도움말, 오류와 주의 안내, 빈 화면 안내)은 넣는다.
 - 글자: 한국어. 큰 제목(페이지, 섹션)은 SemiBold, 작은 제목(카드, 16px 이하)은 Bold, 목록 항목 제목 SemiBold, 본문 Regular, 본문은 word-break: keep-all.
 - 상태: 표와 목록에서 같은 자리의 상태는 모두 Badge로 표시한다. 색은 해야 할 일이 남은 상태 warning, 진행 중 informative, 끝난 상태 neutral, 실패, 취소, 반려 critical, 합격처럼 좋은 결과만 positive.
 - 줄마다 반복되는 버튼은 small neutralWeak로 두고 강조하지 않는다. 강조 버튼(brandSolid)은 화면에 하나만 둔다.

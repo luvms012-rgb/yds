@@ -130,9 +130,10 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
 `;
 
 /* ------------------------------------------------------------ 페이지 */
-// 템플릿에는 홍보 문구, 설명 글, 안내 상자, 보조 라벨을 넣지 않는다 (사용자 2026-11-09 "글을 빼고 배치로 해결").
+// 템플릿에는 홍보 문구, 꾸밈 설명, 보조 라벨을 넣지 않는다 (사용자 2026-11-09 "글을 빼고 배치로 해결").
+// 2026-11-15 사용자 "제약 때문에 시안이 한정적으로 나오는 것을 막으려고": 기능에 필요한 글(Callout 주의 안내, 입력 도움말, 빈 화면 안내)은 남긴다.
 // 생성기 자료에 문장이 남아 있어도 화면에는 나오지 않는다. 글이나 댓글, 문서 본문처럼 화면의 내용 자체는 COPY_KEEP 안에서 그대로 둔다
-const COPY_ALWAYS = /(^| )(ds-callout|ds-field__help|ds-selectbox__desc|ds-empty__desc|tp-notes|tp-tip|tp-lead|tp-vw__help)( |$)/;
+const COPY_ALWAYS = /(^| )(ds-selectbox__desc|tp-notes|tp-tip|tp-lead|tp-vw__help)( |$)/;
 const COPY_SENTENCE = /(^| )(tp-sub|tp-caption)( |$)/;
 const COPY_KEEP = /(^| )(tp-post__body|ds-accordion__content|tp-stepdoc|tp-ex|tp-cmt|tp-article|ds-markdown|tp-doc|tp-inbox__row)( |$)/;
 const SENTENCE = /[요다니까][.?!]?$|[.?!]$/;
@@ -151,8 +152,7 @@ export const stripCopy = (html) => {
     if (!el || stack.some((a) => COPY_KEEP.test(a.cls))) continue;
     const inner = html.slice(el.inner, m.index).trim();
     const sentence = COPY_SENTENCE.test(el.cls) && !inner.includes('<') && inner.length >= 6 && SENTENCE.test(inner);
-    const footer = /(^| )ds-field__footer( |$)/.test(el.cls) && inner.includes('ds-field__help');
-    if (COPY_ALWAYS.test(el.cls) || sentence || footer) cuts.push([el.start, re.lastIndex]);
+    if (COPY_ALWAYS.test(el.cls) || sentence) cuts.push([el.start, re.lastIndex]);
   }
   let out = '', at = 0;
   for (const [a, b] of cuts.sort((x, y) => x[0] - y[0])) { if (a < at) continue; out += html.slice(at, a); at = b; }
