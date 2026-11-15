@@ -193,7 +193,7 @@ export const page = ({ title, css = '', body, bodyClass = '', h1 = '' }) => `<!d
 <title>${esc(title)} - YDS 템플릿</title>
 <link rel="stylesheet" href="../../../dist/ybm-ds.css">
 <script src="../../../dist/ybm-ds.js" defer></script>
-<script>/* 문서 사이트 미리보기 안에서는 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다) */try{var f=window.frameElement;if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))document.documentElement.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write('<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">')}}catch(e){}</script>
+<script>/* 문서 사이트에서 보면 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다). 미리보기 iframe 은 사이트 밝기를, 새 창은 사이트에서 고른 밝기를 따른다(2026-11-16 사용자 "새 창도 기본 화면과 똑같이, 컬러 넣지 말 것"). 파일로 열거나 주소에 ?brand 를 붙이면 브랜드 색 그대로 */try{var f=window.frameElement,d=document.documentElement,m='<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">';if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))d.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write(m)}else if(!f&&location.protocol!=="file:"&&!/[?&]brand(=|&|$)/.test(location.search)){var t=localStorage.getItem("ybm-site-theme");if(t)d.dataset.theme=t;document.write(m)}}catch(e){}</script>
 <style>
 ${BASE_CSS}${css}</style>
 </head>
