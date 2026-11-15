@@ -82,8 +82,8 @@ const landing = () => {
   return { slug: 'ai-chat-landing', en: 'AI Chat Landing', name: 'AI 홈', group: 'Content', desc: '대화를 시작하기 전에 보여 주는 AI 첫 화면입니다. 입력창과 추천 버튼으로 바로 시작합니다.', css, body };
 };
 
-/* 3. AI 튜터 대화 (학습 > 수강) ---------------------------------- */
-// 2026-11-16 사용자 "학습용 채팅 UI (챗튜터 방식)". 레퍼런스는 UI 패턴 카탈로그의 말하기 앱 AI 튜터, AI 발음 코치, 학습 사이트 AI 챗봇, 말하기 연습 결과 화면(서비스 이름은 적지 않는다).
+/* 3. AI 학습 대화 (학습 > 수강) ---------------------------------- */
+// 2026-11-16 사용자 "학습용 채팅 UI (챗튜터 방식)", 이름은 "범용적인 용어로" 바꿔 AI 학습 대화. 레퍼런스는 UI 패턴 카탈로그의 말하기 앱 AI 튜터, AI 발음 코치, 학습 사이트 AI 챗봇, 말하기 연습 결과 화면(서비스 이름은 적지 않는다).
 // 튜터 말풍선 아래 듣기와 번역, 내 말 아래 "더 자연스럽게" 고쳐 주기, 다음에 말해 볼 문장 칩, 아래 큰 마이크. 넓은 화면에서는 오른쪽에 오늘의 미션.
 const tutor = () => {
   const css = CHAT_CSS + `
@@ -119,12 +119,12 @@ const tutor = () => {
   .tp-kv > :first-child { color: var(--ds-color-fg-neutral-muted); }
 `;
   const tools = (n) => `<div class="tp-row">${iconBtn('volume-2', '듣기', { size: 'xsmall' })}${iconBtn('globe', '번역 보기', { size: 'xsmall' })}${n ? iconBtn('rotate-ccw', '천천히 다시 듣기', { size: 'xsmall' }) : ''}</div>`;
-  const ai = (en, ko, more = '') => `<div class="tp-msg-ai">${avatar('AI 튜터', 36)}<div class="tp-msg-ai__body"><div class="ds-chat-bubble">${en}</div>${ko ? `<p class="tp-trans">${ko}</p>` : ''}${tools(1)}${more}</div></div>`;
+  const ai = (en, ko, more = '') => `<div class="tp-msg-ai">${avatar('AI', 36)}<div class="tp-msg-ai__body"><div class="ds-chat-bubble">${en}</div>${ko ? `<p class="tp-trans">${ko}</p>` : ''}${tools(1)}${more}</div></div>`;
   const me = (t, time, fix = '') => `<div class="tp-msg-user"><div class="ds-chat-bubble" data-sender="user">${t}</div><span class="ds-chat-meta"><time>${time}</time></span>${fix}</div>`;
   const fix = `<div class="tp-fix"><div class="tp-between"><span class="tp-h4">더 자연스럽게</span>${iconBtn('volume-2', '고친 문장 듣기', { size: 'xsmall' })}</div><p class="tp-fix__line"><del>I want</del> <ins>Could I get</ins> a large latte<ins>, please</ins>?</p><p class="tp-fix__why">주문할 때는 Could I get ~ 이 더 부드럽게 들려요</p></div>`;
   const mission = [['Could I get ~, please?', true], ['For here or to go?', true], ['Can I pay by card?', false]];
   const body = `<div class="tp-chat">
-<header class="tp-tutor-head">${iconBtn('x', '나가기')}<div class="tp-stack"><h1 class="tp-h4">카페에서 주문하기</h1><span class="tp-caption">AI 튜터와 말하기 / 4 / 8</span></div><span class="tp-row">${iconBtn('captions', '번역 모두 보기')}${iconBtn('settings', '말하기 설정')}</span></header>
+<header class="tp-tutor-head">${iconBtn('x', '나가기')}<div class="tp-stack"><h1 class="tp-h4">카페에서 주문하기</h1><span class="tp-caption">AI와 말하기 / 4 / 8</span></div><span class="tp-row">${iconBtn('captions', '번역 모두 보기')}${iconBtn('settings', '말하기 설정')}</span></header>
 <div class="tp-tutor-prog">${progress(50, { tone: 'neutral', label: '대화 진행' })}</div>
 <div class="tp-chat__body">
   <div class="tp-chat__main">
@@ -144,7 +144,7 @@ const tutor = () => {
   </aside>
 </div>
 </div>`;
-  return { slug: 'ai-tutor-chat', en: 'AI Tutor Chat', name: 'AI 튜터 대화', group: 'Learning', desc: 'AI 튜터와 상황극으로 말하며 배우는 대화 화면입니다. 내 말은 바로 더 자연스럽게 고쳐 주고, 다음에 말해 볼 문장을 칩으로 보여 줍니다.', css, body };
+  return { slug: 'ai-tutor-chat', en: 'AI Learning Chat', name: 'AI 학습 대화', group: 'Learning', desc: 'AI와 대화하며 배우는 학습 화면입니다. 내 말은 바로 더 자연스럽게 고쳐 주고, 다음에 말해 볼 문장을 칩으로 보여 줍니다.', css, body };
 };
 
 export const templates = [conversation, landing, tutor].map((f) => f());
