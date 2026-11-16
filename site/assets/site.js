@@ -999,7 +999,8 @@ document.addEventListener("click", function (e) {
     if (!root.classList.contains("site-motion") || !("IntersectionObserver" in window)) { root.classList.remove("site-motion"); return; }
     window.__siteMotion = true;
     var doc = document.querySelector(".site-doc");
-    if (!doc) { root.classList.add("site-motion-on"); return; }
+    /* 차례로 보이기와 타이핑은 메인에서만(머리 스크립트가 site-reveal 을 단다). 다른 쪽은 NEW 뱃지만 */
+    if (!doc || !root.classList.contains("site-reveal")) { root.classList.add("site-motion-on"); return; }
     var TILE = ".site-tile, .site-tpl";
     var blocks = [], tiles = [];
     (function collect(el) {
@@ -1071,11 +1072,11 @@ document.addEventListener("click", function (e) {
         if (q.state !== "typing") return;
         var x = q.nodes[i];
         if (!x) return end(q);
-        k = Math.min(x.s.length, k + 2);  /* 두 글자씩, AI 답이 흘러나오는 빠르기 */
+        k = Math.min(x.s.length, k + 1);  /* 한 글자씩 (11-16 사용자 "너무 빨라": 두 글자 24ms 에서 한 글자 45ms 로) */
         x.n.data = x.s.slice(0, k);
         x.n.parentNode.insertBefore(caret, x.n.nextSibling);
         if (k >= x.s.length) { i++; k = 0; }
-        q.timer = setTimeout(tick, 24);
+        q.timer = setTimeout(tick, 45);
       })();
     }
     function next() {
