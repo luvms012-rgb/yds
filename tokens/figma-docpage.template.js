@@ -278,7 +278,7 @@ async function renderS(el, parent, sh) {
   // 선택 상자(select): 고른 보기 하나만 글로 보인다 (사이트와 같게, 2026-11-07)
   if (el.tag === 'select' && el.s) { const os = el.c.filter((o) => o && o.tag === 'option'); const o = os.find((x) => x.a && 'selected' in x.a) || os[0]; const t = o ? o.c.filter((x) => typeof x === 'string') : []; const os0 = (o && o.s) || {}; const { k, ...rest } = el.s; el = { ...el, c: t, s: { ...rest, d: 'f', ai: 'center', fs: os0.fs, fw: os0.fw, c: os0.c, lh: os0.lh, nw: 1 } }; }
   if ((el.tag === 'input' || el.tag === 'textarea') && el.s && !el.c.length && (el.a.value || el.a.placeholder)) { const v = el.a.value || el.a.placeholder; const s0 = el.a.value ? el.s : { ...el.s, c: el.s.pc || el.s.c }; el = { ...el, c: [v], s: el.tag === 'input' ? { ...s0, d: 'f', ai: 'center', jc: s0.ta === 'center' ? 'center' : s0.jc } : s0 }; }
-  const s = el.s; const SH = !!(sh || el.fb);
+  let s = el.s; const SH = !!(sh || el.fb);
   if (s.d === 'n' || s.vh) return null;
   if (isIcon(el)) return iconNode(el, parent);
   const cw = cwOf(parent);
@@ -297,6 +297,17 @@ async function renderS(el, parent, sh) {
     if (s.r) { [f.topLeftRadius, f.topRightRadius, f.bottomRightRadius, f.bottomLeftRadius] = s.r; }
     if (el.tag === 'img' && el.a && el.a.src) { f.name = 'img'; (res.imgs = res.imgs || []).push([f.id, el.a.src.replace('https://images.unsplash.com/photo-', 'U:').replace('auto=format&fit=crop&', '')]); }  // 사진은 나중에 upload_assets 로 칠을 채운다
     parent.appendChild(f); f.resize(Math.max(s.w, 1), Math.max(s.h, 1)); f.layoutSizingHorizontal = 'FIXED'; f.layoutSizingVertical = 'FIXED'; if (sizeW(f, s, parent, cw) === 'fill') {} return f;
+  }
+  // 칸 자리가 글 순서와 다른 격자(grid-template-areas, 여러 줄을 차지하는 칸: 왼쪽 목록 + 오른쪽 지도 등)는 열마다 세로 묶음으로 나눠 그린다 (2026-11-16)
+  if (/^i?g$/.test(s.d) && s.gc > 1 && s.k && el.c.every((x) => typeof x !== 'string')) {
+    const its = el.c.map((k, i) => ({ k, b: s.k[i] })).filter((o) => o.b && o.k.s && o.k.s.d !== 'n' && !o.k.s.vh && o.k.s.pos !== 'a' && o.b[2] > 0 && o.b[3] > 0);
+    let rm = true; for (let i = 1; i < its.length && rm; i++) { const a = its[i - 1].b, b = its[i].b; if (!((Math.abs(b[1] - a[1]) < 2 && b[0] > a[0]) || b[1] >= a[1] + a[3] - 1)) rm = false; }
+    if (!rm) { const cols = []; for (const o of its.slice().sort((x, y) => x.b[0] - y.b[0])) { const c = cols.find((c) => Math.abs(c.x - o.b[0]) < 3); if (c) c.l.push(o); else cols.push({ x: o.b[0], l: [o] }); }
+      const ok = cols.length > 1 && cols.every((c) => { c.l.sort((x, y) => x.b[1] - y.b[1]); return c.l.every((o, i) => !i || o.b[1] >= c.l[i - 1].b[1] + c.l[i - 1].b[3] - 1); });
+      if (ok) { const rest = el.c.map((k, i) => ({ k, b: s.k[i] })).filter((o) => !its.some((x) => x.k === o.k));
+        const nc = cols.map((c) => { const x0 = Math.min(...c.l.map((o) => o.b[0])), y0 = Math.min(...c.l.map((o) => o.b[1])), w = Math.max(...c.l.map((o) => o.b[0] + o.b[2])) - x0, h = Math.max(...c.l.map((o) => o.b[1] + o.b[3])) - y0;
+          return { k: { tag: 'div', cls: ['grid-col'], a: {}, c: c.l.map((o) => o.k), s: { d: 'f', fd: 'c', w, h, fs: s.fs, fw: s.fw, c: s.c, lh: s.lh, k: c.l.map((o) => [o.b[0] - x0, o.b[1] - y0, o.b[2], o.b[3]]) } }, b: [x0, y0, w, h] }; });
+        const all = nc.concat(rest); const { gc, wr, ...s2 } = s; s = { ...s2, d: 'f', ai: 'start', k: all.map((o) => o.b) }; el = { ...el, c: all.map((o) => o.k), s }; } }
   }
   const dir = el.tag === 'tr' ? 'HORIZONTAL' : /^i?f$/.test(s.d) ? (s.fd === 'c' ? 'VERTICAL' : 'HORIZONTAL') : /^i?g$/.test(s.d) ? (s.gc > 1 ? 'HORIZONTAL' : 'VERTICAL') : 'VERTICAL';  // 표 줄은 가로
   const f = figma.createAutoLayout(dir); f.name = el.tag + (el.cls.length ? '.' + el.cls.join('.') : '');

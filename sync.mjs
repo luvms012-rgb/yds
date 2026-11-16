@@ -336,6 +336,7 @@ function prepStyled(P, SETS, TPL = false) {
     }
     if (kind === 'ds-selectbox') { const ctl = ctlOf(el); if (ctl && ctl.a) { s.a.type = ctl.a.type === 'radio' ? 'radio' : 'check'; s.a.state = ctl.a.disabled !== undefined ? 'disabled' : ctl.a.checked !== undefined ? 'checked' : 'unchecked'; }
       const ic = (el.c || []).find((x) => isEl(x) && (x.cls || []).includes('ds-icon')); if (ic) { s.flags = { ...(s.flags || {}), prefixicon: true }; s.icons = { prefix: (ic.cls.find((c) => /^ds-icon--/.test(c) && !/^ds-icon--(xs|sm|md|lg|xl)$/.test(c)) || '').slice(9) }; } }  // 앞 아이콘 (2026-11-10)
+    if (kind === 'ds-selectbox') { const tx = (el.c || []).find((x) => isEl(x) && (x.cls || []).includes('ds-selectbox__texts')); const dsc = tx && (tx.c || []).find((x) => isEl(x) && !(x.cls || []).some((c) => /^ds-selectbox__/.test(c))); if (dsc) { const w = (n) => typeof n === 'string' ? n : (n.c || []).map(w).join(''); s.parts.desc = w(dsc).replace(/s+/g, ' ').trim(); } }  // 템플릿이 따로 쓴 설명 줄(tp-vn__meta 등)도 설명으로 (2026-11-16)
     if (kind === 'ds-accordion') s.a.state = (el.a || {}).open !== undefined ? 'expanded' : s.a.state === 'disabled' ? 'disabled' : 'collapsed';
     if (kind === 'ds-helpbubble') s.flags = { closebutton: !!sub(el, 'close') };
     if (kind === 'ds-searchfield') s.flags = { ...(s.flags || {}), cancel: !!sub(el, 'cancel') };
