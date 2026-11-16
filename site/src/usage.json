@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-16",
+  "checked": "2026-11-17",
   "services": [
     {
       "id": "cs",
@@ -9,11 +9,15 @@
       "components": [
         "Action Button",
         "Alert Dialog",
+        "Badge",
         "Checkbox",
         "Chip",
         "Dialog",
         "Field Button",
         "Field Label",
+        "Pagination",
+        "Progress Circle",
+        "Radio Group",
         "Select Content",
         "Text Field Input",
         "Text Field Textarea"
@@ -77,19 +81,27 @@
           "keep": "alpha"
         }
       ],
-      "pages": 2,
+      "pages": 9,
       "errors": []
     },
     {
       "id": "signup",
       "name": "회원가입",
-      "version": "1.2.0",
+      "version": "1.1.0",
       "kind": "복사본",
       "components": [
         "Action Button",
+        "Badge",
+        "Checkbox",
         "Chip",
+        "Dialog",
         "Field Label",
-        "Text Field Input"
+        "Radio Group",
+        "Select Content",
+        "Tabs",
+        "Tag Group",
+        "Text Field Input",
+        "Text Link"
       ],
       "colors": 11,
       "colorList": [
@@ -186,7 +198,7 @@
           "keep": "logo"
         }
       ],
-      "pages": 1,
+      "pages": 13,
       "errors": []
     }
   ]

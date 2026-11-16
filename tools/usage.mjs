@@ -99,7 +99,7 @@ async function checkService(s) {
   return out;
 }
 
-const result = { checked: new Date().toISOString().slice(0, 10), services: [] };
+const result = { checked: new Date().toLocaleDateString('sv-SE'), services: [] };
 for (const s of services) { result.services.push(await checkService(s)); console.log(`  ${s.name}: ${result.services.at(-1).kind} ${result.services.at(-1).version}, 컴포넌트 ${result.services.at(-1).components.length}개, 직접 쓴 색 ${result.services.at(-1).colors}개`); }
 fs.writeFileSync(path.join(DS, 'site/src/usage.json'), JSON.stringify(result, null, 2) + '\n');
 console.log(`  ✔ site/src/usage.json (${result.checked})`);

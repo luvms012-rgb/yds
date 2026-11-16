@@ -395,7 +395,8 @@ transition: background-color var(--ds-duration-fast) var(--ds-easing-standard), 
 .site-req.site-usage th { width: 112px; }
 .site-req.site-usage th:first-child { width: auto; }
 .site-doc .site-req :is(td, th):is(:nth-child(2), :nth-child(3)) { white-space: nowrap; word-break: keep-all; }
-.site-req th:first-child, .site-req th:last-child { width: 40%; }
+.site-req th:first-child { width: 56%; }
+.site-req th:last-child { width: 24%; }
 .site-rolechips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); margin-top: var(--ds-space-x3); }
 .site-rolechip { display: inline-flex; align-items: center; padding: 6px var(--ds-space-x3) 6px var(--ds-space-x2); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); }
 .site-rolechip code { background: none !important; padding: 0 !important; font-size: var(--ds-font-size-t03) !important; }

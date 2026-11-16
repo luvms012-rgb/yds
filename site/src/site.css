@@ -493,7 +493,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-req.site-usage th { width: 112px; }  /* 사용 현황 서비스 표: 첫 칸만 남은 폭, 나머지는 같은 폭 */
 .site-req.site-usage th:first-child { width: auto; }
 .site-doc .site-req :is(td, th):is(:nth-child(2), :nth-child(3)) { white-space: nowrap; word-break: keep-all; }
-.site-req th:first-child, .site-req th:last-child { width: 40%; }
+.site-req th:first-child { width: 56%; }  /* 요청 칸을 넓게 (11-17 사용자) */
+.site-req th:last-child { width: 24%; }
 
 /* ---- Color Roles: 역할마다 대표 토큰 견본, 토큰 표 설명 ---- */
 .site-rolechips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); margin-top: var(--ds-space-x3); }

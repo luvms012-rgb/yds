@@ -1,19 +1,38 @@
 {
-  "_설명": "YDS 를 쓰는 서비스 목록 (2026-11-16 사용자 \"운영 모델: 사용 측정과 기여 절차\"). 서비스 담당자나 DS 담당이 고친다. pages 는 검사할 운영 화면 주소 몇 개(로그인 없이 열리는 화면). node tools/usage.mjs 가 이 목록을 읽어 site/src/usage.json 을 만들고 Updates > 사용 현황 탭이 보여 준다.",
+  "_설명": "YDS 를 쓰는 서비스 목록 (2026-11-16 사용자 \"운영 모델: 사용 측정과 기여 절차\"). 서비스 담당자나 DS 담당이 고친다. pages 는 회사 서버에 올린 퍼블리싱 화면 전체(가이드 screens.js 목록, 11-17 사용자). node tools/usage.mjs 가 이 목록을 읽어 site/src/usage.json 을 만들고 Updates > 사용 현황 탭이 보여 준다.",
   "services": [
     {
       "id": "cs",
       "name": "고객센터",
       "pages": [
-        "https://luvms012-rgb.github.io/project/cs/src/pages/faq.html",
-        "https://luvms012-rgb.github.io/project/cs/src/pages/inquiry.html"
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/faq.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/faq-search.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/inquiry.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/inquiry-detail.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/inquiry-list.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/main.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/notice.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/notice-detail.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/cs/src/pages/search.html"
       ]
     },
     {
       "id": "signup",
       "name": "회원가입",
       "pages": [
-        "https://luvms012-rgb.github.io/project/signup/src/pages/account.html"
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/account.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/account-link.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/child-phone.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/complete.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/existing-member.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/find-id.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/guardian.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/identity.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/reset-pw.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/site-join.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/social-link.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/terms.html",
+        "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/D/project/signup/src/pages/verify-method.html"
       ]
     }
   ]
