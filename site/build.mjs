@@ -1254,10 +1254,11 @@ const SITE_ICONS = {
   figma: '<path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/>',
 };
 const svgUri = (b) => 'url("data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + b + '</svg>') + '")';
-fs.writeFileSync(path.join(SITE, 'assets/site.css'), fs.readFileSync(path.join(SITE, 'src/site.css'), 'utf8')
-  + '\n' + fs.readFileSync(path.join(SITE, 'src/brand-mono.css'), 'utf8')
-  + '\n/* 사이트 전용 아이콘 - build.mjs가 붙인다 */\n'
-  + Object.entries(SITE_ICONS).map(([n, b]) => `.site-i--${n} { --ds-icon: ${svgUri(b)}; }`).join('\n') + '\n');
+// 배포용 사이트 CSS 는 설명 주석과 빈칸을 뺀다(2026-11-16 사용자 "파일 용량 최적화"). 원본 설명은 src/site.css 에 그대로 있다
+const slimCss = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '').split('\n').map((l) => l.trim()).filter(Boolean).join('\n');
+fs.writeFileSync(path.join(SITE, 'assets/site.css'), '/* YDS 문서 사이트 - 생성물: site/src/site.css */\n' + slimCss(fs.readFileSync(path.join(SITE, 'src/site.css'), 'utf8')
+  + '\n' + fs.readFileSync(path.join(SITE, 'src/brand-mono.css'), 'utf8'))
+  + '\n' + Object.entries(SITE_ICONS).map(([n, b]) => `.site-i--${n} { --ds-icon: ${svgUri(b)}; }`).join('\n') + '\n');
 
 figmaDocs();
 
