@@ -92,7 +92,7 @@ function section(title, lead) {
 const SET = {};
 for (const [cls, id] of Object.entries(DATA.sets)) { const n = await figma.getNodeByIdAsync(id); if (n) SET[cls] = n; }
 const iconCache = {};
-const iconOf = (name) => { if (!(name in iconCache)) { const s = iconPage.findOne((n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === 'Lucide/' + name); iconCache[name] = s ? (s.type === 'COMPONENT_SET' ? s.defaultVariant || s.children[0] : s) : null; if (!s) res.warn.push('아이콘 없음: ' + name); } return iconCache[name]; };
+const iconOf = (name) => { if (!(name in iconCache)) { const solid = /-solid$/.test(name); const s = iconPage.findOne((n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === 'Lucide/' + name.replace(/-solid$/, '')); iconCache[name] = s ? (s.type === 'COMPONENT_SET' ? s.children.find((v) => /Solid/i.test(v.name) === solid) || s.defaultVariant || s.children[0] : s) : null;  /* -solid 는 같은 세트의 Solid 변형 (11-16) */ if (!s) res.warn.push('아이콘 없음: ' + name); } return iconCache[name]; };
 const kebab = (s) => s.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase());
 const ownText = (el) => el.c.filter((x) => typeof x === 'string').join(' ').trim();
 const iconsIn = (el) => el.c.filter((x) => typeof x !== 'string' && x.cls.some((c) => /^ds-icon--/.test(c))).map((x) => ({ name: x.cls.find((c) => /^ds-icon--/.test(c) && !/^ds-icon--(sm|lg)$/.test(c)).slice(9), before: el.c.indexOf(x) < el.c.findIndex((y) => typeof y === 'string') || el.c.findIndex((y) => typeof y === 'string') < 0 }));
