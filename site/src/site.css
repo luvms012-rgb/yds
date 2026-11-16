@@ -313,11 +313,11 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-tpl-thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-canvas); }
 .site-tpl-thumb iframe { position: absolute; left: 0; top: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
 .site-tpl-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-/* 다크 그림은 사이트가 다크일 때만 (상단 버튼 선택이 우선, 고르지 않았으면 기기 설정) */
+/* 다크 그림은 사이트가 다크일 때만. 사이트는 다크면 html 에 data-theme="dark" 를 붙이고 라이트면 지운다(기기 설정은 머리 스크립트가 이미 반영).
+   기기 설정(prefers-color-scheme)을 따로 보면 기기 다크 + 사이트 라이트에서 썸네일만 다크가 된다(11-16 오류) */
 .site-tpl-img--dark { display: none; }
 :root[data-theme="dark"] .site-tpl-img--dark { display: block; }
 :root[data-theme="dark"] .site-tpl-img--light { display: none; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .site-tpl-img--dark { display: block; } :root:not([data-theme="light"]) .site-tpl-img--light { display: none; } }
 .site-tpl-thumb::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--site-box-line); pointer-events: none; }  /* 선이 미리보기 위에 보이게 */
 .site-doc > .site-hero--tpl .site-lead { margin-top: var(--ds-space-x4); }  /* 설명은 Components 와 같은 17/28 */
 .site-toolbar--wrap .ds-chiptabs { --ds-ct-height: 32px; --ds-ct-padding-x: 12px; flex-wrap: wrap; overflow: visible; gap: var(--ds-space-x1); }

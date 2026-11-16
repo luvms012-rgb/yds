@@ -1373,5 +1373,7 @@ console.log(`  ✔ 사이트 ${written.length}쪽 생성 (컴포넌트 ${comps.l
   // 아이콘: 이름과 쓰임 (아이콘 Library 의 찾기 칸에 넣어 연다)
   for (const [g, m] of ICON_GROUPS) for (const [n, use] of Object.entries(m)) add('icon', n, `foundations/icons-library.html#q=${n}`, use, `${g} ${iconKo(n)}`);
   fs.writeFileSync(path.join(SITE, 'assets/search.json'), JSON.stringify(items));
+  // NEW 표시 기준 값 한 곳(2026-11-16 사용자 "NEW 가 마음대로"): 페이지 HTML 은 브라우저가 10분 캐시해 페이지마다 값이 달라질 수 있어, 모든 페이지가 이 파일을 새로 읽어 판단한다
+  fs.writeFileSync(path.join(SITE, 'assets/latest.json'), JSON.stringify({ u: LATEST_UPDATE, r: LATEST_REQUEST }));
   console.log(`  ✔ 사이트 찾기 목록 ${items.length}개 (assets/search.json)`);
 }

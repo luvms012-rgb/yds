@@ -868,7 +868,9 @@
     var UPDATES_KEY = "ybm-site-updates-seen", REQ_KEY = "ybm-site-requests-seen";
     var top = document.querySelector("[data-site-latest]");
     if (!top) return;
-    var latest = top.getAttribute("data-site-latest"), latestReq = top.getAttribute("data-site-latest-req") || "";
+    /* 기준 값은 assets/latest.json 을 캐시 없이 새로 읽는다(페이지 HTML 은 브라우저가 10분 캐시해 페이지마다 값이 다를 수 있다, 11-16 사용자 "NEW 가 마음대로").
+       읽지 못하면 아무것도 띄우지 않는다(틀린 NEW 보다 안 띄우는 편이 낫다) */
+    var latest = null, latestReq = "";
     function clear() { document.querySelectorAll(".site-newdot, .site-newbadge, .site-newdot-text").forEach(function (n) { n.remove(); }); }
     function newBadge(cls) {
       var b = document.createElement("span"); b.className = "ds-badge " + cls; b.setAttribute("data-variant", "solid"); b.setAttribute("data-tone", "critical"); b.setAttribute("aria-hidden", "true"); b.textContent = "NEW";
@@ -908,8 +910,16 @@
         if ((h === "updates.html" && newNews) || (h === "updates-requests.html" && newReq)) dot(a);
       });
     }
-    sync();
-    window.addEventListener("pageshow", sync);  // 뒤로 가기로 돌아온 페이지에도 본 상태를 맞춘다
+    var LATEST_URL = document.currentScript ? document.currentScript.src.replace(/site\.js(\?.*)?$/, "latest.json") : "";
+    function load() {
+      if (!LATEST_URL || !window.fetch) return;
+      fetch(LATEST_URL, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || typeof d.u !== "string") return;
+        latest = d.u; latestReq = d.r || ""; sync();
+      }).catch(function () {});
+    }
+    load();
+    window.addEventListener("pageshow", function (e) { if (e.persisted) load(); });  // 뒤로 가기로 돌아온 페이지도 다시 맞춘다
   })();
 
 
