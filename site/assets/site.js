@@ -991,62 +991,13 @@ document.addEventListener("click", function (e) {
   window.addEventListener("hashchange", fromHash);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(fromHash, 100); }); else setTimeout(fromHash, 100);
 
-  /* 소소한 움직임 (2026-11-16 사용자 "스크롤 시 페이드인, 썸네일 순차, NEW 뱃지 탄성, 시작하기 요청 글 타이핑, 동시에 되지 않게 인지 가능한 딜레이").
-     순서(메인): 본문 첫 묶음 차례로(0.15초부터) → 다 보이면 위 메뉴(site-nav-in) → 내려온 뒤 NEW 뱃지(CSS) → 요청 글 타이핑(상자가 보이고 나서 하나씩).
-     머리 스크립트가 html 에 site-motion 을 달아 본문을 잠깐 숨기고, 여기서 site-motion-on 으로 연다(3초 안에 못 열면 머리 스크립트가 숨김을 푼다). 움직임 줄이기 설정이면 아무것도 하지 않는다 */
+  /* 소소한 움직임 (2026-11-16 사용자): NEW 뱃지 탄성(CSS, 모든 쪽)과 메인 요청 글 타이핑만 남긴다(위 메뉴 내려오기, 스크롤 페이드인은 사용자 "삭제, 타이핑만 유지").
+     머리 스크립트가 메인 html 에 site-type 을 달아 요청 글을 잠깐 숨기고, 여기서 site-motion-on 으로 연다(3초 안에 못 열면 머리 스크립트가 숨김을 푼다). 움직임 줄이기 설정이면 아무것도 하지 않는다 */
   (function () {
     var root = document.documentElement;
-    if (!root.classList.contains("site-motion") || !("IntersectionObserver" in window)) { root.classList.remove("site-motion"); return; }
+    if (!root.classList.contains("site-motion") || !("IntersectionObserver" in window)) { root.classList.remove("site-motion", "site-type"); return; }
     window.__siteMotion = true;
-    var doc = document.querySelector(".site-doc");
-    /* 차례로 보이기와 타이핑은 메인에서만(머리 스크립트가 site-reveal 을 단다). 다른 쪽은 NEW 뱃지만 */
-    if (!doc || !root.classList.contains("site-reveal")) { root.classList.add("site-motion-on"); return; }
-    var TILE = ".site-tile, .site-tpl";
-    var blocks = [], tiles = [];
-    (function collect(el) {
-      [].forEach.call(el.children, function (c) {
-        if (c.hidden || c.matches("script, style")) return;
-        if (c.matches(TILE)) tiles.push(c);
-        else if (c.querySelector(TILE)) collect(c);
-        else blocks.push(c);
-      });
-    })(doc);
-    var first = true, navDone = false;
-    /* 위 메뉴는 본문 첫 묶음이 보인 다음에 내린다(11-16 사용자 "본문 먼저 보이고 이후에 내려오도록"). 내려온 뒤 NEW 뱃지(CSS)와 타이핑 */
-    function navIn(after) {
-      if (root.classList.contains("site-nav-in")) return;
-      setTimeout(function () {
-        root.classList.add("site-nav-in");
-        setTimeout(function () { navDone = true; next(); }, 600);
-      }, after);
-    }
-    function done(el) { el.classList.remove("site-rv", "is-in"); el.style.removeProperty("--site-rv-delay"); }
-    function show(list, step, cap, base) {
-      list.sort(function (a, b) { return a.compareDocumentPosition(b) & 4 ? -1 : 1; });
-      list.forEach(function (el, i) {
-        var d = base + Math.min(i, cap) * step;
-        el.style.setProperty("--site-rv-delay", d + "ms");
-        el.classList.add("is-in");
-        setTimeout(function () { done(el); el.dispatchEvent(new CustomEvent("site:revealed")); }, d + 650);
-      });
-    }
-    var io = new IntersectionObserver(function (entries) {
-      var b = [], t = [];
-      entries.forEach(function (e) { if (!e.isIntersecting) return; io.unobserve(e.target); (e.target.matches(TILE) ? t : b).push(e.target); });
-      var base = first ? 150 : 0, wasFirst = first; first = false;
-      if (b.length) show(b, 80, 6, base);
-      if (t.length) show(t, 60, 9, base + (b.length ? 120 : 0));  /* 썸네일은 제목 다음에 하나씩 */
-      if (wasFirst) navIn(base + Math.min(b.length - 1, 6) * 80 + 450);
-    }, { rootMargin: "0px 0px -6% 0px" });
-    blocks.concat(tiles).forEach(function (el) { el.classList.add("site-rv"); io.observe(el); });
-    /* 안전장치: 2초가 지나도 첫 화면 안의 덩어리가 그대로 숨어 있으면 바로 보인다 */
-    setTimeout(function () {
-      var late = [].filter.call(document.querySelectorAll(".site-rv:not(.is-in)"), function (el) { return el.getBoundingClientRect().top < innerHeight; });
-      late.forEach(function (el) { io.unobserve(el); });
-      if (late.length) show(late, 0, 0, 0);
-      navIn(late.length ? 450 : 0);
-    }, 2000);
-
+    if (!root.classList.contains("site-type")) { root.classList.add("site-motion-on"); return; }
     /* 시작하기 요청 글 타이핑: 상자가 보이면 하나씩 차례로 친다. 상자를 누르거나 포커스하면 바로 끝까지 보인다(복사도 온전히) */
     var ai = document.getElementById("ai");
     var boxes = [];
@@ -1065,7 +1016,6 @@ document.addEventListener("click", function (e) {
       var finish = function () { if (q.state !== "done") end(q); };
       q.fig.addEventListener("pointerdown", finish, true);
       q.fig.addEventListener("focusin", finish);
-      q.fig.addEventListener("site:revealed", function () { q.seen = true; next(); });
     });
     var caret = document.createElement("span"); caret.className = "site-caret"; caret.setAttribute("aria-hidden", "true");
     function end(q) {
@@ -1090,7 +1040,6 @@ document.addEventListener("click", function (e) {
       })();
     }
     function next() {
-      if (!navDone) return;  /* 위 메뉴가 내려온 뒤에 친다 */
       for (var j = 0; j < queue.length; j++) {
         var q = queue[j];
         if (q.state === "done") continue;
@@ -1098,6 +1047,12 @@ document.addEventListener("click", function (e) {
         return;  /* 앞 상자가 끝나야 다음 상자 */
       }
     }
+    /* 상자가 화면에 들어오면 친다 */
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (!e.isIntersecting) return; seen.unobserve(e.target); queue.forEach(function (q) { if (q.fig === e.target) q.seen = true; }); });
+      next();
+    }, { rootMargin: "0px 0px -10% 0px" });
+    queue.forEach(function (q) { seen.observe(q.fig); });
     root.classList.add("site-motion-on");
   })();
 })();

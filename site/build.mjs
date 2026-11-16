@@ -364,7 +364,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
 <title>${esc(title)} - YDS</title>
 ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
-<script>/* 소소한 움직임 (2026-11-16): 움직임 줄이기 설정이 아니면 켠다. 위 메뉴 내려오기와 본문 차례로 보이기는 메인에서만(사용자 "메인만 적용, 사이트 특성에 맞지 않음"). site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion"${file === 'index.html' ? ', "site-first", "site-reveal"' : ''}); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-reveal", "site-first"); }, 3000); } } catch (e) {}</script>
+<script>/* 소소한 움직임 (2026-11-16): 움직임 줄이기 설정이 아니면 켠다(NEW 뱃지 탄성). 메인은 요청 글 타이핑(site-type). 위 메뉴 내려오기, 스크롤 페이드인은 사용자가 지움. site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion"${file === 'index.html' ? ', "site-type"' : ''}); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>
 <link rel="icon" href="${root}assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)} - YDS">
