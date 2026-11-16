@@ -6,11 +6,8 @@
 
 - **하는 일**: 사용자 "배포를 앞두고 있어. 우선 피그마 싱크 진행, 각 화면의 피그마, 코드, 마크다운 링크까지 전수 검사". 질문은 추천안으로 고르고 진행.
 - **된 것**: 변수, 컴포넌트 117세트 대조 맞음(Image Frame 변형 3 → 5 를 components.json 에 고침). 새 템플릿 5쪽 빈 COMPONENT(3428:4019 ~ 3428:4023, templates.json figma.pc). 그리기 도구 두 군데 고침: 칸 자리가 글 순서와 다른 격자(왼쪽 목록 + 오른쪽 지도)는 열마다 세로 묶음으로(tokens/figma-docpage.template.js), 선택 상자 안 템플릿 설명 줄(tp-vn__meta)도 설명으로(sync.mjs). 고사장 신청 (지도) 는 사이트와 같게 그려짐 확인.
-- **Figma 상태**: Templates 페이지  사각형 81개(3429:4019 ~ 4099, 공유 데이터 yds/tplrects 순서 = groups.mjs 순서) 가운데 앞 60개는 새 자료, 뒤 21개(61번째부터)는 고치기 전 자료. 그린 것은 0 ~ 2번(exam-apply, exam-venue, exam-schedule).
-- **이어서**: 뒤 21개 자료를 다시 올린다( → upload_assets nodeIds 3429:4079 ~ 4099 → curl). 그다음 공유 데이터 tplbatch 로 3 ~ 80번을 8개씩 그린다(). 이어서 tplimgs 사진 칸 채우기, 넘침과 글 대조, 섹션을 groups.mjs 순서로 다시 묶기(Commerce 섹션 이름 Books 로, x -6000 의 새 5쪽 옮기기),  사각형과 공유 데이터(unpack, tplrun, tplbatch, tplimgs, tplrects) 지우기. 문서 프레임은 11-13 ~ 11-15 예시 정리 51곳, 사용 지침 6개(Chip, Help Bubble, List, Markdown, Radio Group, Image Frame), Radio Group 가로 / Badge xlarge / Accordion inset 예시, [36m  YDS 동기화 · links[0m
-  ------------------------------------------------
-
-[31m  ✖ 모르는 명령: links  (status / figma / pull / build / verify / deploy / check / release)[0m. 끝으로 모든 쪽의 Figma, 코드, Markdown 링크 전수 검사와 가벼운 검수 save.
+- **Figma 상태**: Templates 페이지 `_payload` 사각형 81개(3429:4019 ~ 4099, 공유 데이터 yds/tplrects 순서 = groups.mjs 순서) 가운데 앞 60개는 새 자료, 뒤 21개(61번째부터)는 고치기 전 자료. 그린 것은 0 ~ 2번(exam-apply, exam-venue, exam-schedule).
+- **이어서**: 뒤 21개 자료를 다시 올린다(`node tokens/figma-payload.mjs <slug>` → upload_assets nodeIds 3429:4079 ~ 4099 → curl). 그다음 공유 데이터 tplbatch 로 3 ~ 80번을 8개씩 그린다(`new Function('return (' + figma.root.getSharedPluginData('yds','tplbatch') + ')')()(from, to)`). 이어서 tplimgs 사진 칸 채우기, 넘침과 글 대조, 섹션을 groups.mjs 순서로 다시 묶기(Commerce 섹션 이름 Books 로, x -6000 의 새 5쪽 옮기기), `_payload` 사각형과 공유 데이터(unpack, tplrun, tplbatch, tplimgs, tplrects) 지우기. 문서 프레임은 11-13 ~ 11-15 예시 정리 51곳, 사용 지침 6개(Chip, Help Bubble, List, Markdown, Radio Group, Image Frame), Radio Group 가로 / Badge xlarge / Accordion inset 예시, 코드 링크 줄 번호 다시 맞추기(지금 sync.mjs 에 links 명령이 없다고 나오니 만드는 곳을 먼저 찾는다). 끝으로 모든 쪽의 Figma, 코드, Markdown 링크 전수 검사와 가벼운 검수 save.
 
 ## 한 것 (11-16)
 
