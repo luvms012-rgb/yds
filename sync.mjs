@@ -131,7 +131,7 @@ const components = await (async () => {
     res.ok++;
   }
   // 컴포넌트는 카테고리 페이지(Action ~ Table & List)에 나뉘어 있다 — 문서·구분선 페이지만 빼고 전부 본다
-  const NON_COMPONENT = new Set(['Get Started', 'About', 'Foundations', 'Iconography', 'Icons', 'Templates', 'Updates']);
+  const NON_COMPONENT = new Set(['Get Started', 'About', 'Foundations', 'Iconography', 'Icons', 'Templates', 'Updates', 'Internal Components']);
   for (const page of figma.root.children) {
     if (NON_COMPONENT.has(page.name) || /^-+$/.test(page.name)) continue;
     await page.loadAsync();

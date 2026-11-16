@@ -55,7 +55,7 @@ const NODES = ${JSON.stringify(N)}.split(' ').map((x) => { const m = x.match(/^(
 const components = { ok: 0, missing: [], typeMismatch: [], variantMismatch: [], unlisted: [] };
 const known = new Set(NODES.map((n) => n.id));
 for (const n of NODES) { const node = await figma.getNodeByIdAsync(n.id); if (!node) { components.missing.push(n.id); continue; } if (node.type !== n.type) { components.typeMismatch.push(n.id + ' ' + node.name + ' → ' + node.type); continue; } if (n.variants && node.children.length !== n.variants) { components.variantMismatch.push(n.id + ' ' + node.name + ' 기대 ' + n.variants + ' 실제 ' + node.children.length); continue; } components.ok++; }
-const NON = new Set(['Get Started', 'About', 'Foundations', 'Iconography', 'Icons', 'Templates', 'Updates']);
+const NON = new Set(['Get Started', 'About', 'Foundations', 'Iconography', 'Icons', 'Templates', 'Updates', 'Internal Components']);
 for (const page of figma.root.children) { if (/^-+$/.test(page.name)) continue; await page.loadAsync(); if (NON.has(page.name)) continue; for (const s of page.findAllWithCriteria({ types: ['COMPONENT_SET'] })) if (!known.has(s.id)) components.unlisted.push(s.name + ' ' + s.id + ' · ' + s.children.length + ' @' + page.name); }
 const SITE = ${JSON.stringify(PLAN.site)}, GH = ${JSON.stringify(GH)}, SRC = ${JSON.stringify(PLAN.src)};
 const E = ${JSON.stringify(E)}.split('|').map((x) => { const p = x.split(';'); return { no: p[0], slug: p[1], ids: p[2].split(','), doc: p[3], start: +p[4], end: +p[5] }; });
