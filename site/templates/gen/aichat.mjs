@@ -29,7 +29,6 @@ const CHAT_CSS = `
 `;
 const composer = (ph = '무엇이든 물어보세요', files = []) => `<form class="tp-composer" onsubmit="return false">${files.length ? `<div class="tp-files-row">${files.map((f) => `<span class="tp-file-token">${icon('file-text', 'sm')}${f}${iconBtn('x', f + ' 빼기', { size: 'xsmall' })}</span>`).join('')}</div>` : ''}<textarea class="ds-textarea" rows="2" placeholder="${esc(ph)}" aria-label="메시지 입력"></textarea><div class="tp-composer__bar">${iconBtn('plus', '파일 첨부')}${btn('참고 자료', { variant: 'ghost', ic: 'paperclip', size: 'small' })}${btn('도구', { variant: 'ghost', ic: 'sliders-horizontal', size: 'small' })}<span class="tp-grow"></span>${iconBtn('mic', '말로 입력')}<button type="submit" class="ds-chat-send" aria-label="보내기"></button></div></form>`;
 
-/* 1. AI 대화 (오른쪽 결과물 패널) ------------------------------ */
 const conversation = () => {
   const css = CHAT_CSS + `
   .tp-artifact { display: none; flex: none; width: min(46%, 600px); flex-direction: column; box-shadow: inset 1px 0 0 var(--ds-color-stroke-neutral-muted); }
@@ -64,7 +63,6 @@ const conversation = () => {
   return { slug: 'ai-chat', h1: 'AI 대화', en: 'AI Chat Conversation', name: 'AI 대화', group: 'Content', desc: 'AI와 주고받은 대화와 결과물을 함께 보는 화면입니다. 결과물은 옆 패널에서 따로 엽니다.', css, body };
 };
 
-/* 2. AI 첫 화면 ------------------------------------------------- */
 const landing = () => {
   const css = CHAT_CSS + `
   .tp-land { display: grid; place-items: center; min-height: 100vh; padding: var(--ds-space-x8) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); }
@@ -82,9 +80,6 @@ const landing = () => {
   return { slug: 'ai-chat-landing', en: 'AI Chat Landing', name: 'AI 홈', group: 'Content', desc: '대화를 시작하기 전에 보여 주는 AI 첫 화면입니다. 입력창과 추천 버튼으로 바로 시작합니다.', css, body };
 };
 
-/* 3. AI 학습 대화 (학습 > 수강) ---------------------------------- */
-// 2026-11-16 사용자 "학습용 채팅 UI (챗튜터 방식)", 이름은 "범용적인 용어로" 바꿔 AI 학습 대화. 레퍼런스는 UI 패턴 카탈로그의 말하기 앱 AI 튜터, AI 발음 코치, 학습 사이트 AI 챗봇, 말하기 연습 결과 화면(서비스 이름은 적지 않는다).
-// 튜터 말풍선 아래 듣기와 번역, 내 말 아래 "더 자연스럽게" 고쳐 주기, 다음에 말해 볼 문장 칩, 아래 큰 마이크. 넓은 화면에서는 오른쪽에 오늘의 미션.
 const tutor = () => {
   const css = CHAT_CSS + `
   .tp-tutor-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x4); }
@@ -97,7 +92,6 @@ const tutor = () => {
   .tp-fix del { color: var(--ds-color-fg-critical); text-decoration-thickness: 1px; }
   .tp-fix ins { color: var(--ds-color-fg-positive); text-decoration: none; font-weight: var(--ds-font-weight-semibold); }
   .tp-fix__why { margin: 0; color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
-  /* 채팅은 최신 대화가 보이게 아래부터(column-reverse 스크롤) */
   .tp-log--end { flex-direction: column-reverse; }
   .tp-log__in { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
   .tp-say { display: flex; flex-direction: column; gap: var(--ds-space-x2); }

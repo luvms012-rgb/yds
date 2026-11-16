@@ -4,7 +4,6 @@ const inp = (id, v, attrs = '') => input(id, `value="${esc(v)}" ${attrs}`);
 const sel = (id, v) => select(v, { id, size: 'medium' });
 
 const CSS = `
-  /* 설정 틀: 왼쪽 메뉴 + 오른쪽 내용. 설정 폼과 설정 패널이 함께 쓴다 */
   .tp-sp { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }
   @media (min-width: 1280px) { .tp-sp { grid-template-columns: 280px minmax(0, 1fr); } }
   .tp-sp__side { display: flex; flex-direction: column; gap: var(--ds-space-x3); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -25,7 +24,6 @@ const CSS = `
 const nav = (groups, cur) => `<nav class="tp-snav" aria-label="설정 메뉴">${groups.map(([g, items]) => `${g ? `<span class="tp-snav__group">${g}</span>` : ''}${items.map(([t, ic]) => `<a class="tp-snav__item" href="#"${t === cur ? ' aria-current="page"' : ''}>${ic ? icon(ic, 'sm') : ''}${t}</a>`).join('')}`).join('')}</nav>`;
 const row = (ic, t, d, control) => `<div class="tp-srow"><div class="tp-srow__label">${icon(ic, 'sm')}<span class="tp-stack"><span class="tp-label">${t}</span><span class="tp-sub">${d}</span></span></div><div>${control}</div></div>`;
 
-/* 3. 설정 패널 (왼쪽 메뉴로 바꾸는) ---------------------------- */
 const panels = () => {
   const css = CSS + `
   .tp-info { display: flex; justify-content: space-between; gap: var(--ds-space-x4); padding-block: var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }

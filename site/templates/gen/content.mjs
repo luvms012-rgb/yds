@@ -13,7 +13,6 @@ let TN = 0;
 let BK = 0;
 const tileCard = (t, d) => `<article class="ds-card tp-card tp-tile" data-size="small">${thumb('16:9', '', K.photo('mix', TN++, 640), 'md')}<div class="tp-stack"><h3 class="tp-h4">${t}</h3><p class="tp-sub">${d}</p></div></article>`;
 
-/* 5. 주문 상세 -------------------------------------------------- */
 const orderDetail = () => {
   const items = [['실전 모의고사 1000제', '19,000원', 2], ['기출 단어장', '13,000원', 1], ['기초 영문법 워크북', '6,000원', 3], ['영어 회화 패턴 100', '14,000원', 1], ['실전 모의고사 해설집', '6,000원', 1]];
   const acts = [['주문 접수', '와이비엠 님이 주문했어요', '10.31 오후 2:04'], ['결제 완료', '카드 결제 89,500원', '10.31 오후 2:05'], ['메모 추가', '"수업 시작 전에 받고 싶어요"', '10.31 오후 2:06'], ['재고 확인 필요', '기초 영문법 워크북 재고 1권 남음', '10.31 오후 4:30']];
@@ -48,7 +47,6 @@ const orderDetail = () => {
   return { slug: 'detail-page', en: 'Order Detail', name: '주문 처리', group: 'Content', desc: '주문 한 건을 자세히 보고 처리하는 화면입니다. 주문한 교재와 진행 기록, 고객 정보를 한곳에서 확인합니다.', css, body };
 };
 
-/* 6. 상품 상세 -------------------------------------------------- */
 const productDetail = () => {
   const css = `
   .tp-pd { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }

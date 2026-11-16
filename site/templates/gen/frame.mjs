@@ -1,22 +1,17 @@
-// 시험 접수, 러닝 템플릿이 함께 쓰는 틀: 위 메뉴(사용자 화면), 옆 메뉴(기관 관리 화면), 공통 조각.
 import * as K from './kit.mjs';
 const { icon, esc } = K;
 
 export const T = (s) => `<span class="tp-num">${s}</span>`;
 
 export const FRAME_CSS = `
-  /* 위 메뉴 화면 */
   .tp-topbar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-topbar > .ds-topnav { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding-inline: var(--tp-gutter); background: none; }
-  /* 768 미만은 Top App Bar, 768 부터 Top Navigation (2026-11-15, Top Navigation 은 PC 용) */
   .tp-topbar > .ds-topnav { display: none; }
   @media (min-width: 768px) { .tp-topbar > .ds-topnav { display: flex; } .tp-topbar > .ds-appbar { display: none; } }
   .tp-appbar-logo { display: inline-flex; padding-inline-start: var(--ds-space-x1_5); color: inherit; text-decoration: none; }
   .tp-topbar .ds-topnav__heading { padding-inline-start: 0; }
   .tp-wrap { width: min(100%, var(--tp-page)); margin-inline: auto; }
-  /* 옆 메뉴 화면 */
   .tp-app.tp-frame { box-sizing: border-box; flex-direction: row; width: min(100%, var(--tp-max)); min-height: 100vh; margin-inline: auto; }
-  /* 1440 보다 넓은 화면: 옆 메뉴 화면 전체(메뉴 + 본문)를 1440 틀 안에 두고 양옆에 선 */
   @media (min-width: 1441px) { .tp-app.tp-frame { box-shadow: -1px 0 0 var(--ds-color-stroke-neutral-muted), 1px 0 0 var(--ds-color-stroke-neutral-muted); } }
   .tp-frame .ds-sidenav__header { justify-content: flex-start; }
   .tp-frame > .ds-sidenav { display: none; }
@@ -28,12 +23,9 @@ export const FRAME_CSS = `
   }
   .tp-org { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x2) var(--ds-space-x1); }
   .tp-org__mark { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03-static); font-weight: var(--ds-font-weight-bold); }
-  /* 고르기 상자 칸 수: 모바일은 1칸(4칸은 2칸), 768 부터 지정한 칸 */
   .tp-sb2, .tp-sb3 { --ds-selectbox-columns: 1; } .tp-sb4 { --ds-selectbox-columns: 2; }
   @media (min-width: 768px) { .tp-sb2 { --ds-selectbox-columns: 2; } .tp-sb3 { --ds-selectbox-columns: 3; } .tp-sb4 { --ds-selectbox-columns: 4; } }
-  /* 옆으로 미는 표는 눌리지 않게 */
   .tp-scroll-x .ds-table { min-width: 760px; }
-  /* 공통 조각 */
   .tp-big { font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
   .tp-mid { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
   .tp-rows { display: flex; flex-direction: column; }
@@ -51,7 +43,6 @@ export const FRAME_CSS = `
 `;
 
 const topItem = (t, cur) => `<a class="ds-topnav__item" href="#"${cur ? ' aria-current="page"' : ''}>${t}</a>`;
-// 모바일 위 막대: Top App Bar (왼쪽 메뉴 열기, 가운데 로고나 제목, 오른쪽 버튼)
 const abBtn = ([ic, label]) => `<button type="button" class="ds-appbar__button" aria-label="${esc(label)}">${icon(ic)}</button>`;
 export const appbar = (main, right = []) => `<header class="ds-appbar" data-platform="android"><div class="ds-appbar__left">${abBtn(['menu', '메뉴 열기'])}</div><div class="ds-appbar__main">${main}</div><div class="ds-appbar__right">${right.map(abBtn).join('')}</div></header>`;
 export const topbar = (menu, cur, end) => `<div class="tp-topbar"><header class="ds-topnav">
@@ -60,7 +51,6 @@ export const topbar = (menu, cur, end) => `<div class="tp-topbar"><header class=
 </header>${appbar(`<a class="tp-appbar-logo" href="#" aria-label="서비스 이름 홈"><span class="tp-logo">로고</span></a>`, [['search', '찾기']])}</div>`;
 
 const sideItem = ([t, ic, cur]) => `<a class="ds-sidenav__item" href="#"${cur ? ' aria-current="page"' : ''}><span class="ds-sidenav__prefix">${icon(ic)}</span><span class="ds-sidenav__label">${t}</span></a>`;
-// groups: [[묶음 이름 | '', [[메뉴, 아이콘, 지금?], ...]], ...]
 export const sidenav = (org, groups, footer = []) => `<nav class="ds-sidenav" aria-label="관리 메뉴">
   <div class="ds-sidenav__header"><div class="tp-org"><span class="tp-org__mark" aria-hidden="true">${esc(org.slice(0, 1))}</span><span class="tp-stack"><span class="tp-h4">${org}</span><span class="tp-caption">기관 관리</span></span></div></div>
   <div class="ds-sidenav__content">${groups.map(([g, items]) => `<div class="ds-sidenav__group">${g ? `<div class="ds-sidenav__group-label">${g}</div>` : ''}${items.map(sideItem).join('')}</div>`).join('')}</div>
@@ -71,7 +61,6 @@ export const frame = (nav, title, main) => `<div class="tp-app tp-frame">${nav}<
 
 export const selectbox = (name, items, cur = 0, { cols = 0, type = 'radio', vertical = false } = {}) => `<div class="ds-selectbox-group${cols ? ' tp-sb' + cols : ''}">${items.map(([l, d, ic], i) => `<label class="ds-selectbox"${vertical ? ' data-orientation="vertical"' : ''}>${ic ? icon(ic) : ''}<span class="ds-selectbox__texts"><span class="ds-selectbox__label">${l}</span>${d ? `<span class="ds-selectbox__desc">${d}</span>` : ''}</span>${type === 'radio' ? `<span class="ds-radio" data-tone="neutral" data-size="medium"><input type="radio" class="ds-radio__control" name="${name}"${i === cur ? ' checked' : ''}></span>` : `<span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"${(Array.isArray(cur) ? cur.includes(i) : i === cur) ? ' checked' : ''}></span>`}</label>`).join('')}</div>`;
 export const tags = (items, size = '') => `<span class="ds-tag-group"${size ? ` data-size="${size}"` : ''}>${items.map((t) => `<span>${t}</span>`).join('')}</span>`;
-// 달력: 그 달 1일의 요일(0=일), 날 수, 고른 날, 오늘, 고를 수 없는 날
 export const calendar = (title, { first = 0, days = 30, sel = 0, today = 0, off = [] } = {}) => {
   const cells = [];
   for (let i = 0; i < 42; i++) {

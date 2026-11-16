@@ -1,4 +1,3 @@
-// 시험 접수 템플릿: 개인(Exam)과 기관 단체(Exam B2B). 시험 이름은 특정 시험이 아닌 일반 이름을 쓴다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar, sidenav, frame, selectbox, tags, calendar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, checkbox, divider, chip, chiptabs, tabs, segmented, progress, ring, table, tablePager, stepper, avatar, callout, dot, link, breadcrumbs, lineChart, barChart, donut, legend, meter, kpi, search, C, esc } = K;
@@ -14,7 +13,6 @@ const CSS = FRAME_CSS + `
   .tp-map { position: relative; overflow: hidden; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); min-height: 200px; display: grid; place-items: center; color: var(--ds-color-fg-neutral-subtle); }
 `;
 
-/* 1. 시험 신청 (한 화면에 단계별 묶음 + 고정 요약) ------------------- */
 const apply = () => {
   const css = CSS + `
   .tp-ea { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page)); margin-inline: auto; }
@@ -24,9 +22,7 @@ const apply = () => {
   .tp-step-h .ds-icon { --ds-icon-size: 24px; color: var(--ds-color-fg-neutral); }
   .tp-step-h[data-current] .tp-step-no { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
   .tp-step-h > .tp-h2 { flex: 1 1 auto; font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); }
-  /* 좁은 화면: 제목 옆 세그먼트는 아래 줄로 (11-10 사용자 점검, 제목이 두 줄로 꺾이던 것) */
   @media (max-width: 767px) { .tp-step-h { flex-wrap: wrap; } .tp-step-h > .ds-segmented { flex: 1 0 100%; } }
-  /* 1) 모바일 아래 고정 결제 막대 (장바구니 tp-orderbar 와 같은 틀, 1280 부터는 오른쪽 요약의 버튼) */
   .tp-paybar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); margin-inline: calc(var(--tp-gutter) * -1); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-paybar .tp-stack { gap: 0; }
   .tp-paybar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
@@ -73,10 +69,6 @@ const apply = () => {
   return { slug: 'exam-apply', en: 'Exam Application', name: '시험 신청', group: 'Exam', desc: '시험 종류부터 결제까지 한 화면에서 차례로 선택하는 신청 화면입니다. 선택한 내용과 금액은 옆 요약에 바로 표시됩니다.', css, body };
 };
 
-/* 1-2. 고사장 신청 (지도) ------------------------------------------- */
-// 2026-11-16 사용자 "고사장 고르기(지도)". 레퍼런스는 UI 패턴 카탈로그의 매장 찾기 화면(서비스 이름은 적지 않는다).
-// 넓은 화면: 왼쪽 목록 + 오른쪽 지도(고른 고사장 카드). 좁은 화면: 지도 위, 목록 아래, 아래 고정 막대.
-// 지도는 실제 지도 SDK 자리라 토큰 색 도형으로만 그린다(길, 강, 공원). 핀은 DS 에 없는 지도 전용 요소라 tp-pin.
 const venue = () => {
   const css = CSS + `
   .tp-vn { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "map" "list"; gap: var(--ds-space-x4); }
@@ -108,7 +100,6 @@ const venue = () => {
   .tp-vbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); margin-inline: calc(var(--tp-gutter) * -1); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 1280px) { .tp-vbar { display: none; } }
 `;
-  // [이름, 구, 거리, 남은 자리, 지도 위치 x%, y%]
   const VENUES = [['강남 시험장', '서울 강남구', '1.3km', 12, 62, 64], ['서초 시험장', '서울 서초구', '2.4km', 3, 48, 76], ['잠실 시험장', '서울 송파구', '4.1km', 26, 84, 58], ['여의도 시험장', '서울 영등포구', '5.8km', 8, 24, 50], ['종로 시험장', '서울 종로구', '6.7km', 0, 46, 22], ['신촌 시험장', '서울 서대문구', '9.8km', 20, 22, 30], ['목동 시험장', '서울 양천구', '11.2km', 15, 8, 58], ['노원 시험장', '서울 노원구', '14.5km', 0, 74, 10]];
   const CUR = 0;
   const seat = (n) => n === 0 ? badge('마감') : n <= 5 ? badge(`${n}석 남음`, 'warning') : '';
@@ -143,11 +134,10 @@ const venue = () => {
   return { slug: 'exam-venue', en: 'Exam Venue Map', name: '고사장 신청 (지도)', group: 'Exam', desc: '지도와 목록으로 가까운 고사장을 찾아 고르는 화면입니다. 남은 자리와 거리를 보고 바로 신청합니다.', css, body };
 };
 
-/* 2. 내 시험 (개인 대시보드) ---------------------------------------- */
 const mine = () => {
   const css = CSS + `
   .tp-next { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
-  @media (min-width: 1280px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }  /* 11-11: 768 에서 왼쪽 칸이 눌려 1280 부터 */
+  @media (min-width: 1280px) { .tp-next { grid-template-columns: minmax(0, 1fr) 260px; } }
   .tp-dday { display: inline-flex; align-self: flex-start; padding: 2px var(--ds-space-x2); border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); font-size: var(--ds-font-size-t03); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-check { display: flex; align-items: center; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-check .ds-icon { color: var(--ds-color-fg-neutral); }
@@ -172,7 +162,6 @@ ${head('내 시험', { tools: btn('시험 접수하기', { variant: 'brandSolid'
   return { slug: 'exam-my', en: 'My Exams', name: '내 시험', group: 'Exam', desc: '응시자가 자신의 시험 일정과 점수를 한눈에 보는 화면입니다.', css, body };
 };
 
-/* 3. 성적표 ------------------------------------------------------- */
 const score = () => {
   const css = CSS + `
   .tp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: center; }
@@ -184,7 +173,6 @@ const score = () => {
   .tp-area { display: flex; flex-direction: column; gap: var(--ds-space-x2); }
 `;
   const dist = [2, 5, 9, 16, 24, 31, 27, 19, 11, 5];
-  // 내 구간(9번째 막대)만 진하게, 나머지는 옅은 회색
   let k = 0;
   const distChart = barChart(dist.map((v) => [v]), { x: ['10', '20', '30', '40', '50', '60', '70', '80', '90', '99'], colors: ['var(--ds-color-bg-neutral)'], label: '점수 구간별 응시자 비율' }).replace(/fill="var\(--ds-color-bg-neutral\)"/g, (m) => (k++ === 8 ? `fill="${C(0)}"` : m));
   const area = (t, s, max, v, note) => `<div class="tp-area"><div class="tp-between"><span class="tp-label">${t}</span><span>${T(`<b>${s}</b> / ${max}`)}</span></div>${progress(v, { small: false, label: t })}<span class="tp-caption">${note}</span></div>`;
@@ -205,7 +193,6 @@ ${head('영어 읽기 듣기 시험 성적', { eyebrow: breadcrumbs(['내 시험
   return { slug: 'exam-score', en: 'Score Report', name: '성적표', group: 'Exam', desc: '시험 성적을 확인하는 화면입니다. 총점을 먼저 보여 주고 영역별 점수로 이어집니다.', css, body };
 };
 
-/* 4. 단체 접수 (기관) ---------------------------------------------- */
 const groupApply = () => {
   const css = CSS + `
   .tp-ga { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
@@ -237,7 +224,6 @@ const groupApply = () => {
   return { slug: 'exam-group-apply', en: 'Group Application', name: '단체 접수', group: 'Exam', desc: '기관 담당자가 명단 파일을 올려 한 번에 접수하는 화면입니다. 고쳐야 할 행은 올리자마자 알려 줍니다.', css, body: frame(orgNav(1), '단체 접수', main) };
 };
 
-/* 5. 응시자 관리 (기관) -------------------------------------------- */
 const roster = () => {
   const people = [['김민준', '20231042', '경영학과', 'A-012', true, '접수 완료'], ['이서연', '20231107', '경영학과', 'A-013', true, '접수 완료'], ['박지후', '20220388', '국제통상학과', 'A-021', false, '접수 완료'], ['최하은', '20240215', '영어영문학과', 'B-004', true, '접수 완료'], ['정민재', '20230877', '컴퓨터공학과', 'B-011', true, '접수 완료'], ['한지아', '20230561', '컴퓨터공학과', 'B-012', false, '접수 완료'], ['오도윤', '20221190', '경제학과', '-', false, '취소'], ['윤채원', '20240033', '경제학과', 'C-002', true, '접수 완료']];
   const rows = people.map(([n, id, dep, seat, sent, st]) => [K.checkOnly(n + ' 고르기'), `<div class="tp-row">${avatar(n, 24)}<span>${n}</span></div>`, T(id), dep, T(seat), `<span class="tp-row">${dot(sent ? 'positive' : 'warning')}${sent ? '보냄' : '안 보냄'}</span>`, badge(st, st === '취소' ? '' : 'informative'), iconBtn('ellipsis', '더 보기', { size: 'xsmall' })]);
@@ -252,7 +238,6 @@ ${K.selectionBar('ro-sel', [['수험표 보내기', 'mail'], ['내려받기', 'd
   return { slug: 'exam-group-roster', en: 'Candidate Roster', name: '응시자 관리', group: 'Exam', desc: '단체로 접수한 응시자를 찾아보고 관리하는 표입니다. 여러 명을 골라 수험표를 한 번에 보냅니다.', css, body: frame(orgNav(2), '응시자 관리', main) };
 };
 
-/* 6. 단체 성적 대시보드 (기관) ------------------------------------- */
 const groupDash = () => {
   const css = CSS + `
   .tp-rank { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; }

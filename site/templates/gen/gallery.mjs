@@ -1,7 +1,6 @@
 import * as K from './kit.mjs';
 const { icon, btn, tabs, divider } = K;
 
-// 사진 자리: 회색 한 가지 바탕 + 사진 아이콘 (여러 색을 쓰지 않는다, 실제 사진은 서비스에서 넣는다)
 const ph = (ratio, i = 0, cls = '', theme = 'mix') => `<div class="ds-imageframe tp-photo${cls ? ' ' + cls : ''}"${ratio ? ` data-ratio="${ratio}"` : ''} aria-hidden="true"><span class="tp-ph"><img src="${K.photo(theme, i, 1200)}" alt="" loading="lazy"></span></div>`;
 const CSS = `
   .tp-gal { display: flex; flex-direction: column; gap: var(--ds-space-x10); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x10) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
@@ -26,7 +25,6 @@ const HERO = {
   side: ['색으로 고르는 사진', '좋아하는 색을 고르면 그 색이 담긴 사진만 모아서 보여 줘요.'],
 };
 
-// 벽돌형 갤러리 사진: [비율, 제목]. 사진을 누르면 Lightbox 로 크게 본다
 const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '상품 목록', group: 'Content', desc: '같은 모양의 상품 카드를 나열한 갤러리입니다. 구성이 단순해 둘러보며 선택하기 쉽습니다.', css: CSS + `
   .tp-pg-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); align-items: end; }
   @media (min-width: 1280px) { .tp-pg-head { grid-template-columns: 2fr 1fr; } .tp-pg-head > :last-child { justify-self: end; } }

@@ -1,5 +1,3 @@
-// 마이페이지 템플릿(My Page): 마이페이지 홈, 주문 내역, 내 정보.
-// 사내 UI 패턴 모음 '마이페이지' 화면의 공통 구조만 따른다(왼쪽 묶음 메뉴, 프로필 요약과 혜택 숫자, 주문 단계, 설정 행). 서비스 이름, 글, 로고는 넣지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, select, chiptabs, segmented, avatar, link, thumb, pagination, sw, esc } = K;
@@ -14,7 +12,6 @@ const NAV = [
 const NAV_FLAT = NAV.flatMap(([, items]) => items.map(([t]) => t));
 
 const CSS = FRAME_CSS + `
-  /* 마이페이지 배치: 모바일 1열 + 위 칩 메뉴, 1280 부터 왼쪽 메뉴 200 | 본문 (커뮤니티와 같은 칸, 여백) */
   .tp-mp { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); padding-inline: var(--tp-gutter); }
   .tp-mp__main { display: flex; flex-direction: column; gap: var(--ds-space-x10); min-width: 0; }
   .tp-mp__nav { display: none; }
@@ -22,26 +19,22 @@ const CSS = FRAME_CSS + `
   @media (min-width: 768px) { .tp-mp { padding: var(--ds-space-x8) var(--ds-space-x6) var(--ds-space-x16); } }
   @media (min-width: 1280px) {
     .tp-mp { grid-template-columns: 200px minmax(0, 1fr); gap: var(--ds-space-x10); }
-    .tp-mp__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; box-sizing: border-box; min-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); padding-right: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }  /* 11-11 사용자 "좌우 레이아웃 분리": 설정 패널처럼 메뉴 칸 오른쪽 세로 선 */
+    .tp-mp__nav { display: flex; flex-direction: column; gap: var(--ds-space-x4); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; box-sizing: border-box; min-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); padding-right: var(--ds-space-x6); box-shadow: inset -1px 0 0 var(--ds-color-stroke-neutral-muted); }
     .tp-mp__chips { display: none; }
   }
   .tp-mp__nav .ds-sidenav { width: auto; height: auto; background: none; }
   .tp-mp__nav .ds-sidenav__content { padding: 0; }
-  /* 표 위 도구 줄: 좁은 화면에서는 고르기 칸과 찾기 칸이 남은 폭을 나눠 쓴다 */
   @media (max-width: 767px) { .tp-mp .tp-ttools > .tp-row { width: 100%; } .tp-mp .tp-ttools > .tp-row > :is(.ds-select, .ds-input) { flex: 1 1 140px; } }
   .tp-mp-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
-  /* 프로필 요약 */
   .tp-prof { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x4); }
   .tp-prof__who { display: flex; align-items: center; gap: var(--ds-space-x3); min-width: 0; }
   .tp-stat-link { color: inherit; text-decoration: none; }
-  /* 주문 단계: 옅은 바탕 한 장 위에 숫자 5칸, 768 부터 사이 꺾쇠 */
   .tp-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: var(--ds-space-x5) var(--ds-space-x2); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral-weak-alpha); }
   .tp-flow > a { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x1); color: var(--ds-color-fg-neutral-subtle); text-align: center; text-decoration: none; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
   .tp-flow > a[data-on] { color: var(--ds-color-fg-neutral); }
   .tp-flow .tp-mid { color: inherit; }
   .tp-flow__arrow { display: none; }
   @media (min-width: 768px) { .tp-flow__arrow { display: block; position: absolute; left: 0; top: 50%; translate: -50% -50%; --ds-icon-size: 16px; color: var(--ds-color-fg-neutral-subtle); } }
-  /* 주문 상품 한 줄 */
   .tp-oitem { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--ds-space-x3) var(--ds-space-x4); align-items: center; }
   .tp-oitem__acts { grid-column: 1 / -1; display: flex; gap: var(--ds-space-x2); }
   .tp-oitem__acts > .ds-btn { flex: 1 1 0; }
@@ -49,15 +42,12 @@ const CSS = FRAME_CSS + `
     .tp-oitem { grid-template-columns: 80px minmax(0, 1fr) 128px; }
     .tp-oitem__acts { grid-column: auto; flex-direction: column; }
   }
-  /* 주문 묶음: 위 날짜와 주문 번호, 아래 상품 줄 (줄 사이 선은 줄 자체에) */
   .tp-order { display: flex; flex-direction: column; }
   .tp-order__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding-bottom: var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-order .tp-rows > * { padding-block: var(--ds-space-x4); }
-  /* 찜한 상품 */
   .tp-wish { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x4); }
   @media (min-width: 768px) { .tp-wish { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .tp-wish a { display: flex; flex-direction: column; gap: var(--ds-space-x2); color: inherit; text-decoration: none; }
-  /* 설정 행: 왼쪽 이름과 설명, 오른쪽 값과 동작 */
   .tp-setrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2) var(--ds-space-x4); }
   .tp-setrow__end { display: flex; align-items: center; gap: var(--ds-space-x3); min-width: 0; }
   .tp-setrow__val { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral); font-variant-numeric: tabular-nums; }
@@ -83,7 +73,6 @@ const ITEMS = [
 ];
 const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span>${K.badge(st, tone || 'neutral')}</span><span class="tp-name">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
 
-/* 1. 마이페이지 홈 ------------------------------------------------ */
 const home = () => {
   const flow = [['결제 완료', 0], ['수강 대기', 1], ['수강 중', 2], ['수강 완료', 3], ['기간 끝남', 0]];
   const wish = [['lecture', 3, '실전 문제 풀이 750+', '49,000원'], ['lecture', 5, '하루 10분 영어 회화', '39,000원'], ['work', 0, '비즈니스 이메일 쓰기', '45,000원'], ['listen', 1, '영어 듣기 기초', '29,000원']];
@@ -103,7 +92,6 @@ const home = () => {
   return { slug: 'mypage-home', h1: '마이페이지 홈', en: 'My Page Home', name: '마이페이지', group: 'Account', desc: '마이페이지의 첫 화면입니다. 혜택과 수강 현황을 한눈에 봅니다.', css: CSS, body };
 };
 
-/* 2. 주문 내역 --------------------------------------------------- */
 const orders = () => {
   const groups = [['2026.11.01', '20261101-0042', [ITEMS[0], ITEMS[3]]], ['2026.10.24', '20261024-0918', [ITEMS[1]]], ['2026.10.12', '20261012-1377', [ITEMS[2]]]];
   const body = shell('주문 내역', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">주문 내역</h1></div></header>
@@ -115,7 +103,6 @@ const orders = () => {
   return { slug: 'mypage-orders', en: 'Order History', name: '주문 내역', group: 'Account', desc: '주문을 날짜별로 모아 보는 내역 화면입니다. 배송 조회, 수강평 쓰기처럼 주문마다 필요한 일을 바로 처리합니다.', css: CSS, body };
 };
 
-/* 3. 내 정보 ----------------------------------------------------- */
 const profile = () => {
   const row = (label, desc, end) => `<div class="tp-setrow"><div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-label">${label}</span>${desc ? `<span class="tp-caption">${desc}</span>` : ''}</div><div class="tp-setrow__end">${end}</div></div>`;
   const val = (v, b = '변경') => `<span class="tp-setrow__val">${v}</span>${btn(b)}`;
@@ -130,7 +117,7 @@ const profile = () => {
     ${sec('알림', [row('수강, 시험 알림', '개강, 시험 접수, 성적 발표를 알려 드려요.', sw('수강, 시험 알림', true)), row('혜택, 이벤트 알림', '받기로 한 날 2026.03.02', sw('혜택, 이벤트 알림', true)), row('이메일 소식', '받지 않기로 한 날 2026.08.11', sw('이메일 소식', false))])}
     <a class="tp-leave" href="#">회원 탈퇴</a>`);
   return { slug: 'mypage-profile', en: 'My Info', name: '내 정보', group: 'Account', desc: '내 정보와 알림 설정을 보고 수정하는 화면입니다.', css: CSS + `
-  .tp-mp__main { width: min(100%, var(--tp-narrow)); }  /* 설정 행이 화면 끝까지 늘어나지 않게 (설정 패널과 같은 720) */
+  .tp-mp__main { width: min(100%, var(--tp-narrow)); }
 `, body };
 };
 

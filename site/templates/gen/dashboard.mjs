@@ -5,7 +5,6 @@ const DAYS = ['10.01', '10.08', '10.15', '10.22', '10.29'];
 const T = (s) => `<span class="tp-num">${s}</span>`;
 const bar = (label, v, txt) => `<div class="tp-track">${progress(v, { label })}<span class="tp-caption tp-num">${txt}</span></div>`;
 
-/* 1. 분석 대시보드 ------------------------------------------------ */
 const analytics = () => {
   const users = [{ name: '전체', data: walk(3, 48, 110, 14, { min: 50 }) }, { name: 'PC', data: walk(5, 48, 72, 10, { min: 20 }) }, { name: '모바일', data: walk(9, 48, 40, 8, { min: 15 }) }];
   const tiles = [['월 방문자', '27.3k', '+18.2%', 11], ['월 페이지 뷰', '48.2k', '+12.5%', 12], ['평균 머문 시간', '4.5분', '-14.3%', 13], ['이탈률', '42.3%', '-8.7%', 14]];
@@ -43,7 +42,6 @@ const analytics = () => {
   return { slug: 'dashboard', h1: '서비스 이용 현황', en: 'Analytics Dashboard', name: '서비스 이용 현황', group: 'Admin', desc: '서비스 이용 흐름을 한눈에 보는 기본 분석 대시보드입니다. 추이 그래프와 핵심 지표를 먼저 보여 줍니다.', css, body };
 };
 
-/* 2. 프로젝트 현황 ----------------------------------------------- */
 const progressDash = () => {
   const ms = [['기획 확정', 0, 12, 'positive'], ['디자인 시스템 적용', 8, 34, 'positive'], ['수강 결제 개편', 20, 52, 'warning'], ['학습 기록 API', 30, 58, 'critical'], ['앱 출시 준비', 48, 78, 'informative'], ['QA와 접근성 점검', 60, 84, 'informative'], ['정식 출시', 84, 90, 'neutral']];
   const ws = [['핵심 플랫폼', '개발', '김서준', 82, '4월 21일', ['순항', 'positive']], ['결제', '개발', '이하린', 54, '5월 9일', ['위험', 'warning']], ['학습 기록', '개발', '박도윤', 31, '5월 16일', ['막힘', 'critical']], ['앱', '출시', '최지아', 46, '6월 2일', ['순항', 'positive']], ['디자인', '디자인', '정유나', 90, '4월 4일', ['완료', 'neutral']], ['QA', '검증', '한지호', 18, '6월 13일', ['순항', 'positive']]];
@@ -66,7 +64,6 @@ ${head('새 학습 앱 출시', { tools: `${segmented(['기획', '개발', '검�
   return { slug: 'dashboard-progress', en: 'Project Status Dashboard', name: '프로젝트 현황', group: 'Admin', desc: '프로젝트가 어디까지 왔는지 일정과 진행률로 보여 주는 대시보드입니다.', css: '', body };
 };
 
-/* 3. 서비스 모니터링 (오른쪽 알림 패널) -------------------------- */
 const monitoring = () => {
   const tiles = [['positive', '전체 상태', '98.6%', '+0.3%'], ['warning', '오류율', '1.84%', '+0.9%'], ['warning', '응답 시간 p99', '512ms', '+84ms'], ['positive', '가용성', '99.98%', '+0.01%']];
   const lat = ['p50', 'p95', 'p99'].map((name, i) => ({ name, data: walk(140 + i, 60, [60, 180, 380][i], [10, 30, 90][i], { min: 20 }) }));

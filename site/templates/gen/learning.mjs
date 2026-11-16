@@ -1,5 +1,3 @@
-// 기업, 대학 대상 러닝 플랫폼 템플릿(Learning B2B): 학습자 화면과 교육 담당자 화면.
-// AI 맞춤 추천, AI 튜터(요약, 퀴즈, 질문), 법정 필수 교육, 사내 지식 공유를 담는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar, sidenav, frame, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, checkbox, divider, chip, chiptabs, tabs, segmented, progress, table, tablePager, avatar, callout, dot, link, lineChart, barChart, donut, legend, meter, kpi, search, sw, thumb, pagination, C, esc } = K;
@@ -19,13 +17,11 @@ const CSS = FRAME_CSS + `
   .tp-ask > .ds-input { flex: 1 1 auto; }
   .tp-cover > .ds-badge { position: absolute; top: var(--ds-space-x2); left: var(--ds-space-x2); }
 `;
-// 표지 자리: 회색 한 가지(여러 색을 쓰지 않는다)
 const COVER = { '처음 만나는 생성형 AI 업무 활용': 0, '엑셀 함수와 피벗 한 번에': 1, '데이터로 말하는 보고서 쓰기': 2, '개인정보 보호 교육': 3, '팀장의 1:1 대화법': 4, '설득하는 프레젠테이션 구조 잡기': 5, '비즈니스 영어 이메일 바로 쓰기': 6, '파이썬으로 하는 업무 자동화': 7, '직장 내 괴롭힘 예방 교육': 8, '고객의 말을 듣는 인터뷰': 9, '프로젝트 일정과 위험 관리': 10, '일본어 업무 회화 첫걸음': 11 };
 const cover = (i, ratio = '16:9', b = '', title = '') => `<div class="tp-cover">${thumb(ratio, '', K.photo('study', title in COVER ? COVER[title] : i, 720), 'lg')}${b}</div>`;
 const star = (r, n) => `<span class="tp-star">${icon('star-solid')}${r} <span class="tp-caption">(${n})</span></span>`;
 const course = (i, title, meta, { b = '', r = '4.8', n = '1,204', prog = -1 } = {}) => `<a class="tp-course" href="#">${cover(i, '16:9', b, title)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-course__title">${title}</span><div class="tp-course__meta">${tags(meta)}${r ? star(r, n) : ''}</div>${prog >= 0 ? progress(prog, { label: title + ' 진도' }) : ''}</div></a>`;
 
-/* 1. 학습 홈 (학습자) ---------------------------------------------- */
 const home = () => {
   const css = CSS + `
   .tp-hello { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: center; }
@@ -62,10 +58,8 @@ const home = () => {
   return { slug: 'learning-home', en: 'Learning Home', name: '학습 홈', group: 'Learning', desc: '임직원이 학습을 시작하는 첫 화면입니다. 이어서 볼 강의와 필수 교육을 먼저 보여 줍니다.', css, body };
 };
 
-/* 2. 과정 찾기 ---------------------------------------------------- */
 const catalog = () => {
   const css = CSS + `
-  /* 거르기 묶음(찾기 + 조건 + 분류)과 결과 묶음(개수 + 정렬 + 목록)으로 나눈다 */
   .tp-cat-head { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
   .tp-filter { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
   .tp-filter__row { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); }
@@ -94,7 +88,6 @@ const catalog = () => {
   return { slug: 'learning-catalog', en: 'Course Catalog', name: '과정 목록', group: 'Learning', desc: '듣고 싶은 과정을 찾는 목록입니다. 분류, 수준, 학습 시간으로 필터링합니다.', css, body };
 };
 
-/* 3. 강의 보기 + AI 튜터 ------------------------------------------- */
 const player = () => {
   const css = CSS + `
   .tp-pl { display: flex; flex-direction: column; min-height: 100vh; }
@@ -102,7 +95,7 @@ const player = () => {
   .tp-pl__bar .ds-progress { width: 120px; }
   .tp-pl__body { display: flex; flex-direction: column; flex: 1 1 auto; }
   .tp-pl__main { display: flex; flex-direction: column; gap: var(--ds-space-x6); flex: 1 1 auto; min-width: 0; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x12); }
-  .tp-video { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: var(--ds-shape-xl); background: var(--ds-color-palette-static-black); color: var(--ds-color-palette-static-white); }  /* 영상 자리는 화면 모드와 상관없이 늘 검정 */
+  .tp-video { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: var(--ds-shape-xl); background: var(--ds-color-palette-static-black); color: var(--ds-color-palette-static-white); }
   .tp-video__play { display: grid; place-items: center; width: 64px; height: 64px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white-alpha-300); }
   .tp-video__play .ds-icon { --ds-icon-size: 28px; }
   .tp-video__bar { position: absolute; inset: auto var(--ds-space-x4) var(--ds-space-x3); display: flex; align-items: center; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t03); font-variant-numeric: tabular-nums; }
@@ -145,7 +138,6 @@ const player = () => {
   return { slug: 'learning-player', en: 'Course Player', name: '강의 시청', group: 'Learning', desc: '강의를 들으며 AI 튜터에게 요약과 퀴즈를 받는 화면입니다.', css, body };
 };
 
-/* 4. 과정 운영 (교육 담당자) ---------------------------------------- */
 const admin = () => {
   const css = CSS + `
   .tp-ad { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
@@ -173,7 +165,6 @@ const admin = () => {
   return { slug: 'learning-admin', en: 'Course Operations', name: '과정 관리', group: 'Learning', desc: '교육 담당자가 과정과 차수를 운영하는 화면입니다.', css, body: frame(adminNav(1), '과정 운영', main) };
 };
 
-/* 5. 학습 현황 대시보드 (교육 담당자) -------------------------------- */
 const dash = () => {
   const css = CSS + `
   .tp-due { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; }

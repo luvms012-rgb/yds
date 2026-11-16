@@ -1,6 +1,3 @@
-// 쇼핑 템플릿(Commerce): 장바구니, 빈 장바구니.
-// 사내 UI 패턴 모음의 '장바구니' 화면(종합몰, 새벽 배송, 리셀 등)에서 공통 구조만 뽑았다. 서비스 이름, 글, 로고는 넣지 않는다.
-// 결제 화면은 Form 분류(결제 단계, 결제 폼)에 있다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, checkbox, checkOnly, tabs, progress, thumb, link, avatar, esc } = K;
@@ -10,10 +7,8 @@ const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('heart'
 const won = (n) => T(n.toLocaleString('ko-KR') + '원');
 
 const CSS = FRAME_CSS + `
-  /* 쇼핑 배치: 가운데 1200, 1280 부터 상품 | 결제 금액 360 (오른쪽은 따라 내려옴) */
   .tp-shop { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x6) var(--ds-space-x4) var(--ds-space-x16); padding-inline: var(--tp-gutter); }
   .tp-shop__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
-  /* 단계 표시: 장바구니 > 주문 결제 > 주문 완료 */
   .tp-steps { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-subtle); }
   .tp-steps li { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); }
   .tp-steps li + li::before { content: ''; width: 16px; height: 1px; margin-inline-end: var(--ds-space-x0_5); background: var(--ds-color-stroke-neutral-weak); }
@@ -29,14 +24,10 @@ const CSS = FRAME_CSS + `
     .tp-cart__aside { position: sticky; top: 88px; }
     .tp-cart__order { display: flex; }
   }
-  /* 전체 고르기 줄 */
   .tp-selbar { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
-  /* 무료 배송까지 남은 금액 */
-  /* 무료 배송까지 남은 금액: DS Callout 상자 안에 문구, 얇은 막대, 양 끝 금액 */
   .tp-freeship__body { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
   .tp-freeship b { font-weight: var(--ds-font-weight-bold); color: var(--ds-color-fg-brand); }
   .tp-freeship__ends { display: flex; justify-content: space-between; font-size: var(--ds-font-size-t02); line-height: var(--ds-line-height-t02); color: var(--ds-color-fg-neutral-subtle); font-variant-numeric: tabular-nums; }
-  /* 배송 묶음과 상품 줄 */
   .tp-grp.ds-card { gap: 0; }
   .tp-grp__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding-bottom: var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-grp__head .tp-row { flex-wrap: wrap; }
@@ -66,7 +57,6 @@ const CSS = FRAME_CSS + `
     .tp-price { min-width: 140px; }
     .tp-only-md { display: inline-flex; }
   }
-  /* 결제 예정 금액 */
   .tp-sum { display: flex; flex-direction: column; gap: var(--ds-space-x3); margin: 0; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-sum > div { display: flex; align-items: baseline; justify-content: space-between; gap: var(--ds-space-x3); }
   .tp-sum dt { color: var(--ds-color-fg-neutral-muted); }
@@ -77,19 +67,15 @@ const CSS = FRAME_CSS + `
   .tp-tip { display: flex; align-items: flex-start; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); }
   .tp-tip .ds-icon { flex: none; margin-top: 2px; --ds-icon-size: 16px; }
   .tp-cart__order.ds-btn { width: 100%; }
-  /* 모바일 아래 고정 주문 막대 (1280 부터는 오른쪽 결제 금액의 버튼을 쓴다) */
   .tp-orderbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--ds-space-x4); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-orderbar .tp-stack { gap: 0; }
   .tp-orderbar b { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-bold); }
   @media (min-width: 1280px) { .tp-orderbar { display: none; } }
-  /* 안내 글 */
   .tp-notes { display: flex; flex-direction: column; gap: var(--ds-space-x1_5); margin: 0; padding-inline-start: var(--ds-space-x5); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
-  /* 추천 상품 */
   .tp-recs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-x6) var(--ds-space-x4); }
   @media (min-width: 768px) { .tp-recs { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .tp-rec { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; }
   .tp-rec__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); color: var(--ds-color-fg-neutral); text-decoration: none; }
-  /* 할인 없는 상품도 가격 줄 높이를 같게, 담기 버튼은 카드 맨 아래 한 줄로 */
   .tp-rec .tp-price { align-items: flex-start; gap: 0; margin-top: calc(-1 * var(--ds-space-x1)); }
   .tp-rec .tp-price__was { order: 2; }
   .tp-rec .ds-btn { margin-top: auto; }
@@ -109,7 +95,6 @@ const rec = ([name, img, now, was]) => `<article class="tp-rec"><a href="#" tabi
 const RECS = [['단기 공략 750+', 3, 16200, 18000], ['말하기 시험 실전 모의고사', 2, 17100, 0], ['영어 회화 패턴 100', 5, 13500, 15000], ['기초 영문법 워크북', 4, 9800, 0]];
 const NOTES = ['장바구니에 담은 강의와 교재는 30일 동안 보관해요.', '쿠폰과 포인트는 결제 단계에서 쓸 수 있어요.', '수강료와 할인은 바뀔 수 있어서, 결제할 때의 금액으로 결제돼요.'];
 
-/* 1. 장바구니 ---------------------------------------------------- */
 const cart = () => {
   const groups = [
     ['온라인 강의', badge('바로 수강', 'positive'), '배송 없음', [['기초 영문법 30일 완성', '수강 기간 90일', 0, 59000, 79000, 1], ['영어 말하기 시험 실전반', '수강 기간 60일 / 교재 미포함', 1, 89000, 0, 1]]],

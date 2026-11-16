@@ -1,4 +1,3 @@
-// 어학 앱 학습자 템플릿: AI 학습 리포트(학습 > 수강). 레슨 홈은 2026-11-16 사용자 지시로 뺐다(groups.mjs REMOVED).
 import * as K from './kit.mjs';
 import { FRAME_CSS, topbar, tags } from './frame.mjs';
 const { icon, btn, iconBtn, avatar, card } = K;
@@ -6,9 +5,6 @@ const { icon, btn, iconBtn, avatar, card } = K;
 const MENU = ['홈', '레슨', '복습', '리포트'];
 const end = `${iconBtn('bell', '알림', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 
-// AI 학습 리포트(학습 > 수강, AI 학습 대화 다음). 2026-11-16 사용자 "AI 학습 후 리포트 보기 화면, 레퍼런스를 충분히", "리포트에 그래프나 차트 포함".
-// 레퍼런스는 UI 패턴 카탈로그의 AI 수업 요약(어휘, 표현, 고칠 문장), 학습 리포트와 레벨 결과 리포트(점수 목록, 추이 그래프), 말하기 연습 완료, 진단 결과(영역별 막대, 도넛) 화면(서비스 이름은 적지 않는다).
-// 위에서부터 이번 학습 요약 숫자 → 영역별 점수와 점수 변화 그래프 → 고칠 문장. 넓은 화면 오른쪽에 말한 비율, 새로 익힌 표현, 다음 학습.
 const aiReport = () => {
   const css = FRAME_CSS + `
   .tp-rp { display: flex; flex-direction: column; gap: var(--ds-space-x6); padding-block: var(--ds-space-x6) var(--ds-space-x12); }
@@ -19,7 +15,6 @@ const aiReport = () => {
   @media (min-width: 768px) { .tp-rp__kpis { gap: var(--ds-space-x4); } }
   @media (min-width: 1280px) { .tp-rp__kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .tp-rp__main, .tp-rp__side { display: flex; flex-direction: column; gap: var(--ds-space-x4); min-width: 0; }
-  /* 태블릿에서는 오른쪽 카드를 두 칸으로 */
   @media (min-width: 768px) and (max-width: 1279px) { .tp-rp__side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
   .tp-rp__charts { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
   @media (min-width: 768px) { .tp-rp__charts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -42,7 +37,6 @@ const aiReport = () => {
   .tp-next .tp-node .ds-icon { --ds-icon-size: 20px; }
 `;
   const { kpi, spark, barChart, lineChart, donut, legend, C } = K;
-  // [이름, 값, 지난번 대비, 추이]
   const tiles = [['종합 점수', '86점', '+6', [70, 72, 71, 75, 78, 77, 80, 86]], ['발음', '88점', '+4', [78, 80, 79, 82, 83, 84, 84, 88]], ['문법 정확도', '80%', '+10', [62, 65, 64, 70, 68, 72, 70, 80]], ['말한 시간', '6분 32초', '+1:10', [3.2, 3.8, 4.1, 4.0, 4.6, 5.1, 5.4, 6.5]]];
   const SKILLS = ['발음', '유창성', '문법', '어휘', '이해'];
   const now = [88, 82, 80, 85, 92], before = [84, 75, 70, 83, 90];

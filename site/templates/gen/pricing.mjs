@@ -1,5 +1,3 @@
-// 요금제, 구독 템플릿: 요금제 비교, 구독 결제, 내 구독, 구독 해지.
-// 사내 UI 패턴 모음의 '멤버십/요금제' 화면에서 공통 구조만 뽑았다(서비스 이름, 글, 로고는 넣지 않음).
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, selectbox } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, checkbox, radios, textarea, divider, link, esc } = K;
@@ -21,7 +19,6 @@ const feats = (items) => `<ul class="tp-feat">${items.map((t) => (t.startsWith('
 const ok = icon('check');
 const no = '<span class="tp-caption" aria-label="없음">-</span>';
 
-/* 1. 요금제 비교 -------------------------------------------------- */
 const plans = () => {
   const css = PR_CSS + `
   .tp-plans { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
@@ -93,7 +90,6 @@ document.addEventListener('click', function (e) { var b = e.target.closest('[dat
   return { slug: 'pricing-plans', en: 'Pricing Plans', name: '요금제 비교', group: 'Commerce', desc: '요금제를 나란히 놓고 비교하는 화면입니다. 월 결제와 연 결제의 가격을 바꿔 가며 비교합니다.', css, body };
 };
 
-/* 2. 구독 결제 ---------------------------------------------------- */
 const checkout = () => {
   const css = PR_CSS + `
   .tp-sub-pay { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); }
@@ -107,7 +103,6 @@ const checkout = () => {
   .tp-agree { display: flex; flex-direction: column; gap: var(--ds-space-x1); padding-inline-start: var(--ds-space-x7); }
 `;
   const inp = (id, ph, attrs = '') => input(id, `placeholder="${esc(ph)}" ${attrs}`);
-  // 카드 번호: 85 Segmented Text Input. 가운데 두 구간은 가린다, 옆 칸과 높이를 맞춰 medium
   const seg = (n, masked = false) => `<input class="ds-segmentinput__segment"${n === 1 ? ' id="c-no"' : ''} inputmode="numeric" maxlength="4" autocomplete="off" aria-label="${n}번째 4자리"${masked ? ' data-masked' : ''}>`;
   const sep = '<span class="ds-segmentinput__separator" aria-hidden="true">-</span>';
   const cardNo = `<div class="ds-field"><div class="ds-field__header"><span class="ds-field__label" id="c-no-label">카드 번호 <span class="ds-field__required" aria-hidden="true"></span></span></div><div class="ds-input ds-segmentinput" data-variant="outline" data-size="medium" role="group" aria-labelledby="c-no-label">${[seg(1), seg(2, true), seg(3, true), seg(4)].join(sep)}<span class="ds-segmentinput__suffix">${icon('credit-card')}</span></div></div>`;
@@ -145,7 +140,6 @@ const checkout = () => {
   return { slug: 'subscription-checkout', en: 'Subscription Checkout', name: '구독 결제', group: 'Payment', desc: '선택한 요금제를 결제하는 화면입니다. 오늘 결제할 금액과 다음 결제일을 옆에 보여 줍니다.', css, body };
 };
 
-/* 3. 내 구독 ------------------------------------------------------ */
 const manage = () => {
   const css = PR_CSS + `
   .tp-manage { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
@@ -187,7 +181,6 @@ const manage = () => {
   return { slug: 'subscription-settings', en: 'Subscription Settings', name: '구독 관리', group: 'Payment', desc: '지금 쓰는 요금제와 결제를 관리하는 화면입니다. 요금제 바꾸기와 해지도 여기서 시작합니다.', css, body };
 };
 
-/* 4. 구독 해지 ---------------------------------------------------- */
 const cancel = () => {
   const css = PR_CSS + `
   .tp-cancel { display: flex; flex-direction: column; gap: var(--ds-space-x8); }

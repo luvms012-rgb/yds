@@ -25,7 +25,6 @@ const opt = (t, d, checked = false, type = 'checkbox', name = 'o') => `<label cl
 const summary = (items, lines, total, title = '주문 요약') => card(`<div class="tp-between"><h2 class="tp-h3">${title}</h2>${badge(items.length + '개')}</div>${items.map(([n, d, p], i) => `<div class="tp-item">${thumb('1:1', '', K.photo('book', i, 240))}<div class="tp-stack"><div class="tp-between" style="align-items:flex-start;flex-wrap:nowrap"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></div><span class="tp-caption">${d}</span></div></div>`).join('')}${divider()}${lines.map(([k, v]) => `<div class="tp-sum-line"><span>${k}</span>${T(v)}</div>`).join('')}${divider()}<div class="tp-sum-total"><span>합계</span>${T(total)}</div>`);
 const ITEMS = [['실전 모의고사 1000제', '교재 / 2권 세트', '38,000원'], ['기초 영문법 30일 완성', '강의 / 90일 수강', '12,000원'], ['실전 모의고사 1회', '온라인 응시 / 1회', '9,000원']];
 
-/* 1. 결제 폼 (긴 폼 + 고정 요약) -------------------------------- */
 const payment = () => {
   const css = FORM_CSS + `
   .tp-pay { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
@@ -60,7 +59,6 @@ const payment = () => {
   return { slug: 'payment-form', en: 'Checkout Form', name: '결제 (한 화면)', group: 'Payment', desc: '결제 정보를 한 화면에서 입력하는 폼입니다. 주문 요약을 옆에 두어 합계를 보면서 결제합니다.', css, body };
 };
 
-/* 2. 결제 단계 (장바구니 → 결제) -------------------------------- */
 const checkoutWizard = () => {
   const css = FORM_CSS + `
   .tp-cw { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); width: min(100%, var(--tp-page)); margin-inline: auto; }
@@ -87,7 +85,6 @@ const checkoutWizard = () => {
   return { slug: 'checkout-wizard', en: 'Checkout Wizard', name: '결제 (단계별)', group: 'Payment', desc: '배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.', css, body };
 };
 
-/* 3. 문의 폼 ----------------------------------------------------- */
 const contact = () => {
   const css = FORM_CSS + `
   .tp-contact { display: flex; flex-direction: column; gap: var(--ds-space-x8); width: min(100%, var(--tp-narrow)); margin-inline: auto; padding-block: var(--ds-space-x8); }
@@ -115,13 +112,11 @@ const contact = () => {
   return { slug: 'contact-form', h1: '문의하기', en: 'Contact Form', name: '1:1 문의', group: 'Support', desc: '문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.', css, body };
 };
 
-/* 5. 단계 폼 (가로 진행) ---------------------------------------- */
 const wizard = () => {
   const css = FORM_CSS + `
   .tp-wz { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-wz-head { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 768px) { .tp-wz-head { padding: var(--ds-space-x6); } }
-  /* 아래 선은 화면 끝까지, 글은 1440 틀 안 (2026-11-15) */
   .tp-wz-head { padding-inline: max(var(--tp-gutter), calc((100% - var(--tp-page)) / 2)); }
 `;
   const body = `<div class="tp-app" style="min-height: 100vh">
@@ -140,8 +135,6 @@ const wizard = () => {
   return { slug: 'form-wizard', en: 'Form Wizard', name: '등록 (단계별)', group: 'Admin', desc: '한 단계에 한 화면씩 넘어가며 입력하는 폼입니다. 순서가 중요한 입력에 사용합니다.', css, body };
 };
 
-/* 7. 두 칸 폼 --------------------------------------------------- */
-/* 8. 세로 단계 폼 (왼쪽 단계 + 오른쪽 도움말) -------------------- */
 const vertical = () => {
   const css = FORM_CSS + `
   .tp-vw { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); }

@@ -21,7 +21,6 @@ const pw = (id) => `<div class="ds-field"><div class="ds-field__header tp-pw-hea
 const remember = (id) => `<label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" id="${id}" checked><span class="ds-checkbox__label">아이디 저장</span></label>`;
 const alt = `<div class="tp-auth__alt">${btn('카카오', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'message-circle' })}${btn('네이버', { variant: 'neutralOutline', size: 'large', fill: true, ic: 'globe' })}</div>`;
 
-/* 1. 로그인 카드 ------------------------------------------------- */
 const loginCard = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${brand}
@@ -39,7 +38,6 @@ const loginCard = () => {
   return { slug: 'login-card', en: 'Login Card', name: '로그인 (기본)', group: 'Account', desc: '화면 가운데 카드 하나로 로그인하는 기본 로그인 화면입니다.', css: CSS, body };
 };
 
-/* 2. 로그인 (화면 분할) --------------------------------------- */
 const loginSplit = () => {
   const css = CSS + `
   .tp-split-card { display: grid; grid-template-columns: minmax(0, 1fr); width: min(100%, 960px); overflow: hidden; border-radius: var(--ds-shape-2xl); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak), 0 8px 24px var(--ds-color-palette-static-black-alpha-300); }
@@ -70,7 +68,6 @@ const loginSplit = () => {
   return { slug: 'login-split', en: 'Login Split', name: '로그인 (사진형)', group: 'Account', desc: '한쪽에는 로그인 폼, 다른 쪽에는 사진을 둔 로그인 화면입니다. 서비스 분위기를 함께 전할 때 사용합니다.', css, body };
 };
 
-/* 3. 로그인 SSO -------------------------------------------------- */
 const loginSso = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${brand}
@@ -90,5 +87,4 @@ const loginSso = () => {
 
 export const templates = [loginCard, loginSplit, loginSso].map((f) => f());
 
-// 회원가입, 아이디·비밀번호 찾기(basics.mjs)가 같은 로그인 틀을 쓴다 (11-11)
 export const AUTH = { CSS, brand, inp };

@@ -1,6 +1,3 @@
-// 영상(OTT)과 온라인 클래스 템플릿: 영상 홈, 작품 상세, 영상 시청, 전체 화면 플레이어(콘텐츠 > 영상), 클래스 상세(학습 > 찾기와 신청), 내 강의실(학습 > 수강).
-// 2026-11-14 사용자 "OTT 와 강의 보기 주요 화면 템플릿 추가". 국내외 OTT, 클래스 서비스 화면의 공통 구조만 따르고 서비스 이름, 작품, 글은 넣지 않는다.
-// 화면 밝기는 사이트 설정을 따르고, 영상 칸만 늘 검정이다(YDS 다크 모드는 문서 전체에만 켜진다).
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, avatar, card, head, secHead, select, search, chiptabs, tabs, progress, thumb, photo, accordion, checks, link, divider, esc } = K;
@@ -11,7 +8,6 @@ const CLASS_MENU = ['클래스', '커뮤니티', '내 강의실'];
 const classEnd = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('heart', '찜한 클래스', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 
 const CSS = FRAME_CSS + `
-  /* 영상 칸: 화면 모드와 상관없이 늘 검정 */
   .tp-video { position: relative; overflow: hidden; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: var(--ds-shape-xl); background: var(--ds-color-palette-static-black); color: var(--ds-color-palette-static-white); }
   .tp-video > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .72; }
   .tp-video__play { position: relative; display: grid; place-items: center; width: 64px; height: 64px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white-alpha-300); }
@@ -19,13 +15,12 @@ const CSS = FRAME_CSS + `
   .tp-video__bar { position: absolute; inset: auto var(--ds-space-x4) var(--ds-space-x3); display: flex; align-items: center; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t03); font-variant-numeric: tabular-nums; }
   .tp-video__track { flex: 1 1 auto; height: 4px; border-radius: var(--ds-shape-pill); background: var(--ds-color-palette-static-white-alpha-300); overflow: hidden; }
   .tp-video__track > span { display: block; width: var(--v, 38%); height: 100%; background: var(--ds-color-palette-static-white); }
-  /* 가로로 넘기는 작품 줄 (Carousel 항목 폭만 템플릿에서 정한다) */
   .tp-shelf .ds-carousel__item { flex: none; width: 72%; scroll-snap-align: start; }
   .tp-shelf[data-shape="poster"] .ds-carousel__item { width: 40%; }
   @media (min-width: 768px) { .tp-shelf .ds-carousel__item { width: calc((100% - 2 * var(--ds-carousel-gap)) / 3); } .tp-shelf[data-shape="poster"] .ds-carousel__item { width: calc((100% - 4 * var(--ds-carousel-gap)) / 5); } }
   @media (min-width: 1280px) { .tp-shelf .ds-carousel__item { width: calc((100% - 3 * var(--ds-carousel-gap)) / 4); } .tp-shelf[data-shape="poster"] .ds-carousel__item { width: calc((100% - 5 * var(--ds-carousel-gap)) / 6); } }
   .tp-shelf .ds-carousel { --ds-carousel-gap: var(--ds-space-x3); }
-  .tp-shelf .ds-carousel__item > * { flex: 1 1 auto; min-width: 0; }  /* 사진을 불러오기 전에도 카드가 항목 폭을 채운다 */
+  .tp-shelf .ds-carousel__item > * { flex: 1 1 auto; min-width: 0; }
   .tp-tile { display: flex; flex-direction: column; gap: var(--ds-space-x2); min-width: 0; color: inherit; text-decoration: none; }
   .tp-tile__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
   .tp-tile .ds-progress { margin-top: calc(var(--ds-space-x1) * -1); }
@@ -39,7 +34,6 @@ const tile = (title, img, { sub = '', v = -1, ratio = '16:9' } = {}) => `<a clas
 const shelf = (label, items, shape = '') => `<div class="tp-shelf"${shape ? ` data-shape="${shape}"` : ''}><div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="${esc(label)}"><div class="ds-carousel__scroller">${items.map((x) => `<div class="ds-carousel__item">${x}</div>`).join('')}</div><button type="button" class="ds-carousel__button" data-direction="previous" aria-label="이전">${icon('chevron-left', 'sm')}</button><button type="button" class="ds-carousel__button" data-direction="next" aria-label="다음">${icon('chevron-right', 'sm')}</button></div></div>`;
 const video = (img, v = '38%', time = ['04:31', '12:08']) => `<div class="tp-video" role="img" aria-label="영상">${img ? `<img src="${img}" alt="">` : ''}<span class="tp-video__play">${icon('play-solid')}</span><div class="tp-video__bar"><span>${time[0]}</span><span class="tp-video__track" style="--v:${v}"><span></span></span><span>${time[1]}</span>${icon('volume-2', 'sm')}${icon('maximize-2', 'sm')}</div></div>`;
 
-/* 1. 영상 홈 --------------------------------------------------------- */
 const home = () => {
   const css = CSS + `
   .tp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x5); align-items: center; }
@@ -68,7 +62,6 @@ const home = () => {
   return { slug: 'video-home', en: 'Video Home', name: '영상 홈', group: 'Content', desc: '대표 작품과 이어 보기, 분류별 작품 줄을 모은 영상 서비스 첫 화면입니다. 보던 영상으로 바로 돌아가게 합니다.', css, body };
 };
 
-/* 2. 작품 상세 ------------------------------------------------------- */
 const detail = () => {
   const css = CSS + `
   .tp-td { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: start; }
@@ -102,7 +95,6 @@ const detail = () => {
   return { slug: 'video-title-detail', en: 'Title Detail', name: '영상 상세', group: 'Content', desc: '작품 하나의 정보와 시즌별 회차를 보여 주는 상세 화면입니다. 본 회차와 이어 볼 회차를 진행 막대로 구분합니다.', css, body };
 };
 
-/* 3. 영상 시청 ------------------------------------------------------- */
 const watch = () => {
   const css = CSS + `
   .tp-wt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: start; }
@@ -141,9 +133,7 @@ const watch = () => {
   return { slug: 'video-watch', en: 'Watch Page', name: '영상 시청', group: 'Content', desc: '영상을 보며 채널, 설명, 댓글을 함께 보는 시청 화면입니다. 다음에 볼 영상은 옆에 모아 둡니다.', css, body };
 };
 
-/* 4. 전체 화면 플레이어 ----------------------------------------------- */
 const player = () => {
-  // 플레이어 조작 막대는 DS 에 없는 영상 도구 전용이라 템플릿 버튼으로 그린다(검은 화면 위 흰 글자)
   const css = CSS + `
   .tp-fp { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh; overflow: hidden; background: var(--ds-color-palette-static-black); color: var(--ds-color-palette-static-white); }
   .tp-fp > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .6; }
@@ -188,7 +178,6 @@ const player = () => {
   return { slug: 'video-player', en: 'Fullscreen Player', name: '영상 시청 (전체 화면)', group: 'Content', desc: '영상을 화면 가득 채워 보는 플레이어입니다. 조작 막대와 다음 화는 아래에 모아 둡니다.', css, body };
 };
 
-/* 5. 클래스 상세 ----------------------------------------------------- */
 const classDetail = () => {
   const css = CSS + `
   .tp-cd { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: start; }
@@ -243,7 +232,6 @@ const classDetail = () => {
   return { slug: 'class-detail', en: 'Class Detail', name: '클래스 상세', group: 'Learning', desc: '온라인 클래스의 소개, 커리큘럼, 강사, 수강평을 보고 신청하는 화면입니다. 가격과 신청 버튼은 넓은 화면에서 옆에 고정됩니다.', css, body };
 };
 
-/* 6. 내 강의실 ------------------------------------------------------- */
 const classroom = () => {
   const css = CSS + `
   .tp-resume { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x5); align-items: center; }

@@ -12,7 +12,6 @@ const grow = (cols, label, count, extra = '') => `<tr class="ds-table__group"><t
 const trs = (rows) => rows.map((r) => `<tr>${r.map((c) => `<td${c && c.startsWith && c.startsWith('@end') ? ' data-align="end"' : ''}>${c && c.startsWith && c.startsWith('@end') ? c.slice(4) : c}</td>`).join('')}</tr>`).join('');
 const thead = (cols) => `<thead><tr>${cols.map((c) => { const [t, a] = Array.isArray(c) ? c : [c]; return `<th scope="col"${a ? ` data-align="${a}"` : ''}>${t}</th>`; }).join('')}</tr></thead>`;
 
-/* 1. 접는 표 ---------------------------------------------- */
 const collapsible = () => {
   const groups = [
     ['예금/적금', 4, '1억 2,480만원', ['계좌', '은행', ['잔액', 'end'], ['금리', 'end'], '최근 거래'], [['수강료 입금 통장', '가 은행 **** 4821', '@end8,240,000원', '@end0.1%', '오늘'], ['교재 판매 정산 통장', '나 은행 **** 1093', '@end21,560,000원', '@end2.8%', '어제'], ['시험 응시료 통장', '가 은행 **** 7730', '@end18,000,000원', '@end2.3%', '10.25'], ['운영 자금 예금', '다 은행 **** 5512', '@end77,000,000원', '@end3.4%', '10.02']]],
@@ -29,7 +28,7 @@ const collapsible = () => {
   .tp-coll:not([open]) > summary { padding-bottom: var(--ds-space-x1); }
   .tp-coll:not([open]) > summary .ds-icon { transform: rotate(-90deg); }
   .tp-coll th:first-child { width: 48px; }
-  .tp-coll .ds-table { min-width: 760px; }  /* 11-11 모바일: 칸이 53px 로 눌리던 것, 옆으로 민다 */
+  .tp-coll .ds-table { min-width: 760px; }
   .tp-coll__total { margin-left: auto; font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
 `;
   const body = `<div class="tp-app">
@@ -41,7 +40,6 @@ ${head('연결된 계좌', { tools: `${btn('계좌 연결', { variant: 'neutralS
   return { slug: 'table-collapsible', en: 'Collapsible Table', name: '계좌 관리 (접는 목록)', group: 'Admin', desc: '열 구성이 다른 표 여러 개를 접고 펼치며 보는 화면입니다. 표 하나로 합치면 빈칸이 많아질 때 사용합니다.', css, body };
 };
 
-/* 2. 필터 표 ----------------------------------------------------- */
 const filter = () => {
   const groups = [['강남 학원', [['SJ-2139', '301호 프로젝터 안 켜짐', '김도윤', ['예정', 'neutral'], ['critical', '긴급'], '11.13 오후 1:42'], ['SJ-2141', '듣기 평가 스피커 잡음', '이서연', ['진행', 'informative'], ['warning', '높음'], '11.13 오후 3:10'], ['SJ-2150', '자습실 출입 카드 오류', '김도윤', ['예정', 'neutral'], ['critical', '긴급'], '11.14 오전 9:00']]], ['종로 학원', [['SJ-2102', '출입문 센서 교체', '박지후', ['완료', 'neutral'], ['neutral', '보통'], '11.10 오전 11:20'], ['SJ-2118', '조명 일부 깜빡임', '최하은', ['진행', 'informative'], ['neutral', '보통'], '11.12 오후 2:30'], ['SJ-2133', '에어컨 필터 청소', '박지후', ['대기', 'warning'], ['neutral', '낮음'], '11.15 오전 10:00']]], ['신촌 학원', [['SJ-2097', '배수구 막힘', '정민재', ['완료', 'neutral'], ['warning', '높음'], '11.09 오후 4:05'], ['SJ-2126', '수강 등록 키오스크 오류', '한지아', ['진행', 'informative'], ['critical', '긴급'], '11.13 오전 8:40']]]];
   const css = TABLE_CSS + `
@@ -62,7 +60,6 @@ ${K.selectionBar('tf-sel', [['상태 바꾸기', 'circle-dot'], ['담당자 지�
   return { slug: 'table-filter', en: 'Filterable Table', name: '작업 목록 (필터)', group: 'Admin', desc: '검색과 조건으로 필요한 행만 보여 주는 표입니다. 행이 많고 필터 기준이 여러 개일 때 사용합니다.', css, body };
 };
 
-/* 3. 묶음 표 ----------------------------------------------------- */
 const grouped = () => {
   const groups = [['진행 중', 'brand', [['T-2350', ['결제'], '간편 결제 연동 2차', '7.03', '7.18', '와이비엠'], ['T-2351', ['앱'], '푸시 알림 설정 화면', '7.05', '7.20', '이준호'], ['T-2355', ['웹', '디자인'], '강좌 상세 리뉴얼', '7.08', '7.25', '박하린']]], ['할 일', 'informative', [['T-2360', ['결제'], '환불 사유 선택 추가', '-', '7.30', '최민준'], ['T-2362', ['앱'], '오프라인 저장 용량 표시', '-', '8.02', '정다은'], ['T-2363', ['데이터'], '주간 리포트 자동 발송', '-', '8.05', '한지우'], ['T-2366', ['웹'], '검색 결과 정렬 옵션', '-', '8.09', '와이비엠']]], ['백로그', 'neutral', [['T-2370', ['기타'], '처음 오신 분 안내 투어', '-', '-', '이준호'], ['T-2371', ['앱'], '다크 모드 색 점검', '-', '-', '박하린']]]];
   const css = TABLE_CSS + `
@@ -82,19 +79,15 @@ const grouped = () => {
   return { slug: 'table-grouped', en: 'Grouped Table', name: '이슈 목록 (상태별 묶음)', group: 'Admin', desc: '행을 상태별로 묶어 보여 주는 표입니다. 긴 목록을 몇 덩어리로 나눠 읽을 때 사용합니다.', css, body };
 };
 
-/* 4. 받은함 표 (2026-11-10 사용자 "레퍼런스 받은함 표 기준으로 대폭 수정") -------------
-   왼쪽 표는 목록, 오른쪽은 읽는 창. 표 행은 이름(Medium) 위, 제목(옅은 색) 아래 한 줄 말줄임.
-   읽는 창은 메시지마다 아바타 / 이름과 주소 / 시간과 펼침 단추, 펼친 메시지 아래에 첨부와 답장 단추 */
 const inbox = () => {
   const rows = [[1, '와이비엠', '결제 페이지가 일부 해외 카드에서 오류가 나요', '오전 9:52', 1], [1, '이준호', '11월 단체 수강 견적 다시 부탁드려요', '오전 9:31', 0], [1, '박하린', '강의 영상 자막 싱크가 맞지 않아요', '오전 8:58', 0], [0, '최민준', '모의고사 점수가 마이페이지에 반영되지 않아요', '오전 8:14', 0], [0, '정다은', '세금 계산서 발행 요청드립니다', '어제', 1], [0, '한지우', '앱에서 로그인이 자꾸 풀려요', '어제', 0], [0, '오세린', '수강 기간 연장이 가능한지 궁금해요', '어제', 0], [0, '윤도현', '기업 관리자 권한을 한 명 더 추가하고 싶어요', '월', 0], [0, '서지민', '교재 배송 주소를 바꾸고 싶어요', '월', 0]];
   const css = TABLE_CSS + `
-  /* 탭은 제목 묶음과 떼어 둔다(11-10 사용자 "탭을 위 그룹과 여백을 더 주어 분리") */
   .tp-ibx-tabs { padding-inline: var(--tp-gutter); margin-top: var(--ds-space-x6); }
   @media (min-width: 1280px) { .tp-ibx-app { height: 100vh; } }
   .tp-inbox { display: grid; flex: 1 1 auto; grid-template-columns: minmax(0, 1fr); min-height: 0; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   @media (min-width: 1280px) { .tp-inbox { grid-template-columns: minmax(0, 1fr) 8px minmax(0, 1.5fr); } }
   .tp-inbox__list { overflow: auto; }
-  .tp-inbox__list .ds-table { border-top: 0; }  /* 진한 윗선 없이 칸 경계의 옅은 선 하나만 (카드 안 표와 같음) */
+  .tp-inbox__list .ds-table { border-top: 0; }
   .tp-inbox__list .ds-table th:first-child, .tp-inbox__list .ds-table td:first-child { box-sizing: content-box; width: 8px; padding-inline-end: var(--ds-space-x1); overflow: visible; }
   .tp-inbox__list td:nth-child(2) { width: 100%; max-width: 0; }
   .tp-unread { display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--ds-color-fg-neutral); }
@@ -151,7 +144,6 @@ const inbox = () => {
   return { slug: 'table-inbox', en: 'Inbox Table', name: '문의함', group: 'Admin', desc: '왼쪽 목록에서 선택한 항목을 오른쪽에서 바로 읽는 받은 편지함입니다. 메일이나 문의처럼 하나씩 열어 처리할 때 사용합니다.', css, body };
 };
 
-/* 5. 트리 표 (저장소) ------------------------------------------- */
 const tree = () => {
   const rows = [[0, 'f', '.github', 'ci: 패키지 캐시를 실행 사이에 재사용 (#412)', '3시간 전', 1], [1, 'f', 'workflows', 'ci: 패키지 캐시를 실행 사이에 재사용 (#412)', '3시간 전', 1], [2, 'd', 'ci.yml', 'ci: 패키지 캐시를 실행 사이에 재사용 (#412)', '3시간 전'], [2, 'd', 'release.yml', 'chore: 배포 이름 규칙 바꿈', '2주 전'], [0, 'f', 'docs', 'docs: 도형 묶기 예제 추가', '어제', 0], [0, 'f', 'src', 'feat: 선택 상자 크기 조절 손잡이', '5시간 전', 1], [1, 'f', 'shapes', 'feat: 둥근 사각형 지원', '2일 전', 0], [1, 'd', 'canvas.ts', 'feat: 선택 상자 크기 조절 손잡이', '5시간 전'], [1, 'd', 'index.ts', 'refactor: 내보내기 정리', '1주 전'], [0, 'f', 'tests', 'test: 확대 축소 경계 값', '3일 전', 0], [0, 'd', '.gitignore', 'chore: 처음 만듦', '8개월 전'], [0, 'd', 'LICENSE', 'chore: 처음 만듦', '8개월 전'], [0, 'd', 'package.json', 'chore: 버전 1.4.0', '4일 전'], [0, 'd', 'README.md', 'docs: 설치 방법 정리', '어제']];
   const css = TABLE_CSS + `
@@ -160,7 +152,6 @@ const tree = () => {
   .tp-tree-name .ds-icon { color: var(--ds-color-fg-neutral-subtle); }
   .tp-tree-name a { color: var(--ds-color-fg-neutral); text-decoration: none; }
   .tp-tree-name a:hover { text-decoration: underline; }
-  /* 본문과 정보를 나눈다(2026-11-10 사용자 "컨텐츠와 정보를 명확히 분리"): 다른 레이아웃과 같은 .tp-body--panel 틀, 오른쪽 정보 패널은 세로 선으로 나뉜다 */
   .tp-repo__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
   .tp-repo__head > .tp-row { flex-wrap: wrap; }
   .tp-repo__main { gap: var(--ds-space-x4); }

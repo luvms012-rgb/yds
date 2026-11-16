@@ -1,5 +1,3 @@
-// 커뮤니티 템플릿(Community): 게시판형 커뮤니티의 홈, 게시판 목록, 게시글 상세, 글쓰기.
-// 국내 웹 커뮤니티 화면(사내 UI 패턴 모음 '커뮤니티')의 공통 구조만 따른다. 서비스 이름, 글, 로고는 넣지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, field, input, select, chip, chiptabs, segmented, avatar, avatars, callout, link, thumb, pagination, search, sw, meter, esc } = K;
@@ -9,7 +7,6 @@ const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('bell',
 const BOARDS = [['전체글', 'list'], ['인기글', 'star-solid'], ['공지사항', 'bell'], ['자유게시판', 'message-circle'], ['질문과 답변', 'info'], ['정보 나눔', 'bookmark'], ['후기', 'thumbs-up'], ['스터디 모집', 'users']];
 
 const CSS = FRAME_CSS + `
-  /* 커뮤니티 배치: 모바일 1열, 1280 부터 게시판 메뉴 220 | 본문, 1280 부터 오른쪽 칸 300 */
   .tp-cm { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x12); padding-inline: var(--tp-gutter); }
   .tp-cm__main { display: flex; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; }
   .tp-cm__nav, .tp-cm__aside { display: none; }
@@ -21,14 +18,12 @@ const CSS = FRAME_CSS + `
     .tp-cm__chips { display: none; }
   }
   @media (min-width: 1280px) {
-    .tp-cm.tp-cm--aside:not(.tp-cm--one) { grid-template-columns: 220px minmax(0, 1fr) 300px; }  /* 위 2단 규칙보다 세야 3단이 된다 */
+    .tp-cm.tp-cm--aside:not(.tp-cm--one) { grid-template-columns: 220px minmax(0, 1fr) 300px; }
     .tp-cm__aside { display: flex; flex-direction: column; gap: var(--ds-space-x6); position: sticky; top: calc(var(--ds-space-x16) + var(--ds-space-x4)); align-self: start; max-height: calc(100vh - var(--ds-space-x16) - var(--ds-space-x8)); overflow-y: auto; scrollbar-width: none; }
   }
-  /* 게시판 메뉴: 옆 메뉴 부품을 칸 폭에 맞춰 쓴다 */
   .tp-cm__nav .ds-sidenav { width: auto; height: auto; background: none; }
   .tp-cm__nav .ds-sidenav__content { padding: 0; }
   .tp-me { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
-  /* 글 묶음: 줄 사이 선 */
   .tp-feed { display: flex; flex-direction: column; }
   .tp-feed > * { padding-block: var(--ds-space-x5); }
   .tp-feed > * + * { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -41,12 +36,10 @@ const CSS = FRAME_CSS + `
   .tp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x3); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-variant-numeric: tabular-nums; }
   .tp-meta > span { display: inline-flex; align-items: center; gap: var(--ds-space-x1); }
   .tp-meta .ds-icon { --ds-icon-size: 14px; }
-  /* 순위 목록 */
   .tp-rank { display: flex; flex-direction: column; gap: var(--ds-space-x3); margin: 0; padding: 0; list-style: none; counter-reset: rank; }
   .tp-rank > li { display: grid; grid-template-columns: var(--ds-space-x5) minmax(0, 1fr); gap: var(--ds-space-x2); align-items: start; counter-increment: rank; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
   .tp-rank > li::before { content: counter(rank); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; color: var(--ds-color-fg-neutral); }
   .tp-rank a { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); color: inherit; text-decoration: none; }
-  /* 글 줄: 순위 번호, 제목과 댓글 수, 정보 한 줄, 오른쪽 사진 */
   .tp-trend { margin: 0; padding: 0; list-style: none; }
   .tp-trend > li + li { box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-trend a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--ds-space-x3); align-items: center; min-height: var(--ds-space-x16); padding-block: var(--ds-space-x3); color: inherit; text-decoration: none; }
@@ -55,7 +48,6 @@ const CSS = FRAME_CSS + `
   .tp-trend__line { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
   .tp-trend__t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tp-trend__thumb { width: var(--ds-space-x16); }
-  /* 인기 게시판: 순위, 변동, 이름을 회색 줄로 */
   .tp-brank { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
   .tp-brank a { display: flex; align-items: center; gap: var(--ds-space-x2); padding: var(--ds-space-x3); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); color: inherit; text-decoration: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
   .tp-brank b { width: var(--ds-space-x4); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; text-align: center; }
@@ -72,13 +64,11 @@ const mobileBoards = (cur) => `<div class="tp-cm__chips">${chiptabs(BOARDS.map((
 const who = (name, time, { lv = '', extra = '' } = {}) => `<div class="tp-who">${avatar(name, 24)}<span class="tp-label">${name}</span>${lv ? badge(lv) : ''}<span class="tp-caption">${time}</span>${extra}</div>`;
 const meta = (like, cmt, view) => `<div class="tp-meta"><span>${icon('thumbs-up')}${like}</span><span>${icon('message-circle')}${cmt}</span><span>${icon('eye')}${view}</span></div>`;
 const rank = (items) => `<ol class="tp-rank">${items.map(([t, c]) => `<li><a href="#"><span class="tp-label tp-clamp">${t}</span>${badge(c)}</a></li>`).join('')}</ol>`;
-// 글 줄 묶음. ranked 면 앞에 순위 번호를 붙인다. 줄 = [제목, 댓글 수, 정보 글 목록, 사진 번호(없으면 -1)]
 const trend = (rows, ranked = false) => `<ol class="tp-trend"${ranked ? ' data-ranked' : ''}>${rows.map(([t, c, infos, ph], i) => `<li><a href="#">${ranked ? `<span class="tp-trend__no">${i + 1}</span>` : ''}<div class="tp-stack" style="gap: var(--ds-space-x1)"><div class="tp-trend__line"><span class="tp-item-title tp-trend__t">${t}</span>${c ? badge(c) : ''}</div><div class="tp-meta">${infos.map((x) => `<span>${x}</span>`).join('')}</div></div>${ph >= 0 ? `<div class="tp-trend__thumb">${thumb('1:1', '', K.photo('mix', ph, 160), 'md')}</div>` : '<span></span>'}</a></li>`).join('')}</ol>`;
 const MOVES = [['same', 'minus'], ['up', 'chevron-up'], ['up', 'chevron-up'], ['down', 'chevron-down'], ['up', 'chevron-up']];
 const boardRank = () => `<ol class="tp-brank">${BOARDS.slice(3).concat(BOARDS.slice(1, 3)).slice(0, 5).map(([n, ic], i) => `<li><a href="#"><b>${i + 1}</b><span data-move="${MOVES[i][0]}">${icon(MOVES[i][1])}</span>${icon(ic)}${n}</a></li>`).join('')}</ol>`;
 const HOT = [['처음 본 토익, 생각보다 시간이 부족했어요', 42], ['LC 파트 2 듣기 요령 알려 주세요', 31], ['이번 주말 시험 전날 뭐 하세요?', 28], ['단어 외우는 앱 추천해 주세요', 19], ['스터디 3월 교재 투표 결과', 16]];
 
-/* 1. 커뮤니티 홈 ------------------------------------------------- */
 const home = () => {
   const posts = [
     ['정보 나눔', '토익 RC 파트 5 자주 나오는 문법 정리', '시험마다 나오는 품사, 시제, 접속사 문제만 골랐어요. 문제마다 교재 해설 쪽수도 같이 적었어요.', '토익900목표', '20분 전', '128', '24', '1,920', 0],
@@ -112,17 +102,15 @@ const home = () => {
   return { slug: 'community-home', h1: '커뮤니티', en: 'Community Home', name: '커뮤니티 홈', group: 'Community', desc: '게시판형 커뮤니티의 첫 화면입니다. 지금 뜨는 글과 새 글을 한곳에서 봅니다.', css, body };
 };
 
-/* 2. 게시판 목록 ------------------------------------------------- */
 const board = () => {
   const css = CSS + `
   .tp-bhead { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--ds-space-x3) var(--ds-space-x4); }
   .tp-btools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
   .tp-btools .ds-input { width: min(100%, 240px); }
-  /* 글 목록: 모바일은 제목 + 한 줄 정보, 768 부터 칸을 나눈 표 모양. 줄 선은 줄 자체에 그린다(안쪽 바탕이 덮지 않게) */
   .tp-board { margin: 0; padding: 0; list-style: none; box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-solid); }
   .tp-board > li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); padding: var(--ds-space-x3) var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-variant-numeric: tabular-nums; }
   .tp-board > li[data-pinned] { background: var(--ds-color-bg-neutral-weak-alpha); }
-  .tp-board > li.tp-board__head { display: none; }  /* 줄 규칙(.tp-board > li)보다 세게: !important 대신 선택자로 */
+  .tp-board > li.tp-board__head { display: none; }
   .tp-board .c-no { display: none; }
   .tp-board .c-title { order: -1; flex: 1 1 100%; display: flex; align-items: center; gap: var(--ds-space-x1_5); min-width: 0; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); color: var(--ds-color-fg-neutral); }
   .tp-board .c-title a { overflow: hidden; color: inherit; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
@@ -163,7 +151,6 @@ const board = () => {
   return { slug: 'community-board', en: 'Board List', name: '게시글 목록', group: 'Community', desc: '카페형 게시판의 글 목록입니다. 말머리로 필터링하고 공지는 위에 고정합니다.', css, body };
 };
 
-/* 3. 게시글 상세 ------------------------------------------------- */
 const post = () => {
   const css = CSS + `
   .tp-article { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
@@ -224,7 +211,6 @@ const post = () => {
   return { slug: 'community-post', en: 'Post Detail', name: '게시글 상세', group: 'Community', desc: '게시글 하나를 읽고 댓글로 이야기를 나누는 화면입니다.', css, body };
 };
 
-/* 4. 글쓰기 ----------------------------------------------------- */
 const write = () => {
   const css = CSS + `
   .tp-wtop { position: sticky; top: 0; z-index: var(--ds-z-sticky); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); }

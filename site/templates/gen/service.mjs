@@ -1,6 +1,3 @@
-// 교육 서비스 템플릿 (2026-11-10 사용자 "서비스 중에서 템플릿에 넣을 UI, 우선순위 상만 추가").
-// 기존 템플릿 틀을 그대로 따른다: 위 메뉴(topbar) / 머리글(head) / 본문 카드 / 넓은 화면에서 오른쪽 고정 요약(tp-aside-sticky).
-// 안내 문장, 툴팁, 보조 라벨은 넣지 않는다. 이름은 특정 회사가 아닌 일반 화면 이름을 쓴다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar, selectbox, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, checkbox, divider, chip, chiptabs, tabs, segmented, table, avatar, link, breadcrumbs, search, accordion, list, listItem, textarea, thumb, photo, esc } = K;
@@ -8,7 +5,6 @@ const { icon, btn, iconBtn, badge, card, head, secHead, field, input, select, ch
 const MENU = ['강의', '교재', '시험', '센터', '고객센터'];
 const end = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const app = (cur, inner) => `<div class="tp-app">${topbar(MENU, cur, end)}${inner}</div>`;
-// 본문 + 오른쪽 요약 두 칸 (시험 신청과 같은 틀)
 const CSS = FRAME_CSS + `
   .tp-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
   @media (min-width: 1280px) { .tp-two { grid-template-columns: minmax(0, 1fr) 340px; align-items: start; } }
@@ -18,7 +14,6 @@ const CSS = FRAME_CSS + `
 `;
 const kvs = (rows) => `<div class="tp-stack" style="gap: var(--ds-space-x2)">${rows.map(([k, v]) => `<div class="tp-kv"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`;
 
-/* 1. 시험 일정표 ---------------------------------------------------- */
 const schedule = () => {
   const css = CSS + `
   .tp-next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x4); }
@@ -47,7 +42,6 @@ ${head('시험 일정', { tools: btn('알림 설정', { ic: 'bell' }) })}
   return { slug: 'exam-schedule', en: 'Exam Schedule', name: '시험 일정', group: 'Exam', desc: '회차별 시험일, 접수 기간, 성적 발표일을 한 표에서 보고 바로 접수하거나 알림을 받는 화면입니다.', css, body };
 };
 
-/* 3. 수업 옵션 선택 -------------------------------------------------- */
 const plan = () => {
   const css = CSS + `
   .tp-opt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x3); }
@@ -78,7 +72,6 @@ ${head('수업 옵션 선택')}
   return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 신청', group: 'Learning', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 수업 신청 화면입니다.', css, body };
 };
 
-/* 4. 교재 상세 ------------------------------------------------------ */
 const book = () => {
   const css = CSS + `
   .tp-bk { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); }
@@ -114,7 +107,6 @@ const book = () => {
   return { slug: 'textbook-detail', en: 'Textbook Detail', name: '교재 상세', group: 'Learning', desc: '책 정보와 음원, 무료 강의, 자료 파일을 한 화면에서 보고 받는 교재 상세 화면입니다.', css, body };
 };
 
-/* 5. 상담 예약 ------------------------------------------------------ */
 const consult = () => {
   const css = CSS + `
   .tp-form2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
@@ -139,7 +131,6 @@ ${head('상담 예약')}
   return { slug: 'consult-booking', en: 'Consultation Booking', name: '상담 예약', group: 'Learning', desc: '설명회나 상담 일정을 골라 신청 정보를 넣고 예약하는 화면입니다.', css, body };
 };
 
-/* 6. 고객센터 홈 ---------------------------------------------------- */
 const help = () => {
   const css = CSS + `
   .tp-hc-q { display: flex; flex-direction: column; gap: var(--ds-space-x3); width: min(100%, 640px); }

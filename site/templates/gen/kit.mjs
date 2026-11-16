@@ -1,25 +1,14 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-// DS 파일 내용이 바뀌면 템플릿의 DS 주소도 바뀌게(?v=) 한다(브라우저 캐시, 2026-11-16)
 const DIST_V = crypto.createHash('sha1').update(['ybm-ds.css', 'ybm-ds.js'].map((f) => fs.readFileSync(new URL('../../../dist/' + f, import.meta.url))).join('')).digest('hex').slice(0, 8);
-// 템플릿 생성기 공용 부품. 레퍼런스 A 템플릿 51종의 구조를 YDS 부품과 토큰으로 다시 짠다.
-// 값은 모두 --ds-* 토큰. 글은 한국어, 숫자와 고유한 기술 용어만 영어.
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-/* ------------------------------------------------------------ 공통 CSS */
-export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토큰.
-     배치(여백, 카드, 구분선)는 레퍼런스 A 템플릿, 한글 글자 위계(크기, 굵기, 색 단계, 자간)는 토스를 따른다 */
-  /* 가로 기준: 화면 틀(좌우 여백 포함)은 최대 1440(Breakpoint xl), 넓은 화면에서는 가운데에 둔다(2026-11-15 사용자 "가로 기준 정해서 템플릿 적용", "1440으로 일괄 통일").
-     그보다 좁으면 좌우 여백(--tp-gutter)만 두고 폭을 채운다. 글과 입력 한 줄 화면만 --tp-narrow 720. 화면을 꽉 채우는 전체 화면 플레이어만 예외 */
+export const BASE_CSS = `
   :root { --tp-gutter: var(--ds-space-x4); --tp-max: 1440px; --tp-page: calc(var(--tp-max) - 2 * var(--tp-gutter)); --tp-narrow: 720px; --tp-page-box: var(--tp-max); --tp-narrow-box: calc(var(--tp-narrow) + 2 * var(--tp-gutter)); }
   @media (min-width: 768px) { :root { --tp-gutter: var(--ds-space-x6); } }
-  /* 모든 템플릿 공통: 머리글, 본문, 단계 폼 머리, 설정 틀은 1440 틀 안 가운데 (옆 메뉴 화면은 frame.mjs 가 틀 전체를) */
   .tp-app > :is(.tp-head, .tp-content, .tp-sp, .tp-body, .tp-inbox, .tp-od, .tp-vw) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
-  /* 화면 끝까지 선이 가는 띠(탭 줄, 아래 버튼 막대)는 선은 그대로, 안의 글만 1440 틀 안으로 */
   .tp-app > :is(.tp-ibx-tabs, .tp-footer-bar) { padding-inline: max(var(--tp-gutter), calc((100% - var(--tp-page)) / 2)); }
-  /* 스크롤바: 페이지 스크롤바는 폭을 차지하면 오른쪽 여백만 넓어져 좌우가 어긋난다. 숨기고, 안쪽 스크롤 영역은 트랙 없이 손잡이만 */
   html { scrollbar-width: none; scrollbar-color: var(--ds-color-palette-gray-500) transparent; }
-  /* 머리글도 내용과 같은 좌우선에 */
   .tp-head:has(+ .tp-content > :is(.tp-pay, .tp-cw, .tp-ea, .tp-pd)) { box-sizing: border-box; width: min(100%, var(--tp-page-box)); margin-inline: auto; }
   .tp-head:has(+ .tp-content > :is(.tp-wz, .tp-iw, .tp-doc, .tp-contact, .tp-fb)) { box-sizing: border-box; width: min(100%, var(--tp-narrow-box)); margin-inline: auto; }
   body { word-break: keep-all; overflow-wrap: break-word; }
@@ -30,33 +19,25 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-head > .tp-row, .tp-head .tp-between > .tp-row { flex-wrap: wrap; }
   .ds-tablepagination { flex-wrap: wrap; row-gap: var(--ds-space-x2); min-width: 0; }
   .tp-between > .tp-row { flex-wrap: wrap; }
-  /* 글자 위계 (2026-11-10 레퍼런스 템플릿 전체 측정): 페이지 제목 24 SemiBold, 섹션 제목 20 SemiBold, 카드 제목 16 Bold, 작은 제목 14 Bold.
-     큰 제목은 SemiBold, 작은 제목은 Bold 로 눈에 보이는 무게를 맞춘다. 본문 14, 보조 글은 옅은 색. 화면 폭이 넓어져도 제목 크기는 그대로 */
   .tp-h1 { font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; }
   .tp-h2 { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-semibold); letter-spacing: -0.02em; }
   .tp-h3 { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.01em; }
   .tp-h4 { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-bold); }
   .tp-sub { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
   .tp-caption { font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); color: var(--ds-color-fg-neutral-muted); font-weight: var(--ds-font-weight-regular); }
-  /* 리스트 글자 위계: 항목 제목은 굵게, 상품 이름은 보통 + 가격은 굵게, 부가 정보는 13 */
-  /* 체크 목록: 누르지 않는 항목이라 List Item(이동용) 대신 글 목록, 아이콘은 첫 줄 가운데 */
   .tp-checks { display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }
   .tp-checks > li { display: flex; align-items: flex-start; gap: var(--ds-space-x2); }
   .tp-checks .ds-icon { flex: none; --ds-icon-size: 16px; margin-block: calc((var(--ds-line-height-t05) - 16px) / 2); color: var(--ds-color-fg-neutral); }
   .tp-item-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
-  .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }  /* 2026-11-10 사용자 "타이틀에 얇은 폰트를 쓰지마" */
-  /* 목록에 되풀이되는 항목 이름(인기글, 알림, 설정 줄, 작성자)은 14 Medium. 14 Bold(tp-h4)는 묶음 제목에만 (2026-11-10 사용자 "리스트 폰트 두께 점검") */
+  .tp-name { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-medium); }
   .tp-label { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
   .tp-amount { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .tp-num { font-variant-numeric: tabular-nums; }
-  /* 표는 DS Table 그대로 쓴다 (2026-11-03 DS 개편). 아래는 표 위, 아래 줄만 */
-  /* 표 위 한 줄: 왼쪽 개수, 오른쪽 고르기 칸과 찾기 (커뮤니티 게시판 btools) */
   .tp-ttools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); }
   .tp-ttools__end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x2); }
   .tp-ttools__end > .ds-select { min-width: 120px; }
   .tp-ttools .ds-input { flex: none; width: 240px; max-width: 100%; }
   .tp-tfoot { display: flex; justify-content: center; padding-top: var(--ds-space-x2); }
-  /* 배치 (레퍼런스 A): 흰 바탕, 바깥 여백 16 / 24, 묶음 사이 24 / 32 와 구분선 */
   .tp-body { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
   .tp-content { display: flex; flex: 1 1 auto; flex-direction: column; gap: var(--ds-space-x6); min-width: 0; padding: var(--ds-space-x5) var(--ds-space-x4) var(--ds-space-x10); }
   .tp-panel { display: flex; flex-direction: column; gap: var(--ds-space-x5); padding: var(--ds-space-x5) var(--ds-space-x4); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
@@ -64,13 +45,11 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-sec-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2) var(--ds-space-x3); }
   .tp-sec-head__texts { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--ds-space-x1) var(--ds-space-x2); }
   .tp-row { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; }
-  /* 줄 안에 놓인 고르기 칸은 글자만큼만 */
   :is(.tp-row, .tp-between, .tp-head__tools, .tp-sec-head, .tp-ttools__end) > .ds-select { width: auto; min-width: 140px; }
   .tp-between { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); }
   .tp-stack { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 0; }
   .tp-stack > .ds-badge { align-self: flex-start; }
   .tp-g2, .tp-g3, .tp-g4, .tp-g5, .tp-g6 { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x3); }
-  /* 카드 (레퍼런스 A): 흰 바탕 + 옅은 1px 선, 모서리 12 */
   .tp-card { min-width: 0; }
   .tp-span2 { grid-column: auto; }
   .tp-kpi__label { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); color: var(--ds-color-fg-neutral-muted); }
@@ -80,7 +59,6 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-delta[data-tone="up"] { color: var(--ds-color-fg-positive); }
   .tp-delta[data-tone="down"] { color: var(--ds-color-fg-critical); }
   .tp-delta[data-tone="flat"] { color: var(--ds-color-fg-neutral-muted); }
-  /* 차트: 얇은 선, 옅은 격자, 마우스를 올리면 세로 안내선과 값 풍선 */
   .tp-chart { display: block; width: 100%; height: auto; overflow: visible; }
   .tp-chart text { fill: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t01); font-family: inherit; font-variant-numeric: tabular-nums; }
   .tp-chart .tp-grid-line { stroke: var(--ds-color-stroke-neutral-muted); stroke-width: 1; }
@@ -110,7 +88,7 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   .tp-bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
   .tp-track { display: flex; flex-direction: column; gap: var(--ds-space-x1); min-width: 120px; }
   .tp-hide-sm { display: none; }
-  .tp-scroll-x { position: relative; overflow-x: auto; } /* 안의 .tp-sr(absolute)이 페이지 폭을 넓히지 않게 */
+  .tp-scroll-x { position: relative; overflow-x: auto; }
   .tp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .tp-zoom { display: block; width: 100%; padding: 0; border: 0; border-radius: var(--ds-shape-xl); background: none; cursor: zoom-in; }
   .tp-zoom:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
@@ -138,10 +116,6 @@ export const BASE_CSS = `  /* 템플릿 배치 전용. 값은 모두 --ds-* 토�
   @media (min-width: 1280px) { .tp-g6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 `;
 
-/* ------------------------------------------------------------ 페이지 */
-// 템플릿에는 홍보 문구, 꾸밈 설명, 보조 라벨을 넣지 않는다 (사용자 2026-11-09 "글을 빼고 배치로 해결").
-// 2026-11-15 사용자 "제약 때문에 시안이 한정적으로 나오는 것을 막으려고": 기능에 필요한 글(Callout 주의 안내, 입력 도움말, 빈 화면 안내)은 남긴다.
-// 생성기 자료에 문장이 남아 있어도 화면에는 나오지 않는다. 글이나 댓글, 문서 본문처럼 화면의 내용 자체는 COPY_KEEP 안에서 그대로 둔다
 const COPY_ALWAYS = /(^| )(ds-selectbox__desc|tp-notes|tp-tip|tp-lead|tp-vw__help)( |$)/;
 const COPY_SENTENCE = /(^| )(tp-sub|tp-caption)( |$)/;
 const COPY_KEEP = /(^| )(tp-post__body|ds-accordion__content|tp-stepdoc|tp-ex|tp-cmt|tp-article|ds-markdown|tp-doc|tp-inbox__row|tp-phrases)( |$)/;
@@ -168,9 +142,6 @@ export const stripCopy = (html) => {
   return out + html.slice(at);
 };
 
-// 템플릿을 만들고 고칠 때의 기준 (2026-11-11 사용자 지침, 원문은 site/CLAUDE.md "템플릿과 디자인 작업 지침").
-// 2026-11-14 사용자 "코드엔 순수 기술적인 부분만": 템플릿 HTML 에는 넣지 않는다. 만드는 사람(사람, AI)이 이 파일과 site/CLAUDE.md 에서 읽는다.
-// 사용자 원문의 "DESIGN.md" 는 이 저장소에 없어 YDS 규칙(yds.txt)으로 적었고, 가운뎃점은 검사 규칙대로 쉼표로 바꿨다.
 export const PRINCIPLE = `목적, 구조, 디자인, 코드 모두 단순하게 만들어줘.
 
 1. 글을 빼고 배치로 해결해
@@ -187,7 +158,6 @@ export const PRINCIPLE = `목적, 구조, 디자인, 코드 모두 단순하게 
 - 원래 되던 기능은 절대 망가지면 안 돼.
 - 애매한 부분이나 YDS 규칙(yds.txt)이 내 서비스와 안 맞는 부분은 혼자 추측해서 정하지 말고, 작업 전에 나한테 질문해.`;
 
-// h1: 보이는 제목이 없는 화면의 숨김 제목(2026-11-15). 본문에 h1 이 없을 때만 main 맨 앞(main 이 없으면 본문 맨 앞)에 넣는다
 const withH1 = (body, h1) => { if (!h1 || /<h1[\s>]/.test(body)) return body; const tag = `<h1 class="tp-sr">${esc(h1)}</h1>`; return /<main[^>]*>/.test(body) ? body.replace(/<main[^>]*>/, (m) => m + tag) : tag + body; };
 export const page = ({ title, css = '', body, bodyClass = '', h1 = '' }) => `<!doctype html>
 <html lang="ko">
@@ -197,7 +167,7 @@ export const page = ({ title, css = '', body, bodyClass = '', h1 = '' }) => `<!d
 <title>${esc(title)} - YDS 템플릿</title>
 <link rel="stylesheet" href="../../../dist/ybm-ds.css?v=${DIST_V}">
 <script src="../../../dist/ybm-ds.js?v=${DIST_V}" defer></script>
-<script>/* 문서 사이트에서 보면 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다). 미리보기 iframe 은 사이트 밝기를, 새 창은 사이트에서 고른 밝기를 따른다(2026-11-16 사용자 "새 창도 기본 화면과 똑같이, 컬러 넣지 말 것"). 파일로 열거나 주소에 ?brand 를 붙이면 브랜드 색 그대로 */try{var f=window.frameElement,d=document.documentElement,m='<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">';if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))d.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write(m)}else if(!f&&location.protocol!=="file:"&&!/[?&]brand(=|&|$)/.test(location.search)){var t=localStorage.getItem("ybm-site-theme");if(t)d.dataset.theme=t;document.write(m)}}catch(e){}</script>
+<script>try{var f=window.frameElement,d=document.documentElement,m='<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">';if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))d.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write(m)}else if(!f&&location.protocol!=="file:"&&!/[?&]brand(=|&|$)/.test(location.search)){var t=localStorage.getItem("ybm-site-theme");if(t)d.dataset.theme=t;document.write(m)}}catch(e){}</script>
 <style>
 ${BASE_CSS}${css}</style>
 </head>
@@ -207,7 +177,6 @@ ${stripCopy(withH1(body, h1))}
 </html>
 `;
 
-/* ------------------------------------------------------------ 기본 부품 */
 export const icon = (n, size = '') => `<i class="ds-icon ds-icon--${n}${size ? ' ds-icon--' + size : ''}" aria-hidden="true"></i>`;
 export const btn = (label, { variant = 'neutralWeak', size = 'small', href, fill = false, ic = '', icEnd = '', attrs = '', aria = '' } = {}) => {
   const inner = `${ic ? icon(ic) : ''}${label}${icEnd ? icon(icEnd) : ''}`;
@@ -217,15 +186,11 @@ export const btn = (label, { variant = 'neutralWeak', size = 'small', href, fill
 export const iconBtn = (ic, aria, { variant = 'ghost', size = 'small', attrs = '' } = {}) => `<button type="button" class="ds-btn" data-variant="${variant}" data-size="${size}" data-layout="iconOnly" aria-label="${esc(aria)}"${attrs ? ' ' + attrs : ''}>${icon(ic)}</button>`;
 export const badge = (t, tone = 'neutral', solid = false) => `<span class="ds-badge" data-tone="${tone}"${solid ? ' data-variant="solid"' : ''}>${t}</span>`;
 export const dot = (tone, label = '') => `<span class="ds-statusdot" data-tone="${tone}"${label ? ` role="img" aria-label="${esc(label)}"` : ' aria-hidden="true"'}></span>`;
-// 크기는 DS 에 있는 값만(20, 24, 40, 48, 56, 64, 80, 96, 108, 모두 4의 배수). 36 은 기본이라 data-size 를 쓰지 않는다
 export const avatar = (name, size = 24) => `<span class="ds-avatar"${String(size) === '36' ? '' : ` data-size="${size}"`} role="img" aria-label="${esc(name)}"><span class="ds-avatar__initials" aria-hidden="true">${esc(name.slice(0, 1))}</span></span>`;
 export const avatars = (names, size = 24, more = 0) => `<div class="ds-avatar-group" data-size="${size}" role="group" aria-label="참여자">${names.map((n) => avatar(n, size)).join('')}${more ? `<span class="ds-avatar-group__overflow" role="img" aria-label="그 외 ${more}명">+${more}</span>` : ''}</div>`;
-// 이동을 알리는 링크(모두 보기, 전체 보기, 더 보기)는 끝에 chevron-right (yds.txt 지킬 것)
 export const link = (t, href = '#', size = 'small') => `<a class="ds-link" href="${href}"${size ? ` data-size="${size}"` : ''}>${t}${/^(모두|전체|더) 보기$/.test(t) ? icon('chevron-right') : ''}</a>`;
 export const divider = () => `<hr class="ds-divider">`;
-// 고르기 칸과 입력칸은 large 52 / medium 40 두 가지뿐이라 small 은 medium 으로 받는다
 const field40 = (size) => (size === 'small' ? 'medium' : size);
-// 한 줄에 고르기 칸이나 입력칸(40)이 있거나, 세그먼트(32)와 버튼(36)이 함께 있으면 small 버튼과 세그먼트를 medium(40)으로 높이를 맞춘다
 export const even = (h, force = false) => (force || /class="ds-(select|input)"/.test(h) || (/class="ds-segmented"/.test(h) && /class="ds-btn"/.test(h)) ? h.replace(/(class="ds-(?:btn|segmented)"[^>]*? data-size=")small"/g, '$1medium"') : h);
 export const select = (value, { id = '', aria = '', size = 'medium' } = {}) => `<button type="button" class="ds-select" data-size="${field40(size)}"${id ? ` id="${id}"` : ''} aria-haspopup="listbox" aria-expanded="false"${aria ? ` aria-label="${esc(aria)}"` : ''}><span class="ds-select__value">${value}</span></button>`;
 export const selField = (label, value, id) => `<div class="ds-field tp-selfield"><div class="ds-field__header"><label class="ds-field__label" for="${id}">${label}</label></div>${select(value, { id })}</div>`;
@@ -237,7 +202,6 @@ export const checkbox = (label, { checked = false, name = '', size = '' } = {}) 
 export const checkOnly = (aria, checked = false) => `<label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="${esc(aria)}"${checked ? ' checked' : ''}></label>`;
 export const sw = (aria, on = false) => `<label class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" aria-label="${esc(aria)}"${on ? ' checked' : ''}></label>`;
 export const radios = (name, items, cur = 0, dir = '') => `<div class="ds-radio-group" role="radiogroup" data-size="medium"${dir ? ` data-orientation="${dir}"` : ''}>${items.map((l, i) => `<label class="ds-radio"><input type="radio" class="ds-radio__control" name="${name}"${i === cur ? ' checked' : ''}><span>${l}</span></label>`).join('')}</div>`;
-// 항목은 글자나 HTML, 아이콘만 있으면 [아이콘 HTML, 이름] 으로 넘겨 aria-label 을 붙인다 (11-10 점검: 이름 없는 버튼)
 export const segmented = (items, cur = 0, aria = '보기', size = 'small') => `<div class="ds-segmented" role="group" aria-label="${esc(aria)}" data-size="${size}">${items.map((it, i) => { const [l, name] = Array.isArray(it) ? it : [it]; return `<button type="button" class="ds-segmented__item" aria-pressed="${i === cur}"${name ? ` aria-label="${esc(name)}"` : ''}>${l}</button>`; }).join('')}</div>`;
 export const chiptabs = (items, cur = 0, aria = '분류', { size = '', inset = 'none' } = {}) => `<div class="ds-chiptabs" role="tablist" aria-label="${esc(aria)}"${size ? ` data-size="${size}"` : ''}${inset ? ` data-inset="${inset}"` : ''}>${items.map((l, i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === cur}">${l}</button>`).join('')}</div>`;
 export const tabs = (items, cur = 0, aria = '탭', { layout = '', inset = '' } = {}) => `<div class="ds-tabs" role="tablist" aria-label="${esc(aria)}"${layout ? ` data-layout="${layout}"` : ''}${inset ? ` data-inset="${inset}"` : ''}>${items.map((l, i) => `<button type="button" class="ds-tabs__trigger" role="tab" aria-selected="${i === cur}">${l}</button>`).join('')}</div>`;
@@ -247,10 +211,7 @@ export const ring = (v, size = 24, tone = '') => `<span class="ds-progress-circl
 export const card = (inner, { cls = '', size = 'small', variant = 'subtle', tag = 'section', attrs = '' } = {}) => `<${tag} class="ds-card tp-card${cls ? ' ' + cls : ''}"${variant ? ` data-variant="${variant}"` : ''}${size ? ` data-size="${size}"` : ''}${attrs ? ' ' + attrs : ''}>${inner}</${tag}>`;
 export const callout = (title, desc, tone = 'informative', ic = 'info-solid') => `<div class="ds-callout" data-tone="${tone}">${icon(ic)}<p class="ds-callout__content">${title ? `<strong class="ds-callout__title">${title}</strong>${desc ? '  ' : ''}` : ''}${desc || ''}</p></div>`;
 export const empty = (title, desc, ic = 'inbox', action = '') => `<div class="ds-empty"><span class="ds-empty__media">${icon(ic)}</span><p class="ds-empty__title">${title}</p>${desc ? `<p class="ds-empty__desc">${desc}</p>` : ''}${action ? `<div class="ds-empty__actions">${action}</div>` : ''}</div>`;
-// 사진: Unsplash(무료 사용 허락) 사진을 주소로 불러온다. 주제별 목록에서 번호로 고른다.
 export const unsplash = (id, w = 960) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
-// 2026-11-15 사용자 "더미 이미지가 연관성이 없어 이질감, YBM 계열사를 검토해 유사한 이미지로": YBM 화면의 주제(강의와 강사, 공부하는 수강생,
-// 시험, 교재, 듣기와 말하기, 어학연수 캠퍼스, 비즈니스 영어)로 모두 바꿨다. 주제 이름은 그대로 두고 사진만 교육 장면으로 바꾼다(nature 는 캠퍼스, food 는 공부 책상).
 export const PHOTOS = {
   lecture: ['1524178232363-1fb2b075b655', '1509062522246-3755977927d7', '1577896851231-70ef18881754', '1571260899304-425eee4c7efc', '1543269865-cbf427effbad', '1522202176988-66273c2fd55f', '1523240795612-9a054b0db644', '1596495577886-d920f1fb7238'],
   study: ['1513258496099-48168024aec0', '1501504905252-473c47e087f8', '1488190211105-8b0e65b80b4e', '1522202176988-66273c2fd55f', '1552664730-d307ca884978', '1596495577886-d920f1fb7238', '1517842645767-c639042777db', '1516534775068-ba3e7458af70', '1600880292203-757bb62b4baf', '1571260899304-425eee4c7efc', '1543269865-cbf427effbad', '1524178232363-1fb2b075b655'],
@@ -260,9 +221,7 @@ export const PHOTOS = {
   campus: ['1562774053-701939374585', '1541339907198-e08756dedf3f', '1523240795612-9a054b0db644', '1427504494785-3a9ca7044f45'],
   work: ['1552664730-d307ca884978', '1600880292203-757bb62b4baf', '1521737604893-d14cc237f11d', '1556761175-b413da4baf72', '1497366216548-37526070297c', '1501504905252-473c47e087f8', '1524178232363-1fb2b075b655'],
   person: ['1573496359142-b8d87734a5a2', '1580489944761-15a19d654956', '1507003211169-0a1dd7228f2d', '1500648767791-00dcc994a43e', '1544005313-94ddf0286df2', '1438761681033-6461ffad8d80'],
-  // 토익 스피킹 사진 묘사 문항은 일상 장면 사진을 쓴다
   city: ['1477959858617-67f85cf4f1df', '1449824913935-59a10b8d2000', '1480714378408-67cf0d13bc1b', '1514565131-fce0801e5785', '1486406146926-c627a92ad1ab'],
-  // 공부와 관련된 상품: 헤드폰, 교재, 필기구
   product: ['1505740420928-5e560c06d30e', '1484704849700-f032a568e944', '1503676260728-1c00da094a0b', '1512820790803-83ca734da794', '1517842645767-c639042777db', '1516979187457-637abb4f9353'],
 };
 PHOTOS.nature = PHOTOS.campus;
@@ -282,15 +241,11 @@ export const menu = (items) => `<div class="ds-menu" role="menu">${items.map((it
 export const accordion = (items, variant = '') => items.map(([t, d, open, sub]) => `<details class="ds-accordion"${variant ? ` data-layout="${variant}"` : ' data-inset="none"'}${open ? ' open' : ''}><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">${t}</span>${sub ? `<span class="ds-accordion__desc">${sub}</span>` : ''}</span></summary><div class="ds-accordion__content">${d}</div></details>`).join('');
 export const codeblock = (lang, code) => `<figure class="ds-codeblock"><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">${lang}</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사">${icon('copy', 'sm')}</button></figcaption><pre class="ds-codeblock__code"><code>${esc(code)}</code></pre></figure>`;
 export const kbd = (t) => `<kbd class="tp-kbd">${t}</kbd>`;
-// 고른 행 막대 (76 Toolbar floating): 표에 data-ds-selection="같은 id" 를 붙이면 ybm-ds.js 가 고른 행을 세어 막대를 보이고 숨긴다. actions = [[이름, 아이콘], ...]
 export const selectionBar = (id, actions, aria = '고른 항목 작업') => `<div class="ds-toolbar" id="${id}" role="toolbar" aria-label="${esc(aria)}" data-layout="floating" data-count-format="{n}개 선택" hidden><div class="ds-toolbar__start"><span class="ds-toolbar__count" aria-live="polite">0개 선택</span></div><div class="ds-toolbar__end">${actions.map(([l, ic]) => btn(l, { variant: 'ghost', ic })).join('')}<button type="button" class="ds-toolbar__clear" aria-label="선택 해제">${icon('x')}</button></div></div>`;
-// 사진 크게 보기 (81 Lightbox): zoom() 버튼이 data-ds-index 번째 사진부터 연다. items = [[주소, 대체 글, 설명], ...]
-// 큰 사진에 loading="lazy" 를 붙이지 않는다(열기 전 크기가 0 이라 Chrome 이 끝내 불러오지 않는다)
 export const lightbox = (id, items) => `<dialog class="ds-lightbox" id="${id}" aria-label="사진 크게 보기"><div class="ds-lightbox__bar"><span class="ds-lightbox__count">1 / ${items.length}</span><button type="button" class="ds-lightbox__close" data-ds-close aria-label="닫기">${icon('x')}</button></div>${items.map(([src, alt, cap], i) => `<figure class="ds-lightbox__slide"${i === 0 ? ' aria-current="true"' : ''}><img class="ds-lightbox__img" src="${src}" alt="${esc(alt)}">${cap ? `<figcaption class="ds-lightbox__caption">${cap}</figcaption>` : ''}</figure>`).join('')}<button type="button" class="ds-lightbox__nav" data-direction="previous" aria-label="이전 사진">${icon('chevron-left')}</button><button type="button" class="ds-lightbox__nav" data-direction="next" aria-label="다음 사진">${icon('chevron-right')}</button></dialog>`;
 export const zoom = (id, i, inner, aria = '사진 크게 보기') => `<button type="button" class="tp-zoom" data-ds-open="${id}" data-ds-index="${i}" aria-label="${esc(aria)}">${inner}</button>`;
 export const logo = (label = '서비스 이름 홈') => `<a class="tp-brand" href="#" aria-label="${esc(label)}"><span class="tp-logo">로고</span></a>`;
 
-/* ------------------------------------------------------------ 머리글과 KPI */
 export const head = (title, { tools = '', level = 1 } = {}) => `<header class="tp-head">
   <div class="tp-head__texts"><h${level} class="tp-h1">${title}</h${level}></div>
   ${tools ? `<div class="tp-head__tools">${even(tools)}</div>` : ''}
@@ -299,16 +254,12 @@ export const secHead = (title, { tools = '', level = 2, cls = 'tp-h2', id = '' }
 export const delta = (v, tone = v.startsWith('-') ? 'down' : v.startsWith('+') ? 'up' : 'flat') => `<span class="tp-delta" data-tone="${tone}">${tone === 'flat' ? '' : `<i class="ds-icon ds-icon--arrow-up ds-icon--sm" aria-hidden="true"${tone === 'down' ? ' style="transform: rotate(180deg)"' : ''}></i>`}${v}</span>`;
 export const kpi = (label, value, { d = '', chart = '', lead = '' } = {}) => card(`<div class="tp-stack">${lead ? `<div class="tp-row">${lead}<span class="tp-kpi__label">${label}</span></div>` : `<span class="tp-kpi__label">${label}</span>`}<div class="tp-row" style="align-items: baseline; flex-wrap: wrap"><span class="tp-kpi__value">${value}</span>${d ? delta(d) : ''}</div></div>${chart}`);
 
-/* ------------------------------------------------------------ 데이터와 차트 */
 export const rnd = (seed) => () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 export const walk = (seed, n, start, vol, { min = 0, drift = 0 } = {}) => { const r = rnd(seed); let v = start; return Array.from({ length: n }, () => { v = Math.max(min, v + (r() - 0.5) * vol + drift); return Math.round(v * 10) / 10; }); };
 export const C = (i) => `var(--ds-color-chart-series-${((i % 5) + 5) % 5 + 1})`;
 const fmt = (n) => (Math.abs(n) >= 1000 ? (n / 1000).toFixed(n % 1000 ? 1 : 0) + 'k' : String(+n.toFixed(2)));
-// 차트 공통: 그림은 SVG, 마우스를 올렸을 때 쓰는 값은 data-tp 에 JSON 으로 담는다(CHART_JS 가 읽는다).
 let CID = 0;
 const tpData = (o) => esc(JSON.stringify(o));
-// 선 그래프: series = [{ name, data, color?, dash?, fill? }]
-// area: 한 계열이면 위에서 아래로 옅어지는 면, stacked: 쌓은 면. xs: 점마다 이름(풍선 제목), 없으면 x 눈금에서 가까운 것을 쓴다.
 export const lineChart = (series, { w = 640, h = 220, x = [], xs = [], yTicks = 4, area = false, stacked = false, label = '선 그래프', unit = '', today = -1 } = {}) => {
   const pl = 40, pr = 8, pt = 8, pb = x.length ? 24 : 8, iw = w - pl - pr, ih = h - pt - pb;
   const n = series[0].data.length;
@@ -353,7 +304,6 @@ export const spark = (data, color = C(0), { w = 200, h = 40, label = '추이', u
   const d = { t: 'line', w, h, pl: 0, iw: w, n, x: [], u: unit, s: [{ n: '', c: color, v: data, y: ys }] };
   return `<svg class="tp-chart tp-spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="${esc(label)}" data-tp="${tpData(d)}"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><line class="tp-guide" x1="0" x2="0" y1="0" y2="${h}" vector-effect="non-scaling-stroke"/></svg>`;
 };
-// 막대 그래프: groups = [[v1, v2, ...], ...] (계열 여러 개면 나란히, stacked 면 쌓기). names: 계열 이름(풍선에 씀)
 export const barChart = (groups, { w = 640, h = 220, x = [], xs = [], label = '막대 그래프', stacked = false, colors = [], names = [], unit = '' } = {}) => {
   const pl = 40, pr = 8, pt = 8, pb = 24, iw = w - pl - pr, ih = h - pt - pb, n = groups.length, k = groups[0].length;
   const max0 = Math.max(...groups.map((g) => (stacked ? g.reduce((a, b) => a + b, 0) : Math.max(...g)))); const step = niceStep(max0 / 4); const max = Math.ceil(max0 / step) * step;
@@ -375,7 +325,6 @@ export const donut = (parts, { size = 160, thick = 16, center = '', sub = '', la
   const d = { t: 'pie', u: unit, s: parts.map(([n, v, col], i) => ({ n, c: col || C(i), v, p: Math.round((v / tot) * 1000) / 10 })) };
   return `<svg class="tp-chart tp-donut" viewBox="0 0 ${size} ${size}" style="max-width:${size}px" role="img" aria-label="${esc(label)}" data-tp="${tpData(d)}"><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="var(--ds-color-bg-neutral)" stroke-width="${thick}"/>${arcs}${center ? `<text x="50%" y="${size / 2 + (sub ? 2 : 7)}" text-anchor="middle" style="font-size:var(--ds-font-size-t08);font-weight:var(--ds-font-weight-bold);letter-spacing:-0.02em;fill:var(--ds-color-fg-neutral)">${center}</text>` : ''}${sub ? `<text x="50%" y="${size / 2 + 20}" text-anchor="middle">${sub}</text>` : ''}</svg>`;
 };
-// 차트 인터랙션: 선과 막대는 가로 위치로 가장 가까운 점, 도넛은 조각. 풍선 하나를 페이지가 같이 쓴다.
 export const CHART_JS = `(function () {
   var tip = document.createElement('div'); tip.className = 'tp-tip'; tip.setAttribute('role', 'status'); document.body.appendChild(tip);
   var nf = function (v, u) { return (typeof v === 'number' ? v.toLocaleString('ko-KR') : v) + (u || ''); };

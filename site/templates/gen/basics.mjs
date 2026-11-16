@@ -1,7 +1,3 @@
-// 사업 흐름의 기본 화면 (2026-11-11 사용자 "1순위 진행, 기존 규칙 모두 준수, UI 패턴에서 레퍼런스 수집").
-// 회원가입, 아이디, 비밀번호 찾기 / 수험표, 성적 조회, 접수 완료 / 공지사항 목록, 상세, 자주 묻는 질문 / 서비스 메인, 이벤트 페이지.
-// 레퍼런스: UI 패턴 카탈로그의 가입, 찾기, 공지, FAQ, 메인, 혜택 화면과 구조가 비슷한 탑승권, 예매 상세, 성적, 주문 완료 화면(구조만, 이름과 글은 쓰지 않음).
-// 규칙: 기존 틀(위 메뉴, 머리글, 카드, 오른쪽 고정 요약, 로그인 틀)을 그대로 쓰고, 홍보 문구, 설명 글, 툴팁, 보조 라벨은 넣지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 import { AUTH } from './login.mjs';
@@ -14,13 +10,10 @@ const guestEnd = `${iconBtn('search', '찾기', { size: 'xsmall' })}${btn('로�
 const app = (menu, cur, inner, e = end) => `<div class="tp-app">${topbar(menu, cur, e)}${inner}</div>`;
 const kvs = (rows) => `<div class="tp-stack" style="gap: var(--ds-space-x2)">${rows.map(([k, v]) => `<div class="tp-kv"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`;
 const lg = (id, ph, attrs = '') => input(id, `placeholder="${esc(ph)}" ${attrs}`, { size: 'large' });
-// 오류 상태 입력칸 (DS Field: 입력에 aria-invalid, 아래 ds-field__error)
 const fieldErr = (id, label, control, err) => `<div class="ds-field"><div class="ds-field__header"><label class="ds-field__label" for="${id}">${label}</label></div>${control}<div class="ds-field__footer"><p class="ds-field__error">${err}</p></div></div>`;
-// 입력 + 버튼 한 줄 (인증 요청, 중복 확인)
 const withBtn = (control, b) => `<div class="tp-inline">${control}${b}</div>`;
 
 const CSS = FRAME_CSS + `
-  /* 가운데 한 줄 화면 (좁은 폭 720) */
   .tp-nw { box-sizing: border-box; display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, var(--tp-narrow)); margin-inline: auto; }
   .tp-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); }
   @media (min-width: 1280px) { .tp-two { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; } }
@@ -33,7 +26,6 @@ const CSS = FRAME_CSS + `
   .tp-map { display: grid; place-items: center; min-height: 200px; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); color: var(--ds-color-fg-neutral-subtle); }
 `;
 
-/* ===================================================================== 회원 */
 const AUTH_CSS = AUTH.CSS + `
   .tp-auth__wrap { width: min(100%, 480px); }
   .tp-auth__card h2 { margin: 0; }
@@ -48,7 +40,6 @@ const AUTH_CSS = AUTH.CSS + `
 `;
 const code = (id) => `<div class="tp-code">${input(id, 'inputmode="numeric" placeholder="인증번호 6자리" maxlength="6"', { size: 'large' })}<time class="ds-timer" data-format="clock">2:59</time></div>`;
 
-/* 1. 회원가입: 약관 동의 → 본인 인증 → 정보 입력을 한 장에. 필수와 선택을 글자로 나누고 항목마다 보기 */
 const signup = () => {
   const term = (t, req, on) => `<div class="tp-terms__row">${checkbox(`${req ? '[필수]' : '[선택]'} ${t}`, { checked: on })}${link('보기')}</div>`;
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
@@ -79,7 +70,6 @@ const signup = () => {
   return { slug: 'signup', en: 'Sign Up', name: '회원가입', group: 'Account', desc: '약관 동의, 본인 인증, 정보 입력을 한 화면에서 마치는 회원가입 화면입니다.', css: AUTH_CSS, body };
 };
 
-/* 2. 아이디, 비밀번호 찾기: 두 기능을 탭으로 묶고, 이름과 휴대폰 인증으로 찾는다 */
 const findAccount = () => {
   const body = `<main class="tp-auth"><div class="tp-auth__wrap">
   ${AUTH.brand}
@@ -100,8 +90,6 @@ const findAccount = () => {
   return { slug: 'find-account', en: 'Find Account', name: '아이디, 비밀번호 찾기', group: 'Account', desc: '이름과 휴대폰 인증으로 아이디를 찾거나 비밀번호를 다시 정하는 화면입니다.', css: AUTH_CSS + `.tp-auth__card { gap: var(--ds-space-x5); }`, body };
 };
 
-/* ===================================================================== 시험 */
-/* 3. 수험표: 수험번호를 가장 크게, 라벨 위 값 아래 정보 칸, 고사장과 준비물 */
 const ticket = () => {
   const NO = '1118-0427-0012';
   const css = CSS + `
@@ -142,7 +130,6 @@ const ticket = () => {
   return { slug: 'exam-ticket', en: 'Admission Ticket', name: '수험표', group: 'Exam', desc: '수험 번호, 시험 시간, 고사장과 좌석을 한 장에 모은 수험표 화면입니다. 화면으로 보거나 인쇄해 시험장에 가져갑니다.', css, body };
 };
 
-/* 4. 성적 조회(비회원): 수험 번호와 생년월일 두 칸으로 조회하고, 아래에 총점을 크게, 영역 점수와 회차 */
 const scoreLookup = () => {
   const css = CSS + `
   .tp-lookup { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x3); align-items: end; }
@@ -169,7 +156,6 @@ const scoreLookup = () => {
   return { slug: 'score-lookup', en: 'Score Lookup', name: '성적 조회', group: 'Exam', desc: '로그인하지 않고 수험 번호와 생년월일로 성적을 확인하는 화면입니다. 총점, 영역별 점수, 지난 회차를 함께 봅니다.', css, body };
 };
 
-/* 5. 접수 완료: DS Result 로 완료를 알리고, 접수, 결제, 다음 일정을 주제별 카드로 */
 const applyDone = () => {
   const css = CSS + `
   .tp-done { width: min(100%, 560px); }
@@ -189,7 +175,6 @@ const applyDone = () => {
   return { slug: 'exam-apply-done', en: 'Registration Complete', name: '시험 접수 완료', group: 'Exam', desc: '결제를 마친 뒤 접수 번호와 접수, 결제 내용, 다음 일정을 보여 주는 화면입니다. 수험표와 내 시험으로 이어집니다.', css, body };
 };
 
-/* ===================================================================== 고객센터 */
 const NOTICES = [
   ['시험', '12월 정기 시험 고사장 추가 안내', '2026.11.04', '3,120', 1, 1],
   ['시스템', '11월 15일 새벽 서비스 점검', '2026.11.03', '1,284', 1, 0],
@@ -201,7 +186,6 @@ const NOTICES = [
   ['성적', '성적표 우편 발송 종료', '2026.09.30', '2,566', 0, 0],
 ];
 
-/* 6. 공지사항 목록: 분류 칩과 찾기, 고정 공지는 맨 위, 넓은 화면은 표, 좁은 화면은 두 줄 목록 */
 const noticeList = () => {
   const css = CSS + `
   .tp-ntools { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
@@ -229,7 +213,6 @@ ${head('공지사항')}
   return { slug: 'notice-list', en: 'Notice List', name: '공지 목록', group: 'Support', desc: '분류와 찾기로 공지를 고르고 고정 공지를 맨 위에 두는 공지사항 목록입니다. 넓은 화면은 표, 좁은 화면은 두 줄 목록으로 보입니다.', css, body };
 };
 
-/* 7. 공지사항 상세: 분류와 제목, 등록일과 조회, 일정 요약, 본문, 첨부, 이전 글과 다음 글, 목록 */
 const noticeDetail = () => {
   const css = CSS + `
   .tp-article { display: flex; flex-direction: column; gap: var(--ds-space-x4); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
@@ -262,11 +245,10 @@ const noticeDetail = () => {
   return { slug: 'notice-detail', en: 'Notice Detail', name: '공지 상세', group: 'Support', desc: '공지 본문과 일정 요약, 첨부 파일, 이전 글과 다음 글을 보여 주는 공지사항 상세 화면입니다.', css, body };
 };
 
-/* 8. 자주 묻는 질문: 찾기와 분류를 한 판에, 많이 찾는 질문, 전체 목록(펼침), 옆에 문의 */
 const faq = () => {
   const css = CSS + `
   .tp-fq-panel { display: flex; flex-direction: column; gap: var(--ds-space-x3); padding: var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
-  .tp-fq-panel .ds-input { --ds-input-bg: var(--ds-color-bg-layer-default); }  /* 회색 판 위 입력칸은 흰 바탕 (11-11 사용자) */
+  .tp-fq-panel .ds-input { --ds-input-bg: var(--ds-color-bg-layer-default); }
   .tp-top5 { margin: 0; padding: 0; list-style: none; counter-reset: top; }
   .tp-top5 li { counter-increment: top; }
   .tp-top5 a { display: grid; grid-template-columns: var(--ds-space-x6) minmax(0, 1fr); gap: var(--ds-space-x3); padding-block: var(--ds-space-x3); color: inherit; text-decoration: none; }
@@ -302,8 +284,6 @@ ${head('자주 묻는 질문')}
   return { slug: 'faq', en: 'FAQ', name: '자주 묻는 질문', group: 'Support', desc: '찾기와 분류로 질문을 고르고 많이 찾는 질문을 먼저 보여 주는 화면입니다. 답이 없으면 1:1 문의와 전화 상담으로 이어집니다.', css, body };
 };
 
-/* ===================================================================== 콘텐츠 */
-/* 9. 서비스 메인: 큰 배너(쪽수, 멈춤), 바로 가기, 내 시험, 시험 일정, 공지, 추천 강의 */
 const serviceHome = () => {
   const css = CSS + `
   .tp-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); }
@@ -358,7 +338,6 @@ const serviceHome = () => {
   return { slug: 'service-home', en: 'Service Home', name: '서비스 홈', group: 'Content', desc: '큰 배너, 바로 가기, 내 시험, 시험 일정, 공지, 추천 강의를 모은 서비스 첫 화면입니다.', css, body };
 };
 
-/* 10. 이벤트 페이지: 이벤트 탭, 제목과 기간, 큰 혜택, 응모, 혜택 카드(EVENT 1, 2), 참여 방법, 조건 표, 유의사항 */
 const eventPage = () => {
   const css = CSS + `
   .tp-ev-hero { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x4); padding: var(--ds-space-x10) var(--ds-space-x5); border-radius: var(--ds-shape-2xl); background: var(--ds-color-bg-neutral); text-align: center; }

@@ -1,7 +1,3 @@
-// 교재(출판) 템플릿: 교재 홈, 교재 목록, 교재 음원, 교재 로드맵. 교재 상세는 service.mjs 에 있다.
-// 2026-11-15 사용자 "북스 전체 화면 검토, 쇼핑 카테고리 대신 넣기". 교재 사이트는 물건을 파는 곳이 아니라
-// 교재를 찾고, 교재에 딸린 음원, 자료, 강의로 공부를 돕는 곳이다. 그래서 장바구니와 결제 대신 찾기, 음원, 자료, 로드맵을 담는다.
-// 어학 교재 사이트의 공통 구조만 따르고 실제 교재 이름, 저자, 글은 넣지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, avatar, card, head, secHead, select, chiptabs, tabs, progress, thumb, photo, checkbox, pagination, link, esc } = K;
@@ -19,7 +15,6 @@ const CSS = FRAME_CSS + `
   @media (min-width: 768px) { .tp-books { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (min-width: 1280px) { .tp-books { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--ds-space-x8) var(--ds-space-x6); } }
 `;
-// 교재에 딸린 학습 지원 표시: MP3, 무료 강의, 단어장
 const marks = (list) => `<span class="tp-tags">${list.map((t) => badge(t)).join('')}</span>`;
 const BOOKS = [
   ['토익 기출 문제집 1000 읽기', '어학연구소', '22,000원', ['MP3', '무료 강의']],
@@ -33,7 +28,6 @@ const BOOKS = [
 ];
 const book = (i, { price = true, tag = true } = {}) => { const [t, who, p, m] = BOOKS[i % BOOKS.length]; return `<a class="tp-book" href="#">${thumb('3:4', '', photo('book', i, 480), 'md')}<span class="tp-stack">${tag ? marks(m) : ''}<span class="tp-book__title">${t}</span><span class="tp-caption">${who}</span>${price ? `<span class="tp-book__price">${p}</span>` : ''}</span></a>`; };
 
-/* 1. 교재 홈 --------------------------------------------------------- */
 const home = () => {
   const css = CSS + `
   .tp-find { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-x4); padding-block: var(--ds-space-x6); }
@@ -70,7 +64,6 @@ const home = () => {
   return { slug: 'book-home', en: 'Book Home', name: '교재 홈', group: 'Books', desc: '교재 찾기, 학습 지원 바로 가기, 새 교재, 단계별 추천을 모은 교재 사이트 첫 화면입니다. 찾기 칸을 맨 위에 둡니다.', css, body };
 };
 
-/* 2. 교재 목록 ------------------------------------------------------- */
 const list = () => {
   const css = CSS + `
   .tp-bl { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: start; }
@@ -110,7 +103,6 @@ ${head('토익 교재')}
   return { slug: 'book-list', en: 'Book List', name: '교재 목록', group: 'Books', desc: '단계와 학습 지원 조건으로 교재를 고르는 목록 화면입니다. 교재마다 음원과 학습 자료로 바로 갑니다.', css, body };
 };
 
-/* 3. 교재 음원 ------------------------------------------------------- */
 const audio = () => {
   const css = CSS + `
   .tp-ba { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); align-items: start; padding-bottom: var(--ds-space-x20); }
@@ -122,7 +114,6 @@ const audio = () => {
   .tp-trk > span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tp-chap { padding: var(--ds-space-x4) var(--ds-space-x2) var(--ds-space-x1); color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-weight: var(--ds-font-weight-semibold); }
   .tp-file-row { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
-  /* 아래 고정 재생 막대 */
   .tp-pbar { position: fixed; inset: auto 0 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; gap: var(--ds-space-x3); padding: var(--ds-space-x3) max(var(--tp-gutter), calc((100% - var(--tp-page)) / 2)); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-pbar__now { display: none; flex-direction: column; flex: none; width: 200px; min-width: 0; }
   .tp-pbar__now b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); }
@@ -153,7 +144,6 @@ const audio = () => {
   return { slug: 'book-audio', en: 'Book Audio', name: '교재 음원 듣기', group: 'Books', desc: '교재에 딸린 음원을 바로 듣거나 내려받는 화면입니다. 재생 막대는 아래에 고정하고 학습 자료는 옆에 모아 둡니다.', css, body };
 };
 
-/* 4. 교재 로드맵 ----------------------------------------------------- */
 const roadmap = () => {
   const css = CSS + `
   .tp-road { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }

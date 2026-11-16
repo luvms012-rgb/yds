@@ -1,29 +1,23 @@
-// 온라인 평가 템플릿 (2026-11-11 사용자 "레벨 테스트와 온라인 시험 테스트"): 학원 레벨 테스트(Exam, 11-11 학습에서 옮김), 모의고사 PBT 형, 모의고사 CBT 형(Exam).
-// 시험 이름은 특정 시험이 아닌 일반 이름을 쓴다. 문항 글은 내용 영역(tp-ex)이라 stripCopy 가 건드리지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar, selectbox, tags } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, divider, chip, chiptabs, segmented, progress, ring, callout, dot, link, thumb, photo, esc } = K;
 
 const CSS = FRAME_CSS + `
-  /* 평가 화면 공통: 위 막대에 제목, 남은 시간, 나가기 */
   .tp-exam-title { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); white-space: nowrap; }
   .ds-topnav .tp-stack:has(> .tp-exam-title) { flex: 1 1 auto; min-width: 0; }
-  .tp-stack:has(> .tp-exam-title) > * { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }  /* 11-11 모바일: 부제가 세로로 꺾이지 않게 한 줄 말줄임 */
+  .tp-stack:has(> .tp-exam-title) > * { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .tp-timer { display: inline-flex; align-items: center; gap: var(--ds-space-x1_5); padding: 0 var(--ds-space-x3); height: 32px; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); }
   .tp-timer .ds-timer { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-semibold); }
   .tp-timer[data-urgent] { background: var(--ds-color-bg-critical-weak); } .tp-timer[data-urgent] .ds-timer, .tp-timer[data-urgent] .ds-icon { color: var(--ds-color-fg-critical); }
-  /* 문항 */
   .tp-q { display: flex; flex-direction: column; gap: var(--ds-space-x4); }
   .tp-q__head { display: flex; align-items: center; gap: var(--ds-space-x2); }
   .tp-q__no { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); font-variant-numeric: tabular-nums; }
   .tp-q__text { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); }
   .tp-q__text b { padding: 0 var(--ds-space-x1); border-radius: var(--ds-shape-xs); background: var(--ds-color-bg-neutral-weak-alpha); font-weight: inherit; }
   .tp-q .ds-selectbox-group { --ds-selectbox-columns: 1; }
-  /* 듣기 재생 줄 */
   .tp-audio { display: flex; align-items: center; gap: var(--ds-space-x3); padding: var(--ds-space-x3) var(--ds-space-x4); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-neutral); }
   .tp-audio .ds-progress { flex: 1 1 auto; }
   .tp-audio .ds-timer { flex: none; color: var(--ds-color-fg-neutral-muted); white-space: nowrap; }
-  /* 아래 고정 이동 막대 */
   .tp-navbar { position: sticky; bottom: 0; z-index: var(--ds-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x3); margin-inline: calc(var(--tp-gutter) * -1); padding: var(--ds-space-x3) var(--tp-gutter); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
   .tp-navbar > .tp-row { flex-wrap: nowrap; }
 `;
@@ -31,10 +25,6 @@ const CSS = FRAME_CSS + `
 const examBar = (title, { sub = '', time = '0:00', urgent = false, end = '' } = {}) => topbar([], -1, time === null ? end : `<div class="tp-row" style="gap: var(--ds-space-x3)"><span class="tp-timer"${urgent ? ' data-urgent' : ''}>${icon('clock', 'sm')}<time class="ds-timer" aria-label="남은 시간">${time}</time></span>${end || btn('나가기', { size: 'small' })}</div>`).replace('<span class="tp-logo">로고</span>', `<span class="tp-logo">로고</span>`).replace('<nav class="ds-topnav__menu" aria-label="주요 메뉴"></nav>', `<div class="tp-stack" style="gap:0"><span class="tp-exam-title">${title}</span>${sub ? `<span class="tp-caption">${sub}</span>` : ''}</div>`);
 const audio = (cur, total, pct) => `<div class="tp-audio">${iconBtn('play', '다시 듣기', { variant: 'neutralSolid', size: 'small' })}${progress(pct, { tone: 'neutral', label: '재생 위치' })}<time class="ds-timer tp-num">${cur} / ${total}</time></div>`;
 
-/* 1. 레벨 테스트 (2026-11-11 사용자 "UI 고도화", 모바일 레벨 테스트 흐름을 참고해 다시 짬) -------------
-   사이트 머리 없이 문항에만 집중하는 전체 화면. 위 막대: 닫기(왼쪽), 영역 Stepper(가운데), 문항 수(오른쪽), 아래에 얇은 진행 막대.
-   가운데: 지시문(핵심 말 굵게), 듣기 카드(큰 재생 버튼), 답 Select Box 한 줄씩. 답을 고르면 바로 다음 문항으로 넘어가 다음 버튼이 없다.
-   맨 아래 가운데 모르겠어요(ghost). 시간 제한 없음. */
 const levelTest = () => {
   const css = CSS + `
   .tp-lt__bar { position: sticky; top: 0; z-index: var(--ds-z-sticky); background: var(--ds-color-bg-layer-default); }
@@ -46,7 +36,6 @@ const levelTest = () => {
   .tp-lt__q { display: flex; flex-direction: column; gap: var(--ds-space-x6); }
   .tp-lt__q h1 { margin: 0; text-align: center; font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-medium); color: var(--ds-color-fg-neutral); text-wrap: balance; }
   .tp-lt__q h1 b { font-weight: var(--ds-font-weight-bold); }
-  /* 듣기 플레이어 (11-11 사용자 "오디오 플레이어가 어색, 단순하게"): 공용 한 줄(재생, 진행 막대, 시간)만. 파형, 큰 재생 버튼, 속도는 뺐다 */
   .tp-lt .tp-audio { padding: var(--ds-space-x4); }
   .tp-lt .ds-selectbox-group { --ds-selectbox-columns: 1; }
   .tp-lt .ds-selectbox { min-height: 56px; }
@@ -71,7 +60,6 @@ const levelTest = () => {
   return { slug: "level-test", en: "Level Test", name: "레벨 테스트", group: "Exam", desc: "과정에 들어가기 전 수준을 재는 온라인 테스트 화면입니다. 위에서 지금 영역과 진행을 보여 주고, 한 번에 한 문항만 풀며, 답을 고르면 바로 다음 문항으로 넘어갑니다.", css, body };
 };
 
-/* 2. 모의고사 PBT 형 (지문 + 문항 + 답안지) ------------------------------- */
 const mockPbt = () => {
   const css = CSS + `
   .tp-pbt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); align-items: start; }
@@ -91,11 +79,9 @@ const mockPbt = () => {
   .tp-opt:has(:checked) .tp-opt__key { background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); box-shadow: none; }
   .tp-opt:has(:checked) { background: var(--ds-color-bg-neutral-weak-alpha); }
   .tp-opt input { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); }
-  /* 답안지: 번호 칸, 답한 번호는 채움, 지금 문항은 테두리, 표시한 문항은 점 */
   .tp-omr { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: var(--ds-space-x1); }
   .tp-omr > button { position: relative; display: grid; place-items: center; height: 32px; padding: 0; border: 0; border-radius: var(--ds-shape-sm); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: var(--ds-color-fg-neutral-subtle); font: inherit; font-size: var(--ds-font-size-t02); font-variant-numeric: tabular-nums; cursor: pointer; }
   .tp-omr > button[data-done] { background: var(--ds-color-bg-neutral); box-shadow: none; color: var(--ds-color-fg-neutral); }
-  /* 상태는 모두 솔리드 채움 하나로 (11-11 사용자): 답함 neutral, 지금 brand, 다시 보기 warning. 범례도 같은 색의 원 */
   .tp-omr > button[data-flag] { background: var(--ds-color-bg-warning-weak); box-shadow: none; color: var(--ds-color-fg-warning); }
   .tp-omr > button[aria-current] { background: var(--ds-color-bg-brand-solid); box-shadow: none; color: var(--ds-color-fg-on-brand-solid); }
   .tp-omr-legend { display: flex; flex-wrap: wrap; gap: var(--ds-space-x3); }
@@ -132,7 +118,6 @@ const mockPbt = () => {
   return { slug: 'mock-exam-pbt', h1: '읽기 듣기 모의고사', en: 'Mock Exam PBT', name: '모의고사 PBT', group: 'Exam', desc: '종이 시험을 온라인으로 옮긴 모의고사 화면입니다. 지문과 문항을 나란히 두고, 옆 답안지에서 푼 문항과 다시 볼 문항을 한눈에 봅니다.', css, body };
 };
 
-/* 3. 모의고사 CBT 형 (말하기, 한 문항씩 준비 시간과 답변 시간) ------------- */
 const mockCbt = () => {
   const css = CSS + `
   .tp-cbt { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x6); width: min(100%, var(--tp-page)); margin-inline: auto; align-items: start; }
@@ -140,9 +125,8 @@ const mockCbt = () => {
   .tp-cbt__stage { display: flex; flex-direction: column; gap: var(--ds-space-x5); }
   .tp-cbt__pic { width: min(100%, 560px); margin-inline: auto; }
   .tp-cbt__prompt { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); text-align: center; }
-  .tp-cbt__clock { display: grid; place-items: center; gap: var(--ds-space-x1); text-align: center; }  /* 11-11 사용자 "너무 커": DS 기본 56 원 그대로 */
+  .tp-cbt__clock { display: grid; place-items: center; gap: var(--ds-space-x1); text-align: center; }
   .tp-cbt__clock .ds-timer { font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); color: var(--ds-color-fg-neutral); letter-spacing: -0.02em; }
-  /* 녹음 막대 (11-11 사용자, UI 패턴의 음성 기록 서비스 녹음 막대 참고): 상태, 음량, 시간, 끝내기를 진한 막대 한 줄에 */
   .tp-recbar { display: flex; align-items: center; gap: var(--ds-space-x4); padding: var(--ds-space-x3) var(--ds-space-x3) var(--ds-space-x3) var(--ds-space-x5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral-solid); color: var(--ds-color-fg-neutral-inverted); }
   .tp-recbar__state { display: flex; align-items: center; gap: var(--ds-space-x2); flex: none; font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); white-space: nowrap; }
   .tp-recbar__state .ds-statusdot { background: var(--ds-color-bg-critical-solid); }

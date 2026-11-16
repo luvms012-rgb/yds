@@ -1,6 +1,3 @@
-// 관리자 처리 화면 3종(관리자 > 처리): 요청 목록 → 요청 상세 → 요청 등록.
-// LMS 같은 관리자 사이트에서 요청을 받아 승인, 진행, 완료로 처리하는 흐름을 담는다.
-// 사내 업무 관리 화면의 공통 구조(상태 목록, 처리 단계, 댓글과 이력, 라벨 왼쪽 등록 폼)만 따르고 서비스 이름과 글은 넣지 않는다.
 import * as K from './kit.mjs';
 import { T, FRAME_CSS, sidenav, frame } from './frame.mjs';
 const { icon, btn, iconBtn, badge, avatar, avatars, head, input, select, search, checkbox, radios, chiptabs, tabs, stepper, progress, checkOnly, divider, esc } = K;
@@ -8,8 +5,6 @@ const { icon, btn, iconBtn, badge, avatar, avatars, head, input, select, search,
 const ORG = '한빛아카데미';
 const nav = (cur) => sidenav(ORG, [['', [['홈', 'house', cur === 0], ['과정 개설 요청', 'inbox', cur === 1], ['과정 운영', 'book-open', cur === 2], ['수강생', 'users', cur === 3], ['출석', 'calendar', cur === 4], ['통계', 'chart-column', cur === 5]]]], [['설정', 'settings', false]]);
 
-// 상태: 신청 → 승인 → 진행 → 완료 (반려는 따로)
-// 상태 색 (2026-11-15 규칙): 해야 할 일이 남은 상태 warning, 진행 중 informative, 끝난 상태 neutral, 반려 critical
 const STATUS = { 신청: 'warning', 승인: 'neutral', 진행: 'informative', 완료: 'neutral', 반려: 'critical' };
 const st = (s) => badge(s, STATUS[s]);
 
@@ -17,9 +12,7 @@ const CSS = FRAME_CSS + `
   .tp-late { color: var(--ds-color-fg-critical); }
 `;
 
-/* 1. 요청 목록 ------------------------------------------------------- */
 const list = () => {
-  // 번호, 상태, 중요, 요청, 댓글, 요청한 사람, 요청일, 완료 희망일(늦음), 담당자
   const rows = [
     [1284, '신청', 0, '비즈니스 영어 회화 4기 개설', 0, '김도윤', '11.13', '11.20', 0, ''],
     [1283, '승인', 1, '신입 사원 온보딩 과정 일정 변경', 1, '이서연', '11.13', '11.14', 0, ''],
@@ -35,7 +28,6 @@ const list = () => {
   const css = CSS + `
   .tp-rql .ds-table { min-width: 880px; }
   .tp-rql th:first-child { width: 48px; }
-  /* 모바일: 찾을 항목과 찾기 칸을 한 줄로 */
   @media (max-width: 767px) { .tp-rql-tools .tp-ttools__end { flex-wrap: nowrap; width: 100%; } .tp-rql-tools .tp-ttools__end > .ds-select { flex: none; min-width: 0; width: 104px; } .tp-rql-tools .ds-input { flex: 1 1 auto; width: auto; } }
   .tp-rql th:nth-child(4) { width: 40%; }
   .tp-rql td:nth-child(4) a { display: inline-flex; align-items: center; gap: var(--ds-space-x2); max-width: 100%; color: inherit; text-decoration: none; }
@@ -65,7 +57,6 @@ const list = () => {
   return { slug: 'admin-request-list', en: 'Request List', name: '요청 목록', group: 'Admin', desc: '들어온 요청을 상태별로 보고 처리할 것을 고르는 관리자 목록입니다. 신청, 승인, 진행, 완료처럼 단계가 있는 요청에 사용합니다.', css, body: frame(nav(1), '과정 개설 요청', main) };
 };
 
-/* 2. 요청 상세 ------------------------------------------------------- */
 const detail = () => {
   const css = CSS + `
   .tp-rqd__main { gap: var(--ds-space-x8); }
@@ -75,7 +66,6 @@ const detail = () => {
   .tp-rqd__title .tp-row { flex: none; }
   .tp-article { display: flex; flex-direction: column; gap: var(--ds-space-x3); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
   .tp-article p { margin: 0; }
-  /* 첨부 파일: 할 일 상세와 같은 이름 칸 (DS File Item 타일은 긴 파일 이름이 잘린다) */
   .tp-files { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--ds-space-x2); }
   .tp-file { display: flex; align-items: center; gap: var(--ds-space-x2); min-width: 0; padding: var(--ds-space-x2) var(--ds-space-x2) var(--ds-space-x2) var(--ds-space-x3); border-radius: var(--ds-shape-md); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); color: inherit; text-decoration: none; font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); }
   .tp-file > .ds-icon { flex: none; color: var(--ds-color-fg-neutral-subtle); }
@@ -130,7 +120,6 @@ const detail = () => {
   return { slug: 'admin-request-detail', en: 'Request Detail', name: '요청 상세', group: 'Admin', desc: '요청 하나의 내용과 처리 단계를 보고 댓글로 주고받는 관리자 화면입니다. 담당자와 진행률은 오른쪽에 모아 둡니다.', css, body: frame(nav(1), '요청 상세', main) };
 };
 
-/* 3. 요청 등록 ------------------------------------------------------- */
 const form = () => {
   const css = CSS + `
   .tp-rqf { display: flex; flex-direction: column; gap: var(--ds-space-x6); width: min(100%, 880px); }
@@ -140,7 +129,6 @@ const form = () => {
   .tp-rqf .tp-short { width: min(100%, 240px); }
   .tp-rqf .ds-textarea { min-height: 200px; }
   .tp-rqf__foot { display: flex; justify-content: flex-end; gap: var(--ds-space-x2); padding-top: var(--ds-space-x6); box-shadow: inset 0 1px 0 var(--ds-color-stroke-neutral-muted); }
-  /* 넓은 화면은 라벨 왼쪽, 입력 오른쪽 */
   @media (min-width: 768px) {
     .tp-rqf .ds-field { display: grid; grid-template-columns: 160px minmax(0, 1fr); align-items: start; column-gap: var(--ds-space-x6); }
     .tp-rqf .ds-field__header { padding-top: var(--ds-space-x2_5); }
