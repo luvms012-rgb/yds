@@ -437,6 +437,7 @@ const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 // 11-11 사용자 "합쳐져 있는데 나눠줘, 3개로, 공통은 모두 포함, 제목은 대괄호": 묶음마다 상자 하나, 안은 [묶음 이름 예시] → 공통 글 → 예시 목록(- 줄)
 // 템플릿 AI 요청 글 (2026-11-14 사용자 문구를 "내용은 자유롭게, 규칙은 지켜서" 로 다듬은 판, 사용자 "진행". "[내가 원하는 서비스 화면]" 자리는 쓰는 사람이 바꾼다). 문서 보기의 AI 요청 글 탭이 보여 주고, 머리 버튼은 이 글을 복사한다
 // 2026-11-15 사용자 "3줄 이어서, 줄바꿈 제거, 공통 적용", 이어서 "요청 문장부터 줄바꿈", 다시 "이 줄바꿈으로 통일": 안내서 문장 / 주소 / 요청 문장을 줄마다 하나씩, 주소는 늘 혼자 한 줄(메인 요청 글도 같다)
+// 2026-11-16 사용자 "템플릿도 프롬프팅에 포인트 컬러": 빈칸은 메인처럼 파랑(markBlanks). [만들고 싶은 화면] 은 사람마다 답이 달라 예시로 바꾸지 않는다(메인 요청 글과 같은 기준)
 const TPL_PROMPT = (t) => `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt
 '${t.name}' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘.
@@ -1121,7 +1122,7 @@ templates.forEach((t) => {
   </div>
   <div class="site-frame__stage" data-device="desktop"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 템플릿" data-site-frame></iframe></div>
   <div class="site-frame__code" hidden>${codeblock('불러오는 중…').replace('<figure class="ds-codeblock"', `<figure class="ds-codeblock" data-site-src="pages/${t.slug}.html"`)}</div>
-  <div class="site-frame__prompt" hidden>${codeblock(TPL_PROMPT(t), 'text', ' data-wrap')}</div>
+  <div class="site-frame__prompt" hidden>${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap'))}</div>
 </div>
 ${t.note ? `<h2 id="responsive">반응형</h2><p>${esc(t.note)}</p>` : ''}
 ${used.length ? `<h2 id="components">사용한 컴포넌트</h2><div class="site-links">${used.map((c) => `<a class="ds-chip" data-size="small" href="../components/${c.slug}.html">${esc(c.name.split(' · ')[0])}</a>`).join('')}</div>` : ''}`,
