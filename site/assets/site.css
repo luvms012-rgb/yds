@@ -686,6 +686,22 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 @keyframes site-search-flash { 0%, 40% { background: var(--ds-color-bg-warning-weak); } 100% { background: transparent; } }
 @media (prefers-reduced-motion: reduce) { .site-search-flash { animation: none; background: var(--ds-color-bg-warning-weak); } }
 
+/* 소소한 움직임 (2026-11-16 사용자): 순서와 시간은 site.js 끝 "소소한 움직임". 움직임 줄이기 설정이면 머리 스크립트가 site-motion 을 달지 않아 모두 꺼진다 */
+.site-motion:not(.site-motion-on) .site-doc { opacity: 0; }  /* 스크립트가 덩어리를 숨길 때까지 잠깐 (번쩍임 막기) */
+.site-rv { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: var(--site-rv-delay, 0ms); }
+:is(.site-tile, .site-tpl).site-rv { transform: translateY(16px) scale(0.98); }
+.site-rv.is-in { opacity: 1; transform: none; }
+/* 첫 방문 위 메뉴: 위에서 아래로 (한 번 열린 창에서는 다시 하지 않는다) */
+@keyframes site-drop { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+.site-first .site-top { animation: site-drop 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+/* NEW 뱃지: 메뉴와 본문이 자리 잡은 뒤 탄성 있게 */
+@keyframes site-pop { 0% { opacity: 0; transform: scale(0.4); } 55% { opacity: 1; transform: scale(1.18); } 75% { transform: scale(0.94); } 90% { transform: scale(1.03); } 100% { opacity: 1; transform: scale(1); } }
+.site-motion :is(.site-newbadge, .site-release__new) { animation: site-pop 0.7s ease-out 0.7s both; }
+.site-motion .site-release__new { animation-delay: 1s; }
+/* 시작하기 요청 글 타이핑 커서 */
+@keyframes site-blink { 50% { opacity: 0; } }
+.site-caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 1px; vertical-align: text-bottom; background: var(--ds-color-fg-neutral); animation: site-blink 1s steps(1) infinite; }
+
 /* 가이드는 브랜드 색 없이 모노톤으로 보여 준다 (2026-11-02 사용자 "가이드에 브랜드 컬러 적용 X").
    브랜드 역할 색을 같은 자리의 neutral 색으로 바꾼다. 서비스는 palette/brand 를 바꿔 자기 브랜드 색을 쓴다(Color 페이지).
    site.css 끝에 붙고, 템플릿 미리보기 iframe 에는 site.js 가 assets/brand-mono.css 로 넣는다.

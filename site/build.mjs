@@ -364,6 +364,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
 <title>${esc(title)} - YDS</title>
 ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+<script>/* 소소한 움직임 (2026-11-16): 움직임 줄이기 설정이 아니면 켜고, 창에서 처음 연 쪽만 위 메뉴를 내린다. site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion"); }, 3000); if (!sessionStorage.getItem("ybm-site-nav-in")) { d.classList.add("site-first"); sessionStorage.setItem("ybm-site-nav-in", "1"); } } } catch (e) {}</script>
 <link rel="icon" href="${root}assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)} - YDS">

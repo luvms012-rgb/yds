@@ -990,4 +990,102 @@ document.addEventListener("click", function (e) {
   }
   window.addEventListener("hashchange", fromHash);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(fromHash, 100); }); else setTimeout(fromHash, 100);
+
+  /* 소소한 움직임 (2026-11-16 사용자 "스크롤 시 페이드인, 썸네일 순차, NEW 뱃지 탄성, 시작하기 요청 글 타이핑, 동시에 되지 않게 인지 가능한 딜레이").
+     순서: 첫 방문 위 메뉴(CSS, 0 ~ 0.5초) → 본문 덩어리 차례로(0.15초부터) → NEW 뱃지(CSS, 0.7초 뒤) → 요청 글 타이핑(상자가 보이고 나서 하나씩).
+     머리 스크립트가 html 에 site-motion 을 달아 본문을 잠깐 숨기고, 여기서 site-motion-on 으로 연다(3초 안에 못 열면 머리 스크립트가 숨김을 푼다). 움직임 줄이기 설정이면 아무것도 하지 않는다 */
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains("site-motion") || !("IntersectionObserver" in window)) { root.classList.remove("site-motion"); return; }
+    window.__siteMotion = true;
+    var doc = document.querySelector(".site-doc");
+    if (!doc) { root.classList.add("site-motion-on"); return; }
+    var TILE = ".site-tile, .site-tpl";
+    var blocks = [], tiles = [];
+    (function collect(el) {
+      [].forEach.call(el.children, function (c) {
+        if (c.hidden || c.matches("script, style")) return;
+        if (c.matches(TILE)) tiles.push(c);
+        else if (c.querySelector(TILE)) collect(c);
+        else blocks.push(c);
+      });
+    })(doc);
+    var first = true;
+    function done(el) { el.classList.remove("site-rv", "is-in"); el.style.removeProperty("--site-rv-delay"); }
+    function show(list, step, cap, base) {
+      list.sort(function (a, b) { return a.compareDocumentPosition(b) & 4 ? -1 : 1; });
+      list.forEach(function (el, i) {
+        var d = base + Math.min(i, cap) * step;
+        el.style.setProperty("--site-rv-delay", d + "ms");
+        el.classList.add("is-in");
+        setTimeout(function () { done(el); el.dispatchEvent(new CustomEvent("site:revealed")); }, d + 650);
+      });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      var b = [], t = [];
+      entries.forEach(function (e) { if (!e.isIntersecting) return; io.unobserve(e.target); (e.target.matches(TILE) ? t : b).push(e.target); });
+      var base = first ? 150 : 0; first = false;
+      if (b.length) show(b, 80, 6, base);
+      if (t.length) show(t, 60, 9, base + (b.length ? 120 : 0));  /* 썸네일은 제목 다음에 하나씩 */
+    }, { rootMargin: "0px 0px -6% 0px" });
+    blocks.concat(tiles).forEach(function (el) { el.classList.add("site-rv"); io.observe(el); });
+    /* 안전장치: 2초가 지나도 첫 화면 안의 덩어리가 그대로 숨어 있으면 바로 보인다 */
+    setTimeout(function () {
+      var late = [].filter.call(document.querySelectorAll(".site-rv:not(.is-in)"), function (el) { return el.getBoundingClientRect().top < innerHeight; });
+      late.forEach(function (el) { io.unobserve(el); });
+      if (late.length) show(late, 0, 0, 0);
+    }, 2000);
+
+    /* 시작하기 요청 글 타이핑: 상자가 보이면 하나씩 차례로 친다. 상자를 누르거나 포커스하면 바로 끝까지 보인다(복사도 온전히) */
+    var ai = document.getElementById("ai");
+    var boxes = [];
+    if (ai) for (var n = ai.nextElementSibling; n && n.tagName !== "H2"; n = n.nextElementSibling) if (n.matches(".ds-codeblock[data-wrap]")) boxes.push(n);
+    var queue = boxes.map(function (fig) {
+      var pre = fig.querySelector(".ds-codeblock__code");
+      var walker = document.createTreeWalker(pre, NodeFilter.SHOW_TEXT), nodes = [], t;
+      while ((t = walker.nextNode())) nodes.push({ n: t, s: t.data });
+      return { fig: fig, pre: pre, nodes: nodes, seen: false, state: "wait" };
+    });
+    if (!queue.length) { root.classList.add("site-motion-on"); return; }
+    queue.forEach(function (q) {
+      q.pre.style.minHeight = q.pre.offsetHeight + "px";
+      q.nodes.forEach(function (x) { x.n.data = ""; });
+      q.pre.setAttribute("aria-busy", "true");
+      var finish = function () { if (q.state !== "done") end(q); };
+      q.fig.addEventListener("pointerdown", finish, true);
+      q.fig.addEventListener("focusin", finish);
+      q.fig.addEventListener("site:revealed", function () { q.seen = true; next(); });
+    });
+    var caret = document.createElement("span"); caret.className = "site-caret"; caret.setAttribute("aria-hidden", "true");
+    function end(q) {
+      q.state = "done"; clearTimeout(q.timer);
+      q.nodes.forEach(function (x) { x.n.data = x.s; });
+      if (caret.parentNode && q.pre.contains(caret)) caret.remove();
+      q.pre.style.removeProperty("min-height"); q.pre.removeAttribute("aria-busy");
+      setTimeout(next, 450);
+    }
+    function type(q) {
+      q.state = "typing";
+      var i = 0, k = 0;
+      (function tick() {
+        if (q.state !== "typing") return;
+        var x = q.nodes[i];
+        if (!x) return end(q);
+        k = Math.min(x.s.length, k + 2);  /* 두 글자씩, AI 답이 흘러나오는 빠르기 */
+        x.n.data = x.s.slice(0, k);
+        x.n.parentNode.insertBefore(caret, x.n.nextSibling);
+        if (k >= x.s.length) { i++; k = 0; }
+        q.timer = setTimeout(tick, 24);
+      })();
+    }
+    function next() {
+      for (var j = 0; j < queue.length; j++) {
+        var q = queue[j];
+        if (q.state === "done") continue;
+        if (q.state === "wait" && q.seen) { q.state = "soon"; q.timer = setTimeout(function () { type(q); }, 300); }
+        return;  /* 앞 상자가 끝나야 다음 상자 */
+      }
+    }
+    root.classList.add("site-motion-on");
+  })();
 })();

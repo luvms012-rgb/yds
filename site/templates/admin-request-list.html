@@ -7,6 +7,7 @@
 <meta name="description" content="들어온 요청을 상태별로 보고 처리할 것을 고르는 관리자 목록입니다. 신청, 승인, 진행, 완료처럼 단계가 있는 요청에 사용합니다.">
 <!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
+<script>/* 소소한 움직임 (2026-11-16): 움직임 줄이기 설정이 아니면 켜고, 창에서 처음 연 쪽만 위 메뉴를 내린다. site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion"); }, 3000); if (!sessionStorage.getItem("ybm-site-nav-in")) { d.classList.add("site-first"); sessionStorage.setItem("ybm-site-nav-in", "1"); } } } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="요청 목록 - YDS">
@@ -14,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=9508926a">
+<link rel="stylesheet" href="../assets/site.css?v=53cccd37">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=9508926a" defer></script>
+<script src="../assets/site.js?v=53cccd37" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
