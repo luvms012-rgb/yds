@@ -1166,8 +1166,7 @@ ${updTabs('updates.html')}
 ${RELEASES.map((r) => `<section class="site-group site-release">
 <h2 id="${r.version ? 'v' + r.version : 'd-' + r.date}">${r.version ? `<span class="site-release__ver">v${esc(r.version)}</span> ` : ''}<time datetime="${r.date}">${fmtDate(r.date)}</time></h2>
 <ul class="site-list">${r.sections.flatMap((s) => s.items).map(([a, t]) => `<li><span class="ds-badge" data-size="medium">${esc(a)}</span> ${inline(t)}</li>`).join('')}</ul>
-</section>`).join('\n')}
-<p class="site-note">자세한 변경 기록은 <a class="ds-link" href="${GITHUB}/commits/main" target="_blank" rel="noopener">GitHub</a>에 있습니다.</p>`,
+</section>`).join('\n')}`,
 });
 
 // 요청 (2026-11-14 사용자 "요청 현황 공개", 추천대로 Updates 안 두 번째 탭, 목록은 site/src/requests.json 을 담당자가 고친다)
