@@ -264,8 +264,11 @@ const FOUND = az([['color', 'Color'], ['typography', 'Typography'], ['spacing', 
 // 새 소식 표시 (11-09): 맨 위 소식의 날짜와 내용으로 만든 값. 사용자가 마지막으로 본 값과 다르면 site.js 가 Updates 메뉴에 점을 띄운다. 버전 번호만 붙을 때는 바뀌지 않는다
 // 요청 목록이 바뀌면(줄 추가, 상태 변경) 값이 바뀐다. site.js 가 마지막으로 본 값과 비교한다 (11-14)
 // 요청이 하나도 없으면 빈 값: 지운 것만으로 새 요청 점이 뜨지 않게 (2026-11-14 사용자 "요청 오늘 기준 모두 삭제")
-const LATEST_REQUEST = (() => { const r = readJson('site/src/requests.json').requests; return r.length ? crypto.createHash('sha1').update(JSON.stringify(r)).digest('hex').slice(0, 10) : ''; })();
-const LATEST_UPDATE = (() => { const { date, sections } = readJson('site/src/updates.json').releases[0]; return crypto.createHash('sha1').update(JSON.stringify({ date, sections })).digest('hex').slice(0, 10); })();
+// NEW 표시의 기준 값(2026-11-16 사용자 "소식과 요청 업데이트만 NEW"): 문구만 고친 것은 세지 않는다.
+// 요청은 줄마다 접수한 날, 상태, 반영한 날, 요청 수만 본다(새 요청, 상태 바뀜). 소식은 맨 위 날짜와 항목 수, 영역만 본다(새 소식 줄)
+const hash10 = (v) => crypto.createHash('sha1').update(JSON.stringify(v)).digest('hex').slice(0, 10);
+const LATEST_REQUEST = (() => { const r = readJson('site/src/requests.json').requests; return r.length ? hash10(r.map((x) => [x.date, x.type, x.status, x.done ? x.done[0] : '', x.count || 1])) : ''; })();
+const LATEST_UPDATE = (() => { const { date, sections } = readJson('site/src/updates.json').releases[0]; return hash10([date, sections.map((s) => [s.type, s.items.map((i) => i[0])])]); })();
 const NAV = [['get-started', 'Get Started', 'index.html'], ['foundations', 'Foundations', `foundations/${FOUND[0][0]}.html`], ['components', 'Components', 'components/index.html'], ['templates', 'Templates', 'templates/index.html'], ['updates', 'Updates', 'updates.html']];
 // Get Started 문서 (왼쪽 메뉴 없음): 첫 화면 하나 (AI & Tools는 11-04 합침)
 const GS_ORDER = [['index.html', 'Get Started']];

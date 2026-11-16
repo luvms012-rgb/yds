@@ -53,7 +53,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 요청 탭(`updates-requests.html`, `site/src/requests.json`): 사용자가 "이 요청 추가", "반영됨으로" 하면 Claude 가 고쳐 배포. 같은 요청은 count 를 올리고, 이름은 쓰지 않고 소속만. 요청 제목과 반영 내용은 줄이지 않고 서술형 문장(합니다체)으로 끝맺는다. 상태 순서 검토 중, 접수, 반영됨, 보류. 비면 Empty 를 보이고 새 요청 점은 띄우지 않는다(build.mjs `updTabs`, `LATEST_REQUEST`).
 - 요청 탭 순서(11-16 사용자): 탭 → 요청 목록 → 의견 보내기 버튼. 결정 기준은 사용자가 우선 지웠다(다시 넣자고 하기 전에는 제안하지 않는다).
 - 사용 현황 탭(`updates-usage.html`): 서비스 목록은 `site/src/services.json`(이름, 검사할 화면 주소), 결과는 `node tools/usage.mjs` 가 만드는 `site/src/usage.json`(서비스별 버전과 복사본 여부, 쓰는 컴포넌트, 직접 쓴 색 수). 담당, 버전별 내려받기는 사용자가 지웠다(11-16 "복잡함"), 한 칸 안 두 정보는 세로로 쌓지 않고 가로 한 줄로. 한 달에 한 번 사용자가 말할 때 돌리고 다시 빌드한다.
-- 새 소식, 새 요청은 Updates 메뉴와 탭에 점(site.js, localStorage ybm-site-updates-seen, ybm-site-requests-seen).
+- 새 소식, 새 요청은 Updates 메뉴와 탭에 점(site.js, localStorage ybm-site-updates-seen, ybm-site-requests-seen). 기준 값은 build.mjs `LATEST_UPDATE`(맨 위 날짜, 항목 수, 영역), `LATEST_REQUEST`(줄마다 날짜, 상태, 반영한 날, 요청 수)라 문구만 고치면 NEW 가 뜨지 않는다.
 - 의견 보내기: build.mjs `FEEDBACK_FORM`(구글 폼), 입구는 푸터 하나.
 - 사용 현황 탭(`updates-usage.html`): 컴포넌트 쓰임 막대만(쓰는 곳 많은 순, 이름은 컴포넌트 페이지 링크). 서비스 카드, 버전, 색, 안 쓰는 목록은 사용자가 지웠다(usage.json 에는 남아 있다). 원본 `node tools/usage.mjs` → usage.json. 세 탭 모두 탭 아래 40 에서 내용 시작.
 - 맨 위로 버튼: 모든 페이지, 화면 높이만큼 내리면 오른쪽 아래(`[data-site-totop]`, site.js).
