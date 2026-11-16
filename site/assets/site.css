@@ -563,7 +563,7 @@ transition: background-color var(--ds-duration-fast) var(--ds-easing-standard), 
 .site-search-flash { animation: site-search-flash 2.4s var(--ds-easing-standard); }
 @keyframes site-search-flash { 0%, 40% { background: var(--ds-color-bg-warning-weak); } 100% { background: transparent; } }
 @media (prefers-reduced-motion: reduce) { .site-search-flash { animation: none; background: var(--ds-color-bg-warning-weak); } }
-.site-type:not(.site-motion-on) #ai ~ .ds-codeblock[data-wrap] .ds-codeblock__code { visibility: hidden; }
+.site-type:not(.site-motion-on) :is(#ai ~ .ds-codeblock[data-wrap], .site-tpl-prompt .ds-codeblock) .ds-codeblock__code { visibility: hidden; }
 .site-type-skel { position: absolute; pointer-events: none; }
 @keyframes site-blink { 50% { opacity: 0; } }
 .site-caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 1px; vertical-align: text-bottom; background: var(--ds-color-fg-neutral); animation: site-blink 1s steps(1) infinite; }

@@ -369,7 +369,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
 <title>${esc(title)} - YDS</title>
 ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
-${file === 'index.html' ? `<script>/* 소소한 움직임 (2026-11-16): 메인 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이 아니면 켜고, site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion", "site-type"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>` : ''}
+${file === 'index.html' || body.includes('class="site-tpl-prompt"') ? `<script>/* 소소한 움직임 (2026-11-16): 메인과 템플릿 문서 보기의 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이 아니면 켜고, site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion", "site-type"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>` : ''}
 <link rel="icon" href="${root}assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)} - YDS">
@@ -1116,7 +1116,7 @@ ${[...templates].sort(tplSort).map((t) => `<a class="site-tpl" href="${t.slug}.h
 });
 // 목록에서 빠진 템플릿의 상세 페이지는 지운다 (생성기가 템플릿을 바꾸면 옛 페이지가 남지 않게)
 for (const f of fs.readdirSync(path.join(SITE, 'templates'))) if (f.endsWith('.html') && f !== 'index.html' && !templates.some((t) => t.slug + '.html' === f)) fs.unlinkSync(path.join(SITE, 'templates', f));
-// 보기 창(새 창으로 보기)의 좌우 화살표 순서 = 목록 순서 (11-16 사용자)
+// 보기 창(크게 보기)의 좌우 화살표 순서 = 목록 순서 (11-16 사용자)
 const TPL_LIST_JSON = JSON.stringify([...templates].sort(tplSort).map((t) => [t.slug, t.name, t.desc])).replace(/</g, '\\u003c');
 templates.forEach((t) => {
   // 쓴 컴포넌트는 템플릿 파일의 class를 보고 자동으로 찾는다
@@ -1129,7 +1129,7 @@ templates.forEach((t) => {
   <p class="site-eyebrow"><a href="index.html">Templates</a> / ${esc(t.group)}</p>
   <h1 class="site-h1">${esc(t.name)}</h1>
   <p class="site-lead">${esc(t.desc)}</p>
-  <div class="site-meta">${btn(`pages/${t.slug}.html`, '새 창으로 보기', 'neutralSolid', 'xsmall', 'external-link').replace('href="pages', `data-site-tplv="${t.slug}" target="_blank" rel="noopener" href="pages`)}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}${metaLink(`${GITHUB}/blob/main/site/templates/pages/${t.slug}.html`, '코드', 'site-i--github')}</div>
+  <div class="site-meta">${btn(`pages/${t.slug}.html`, '크게 보기', 'neutralSolid', 'xsmall', 'maximize-2').replace('href="pages', `data-site-tplv="${t.slug}" target="_blank" rel="noopener" href="pages`)}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}${metaLink(`${GITHUB}/blob/main/site/templates/pages/${t.slug}.html`, '코드', 'site-i--github')}</div>
 </header>
 <div class="site-tpl-prompt">${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap', 'AI 요청 글'))}</div>
 <div class="site-frame">

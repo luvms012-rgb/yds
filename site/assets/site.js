@@ -744,7 +744,7 @@
     try { var want = new URL(location.href).searchParams.get("preview"); if (want) { var c = cards.filter(function (x) { return slugOf(x) === want; })[0]; if (c) open(c); } } catch (e) {}
   })();
 
-  // 템플릿 문서 보기의 "새 창으로 보기" (11-16 사용자): 제목, 설명과 함께 큰 창으로 열고 좌우 화살표(키보드 좌우)로 다른 템플릿을 넘겨 본다.
+  // 템플릿 문서 보기의 "크게 보기" (11-16 사용자): 제목, 설명과 함께 큰 창으로 열고 좌우 화살표(키보드 좌우)로 다른 템플릿을 넘겨 본다.
   // 순서는 목록 순서(build.mjs TPL_LIST_JSON). Ctrl, Cmd, Shift, 가운데 버튼은 진짜 새 탭, 창 안 아이콘도 새 탭으로 연다
   (function () {
     var data = document.getElementById("site-tpl-list"); if (!data) return;
@@ -1078,6 +1078,8 @@ document.addEventListener("click", function (e) {
     var ai = document.getElementById("ai");
     var boxes = [];
     if (ai) for (var n = ai.nextElementSibling; n && n.tagName !== "H2"; n = n.nextElementSibling) if (n.matches(".ds-codeblock[data-wrap]")) boxes.push(n);
+    /* 템플릿 문서 보기의 AI 요청 글도 같은 타이핑 (11-17 사용자 "메인과 똑같이") */
+    [].forEach.call(document.querySelectorAll(".site-tpl-prompt .ds-codeblock"), function (n) { boxes.push(n); });
     var queue = boxes.map(function (fig) {
       var pre = fig.querySelector(".ds-codeblock__code");
       var walker = document.createTreeWalker(pre, NodeFilter.SHOW_TEXT), nodes = [], t;

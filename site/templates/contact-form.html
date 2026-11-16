@@ -7,7 +7,7 @@
 <meta name="description" content="문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.">
 <!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
-
+<script>/* 소소한 움직임 (2026-11-16): 메인과 템플릿 문서 보기의 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이 아니면 켜고, site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion", "site-type"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>
 <link rel="icon" href="../assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="1:1 문의 - YDS">
@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css?v=8639ff9a">
-<link rel="stylesheet" href="../assets/site.css?v=aba3a33f">
+<link rel="stylesheet" href="../assets/site.css?v=41ec51d6">
 <script src="../../dist/ybm-ds.js?v=8639ff9a" defer></script>
-<script src="../assets/site.js?v=aba3a33f" defer></script>
+<script src="../assets/site.js?v=41ec51d6" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -59,7 +59,7 @@
 <header class="site-head">
   <h1 class="site-h1">1:1 문의</h1>
   <p class="site-lead">문의 내용을 한 화면에서 받는 폼입니다. 단계 없이 맨 아래 버튼 하나로 보냅니다.</p>
-  <div class="site-meta"><a class="ds-btn" data-variant="neutralSolid" data-size="xsmall" data-site-tplv="contact-form" target="_blank" rel="noopener" href="pages/contact-form.html"><i class="ds-icon ds-icon--external-link ds-icon--sm" aria-hidden="true"></i>새 창으로 보기</a><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3184-5337" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://github.com/luvms012-rgb/yds/blob/main/site/templates/pages/contact-form.html" target="_blank" rel="noopener"><i class="ds-icon site-i--github ds-icon--sm" aria-hidden="true"></i>코드</a></div>
+  <div class="site-meta"><a class="ds-btn" data-variant="neutralSolid" data-size="xsmall" data-site-tplv="contact-form" target="_blank" rel="noopener" href="pages/contact-form.html"><i class="ds-icon ds-icon--maximize-2 ds-icon--sm" aria-hidden="true"></i>크게 보기</a><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3184-5337" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://github.com/luvms012-rgb/yds/blob/main/site/templates/pages/contact-form.html" target="_blank" rel="noopener"><i class="ds-icon site-i--github ds-icon--sm" aria-hidden="true"></i>코드</a></div>
 
 </header>
 <div class="site-tpl-prompt"><figure class="ds-codeblock" data-lang="text" data-wrap>

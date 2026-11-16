@@ -706,7 +706,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) { .site-search-flash { animation: none; background: var(--ds-color-bg-warning-weak); } }
 
 /* 소소한 움직임 (2026-11-16 사용자): 메인 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이면 머리 스크립트가 site-motion 을 달지 않는다 */
-.site-type:not(.site-motion-on) #ai ~ .ds-codeblock[data-wrap] .ds-codeblock__code { visibility: hidden; }  /* 메인 요청 글: 타이핑 준비 전 번쩍임 막기 */
+.site-type:not(.site-motion-on) :is(#ai ~ .ds-codeblock[data-wrap], .site-tpl-prompt .ds-codeblock) .ds-codeblock__code { visibility: hidden; }  /* 메인과 템플릿 요청 글: 타이핑 준비 전 번쩍임 막기 */
 /* 시작하기 요청 글: 기다리는 상자의 줄 자리 Skeleton (site.js 가 줄마다 위치를 재서 놓는다) */
 .site-type-skel { position: absolute; pointer-events: none; }
 /* 시작하기 요청 글 타이핑 커서 */
