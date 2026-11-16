@@ -25,7 +25,7 @@ yds/                         ← 저장소 루트 (2026-11-04 저장소 이름 y
 ├─ 동기화.bat                 더블클릭 = node sync.mjs deploy (검증 → 커밋 → GitHub 반영)
 ├─ deploy.config.json        저장소, Pages 주소, 브랜치
 ├─ dist/                     ← 배포 패키지(2026-10-27 ybm-ds/ → dist/). 서비스는 이 폴더를 가리킨다
-│  ├─ ybm-ds.css             진입 파일 (이것 하나만 link) - 아래 5개를 cascade layer로 import
+│  ├─ ybm-ds.css             서비스가 link 하는 한 파일 - 아래 5개를 cascade layer 로 묶고 주석을 뺀 것(tools/bundle.mjs 가 만듦)
 │  ├─ tokens.css             토큰 (⚠ 생성물 - 손으로 고치지 않음)
 │  ├─ base.css               리셋, Pretendard @font-face, 포커스 링, reduced-motion, .ds-sr-only
 │  ├─ icons.css              Lucide 아이콘 (data URI + mask) .ds-icon
@@ -50,8 +50,8 @@ git에 올리지 않는 것(`.gitignore`): `tokens/.figma-check.js`, `tokens/.fi
 
 | 구분 | 파일 |
 |---|---|
-| 직접 편집 | `base.css` `icons.css` `components.css` `utilities.css` `ybm-ds.css` `ybm-ds.js` `index.html` `components.json` `sync.mjs` `tokens/build.mjs` `tokens/figma-sync.mjs` |
-| 생성물 (편집 금지) | `dist/tokens.css` `tokens/design-tokens.json` `tokens/tokens.js` `tokens/tailwind.preset.js` `tokens/.figma-check.js` |
+| 직접 편집 | `base.css` `icons.css` `components.css` `utilities.css` `ybm-ds.js` `index.html` `components.json` `sync.mjs` `tokens/build.mjs` `tokens/figma-sync.mjs` |
+| 생성물 (편집 금지) | `dist/tokens.css` `dist/ybm-ds.css`(tools/bundle.mjs) `tokens/design-tokens.json` `tokens/tokens.js` `tokens/tailwind.preset.js` `tokens/.figma-check.js` |
 | 스냅샷 (sync 로만 갱신) | `tokens/figma-variables.json` - 단 `cssOnly` 묶음(글꼴 목록, 모션, z-index, 기준점)은 손으로 고친다 |
 
 ---

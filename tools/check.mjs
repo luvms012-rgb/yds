@@ -15,6 +15,7 @@
 //   6 새 컴포넌트  컴포넌트마다 넣어야 하는 9곳이 다 있는지 (README "새 컴포넌트 넣기")
 //   7 빌드 경고  site/build.mjs 의 "!" 경고 (부품 설명, 한글 찾기 낱말, 아이콘 쓰임 등)
 import fs from 'node:fs';
+import { bundle } from './bundle.mjs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -189,6 +190,7 @@ check('5 싱크', ({ err }) => {
   for (const t of tj) { if (!tpages.includes(t.slug)) err(`템플릿 페이지 없음 ${t.slug}`); if (!fs.existsSync(path.join(SITE, 'templates', t.slug + '.html'))) err(`템플릿 상세 없음 ${t.slug}`); }
   for (const s of tpages) if (!tj.some((t) => t.slug === s)) err(`templates.json 에 없는 템플릿 파일 ${s}`);
   const entry = read('dist/ybm-ds.css');
+  if (entry !== bundle()) err('dist/ybm-ds.css 가 원본 CSS 와 다름 (node tools/bundle.mjs)');
   for (const p of ['tokens.css', 'base.css', 'icons.css', 'components.css', 'utilities.css']) if (!entry.includes(p)) err(`ybm-ds.css 가 ${p} 를 불러오지 않음`);
   for (const f of ['README.md', 'site/yds.txt', 'dist/components.css', 'dist/ybm-ds.css', 'dist/ybm-ds.js', 'site/index.html', 'site/ai/AGENTS.md']) if (/YBM DS|YBM Design System/.test(read(f).replace(/컬렉션 「YBM DS」/g, ''))) err(`예전 이름 YBM DS 가 남음 ${f}`);
   for (const f of ['dist/components.css', 'dist/base.css', 'dist/utilities.css', 'dist/tokens.css', 'site/src/site.css']) if (/--ybm-/.test(read(f))) err(`예전 토큰 이름 --ybm- 이 남음 ${f}`);

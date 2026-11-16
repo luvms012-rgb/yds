@@ -23,7 +23,7 @@
 - **바뀐 부분만 검수**: 코드 쪽 `node tools/figma-quick.mjs changed`, Figma 쪽은 그 스크립트를 use_figma 로 돌려 `check` 로 대조하고 `save`. 전체 점검(`node sync.mjs figma`)은 사용자가 말할 때와 버전을 올릴 때만. Figma 문서 프레임 링크가 어긋나면 `node sync.mjs links`. 절차는 ds-sync, yds-figma-draw 스킬. 예약 작업 지시문 `tools/auto-sync-task.md`.
 - **Updates**(`site/src/updates.json`): DS 시스템 변경(새 컴포넌트, 토큰, 브랜드 구조, 쓰는 법이 달라지는 변경)과 새 템플릿 추가만 그날 날짜에 한 줄. 영역은 컴포넌트, 템플릿, 아이콘, 토큰, 브랜드, 규칙 중 하나. 사이트, 문서, 작은 모양 수정, 템플릿 고치기는 적지 않는다.
 - **배포는 사용자가 "배포" 라고 할 때만**: `node sync.mjs deploy $'메시지\n\nCo-Authored-By: …'`(검사 → 커밋 → push). 버전은 `node sync.mjs release x.y.z`(사용자 확인 뒤). 바꾼 묶음마다 따로 커밋해 되돌릴 수 있게 한다.
-- **고치지 않는 것**: `dist/tokens.css` 와 `tokens/` 생성물, 사이트 생성물(site/CLAUDE.md 참고). 외부 레퍼런스 DS 이름, 링크, 비교 문구는 문서와 코드에 넣지 않는다. 비밀 값과 인증 정보는 다루지 않는다(로그인은 사용자가 한다).
+- **고치지 않는 것**: `dist/tokens.css` 와 `tokens/` 생성물, `dist/ybm-ds.css`(tools/bundle.mjs 가 원본 CSS 다섯 개를 묶음), 사이트 생성물(site/CLAUDE.md 참고). 외부 레퍼런스 DS 이름, 링크, 비교 문구는 문서와 코드에 넣지 않는다. 비밀 값과 인증 정보는 다루지 않는다(로그인은 사용자가 한다).
 - **문장 규칙**(문서, Figma, 답변): 긴 대시와 가운뎃점 대신 "-", ",", "/". 설명은 쉬운 한 문장으로 끝내고 값 목록이나 괄호 나열을 붙이지 않는다. 사용자에게는 한국어로 쉽게.
 
 ## 두 PC 싱크

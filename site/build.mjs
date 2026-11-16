@@ -12,6 +12,8 @@ import { linkPlan } from '../tokens/links.mjs';
 import { writeMarkdown } from './md.mjs';
 import { highlight } from './highlight.mjs';
 import { GROUPS as TPL_GROUPS, PLACE as TPL_PLACE } from './templates/gen/groups.mjs';
+import { writeBundle } from '../tools/bundle.mjs';
+if (writeBundle()) console.log('  ✔ dist/ybm-ds.css 다시 묶음');  // 원본 CSS 다섯 개를 고치면 서비스용 한 파일도 따라온다 (2026-11-16)
 
 const SITE = path.dirname(fileURLToPath(import.meta.url));
 // 사이트 CSS / JS 주소에 붙이는 버전 - 내용이 바뀌면 값이 바뀌어 브라우저가 예전 파일을 쓰지 않는다
