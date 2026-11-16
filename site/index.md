@@ -27,7 +27,7 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 
 아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
-[바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [바꿀 부분]만 바꾸고 나머지는 그대로 둬.
+[바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [버튼과 입력칸]만 바꾸고 나머지는 그대로 둬.
 ```
 
 ```text
@@ -35,7 +35,7 @@ https://luvms012-rgb.github.io/yds/site/yds.txt
 
 아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 https://luvms012-rgb.github.io/yds/site/yds.txt
-[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [색]으로, 모서리와 글꼴은 [원하는 느낌]에 맞게 정해 줘.
+[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [#00843d]로, 모서리와 글꼴은 [부드럽고 친근한 느낌]에 맞게 정해 줘.
 ```
 
 ## Figma로 시작하기
