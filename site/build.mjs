@@ -1170,12 +1170,11 @@ write({
   file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 현황', layout: 'page',
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
-<h2 id="list">요청 목록</h2>
 ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
   `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
   esc(r.type),
   `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
-  r.done ? `<span class="site-req__meta">${shortDate(r.done[0])}</span>${inline(r.done[1])}` : r.reason ? inline(r.reason) : '',  // reason: 보류나 검토 중일 때 결정 이유
+  r.done ? `<span class="site-req__text">${inline(r.done[1])}</span><span class="site-req__meta">${shortDate(r.done[0])} 반영</span>` : r.reason ? `<span class="site-req__text">${inline(r.reason)}</span>` : '',  // reason: 보류나 검토 중일 때 결정 이유
 ])).replace('class="ds-table"', 'class="ds-table site-req"')}
 ${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}`,
 });
@@ -1188,14 +1187,11 @@ if (USAGE) {
   const byComp = new Map();
   for (const s of svc) for (const c of s.components) byComp.set(c, [...(byComp.get(c) || []), s.name]);
   const compRows = [...byComp].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
-  const allComps = readJson('components.json');
-  const unused = (Array.isArray(allComps) ? allComps : allComps.components).length - byComp.size;
   const verCell = (s) => s.version ? `v${esc(s.version)}${s.version !== VERSION && /^\d/.test(s.version) ? ' <span class="ds-badge" data-tone="warning">이전 버전</span>' : ''}<span class="site-req__meta">${esc(s.kind)}</span>` : '<span class="site-req__meta">찾지 못함</span>';
   write({
     file: 'updates-usage.html', section: 'updates', title: 'Updates', desc: 'YDS 사용 현황', layout: 'page',
     body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS를 쓰는 서비스와 버전, 컴포넌트입니다.</p></header>
 ${updTabs('updates-usage.html')}
-<h2 id="services">서비스</h2>
 ${table(['서비스', '버전', '컴포넌트', '직접 쓴 색'], svc.map((s) => [
     `<span class="site-req__title">${esc(s.name)}</span>${s.errors.length ? `<span class="site-req__meta">화면 ${s.errors.length}개를 열지 못함</span>` : ''}`,
     verCell(s),
@@ -1204,8 +1200,7 @@ ${table(['서비스', '버전', '컴포넌트', '직접 쓴 색'], svc.map((s) =
   ])).replace('class="ds-table"', 'class="ds-table site-req site-usage site-inline"')}
 <h2 id="components">컴포넌트</h2>
 ${table(['컴포넌트', '쓰는 서비스'], compRows.map(([c, names]) => [`<span class="site-req__title">${esc(c)}</span>`, `${names.length}곳<span class="site-req__meta">${names.map(esc).join(', ')}</span>`])).replace('class="ds-table"', 'class="ds-table site-req site-inline"')}
-<p class="site-note">아직 쓰는 서비스가 없는 컴포넌트는 ${unused}개입니다.</p>
-<p class="site-note">${fmtDate(USAGE.checked)}에 확인했습니다. 서비스 화면 HTML에 있는 컴포넌트만 셉니다.</p>`,
+`,  // 아래 안내 두 줄(안 쓰는 컴포넌트 수, 확인한 날)은 11-16 사용자가 지웠다
   });
 }
 
