@@ -72,8 +72,14 @@
     // 코드 탭 (Get Started 다크 모드: AI 요청 / HTML). 탭 줄은 상자마다 있고 고른 표시가 이미 맞으니 상자만 바꾼다
     var tab = t.closest("[data-site-tab]");
     if (tab) {
-      var panels = tab.closest(".site-codetabs").querySelectorAll(".site-codetabs__panel");
-      panels.forEach(function (p, i) { p.hidden = String(i) !== tab.getAttribute("data-site-tab"); });
+      // 탭 줄은 상자마다 따로 있다(11-16 Segmented Control). 새로 보이는 상자의 탭 줄을 먼저 이전 자리에 두었다가 옮겨 선택 배경이 미끄러지게 한다
+      var panels = [].slice.call(tab.closest(".site-codetabs").querySelectorAll(".site-codetabs__panel"));
+      var fromI = panels.indexOf(tab.closest(".site-codetabs__panel")), toI = +tab.getAttribute("data-site-tab");
+      if (fromI === toI) return;
+      panels.forEach(function (p, i) { p.hidden = i !== toI; });
+      var items = panels[toI].querySelectorAll("[data-site-tab]");
+      items.forEach(function (b, i) { b.setAttribute("aria-pressed", String(i === fromI)); });
+      setTimeout(function () { items.forEach(function (b, i) { b.setAttribute("aria-pressed", String(i === toI)); }); }, 90);
       return;
     }
 

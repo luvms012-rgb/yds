@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=abbd45fc">
+<link rel="stylesheet" href="../assets/site.css?v=9a05ae5a">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=abbd45fc" defer></script>
+<script src="../assets/site.js?v=9a05ae5a" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -168,7 +168,7 @@
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>정해진 값은 눌러서 선택</h3>
 <p>선택할 값이 정해진 필드는 Field Button으로 만들고, 누르면 Bottom Sheet에서 선택합니다. 사용자가 직접 입력해야 하는 필드에는 Text Field Input을 사용합니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-field u-full" style="max-width: 360px">
   <div class="ds-field__header">
     <label class="ds-field__label" for="field-button-ex1-field">수강 반</label>
@@ -230,7 +230,7 @@
 <h3>수정할 수 없지만 전송해야 하는 값은 readOnly로</h3>
 <p>수정할 수 없지만 폼과 함께 전송해야 하는 값은 <code>disabled</code> 대신 <code>aria-readonly=&quot;true&quot;</code>를 사용합니다. <code>disabled</code> 값은 폼과 함께 전송되지 않기 때문입니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-5 u-full" style="max-width: 360px">
   <div class="ds-field">
     <div class="ds-field__header">
@@ -286,7 +286,7 @@
 <h3>선택하지 않은 필드의 오류 안내</h3>
 <p>라벨과 오류 문구는 Field Label로 감싸 연결하고, 선택하지 않은 필드에는 <code>aria-invalid=&quot;true&quot;</code>를 붙입니다. 오류가 나면 안내 문구 자리에 해결 방법이 표시됩니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-field u-full" style="max-width: 360px">
   <div class="ds-field__header">
     <label class="ds-field__label" for="field-button-ex3-field">관심 분야</label>

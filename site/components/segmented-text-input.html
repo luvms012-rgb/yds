@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=abbd45fc">
+<link rel="stylesheet" href="../assets/site.css?v=9a05ae5a">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=abbd45fc" defer></script>
+<script src="../assets/site.js?v=9a05ae5a" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -176,7 +176,7 @@
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>주민등록번호</h3>
 <p>앞 6자리와 뒷자리 첫 자리만 입력받고, 받지 않는 나머지 6자리는 점으로 표시합니다. 앞 6자리를 채우면 다음 구간으로 이동합니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage"><div class="ds-field" style="width:min(100%,320px)">
   <div class="ds-field__header"><span class="ds-field__label" id="ex-sti1">주민등록번호</span></div>
   <div class="ds-input ds-segmentinput" data-variant="outline" data-size="large" role="group" aria-labelledby="ex-sti1"><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="6" autocomplete="off" aria-label="앞 6자리"><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="뒷자리 첫 자리"><span class="ds-segmentinput__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
@@ -192,7 +192,7 @@
 <h3>카드 번호</h3>
 <p>가운데 8자리는 입력한 글자를 점으로 가리고, 끝에 카드사 로고 자리를 둡니다. 번호를 붙여 넣으면 첫 구간을 채우고 가린 구간 앞에서 멈춥니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage"><div class="ds-field" style="width:min(100%,340px)">
   <div class="ds-field__header"><span class="ds-field__label" id="ex-sti2">카드 번호</span></div>
   <div class="ds-input ds-segmentinput" data-variant="outline" data-size="large" role="group" aria-labelledby="ex-sti2"><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="1번째 4자리"><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="2번째 4자리" data-masked><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="3번째 4자리" data-masked><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="4번째 4자리"><span class="ds-segmentinput__suffix"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span></div>
@@ -208,7 +208,7 @@
 <h3>오류</h3>
 <p>틀린 구간에 <code>aria-invalid=&quot;true&quot;</code>를 붙이면 테두리와 아래 안내 글이 오류 색으로 바뀝니다. 안내 글에는 고치는 방법을 적습니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage"><div class="ds-field" style="width:min(100%,320px)">
   <div class="ds-field__header"><span class="ds-field__label" id="ex-sti3">주민등록번호</span></div>
   <div class="ds-input ds-segmentinput" data-variant="outline" data-size="large" role="group" aria-labelledby="ex-sti3"><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="6" autocomplete="off" aria-label="앞 6자리" value="901301" aria-invalid="true" aria-describedby="ex-sti3-error"><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="뒷자리 첫 자리" value="1"><span class="ds-segmentinput__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>

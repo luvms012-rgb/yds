@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=abbd45fc">
+<link rel="stylesheet" href="../assets/site.css?v=9a05ae5a">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=abbd45fc" defer></script>
+<script src="../assets/site.js?v=9a05ae5a" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -169,7 +169,7 @@
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>표 위 툴바</h3>
 <p>왼쪽에 표 이름을, 오른쪽에 필터, 내려받기, 주요 동작을 배치합니다. 아래 구분선으로 표와 나눕니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-full">
   <div class="ds-toolbar" role="toolbar" aria-label="접수 목록 도구" data-divider><div class="ds-toolbar__start"><span class="ds-toolbar__title">접수 목록</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="거르기"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button><span class="ds-toolbar__separator" role="separator"></span><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>새 접수</button></div></div>
   <table class="ds-table"><thead><tr><th>접수 번호</th><th>시험</th><th data-align="end">응시료</th></tr></thead><tbody><tr><td>0012</td><td>영어 말하기 시험</td><td data-align="end">84,000원</td></tr><tr><td>0011</td><td>영어 쓰기 시험</td><td data-align="end">52,000원</td></tr></tbody></table>
@@ -185,7 +185,7 @@
 <h3>여러 행 선택 시 나타나는 툴바</h3>
 <p>선택한 개수와 선택한 행에 적용할 수 있는 동작만 담고, 배경을 채워 일시적으로 나타난 막대임을 알립니다. 끝에 선택 해제를 배치합니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-toolbar u-full" role="toolbar" aria-label="고른 접수 도구" data-variant="muted" data-size="small"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div></div></div>
   <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
@@ -195,7 +195,7 @@
 <h3>떠 있는 막대</h3>
 <p>행을 선택하면 화면 아래 가운데에 막대를 표시합니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-full"><div class="ds-table-wrap"><table class="ds-table" data-ds-selection="ex-toolbar-sel"><thead><tr><th style="width:52px"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="모두 선택"></label></th><th>시험</th><th>시험일</th><th>상태</th></tr></thead><tbody><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 말하기 시험 선택"></label></td><td>영어 말하기 시험</td><td>11.23</td><td>접수 완료</td></tr><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 읽기 듣기 시험 선택"></label></td><td>영어 읽기 듣기 시험</td><td>12.07</td><td>접수 완료</td></tr><tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="영어 쓰기 시험 선택"></label></td><td>영어 쓰기 시험</td><td>12.21</td><td>대기</td></tr></tbody></table></div><div class="ds-toolbar" id="ex-toolbar-sel" role="toolbar" aria-label="고른 항목 작업" data-layout="floating" data-count-format="{n}개 선택" hidden><div class="ds-toolbar__start"><span class="ds-toolbar__count" aria-live="polite">0개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--download" aria-hidden="true"></i>내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--archive" aria-hidden="true"></i>보관</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small"><i class="ds-icon ds-icon--trash" aria-hidden="true"></i>삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div></div></div></div>
   <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>

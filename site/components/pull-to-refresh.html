@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=abbd45fc">
+<link rel="stylesheet" href="../assets/site.css?v=9a05ae5a">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=abbd45fc" defer></script>
+<script src="../assets/site.js?v=9a05ae5a" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -166,7 +166,7 @@
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>새 내용이 쌓이는 목록</h3>
 <p>알림처럼 새 내용이 계속 쌓이는 목록을 <code>ds-ptr</code>로 감쌉니다. 모바일에서 목록 맨 위를 아래로 당기면 새로 고침 표시가 나타나고 <code>ds-refresh</code> 이벤트가 발생합니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-full" style="max-width: 375px">
   <header class="ds-appbar">
     <div class="ds-appbar__left">
@@ -268,7 +268,7 @@
 <h3>글자 선택 영역에서는 비활성화</h3>
 <p>공지 본문처럼 글자를 드래그해 선택하는 영역은 <code>data-disabled</code>로 당기기를 비활성화합니다. 글자를 선택하려던 동작이 새로 고침으로 바뀌지 않습니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-ptr u-full" data-disabled style="max-width: 420px">
   <div class="ds-ptr__indicator">
     <span class="ds-progress-circle" role="progressbar" aria-label="새로 고침"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>

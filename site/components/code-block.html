@@ -15,9 +15,9 @@
 <meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css">
-<link rel="stylesheet" href="../assets/site.css?v=abbd45fc">
+<link rel="stylesheet" href="../assets/site.css?v=9a05ae5a">
 <script src="../../dist/ybm-ds.js" defer></script>
-<script src="../assets/site.js?v=abbd45fc" defer></script>
+<script src="../assets/site.js?v=9a05ae5a" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -167,7 +167,7 @@
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>AI 답변 속 코드</h3>
 <p>Markdown 답변 안의 코드는 Code Block에 넣고, 헤더에 언어 이름과 복사 버튼을 배치합니다. 복사 버튼에 <code>data-ds-copy</code>를 붙이면 누를 때 코드가 복사됩니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-markdown" style="width: 100%; max-width: 560px">
   <p>오늘 날짜를 우리말 형식으로 보여 주려면 <code>toLocaleDateString</code>을 쓰면 돼요.</p>
   <figure class="ds-codeblock">
@@ -201,7 +201,7 @@ console.log(text); // 2026. 11. 4.&lt;/<span class="hl-t">code</span>&gt;&lt;/<s
 <h3>긴 줄 자동 줄바꿈</h3>
 <p>한 줄이 긴 코드는 <code>data-wrap</code>을 붙여 가로 스크롤 없이 줄을 바꿔 표시합니다. 주소처럼 끝까지 읽고 그대로 붙여 넣어야 하는 코드에 사용합니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-markdown" style="width: 100%; max-width: 480px">
   <p>아래 줄을 페이지의 <code>&lt;head&gt;</code> 안에 붙여 넣어 주세요.</p>
   <figure class="ds-codeblock" data-wrap>
@@ -229,7 +229,7 @@ console.log(text); // 2026. 11. 4.&lt;/<span class="hl-t">code</span>&gt;&lt;/<s
 <h3>짧은 명령은 헤더 없이</h3>
 <p>명령 한 줄처럼 짧고 무엇인지 분명한 코드는 헤더를 빼고 코드 영역만 표시합니다. 순서 안내 사이에 넣어도 글의 흐름이 끊기지 않습니다.</p>
 <div class="site-example">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-markdown" style="width: 100%; max-width: 480px">
   <h3>프로젝트 받기</h3>
   <ol>

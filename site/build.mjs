@@ -237,7 +237,7 @@ function codeblock(code, lang = 'html', extra = '', label = '') {
 }
 function example(previewHtml, code, cls = '') {
   return `<div class="site-example${cls ? ' ' + cls : ''}">
-  <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
+  <div class="site-example__bar"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview">${previewHtml}</div>
   <div class="site-example__code" hidden>${codeblock(code)}</div>
 </div>`;
@@ -499,7 +499,7 @@ const LLMS_RULES = `## 지킬 것
 const bpRows = [['sm', '480px', '큰 휴대폰'], ['md', '768px', '태블릿, PC용 컴포넌트로 바뀌는 기준'], ['lg', '1280px', '넓은 PC, 3단 배치'], ['xl', '1440px', '아주 넓은 화면']];
 // 코드 탭 (11-04 사용자 "다크 모드는 프롬프팅과 html을 같이, 탭 형태로", "탭을 코드 상자 안으로"): 탭마다 코드 상자 하나, 상자 머리의 언어 이름 자리에 같은 Chip Tabs. 복사 버튼이 제 상자 코드를 복사하게 상자를 나눈다. 여닫기는 site.js data-site-tab
 // 설치 코드 첫 탭(기본으로 보이는 탭)은 버전 고정 (2026-11-16 사용자: 운영은 버전 고정이 규칙이라). 고정 탭은 브랜드 줄도 고정 주소
-const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식">${tabs.map(([l], j) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${j === sel}" data-site-tab="${j}">${esc(l)}</button>`).join('')}</div>`; return `<div class="site-codetabs">${tabs.map(([, h], i) => `<div class="site-codetabs__panel"${i ? ' hidden' : ''}>${h.replace(/<span class="ds-codeblock__language">[^<]*<\/span>/, bar(i))}</div>`).join('')}</div>`; };
+const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-segmented site-seg" role="group" aria-label="보기 방식">${tabs.map(([l], j) => `<button type="button" class="ds-segmented__item" aria-pressed="${j === sel}" data-site-tab="${j}">${esc(l)}</button>`).join('')}</div>`; return `<div class="site-codetabs">${tabs.map(([, h], i) => `<div class="site-codetabs__panel"${i ? ' hidden' : ''}>${h.replace(/<span class="ds-codeblock__language">[^<]*<\/span>/, bar(i))}</div>`).join('')}</div>`; };
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
 const hubCard = (href, title, desc, out = false) => `<a class="site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="site-hub__desc">${esc(desc)}</span></a>`;
 write({
@@ -1123,8 +1123,8 @@ templates.forEach((t) => {
 <div class="site-tpl-prompt">${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap', 'AI 요청 글'))}</div>
 <div class="site-frame">
   <div class="site-frame__bar">
-    <div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div>
-    <div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="화면 폭"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-device="desktop">PC</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-device="tablet">태블릿</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-device="mobile">모바일</button></div>
+    <div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div>
+    <div class="ds-segmented site-seg site-seg--icon" role="group" aria-label="화면 폭"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-device="desktop" aria-label="PC"><i class="ds-icon ds-icon--monitor ds-icon--sm" aria-hidden="true"></i></button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-device="mobile" aria-label="모바일"><i class="ds-icon ds-icon--smartphone ds-icon--sm" aria-hidden="true"></i></button></div>
   </div>
   <div class="site-frame__stage" data-device="desktop"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 템플릿" data-site-frame></iframe></div>
   <div class="site-frame__code" hidden>${codeblock('불러오는 중…').replace('<figure class="ds-codeblock"', `<figure class="ds-codeblock" data-site-src="pages/${t.slug}.html"`)}</div>
