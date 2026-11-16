@@ -579,6 +579,9 @@ async function release(ver, message) {
 }
 
 async function deploy(message) {
+  // 템플릿이 바뀌었으면 목록 썸네일 그림을 다시 찍고 사이트를 다시 만든다(바뀐 것만, Chrome 이 있을 때. 2026-11-16)
+  const th = spawnSync(process.execPath, [path.join(DS, 'tools/tpl-thumbs.mjs')], { cwd: DS, encoding: 'utf8' });
+  if (th.status === 0 && !/바뀐 것 없음/.test(th.stdout)) { say(c.d(th.stdout.trim().split('\n').pop())); spawnSync(process.execPath, [path.join(DS, 'site/build.mjs')], { cwd: DS, stdio: 'ignore' }); }
   const { errors } = verify();
   if (errors.length) die('검증 실패 — 위 항목을 고친 뒤 다시 실행하세요.');
   if (!flags.has('--no-check') && !runCheck()) die('전체 검사 실패 — 위 항목을 고친 뒤 다시 실행하세요. (급하면 --no-check)');

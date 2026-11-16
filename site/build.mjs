@@ -17,6 +17,8 @@ if (writeBundle()) console.log('  ✔ dist/ybm-ds.css 다시 묶음');  // 원�
 
 const SITE = path.dirname(fileURLToPath(import.meta.url));
 // 사이트 CSS / JS 주소에 붙이는 버전 - 내용이 바뀌면 값이 바뀌어 브라우저가 예전 파일을 쓰지 않는다
+// DS 파일도 내용이 바뀌면 주소가 바뀌게(?v=) 해서 브라우저 캐시가 바로 갱신되게 한다 (2026-11-16 사용자 "모든 캐시 삭제")
+const DIST_V = crypto.createHash('sha1').update(['dist/ybm-ds.css', 'dist/ybm-ds.js'].map((f) => fs.readFileSync(path.join(SITE, '..', f))).join('')).digest('hex').slice(0, 8);
 const ASSET_V = crypto.createHash('sha1').update(['src/site.css', 'src/site.js', 'src/brand-mono.css', 'build.mjs'].map((f) => fs.readFileSync(path.join(SITE, f))).join('')).digest('hex').slice(0, 8);
 const DS = path.resolve(SITE, '..');
 const read = (p) => fs.readFileSync(path.join(DS, p), 'utf8');
@@ -374,9 +376,9 @@ ${file === 'index.html' ? `<script>/* 소소한 움직임 (2026-11-16): 메인 �
 ${desc ? `<meta property="og:description" content="${esc(desc)}">
 ` : ''}<meta property="og:image" content="${SITE_URL}assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="${root}../dist/ybm-ds.css">
+<link rel="stylesheet" href="${root}../dist/ybm-ds.css?v=${DIST_V}">
 <link rel="stylesheet" href="${root}assets/site.css?v=${ASSET_V}">
-<script src="${root}../dist/ybm-ds.js" defer></script>
+<script src="${root}../dist/ybm-ds.js?v=${DIST_V}" defer></script>
 <script src="${root}assets/site.js?v=${ASSET_V}" defer></script>
 </head>
 <body class="site">
@@ -1090,6 +1092,11 @@ const tplPri = (s) => TPL_PLACE[s]?.rank ?? 999;
 const tplSort = (a, b) => tplRank(a.group) - tplRank(b.group) || tplPri(a.slug) - tplPri(b.slug) || a.name.localeCompare(b.name, 'ko');
 const tplRank = (g) => { const i = TPL_ORDER.indexOf(g); return i < 0 ? 99 : i; };
 tplGroups.sort((x, y) => tplRank(x) - tplRank(y));
+// 템플릿 목록 썸네일: 미리 찍어 둔 그림(tools/tpl-thumbs.mjs, 라이트와 다크)을 쓴다. 그림이 없으면 예전처럼 iframe (2026-11-16 사용자 "썸네일이 늦게 뜸")
+const THUMBS = fs.existsSync(path.join(SITE, 'templates/thumbs/index.json')) ? readJson('site/templates/thumbs/index.json') : {};
+const tplThumb = (slug) => THUMBS[slug] && fs.existsSync(path.join(SITE, 'templates/thumbs', slug + '.webp'))
+  ? `<img class="site-tpl-img site-tpl-img--light" src="thumbs/${slug}.webp?v=${THUMBS[slug]}" alt="" width="1080" height="675" loading="lazy" decoding="async"><img class="site-tpl-img site-tpl-img--dark" src="thumbs/${slug}-dark.webp?v=${THUMBS[slug]}" alt="" width="1080" height="675" loading="lazy" decoding="async">`
+  : `<iframe src="pages/${slug}.html" title="" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe>`;
 write({
   file: 'templates/index.html', section: 'templates', title: 'Templates', layout: 'full',  // 11-05 사용자: 목록은 왼쪽 메뉴 없이 분류 탭으로
   body: `${hero('Templates', '자주 만드는 화면을 YDS 컴포넌트로 미리 구성했습니다.').replace(' class="site-hero"', '')  /* 11-05 사용자: 다른 화면처럼 왼쪽 정렬 */.replace('</p></header>', (SHOW_THEMES ? ' 테마를 입힌 실제 사이트 예시는 <a class="ds-link" href="../themes/index.html">Themes</a>에 있습니다.' : '') + '</p></header>')}
@@ -1101,7 +1108,7 @@ write({
 </div>
 <div class="site-tpl-grid">
 ${[...templates].sort(tplSort).map((t) => `<a class="site-tpl" href="${t.slug}.html" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
-  <div class="site-tpl-thumb" aria-hidden="true"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 미리보기" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe></div>
+  <div class="site-tpl-thumb" aria-hidden="true">${tplThumb(t.slug)}</div>
   <p class="site-tile__name site-tpl__title">${esc(t.name)}</p>
 </a>`).join('\n')}
 </div>

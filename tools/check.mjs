@@ -10,6 +10,7 @@
 //   3 템플릿    템플릿 67종과 컴포넌트 예시를 site/ai/yds-check.mjs 로 검사 (서비스 화면과 같은 규칙)
 //   4 마크다운  .md 위치, 머리 주소, 화면 코드와 예시 코드가 글자 그대로 있는지, .md 링크, yds.txt 주소
 //   5 싱크      components.json, components.css 머리 주석, README, index.html, 사이트 페이지, 템플릿 목록, 진입 파일, 이름
+//   5-1e 템플릿 썸네일  목록 썸네일 그림이 지금 템플릿과 같은지 (tools/tpl-thumbs.mjs)
 //   5-1d 한 줄 버튼 높이  한 칸 안 버튼의 data-size 가 섞이지 않았는지 (사이트, 템플릿 화면)
 //   5-2 브랜드  brands/*.json 이 허용된 값만 쓰는지, dist/brands 가 원본과 같은지, 글자 대비
 //   6 새 컴포넌트  컴포넌트마다 넣어야 하는 9곳이 다 있는지 (README "새 컴포넌트 넣기")
@@ -287,6 +288,18 @@ check('5-1d 한 줄 버튼 높이', ({ err }) => {
     }
   }
   for (const [f, s] of bad) err(`${f} 한 줄에 버튼 크기 ${s}`);
+});
+
+// 5-1e. 템플릿 목록 썸네일 (2026-11-16): 템플릿 HTML 이 바뀌었는데 그림을 다시 찍지 않았으면 오류. 고치기: node tools/tpl-thumbs.mjs
+check('5-1e 템플릿 썸네일', ({ err }) => {
+  const dir = path.join(SITE, 'templates', 'thumbs'), man = path.join(dir, 'index.json');
+  const m = fs.existsSync(man) ? JSON.parse(fs.readFileSync(man, 'utf8')) : {};
+  const mono = fs.readFileSync(path.join(SITE, 'src', 'brand-mono.css'));
+  const stale = fs.readdirSync(path.join(SITE, 'templates', 'pages')).filter((f) => f.endsWith('.html')).map((f) => f.slice(0, -5)).filter((s) => {
+    const h = crypto.createHash('sha1').update(fs.readFileSync(path.join(SITE, 'templates', 'pages', s + '.html'))).update(mono).digest('hex').slice(0, 10);
+    return m[s] !== h || !fs.existsSync(path.join(dir, s + '.webp')) || !fs.existsSync(path.join(dir, s + '-dark.webp'));
+  });
+  if (stale.length) err(`썸네일을 다시 찍어야 하는 템플릿 ${stale.length}개 (${stale.slice(0, 5).join(', ')}${stale.length > 5 ? ' 등' : ''}) → node tools/tpl-thumbs.mjs`);
 });
 
 // 7. 빌드 경고 (--regen 이 아니면 사이트만 한 번 더 만들어 본다. 결과 파일은 같다)

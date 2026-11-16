@@ -1,3 +1,7 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+// DS 파일 내용이 바뀌면 템플릿의 DS 주소도 바뀌게(?v=) 한다(브라우저 캐시, 2026-11-16)
+const DIST_V = crypto.createHash('sha1').update(['ybm-ds.css', 'ybm-ds.js'].map((f) => fs.readFileSync(new URL('../../../dist/' + f, import.meta.url))).join('')).digest('hex').slice(0, 8);
 // 템플릿 생성기 공용 부품. 레퍼런스 A 템플릿 51종의 구조를 YDS 부품과 토큰으로 다시 짠다.
 // 값은 모두 --ds-* 토큰. 글은 한국어, 숫자와 고유한 기술 용어만 영어.
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -191,8 +195,8 @@ export const page = ({ title, css = '', body, bodyClass = '', h1 = '' }) => `<!d
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} - YDS 템플릿</title>
-<link rel="stylesheet" href="../../../dist/ybm-ds.css">
-<script src="../../../dist/ybm-ds.js" defer></script>
+<link rel="stylesheet" href="../../../dist/ybm-ds.css?v=${DIST_V}">
+<script src="../../../dist/ybm-ds.js?v=${DIST_V}" defer></script>
 <script>/* 문서 사이트에서 보면 그리기 전에 모노톤과 밝기를 먼저 입힌다(나중에 입히면 파란 브랜드 색이 잠깐 보인다). 미리보기 iframe 은 사이트 밝기를, 새 창은 사이트에서 고른 밝기를 따른다(2026-11-16 사용자 "새 창도 기본 화면과 똑같이, 컬러 넣지 말 것"). 파일로 열거나 주소에 ?brand 를 붙이면 브랜드 색 그대로 */try{var f=window.frameElement,d=document.documentElement,m='<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">';if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))d.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write(m)}else if(!f&&location.protocol!=="file:"&&!/[?&]brand(=|&|$)/.test(location.search)){var t=localStorage.getItem("ybm-site-theme");if(t)d.dataset.theme=t;document.write(m)}}catch(e){}</script>
 <style>
 ${BASE_CSS}${css}</style>
