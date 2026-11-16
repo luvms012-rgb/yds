@@ -1187,41 +1187,18 @@ if (USAGE) {
   const svc = USAGE.services;
   const byComp = new Map();
   for (const s of svc) for (const c of s.components) byComp.set(c, [...(byComp.get(c) || []), s.name]);
-  // 2026-11-16 사용자 "사용 현황 유의미하게" → 제안 1, 2: 서비스마다 할 일 카드 + 컴포넌트 쓰임 지도
+  // 2026-11-16 사용자 "사용 현황 유의미하게" → 제안 1, 2 를 만든 뒤 "컴포넌트 쓰임만 유지, 나머지 제거": 컴포넌트 쓰임 막대만 둔다
   const BASES = [...new Map(comps.map((c) => [c.name.split(' · ')[0], c.slug])).entries()];
   const useCount = (b) => (byComp.get(b) || []).length;
   const usedList = BASES.filter(([b]) => useCount(b)).sort((a, b) => useCount(b[0]) - useCount(a[0]) || a[0].localeCompare(b[0]));
-  const unusedList = BASES.filter(([b]) => !useCount(b)).sort((a, b) => a[0].localeCompare(b[0]));
-  const verNum = (v) => v.split('.').map(Number).reduce((a, x) => a * 1000 + x, 0);
-  const svcCard = (s) => {
-    const old = /^\d/.test(s.version) && verNum(s.version) < verNum(VERSION);
-    const ver = !s.version ? '<span class="ds-badge" data-tone="warning">버전 모름</span>' : old ? `<span class="ds-badge" data-tone="warning">v${esc(s.version)}, 업데이트 필요</span>` : `<span class="ds-badge">v${esc(s.version)}</span>`;
-    const list = s.colorList || [];
-    const fix = list.filter((c) => !c.keep), keep = list.filter((c) => c.keep);
-    const sw = (v) => `<span class="site-usage__sw" style="background:${esc(v)}" aria-hidden="true"></span>`;
-    const fixRows = fix.map((c) => `<li>${sw(c.value)}<code>${esc(c.value)}</code><i class="ds-icon ds-icon--arrow-right ds-icon--sm" aria-hidden="true"></i><code>${esc(c.token)}</code><span class="site-req__meta">${c.exact ? '같은 값' : '가까운 값'} / ${c.props.map(esc).join(', ')}</span></li>`).join('');
-    const keepWhy = [['logo', '다른 회사 로고 색'], ['alpha', '투명 색']].map(([k, l]) => [l, keep.filter((c) => c.keep === k).length]).filter(([, n]) => n).map(([l, n]) => `${l} ${n}개`).join(', ');
-    const todo = [
-      old ? `<li class="site-usage__todo">YDS v${esc(VERSION)}로 바꿔요${s.kind === '복사본' ? ' (복사본이라 파일을 직접 바꿔요)' : ''}</li>` : '',
-      fix.length ? `<li class="site-usage__todo">토큰으로 바꿀 색 ${fix.length}개<ul class="site-usage__colors">${fixRows}</ul></li>` : '',
-    ].join('');
-    return `<section class="ds-card site-usage__card" data-size="medium">
-  <div class="site-usage__head"><h2 class="site-usage__name">${esc(s.name)}</h2>${ver}</div>
-  <p class="site-req__meta">컴포넌트 ${s.components.length}개${s.kind === '복사본' ? ' / 복사본' : s.kind === '버전 고정' ? ' / 버전 고정' : ''} / 화면 ${s.pages}개 확인${s.errors.length ? ` / ${s.errors.length}개 열지 못함` : ''}</p>
-  ${todo ? `<ul class="site-usage__list">${todo}</ul>` : '<p class="site-usage__ok"><i class="ds-icon ds-icon--circle-check" aria-hidden="true"></i>할 일이 없어요</p>'}
-  ${keepWhy ? `<p class="site-req__meta">그대로 두는 색: ${keepWhy}</p>` : ''}
-</section>`;
-  };
   const bar = ([b, slug]) => { const n = useCount(b); return `<li><a class="site-usage__comp" href="components/${slug}.html">${esc(b)}</a><span class="site-usage__bar" style="--site-usage-v: ${Math.round(n / svc.length * 100)}%" aria-hidden="true"></span><span class="site-usage__n">${n}곳<span class="site-req__meta">${byComp.get(b).map(esc).join(', ')}</span></span></li>`; };
   write({
     file: 'updates-usage.html', section: 'updates', title: 'Updates', desc: 'YDS 사용 현황', layout: 'page',
-    body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS를 쓰는 서비스와 서비스마다 할 일입니다.</p></header>
+    body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">서비스에서 쓰는 YDS 컴포넌트입니다.</p></header>
 ${updTabs('updates-usage.html')}
-<div class="site-usage__cards">${svc.map(svcCard).join('\n')}</div>
 <h2 id="components">컴포넌트 쓰임</h2>
 <p class="site-req__meta site-usage__sum">${BASES.length}개 중 ${usedList.length}개를 쓰고 있어요</p>
-<ul class="site-usage__bars">${usedList.map(bar).join('')}</ul>
-${unusedList.length ? `<details class="ds-accordion site-usage__unused" data-inset="none"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">아직 안 쓰는 컴포넌트 ${unusedList.length}개</span></span></summary><div class="ds-accordion__content">${unusedList.map(([b, slug]) => `<a class="ds-link" href="components/${slug}.html">${esc(b)}</a>`).join(', ')}</div></details>` : ''}`,
+<ul class="site-usage__bars">${usedList.map(bar).join('')}</ul>`,
   });
 }
 
