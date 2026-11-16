@@ -55,6 +55,8 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 사용 현황 탭(`updates-usage.html`): 서비스 목록은 `site/src/services.json`(이름, 검사할 화면 주소), 결과는 `node tools/usage.mjs` 가 만드는 `site/src/usage.json`(서비스별 버전과 복사본 여부, 쓰는 컴포넌트, 직접 쓴 색 수). 담당, 버전별 내려받기는 사용자가 지웠다(11-16 "복잡함"), 한 칸 안 두 정보는 세로로 쌓지 않고 가로 한 줄로. 한 달에 한 번 사용자가 말할 때 돌리고 다시 빌드한다.
 - 새 소식, 새 요청은 Updates 메뉴와 탭에 점(site.js, localStorage ybm-site-updates-seen, ybm-site-requests-seen).
 - 의견 보내기: build.mjs `FEEDBACK_FORM`(구글 폼), 입구는 푸터 하나.
+- 사용 현황 탭(`updates-usage.html`): 서비스마다 할 일 카드(버전, 토큰으로 바꿀 색과 바꿀 토큰, 다른 회사 로고 색과 투명 색은 그대로) + 컴포넌트 쓰임 막대(안 쓰는 것은 Accordion). 원본 `node tools/usage.mjs` → usage.json. 세 탭 모두 탭 아래 40 에서 내용 시작.
+- 맨 위로 버튼: 모든 페이지, 화면 높이만큼 내리면 오른쪽 아래(`[data-site-totop]`, site.js).
 
 ## Foundations 와 컴포넌트 문서
 - Foundations: 항목마다 한 쪽, ABC 순, 큰 그림 없음. 구성은 개요 → 토큰 표(tokens.css 에서 읽음) → 코드에서 쓰기 → 사용 지침. Color, Iconography 는 탭으로 나눈다(build.mjs `FD_TABS`).

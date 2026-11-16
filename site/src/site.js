@@ -1143,3 +1143,12 @@ document.addEventListener("click", function (e) {
     root.classList.add("site-motion-on");
   })();
 })();
+
+/* 맨 위로 버튼 (2026-11-16 사용자 "스크롤 길어지면 우측 하단 top 버튼"): 화면 높이만큼 내리면 보이고, 누르면 맨 위로 */
+(function () {
+  var b = document.querySelector("[data-site-totop]"); if (!b) return;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sync() { b.hidden = window.scrollY < window.innerHeight; }
+  window.addEventListener("scroll", sync, { passive: true }); sync();
+  b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); var h = document.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } });
+})();

@@ -403,6 +403,7 @@ ${footer}
 </main>
 ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">${hasToc ? `<nav><span class="site-toc__indicator" aria-hidden="true"></span>${heads.map(([id, t]) => `<a href="#${id}">${esc(t)}</a>`).join('')}</nav>` : ''}</aside>` : ''}
 </div>
+<button type="button" class="ds-btn site-totop" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="맨 위로" data-site-totop hidden><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i></button>
 <dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
   <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input><kbd class="ds-command__kbd site-search__esc">Esc</kbd></div>
   <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small" data-inset="none">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>
@@ -1180,27 +1181,47 @@ ${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '�
 });
 
 // 사용 현황 (2026-11-16 사용자 "운영 모델: 사용 측정과 기여 절차" → "검사 스크립트, jsDelivr 통계, 사용 현황 탭 진행")
-// 원본은 site/src/services.json(서비스 목록)과 site/src/usage.json(node tools/usage.mjs 가 만든다)
+// 원본은 site/src/services.json(서비스 목록)과 site/src/usage.json(node tools/usage.mjs 가 만든다). 11-16 사용자: 서비스 표(버전, 직접 쓴 색)와 절 제목은 지우고 컴포넌트 표만 둔다
 const USAGE = fs.existsSync(path.join(DS, 'site/src/usage.json')) ? readJson('site/src/usage.json') : null;
 if (USAGE) {
   const svc = USAGE.services;
   const byComp = new Map();
   for (const s of svc) for (const c of s.components) byComp.set(c, [...(byComp.get(c) || []), s.name]);
-  const compRows = [...byComp].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
-  const verCell = (s) => s.version ? `v${esc(s.version)}${s.version !== VERSION && /^\d/.test(s.version) ? ' <span class="ds-badge" data-tone="warning">이전 버전</span>' : ''}<span class="site-req__meta">${esc(s.kind)}</span>` : '<span class="site-req__meta">찾지 못함</span>';
+  // 2026-11-16 사용자 "사용 현황 유의미하게" → 제안 1, 2: 서비스마다 할 일 카드 + 컴포넌트 쓰임 지도
+  const BASES = [...new Map(comps.map((c) => [c.name.split(' · ')[0], c.slug])).entries()];
+  const useCount = (b) => (byComp.get(b) || []).length;
+  const usedList = BASES.filter(([b]) => useCount(b)).sort((a, b) => useCount(b[0]) - useCount(a[0]) || a[0].localeCompare(b[0]));
+  const unusedList = BASES.filter(([b]) => !useCount(b)).sort((a, b) => a[0].localeCompare(b[0]));
+  const verNum = (v) => v.split('.').map(Number).reduce((a, x) => a * 1000 + x, 0);
+  const svcCard = (s) => {
+    const old = /^\d/.test(s.version) && verNum(s.version) < verNum(VERSION);
+    const ver = !s.version ? '<span class="ds-badge" data-tone="warning">버전 모름</span>' : old ? `<span class="ds-badge" data-tone="warning">v${esc(s.version)}, 업데이트 필요</span>` : `<span class="ds-badge">v${esc(s.version)}</span>`;
+    const list = s.colorList || [];
+    const fix = list.filter((c) => !c.keep), keep = list.filter((c) => c.keep);
+    const sw = (v) => `<span class="site-usage__sw" style="background:${esc(v)}" aria-hidden="true"></span>`;
+    const fixRows = fix.map((c) => `<li>${sw(c.value)}<code>${esc(c.value)}</code><i class="ds-icon ds-icon--arrow-right ds-icon--sm" aria-hidden="true"></i><code>${esc(c.token)}</code><span class="site-req__meta">${c.exact ? '같은 값' : '가까운 값'} / ${c.props.map(esc).join(', ')}</span></li>`).join('');
+    const keepWhy = [['logo', '다른 회사 로고 색'], ['alpha', '투명 색']].map(([k, l]) => [l, keep.filter((c) => c.keep === k).length]).filter(([, n]) => n).map(([l, n]) => `${l} ${n}개`).join(', ');
+    const todo = [
+      old ? `<li class="site-usage__todo">YDS v${esc(VERSION)}로 바꿔요${s.kind === '복사본' ? ' (복사본이라 파일을 직접 바꿔요)' : ''}</li>` : '',
+      fix.length ? `<li class="site-usage__todo">토큰으로 바꿀 색 ${fix.length}개<ul class="site-usage__colors">${fixRows}</ul></li>` : '',
+    ].join('');
+    return `<section class="ds-card site-usage__card" data-size="medium">
+  <div class="site-usage__head"><h2 class="site-usage__name">${esc(s.name)}</h2>${ver}</div>
+  <p class="site-req__meta">컴포넌트 ${s.components.length}개${s.kind === '복사본' ? ' / 복사본' : s.kind === '버전 고정' ? ' / 버전 고정' : ''} / 화면 ${s.pages}개 확인${s.errors.length ? ` / ${s.errors.length}개 열지 못함` : ''}</p>
+  ${todo ? `<ul class="site-usage__list">${todo}</ul>` : '<p class="site-usage__ok"><i class="ds-icon ds-icon--circle-check" aria-hidden="true"></i>할 일이 없어요</p>'}
+  ${keepWhy ? `<p class="site-req__meta">그대로 두는 색: ${keepWhy}</p>` : ''}
+</section>`;
+  };
+  const bar = ([b, slug]) => { const n = useCount(b); return `<li><a class="site-usage__comp" href="components/${slug}.html">${esc(b)}</a><span class="site-usage__bar" style="--site-usage-v: ${Math.round(n / svc.length * 100)}%" aria-hidden="true"></span><span class="site-usage__n">${n}곳<span class="site-req__meta">${byComp.get(b).map(esc).join(', ')}</span></span></li>`; };
   write({
     file: 'updates-usage.html', section: 'updates', title: 'Updates', desc: 'YDS 사용 현황', layout: 'page',
-    body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS를 쓰는 서비스와 버전, 컴포넌트입니다.</p></header>
+    body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS를 쓰는 서비스와 서비스마다 할 일입니다.</p></header>
 ${updTabs('updates-usage.html')}
-${table(['서비스', '버전', '컴포넌트', '직접 쓴 색'], svc.map((s) => [
-    `<span class="site-req__title">${esc(s.name)}</span>${s.errors.length ? `<span class="site-req__meta">화면 ${s.errors.length}개를 열지 못함</span>` : ''}`,
-    verCell(s),
-    `${s.components.length}개`,
-    `${s.colors}개`,
-  ])).replace('class="ds-table"', 'class="ds-table site-req site-usage site-inline"')}
-<h2 id="components">컴포넌트</h2>
-${table(['컴포넌트', '쓰는 서비스'], compRows.map(([c, names]) => [`<span class="site-req__title">${esc(c)}</span>`, `${names.length}곳<span class="site-req__meta">${names.map(esc).join(', ')}</span>`])).replace('class="ds-table"', 'class="ds-table site-req site-inline"')}
-`,  // 아래 안내 두 줄(안 쓰는 컴포넌트 수, 확인한 날)은 11-16 사용자가 지웠다
+<div class="site-usage__cards">${svc.map(svcCard).join('\n')}</div>
+<h2 id="components">컴포넌트 쓰임</h2>
+<p class="site-req__meta site-usage__sum">${BASES.length}개 중 ${usedList.length}개를 쓰고 있어요</p>
+<ul class="site-usage__bars">${usedList.map(bar).join('')}</ul>
+${unusedList.length ? `<details class="ds-accordion site-usage__unused" data-inset="none"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">아직 안 쓰는 컴포넌트 ${unusedList.length}개</span></span></summary><div class="ds-accordion__content">${unusedList.map(([b, slug]) => `<a class="ds-link" href="components/${slug}.html">${esc(b)}</a>`).join(', ')}</div></details>` : ''}`,
   });
 }
 

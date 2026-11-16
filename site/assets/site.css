@@ -475,7 +475,7 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-doc > .site-pagetabs ~ h2:not(.pv-stage *) { margin-top: var(--ds-space-x10); font-size: var(--ds-font-size-t07); line-height: 28px; font-weight: var(--ds-font-weight-medium); }
 .site-doc > .site-pagetabs ~ h2 + * { margin-top: var(--ds-space-x4); }
 /* Updates > 요청 (11-14): 요청 이름 아래 소속과 날짜, 반영 칸은 날짜 아래 내용 */
-.site-req__send { margin-top: var(--ds-space-x8); }
+.site-req__send { margin-top: var(--ds-space-x8); justify-content: flex-end; }  /* 의견 보내기는 표 아래 오른쪽 (11-16 사용자) */
 .site-pagetabs .site-newdot { margin-left: var(--ds-space-x1); }  /* Updates 탭의 새 내용 점 (11-14) */
 .site-doc .site-req { min-width: 640px; }
 .site-req td { vertical-align: top; }
@@ -706,6 +706,39 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 /* 시작하기 요청 글 타이핑 커서 */
 @keyframes site-blink { 50% { opacity: 0; } }
 .site-caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 1px; vertical-align: text-bottom; background: var(--ds-color-fg-neutral); animation: site-blink 1s steps(1) infinite; }
+
+/* 사용 현황 (2026-11-16 사용자 "유의미하게"): 서비스마다 할 일 카드 + 컴포넌트 쓰임 막대 */
+.site-usage__cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x4); align-items: start; }
+@media (min-width: 768px) { .site-usage__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.site-usage__card { display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+.site-usage__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); }
+.site-doc .site-usage__name:not(.pv-stage *) { margin: 0; font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-semibold); }
+.site-doc .site-usage__card p:not(.pv-stage *) { margin: 0; }
+.site-usage__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--ds-space-x3); }
+.site-doc .site-usage__todo:not(.pv-stage *) { font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
+.site-usage__colors { list-style: none; margin: var(--ds-space-x2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--ds-space-x2); }
+.site-doc .site-usage__colors li:not(.pv-stage *) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x1) var(--ds-space-x2); font-weight: var(--ds-font-weight-regular); }
+.site-usage__colors code { font-size: var(--ds-font-size-t03); }
+.site-usage__colors .site-req__meta { flex-basis: 100%; padding-left: calc(var(--ds-space-x4) + var(--ds-space-x2)); }
+.site-usage__sw { flex: none; width: var(--ds-space-x4); height: var(--ds-space-x4); border-radius: var(--ds-shape-2xs); box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak); }
+.site-doc .site-usage__ok:not(.pv-stage *) { display: flex; align-items: center; gap: var(--ds-space-x2); font-size: var(--ds-font-size-t04); color: var(--ds-color-fg-neutral-muted); }
+.site-usage__ok .ds-icon { color: var(--ds-color-fg-positive); }
+.site-doc .site-usage__sum:not(.pv-stage *) { margin-top: var(--ds-space-x1); }
+.site-usage__bars { list-style: none; margin: var(--ds-space-x4) 0 0; padding: 0; display: flex; flex-direction: column; }
+.site-doc .site-usage__bars li:not(.pv-stage *) { display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr) minmax(0, 220px); align-items: center; gap: var(--ds-space-x4); margin: 0; padding-block: var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-weak); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+.site-usage__comp { color: var(--ds-color-fg-neutral); text-decoration: none; font-weight: var(--ds-font-weight-medium); }
+.site-usage__comp:hover { text-decoration: underline; }
+.site-usage__bar { position: relative; height: var(--ds-space-x2); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); overflow: hidden; }
+.site-usage__bar::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--site-usage-v); border-radius: inherit; background: var(--ds-color-bg-neutral-solid); }
+.site-usage__n { font-variant-numeric: tabular-nums; }
+.site-usage__n .site-req__meta { display: inline; margin-left: var(--ds-space-x2); }
+@media (max-width: 767px) { .site-doc .site-usage__bars li:not(.pv-stage *) { grid-template-columns: minmax(0, 1fr) auto; } .site-usage__bar { grid-column: 1 / -1; grid-row: 2; } }
+.site-usage__unused { margin-top: var(--ds-space-x6); }
+.site-usage__unused .ds-accordion__content { line-height: var(--ds-line-height-t05); }
+/* 맨 위로: 화면 높이 한 번 넘게 내리면 오른쪽 아래 (11-16 사용자) */
+.site-totop { position: fixed; right: var(--ds-space-x6); bottom: var(--ds-space-x6); z-index: var(--ds-z-sticky); border-radius: var(--ds-shape-pill); box-shadow: var(--ds-elevation-2); }
+.site-totop[hidden] { display: none; }
+@media (max-width: 767px) { .site-totop { right: var(--ds-space-x4); bottom: var(--ds-space-x4); } }
 
 /* 가이드는 브랜드 색 없이 모노톤으로 보여 준다 (2026-11-02 사용자 "가이드에 브랜드 컬러 적용 X").
    브랜드 역할 색을 같은 자리의 neutral 색으로 바꾼다. 서비스는 palette/brand 를 바꿔 자기 브랜드 색을 쓴다(Color 페이지).

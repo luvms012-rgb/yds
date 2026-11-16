@@ -19,6 +19,64 @@
         "Text Field Textarea"
       ],
       "colors": 7,
+      "colorList": [
+        {
+          "value": "rgb(0 0 0 / 45%)",
+          "count": 2,
+          "props": [
+            "background"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "alpha"
+        },
+        {
+          "value": "#e9f3ff",
+          "count": 1,
+          "props": [
+            "--cs-gradient-hero-start"
+          ],
+          "token": "--ds-color-bg-informative-weak",
+          "exact": false
+        },
+        {
+          "value": "#eeeaff",
+          "count": 1,
+          "props": [
+            "--cs-gradient-hero-end"
+          ],
+          "token": "--ds-color-bg-magic-weak-pressed",
+          "exact": false
+        },
+        {
+          "value": "#388eff",
+          "count": 1,
+          "props": [
+            "--cs-gradient-glow-start"
+          ],
+          "token": "--ds-color-fg-informative",
+          "exact": false
+        },
+        {
+          "value": "#744aff",
+          "count": 1,
+          "props": [
+            "--cs-gradient-glow-end"
+          ],
+          "token": "--ds-color-fg-magic",
+          "exact": false
+        },
+        {
+          "value": "rgb(0 0 0 / 10%)",
+          "count": 1,
+          "props": [
+            "--cs-shadow-search-panel"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "alpha"
+        }
+      ],
       "pages": 2,
       "errors": []
     },
@@ -34,6 +92,100 @@
         "Text Field Input"
       ],
       "colors": 11,
+      "colorList": [
+        {
+          "value": "#000000",
+          "count": 2,
+          "props": [
+            "--signup-social-kakao-symbol",
+            "--signup-social-apple"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#ffffff",
+          "count": 2,
+          "props": [
+            "--signup-social-google-bg",
+            "--signup-social-on-solid"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#03c75a",
+          "count": 1,
+          "props": [
+            "--signup-social-naver"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#fee500",
+          "count": 1,
+          "props": [
+            "--signup-social-kakao"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#e5e5e5",
+          "count": 1,
+          "props": [
+            "--signup-social-google-border"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#4285f4",
+          "count": 1,
+          "props": [
+            "--signup-social-google-blue"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#34a853",
+          "count": 1,
+          "props": [
+            "--signup-social-google-green"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#fbbc05",
+          "count": 1,
+          "props": [
+            "--signup-social-google-yellow"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        },
+        {
+          "value": "#ea4335",
+          "count": 1,
+          "props": [
+            "--signup-social-google-red"
+          ],
+          "token": "",
+          "exact": false,
+          "keep": "logo"
+        }
+      ],
       "pages": 1,
       "errors": []
     }
