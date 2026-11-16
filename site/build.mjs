@@ -828,6 +828,9 @@ fs.rmSync(path.join(SITE, 'foundations/index.md'), { force: true });
 const iconNames = [...new Set([...iconsCss.matchAll(/\.ds-icon--([a-z0-9-]+)\s*\{\s*--ds-icon:/g)].map((m) => m[1]))].sort();
 // Lucide 전체 목록 - site/src/lucide-icons.json (site/lucide-update.mjs로 만든다). 화면에는 site.js가 그린다
 const lucide = JSON.parse(fs.readFileSync(path.join(SITE, 'src/lucide-icons.json'), 'utf8'));
+// 아이콘 한글 찾기 낱말 (2026-11-16 사용자 "아이콘 한글 검색 미흡", "통합 검색도 마찬가지"): 한국어 → 영어 낱말. 아이콘 페이지는 site.js 가 window.ICON_KO 로, 사이트 찾기는 아래 iconKo 가 keys 로 쓴다
+const ICON_KO = readJson('site/src/icon-ko.json').words;
+const iconKo = (n) => { const base = n.replace(/-solid$/, ''), parts = base.split('-'); return Object.entries(ICON_KO).filter(([, en]) => en.split(' ').some((t) => t === base || (!t.includes('-') && parts.includes(t)))).map(([k]) => k).join(' '); };
 const lucideCount = Object.keys(lucide.icons).length;
 const ICON_LEAD = '아이콘은 정보와 기능을 빠르게 인식하도록 돕습니다.';
 const ICON_PRACTICES = [
@@ -1140,7 +1143,7 @@ fs.rmSync(path.join(SITE, 'get-started/ai.md'), { force: true });
 // 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 목록 하나. 종류 이름(새 기능, 변경된 부분)은 순서만 정하고 화면에 쓰지 않는다(11-10 사용자 "타이틀 완전 제거"). 영역 거르기 탭은 11-04 사용자 지시로 뺐다
 // 소식은 site/src/updates.json releases 맨 위에 날짜를 더한다
 const RELEASES = readJson('site/src/updates.json').releases;
-const updTabs = (file) => `<nav class="site-pagetabs" aria-label="Updates 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none">${[['updates.html', '소식'], ['updates-requests.html', '요청']].map(([f, l]) => `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${f === file}"${f === file ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</div></nav>`;
+const updTabs = (file) => `<nav class="site-pagetabs" aria-label="Updates 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none">${[['updates.html', '소식'], ['updates-requests.html', '요청'], ['updates-usage.html', '사용 현황']].map(([f, l]) => `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${f === file}"${f === file ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</div></nav>`;
 const fmtDate = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${y}. ${m}. ${dd}`; };
 write({
   file: 'updates.html', section: 'updates', title: 'Updates', desc: 'YDS 업데이트 소식', layout: 'page',
@@ -1165,13 +1168,52 @@ write({
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
 ${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}
+<section class="site-group">
+<h2 id="criteria">결정 기준</h2>
+<p>요청은 접수, 검토, 결정, 만들기 순서로 처리합니다. 아래 셋을 모두 만족하면 YDS에 더합니다.</p>
+<ul class="site-list"><li>서비스 2곳 이상에서 필요합니다.</li><li>지금 있는 컴포넌트를 조합해 만들 수 없습니다.</li><li>접근성 기준을 지킬 수 있습니다.</li></ul>
+<p>맞지 않으면 서비스 안에서 토큰으로 먼저 만들고, 다른 서비스에서 같은 요청이 오면 다시 검토합니다. 결정 이유는 반영 칸에 적습니다.</p>
+</section>
+<h2 id="list">요청 목록</h2>
 ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
   `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
   esc(r.type),
   `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
-  r.done ? `<span class="site-req__meta">${shortDate(r.done[0])}</span>${inline(r.done[1])}` : '',
+  r.done ? `<span class="site-req__meta">${shortDate(r.done[0])}</span>${inline(r.done[1])}` : r.reason ? inline(r.reason) : '',  // reason: 보류나 검토 중일 때 결정 이유
 ])).replace('class="ds-table"', 'class="ds-table site-req"')}`,
 });
+
+// 사용 현황 (2026-11-16 사용자 "운영 모델: 사용 측정과 기여 절차" → "검사 스크립트, jsDelivr 통계, 사용 현황 탭 진행")
+// 원본은 site/src/services.json(서비스 목록, 담당이 고친다)과 site/src/usage.json(node tools/usage.mjs 가 만든다)
+const USAGE = fs.existsSync(path.join(DS, 'site/src/usage.json')) ? readJson('site/src/usage.json') : null;
+if (USAGE) {
+  const svc = USAGE.services;
+  const byComp = new Map();
+  for (const s of svc) for (const c of s.components) byComp.set(c, [...(byComp.get(c) || []), s.name]);
+  const compRows = [...byComp].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+  const allComps = readJson('components.json');
+  const unused = (Array.isArray(allComps) ? allComps : allComps.components).length - byComp.size;
+  const verCell = (s) => s.version ? `v${esc(s.version)}${s.version !== VERSION && /^\d/.test(s.version) ? ' <span class="ds-badge" data-tone="warning">이전 버전</span>' : ''}<span class="site-req__meta">${esc(s.kind)}</span>` : '<span class="site-req__meta">찾지 못함</span>';
+  write({
+    file: 'updates-usage.html', section: 'updates', title: 'Updates', desc: 'YDS 사용 현황', layout: 'page',
+    body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS를 쓰는 서비스와 버전, 컴포넌트입니다.</p></header>
+${updTabs('updates-usage.html')}
+<h2 id="services">서비스</h2>
+${table(['서비스', '담당', '버전', '컴포넌트', '직접 쓴 색'], svc.map((s) => [
+    `<span class="site-req__title">${esc(s.name)}</span>${s.errors.length ? `<span class="site-req__meta">화면 ${s.errors.length}개를 열지 못함</span>` : ''}`,
+    s.owner ? esc(s.owner) : '<span class="site-req__meta">정하지 않음</span>',
+    verCell(s),
+    `${s.components.length}개`,
+    `${s.colors}개`,
+  ])).replace('class="ds-table"', 'class="ds-table site-req site-usage"')}
+<h2 id="components">컴포넌트</h2>
+${table(['컴포넌트', '쓰는 서비스'], compRows.map(([c, names]) => [`<span class="site-req__title">${esc(c)}</span>`, `${names.length}곳<span class="site-req__meta">${names.map(esc).join(', ')}</span>`])).replace('class="ds-table"', 'class="ds-table site-req"')}
+<p class="site-note">아직 쓰는 서비스가 없는 컴포넌트는 ${unused}개입니다.</p>
+${Array.isArray(USAGE.cdn) && USAGE.cdn.length ? `<h2 id="cdn">버전별 내려받기</h2>
+${table(['버전', '지난 30일'], USAGE.cdn.map((v) => [`v${esc(v.version)}`, `${v.hits.toLocaleString('ko-KR')}회`])).replace('class="ds-table"', 'class="ds-table site-req"')}` : ''}
+<p class="site-note">${fmtDate(USAGE.checked)}에 확인했습니다. 서비스 화면 HTML에 있는 컴포넌트만 셉니다.</p>`,
+  });
+}
 
 /* ---------------------------------------------------------------- Themes */
 // 레퍼런스 A Themes 배치 그대로: 왼쪽 260 고정 칸 안 흰 카드(제목 + 미리보기 다크 버튼, 설명, 사용방법 링크, 알약 버튼 둘, 테마 카드 211×120),
@@ -1205,7 +1247,7 @@ fs.copyFileSync(path.join(SITE, 'src/site.js'), path.join(SITE, 'assets/site.js'
 fs.copyFileSync(path.join(SITE, 'src/brand-mono.css'), path.join(SITE, 'assets/brand-mono.css'));
 fs.copyFileSync(path.join(SITE, 'src/logo-ybmnet.svg'), path.join(SITE, 'assets/logo-ybmnet.svg'));
 if (fs.existsSync(path.join(SITE, 'src/og-image.png'))) fs.copyFileSync(path.join(SITE, 'src/og-image.png'), path.join(SITE, 'assets/og-image.png'));  // 공유 썸네일 (11-11 사용자 "썸네일에 YBM NET 로고")
-fs.writeFileSync(path.join(SITE, 'assets/lucide-icons.js'), `/* Lucide ${lucide.version} (ISC) - 생성물: site/src/lucide-icons.json */\nwindow.LUCIDE = ${JSON.stringify(lucide)};\n`);
+fs.writeFileSync(path.join(SITE, 'assets/lucide-icons.js'), `/* Lucide ${lucide.version} (ISC) - 생성물: site/src/lucide-icons.json */\nwindow.LUCIDE = ${JSON.stringify(lucide)};\nwindow.ICON_KO = ${JSON.stringify(ICON_KO)};\n`);
 fs.copyFileSync(path.join(SITE, 'src/lucide-LICENSE.txt'), path.join(SITE, 'assets/lucide-LICENSE.txt'));
 // 사이트 전용 아이콘(DS 아이콘 세트에 없는 화면 모드, 저장소 링크용). Lucide 원본 경로를 DS와 같은 방식(mask)으로 쓴다
 const SITE_ICONS = {
@@ -1332,7 +1374,7 @@ console.log(`  ✔ 사이트 ${written.length}쪽 생성 (컴포넌트 ${comps.l
     for (const m of read(f).matchAll(/<code>(--ds-[a-z0-9-]+)<\/code>/g)) if (!seen.has(m[1])) { seen.add(m[1]); add('token', m[1], `${f}#t=${m[1]}`, title); }
   }
   // 아이콘: 이름과 쓰임 (아이콘 Library 의 찾기 칸에 넣어 연다)
-  for (const [g, m] of ICON_GROUPS) for (const [n, use] of Object.entries(m)) add('icon', n, `foundations/icons-library.html#q=${n}`, use, g);
+  for (const [g, m] of ICON_GROUPS) for (const [n, use] of Object.entries(m)) add('icon', n, `foundations/icons-library.html#q=${n}`, use, `${g} ${iconKo(n)}`);
   fs.writeFileSync(path.join(SITE, 'assets/search.json'), JSON.stringify(items));
   console.log(`  ✔ 사이트 찾기 목록 ${items.length}개 (assets/search.json)`);
 }

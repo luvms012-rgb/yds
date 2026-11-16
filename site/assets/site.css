@@ -473,6 +473,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-req td { vertical-align: top; }
 .site-req__title { display: block; color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
 .site-req__meta { display: block; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-variant-numeric: tabular-nums; }
+.site-req.site-usage th { width: 112px; }  /* 사용 현황 서비스 표: 첫 칸만 남은 폭, 나머지는 같은 폭 */
+.site-req.site-usage th:first-child { width: auto; }
 .site-doc .site-req :is(td, th):is(:nth-child(2), :nth-child(3)) { white-space: nowrap; word-break: keep-all; }
 .site-req th:first-child, .site-req th:last-child { width: 40%; }
 

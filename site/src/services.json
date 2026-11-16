@@ -1,0 +1,22 @@
+{
+  "_설명": "YDS 를 쓰는 서비스 목록 (2026-11-16 사용자 \"운영 모델: 사용 측정과 기여 절차\"). 서비스 담당자나 DS 담당이 고친다. owner 는 서비스 DS 담당 소속(사람 이름은 적지 않는다). pages 는 검사할 운영 화면 주소 몇 개(로그인 없이 열리는 화면). node tools/usage.mjs 가 이 목록을 읽어 site/src/usage.json 을 만들고 Updates > 사용 현황 탭이 보여 준다.",
+  "services": [
+    {
+      "id": "cs",
+      "name": "고객센터",
+      "owner": "",
+      "pages": [
+        "https://luvms012-rgb.github.io/project/cs/src/pages/faq.html",
+        "https://luvms012-rgb.github.io/project/cs/src/pages/inquiry.html"
+      ]
+    },
+    {
+      "id": "signup",
+      "name": "회원가입",
+      "owner": "",
+      "pages": [
+        "https://luvms012-rgb.github.io/project/signup/src/pages/account.html"
+      ]
+    }
+  ]
+}

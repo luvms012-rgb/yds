@@ -186,9 +186,15 @@
     var names = lib.set === "ds" ? D.names : Object.keys(L.icons);
     var q = lib.q.trim().toLowerCase();
     if (!q) return names;
+    /* 한글로 찾으면 site/src/icon-ko.json 낱말로 영어 낱말을 얻어 이름 조각과 태그 낱말에서 찾는다(11-16 사용자 "아이콘 한글 검색 미흡") */
+    var en = [];
+    if (/[가-힣]/.test(q)) { var K = window.ICON_KO || {}, qs = q.replace(/\s+/g, ""); Object.keys(K).forEach(function (k) { if (k.replace(/\s+/g, "").indexOf(qs) >= 0) en = en.concat(K[k].split(" ")); }); }
     return names.filter(function (n) {
       var base = n.replace(/-solid$/, "");
-      return n.indexOf(q) >= 0 || (L.tags[base] || "").toLowerCase().indexOf(q) >= 0 || (D.use[n] || "").indexOf(q) >= 0;
+      if (n.indexOf(q) >= 0 || (L.tags[base] || "").toLowerCase().indexOf(q) >= 0 || (D.use[n] || "").indexOf(q) >= 0) return true;
+      if (!en.length) return false;
+      var parts = base.split("-"), tags = (L.tags[base] || "").toLowerCase().split(/[,\s]+/);
+      return en.some(function (t) { return t === base || (t.indexOf("-") < 0 && (parts.indexOf(t) >= 0 || tags.indexOf(t) >= 0)); });
     });
   }
   function libTile(n) {

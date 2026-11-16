@@ -51,12 +51,14 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 ## Updates
 - 소식(`site/src/updates.json` 맨 위 그날 날짜): DS 시스템 변경과 새 템플릿 추가만. 종류는 "새 기능", "변경된 부분". 항목 앞 영역 배지는 컴포넌트, 템플릿, 아이콘, 토큰, 브랜드, 규칙 중 하나("DS" 는 쓰지 않는다). 사이트 꾸밈, 템플릿 고치기는 적지 않는다. 버전을 올리면(`node sync.mjs release`) 맨 위 소식에 버전이 붙는다.
 - 요청 탭(`updates-requests.html`, `site/src/requests.json`): 사용자가 "이 요청 추가", "반영됨으로" 하면 Claude 가 고쳐 배포. 같은 요청은 count 를 올리고, 이름은 쓰지 않고 소속만. 상태 순서 검토 중, 접수, 반영됨, 보류. 비면 Empty 를 보이고 새 요청 점은 띄우지 않는다(build.mjs `updTabs`, `LATEST_REQUEST`).
+- 요청 탭 위에 결정 기준(2026-11-16 사용자 운영 모델): 접수, 검토, 결정, 만들기 순서, 서비스 2곳 이상 / 조합으로 안 됨 / 접근성 셋을 모두 만족하면 YDS 에 더하고, 아니면 서비스 안에서 토큰으로 먼저 만든다. 결정 이유는 requests.json 의 reason(보류, 검토 중) 이나 done 에 적는다.
+- 사용 현황 탭(`updates-usage.html`): 서비스 목록은 `site/src/services.json`(이름, 담당 소속, 검사할 화면 주소), 결과는 `node tools/usage.mjs` 가 만드는 `site/src/usage.json`(서비스별 버전과 복사본 여부, 쓰는 컴포넌트, 직접 쓴 색 수, jsDelivr 버전별 지난 30일 내려받기). 한 달에 한 번 사용자가 말할 때 돌리고 다시 빌드한다.
 - 새 소식, 새 요청은 Updates 메뉴와 탭에 점(site.js, localStorage ybm-site-updates-seen, ybm-site-requests-seen).
 - 의견 보내기: build.mjs `FEEDBACK_FORM`(구글 폼), 입구는 푸터 하나.
 
 ## Foundations 와 컴포넌트 문서
 - Foundations: 항목마다 한 쪽, ABC 순, 큰 그림 없음. 구성은 개요 → 토큰 표(tokens.css 에서 읽음) → 코드에서 쓰기 → 사용 지침. Color, Iconography 는 탭으로 나눈다(build.mjs `FD_TABS`).
-- 아이콘 페이지: 찾기 칸 하나가 YDS 아이콘(icons.css)과 Lucide 전체(`site/src/lucide-icons.json`)를 함께 거른다. YDS 에 없는 아이콘은 서비스 CSS 에 넣을 코드를 복사한다. Lucide 갱신은 `node site/lucide-update.mjs <폴더> <버전>`. 아이콘 쓰임 글은 build.mjs `ICON_GROUPS`(빠지면 빌드가 알려 준다).
+- 아이콘 페이지: 찾기 칸 하나가 YDS 아이콘(icons.css)과 Lucide 전체(`site/src/lucide-icons.json`)를 함께 거른다. 한글은 `site/src/icon-ko.json`(한국어 → 영어 낱말)로 찾고 사이트 찾기의 아이콘도 같은 낱말을 쓴다(안 찾히는 말은 한 줄 더한다). YDS 에 없는 아이콘은 서비스 CSS 에 넣을 코드를 복사한다. Lucide 갱신은 `node site/lucide-update.mjs <폴더> <버전>`. 아이콘 쓰임 글은 build.mjs `ICON_GROUPS`(빠지면 빌드가 알려 준다).
 - 컴포넌트 상세 순서: 사용법 → 구조 → 속성 → 동작 → 사용 지침 → 예시 → 규격.
 - 구조 그림: 실제 크기 부품 + 파란 이름과 곧은 화살표(site.js pinAnatomy, 겹침이 없는 자리, 피할 수 없으면 data-forced). 자리 글자가 있는 컴포넌트는 `site/src/anatomy-figures.html` 에 실제 쓰임 화면을 따로 쓴다. 휴대폰에서는 줄이지 않고 옆으로 민다.
 - 예시는 동작이나 구조가 다를 때만 둔다(README "예시를 더하는 기준"). 값만 다른 것은 속성 표, 변수 표, README 6.2 지침 한 줄로.
