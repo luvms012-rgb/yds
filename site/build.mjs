@@ -403,7 +403,7 @@ ${footer}
 </main>
 ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">${hasToc ? `<nav><span class="site-toc__indicator" aria-hidden="true"></span>${heads.map(([id, t]) => `<a href="#${id}">${esc(t)}</a>`).join('')}</nav>` : ''}</aside>` : ''}
 </div>
-<button type="button" class="ds-btn site-totop" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="맨 위로" data-site-totop hidden><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i></button>
+<button type="button" class="ds-btn site-totop" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="맨 위로" data-site-totop aria-hidden="true" tabindex="-1"><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i></button>
 <dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
   <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input><kbd class="ds-command__kbd site-search__esc">Esc</kbd></div>
   <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small" data-inset="none">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>

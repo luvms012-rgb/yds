@@ -735,9 +735,16 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 @media (max-width: 767px) { .site-doc .site-usage__bars li:not(.pv-stage *) { grid-template-columns: minmax(0, 1fr) auto; } .site-usage__bar { grid-column: 1 / -1; grid-row: 2; } }
 .site-usage__unused { margin-top: var(--ds-space-x6); }
 .site-usage__unused .ds-accordion__content { line-height: var(--ds-line-height-t05); }
-/* 맨 위로: 화면 높이 한 번 넘게 내리면 오른쪽 아래 (11-16 사용자) */
-.site-totop { position: fixed; right: var(--ds-space-x6); bottom: var(--ds-space-x6); z-index: var(--ds-z-sticky); border-radius: var(--ds-shape-pill); box-shadow: var(--ds-elevation-2); }
-.site-totop[hidden] { display: none; }
+/* 맨 위로: 화면 높이 한 번 넘게 내리면 오른쪽 아래 (11-16 사용자). 아래에서 떠오르며 나타나고 내려가며 사라진다, 마우스를 올리면 살짝 뜨고 누르면 눌린다("자연스러운 인터랙션"). 그림자 없이 바탕색만(사용자) */
+.site-totop { position: fixed; right: var(--ds-space-x6); bottom: var(--ds-space-x6); z-index: var(--ds-z-sticky); border-radius: var(--ds-shape-pill);
+  opacity: 0; visibility: hidden; pointer-events: none; translate: 0 var(--ds-space-x4); scale: .9;
+  transition: opacity var(--ds-duration-normal) var(--ds-easing-exit), translate var(--ds-duration-normal) var(--ds-easing-exit), scale var(--ds-duration-normal) var(--ds-easing-exit), visibility 0s linear var(--ds-duration-normal); }
+.site-totop[data-show] { opacity: 1; visibility: visible; pointer-events: auto; translate: 0 0; scale: 1;
+  transition: opacity var(--ds-duration-slow) var(--ds-easing-enter), translate var(--ds-duration-slow) var(--ds-easing-emphasized), scale var(--ds-duration-slow) var(--ds-easing-emphasized), visibility 0s; }
+.site-totop .ds-icon { transition: translate var(--ds-duration-normal) var(--ds-easing-emphasized); }
+@media (hover: hover) { .site-totop[data-show]:hover { translate: 0 calc(var(--ds-space-x0_5) * -1); } .site-totop[data-show]:hover .ds-icon { translate: 0 calc(var(--ds-space-x0_5) * -1); } }
+.site-totop[data-show]:active { scale: .94; transition-duration: var(--ds-duration-fast); }
+@media (prefers-reduced-motion: reduce) { .site-totop, .site-totop[data-show] { translate: none; scale: none; transition: opacity var(--ds-duration-fast) linear, visibility 0s linear var(--ds-duration-fast); } .site-totop[data-show] { transition: opacity var(--ds-duration-fast) linear, visibility 0s; } }
 @media (max-width: 767px) { .site-totop { right: var(--ds-space-x4); bottom: var(--ds-space-x4); } }
 
 /* 가이드는 브랜드 색 없이 모노톤으로 보여 준다 (2026-11-02 사용자 "가이드에 브랜드 컬러 적용 X").

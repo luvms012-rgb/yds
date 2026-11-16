@@ -1148,7 +1148,13 @@ document.addEventListener("click", function (e) {
 (function () {
   var b = document.querySelector("[data-site-totop]"); if (!b) return;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function sync() { b.hidden = window.scrollY < window.innerHeight; }
-  window.addEventListener("scroll", sync, { passive: true }); sync();
+  var shown = false;
+  function sync() {
+    var on = window.scrollY > window.innerHeight;
+    if (on === shown) return; shown = on;
+    if (on) { b.setAttribute("data-show", ""); b.removeAttribute("aria-hidden"); b.removeAttribute("tabindex"); }
+    else { b.removeAttribute("data-show"); b.setAttribute("aria-hidden", "true"); b.setAttribute("tabindex", "-1"); }
+  }
+  var raf = 0; window.addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(function () { raf = 0; sync(); }); }, { passive: true }); sync();
   b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); var h = document.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } });
 })();
