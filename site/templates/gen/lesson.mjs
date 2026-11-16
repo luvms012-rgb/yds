@@ -63,13 +63,13 @@ const aiReport = () => {
   <div class="tp-rp__grid">
     <div class="tp-rp__main">
       <div class="tp-rp__charts">
-        ${card(`<h2 class="tp-h3">영역별 점수</h2>${barChart(SKILLS.map((_, i) => [now[i], before[i]]), { w: 420, h: 200, x: SKILLS, names: ['이번', '지난 학습'], colors: [C(0), 'var(--ds-color-bg-neutral-solid)'], unit: '점', label: '영역별 점수' })}${legend([['이번', 0], ['지난 학습', 'var(--ds-color-bg-neutral-solid)']])}`)}
+        ${card(`<h2 class="tp-h3">영역별 점수</h2>${barChart(SKILLS.map((_, i) => [now[i], before[i]]), { w: 420, h: 200, x: SKILLS, names: ['이번', '지난 학습'], colors: [C(0), 'var(--ds-color-bg-neutral)'], unit: '점', label: '영역별 점수' })}${legend([['이번', 0], ['지난 학습', 'var(--ds-color-bg-neutral)']])}`)}
         ${card(`<h2 class="tp-h3">점수 변화</h2>${lineChart([{ name: '종합 점수', data: tiles[0][3] }], { w: 420, h: 200, x: ['10.06', '10.20', '11.06', '11.16'], xs: ['10.06', '10.13', '10.20', '10.27', '11.03', '11.06', '11.10', '11.16'], area: true, unit: '점', label: '종합 점수 변화' })}${legend([['종합 점수', 0]])}`)}
       </div>
       ${card(`<div class="tp-between"><h2 class="tp-h3">고칠 문장</h2><span class="tp-label tp-num">${fixes.length}개</span></div><ul class="tp-fixes">${fixes.map(([line, why]) => `<li><p class="tp-fix__line">${line}</p><p class="tp-fix__why">${why}</p>${iconBtn('volume-2', '고친 문장 듣기', { size: 'small' })}</li>`).join('')}</ul>`, { size: 'medium' })}
     </div>
     <aside class="tp-rp__side" aria-label="이번 학습 더 보기">
-      ${card(`<h2 class="tp-h3">말한 비율</h2><div class="tp-ratio">${donut([['나', 58, C(0)], ['AI', 42, 'var(--ds-color-bg-neutral-solid)']], { size: 120, thick: 14, center: '58%', unit: '%', label: '말한 비율' })}${legend([['나', 0, '3분 48초'], ['AI', 'var(--ds-color-bg-neutral-solid)', '2분 44초']])}</div>`)}
+      ${card(`<h2 class="tp-h3">말한 비율</h2><div class="tp-ratio">${donut([['나', 58, C(0)], ['AI', 42, 'var(--ds-color-bg-neutral)']], { size: 120, thick: 14, center: '58%', unit: '%', label: '말한 비율' })}${legend([['나', 0, '3분 48초'], ['AI', 'var(--ds-color-bg-neutral)', '2분 44초']])}</div>`)}
       ${card(`<div class="tp-between"><h2 class="tp-h3">새로 익힌 표현</h2><span class="tp-label tp-num">${phrases.length}개</span></div><ul class="tp-phrases">${phrases.map(([en, ko]) => `<li><div class="tp-stack"><span class="tp-label">${en}</span><span class="tp-caption">${ko}</span></div>${iconBtn('volume-2', en + ' 듣기', { size: 'small' })}</li>`).join('')}</ul>${btn('단어장에 담기', { size: 'medium', fill: true })}`)}
       ${card(`<h2 class="tp-h3">다음 학습</h2><ul class="tp-next">${next.map(([ic, t, m]) => `<li><span class="tp-node">${icon(ic)}</span><div class="tp-stack"><span class="tp-label">${t}</span><span class="tp-caption">${m}</span></div></li>`).join('')}</ul>`)}
     </aside>

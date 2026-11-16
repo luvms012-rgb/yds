@@ -4,7 +4,6 @@
     {
       "id": "cs",
       "name": "고객센터",
-      "owner": "",
       "version": "1.2.0",
       "kind": "복사본",
       "components": [
@@ -26,7 +25,6 @@
     {
       "id": "signup",
       "name": "회원가입",
-      "owner": "",
       "version": "1.2.0",
       "kind": "복사본",
       "components": [
@@ -38,12 +36,6 @@
       "colors": 11,
       "pages": 1,
       "errors": []
-    }
-  ],
-  "cdn": [
-    {
-      "version": "1.1.0",
-      "hits": 277
     }
   ]
 }

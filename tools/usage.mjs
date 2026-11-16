@@ -27,7 +27,7 @@ const stripComments = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '');
 const countColors = (css) => (stripComments(css).replace(/var\([^)]*\)/g, '').match(COLOR) || []).length;
 
 async function checkService(s) {
-  const out = { id: s.id, name: s.name, owner: s.owner || '', version: '', kind: '없음', components: [], colors: 0, pages: 0, errors: [] };
+  const out = { id: s.id, name: s.name, version: '', kind: '없음', components: [], colors: 0, pages: 0, errors: [] };
   const used = new Set(), seenCss = new Set();
   for (const page of s.pages || []) {
     let html;
@@ -54,15 +54,7 @@ async function checkService(s) {
   return out;
 }
 
-async function cdnStats() {
-  try {
-    const v = JSON.parse(await get('https://data.jsdelivr.com/v1/stats/packages/gh/luvms012-rgb/yds/versions?period=month'));
-    return v.filter((x) => /^\d+\.\d+\.\d+$/.test(x.version)).map((x) => ({ version: x.version, hits: x.hits.total })).sort((a, b) => b.version.localeCompare(a.version, undefined, { numeric: true }));  // 버전 주소만(커밋 주소는 뺀다), 받은 수 0 인 버전도 보인다
-  } catch (e) { return { error: e.message }; }
-}
-
-const result = { checked: new Date().toISOString().slice(0, 10), services: [], cdn: null };
+const result = { checked: new Date().toISOString().slice(0, 10), services: [] };
 for (const s of services) { result.services.push(await checkService(s)); console.log(`  ${s.name}: ${result.services.at(-1).kind} ${result.services.at(-1).version}, 컴포넌트 ${result.services.at(-1).components.length}개, 직접 쓴 색 ${result.services.at(-1).colors}개`); }
-result.cdn = await cdnStats();
 fs.writeFileSync(path.join(DS, 'site/src/usage.json'), JSON.stringify(result, null, 2) + '\n');
 console.log(`  ✔ site/src/usage.json (${result.checked})`);

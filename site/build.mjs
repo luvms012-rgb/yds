@@ -1118,14 +1118,14 @@ templates.forEach((t) => {
   <p class="site-lead">${esc(t.desc)}</p>
   <div class="site-meta">${btn(`pages/${t.slug}.html`, '새 창으로 보기', 'neutralSolid', 'xsmall', 'external-link').replace('href="pages', 'target="_blank" rel="noopener" href="pages')}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}${metaLink(`${GITHUB}/blob/main/site/templates/pages/${t.slug}.html`, '코드', 'site-i--github')}</div>
 </header>
+<div class="site-tpl-prompt">${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap', 'AI 요청 글'))}</div>
 <div class="site-frame">
   <div class="site-frame__bar">
-    <div class="ds-segmented" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="prompt">AI 요청 글</button></div>
+    <div class="ds-segmented" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div>
     <div class="ds-segmented" role="group" aria-label="화면 폭"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-device="desktop">PC</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-device="tablet">태블릿</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-device="mobile">모바일</button></div>
   </div>
   <div class="site-frame__stage" data-device="desktop"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 템플릿" data-site-frame></iframe></div>
   <div class="site-frame__code" hidden>${codeblock('불러오는 중…').replace('<figure class="ds-codeblock"', `<figure class="ds-codeblock" data-site-src="pages/${t.slug}.html"`)}</div>
-  <div class="site-frame__prompt" hidden>${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap'))}</div>
 </div>
 ${t.note ? `<h2 id="responsive">반응형</h2><p>${esc(t.note)}</p>` : ''}
 ${used.length ? `<h2 id="components">사용한 컴포넌트</h2><div class="site-links">${used.map((c) => `<a class="ds-chip" data-size="small" href="../components/${c.slug}.html">${esc(c.name.split(' · ')[0])}</a>`).join('')}</div>` : ''}`,
@@ -1168,12 +1168,9 @@ write({
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
 ${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}
-<section class="site-group">
 <h2 id="criteria">결정 기준</h2>
-<p>요청은 접수, 검토, 결정, 만들기 순서로 처리합니다. 아래 셋을 모두 만족하면 YDS에 더합니다.</p>
-<ul class="site-list"><li>서비스 2곳 이상에서 필요합니다.</li><li>지금 있는 컴포넌트를 조합해 만들 수 없습니다.</li><li>접근성 기준을 지킬 수 있습니다.</li></ul>
-<p>맞지 않으면 서비스 안에서 토큰으로 먼저 만들고, 다른 서비스에서 같은 요청이 오면 다시 검토합니다. 결정 이유는 반영 칸에 적습니다.</p>
-</section>
+<ul class="site-criteria">${['서비스 2곳 이상에서 필요', '지금 컴포넌트로 만들 수 없음', '접근성 기준을 지킬 수 있음'].map((x) => `<li><i class="ds-icon ds-icon--check" aria-hidden="true"></i>${x}</li>`).join('')}</ul>
+<p class="site-note">셋 다 맞으면 YDS에 더하고, 아니면 서비스에서 먼저 만듭니다.</p>
 <h2 id="list">요청 목록</h2>
 ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
   `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
@@ -1184,7 +1181,7 @@ ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i clas
 });
 
 // 사용 현황 (2026-11-16 사용자 "운영 모델: 사용 측정과 기여 절차" → "검사 스크립트, jsDelivr 통계, 사용 현황 탭 진행")
-// 원본은 site/src/services.json(서비스 목록, 담당이 고친다)과 site/src/usage.json(node tools/usage.mjs 가 만든다)
+// 원본은 site/src/services.json(서비스 목록)과 site/src/usage.json(node tools/usage.mjs 가 만든다)
 const USAGE = fs.existsSync(path.join(DS, 'site/src/usage.json')) ? readJson('site/src/usage.json') : null;
 if (USAGE) {
   const svc = USAGE.services;
@@ -1199,18 +1196,15 @@ if (USAGE) {
     body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS를 쓰는 서비스와 버전, 컴포넌트입니다.</p></header>
 ${updTabs('updates-usage.html')}
 <h2 id="services">서비스</h2>
-${table(['서비스', '담당', '버전', '컴포넌트', '직접 쓴 색'], svc.map((s) => [
+${table(['서비스', '버전', '컴포넌트', '직접 쓴 색'], svc.map((s) => [
     `<span class="site-req__title">${esc(s.name)}</span>${s.errors.length ? `<span class="site-req__meta">화면 ${s.errors.length}개를 열지 못함</span>` : ''}`,
-    s.owner ? esc(s.owner) : '<span class="site-req__meta">정하지 않음</span>',
     verCell(s),
     `${s.components.length}개`,
     `${s.colors}개`,
-  ])).replace('class="ds-table"', 'class="ds-table site-req site-usage"')}
+  ])).replace('class="ds-table"', 'class="ds-table site-req site-usage site-inline"')}
 <h2 id="components">컴포넌트</h2>
-${table(['컴포넌트', '쓰는 서비스'], compRows.map(([c, names]) => [`<span class="site-req__title">${esc(c)}</span>`, `${names.length}곳<span class="site-req__meta">${names.map(esc).join(', ')}</span>`])).replace('class="ds-table"', 'class="ds-table site-req"')}
+${table(['컴포넌트', '쓰는 서비스'], compRows.map(([c, names]) => [`<span class="site-req__title">${esc(c)}</span>`, `${names.length}곳<span class="site-req__meta">${names.map(esc).join(', ')}</span>`])).replace('class="ds-table"', 'class="ds-table site-req site-inline"')}
 <p class="site-note">아직 쓰는 서비스가 없는 컴포넌트는 ${unused}개입니다.</p>
-${Array.isArray(USAGE.cdn) && USAGE.cdn.length ? `<h2 id="cdn">버전별 내려받기</h2>
-${table(['버전', '지난 30일'], USAGE.cdn.map((v) => [`v${esc(v.version)}`, `${v.hits.toLocaleString('ko-KR')}회`])).replace('class="ds-table"', 'class="ds-table site-req"')}` : ''}
 <p class="site-note">${fmtDate(USAGE.checked)}에 확인했습니다. 서비스 화면 HTML에 있는 컴포넌트만 셉니다.</p>`,
   });
 }

@@ -82,10 +82,9 @@
     if (view) {
       press(view);
       var box = view.closest(".site-example, .site-frame");
-      var v = view.getAttribute("data-site-view"), code = v === "code";  // preview / code / prompt(템플릿 AI 요청 글, 11-14)
+      var v = view.getAttribute("data-site-view"), code = v === "code";  // preview / code (템플릿 AI 요청 글은 11-16 미리보기 위 상자로 뺐다)
       box.querySelectorAll(".site-example__preview, .site-frame__stage").forEach(function (el) { el.hidden = v !== "preview"; });
       box.querySelectorAll(".site-example__code, .site-frame__code").forEach(function (el) { el.hidden = !code; });
-      box.querySelectorAll(".site-frame__prompt").forEach(function (el) { el.hidden = v !== "prompt"; });
       if (code) loadSource(box);
       return;
     }
@@ -647,7 +646,7 @@
   // 주소에 ?preview=이름 을 남겨 그대로 공유할 수 있다. 새 탭으로 열기(Ctrl, Cmd, 가운데 버튼)는 상세 페이지로 간다.
   // 템플릿 AI 요청 글 복사 (11-11 사용자, 11-14 문서 보기에도): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다
   function copyTplPrompt(b, name, slug) {
-    var shown = document.querySelector(".site-frame__prompt code");
+    var shown = document.querySelector(".site-tpl-prompt code");
     var text = shown ? shown.textContent : "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
       "\n\n'" + name + "' 템플릿을 출발점으로 [내가 원하는 서비스 화면]을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
       "\n\n- 구성, 배치, 내용은 내 서비스의 목적과 쓰는 사람에 맞게 새로 짜 줘. 템플릿을 그대로 따라 하지 않아도 돼.\n- 모양은 YDS 규칙을 지켜 줘. 컴포넌트, 토큰, 아이콘은 YDS 에 있는 것만 쓰고, 색이나 크기를 직접 정하지 마.";
