@@ -1121,8 +1121,8 @@ templates.forEach((t) => {
 <div class="site-tpl-prompt">${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap', 'AI 요청 글'))}</div>
 <div class="site-frame">
   <div class="site-frame__bar">
-    <div class="ds-segmented" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div>
-    <div class="ds-segmented" role="group" aria-label="화면 폭"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-device="desktop">PC</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-device="tablet">태블릿</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-device="mobile">모바일</button></div>
+    <div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div>
+    <div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="화면 폭"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-device="desktop">PC</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-device="tablet">태블릿</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-device="mobile">모바일</button></div>
   </div>
   <div class="site-frame__stage" data-device="desktop"><iframe src="pages/${t.slug}.html" title="${esc(t.name)} 템플릿" data-site-frame></iframe></div>
   <div class="site-frame__code" hidden>${codeblock('불러오는 중…').replace('<figure class="ds-codeblock"', `<figure class="ds-codeblock" data-site-src="pages/${t.slug}.html"`)}</div>
@@ -1167,17 +1167,14 @@ write({
   file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 현황', layout: 'page',
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
-${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}
-<h2 id="criteria">결정 기준</h2>
-<ul class="site-criteria">${['서비스 2곳 이상에서 필요', '지금 컴포넌트로 만들 수 없음', '접근성 기준을 지킬 수 있음'].map((x) => `<li><i class="ds-icon ds-icon--check" aria-hidden="true"></i>${x}</li>`).join('')}</ul>
-<p class="site-note">셋 다 맞으면 YDS에 더하고, 아니면 서비스에서 먼저 만듭니다.</p>
 <h2 id="list">요청 목록</h2>
 ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
   `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
   esc(r.type),
   `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
   r.done ? `<span class="site-req__meta">${shortDate(r.done[0])}</span>${inline(r.done[1])}` : r.reason ? inline(r.reason) : '',  // reason: 보류나 검토 중일 때 결정 이유
-])).replace('class="ds-table"', 'class="ds-table site-req"')}`,
+])).replace('class="ds-table"', 'class="ds-table site-req"')}
+${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}`,
 });
 
 // 사용 현황 (2026-11-16 사용자 "운영 모델: 사용 측정과 기여 절차" → "검사 스크립트, jsDelivr 통계, 사용 현황 탭 진행")

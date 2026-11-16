@@ -203,15 +203,17 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 
 /* ---- 예시 상자 (레퍼런스 B): 테두리 상자 안 위 줄 칩 탭(미리보기 / 코드) + 구분선 + 흰 미리보기 ---- */
 .site-example { overflow: hidden; border: 1px solid var(--site-box-line); border-radius: var(--site-box-radius); background: var(--ds-color-bg-layer-default); }
-.site-example__bar { display: flex; align-items: center; min-height: 44px; padding: var(--ds-space-x2) var(--ds-space-x4); box-shadow: inset 0 -1px 0 var(--site-box-line); }  /* 11-11 사용자: 코드 탭 머리(44)와 같은 높이 */
+.site-example__bar { display: flex; align-items: center; min-height: 44px; padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-neutral-weak-alpha); }  /* 11-16 사용자 "메인 기준으로 일관되게": 머리 줄은 회색, 내용은 흰 바탕, 탭은 메인 코드 상자 칩 그대로 */  /* 11-11 사용자: 코드 탭 머리(44)와 같은 높이 */
 .site-example__bar .ds-chiptabs { --ds-ct-height: 28px; --ds-ct-padding-x: var(--ds-space-x3); --ds-ct-min-width: 0; padding-inline: 0; }
 .site-example__bar .ds-chiptabs__trigger { font-size: var(--ds-font-size-t03); }
-.site-example__bar .ds-chiptabs__trigger { --ds-ct-bg: transparent; --ds-ct-fg: var(--ds-color-fg-neutral-muted); }
-.site-example__bar .ds-chiptabs__trigger[aria-selected="true"] { --ds-ct-bg: var(--ds-color-bg-neutral-weak-alpha); --ds-ct-fg: var(--ds-color-fg-neutral); }
 .site-example__preview { display: flex; flex-direction: column; justify-content: center; gap: var(--ds-space-x6); min-height: 240px; padding: var(--ds-space-x8) var(--ds-space-x6); overflow-x: auto; }
 .site-example__preview[hidden] { display: none; }
 .site-example__preview > .pv-stage { padding: 0; background: none; box-shadow: none; justify-content: center; }
 .site-example__code .ds-codeblock { margin: 0; border: 0; border-radius: 0; }
+/* 상자 안 코드 칸 (11-16): 머리 줄이 두 번 겹치지 않게 안쪽 머리 줄은 빼고 복사 버튼만 오른쪽 위에 */
+:is(.site-example__code, .site-frame__code) .ds-codeblock { position: relative; }
+.site-doc :is(.site-example__code, .site-frame__code) .ds-codeblock__header { position: absolute; top: var(--ds-space-x2); right: var(--ds-space-x2); z-index: 1; min-height: 0; padding: 0; background: none; }
+:is(.site-example__code, .site-frame__code) .ds-codeblock__language { display: none; }
 .site-example__code .ds-codeblock__code { max-height: 480px; overflow: auto; }
 .pv-stage { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-x3); padding: var(--ds-space-x6); border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: inset 0 0 0 1px var(--site-box-line); }
 .pv-stage + .pv-stage { margin-top: var(--ds-space-x3); }
@@ -317,11 +319,13 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-toolbar--wrap .ds-chiptabs { --ds-ct-height: 32px; --ds-ct-padding-x: 12px; flex-wrap: wrap; overflow: visible; gap: var(--ds-space-x1); }
 
 .site-frame { margin-top: var(--ds-space-x6); overflow: hidden; border: 1px solid var(--site-box-line); border-radius: var(--site-box-radius); background: var(--ds-color-bg-layer-default); }
-.site-frame__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); padding: var(--ds-space-x2) var(--ds-space-x3); box-shadow: inset 0 -1px 0 var(--site-box-line); }
+.site-frame__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ds-space-x2); min-height: 44px; padding: var(--ds-space-x2) var(--ds-space-x4); background: var(--ds-color-bg-neutral-weak-alpha); }  /* 메인 코드 상자 머리 줄과 같게 (11-16) */
 /* 템플릿 상세 미리보기 (11-11 사용자 "모바일 문서 보기에서 많이 깨진다"): 템플릿은 늘 실제 기기 폭(PC 1440, 태블릿 768, 모바일 375)으로 그리고
    칸보다 크면 site.js fitStage 가 비율대로 줄인다. 예전에는 PC 를 칸 폭(폰에서 309)으로 그려 글자가 세로로 꺾이고, 태블릿과 모바일은 가운데 정렬 때문에 왼쪽이 잘렸다 */
-.site-frame__stage { display: flex; justify-content: center; padding: var(--ds-space-x4); background: var(--ds-color-bg-neutral); overflow: hidden; }
-.site-frame__stage iframe { display: block; flex: none; width: 1440px; height: 900px; border: 0; border-radius: var(--ds-shape-lg); background: var(--ds-color-bg-layer-default); box-shadow: var(--ds-elevation-raised); transform-origin: 0 0; }
+.site-frame__stage { display: flex; justify-content: center; padding: 0; background: var(--ds-color-bg-layer-default); overflow: hidden; }  /* PC 는 상자 끝까지 흰 바탕 (11-16), 태블릿과 모바일만 여백과 선 */
+.site-frame__stage:not([data-device="desktop"]) { padding: var(--ds-space-x4); }
+.site-frame__stage iframe { display: block; flex: none; width: 1440px; height: 900px; border: 0; background: var(--ds-color-bg-layer-default); transform-origin: 0 0; }
+.site-frame__stage:not([data-device="desktop"]) iframe { border-radius: var(--ds-shape-lg); box-shadow: 0 0 0 1px var(--site-box-line); }
 .site-frame__stage[data-device="tablet"] iframe { width: 768px; height: 1024px; }
 .site-frame__stage[data-device="mobile"] iframe { width: 375px; height: 760px; }
 .site-frame__code[hidden], .site-frame__stage[hidden] { display: none; }
@@ -474,10 +478,6 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-req td { vertical-align: top; }
 .site-req__title { display: block; color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
 .site-req__meta { display: block; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-variant-numeric: tabular-nums; }
-.site-criteria { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--ds-space-x2); margin: 0; padding: 0; list-style: none; }  /* 요청 탭 결정 기준 세 칸 (11-16 사용자 "정리, 텍스트 축소") */
-.site-criteria li { display: flex; align-items: center; gap: var(--ds-space-x2); margin: 0; padding: var(--ds-space-x4); border-radius: var(--ds-radius-r3); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
-.site-criteria .ds-icon { flex: none; color: var(--ds-color-fg-positive); }
-@media (max-width: 767px) { .site-criteria { grid-template-columns: 1fr; } }
 .site-inline :is(.site-req__title, .site-req__meta) { display: inline; }  /* 사용 현황: 한 칸 안 두 정보는 가로 한 줄 (11-16 사용자) */
 .site-inline .site-req__meta { margin-left: var(--ds-space-x2); }
 .site-req.site-usage th { width: 112px; }  /* 사용 현황 서비스 표: 첫 칸만 남은 폭, 나머지는 같은 폭 */

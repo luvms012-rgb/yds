@@ -316,7 +316,7 @@
     if (stage.clientWidth < 768) {
       stage.setAttribute("data-device", "mobile");
       var seg = stage.closest(".site-frame").querySelectorAll("[data-site-device]");
-      seg.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-site-device") === "mobile")); });
+      seg.forEach(function (b) { if (b.getAttribute("data-site-device") === "mobile") press(b); });
     }
   });
   fitStages();

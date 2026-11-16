@@ -32,7 +32,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 왼쪽 메뉴 빨간 점: 새 컴포넌트(components.css 머리말 "(날짜 추가)" 가 가장 늦은 묶음, 30일), Updates 문장에 영어 이름이 나온 컴포넌트(3일, 11-16 7일에서 줄임), Updates "템플릿" 소식에 이름이 나온 템플릿(30일). build.mjs `NEW_COMPS`, `UPD_COMPS`, `NEW_TPLS`.
 - 사이트 찾기: 상단 돋보기와 Ctrl/Command + K 가 여는 DS Command Palette(`#site-search`, 창과 키보드는 ybm-ds.js). 결과는 site.js "사이트 찾기" 가 `assets/search.json`(build.mjs 끝에서 만든다)을 처음 열 때 읽어 그린다. 찾는 대상은 시작하기 절, Foundations 쪽과 절, 컴포넌트(search-ko.json 한글 낱말로도), 컴포넌트 예시, 템플릿(영어 이름, 분류로도), 토큰, 아이콘. 범위 칩, 종류별 묶음과 "n개 더 보기", 찾은 글자 강조, 최근 연 것 5개(localStorage ybm-site-search-recent). 토큰 결과는 `#t=이름` 으로 그 표 줄을 칠하고, 아이콘은 `#q=이름` 으로 Library 찾기 칸에 넣는다. 왼쪽 메뉴의 컴포넌트 찾기 칸은 그대로 둔다.
 - 다크 모드는 기기 설정을 따르고 상단 버튼 선택이 우선(localStorage ybm-site-theme).
-- 코드 상자는 회색 바탕 + 머리 줄, 표는 흰 바탕 + 줄 선으로 구분한다.
+- 상자 모양은 메인 코드 상자 하나로 맞춘다(11-16 사용자): 머리 줄은 회색(bg-neutral-weak-alpha, 높이 44, 선 없음), 내용은 흰 바탕, 머리 줄 탭은 메인과 같은 칩(site-codetabs__bar). 코드 상자, 컴포넌트 예시, 템플릿 보기, AI 요청 글 모두 같다. 표는 흰 바탕 + 줄 선으로 구분한다.
 - 사이트 글자는 크기마다 정한 줄높이, 굵기 400/500/600, 자간 0. 전 페이지 검사 스크립트는 `.cache/typo/audit.js`(로컬 전용, 미리보기에서 불러 `window.__audit`).
 - 사이트 CSS 는 레이어 밖이라 본문 규칙에서 미리보기 안(`.pv-stage`, `.site-tile__inner`, `.site-example__preview`)을 `:not()` 으로 뺀다.
 - Themes 는 숨김(build.mjs `SHOW_THEMES = false`, 만드는 곳 `node site/themes/gen.mjs`, 다시 켜자고 하기 전에는 제안하지 않는다). 다시 꺼내면 별도 층이 아니라 미리 만든 브랜드 예시로 합친다.
@@ -51,7 +51,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 ## Updates
 - 소식(`site/src/updates.json` 맨 위 그날 날짜): DS 시스템 변경과 새 템플릿 추가만. 종류는 "새 기능", "변경된 부분". 항목 앞 영역 배지는 컴포넌트, 템플릿, 아이콘, 토큰, 브랜드, 규칙 중 하나("DS" 는 쓰지 않는다). 사이트 꾸밈, 템플릿 고치기는 적지 않는다. 버전을 올리면(`node sync.mjs release`) 맨 위 소식에 버전이 붙는다.
 - 요청 탭(`updates-requests.html`, `site/src/requests.json`): 사용자가 "이 요청 추가", "반영됨으로" 하면 Claude 가 고쳐 배포. 같은 요청은 count 를 올리고, 이름은 쓰지 않고 소속만. 상태 순서 검토 중, 접수, 반영됨, 보류. 비면 Empty 를 보이고 새 요청 점은 띄우지 않는다(build.mjs `updTabs`, `LATEST_REQUEST`).
-- 요청 탭 위 결정 기준(11-16): 세 칸(서비스 2곳 이상에서 필요 / 지금 컴포넌트로 만들 수 없음 / 접근성 기준을 지킬 수 있음) + 한 줄 "셋 다 맞으면 YDS에 더하고, 아니면 서비스에서 먼저 만듭니다." 글을 늘리지 않는다(사용자 "너무 복잡해, 텍스트 축소").
+- 요청 탭 순서(11-16 사용자): 탭 → 요청 목록 → 의견 보내기 버튼. 결정 기준은 사용자가 우선 지웠다(다시 넣자고 하기 전에는 제안하지 않는다).
 - 사용 현황 탭(`updates-usage.html`): 서비스 목록은 `site/src/services.json`(이름, 검사할 화면 주소), 결과는 `node tools/usage.mjs` 가 만드는 `site/src/usage.json`(서비스별 버전과 복사본 여부, 쓰는 컴포넌트, 직접 쓴 색 수). 담당, 버전별 내려받기는 사용자가 지웠다(11-16 "복잡함"), 한 칸 안 두 정보는 세로로 쌓지 않고 가로 한 줄로. 한 달에 한 번 사용자가 말할 때 돌리고 다시 빌드한다.
 - 새 소식, 새 요청은 Updates 메뉴와 탭에 점(site.js, localStorage ybm-site-updates-seen, ybm-site-requests-seen).
 - 의견 보내기: build.mjs `FEEDBACK_FORM`(구글 폼), 입구는 푸터 하나.
