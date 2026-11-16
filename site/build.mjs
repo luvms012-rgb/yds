@@ -1200,14 +1200,18 @@ if (USAGE) {
   const BASES = [...new Map(comps.map((c) => [c.name.split(' · ')[0], c.slug])).entries()];
   const useCount = (b) => (byComp.get(b) || []).length;
   const usedList = BASES.filter(([b]) => useCount(b)).sort((a, b) => useCount(b[0]) - useCount(a[0]) || a[0].localeCompare(b[0]));
-  const bar = ([b, slug]) => { const n = useCount(b); return `<li><a class="site-usage__comp" href="components/${slug}.html">${esc(b)}</a><span class="site-usage__bar" style="--site-usage-v: ${Math.round(n / svc.length * 100)}%" aria-hidden="true"></span><span class="site-usage__n">${n}곳<span class="site-req__meta">${byComp.get(b).map(esc).join(', ')}</span></span></li>`; };
+  // 11-17 사용자 "더 눈에 잘 보이는 UI": 막대 대신 위에 요약 숫자 카드 셋, 아래에 컴포넌트 x 서비스 비교 표(쓰는 칸에 체크)
+  const allUse = usedList.filter(([b]) => useCount(b) === svc.length).length;
+  const stat = (n, total, label) => `<div class="ds-card" data-size="small"><span class="site-usage__label">${label}</span><span class="site-usage__num">${n}${total ? `<span class="site-usage__total">/ ${total}</span>` : ''}</span></div>`;
+  const mark = (on) => on ? '<i class="ds-icon ds-icon--check site-usage__yes" aria-hidden="true"></i><span class="ds-sr-only">씀</span>' : '<span class="site-usage__no" aria-hidden="true">-</span><span class="ds-sr-only">안 씀</span>';
+  const matrix = `<div class="ds-table-wrap"><table class="ds-table site-usage-matrix" data-size="small"><thead><tr><th scope="col">컴포넌트</th>${svc.map((x) => `<th scope="col">${esc(x.name)}</th>`).join('')}</tr></thead><tbody>${usedList.map(([b, slug]) => `<tr><th scope="row"><a class="site-usage__comp" href="components/${slug}.html">${esc(b)}</a></th>${svc.map((x) => `<td>${mark(x.components.includes(b))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   write({
     file: 'updates-usage.html', section: 'updates', title: 'Updates', desc: 'YDS 사용 현황', layout: 'page',
     body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">서비스에서 쓰는 YDS 컴포넌트입니다.</p></header>
 ${updTabs('updates-usage.html')}
-<h2 id="components">컴포넌트 쓰임</h2>
-<p class="site-req__meta site-usage__sum">${BASES.length}개 중 ${usedList.length}개를 쓰고 있어요</p>
-<ul class="site-usage__bars">${usedList.map(bar).join('')}</ul>`,
+<div class="site-usage__stats">${stat(usedList.length, BASES.length, '쓰는 컴포넌트')}${stat(allUse, usedList.length, '모든 서비스가 쓰는 컴포넌트')}${stat(svc.length, 0, '서비스')}</div>
+${matrix}
+<p class="site-req__meta site-usage__sum">${USAGE.checked} 기준</p>`,
   });
 }
 

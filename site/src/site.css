@@ -715,16 +715,19 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 1px; vertical-align: text-bottom; background: var(--ds-color-fg-neutral); animation: site-blink 1s steps(1) infinite; }
 
 /* 사용 현황: 컴포넌트 쓰임 막대만 (2026-11-16 사용자) */
-.site-doc .site-usage__sum:not(.pv-stage *) { margin-top: var(--ds-space-x1); }
-.site-usage__bars { list-style: none; margin: var(--ds-space-x4) 0 0; padding: 0; display: flex; flex-direction: column; }
-.site-doc .site-usage__bars li:not(.pv-stage *) { display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr) minmax(0, 220px); align-items: center; gap: var(--ds-space-x4); margin: 0; padding-block: var(--ds-space-x2); box-shadow: inset 0 -1px 0 var(--ds-color-stroke-neutral-weak); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+.site-usage__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--ds-space-x4); margin-bottom: var(--ds-space-x8); }  /* 사용 현황: 요약 숫자 카드 셋 + 비교 표 (11-17 사용자) */
+.site-usage__label { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); }
+.site-usage__num { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); font-variant-numeric: tabular-nums; }
+.site-usage__total { margin-left: var(--ds-space-x1); color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-regular); }
+.site-usage-matrix :is(thead th, td):not(:first-child) { width: 160px; text-align: center; }
+.site-usage-matrix td { vertical-align: middle; line-height: 0; }
+.site-usage-matrix tbody th { font-weight: var(--ds-font-weight-regular); text-align: left; }
 .site-usage__comp { color: var(--ds-color-fg-neutral); text-decoration: none; font-weight: var(--ds-font-weight-medium); }
 .site-usage__comp:hover { text-decoration: underline; }
-.site-usage__bar { position: relative; height: var(--ds-space-x2); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral); overflow: hidden; }
-.site-usage__bar::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--site-usage-v); border-radius: inherit; background: var(--ds-color-bg-neutral-solid); }
-.site-usage__n { font-variant-numeric: tabular-nums; }
-.site-usage__n .site-req__meta { display: inline; margin-left: var(--ds-space-x2); }
-@media (max-width: 767px) { .site-doc .site-usage__bars li:not(.pv-stage *) { grid-template-columns: minmax(0, 1fr) auto; } .site-usage__bar { grid-column: 1 / -1; grid-row: 2; } }
+.site-usage__yes { color: var(--ds-color-fg-positive); }
+.site-usage__no { color: var(--ds-color-fg-neutral-subtle); }
+.site-doc .site-usage__sum:not(.pv-stage *) { margin-top: var(--ds-space-x3); text-align: right; }
+@media (max-width: 767px) { .site-usage__stats { grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x3); } .site-usage-matrix :is(thead th, td):not(:first-child) { width: 88px; } }
 /* 맨 위로: 화면 높이 한 번 넘게 내리면 오른쪽 아래 (11-16 사용자). 아래에서 떠오르며 나타나고 내려가며 사라진다, 마우스를 올리면 살짝 뜨고 누르면 눌린다("자연스러운 인터랙션"). 그림자 없이 바탕색만(사용자) */
 .site-totop { position: fixed; right: var(--ds-space-x6); bottom: var(--ds-space-x6); z-index: var(--ds-z-sticky); border-radius: var(--ds-shape-pill);
   opacity: 0; visibility: hidden; pointer-events: none; translate: 0 var(--ds-space-x4); scale: .9;
