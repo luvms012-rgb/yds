@@ -227,9 +227,9 @@ const NEW_TPLS = (() => {
 const navDot = (label) => `<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="${label}"></span></a>`;
 
 /* ---------------------------------------------------------------- 공통 조각 */
-function codeblock(code, lang = 'html', extra = '') {
+function codeblock(code, lang = 'html', extra = '', label = '') {
   return `<figure class="ds-codeblock" data-lang="${esc(lang)}"${extra}>
-  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">${esc(lang === 'text' ? 'AI 도구에 붙여 넣기' : lang)}</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
+  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">${esc(label || (lang === 'text' ? 'AI 도구에 붙여 넣기' : lang))}</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>${highlight(code, lang)}</code></pre>
 </figure>`;
 }
@@ -444,6 +444,8 @@ ${SITE_URL}yds.txt`;
 // 11-14 사용자 "1, 2 진행" (레퍼런스 A 시작하기 비교): 상자 하나에 요청 하나, 끝에 "먼저 묻기" 한 줄.
 // 같은 날 사용자 "자유도를 줘야, 지금은 이대로 써야 할 것 같은 느낌": 구체적인 예시 문장 대신 바꿀 곳을 [ ] 빈칸으로 둔다. 고정은 안내서 주소뿐(먼저 묻기 문장은 사용자 지시로 뺐다).
 // [묶음 이름, 빈칸 있는 요청 하나]
+// 2026-11-16 사용자 첫 화면 UX "고쳐줘": 상자 머리 칸 이름은 묶음 이름으로(셋 다 같은 이름이라 구분이 안 됨), 바꿀 빈칸 [ ] 은 색으로 표시(첫 줄 [묶음 이름] 은 빼고). 복사되는 글은 그대로
+const markBlanks = (h) => h.replace(/<code>[\s\S]*?<\/code>/, (c) => c.replace(/(?<!<code>)\[[^\]\n<]+\]/g, (b) => `<span class="site-blank">${b}</span>`));
 const AI_EXAMPLES = [
   ['새 화면 만들기', `[만들고 싶은 화면]을 만들어 줘. 비슷한 템플릿이 있으면 출발점으로 써 줘.`],
   ['운영 중인 페이지에 적용하기', `[바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [바꿀 부분]만 바꾸고 나머지는 그대로 둬.`],
@@ -511,7 +513,7 @@ write({
 
 <h2 id="ai">AI와 함께 시작하기</h2>
 <p>아래 예시를 참고해 [ ] 안에 하고 싶은 일을 자유롭게 적고 AI 도구에 붙여 넣으세요.</p>
-${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n${ask}`, "text", " data-wrap")).join('\n')}
+${AI_EXAMPLES.map(([name, ask]) => markBlanks(codeblock(`[${name}]\n\n${AI_COMMON}\n${ask}`, "text", " data-wrap", name))).join('\n')}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.</p>
