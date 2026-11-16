@@ -51,24 +51,24 @@ Assets에 YDS 라이브러리가 보이지 않으면 [의견 보내기](https://
 
 아래 코드를 <head>에 넣으면 YDS가 바로 적용됩니다.
 
-**최신**
-
-```html
-<!-- 서비스 CSS보다 앞에 -->
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/ybm-ds.css">
-<script src="https://luvms012-rgb.github.io/yds/dist/ybm-ds.js" defer></script>
-<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="toeic"> -->
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/toeic.css">
-```
-
 **v1.2.0 고정**
 
 ```html
 <!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.2.0/dist/ybm-ds.css">
 <script src="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.2.0/dist/ybm-ds.js" defer></script>
-<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="toeic"> -->
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/toeic.css">
+<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="my-brand"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v1.2.0/dist/brands/my-brand.css">
+```
+
+**최신**
+
+```html
+<!-- 서비스 CSS보다 앞에 -->
+<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/ybm-ds.css">
+<script src="https://luvms012-rgb.github.io/yds/dist/ybm-ds.js" defer></script>
+<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="my-brand"> -->
+<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/brands/my-brand.css">
 ```
 
 **규칙 파일**

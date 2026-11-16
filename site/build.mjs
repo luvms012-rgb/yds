@@ -199,14 +199,14 @@ const NEW_COMPS = (() => {
   if (!last || (Date.now() - Date.parse(last)) / 864e5 > 30) return new Set();
   return new Set(added.filter(([, d]) => d === last).map(([n]) => n));
 })();
-// 바뀐 컴포넌트 점 (2026-11-13 사용자 "새로 생긴 컴포넌트만 알림 표시하지 말고 업데이트도 표시"): Updates 소식에 이름이 나온 컴포넌트, 그 날부터 7일 동안
+// 바뀐 컴포넌트 점 (2026-11-13 사용자 "새로 생긴 컴포넌트만 알림 표시하지 말고 업데이트도 표시"): Updates 소식에 이름이 나온 컴포넌트, 그 날부터 3일 동안(2026-11-16 사용자 "빨간 점이 너무 많다, 기간을 줄이기" 로 7일에서 줄임)
 const UPD_COMPS = (() => {
   const u = JSON.parse(fs.readFileSync(path.join(SITE, 'src/updates.json'), 'utf8'));
   const has = (t, n) => { for (let i = t.indexOf(n); i >= 0; i = t.indexOf(n, i + 1)) if (!/[A-Za-z]/.test(t[i - 1] || ' ') && !/[A-Za-z]/.test(t[i + n.length] || ' ')) return true; return false; };
   const nm = (c) => c.name.split(' · ')[0];
   const byLen = [...comps].sort((a, b) => nm(b).length - nm(a).length);  // Mega Menu 를 Menu 로 잘못 세지 않게 긴 이름부터
   const out = new Set();
-  for (const r of u.releases) if ((Date.now() - Date.parse(r.date)) / 864e5 <= 7) for (const sec of r.sections) for (const [, t0] of sec.items) { let t = t0; for (const c of byLen) { const n = c.name.split(' · ')[0]; if (has(t, n)) { out.add(c.no); t = t.split(n).join(' '); } } }
+  for (const r of u.releases) if ((Date.now() - Date.parse(r.date)) / 864e5 <= 3) for (const sec of r.sections) for (const [, t0] of sec.items) { let t = t0; for (const c of byLen) { const n = c.name.split(' · ')[0]; if (has(t, n)) { out.add(c.no); t = t.split(n).join(' '); } } }
   return out;
 })();
 // 컴포넌트 목록 분류: Figma 페이지와 같은 이름과 순서 (components.json 의 category, 2026-11-06 사용자 "피그마 페이지와 같은 카테고리로 분리")
@@ -420,14 +420,15 @@ const written = [];
 const write = (o) => written.push(page(o));
 
 /* ---------------------------------------------------------------- Get Started */
+// 브랜드 줄 예시 이름은 특정 서비스가 아닌 my-brand (2026-11-16 사용자 "첫 화면 코드의 toeic 은 범용 원칙과 맞지 않음")
 // 순서 규칙은 글 대신 코드 주석으로 (11-10 밤 사용자 "3가지 적용": 복사해 가면 같이 따라간다)
 // 등록된 브랜드 (brands/*.json, 2026-11-10 사용자 "구조 보강 2가지"): 구조의 브랜드 카드에 이름 배지, 설치 코드에 브랜드 줄
 const BRANDS = fs.readdirSync(path.join(DS, 'brands')).filter((f) => f.endsWith('.json')).map((f) => ({ slug: f.replace(/\.json$/, ''), name: readJson('brands/' + f).name || f.replace(/\.json$/, '') }));
 const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/ybm-ds.css">
 <script src="${PUBLIC}/dist/ybm-ds.js" defer></script>${BRANDS.length ? `
-<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="${BRANDS[0].slug}"> -->
-<link rel="stylesheet" href="${PUBLIC}/dist/brands/${BRANDS[0].slug}.css">` : ''}`;
+<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="my-brand"> -->
+<link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">` : ''}`;
 // 요청 글은 예시 한 줄로 (11-10 사용자 "프롬프팅을 예시 정도로 중요도를 낮추고", "운영 중인 사이트, 새 서비스, 화면 시안 나눌 필요 없다", 구성은 AI와 함께 / 직접 / Figma로 / 개발 시작하기). 순서와 규칙은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
 // 11-11 사용자 "합쳐져 있는데 나눠줘, 3개로, 공통은 모두 포함, 제목은 대괄호": 묶음마다 상자 하나, 안은 [묶음 이름 예시] → 공통 글 → 예시 목록(- 줄)
@@ -490,6 +491,7 @@ const LLMS_RULES = `## 지킬 것
 // 반응형 기준점 (Foundations Breakpoint, 11-04 시작하기에서 옮김)
 const bpRows = [['sm', '480px', '큰 휴대폰'], ['md', '768px', '태블릿, PC용 컴포넌트로 바뀌는 기준'], ['lg', '1280px', '넓은 PC, 3단 배치'], ['xl', '1440px', '아주 넓은 화면']];
 // 코드 탭 (11-04 사용자 "다크 모드는 프롬프팅과 html을 같이, 탭 형태로", "탭을 코드 상자 안으로"): 탭마다 코드 상자 하나, 상자 머리의 언어 이름 자리에 같은 Chip Tabs. 복사 버튼이 제 상자 코드를 복사하게 상자를 나눈다. 여닫기는 site.js data-site-tab
+// 설치 코드 첫 탭(기본으로 보이는 탭)은 버전 고정 (2026-11-16 사용자: 운영은 버전 고정이 규칙이라). 고정 탭은 브랜드 줄도 고정 주소
 const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-chiptabs site-codetabs__bar" role="tablist" aria-label="보기 방식">${tabs.map(([l], j) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${j === sel}" data-site-tab="${j}">${esc(l)}</button>`).join('')}</div>`; return `<div class="site-codetabs">${tabs.map(([, h], i) => `<div class="site-codetabs__panel"${i ? ' hidden' : ''}>${h.replace(/<span class="ds-codeblock__language">[^<]*<\/span>/, bar(i))}</div>`).join('')}</div>`; };
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
 const hubCard = (href, title, desc, out = false) => `<a class="site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="site-hub__desc">${esc(desc)}</span></a>`;
@@ -521,7 +523,7 @@ ${AI_EXAMPLES.map(([name, ask]) => codeblock(`[${name}]\n\n${AI_COMMON}\n${ask}`
 
 <h2 id="dev">개발 시작하기</h2>
 <p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
-${codeTabs([['최신', codeblock(`${CSS_LINK}`)], [`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/ybm-ds.`, `${PIN}/dist/ybm-ds.`)}`)], ['규칙 파일', codeblock(`# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
+${codeTabs([[`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/`, `${PIN}/dist/`)}`)], ['최신', codeblock(`${CSS_LINK}`)], ['규칙 파일', codeblock(`# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
 curl -O ${SITE_URL}ai/AGENTS.md
 curl -O ${SITE_URL}ai/CLAUDE.md
 curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
