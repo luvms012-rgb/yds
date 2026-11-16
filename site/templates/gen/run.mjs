@@ -28,7 +28,11 @@ all.sort((a, b) => (PLACE[a.slug]?.rank ?? 999) - (PLACE[b.slug]?.rank ?? 999) |
 
 const old = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
 const keepFigma = Object.fromEntries((old.templates || []).filter((t) => t.figma && t.rebuilt).map((t) => [t.slug, t.figma]));
-for (const t of all) fs.writeFileSync(path.join(PAGES, t.slug + '.html'), page({ title: t.name, css: t.css || '', body: t.body, bodyClass: t.bodyClass || '', h1: t.h1 || '' }));
+// 내보내는 HTML 은 순수 코드만: <style>, <script> 안의 /* */ 주석과 HTML 주석을 뺀다(생성기 주석은 만드는 사람용, 2026-11-16 사용자 "지침 모두 삭제. 순수 코드만")
+const pure = (html) => html
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/(<(style|script)\b[^>]*>)([\s\S]*?)(<\/\2>)/g, (m, open, tag, inner, close) => open + inner.replace(/\/\*[\s\S]*?\*\//g, '').replace(/[ \t]+$/gm, '').replace(/\n{2,}/g, '\n') + close);
+for (const t of all) fs.writeFileSync(path.join(PAGES, t.slug + '.html'), pure(page({ title: t.name, css: t.css || '', body: t.body, bodyClass: t.bodyClass || '', h1: t.h1 || '' })));
 const slugs = new Set(all.map((t) => t.slug));
 let removed = 0;
 for (const f of fs.readdirSync(PAGES)) if (f.endsWith('.html') && !slugs.has(f.slice(0, -5))) { fs.unlinkSync(path.join(PAGES, f)); removed++; }
