@@ -41,6 +41,7 @@
 0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만, 바꾼 묶음마다 따로 커밋. 다음 버전을 올릴 때(`node sync.mjs release 1.2.1` 또는 1.3.0, 사용자 확인 뒤) v1.2.0 뒤 변경이 고정 주소에 들어간다.
 1. **Figma 이어서(보류 중, 사용자가 다시 말할 때)**: 편집 계정 luvms@ybm.co.kr, yds-figma-draw 스킬.
    - **새 템플릿 5개(11-16)**: class-survey, class-review-write, exam-venue, ai-tutor-chat, ai-tutor-report 의 빈 COMPONENT 를 만들어 templates.json figma.pc 에 넣고 그린다.
+   - **Avatar 상태 점 자리(11-16)**: 상태 점을 배지와 같은 오른쪽 아래 모서리(right 0, bottom 0)로 바꿨다(모든 모양, 그룹 포함). Figma Avatar Status 변형과 Avatar Group 의 점 위치를 맞춘다.
    - **템플릿 가로 기준 1440 (11-15 밤, 00751f9e)**: 사이트 템플릿 화면 틀을 최대 1440 가운데로 바꿨다. Figma 템플릿(1920 프레임)은 그 전에 그린 것이라 내용이 화면 폭을 채운 모양이다. 이어서 그릴 때는 76쪽 모두 자료를 다시 만들어(figma-styles → tplpage → figma-payload) 처음부터 다시 그린다(이미 그린 62쪽 포함).
    - **템플릿 이름 기준(11-15 밤)**: 40쪽 이름과 관리자 하위 분류 3개를 바꿨다(site/CLAUDE.md 템플릿 이름). Figma 템플릿 COMPONENT 이름(Template/영어 이름)은 그대로라 바꿀 것 없음, Figma 섹션의 하위 분류 이름을 쓰는 곳이 있으면 맞춘다.
    - 템플릿 그리기 나머지: groups.mjs 순서 63 ~ 76번째. Templates 페이지 x -9000 의 `_payload 0 ~ 75` 사각형(3423:3423 + 순번)에 자료가 이미 올라가 있고, 공유 데이터 `yds/tplbatch` 로 `B(시작, 끝)` 을 돌리면 이어서 그린다(0부터 센 번호, 끝은 포함 안 함). 사이트를 그 사이에 고쳤으면 자료를 다시 만들어 올린다.

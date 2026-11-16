@@ -1461,10 +1461,9 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-avatar-status-color: var(--ds-color-bg-positive-solid);
   position: absolute;
   z-index: 1;
-  /* circle: 4시 방향 (cos30°·sin30°) */
-  left: calc(var(--ds-avatar-size) * 0.933);
-  top: calc(var(--ds-avatar-size) * 0.75);
-  translate: -50% -50%;
+  /* 2026-11-16 사용자 "status 와 뱃지 위치가 다른 이유가 없다면 통일": 배지와 같이 오른쪽 아래 모서리에 맞춘다(모든 모양). 원형에서는 점 가운데가 테두리 위에 온다 */
+  right: 0;
+  bottom: 0;
   display: grid;
   place-items: center;
   box-sizing: border-box;
@@ -1474,18 +1473,12 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   background: var(--ds-avatar-status-color);
   box-shadow: 0 0 0 var(--ds-avatar-status-ring) var(--ds-color-bg-layer-default);
 }
-/* 2026-11-04: 크기, 고리, 자리를 정수 px 로 맞춘다. 9.36px 같은 소수 크기와 1.5px 고리는 원이 납작해 보였다 (round() 를 아는 브라우저만, 나머지는 위 값) */
+/* 2026-11-04: 크기와 고리를 정수 px 로 맞춘다. 9.36px 같은 소수 크기와 1.5px 고리는 원이 납작해 보였다 (round() 를 아는 브라우저만, 나머지는 위 값) */
 @supports (width: round(1.5px, 1px)) {
   .ds-avatar__status {
     --ds-avatar-status-size: max(8px, round(up, calc(var(--ds-avatar-size) * 0.26), 2px));
     --ds-avatar-status-ring: max(2px, round(calc(var(--ds-avatar-size) * 0.04), 1px));
-    left: round(calc(var(--ds-avatar-size) * 0.933), 1px);
-    top: round(calc(var(--ds-avatar-size) * 0.75), 1px);
   }
-}
-.ds-avatar:is([data-shape="rounded"], [data-shape="square"]) > .ds-avatar__status {
-  left: calc(100% - var(--ds-avatar-status-size) * 0.2);
-  top: calc(100% - var(--ds-avatar-status-size) * 0.2);
 }
 .ds-avatar__status[data-tone="neutral"] {
   --ds-avatar-status-color: var(--ds-color-fg-neutral-subtle);
@@ -1539,11 +1532,6 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 .ds-avatar-group[data-size="64"]  { --ds-avatar-group-size: 64px; }
 .ds-avatar-group[data-shape="rounded"] { --ds-avatar-group-radius: calc(var(--ds-avatar-group-size) * 0.25 * var(--ds-shape-scale)); }
 .ds-avatar-group[data-shape="square"]  { --ds-avatar-group-radius: 0; }
-/* rounded·square 그룹 안의 상태 점은 모서리 위치로 */
-.ds-avatar-group:is([data-shape="rounded"], [data-shape="square"]) .ds-avatar__status {
-  left: calc(100% - var(--ds-avatar-status-size) * 0.2);
-  top: calc(100% - var(--ds-avatar-status-size) * 0.2);
-}
 
 .ds-avatar-group__overflow {
   position: relative;
