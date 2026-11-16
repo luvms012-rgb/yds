@@ -7,7 +7,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check`. DS(components.json, dist/*.css 머리 주석, tokens.css, icons.css, ybm-ds.js, 루트 index.html 예시, README 6.2)를 읽어 페이지를 만든다.
 - 손으로 쓰는 것: `site/build.mjs`, `site/md.mjs`, `site/src/`(site.css, site.js, figma-notes.json, templates.json, updates.json, requests.json, covers.html, anatomy-*.{json,html}, search-ko.json, examples/), `site/templates/gen/*.mjs`.
 - 생성물(직접 고치지 않음): `site/index.html`, `site/get-started/`, `site/foundations/`, `site/components/`, `site/templates/*.html`, `site/templates/pages/`, `site/assets/`, `site/*.txt`, `site/ai/`.
-- 사이트 CSS, JS 주소에는 내용 해시 `?v=` 를 붙인다(캐시 방지).
+- 사이트 CSS, JS 와 DS 파일 주소에는 내용 해시 `?v=`(build.mjs `ASSET_V`, `DIST_V`, kit.mjs `DIST_V`).
 - 제안만 하는 정책은 PROPOSAL.md(사용자가 고른 것만 넣는다). 레퍼런스 분석은 로컬 전용 REFERENCE-ANALYSIS.md.
 
 ## 꼭 지키는 원칙
@@ -15,7 +15,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 부품은 생김새가 아니라 하는 일로 고른다(components.css 머리 주석의 "고르는 법"). 브라우저 기본 UI 대신 DS 부품을 쓴다.
 - 레퍼런스 사이트와 참고한 서비스의 이름, 주소, 사람 이름은 저장소에 적지 않는다.
 - 로고는 YBM NET 공식 로고(`src/logo-ybmnet.svg`, Figma `NvAvZxDAnYf3nOVkBZ3pyU` 노드 `130:1642`)만, 자르거나 글자를 붙이지 않는다. 다크 모드는 CSS filter 로 흰색.
-- 문서 사이트는 브랜드 색 없이 모노톤(`site/src/brand-mono.css`, 템플릿 미리보기 iframe 과 "새 창으로 보기" 에도, kit.mjs 머리 스크립트). 템플릿을 파일로 열거나 주소에 `?brand` 를 붙이면 브랜드 색 그대로(Figma 재기 도구는 파일로 연다). DS 와 템플릿 원본은 기본 브랜드 파랑 그대로.
+- 문서 사이트는 브랜드 색 없이 모노톤(`site/src/brand-mono.css`). 템플릿 미리보기와 새 창도 모노톤(kit.mjs 머리 스크립트), 파일로 열거나 `?brand` 를 붙이면 브랜드 색. DS 와 템플릿 원본은 기본 파랑.
 - 이름은 모두 ds(--ds-*, 레이어 ds.*, 전역 DS). 예전 --ybm-* 은 dist/compat-ybm.css 로 읽힌다.
 - 배치와 글자 수치는 레퍼런스 A 실측과 Figma `2662:26` 기준이고 값은 site.css 가 정답이다. 값을 바꾸면 Figma 2662:26 도 맞춘다.
 
@@ -29,16 +29,17 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 메뉴 다섯: Get Started, Foundations, Components, Templates, Updates. 페이지 제목은 왼쪽 메뉴와 같은 영문.
 - 배치(`page({ layout })`): page(가운데 한 칸: Get Started, Updates) / doc(글 + 목차: Foundations, 컴포넌트 상세) / wide(메뉴 옆 넓은 폭: 컴포넌트 목록, 템플릿 문서 보기) / full(템플릿 목록, 가운데 1552).
 - 왼쪽 메뉴: Foundations, Components 는 ABC 순(컴포넌트 목록 맨 위 찾기 칸, 한글로도 찾기 `search-ko.json`), 템플릿은 groups.mjs 순서와 한국어 이름(분류 칩의 한국어는 build.mjs `TPL_GROUP_KO`), 분류 묶음은 접는 아코디언(접힘 기억, 지금 페이지 묶음은 펼침). 하위 분류 이름 줄은 그리지 않는다.
-- 왼쪽 메뉴 빨간 점: 새 컴포넌트(components.css 머리말 "(날짜 추가)" 가 가장 늦은 묶음, 30일), Updates 문장에 영어 이름이 나온 컴포넌트(3일, 11-16 7일에서 줄임), Updates "템플릿" 소식에 이름이 나온 템플릿(30일). build.mjs `NEW_COMPS`, `UPD_COMPS`, `NEW_TPLS`.
-- 사이트 찾기: 상단 돋보기와 Ctrl/Command + K 가 여는 DS Command Palette(`#site-search`, 창과 키보드는 ybm-ds.js). 결과는 site.js "사이트 찾기" 가 `assets/search.json`(build.mjs 끝에서 만든다)을 처음 열 때 읽어 그린다. 찾는 대상은 시작하기 절, Foundations 쪽과 절, 컴포넌트(search-ko.json 한글 낱말로도), 컴포넌트 예시, 템플릿(영어 이름, 분류로도), 토큰, 아이콘. 범위 칩, 종류별 묶음과 "n개 더 보기", 찾은 글자 강조, 최근 연 것 5개(localStorage ybm-site-search-recent). 토큰 결과는 `#t=이름` 으로 그 표 줄을 칠하고, 아이콘은 `#q=이름` 으로 Library 찾기 칸에 넣는다. 왼쪽 메뉴의 컴포넌트 찾기 칸은 그대로 둔다.
-- 다크 모드는 기기 설정을 따르고 상단 버튼 선택이 우선(localStorage ybm-site-theme).
-- 상자 모양은 메인 코드 상자 하나로 맞춘다(11-16 사용자): 머리 줄은 회색(bg-neutral-weak-alpha, 높이 44, 선 없음), 내용은 흰 바탕, 머리 줄 탭은 DS Segmented Control 기본 크기(site-seg, 사용자 "이 컴포넌트로 최종", 상자마다 탭 줄이 따로 있어도 선택 배경이 미끄러지게 site.js 가 옮긴다). 코드 상자, 컴포넌트 예시, 템플릿 보기, AI 요청 글 모두 같다. 표는 흰 바탕 + 줄 선으로 구분한다.
+- 왼쪽 메뉴 빨간 점: 새 컴포넌트(components.css 머리말 "(날짜 추가)" 가 가장 늦은 묶음, 30일), Updates 문장에 이름이 나온 컴포넌트(3일), Updates "템플릿" 소식에 이름이 나온 템플릿(30일). build.mjs `NEW_COMPS`, `UPD_COMPS`, `NEW_TPLS`.
+- 사이트 찾기: 상단 돋보기와 Ctrl/Command + K 의 DS Command Palette(`#site-search`). site.js "사이트 찾기" 가 `assets/search.json`(build.mjs 끝)을 처음 열 때 읽는다. 대상은 시작하기, Foundations, 컴포넌트(search-ko.json), 예시, 템플릿, 토큰(`#t=이름` 표 줄 칠하기), 아이콘(`#q=이름`). 범위 칩, 종류별 묶음과 "n개 더 보기", 글자 강조, 최근 5개.
+- 다크 모드는 기기 설정을 따르고 상단 버튼 선택이 우선(localStorage ybm-site-theme). 다크면 html `data-theme="dark"`, 라이트면 지운다. 테마별 그림은 이 표시만 본다(prefers-color-scheme 를 따로 보지 않는다).
+- 상자 모양은 메인 코드 상자 하나: 회색 머리 줄(bg-neutral-weak-alpha, 높이 44, 선 없음) + 흰 내용, 머리 줄 탭은 DS Segmented Control 기본 크기(`site-seg`, 선택 배경이 미끄러진다). 코드 상자, 예시, 템플릿 보기, AI 요청 글 모두. 표는 흰 바탕 + 줄 선.
 - 사이트 글자는 크기마다 정한 줄높이, 굵기 400/500/600, 자간 0. 전 페이지 검사 스크립트는 `.cache/typo/audit.js`(로컬 전용, 미리보기에서 불러 `window.__audit`).
 - 사이트 CSS 는 레이어 밖이라 본문 규칙에서 미리보기 안(`.pv-stage`, `.site-tile__inner`, `.site-example__preview`)을 `:not()` 으로 뺀다.
-- Themes 는 숨김(build.mjs `SHOW_THEMES = false`, 만드는 곳 `node site/themes/gen.mjs`, 다시 켜자고 하기 전에는 제안하지 않는다). 다시 꺼내면 별도 층이 아니라 미리 만든 브랜드 예시로 합친다.
+- Themes 는 숨김(build.mjs `SHOW_THEMES = false`, `node site/themes/gen.mjs`, 다시 켜자고 하기 전에는 제안하지 않는다). 다시 꺼내면 미리 만든 브랜드 예시로 합친다.
+- 맨 위로 버튼: 모든 페이지, 화면 높이만큼 내리면 오른쪽 아래에 떠오르며 나타난다(`[data-site-totop]`, 그림자 없음, 마우스를 올리면 화살표만 위로).
 
 ## 움직임 (2026-11-16)
-- 메인(Get Started) 요청 글 타이핑만 둔다. 위 메뉴 내려오기, 스크롤 페이드인, 썸네일 차례로 보이기, NEW 뱃지 탄성은 사용자가 지웠다(다시 하자고 하기 전에는 제안하지 않는다). 타이핑은 상자가 보이면 하나씩 한 글자씩(누르거나 포커스하면 바로 끝까지), 기다리는 상자에는 글이 놓일 줄마다 DS Skeleton. 움직임 줄이기 설정이면 끔. 코드는 site.js 끝 "소소한 움직임", site.css 끝, build.mjs 머리 스크립트(메인에만).
+- 메인 요청 글 타이핑만 둔다(상자가 보이면 한 글자씩, 누르면 끝까지, 기다리는 상자에 Skeleton, 동작 줄이기면 끔. site.js 끝 "소소한 움직임"). 위 메뉴 내려오기, 스크롤 페이드인, 썸네일 차례로, NEW 탄성은 사용자가 지웠다(다시 하자고 하기 전에는 제안하지 않는다).
 
 ## Get Started
 - 순서: 리드 한 문장 → 구조 카드 3개 → AI와 함께 시작하기 → Figma로 시작하기 → 개발 시작하기 → 파일 표. 원본은 build.mjs.
@@ -50,13 +51,11 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 
 ## Updates
 - 소식(`site/src/updates.json` 맨 위 그날 날짜): DS 시스템 변경과 새 템플릿 추가만. 종류는 "새 기능", "변경된 부분". 항목 앞 영역 배지는 컴포넌트, 템플릿, 아이콘, 토큰, 브랜드, 규칙 중 하나("DS" 는 쓰지 않는다). 사이트 꾸밈, 템플릿 고치기는 적지 않는다. 버전을 올리면(`node sync.mjs release`) 맨 위 소식에 버전이 붙는다.
-- 요청 탭(`updates-requests.html`, `site/src/requests.json`): 사용자가 "이 요청 추가", "반영됨으로" 하면 Claude 가 고쳐 배포. 같은 요청은 count 를 올리고, 이름은 쓰지 않고 소속만. 요청 제목과 반영 내용은 줄이지 않고 서술형 문장(합니다체)으로 끝맺는다. 상태 순서 검토 중, 접수, 반영됨, 보류. 비면 Empty 를 보이고 새 요청 점은 띄우지 않는다(build.mjs `updTabs`, `LATEST_REQUEST`).
-- 요청 탭 순서(11-16 사용자): 탭 → 요청 목록 → 의견 보내기 버튼. 결정 기준은 사용자가 우선 지웠다(다시 넣자고 하기 전에는 제안하지 않는다).
-- 사용 현황 탭(`updates-usage.html`): 서비스 목록은 `site/src/services.json`(이름, 검사할 화면 주소), 결과는 `node tools/usage.mjs` 가 만드는 `site/src/usage.json`(서비스별 버전과 복사본 여부, 쓰는 컴포넌트, 직접 쓴 색 수). 담당, 버전별 내려받기는 사용자가 지웠다(11-16 "복잡함"), 한 칸 안 두 정보는 세로로 쌓지 않고 가로 한 줄로. 한 달에 한 번 사용자가 말할 때 돌리고 다시 빌드한다.
-- 새 소식, 새 요청은 Updates 메뉴와 탭에 점(site.js, localStorage ybm-site-updates-seen, ybm-site-requests-seen). 기준 값은 build.mjs `LATEST_UPDATE`(맨 위 날짜, 항목 수, 영역), `LATEST_REQUEST`(줄마다 날짜, 상태, 반영한 날, 요청 수)라 문구만 고치면 NEW 가 뜨지 않는다. 이 값은 `assets/latest.json` 에 쓰고 모든 페이지가 캐시 없이 새로 읽는다(페이지 HTML 은 10분 캐시라 페이지마다 값이 달라 NEW 가 들쭉날쭉했다). 못 읽으면 띄우지 않는다.
-- 의견 보내기: build.mjs `FEEDBACK_FORM`(구글 폼), 입구는 푸터 하나.
-- 사용 현황 탭(`updates-usage.html`): 컴포넌트 쓰임 막대만(쓰는 곳 많은 순, 이름은 컴포넌트 페이지 링크). 서비스 카드, 버전, 색, 안 쓰는 목록은 사용자가 지웠다(usage.json 에는 남아 있다). 원본 `node tools/usage.mjs` → usage.json. 세 탭 모두 탭 아래 40 에서 내용 시작.
-- 맨 위로 버튼: 모든 페이지, 화면 높이만큼 내리면 오른쪽 아래(`[data-site-totop]`, site.js).
+- 요청 탭(`site/src/requests.json`): 사용자가 "이 요청 추가", "반영됨으로" 하면 Claude 가 고쳐 배포. 요청자는 소속만(이름은 공개하지 않는다, 사용자 확인), 같은 요청은 count. 제목과 반영 내용은 줄이지 않은 합니다체 문장. 상태 순서 검토 중, 접수, 반영됨, 보류. 탭 → 목록 → 의견 보내기(오른쪽). 결정 기준 칸은 넣지 않는다. 비면 Empty.
+- 사용 현황 탭: 컴포넌트 쓰임 막대만(많이 쓰는 순, 이름은 컴포넌트 링크). `node tools/usage.mjs` 가 services.json 의 화면을 읽어 usage.json 을 만든다(한 달에 한 번 사용자가 말할 때). 서비스 카드, 버전, 색, 안 쓰는 목록, 담당, 내려받기는 사용자가 지웠다.
+- 세 탭 모두 탭 아래 40 에서 내용 시작, 탭 이름과 겹치는 큰 제목은 두지 않는다.
+- NEW 표시(Updates 메뉴와 탭 점): 기준 값은 `assets/latest.json`(build.mjs `LATEST_UPDATE` 맨 위 날짜, 항목 수, 영역 / `LATEST_REQUEST` 줄마다 날짜, 상태, 반영한 날, 수)이고 모든 페이지가 캐시 없이 읽는다. 문구만 고치면 뜨지 않고, 못 읽으면 띄우지 않는다. 본 기록은 localStorage ybm-site-updates-seen, ybm-site-requests-seen.
+- 의견 보내기: build.mjs `FEEDBACK_FORM`(구글 폼). 폼 응답은 자동으로 오지 않아 사용자가 붙여 주면 요청 탭에 올린다.
 
 ## Foundations 와 컴포넌트 문서
 - Foundations: 항목마다 한 쪽, ABC 순, 큰 그림 없음. 구성은 개요 → 토큰 표(tokens.css 에서 읽음) → 코드에서 쓰기 → 사용 지침. Color, Iconography 는 탭으로 나눈다(build.mjs `FD_TABS`).
@@ -86,12 +85,12 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
   - 데이터 표 아래는 Table Pagination(kit `tablePager`), 페이지 번호 Pagination 은 일반 목록에만. 표는 DS Table 그대로(두 줄 칸 `.ds-table__stack`, 묶음 행 `tr.ds-table__group`), 옆으로 미는 표는 최소 760.
 - 글자 위계(kit.mjs): 페이지 제목 `tp-h1` 24 SemiBold, 섹션 `tp-h2` 20 SemiBold, 카드 `tp-h3` 16 Bold, 작은 제목 `tp-h4` 14 Bold, 항목 제목 `tp-item-title` 16 SemiBold, 이름 `tp-name` Medium, 가격 `tp-amount` Bold, 부가 정보 `tp-caption` 13. 11~12 는 배지와 태그만.
 - 템플릿 이름(2026-11-15 사용자 "쉽게 찾고 읽히는 이름"): 하는 일로 [대상] + [화면 종류]. 화면 종류는 홈, 목록, 상세, 쓰기, 신청, 완료, 조회, 결제, 관리, 현황, 설정만 쓰고 대시보드는 "○○ 현황". 같은 일을 하는데 모양만 다르면 괄호에 모양(로그인 (기본), 결제 (단계별)). 표, 폼, 카드, 패널 같은 부품 이름은 이름에 쓰지 않는다. 하위 분류 이름도 같은 기준(관리자: 현황, 처리, 목록 관리, 등록). 이름을 바꿔도 주소(slug)는 그대로 둔다.
-- 가로 기준(2026-11-15 사용자 "1440으로 일괄 통일"): 화면 틀은 좌우 여백 포함 최대 1440(`--tp-max`, Breakpoint xl), 넓은 화면에서는 가운데. 그보다 좁으면 `--tp-gutter` 16 / 24 만 두고 채운다. 한 줄 화면만 `--tp-narrow` 720. 공통 규칙은 kit.mjs(`.tp-app > :is(.tp-head, .tp-content, ...)`), 옆 메뉴 화면과 AI 대화는 틀 전체를 1440 에 두고 양옆에 선, 화면 끝까지 선이 가는 띠(위 막대, 탭 줄, 아래 버튼 막대, 듣기 막대)는 선은 끝까지 두고 안의 글만 1440 안으로. 예외는 전체 화면 플레이어 2쪽(video-player, learning-player). 새 틀 클래스를 만들면 이 규칙에 넣는다. 위 메뉴, 머리글, 본문 끝선을 맞춘다. 페이지 스크롤바는 숨긴다.
+- 가로 기준: 화면 틀은 좌우 여백 포함 최대 1440(`--tp-max`) 가운데, 좁으면 `--tp-gutter` 16 / 24. 한 줄 화면만 `--tp-narrow` 720(kit 의 `.tp-head:has(+ .tp-content > :is(...))` 에 클래스를 더한다). 옆 메뉴 화면과 AI 대화는 틀 전체를 1440 에 두고 양옆 선, 끝까지 가는 띠(위 막대, 탭 줄, 아래 막대)는 선만 끝까지. 예외는 전체 화면 플레이어 2쪽. 위 메뉴, 머리글, 본문 끝선을 맞추고 페이지 스크롤바는 숨긴다.
 - 배치 기준 화면은 커뮤니티, 요금제, 시험 신청. 본문과 정보가 함께 있으면 `.tp-body--panel` 로 오른쪽 패널을 나눈다. 시험 신청 틀: 위 메뉴, 머리글, 카드, 넓은 화면 오른쪽 고정 요약 340, 주요 버튼 brandSolid.
-- 점검: 한 줄의 버튼, 고르기, 입력, 세그먼트는 높이가 같다(kit `even()`, 고르기와 입력은 small 없음). 사이트 페이지도 같다: 한 줄에 놓는 버튼은 크기 하나만 쓰고, 새 버튼을 줄에 더할 때는 옆 버튼의 data-size 를 먼저 본다. `node sync.mjs check` 의 "5-1d 한 줄 버튼 높이" 가 섞인 줄을 막는다(세로로 쌓는 칸은 그 검사의 STACKED 에 더한다). inset box-shadow 선은 자식 배경에 가리지 않게(바탕은 tr 에). 375, 768, 1100, 1440 에서 넘침과 좁은 칸 글자 꺾임이 없는지 본다.
+- 점검: 한 줄의 버튼, 고르기, 입력, 세그먼트는 높이가 같다(kit `even()`, 고르기와 입력은 small 없음). 사이트도 한 줄 버튼은 크기 하나, 더할 때는 옆 버튼 data-size 를 먼저 본다(check "5-1d" 가 막는다, 세로로 쌓는 칸은 STACKED 에). inset box-shadow 선은 자식 배경에 가리지 않게(바탕은 tr 에). 375, 768, 1100, 1440 에서 넘침과 좁은 칸 글자 꺾임이 없는지 본다.
 - 보이는 제목이 없는 화면은 생성기 return 에 `h1: '제목'`(kit `page()` 가 숨김 h1 `tp-sr`).
 - 템플릿 `<style>` 은 DS 레이어 밖이라 `.tp-*` 에 display 를 주면 `u-hide-from-md` 보다 세다. 모바일 전용 막대는 `@media (min-width: 768px) { display: none }` 을 직접 쓴다. 로그인 화면은 인사말 없이 숨김 h1, 아이디 저장 체크박스(기본 켜짐).
-- 사진은 kit `PHOTOS` 주제별 Unsplash 만, 색칠한 빈 사진 자리 없음. 이미지 비율은 Image Frame `data-ratio`(교재 표지 3:4, 포스터 2:3). 차트는 마우스를 올리면 값 풍선(kit CHART_JS). 차트 색 기준(11-16): 계열은 kit `C(i)` 순서(1번 파랑, 2번 주황...), 비교 기준과 남은 몫은 bg-neutral, 상태를 나누는 차트만 상태 색. 문서 사이트 모노톤에서도 차트 색은 그대로(brand-mono.css `--site-chart-1`).
+- 사진은 kit `PHOTOS` 주제별 Unsplash 만, 색칠한 빈 사진 자리 없음. 이미지 비율은 Image Frame `data-ratio`(교재 표지 3:4, 포스터 2:3). 차트는 마우스를 올리면 값 풍선(kit CHART_JS). 차트 색: 계열은 kit `C(i)` 순서, 비교 기준과 남은 몫은 bg-neutral, 상태를 나누는 차트만 상태 색. 모노톤 사이트에서도 차트 색은 그대로(brand-mono.css `--site-chart-1`).
 - 이름과 데이터: 나는 '와이비엠'(ybm@example.com, 아이디 ybm), 기관은 가상 이름(한빛대학교, 한빛전자, 한빛아카데미), 시험과 교재는 일반 이름. 실제 서비스, 교재, 사람 이름은 넣지 않는다. 이름에 가운뎃점 금지.
 - 거르기 칸은 찾기 + 고르기 한 줄, 그 아래 분류 칩, 결과 위 개수 + 정렬. 이동 없는 체크 목록은 kit `checks()`.
 - 온라인 평가(test.mjs): 문항 글은 `tp-ex` 안. 답안지 상태는 같은 모양에 색만(안 함 흰 바탕, 답함 bg-neutral, 지금 brand-solid, 다시 보기 warning-weak).
@@ -102,16 +101,16 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 분류 기준은 쓰는 사람: 시험, 학습, 교재 등에는 고객이 쓰는 화면만, 운영자와 담당자 화면은 주제와 상관없이 관리자.
 - 교재 분류는 쇼핑이 아니라 교재를 찾고 음원, 자료, 강의로 공부를 돕는 화면(장바구니, 요금제는 결제 분류).
 - 뺀 템플릿은 groups.mjs `REMOVED`(생성기 코드도 지움, 되살리려면 git 기록). 다시 넣자고 하기 전에는 편집기 도구, 문서 사이트, 모양만 다른 변형을 템플릿 목록에 더하지 않는다(시안에서 배치를 여러 개 내는 것은 괜찮다).
-- 생성기: kit.mjs(공용 CSS, 부품, 차트), frame.mjs(위 메뉴, 옆 메뉴, 고르기 상자, 달력), 분류별 dashboard, table, form, settings, login, content, aichat, gallery, community, pricing, mypage, commerce, exam, test, learning, service, basics, admin, media, books, feedback(설문, 수강평), lesson(AI 학습 리포트). pages/ HTML 은 직접 고치지 않는다.
-- 새 템플릿은 늘 UI 패턴 카탈로그에서 레퍼런스를 먼저 모은다(사용자 "템플릿 만들 때는 항상 uipattern 에서 수집"). `uipatterns/web/data.js`, `mo/data.js` 에서 이름으로 찾고 그림은 imagesisa 주소 `uipatterns/{web|mo}/<경로>` 로 받아 본다. 본 서비스 이름은 저장소에 적지 않고 구조만 가져온다.
+- 생성기: kit.mjs(공용 CSS, 부품, 차트), frame.mjs(위 메뉴, 옆 메뉴, 고르기 상자, 달력), 분류별 dashboard, table, form, settings, login, content, aichat, gallery, community, pricing, mypage, commerce, exam, test, learning, service, basics, admin, media, books, feedback(설문, 수강평), lesson(AI 학습 리포트, 회사 PC 에서 레슨 홈 대신). pages/ HTML 은 직접 고치지 않는다.
+- 새 템플릿은 늘 UI 패턴 카탈로그(`uipatterns/web/data.js`, `mo/data.js`, 그림은 imagesisa `uipatterns/{web|mo}/<경로>`)에서 레퍼런스를 먼저 모은다. 서비스 이름은 저장소에 적지 않는다.
 - 새 템플릿을 더하면 Updates 에 "템플릿" 소식 한 줄, Figma Templates 는 남은 일에 적는다.
 
 ## 템플릿 목록과 문서 보기
-- 목록 썸네일은 미리 찍은 그림(`site/templates/thumbs/<slug>.webp`, `-dark.webp`, 모노톤, 1080x675)이다. `node tools/tpl-thumbs.mjs` 가 바뀐 템플릿만 찍고(`--all` 모두), `node sync.mjs deploy` 가 배포 전에 자동으로 돌린다. 그림이 낡으면 check "5-1e" 가 막는다. 사이트와 템플릿의 DS 파일 주소에는 내용 해시 `?v=`(build.mjs `DIST_V`, kit.mjs `DIST_V`).
+- 목록 썸네일은 미리 찍은 그림(`site/templates/thumbs/<slug>.webp`, `-dark.webp`, 모노톤 1080x675). `node tools/tpl-thumbs.mjs`(바뀐 것만, `--all`)를 deploy 가 자동으로 돌리고, 낡으면 check "5-1e" 가 막는다.
 - 목록: 가운데 1552, 분류 칩, 3열, 컴포넌트 목록처럼 16:10 미리보기 아래에 이름만(덮개, 설명, 버튼, 마우스 효과 없음, 설명과 Figma 는 문서 보기에). 카드는 문서 보기로 바로 간다(보기 창은 site.js `TPL_VIEWER = false`, 옛 `?preview=` 주소는 문서 보기로 넘긴다).
-- 문서 보기의 "새 창으로 보기"(11-16 사용자): 보기 창(제목, 설명, 새 탭 아이콘, 닫기, 창 밖 좌우 화살표와 키보드 좌우, 순서는 목록 순서 build.mjs `TPL_LIST_JSON`)으로 연다. Ctrl, Cmd, 가운데 버튼은 진짜 새 탭. 코드는 site.js 템플릿 보기 창 아래 블록.
-- 문서 보기: 위에 AI 요청 글 상자(11-16, 미리보기를 보면서 쓰게 탭에서 뺐다), 아래 미리보기 | 코드 탭. 미리보기는 실제 기기 폭(PC 1440x900, 모바일 375x760, 화면 폭은 아이콘 두 개 monitor / smartphone, 태블릿은 11-16 사용자가 뺐다)으로 그리고 site.js `fitStage` 가 줄인다. 코드는 긴 줄을 접는다.
-- AI 요청 글은 build.mjs `TPL_PROMPT` 하나가 정본: 안내서 문장과 주소 한 줄, 다음 줄에 "'이름' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘." 와 템플릿 주소. 빈칸은 메인처럼 파랑 글자(사람마다 답이 다른 칸이라 예시로 바꾸지 않음). 상자는 코드 탭처럼 모서리 없이. 문구를 바꿀 때는 사용자에게 묻는다.
+- "새 창으로 보기" 는 보기 창(제목, 설명, 새 탭, 닫기, 좌우 화살표와 키보드, 순서 build.mjs `TPL_LIST_JSON`). Ctrl, Cmd, 가운데 버튼은 진짜 새 탭.
+- 문서 보기: 위에 AI 요청 글 상자, 아래 미리보기 | 코드 탭. 미리보기는 PC 1440x900 / 모바일 375x760(아이콘 두 개, 태블릿 없음)으로 그리고 site.js `fitStage` 가 줄인다.
+- AI 요청 글은 build.mjs `TPL_PROMPT` 하나가 정본: 안내서 문장과 주소 한 줄, 다음 줄에 "'이름' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘." 와 템플릿 주소. 빈칸은 파랑 글자(예시로 채우지 않는다). 문구를 바꿀 때는 묻는다.
 
 ## Figma 연결
 - 절차는 `.claude/skills/yds-figma-draw/SKILL.md`(그리기), `.claude/skills/ds-sync/SKILL.md`(변수, 컴포넌트 대조).
