@@ -12,6 +12,70 @@
 
 ## 기록 (최신이 위)
 
+### 인수인계 원문 2026-11-16 (다시 쓰기 전)
+
+- 갱신: 2026-11-16 집 Mac. 11-15 밤 작업은 모두 push 돼 있다. 시작은 `git pull` 뒤 이 파일. 지난 기록은 [log.md](log.md) 에서 필요할 때만.
+
+#### 멈춘 곳 (11-16 회사, 사용자 "마무리 하고 우선 스탑", 커밋만, push 안 함)
+
+- **하는 일**: 사용자 "배포를 앞두고 있어. 우선 피그마 싱크 진행, 각 화면의 피그마, 코드, 마크다운 링크까지 전수 검사". 질문은 추천안으로 고르고 진행.
+- **된 것**: 변수, 컴포넌트 117세트 대조 맞음(Image Frame 변형 3 → 5 를 components.json 에 고침). 새 템플릿 5쪽 빈 COMPONENT(3428:4019 ~ 3428:4023, templates.json figma.pc). 그리기 도구 두 군데 고침: 칸 자리가 글 순서와 다른 격자(왼쪽 목록 + 오른쪽 지도)는 열마다 세로 묶음으로(tokens/figma-docpage.template.js), 선택 상자 안 템플릿 설명 줄(tp-vn__meta)도 설명으로(sync.mjs). 고사장 신청 (지도) 는 사이트와 같게 그려짐 확인.
+- **Figma 상태**: Templates 페이지 `_payload` 사각형 81개(3429:4019 ~ 4099, 공유 데이터 yds/tplrects 순서 = groups.mjs 순서) 가운데 앞 60개는 새 자료, 뒤 21개(61번째부터)는 고치기 전 자료. 그린 것은 0 ~ 2번(exam-apply, exam-venue, exam-schedule).
+- **이어서**: 뒤 21개 자료를 다시 올린다(`node tokens/figma-payload.mjs <slug>` → upload_assets nodeIds 3429:4079 ~ 4099 → curl). 그다음 공유 데이터 tplbatch 로 3 ~ 80번을 8개씩 그린다(`new Function('return (' + figma.root.getSharedPluginData('yds','tplbatch') + ')')()(from, to)`). 이어서 tplimgs 사진 칸 채우기, 넘침과 글 대조, 섹션을 groups.mjs 순서로 다시 묶기(Commerce 섹션 이름 Books 로, x -6000 의 새 5쪽 옮기기), `_payload` 사각형과 공유 데이터(unpack, tplrun, tplbatch, tplimgs, tplrects) 지우기. 문서 프레임은 11-13 ~ 11-15 예시 정리 51곳, 사용 지침 6개(Chip, Help Bubble, List, Markdown, Radio Group, Image Frame), Radio Group 가로 / Badge xlarge / Accordion inset 예시, 코드 링크 줄 번호 다시 맞추기(지금 sync.mjs 에 links 명령이 없다고 나오니 만드는 곳을 먼저 찾는다). 끝으로 모든 쪽의 Figma, 코드, Markdown 링크 전수 검사와 가벼운 검수 save.
+
+#### 한 것 (11-16)
+
+- **새 템플릿 3개**: 사용자 "설문조사, 리뷰 작성, 고사장 고르기(지도)", UI 패턴 카탈로그의 만족도 조사, 설문, 수강평, 리뷰 작성, 매장 찾기 화면을 보고 만들었다. 수강 설문 쓰기(class-survey), 수강평 쓰기(class-review-write)는 새 생성기 feedback.mjs, 학습 > 수강. 고사장 신청 (지도)(exam-venue)는 exam.mjs, 시험 > 접수 둘째. 지도는 토큰 색 도형(길, 강, 공원)과 핀(tp-pin), 넓은 화면은 왼쪽 목록 + 오른쪽 지도와 고른 고사장 카드, 좁은 화면은 제목, 지도, 목록, 아래 고정 막대. Figma 프레임은 아직 없다(남은 일).
+- **AI 학습 대화(ai-tutor-chat)**: 사용자 "학습용 채팅 UI, 챗튜터 방식". aichat.mjs, 학습 > 수강. 튜터 말풍선 아래 번역과 듣기, 내 말 아래 "더 자연스럽게" 고쳐 주기, 말해 볼 문장 칩, 큰 마이크, 1280 부터 오른쪽 오늘의 미션. 대화는 최신이 보이게 아래부터(column-reverse).
+- **AI 학습 리포트(ai-tutor-report)**: 사용자 "AI 학습 후 리포트 보기 화면, 레퍼런스를 충분히", "그래프나 차트 포함". lesson.mjs, 학습 > 수강 AI 학습 대화 다음. 요약 숫자 4개(추이 선), 영역별 점수 막대, 점수 변화 선, 고칠 문장, 1280 부터 오른쪽 말한 비율 도넛, 새로 익힌 표현, 다음 학습. 레퍼런스는 UI 패턴 카탈로그의 수업 요약, 학습 리포트, 진단 결과 화면.
+- **레슨 홈 삭제**: 사용자 "레슨홈은 삭제". groups.mjs REMOVED 에 넣고 생성기 코드도 지움(되살리려면 c98ca3f2).
+- **파일 용량 줄임**: 사용자 "파일 용량 검토" → "둘 다 진행". dist/ybm-ds.css 는 이제 tools/bundle.mjs 가 원본 CSS 다섯 개를 레이어 블록으로 묶고 주석을 뺀 생성물(site/build.mjs 가 시작할 때 다시 묶고 check 가 대조, 압축 전송 89KB → 57KB, 요청 6번 → 1번, 화면 9쪽 픽셀 같음). 글꼴은 Pretendard 가변 글꼴 글자 조각 92개(dist/fonts/subset, 공식 패키지 1.3.9, OFL)로 바꾸고 통짜 4개(3MB)는 지움, 보통 화면 230 ~ 420KB. 설치 코드는 그대로, v1.2.0 고정 주소는 다음 버전부터 적용.
+- **템플릿 목록 카드**: 컴포넌트 목록처럼 미리보기 아래 이름만, 덮개와 마우스 효과 없음. 새 창으로 보기도 모노톤. 한 줄 버튼 크기 섞임 검사(check 5-1d).
+- **찾기 창 범위 칩 왼쪽 여백 없앰**: Chip Tabs `data-inset="none"`.
+- **사이트 찾기(배포됨)**: 사용자 "레퍼런스 A, B 검색을 고려해서 유용하게". 상단 돋보기와 Ctrl/Command + K, DS Command Palette 에 범위 칩, 종류별 묶음, 찾은 글자 강조, 최근 연 것, 아래 키 안내. 찾는 대상 783개(시작하기, Foundations, 컴포넌트와 한글 낱말, 예시, 템플릿, 토큰, 아이콘, assets/search.json 117KB 를 처음 열 때만 받는다). 토큰과 아이콘 결과는 그 자리로 연다. Figma Get Started 머리 막대에 돋보기 버튼을 더할지는 Figma 싱크 때 같이.
+
+#### 한 것 (11-15 밤, 모두 배포됨)
+
+- **사이트**: 상단 메뉴 지금 페이지 글자 SemiBold(695b44f4). AI 요청 글을 안내서 문장 / 주소 / 요청 세 줄로 통일하고 안내 문장에 "[ ] 안에 자유롭게" 추가(템플릿 요청 글 포함, 6a3c7b42).
+- **템플릿 사진과 내용(1184d4d2)**: 사용자 "더미 이미지가 연관성이 없어 이질감, YBM 계열사 검토". YBM 화면(강의와 강사, 수강생, 시험, 교재, 듣기와 말하기, 어학연수, 비즈니스 영어)에 맞춰 kit.mjs `PHOTOS` 를 모두 교육 장면으로 바꿨다(lecture, study, exam, book, listen, campus, work, person 등, Unsplash 34장 모두 열림 확인). 영상 템플릿은 어학연수 다큐와 강의로, 커뮤니티 4쪽은 영어 공부 커뮤니티로(사용자 고름), 장바구니, 주문, 상품 갤러리는 교재와 학습 용품으로(합계 다시 계산), 서비스 메인 배너는 시험장 사진.
+- **Figma(진행 중, 사용자 "피그마 작업 우선 후순위로 보류")**: Get Started 프레임 3069:2 를 사이트와 같게(구조 카드 문구, 절 리드 문장 3개, 요청 글 3개, v1.2.0 고정 탭). 폼 필드 바탕 bg/layer-default 48변형(underline 제외), Badge xlarge 18개(세 크기 높이 20/24/28 로 CSS 와 같게, 위아래 여백 0), Accordion inset=default/none(인라인 6개 추가), Avatar 와 Avatar Group, Overflow 42 → 40, Image Frame 3:4, 2:3, 아이콘 표 편집 묶음에 volume-2, captions, headphones. components.json 변형 수 Badge 54, Accordion 18. 템플릿: 뺀 21개 프레임 지움(사용자 확인), 새 13쪽 빈 COMPONENT(3422:4591 ~ 3422:4603, templates.json figma.pc 에 넣음, 페이지 왼쪽 x -6000), 76쪽을 사이트(새 사진)로 다시 그리는 중 1 ~ 62번째까지 그림(groups.mjs 순서, 바탕 bg/canvas 까지).
+
+#### 한 것 (11-14 ~ 11-15, 모두 배포됨)
+
+- **템플릿 76개**: 93개에서 잘 안 쓰는 도구, 문서 화면과 겹치는 화면 21개를 뺐다(groups.mjs `REMOVED`, 생성기 코드도 지움). 쇼핑 분류를 교재로 바꾸고 교재 4쪽, 영상과 클래스 6쪽, 관리자 처리 3쪽을 더했다. 분류 기준은 쓰는 사람(담당자 화면은 관리자).
+- **템플릿을 YDS 규칙에 맞춤**: 기준점 1024 → 1280, 모바일 위 막대 Top App Bar, Avatar 는 DS 크기만, 모두 보기 화살표, 상태 Badge 색 규칙, 표 아래 Table Pagination, 숨김 h1.
+- **DS 추가와 변경**: Image Frame 3:4, 2:3 / Radio Group 가로 / 아이콘 volume-2, captions, headphones / Avatar 42 → 40(42 도 40 으로 보임) / 사용 지침 4개.
+- **AI 안내서**: 토큰 줄이기(yds.txt 41k → 30k, yds-full 225k → 180k), 요청 글 줄바꿈 규칙, AI 시험 3개(셋 다 검사 오류 0) 결과로 규칙 문장 고침, 브랜드를 "모양만 바꾸는 값의 묶음" 으로 설명. 기본 브랜드 색은 파랑 그대로(사용자 결정).
+- **사이트**: 첫 화면 버튼 줄 제거, 템플릿 카드 "자세히 보기", Updates 배지 이름(컴포넌트, 템플릿 등)과 요청 목록 비움, 템플릿 왼쪽 메뉴 점.
+- **시안 제약 풀기(11-15)**: 템플릿의 기능 안내 글(Callout, 입력 도움말, 빈 화면 안내)은 지우지 않는다. 안내서에 없는 요소를 만드는 비상구, Lucide 아이콘 더하기, 템플릿은 출발점이고 배치는 자유라는 문장을 더했다. 메인과 이벤트 화면의 큰 제목 허용, 배치 기준 화면과 사진 목록 완화는 사용자가 고르지 않아 그대로다(필요하면 말한다고 함).
+- **규칙 문서 줄이기(11-15)**: 루트 CLAUDE.md 5.0k → 2.8k 자, site/CLAUDE.md 32.6k → 10.5k 자(지금 규칙만, 원문은 log.md 에 보관), 이 파일도 다시 씀.
+
+#### 남은 일
+
+0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만, 바꾼 묶음마다 따로 커밋. 다음 버전을 올릴 때(`node sync.mjs release 1.2.1` 또는 1.3.0, 사용자 확인 뒤) v1.2.0 뒤 변경이 고정 주소에 들어간다.
+1. **Figma 이어서(보류 중, 사용자가 다시 말할 때)**: 편집 계정 luvms@ybm.co.kr, yds-figma-draw 스킬.
+   - **새 템플릿 5개(11-16)**: class-survey, class-review-write, exam-venue, ai-tutor-chat, ai-tutor-report 의 빈 COMPONENT 를 만들어 templates.json figma.pc 에 넣고 그린다.
+   - **Avatar 상태 점 자리(11-16)**: 상태 점을 배지와 같은 오른쪽 아래 모서리(right 0, bottom 0)로 바꿨다(모든 모양, 그룹 포함). Figma Avatar Status 변형과 Avatar Group 의 점 위치를 맞춘다.
+   - **템플릿 가로 기준 1440 (11-15 밤, 00751f9e)**: 사이트 템플릿 화면 틀을 최대 1440 가운데로 바꿨다. Figma 템플릿(1920 프레임)은 그 전에 그린 것이라 내용이 화면 폭을 채운 모양이다. 이어서 그릴 때는 76쪽 모두 자료를 다시 만들어(figma-styles → tplpage → figma-payload) 처음부터 다시 그린다(이미 그린 62쪽 포함).
+   - **템플릿 이름 기준(11-15 밤)**: 40쪽 이름과 관리자 하위 분류 3개를 바꿨다(site/CLAUDE.md 템플릿 이름). Figma 템플릿 COMPONENT 이름(Template/영어 이름)은 그대로라 바꿀 것 없음, Figma 섹션의 하위 분류 이름을 쓰는 곳이 있으면 맞춘다.
+   - 템플릿 그리기 나머지: groups.mjs 순서 63 ~ 76번째. Templates 페이지 x -9000 의 `_payload 0 ~ 75` 사각형(3423:3423 + 순번)에 자료가 이미 올라가 있고, 공유 데이터 `yds/tplbatch` 로 `B(시작, 끝)` 을 돌리면 이어서 그린다(0부터 센 번호, 끝은 포함 안 함). 사이트를 그 사이에 고쳤으면 자료를 다시 만들어 올린다.
+   - 그린 뒤: 사진 칸 목록이 공유 데이터 `yds/tplimgs`([노드 id, U:사진] 목록)에 쌓여 있다 → 사진을 받아 upload_assets nodeIds 로 넣기. 경고가 난 쪽 확인(my-classroom, book-audio, video-home, video-title-detail). 넘침과 글자 대조 검사. 섹션 9개를 groups.mjs 순서로 다시 묶고 Commerce 섹션 이름을 Books 로, 새 13쪽(x -6000)도 섹션 안으로. 끝나면 `_payload` 76개와 공유 데이터(unpack, tplrun, tplbatch, tplimgs) 지우기.
+   - 문서 프레임: 예시 정리 51개 반영과 지침 줄 맞춤(git log 의 11-13 ~ 11-15 예시 정리 커밋), 새 지침 6줄(Chip, Help Bubble, List, Markdown, Radio Group, Image Frame), Radio Group 가로 예시, Badge xlarge 와 Accordion inset 예시, 코드 링크 줄 번호(75곳 밀림, `node sync.mjs links`).
+   - 작은 차이(필요할 때만): Text Link 화살표 변형 없음, Carousel 멈춤 버튼 상태, play/pause 채운 모양. Avatar 40 의 상태 점은 rescale 로 약 15 가 됐다(CSS 16). 라이브러리 다시 게시는 사용자.
+2. **toeic 브랜드 다크 버튼 대비 3.64**(기준 4.5): 색 값 결정이라 사용자에게 묻는다.
+3. **사용자 결정 대기**: 사내 확산(하려는 일 카드 6개의 구성과 위치, 토큰 대조표, 디자이너 역할 경계), 점검표 B(값이 섞인 속성 5건), 남은 템플릿 후보(오답 노트, 수료증, 결제 완료와 영수증, 환불 신청, 쿠폰함, 1:1 문의 내역, 오류, 점검, 알림 목록, 기간별 통계 표, 월 달력 출석, 날짜별 명단, 좌석 배치도), 템플릿 UI 전체 개선(방향을 줄 때까지 짚은 화면만).
+4. **YBM Family 세션**: 속성 이름 정리(221b77b6) 알리기, Carousel 이동 버튼 세로 위치 변수 `--ds-carousel-button-top` 과 좁은 화면 이동 버튼 숨기기 요청 검토.
+5. **사용자가 할 일**: 자동 싱크 예약 작업 등록(앱 예약 작업 화면에 tools/auto-sync-task.md 지시문), Markdown 메뉴 복사 안내를 일반 브라우저에서 한 번 확인.
+6. **오래된 대기(유효한지 확인)**: 소식 알리는 방법, 브랜드 파일을 만든 사람이 보낼 곳, 사내 주소 교체, 토익 적용, 회사 PC publish 도구 안 DS 주소. 보류 후보(모션 변수화, 모바일 템플릿, 값이 같은 변수, 회사 PC 백업 브랜치)는 log.md 맨 위.
+
+#### 주의
+
+- 템플릿은 생성기(`site/templates/gen/*.mjs`)를 고친다. `pages/*.html` 을 손으로 고치면 다음 빌드에서 되돌아간다.
+- Figma 템플릿을 tplpage 로 다시 그리면 흰 바탕이 된다. 그린 뒤 화면 바탕을 bg/canvas 로.
+- Figma 커넥터 계정이 다르면 편집이 막힌다. whoami 로 확인하고 사용자에게 다시 연결을 부탁한다.
+- 50KB 넘는 코드를 공유 데이터에 넣어 `eval('(' + src + ')')` 로 부를 때는 끝 세미콜론을 뺀다. `node sync.mjs figma` 점검 스크립트는 42KB 라 무겁다(줄인 판은 tools/figma-quick.mjs).
+- 한글이 든 Python 은 heredoc 대신 파일로 써서 실행한다(heredoc 은 인코딩 오류).
+
 ### 인수인계 원문 2026-11-15 (다시 쓰기 전)
 
 - 갱신: 2026-11-15 집 Mac
