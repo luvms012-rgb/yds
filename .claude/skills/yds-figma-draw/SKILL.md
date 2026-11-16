@@ -21,7 +21,7 @@ description: YDS 사이트의 템플릿이나 문서 페이지를 Figma 에 사�
 | Get Started | 페이지 `3059:92`, 프레임 `3069:2` |
 | Foundations 페이지 | `2274:1143`, 문서 프레임 Color `2486:2`, Typography `2486:13`, Spacing `2486:24`, Radius `2486:35`, Elevation `2486:46` |
 | 컴포넌트 세트와 문서 프레임 | `components.json` 의 `figma`, `doc` |
-| 문서용 내부 컴포넌트 | Internal Components 페이지 `3078:391` 의 `_Doc/...` 12종 |
+| 문서용 내부 컴포넌트 | Internal Components 페이지 `3078:391` 의 `_Doc/...` 15종(Token Row, Swatch, Preview Cell 포함, 11-16) |
 
 섹션 순서와 섹션 안 순서는 `site/templates/gen/groups.mjs` 를 따른다.
 
