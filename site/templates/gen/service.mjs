@@ -75,7 +75,7 @@ ${head('수업 옵션 선택')}
     </aside>
   </div>
 </main>`);
-  return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 신청', group: 'Learning', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 구매 화면입니다.', css, body };
+  return { slug: 'lesson-plan', en: 'Lesson Plan Picker', name: '수업 신청', group: 'Learning', desc: '수업 방식, 시간, 횟수, 기간을 고르면 금액이 바로 바뀌는 수업 신청 화면입니다.', css, body };
 };
 
 /* 4. 교재 상세 ------------------------------------------------------ */

@@ -20,9 +20,9 @@ const heroText = (t, d, ctas = true) => `<div class="tp-center"><h1 class="tp-he
 const HERO = {
   centered: ['오늘의 순간을 한곳에', '흩어진 사진을 모아 두고, 보고 싶을 때 바로 꺼내 보세요.'],
   classic: ['요즘 많이 찾는 사진', '분류를 고르면 마음에 드는 사진을 더 빨리 찾을 수 있어요.'],
-  hero: ['좋아하는 장면을 앨범으로', '여행, 음식, 일상 사진을 앨범으로 정리하고 가족, 친구와 함께 봐요.'],
+  hero: ['수업 사진을 앨범으로', '수업, 스터디, 발표 사진을 앨범으로 정리하고 함께 공부한 사람과 같이 봐요.'],
   mixed: ['이번 주 새로 올라온 사진', '크기가 다른 사진을 한눈에 둘러보고, 마음에 들면 저장해 두세요.'],
-  product: ['새로 나온 교재', '이번 주에 나온 교재와 학습 상품을 먼저 만나 보세요.'],
+  product: ['새로 나온 교재', '이번 주에 나온 교재를 시험과 수준별로 모았어요.'],
   side: ['색으로 고르는 사진', '좋아하는 색을 고르면 그 색이 담긴 사진만 모아서 보여 줘요.'],
 };
 
@@ -36,6 +36,6 @@ const product = () => ({ slug: 'product-gallery', en: 'Product Gallery', name: '
   .tp-pcard__text { display: flex; flex-direction: column; gap: var(--ds-space-x1); }
   .tp-pcard__price { margin-top: var(--ds-space-x1); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold); letter-spacing: -0.01em; }
   .tp-pcard { display: flex; flex-direction: column; gap: var(--ds-space-x3); color: inherit; text-decoration: none; }
-`, body: wrap(`<div class="tp-pg-head"><div class="tp-stack" style="gap: var(--ds-space-x3)"><h1 class="tp-hero-t">${HERO.product[0]}</h1><p class="tp-lead">${HERO.product[1]}</p></div>${btn('모두 보기', { variant: 'neutralOutline', size: 'large', icEnd: 'arrow-right' })}</div><div class="tp-grid3">${[['ETS 토익 단기공략 750+', '2주 만에 파트별 문제 유형을 끝내요.', '16,200원', 'book', 2], ['토익 보카 2000', '시험에 자주 나오는 단어를 하루 50개씩 외워요.', '13,500원', 'book', 4], ['영어 회화 패턴 100', '매일 쓰는 문장을 패턴으로 익혀요.', '13,500원', 'book', 3], ['학습용 무선 헤드폰', '듣기 연습에 맞춘 또렷한 소리예요.', '89,000원', 'listen', 1], ['영어 원서 읽기 세트', '쉬운 원서 세 권과 단어장이 함께 있어요.', '25,800원', 'book', 8], ['스프링 학습 노트', '오답을 정리하기 좋은 칸 노트예요.', '4,900원', 'product', 4]].map(([t, d, p, th, n]) => `<a class="tp-pcard" href="#">${ph('4:3', n, '', th)}<span class="tp-pcard__text"><span class="tp-name">${t}</span><span class="tp-sub">${d}</span></span><span class="tp-pcard__price tp-num">${p}</span></a>`).join('')}</div>`) });
+`, body: wrap(`<div class="tp-pg-head"><div class="tp-stack" style="gap: var(--ds-space-x3)"><h1 class="tp-hero-t">${HERO.product[0]}</h1><p class="tp-lead">${HERO.product[1]}</p></div>${btn('모두 보기', { variant: 'neutralOutline', size: 'large', icEnd: 'arrow-right' })}</div><div class="tp-grid3">${[['단기 공략 750+', '2주 만에 파트별 문제 유형을 끝내요.', '16,200원', 'book', 2], ['기출 단어장 2000', '시험에 자주 나오는 단어를 하루 50개씩 외워요.', '13,500원', 'book', 4], ['영어 회화 패턴 100', '매일 쓰는 문장을 패턴으로 익혀요.', '13,500원', 'book', 3], ['듣기 집중 훈련', '짧은 대화를 듣고 따라 말하며 귀를 열어요.', '18,000원', 'listen', 1], ['영어 원서 읽기 세트', '쉬운 원서 세 권과 단어장이 함께 있어요.', '25,800원', 'book', 8], ['기초 영문법 워크북', '문제를 풀며 문법 개념을 다시 익혀요.', '9,800원', 'product', 4]].map(([t, d, p, th, n]) => `<a class="tp-pcard" href="#">${ph('4:3', n, '', th)}<span class="tp-pcard__text"><span class="tp-name">${t}</span><span class="tp-sub">${d}</span></span><span class="tp-pcard__price tp-num">${p}</span></a>`).join('')}</div>`) });
 
 export const templates = [product].map((f) => f());

@@ -77,7 +77,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="u-col u-gap-4 u-full" style="max-width: 375px">
   <ul class="ds-list" data-divider>
-    <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">연말 배송 일정 안내</span><span class="ds-list-item__desc">2026.11.03</span></span></a></li>
+    <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">연말 휴강 일정 안내</span><span class="ds-list-item__desc">2026.11.03</span></span></a></li>
     <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">개인정보 처리방침 변경 안내</span><span class="ds-list-item__desc">2026.10.28</span></span></a></li>
     <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">11월 8일 새벽 서비스 점검</span><span class="ds-list-item__desc">2026.10.24</span></span></a></li>
     <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">고객센터 운영 시간 변경</span><span class="ds-list-item__desc">2026.10.02</span></span></a></li>

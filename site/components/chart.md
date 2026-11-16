@@ -86,7 +86,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 가운데에 합계를 표시하고, 조각은 큰 것부터 차례로 배치합니다. 범례에 비율을 함께 적어 색을 구분하기 어려워도 읽을 수 있게 합니다.
 
 ```html
-<figure class="ds-chart" data-type="donut"><div class="ds-chart__donut" style="--ds-chart-1: 45; --ds-chart-2: 30; --ds-chart-3: 15; --ds-chart-4: 10" role="img" aria-label="결제 수단 비중: 카드 45%, 계좌 이체 30%, 간편 결제 15%, 기타 10%"><span class="ds-chart__total">1,284<small>전체 주문</small></span></div><ul class="ds-chart__legend"><li><span class="ds-chart__swatch"></span>카드 45%</li><li><span class="ds-chart__swatch" data-series="2"></span>계좌 이체 30%</li><li><span class="ds-chart__swatch" data-series="3"></span>간편 결제 15%</li><li><span class="ds-chart__swatch" data-series="4"></span>기타 10%</li></ul></figure>
+<figure class="ds-chart" data-type="donut"><div class="ds-chart__donut" style="--ds-chart-1: 45; --ds-chart-2: 30; --ds-chart-3: 15; --ds-chart-4: 10" role="img" aria-label="결제 수단 비중: 카드 45%, 계좌 이체 30%, 간편 결제 15%, 기타 10%"><span class="ds-chart__total">1,284<small>전체 결제</small></span></div><ul class="ds-chart__legend"><li><span class="ds-chart__swatch"></span>카드 45%</li><li><span class="ds-chart__swatch" data-series="2"></span>계좌 이체 30%</li><li><span class="ds-chart__swatch" data-series="3"></span>간편 결제 15%</li><li><span class="ds-chart__swatch" data-series="4"></span>기타 10%</li></ul></figure>
 ```
 
 ## 규격

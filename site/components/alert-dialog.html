@@ -67,7 +67,7 @@
 <a class="site-nav__item" href="../components/command-palette.html" data-site-keys="명령 찾기 커맨드 팔레트 빠른 이동 단축키 검색 창">Command Palette<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-field.html" data-site-keys="날짜 날짜 입력 생년월일 날짜 칸 데이트">Date Field<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-picker-date-cell.html" data-site-keys="날짜 달력 날짜 고르기 데이트 피커">Date Picker</a>
-<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 주문 정보 결제 정보 이름과 값">Description List</a>
+<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 수강 정보 결제 정보 이름과 값">Description List</a>
 <a class="site-nav__item" href="../components/dialog.html" data-site-keys="대화상자 다이얼로그 모달 팝업 창">Dialog</a>
 <a class="site-nav__item" href="../components/divider.html" data-site-keys="구분선 나누는 선 디바이더">Divider</a>
 <a class="site-nav__item" href="../components/empty.html" data-site-keys="빈 화면 비어 있음 엠프티 결과 없음">Empty</a>
@@ -148,10 +148,10 @@
 &lt;/<span class="hl-t">dialog</span>&gt;</code></pre>
 </figure>
 <h2 id="anatomy">구조<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="anatomy"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><div class="site-anatomy-scroll"><div class="site-tile__thumb site-cover site-anatomy" data-site-fit-max="1" data-site-anatomy="ds-alertdialog__header ds-alertdialog__title ds-alertdialog__desc ds-alertdialog__footer" data-site-anatomy-names="Header|Title|Desc|Footer" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><dialog class="ds-dialog ds-alertdialog" role="alertdialog" aria-labelledby="a-t" aria-describedby="a-d">
-  <div class="ds-alertdialog__header"><h2 class="ds-alertdialog__title">주문을 취소할까요?</h2><p class="ds-alertdialog__desc">취소한 주문은 되돌릴 수 없습니다.</p></div>
+  <div class="ds-alertdialog__header"><h2 class="ds-alertdialog__title">접수를 취소할까요?</h2><p class="ds-alertdialog__desc">취소한 접수는 되돌릴 수 없어요.</p></div>
   <div class="ds-alertdialog__footer" data-action="pair">
     <button class="ds-btn" data-variant="neutralWeak" data-ds-close>닫기</button>
-    <button class="ds-btn" data-variant="neutralSolid">주문 취소</button>
+    <button class="ds-btn" data-variant="neutralSolid">접수 취소</button>
   </div>
 </dialog></div></div></div></div><div class="site-anatomy-table"><div class="ds-table-wrap"><table class="ds-table" data-size="small">
 <thead><tr><th scope="col">구성 요소</th><th scope="col">설명</th></tr></thead>
@@ -178,8 +178,8 @@
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">회사</span>
-        <span class="ds-list-item__desc">서울시 중구 한빛로 12, 3층</span>
+        <span class="ds-list-item__title">회의 표현 단어장</span>
+        <span class="ds-list-item__desc">단어 120개, 어제 수정</span>
       </span>
       <span class="ds-list-item__suffix"><button class="ds-btn" data-variant="ghost" data-size="small" data-ds-open="alert-dialog-ex1">삭제</button></span>
     </div>
@@ -187,8 +187,8 @@
 </ul>
 <dialog class="ds-dialog ds-alertdialog" id="alert-dialog-ex1" role="alertdialog" aria-labelledby="alert-dialog-ex1-title" aria-describedby="alert-dialog-ex1-desc">
   <div class="ds-alertdialog__header">
-    <h2 id="alert-dialog-ex1-title" class="ds-alertdialog__title">배송지를 삭제할까요?</h2>
-    <p id="alert-dialog-ex1-desc" class="ds-alertdialog__desc">삭제한 배송지는 되돌릴 수 없어요.</p>
+    <h2 id="alert-dialog-ex1-title" class="ds-alertdialog__title">단어장을 삭제할까요?</h2>
+    <p id="alert-dialog-ex1-desc" class="ds-alertdialog__desc">삭제한 단어장은 되돌릴 수 없어요.</p>
   </div>
   <div class="ds-alertdialog__footer" data-action="critical">
     <button class="ds-btn" data-variant="neutralWeak" data-ds-close>취소</button>
@@ -201,8 +201,8 @@
   &lt;<span class="hl-t">li</span>&gt;
     &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span>&gt;
       &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;회사&lt;/<span class="hl-t">span</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;서울시 중구 한빛로 12, 3층&lt;/<span class="hl-t">span</span>&gt;
+        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;회의 표현 단어장&lt;/<span class="hl-t">span</span>&gt;
+        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;단어 120개, 어제 수정&lt;/<span class="hl-t">span</span>&gt;
       &lt;/<span class="hl-t">span</span>&gt;
       &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__suffix&quot;</span>&gt;&lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;ghost&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;small&quot;</span> <span class="hl-f">data-ds-open</span>=<span class="hl-s">&quot;alert-dialog-ex1&quot;</span>&gt;삭제&lt;/<span class="hl-t">button</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
     &lt;/<span class="hl-t">div</span>&gt;
@@ -210,8 +210,8 @@
 &lt;/<span class="hl-t">ul</span>&gt;
 &lt;<span class="hl-t">dialog</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-dialog ds-alertdialog&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex1&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;alertdialog&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;alert-dialog-ex1-title&quot;</span> <span class="hl-f">aria-describedby</span>=<span class="hl-s">&quot;alert-dialog-ex1-desc&quot;</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h2</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex1-title&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__title&quot;</span>&gt;배송지를 삭제할까요?&lt;/<span class="hl-t">h2</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex1-desc&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__desc&quot;</span>&gt;삭제한 배송지는 되돌릴 수 없어요.&lt;/<span class="hl-t">p</span>&gt;
+    &lt;<span class="hl-t">h2</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex1-title&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__title&quot;</span>&gt;단어장을 삭제할까요?&lt;/<span class="hl-t">h2</span>&gt;
+    &lt;<span class="hl-t">p</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex1-desc&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__desc&quot;</span>&gt;삭제한 단어장은 되돌릴 수 없어요.&lt;/<span class="hl-t">p</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__footer&quot;</span> <span class="hl-f">data-action</span>=<span class="hl-s">&quot;critical&quot;</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-ds-close</span>&gt;취소&lt;/<span class="hl-t">button</span>&gt;
@@ -228,7 +228,7 @@
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">멤버십</span>
+        <span class="ds-list-item__title">월간 이용권</span>
         <span class="ds-list-item__desc">다음 결제일 12월 1일</span>
       </span>
       <span class="ds-list-item__suffix">월 4,900원</span>
@@ -236,15 +236,15 @@
   </li>
   <li>
     <button type="button" class="ds-list-item" data-ds-open="alert-dialog-ex3">
-      <span class="ds-list-item__content"><span class="ds-list-item__title ds-fg-critical">멤버십 해지</span></span>
+      <span class="ds-list-item__content"><span class="ds-list-item__title ds-fg-critical">이용권 해지</span></span>
       <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
     </button>
   </li>
 </ul>
 <dialog class="ds-dialog ds-alertdialog" id="alert-dialog-ex3" role="alertdialog" aria-labelledby="alert-dialog-ex3-title" aria-describedby="alert-dialog-ex3-desc">
   <div class="ds-alertdialog__header">
-    <h2 id="alert-dialog-ex3-title" class="ds-alertdialog__title">멤버십을 해지할까요?</h2>
-    <p id="alert-dialog-ex3-desc" class="ds-alertdialog__desc">해지하면 남은 쿠폰 2장과 무료 배송 혜택이 사라져요.</p>
+    <h2 id="alert-dialog-ex3-title" class="ds-alertdialog__title">이용권을 해지할까요?</h2>
+    <p id="alert-dialog-ex3-desc" class="ds-alertdialog__desc">해지하면 남은 모의고사 2회와 무제한 수강 혜택이 사라져요.</p>
   </div>
   <div class="ds-alertdialog__footer" data-action="stacked">
     <button class="ds-btn" data-variant="neutralSolid" data-ds-close>혜택 계속 받기</button>
@@ -257,7 +257,7 @@
   &lt;<span class="hl-t">li</span>&gt;
     &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span>&gt;
       &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;
-        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;멤버십&lt;/<span class="hl-t">span</span>&gt;
+        &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title&quot;</span>&gt;월간 이용권&lt;/<span class="hl-t">span</span>&gt;
         &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__desc&quot;</span>&gt;다음 결제일 12월 1일&lt;/<span class="hl-t">span</span>&gt;
       &lt;/<span class="hl-t">span</span>&gt;
       &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__suffix&quot;</span>&gt;월 4,900원&lt;/<span class="hl-t">span</span>&gt;
@@ -265,15 +265,15 @@
   &lt;/<span class="hl-t">li</span>&gt;
   &lt;<span class="hl-t">li</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item&quot;</span> <span class="hl-f">data-ds-open</span>=<span class="hl-s">&quot;alert-dialog-ex3&quot;</span>&gt;
-      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title ds-fg-critical&quot;</span>&gt;멤버십 해지&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
+      &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__content&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-list-item__title ds-fg-critical&quot;</span>&gt;이용권 해지&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
       &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-right ds-list-item__chevron&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
     &lt;/<span class="hl-t">button</span>&gt;
   &lt;/<span class="hl-t">li</span>&gt;
 &lt;/<span class="hl-t">ul</span>&gt;
 &lt;<span class="hl-t">dialog</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-dialog ds-alertdialog&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex3&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;alertdialog&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;alert-dialog-ex3-title&quot;</span> <span class="hl-f">aria-describedby</span>=<span class="hl-s">&quot;alert-dialog-ex3-desc&quot;</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h2</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex3-title&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__title&quot;</span>&gt;멤버십을 해지할까요?&lt;/<span class="hl-t">h2</span>&gt;
-    &lt;<span class="hl-t">p</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex3-desc&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__desc&quot;</span>&gt;해지하면 남은 쿠폰 2장과 무료 배송 혜택이 사라져요.&lt;/<span class="hl-t">p</span>&gt;
+    &lt;<span class="hl-t">h2</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex3-title&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__title&quot;</span>&gt;이용권을 해지할까요?&lt;/<span class="hl-t">h2</span>&gt;
+    &lt;<span class="hl-t">p</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;alert-dialog-ex3-desc&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__desc&quot;</span>&gt;해지하면 남은 모의고사 2회와 무제한 수강 혜택이 사라져요.&lt;/<span class="hl-t">p</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-alertdialog__footer&quot;</span> <span class="hl-f">data-action</span>=<span class="hl-s">&quot;stacked&quot;</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralSolid&quot;</span> <span class="hl-f">data-ds-close</span>&gt;혜택 계속 받기&lt;/<span class="hl-t">button</span>&gt;

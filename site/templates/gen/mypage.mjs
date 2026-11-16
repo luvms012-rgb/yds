@@ -4,10 +4,10 @@ import * as K from './kit.mjs';
 import { T, FRAME_CSS, topbar } from './frame.mjs';
 const { icon, btn, iconBtn, badge, card, secHead, select, chiptabs, segmented, avatar, link, thumb, pagination, sw, esc } = K;
 
-const MENU = ['홈', '카테고리', '혜택', '마이페이지'];
+const MENU = ['강의', '교재', '시험', '마이페이지'];
 const END = `${iconBtn('search', '찾기', { size: 'xsmall' })}${iconBtn('shopping-cart', '장바구니', { size: 'xsmall' })}${avatar('와이비엠', 24)}`;
 const NAV = [
-  ['쇼핑', [['주문 내역', 'list'], ['취소, 반품 내역', 'rotate-ccw'], ['찜한 상품', 'heart'], ['최근 본 상품', 'eye']]],
+  ['수강과 결제', [['주문 내역', 'list'], ['취소, 환불 내역', 'rotate-ccw'], ['찜한 강의', 'heart'], ['최근 본 강의', 'eye']]],
   ['혜택', [['쿠폰', 'tag'], ['포인트', 'star-solid']]],
   ['내 정보', [['내 정보', 'user'], ['배송지', 'map-pin'], ['알림 설정', 'bell']]],
 ];
@@ -76,31 +76,31 @@ ${main}
 </div></div>`;
 
 const ITEMS = [
-  ['book', 2, 'ETS 토익 정기시험 기출문제집 4', '1권', '19,800원', '배송 중', 'informative', ['배송 조회', '문의하기']],
-  ['product', 0, '노이즈 캔슬링 무선 헤드폰', '블랙 / 1개', '189,000원', '배송 완료', '', ['리뷰 쓰기', '교환, 반품']],
-  ['book', 1, '처음 시작하는 기록 습관', '1권', '16,800원', '구매 확정', '', ['다시 담기']],
-  ['product', 4, '스프링 학습 노트 5권 세트', 'A5 / 2개', '19,800원', '상품 준비 중', '', ['주문 취소']],
+  ['book', 2, '실전 모의고사 1000제', '교재 / 1권', '19,800원', '배송 중', 'informative', ['배송 조회', '문의하기']],
+  ['lecture', 0, '영어 말하기 시험 실전반', '온라인 강의 / 60일', '89,000원', '수강 중', 'informative', ['수강평 쓰기', '환불 신청']],
+  ['exam', 0, '영어 말하기 시험 응시', '12월 6일 / 강남 시험장', '84,000원', '접수 완료', '', ['수험표 보기']],
+  ['book', 4, '기초 영문법 워크북', '교재 / 2권', '19,600원', '배송 준비 중', '', ['주문 취소']],
 ];
 const oitem = ([th, i, n, opt, price, st, tone, acts]) => `<div class="tp-oitem">${thumb('1:1', '', K.photo(th, i, 240), 'md')}<div class="tp-stack" style="gap: 2px"><span>${K.badge(st, tone || 'neutral')}</span><span class="tp-name">${n}</span><span class="tp-num" style="margin-top: var(--ds-space-x1_5); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-bold)">${price}</span><span class="tp-caption">${opt}</span></div><div class="tp-oitem__acts">${acts.map((a) => btn(a)).join('')}</div></div>`;
 
 /* 1. 마이페이지 홈 ------------------------------------------------ */
 const home = () => {
-  const flow = [['결제 완료', 0], ['상품 준비 중', 1], ['배송 중', 1], ['배송 완료', 3], ['구매 확정', 0]];
-  const wish = [['book', 3, 'ETS 토익 단기공략 750+', '16,200원'], ['book', 4, '토익 보카 2000 단어장', '13,500원'], ['book', 2, '하루 10분 글쓰기', '14,400원'], ['product', 1, '유선 학습용 이어폰', '19,800원']];
+  const flow = [['결제 완료', 0], ['수강 대기', 1], ['수강 중', 2], ['수강 완료', 3], ['기간 끝남', 0]];
+  const wish = [['lecture', 3, '실전 문제 풀이 750+', '49,000원'], ['lecture', 5, '하루 10분 영어 회화', '39,000원'], ['work', 0, '비즈니스 이메일 쓰기', '45,000원'], ['listen', 1, '영어 듣기 기초', '29,000원']];
   const body = shell('', `    <section class="tp-sec" aria-label="내 프로필">${card(`<div class="tp-stack" style="gap: var(--ds-space-x5)">
       <div class="tp-prof"><div class="tp-prof__who">${avatar('와이비엠', 56)}<div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-h2">와이비엠 님</span>${badge('일반 회원')}</span><span class="tp-caption">ybm@example.com</span></div></div>${btn('내 정보 수정', { icEnd: 'chevron-right' })}</div>
-      <div class="tp-stats" style="--n: 4">${[['포인트', '3,200P'], ['쿠폰', '4장'], ['찜한 상품', '12개'], ['쓸 수 있는 리뷰', '2개']].map(([l, v]) => `<a class="tp-stat-link" href="#"><span class="tp-caption">${l}</span><span class="tp-mid">${v}</span></a>`).join('')}</div>
+      <div class="tp-stats" style="--n: 4">${[['포인트', '3,200P'], ['쿠폰', '4장'], ['찜한 강의', '12개'], ['쓸 수 있는 수강평', '2개']].map(([l, v]) => `<a class="tp-stat-link" href="#"><span class="tp-caption">${l}</span><span class="tp-mid">${v}</span></a>`).join('')}</div>
     </div>`, { size: '' })}</section>
-    <section class="tp-sec">${secHead('주문 현황', { tools: link('전체 보기') })}
+    <section class="tp-sec">${secHead('수강 현황', { tools: link('전체 보기') })}
       <div class="tp-flow">${flow.map(([l, n], i) => `<a href="#"${n ? ' data-on' : ''}>${i ? `<i class="ds-icon ds-icon--chevron-right tp-flow__arrow" aria-hidden="true"></i>` : ''}<span class="tp-mid">${T(n)}</span><span>${l}</span></a>`).join('')}</div>
     </section>
     <section class="tp-sec">${secHead('최근 주문', { tools: link('전체 보기') })}
       <div class="tp-rows">${ITEMS.slice(0, 3).map(oitem).join('')}</div>
     </section>
-    <section class="tp-sec">${secHead('찜한 상품', { tools: link('전체 보기') })}
+    <section class="tp-sec">${secHead('찜한 강의', { tools: link('전체 보기') })}
       <div class="tp-wish">${wish.map(([th, i, n, p]) => `<a href="#">${thumb('1:1', '', K.photo(th, i, 400), 'lg')}<span class="tp-stack" style="gap: 2px"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></span></a>`).join('')}</div>
     </section>`);
-  return { slug: 'mypage-home', h1: '마이페이지 홈', en: 'My Page Home', name: '마이페이지', group: 'Account', desc: '마이페이지의 첫 화면입니다. 혜택과 주문 현황을 한눈에 봅니다.', css: CSS, body };
+  return { slug: 'mypage-home', h1: '마이페이지 홈', en: 'My Page Home', name: '마이페이지', group: 'Account', desc: '마이페이지의 첫 화면입니다. 혜택과 수강 현황을 한눈에 봅니다.', css: CSS, body };
 };
 
 /* 2. 주문 내역 --------------------------------------------------- */
@@ -108,11 +108,11 @@ const orders = () => {
   const groups = [['2026.11.01', '20261101-0042', [ITEMS[0], ITEMS[3]]], ['2026.10.24', '20261024-0918', [ITEMS[1]]], ['2026.10.12', '20261012-1377', [ITEMS[2]]]];
   const body = shell('주문 내역', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">주문 내역</h1></div></header>
     <div class="tp-stack" style="gap: var(--ds-space-x3)">
-      <div class="tp-ttools">${chiptabs(['전체 6', '결제 완료 0', '배송 중 1', '배송 완료 3', '취소, 반품 2'], 0, '주문 상태', { size: 'large' })}<div class="tp-ttools__end">${K.even(segmented(['1개월', '3개월', '6개월', '1년'], 1, '기간') + K.search('od-q', '상품 이름으로 찾기'), true)}</div></div>
+      <div class="tp-ttools">${chiptabs(['전체 6', '강의 2', '교재 3', '시험 1', '취소, 환불 1'], 0, '주문 종류', { size: 'large' })}<div class="tp-ttools__end">${K.even(segmented(['1개월', '3개월', '6개월', '1년'], 1, '기간') + K.search('od-q', '강의, 교재 이름으로 찾기'), true)}</div></div>
     </div>
     <div class="tp-stack" style="gap: var(--ds-space-x10)">${groups.map(([d, no, items]) => `<section class="tp-order" aria-label="${d} 주문"><div class="tp-order__head"><span class="tp-row"><span class="tp-h3 tp-num">${d}</span><span class="tp-caption tp-num">주문 번호 ${no}</span></span>${link('주문 상세')}</div><div class="tp-rows">${items.map(oitem).join('')}</div></section>`).join('')}</div>
     <div class="tp-tfoot">${pagination(1, 3)}</div>`);
-  return { slug: 'mypage-orders', en: 'Order History', name: '주문 내역', group: 'Account', desc: '주문을 날짜별로 모아 보는 내역 화면입니다. 배송 조회, 리뷰 쓰기처럼 상품마다 필요한 일을 바로 처리합니다.', css: CSS, body };
+  return { slug: 'mypage-orders', en: 'Order History', name: '주문 내역', group: 'Account', desc: '주문을 날짜별로 모아 보는 내역 화면입니다. 배송 조회, 수강평 쓰기처럼 주문마다 필요한 일을 바로 처리합니다.', css: CSS, body };
 };
 
 /* 3. 내 정보 ----------------------------------------------------- */
@@ -121,13 +121,13 @@ const profile = () => {
   const val = (v, b = '변경') => `<span class="tp-setrow__val">${v}</span>${btn(b)}`;
   const sec = (title, rows) => `<section class="tp-sec" style="gap: var(--ds-space-x2)"><h2 class="tp-h2">${title}</h2><div class="tp-rows">${rows.join('')}</div></section>`;
   const body = shell('내 정보', `    <header class="tp-mp-head"><div class="tp-stack" style="gap: var(--ds-space-x1_5)"><h1 class="tp-h1">내 정보</h1></div></header>
-    ${sec('로그인 정보', [row('이메일', '로그인과 주문 안내에 써요.', val('ybm@example.com')), row('비밀번호', '마지막으로 바꾼 날 2026.06.14', val('••••••••')), row('간편 로그인', '연결한 계정으로 바로 로그인해요.', `<span class="tp-setrow__val">2개 연결</span>${btn('관리')}`)])}
-    ${sec('개인 정보', [row('이름', '', val('와이비엠')), row('휴대폰', '본인 확인과 배송 연락에 써요.', val('010-1234-5678')), row('생년월일', '생일 쿠폰을 보내 드려요.', val('2001.04.12', '입력'))])}
+    ${sec('로그인 정보', [row('이메일', '로그인과 수강 안내에 써요.', val('ybm@example.com')), row('비밀번호', '마지막으로 바꾼 날 2026.06.14', val('••••••••')), row('간편 로그인', '연결한 계정으로 바로 로그인해요.', `<span class="tp-setrow__val">2개 연결</span>${btn('관리')}`)])}
+    ${sec('개인 정보', [row('이름', '', val('와이비엠')), row('휴대폰', '본인 확인과 시험 안내에 써요.', val('010-1234-5678')), row('생년월일', '시험 접수 때 본인 확인에 써요.', val('2001.04.12', '입력'))])}
     <section class="tp-sec" style="gap: var(--ds-space-x2)"><div class="tp-between"><h2 class="tp-h2">배송지</h2>${btn('새 배송지', { variant: 'ghost', ic: 'plus' })}</div><div class="tp-rows">
       <div class="tp-addr"><div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-row"><span class="tp-h4">집</span>${badge('기본 배송지', 'brand')}</span><span class="tp-sub">와이비엠 / 010-1234-5678</span><span class="tp-sub">서울시 종로구 종로 104, 3층</span></div><div class="tp-row">${btn('수정')}</div></div>
       <div class="tp-addr"><div class="tp-stack" style="gap: var(--ds-space-x1)"><span class="tp-h4">회사</span><span class="tp-sub">와이비엠 / 010-1234-5678</span><span class="tp-sub">서울시 중구 세종대로 110, 12층</span></div><div class="tp-row">${btn('수정')}${btn('지우기', { variant: 'ghost' })}</div></div>
     </div></section>
-    ${sec('알림', [row('주문, 배송 알림', '결제, 출발, 도착을 알려 드려요.', sw('주문, 배송 알림', true)), row('혜택, 이벤트 알림', '받기로 한 날 2026.03.02', sw('혜택, 이벤트 알림', true)), row('이메일 소식', '받지 않기로 한 날 2026.08.11', sw('이메일 소식', false))])}
+    ${sec('알림', [row('수강, 시험 알림', '개강, 시험 접수, 성적 발표를 알려 드려요.', sw('수강, 시험 알림', true)), row('혜택, 이벤트 알림', '받기로 한 날 2026.03.02', sw('혜택, 이벤트 알림', true)), row('이메일 소식', '받지 않기로 한 날 2026.08.11', sw('이메일 소식', false))])}
     <a class="tp-leave" href="#">회원 탈퇴</a>`);
   return { slug: 'mypage-profile', en: 'My Info', name: '내 정보', group: 'Account', desc: '내 정보와 알림 설정을 보고 수정하는 화면입니다.', css: CSS + `
   .tp-mp__main { width: min(100%, var(--tp-narrow)); }  /* 설정 행이 화면 끝까지 늘어나지 않게 (설정 패널과 같은 720) */

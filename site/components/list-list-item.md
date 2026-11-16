@@ -84,8 +84,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--map-pin" aria-hidden="true"></i></span>
-      <span class="ds-list-item__content"><span class="ds-list-item__title">배송지</span></span>
-      <span class="ds-list-item__suffix">2곳</span>
+      <span class="ds-list-item__content"><span class="ds-list-item__title">수강 기기</span></span>
+      <span class="ds-list-item__suffix">2대</span>
       <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
     </a>
   </li>
@@ -101,17 +101,17 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">주문, 배송 알림</span>
-        <span class="ds-list-item__desc">주문 상태가 바뀌면 알려 드려요</span>
+        <span class="ds-list-item__title">수업, 과제 알림</span>
+        <span class="ds-list-item__desc">수업과 과제 일정을 알려 드려요</span>
       </span>
-      <span class="ds-list-item__suffix"><span class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" checked aria-label="주문, 배송 알림"></span></span>
+      <span class="ds-list-item__suffix"><span class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" checked aria-label="수업, 과제 알림"></span></span>
     </label>
   </li>
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">이벤트, 혜택 알림</span>
-        <span class="ds-list-item__desc">쿠폰과 할인 소식을 알려 드려요</span>
+        <span class="ds-list-item__desc">새 강의와 할인 소식을 알려 드려요</span>
       </span>
       <span class="ds-list-item__suffix"><span class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" aria-label="이벤트, 혜택 알림"></span></span>
     </label>
@@ -137,8 +137,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">집 <span class="ds-badge">기본</span></span>
-        <span class="ds-list-item__desc">서울시 종로구 종로 1길 23, 4층</span>
+        <span class="ds-list-item__title">회의 표현 <span class="ds-badge">기본</span></span>
+        <span class="ds-list-item__desc">단어 120개, 어제 수정</span>
       </span>
       <span class="ds-list-item__suffix">
         <button class="ds-btn" data-variant="neutralWeak" data-size="xsmall">수정</button>
@@ -149,8 +149,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">회사</span>
-        <span class="ds-list-item__desc">서울시 중구 세종대로 45, 10층</span>
+        <span class="ds-list-item__title">면접 표현</span>
+        <span class="ds-list-item__desc">단어 48개, 11월 2일 수정</span>
       </span>
       <span class="ds-list-item__suffix">
         <button class="ds-btn" data-variant="neutralWeak" data-size="xsmall">수정</button>

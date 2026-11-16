@@ -55,14 +55,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 <div class="u-flex u-wrap u-gap-3" style="width: 100%; max-width: 612px">
   <a class="ds-card" href="#" style="width: 100%; max-width: 300px">
     <header class="ds-card__header">
-      <h3 class="ds-card__title">주말 요리 클래스</h3>
+      <h3 class="ds-card__title">주말 영어 회화 특강</h3>
       <p class="ds-card__desc">11월 15일 (토) 오후 2시</p>
     </header>
     <div class="ds-card__content"><span class="ds-badge" data-tone="warning">마감 임박</span></div>
   </a>
   <a class="ds-card" href="#" style="width: 100%; max-width: 300px">
     <header class="ds-card__header">
-      <h3 class="ds-card__title">가죽 공예 원데이</h3>
+      <h3 class="ds-card__title">비즈니스 이메일 원데이</h3>
       <p class="ds-card__desc">11월 16일 (일) 오전 11시</p>
     </header>
     <div class="ds-card__content">남은 자리 6개</div>
@@ -81,8 +81,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <h3 class="ds-card__title">결제 금액</h3>
     </header>
     <div class="ds-card__content u-col u-gap-3">
-      <div class="u-flex u-between"><span class="ds-fg-muted">상품 금액</span><span>32,000원</span></div>
-      <div class="u-flex u-between"><span class="ds-fg-muted">배송비</span><span>3,000원</span></div>
+      <div class="u-flex u-between"><span class="ds-fg-muted">수강료</span><span>32,000원</span></div>
+      <div class="u-flex u-between"><span class="ds-fg-muted">학습 자료집</span><span>3,000원</span></div>
       <div class="u-flex u-between"><span class="ds-fg-muted">쿠폰 할인</span><span>-3,000원</span></div>
       <hr class="ds-divider">
       <div class="u-flex u-between ds-t05 ds-fw-bold"><span>총 결제 금액</span><span>32,000원</span></div>

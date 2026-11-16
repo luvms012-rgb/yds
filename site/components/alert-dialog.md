@@ -59,8 +59,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">회사</span>
-        <span class="ds-list-item__desc">서울시 중구 한빛로 12, 3층</span>
+        <span class="ds-list-item__title">회의 표현 단어장</span>
+        <span class="ds-list-item__desc">단어 120개, 어제 수정</span>
       </span>
       <span class="ds-list-item__suffix"><button class="ds-btn" data-variant="ghost" data-size="small" data-ds-open="alert-dialog-ex1">삭제</button></span>
     </div>
@@ -68,8 +68,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 </ul>
 <dialog class="ds-dialog ds-alertdialog" id="alert-dialog-ex1" role="alertdialog" aria-labelledby="alert-dialog-ex1-title" aria-describedby="alert-dialog-ex1-desc">
   <div class="ds-alertdialog__header">
-    <h2 id="alert-dialog-ex1-title" class="ds-alertdialog__title">배송지를 삭제할까요?</h2>
-    <p id="alert-dialog-ex1-desc" class="ds-alertdialog__desc">삭제한 배송지는 되돌릴 수 없어요.</p>
+    <h2 id="alert-dialog-ex1-title" class="ds-alertdialog__title">단어장을 삭제할까요?</h2>
+    <p id="alert-dialog-ex1-desc" class="ds-alertdialog__desc">삭제한 단어장은 되돌릴 수 없어요.</p>
   </div>
   <div class="ds-alertdialog__footer" data-action="critical">
     <button class="ds-btn" data-variant="neutralWeak" data-ds-close>취소</button>
@@ -87,7 +87,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">멤버십</span>
+        <span class="ds-list-item__title">월간 이용권</span>
         <span class="ds-list-item__desc">다음 결제일 12월 1일</span>
       </span>
       <span class="ds-list-item__suffix">월 4,900원</span>
@@ -95,15 +95,15 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </li>
   <li>
     <button type="button" class="ds-list-item" data-ds-open="alert-dialog-ex3">
-      <span class="ds-list-item__content"><span class="ds-list-item__title ds-fg-critical">멤버십 해지</span></span>
+      <span class="ds-list-item__content"><span class="ds-list-item__title ds-fg-critical">이용권 해지</span></span>
       <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
     </button>
   </li>
 </ul>
 <dialog class="ds-dialog ds-alertdialog" id="alert-dialog-ex3" role="alertdialog" aria-labelledby="alert-dialog-ex3-title" aria-describedby="alert-dialog-ex3-desc">
   <div class="ds-alertdialog__header">
-    <h2 id="alert-dialog-ex3-title" class="ds-alertdialog__title">멤버십을 해지할까요?</h2>
-    <p id="alert-dialog-ex3-desc" class="ds-alertdialog__desc">해지하면 남은 쿠폰 2장과 무료 배송 혜택이 사라져요.</p>
+    <h2 id="alert-dialog-ex3-title" class="ds-alertdialog__title">이용권을 해지할까요?</h2>
+    <p id="alert-dialog-ex3-desc" class="ds-alertdialog__desc">해지하면 남은 모의고사 2회와 무제한 수강 혜택이 사라져요.</p>
   </div>
   <div class="ds-alertdialog__footer" data-action="stacked">
     <button class="ds-btn" data-variant="neutralSolid" data-ds-close>혜택 계속 받기</button>

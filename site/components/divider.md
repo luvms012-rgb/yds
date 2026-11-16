@@ -35,20 +35,20 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 묶음 사이에만 배치
 
-주문 상세처럼 긴 모바일 화면은 묶음 사이에 굵은 구분선을 배치합니다. 마지막 묶음 아래에는 선을 두지 않아 화면이 깔끔하게 끝납니다.
+결제 상세처럼 긴 모바일 화면은 묶음 사이에 굵은 구분선을 배치합니다. 마지막 묶음 아래에는 선을 두지 않아 화면이 깔끔하게 끝납니다.
 
 ```html
 <div class="u-col u-gap-5 u-full" style="max-width: 375px">
   <section class="u-col u-gap-3">
-    <h3 class="ds-t06 ds-fw-bold">배송 정보</h3>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">받는 분</span><span>김하나</span></div>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">주소</span><span>서울시 종로구 종로 1길 23</span></div>
+    <h3 class="ds-t06 ds-fw-bold">수강 정보</h3>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">수강생</span><span>김하나</span></div>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">강의</span><span>영어 회화 기초</span></div>
   </section>
   <hr class="ds-divider" data-weight="thick">
   <section class="u-col u-gap-3">
     <h3 class="ds-t06 ds-fw-bold">결제 정보</h3>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">상품 금액</span><span>32,000원</span></div>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">배송비</span><span>0원</span></div>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">수강료</span><span>32,000원</span></div>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">교재비</span><span>0원</span></div>
     <div class="u-flex u-between u-gap-4 ds-t05 ds-fw-bold"><span>총 결제 금액</span><span>32,000원</span></div>
   </section>
 </div>

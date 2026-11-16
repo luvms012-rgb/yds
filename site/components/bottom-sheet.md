@@ -59,7 +59,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="u-flex u-center u-between" style="width: 100%; max-width: 375px">
-  <span class="ds-t04 ds-fg-muted">상품 128개</span>
+  <span class="ds-t04 ds-fg-muted">강의 128개</span>
   <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-haspopup="dialog" data-ds-open="bottom-sheet-ex1">최신순<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
 </div>
 <dialog class="ds-bottomsheet" id="bottom-sheet-ex1" aria-labelledby="bottom-sheet-ex1-title" data-handle>
@@ -87,26 +87,26 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="ds-field" style="width: 100%; max-width: 375px">
-  <div class="ds-field__header"><span class="ds-field__label" id="bottom-sheet-ex2-label">배송 요청 사항</span></div>
+  <div class="ds-field__header"><span class="ds-field__label" id="bottom-sheet-ex2-label">학습 목표</span></div>
   <button type="button" class="ds-fieldbutton" data-size="large" aria-labelledby="bottom-sheet-ex2-label bottom-sheet-ex2-value" aria-haspopup="dialog" data-ds-open="bottom-sheet-ex2">
-    <span class="ds-fieldbutton__value" id="bottom-sheet-ex2-value">문 앞에 놓아 주세요</span>
+    <span class="ds-fieldbutton__value" id="bottom-sheet-ex2-value">시험 점수 올리기</span>
     <i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i>
   </button>
 </div>
 <dialog class="ds-bottomsheet" id="bottom-sheet-ex2" aria-labelledby="bottom-sheet-ex2-title" data-handle>
   <div class="ds-bottomsheet__header">
-    <h2 class="ds-bottomsheet__title" id="bottom-sheet-ex2-title">배송 요청 사항</h2>
+    <h2 class="ds-bottomsheet__title" id="bottom-sheet-ex2-title">학습 목표</h2>
     <button class="ds-bottomsheet__close" data-ds-close aria-label="닫기"></button>
   </div>
   <div class="ds-bottomsheet__body">
     <div class="u-col u-gap-3">
       <div class="ds-radio-group" role="radiogroup" aria-labelledby="bottom-sheet-ex2-title">
-        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request" checked><span>문 앞에 놓아 주세요</span></label>
-        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request"><span>경비실에 맡겨 주세요</span></label>
-        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request"><span>직접 받을게요</span></label>
+        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request" checked><span>시험 점수 올리기</span></label>
+        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request"><span>업무에서 영어 쓰기</span></label>
+        <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request"><span>기초부터 다시 하기</span></label>
         <label class="ds-radio"><input type="radio" class="ds-radio__control" name="bottom-sheet-ex2-request"><span>직접 적을게요</span></label>
       </div>
-      <textarea class="ds-textarea" data-size="medium" rows="2" placeholder="예: 벨을 누르지 말아 주세요" aria-label="배송 요청 사항 직접 적기"></textarea>
+      <textarea class="ds-textarea" data-size="medium" rows="2" placeholder="예: 석 달 안에 영어 면접 준비하기" aria-label="학습 목표 직접 적기"></textarea>
     </div>
   </div>
   <div class="ds-bottomsheet__footer">

@@ -60,12 +60,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 <div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
   <div class="u-col u-gap-3">
     <p class="ds-chat-system">오늘</p>
-    <div class="ds-chat-bubble">안녕하세요. 주문 번호를 알려 주시면 배송 상태를 확인해 드릴게요.</div>
+    <div class="ds-chat-bubble">안녕하세요. 수험 번호를 알려 주시면 접수 상태를 확인해 드릴게요.</div>
     <div class="u-col u-gap-1">
-      <div class="ds-chat-bubble" data-sender="user">주문 번호는 2611040123이에요</div>
+      <div class="ds-chat-bubble" data-sender="user">수험 번호는 2611040123이에요</div>
       <div class="u-flex"><span class="u-grow"></span><span class="ds-chat-meta" data-status="read"><b class="ds-chat-meta__status">읽음</b><time>오후 2:10</time></span></div>
     </div>
-    <div class="ds-chat-bubble">확인했어요. 상품은 오늘 저녁 6시 전에 도착할 예정이에요.</div>
+    <div class="ds-chat-bubble">확인했어요. 접수가 잘 됐고, 수험표는 시험 3일 전에 열려요.</div>
   </div>
   <form class="ds-chat-composer" onsubmit="return false">
     <button type="button" class="ds-chat-composer__attach" aria-label="첨부"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i></button>
@@ -104,7 +104,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
   <p class="ds-chat-system" data-layout="divider">오늘</p>
-  <div class="ds-chat-bubble">교환할 상품 사진을 보내 주세요.</div>
+  <div class="ds-chat-bubble">궁금한 문제 화면을 사진으로 보내 주세요.</div>
   <div class="u-col u-gap-1">
     <div class="ds-chat-bubble" data-sender="user">사진 두 장 보낼게요</div>
     <div class="u-flex u-center u-gap-2">

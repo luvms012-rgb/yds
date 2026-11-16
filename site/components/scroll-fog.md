@@ -65,7 +65,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-pressed="false">취업</button>
   <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-pressed="false">컴퓨터</button>
   <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-pressed="false">비즈니스</button>
-  <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-pressed="false">여행 회화</button>
+  <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-pressed="false">생활 회화</button>
   <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-pressed="false">교양</button>
 </div>
 ```

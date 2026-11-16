@@ -62,21 +62,21 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 <div style="width: 100%; max-width: 420px">
   <details class="ds-accordion" name="accordion-ex1" open>
     <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body"><span class="ds-accordion__title">주문을 취소하고 싶어요</span></span>
+      <span class="ds-accordion__body"><span class="ds-accordion__title">수강 신청을 취소하고 싶어요</span></span>
     </summary>
-    <div class="ds-accordion__content">결제하고 1시간 안에는 주문 내역에서 바로 취소할 수 있어요. 그 뒤에는 고객센터로 문의해 주세요.</div>
+    <div class="ds-accordion__content">강의를 듣기 전이면 수강 내역에서 바로 취소할 수 있어요. 그 뒤에는 고객센터로 문의해 주세요.</div>
   </details>
   <details class="ds-accordion" name="accordion-ex1">
     <summary class="ds-accordion__trigger">
-      <span class="ds-accordion__body"><span class="ds-accordion__title">배송지를 바꿀 수 있나요?</span></span>
+      <span class="ds-accordion__body"><span class="ds-accordion__title">수강 기간을 늘릴 수 있나요?</span></span>
     </summary>
-    <div class="ds-accordion__content">상품이 출발하기 전까지 주문 상세에서 바꿀 수 있어요.</div>
+    <div class="ds-accordion__content">수강 기간이 끝나기 전에 내 강의실에서 늘릴 수 있어요.</div>
   </details>
   <details class="ds-accordion" name="accordion-ex1">
     <summary class="ds-accordion__trigger">
       <span class="ds-accordion__body"><span class="ds-accordion__title">영수증은 어디서 받나요?</span></span>
     </summary>
-    <div class="ds-accordion__content">주문 상세 아래 영수증 보기를 누르면 내려받을 수 있어요.</div>
+    <div class="ds-accordion__content">결제 내역에서 영수증 보기를 누르면 내려받을 수 있어요.</div>
   </details>
 </div>
 ```

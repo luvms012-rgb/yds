@@ -46,7 +46,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-tabs" role="tablist" aria-label="강의 구분">
     <button type="button" class="ds-tabs__trigger" role="tab" aria-selected="true">수강 중</button>
     <button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">수강 완료</button>
-    <button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">찜한 강의</button>
+    <button type="button" class="ds-tabs__trigger" role="tab" aria-selected="false">관심 강의</button>
   </div>
   <div role="tabpanel" aria-label="수강 중">
     <ul class="ds-list" data-divider>

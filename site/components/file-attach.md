@@ -97,13 +97,13 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
     <div class="ds-fileattach__items">
       <div class="ds-fileitem">
         <span class="ds-fileitem__thumbnail"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span>
-        <span class="ds-fileitem__texts"><span class="ds-fileitem__name">주문서.pdf</span><span class="ds-fileitem__size">1.2MB</span></span>
-        <button type="button" class="ds-fileitem__remove" aria-label="주문서.pdf 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+        <span class="ds-fileitem__texts"><span class="ds-fileitem__name">성적표.pdf</span><span class="ds-fileitem__size">1.2MB</span></span>
+        <button type="button" class="ds-fileitem__remove" aria-label="성적표.pdf 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
       <div class="ds-fileitem">
         <span class="ds-fileitem__thumbnail"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></span>
-        <span class="ds-fileitem__texts"><span class="ds-fileitem__name">받은 상품.jpg</span><span class="ds-fileitem__size">840KB</span></span>
-        <button type="button" class="ds-fileitem__remove" aria-label="받은 상품.jpg 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+        <span class="ds-fileitem__texts"><span class="ds-fileitem__name">오류 화면.jpg</span><span class="ds-fileitem__size">840KB</span></span>
+        <button type="button" class="ds-fileitem__remove" aria-label="오류 화면.jpg 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
@@ -169,16 +169,16 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
         <span class="ds-fileattach__count"><b>3</b>/3</span>
       </label>
       <div class="ds-fileitem" data-layout="image">
-        <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=70" alt="커피 두 잔">
+        <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=160&q=70" alt="공책에 단어를 적는 모습">
         <span class="ds-fileitem__badge">대표</span>
         <button type="button" class="ds-fileitem__remove" aria-label="첫 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
       <div class="ds-fileitem" data-layout="image">
-        <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=160&q=70" alt="커피 잔을 부딪치는 손">
+        <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=160&q=70" alt="책상 위에 쌓인 책">
         <button type="button" class="ds-fileitem__remove" aria-label="두 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
       <div class="ds-fileitem" data-layout="image">
-        <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=160&q=70" alt="샐러드 한 그릇">
+        <img class="ds-fileitem__image" src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=160&q=70" alt="강의 노트">
         <button type="button" class="ds-fileitem__remove" aria-label="세 번째 사진 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
       </div>
     </div>

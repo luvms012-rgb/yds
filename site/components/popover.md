@@ -104,21 +104,21 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="u-col u-gap-3 u-full" style="max-width: 480px">
   <div class="u-flex u-center u-between u-gap-2">
-    <span class="ds-t06 ds-fw-bold">주문 내역</span>
+    <span class="ds-t06 ds-fw-bold">수강 내역</span>
     <span class="ds-popover-anchor">
       <button type="button" class="ds-btn" data-variant="neutralOutline" data-size="small" data-ds-popover="popover-ex2" aria-expanded="false" aria-controls="popover-ex2"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i>필터</button>
       <div class="ds-popover" id="popover-ex2" role="dialog" aria-labelledby="popover-ex2-title" hidden data-placement="bottom-end">
         <div class="ds-popover__header">
           <div class="ds-popover__texts">
-            <strong class="ds-popover__title" id="popover-ex2-title">주문 상태</strong>
+            <strong class="ds-popover__title" id="popover-ex2-title">수강 상태</strong>
           </div>
         </div>
         <div class="ds-popover__body">
           <fieldset class="ds-checkbox-group" aria-labelledby="popover-ex2-title">
             <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">결제 완료</span></label>
-            <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">배송 중</span></label>
-            <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">배송 완료</span></label>
-            <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">취소, 반품</span></label>
+            <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked><span class="ds-checkbox__label">수강 중</span></label>
+            <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">수강 완료</span></label>
+            <label class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"><span class="ds-checkbox__label">취소, 환불</span></label>
           </fieldset>
         </div>
         <div class="ds-popover__footer">
@@ -129,10 +129,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     </span>
   </div>
   <ul class="ds-list" data-inset data-divider>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">무선 이어폰</span><span class="ds-list-item__desc">11월 3일 주문</span></span><span class="ds-list-item__suffix">배송 중</span></a></li>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 단어장 세트</span><span class="ds-list-item__desc">11월 1일 주문</span></span><span class="ds-list-item__suffix">결제 완료</span></a></li>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">가벼운 러닝화</span><span class="ds-list-item__desc">10월 28일 주문</span></span><span class="ds-list-item__suffix">배송 중</span></a></li>
-    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">휴대용 보조 배터리</span><span class="ds-list-item__desc">10월 25일 주문</span></span><span class="ds-list-item__suffix">결제 완료</span></a></li>
+    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 회화 기초</span><span class="ds-list-item__desc">11월 3일 신청</span></span><span class="ds-list-item__suffix">수강 중</span></a></li>
+    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">기초 영문법</span><span class="ds-list-item__desc">11월 1일 신청</span></span><span class="ds-list-item__suffix">결제 완료</span></a></li>
+    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">비즈니스 이메일 쓰기</span><span class="ds-list-item__desc">10월 28일 신청</span></span><span class="ds-list-item__suffix">수강 중</span></a></li>
+    <li><a class="ds-list-item" href="#"><span class="ds-list-item__content"><span class="ds-list-item__title">영어 듣기 첫걸음</span><span class="ds-list-item__desc">10월 25일 신청</span></span><span class="ds-list-item__suffix">결제 완료</span></a></li>
   </ul>
 </div>
 ```

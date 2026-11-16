@@ -58,7 +58,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-helpbubble" id="help-bubble-ex1" role="tooltip" data-placement="bottom-start">
     <div class="ds-helpbubble__body">
       <strong class="ds-helpbubble__title">필터가 새로 생겼어요</strong>
-      <p class="ds-helpbubble__desc">가격과 배송 조건으로 상품을 골라 볼 수 있어요.</p>
+      <p class="ds-helpbubble__desc">수강 기간과 난이도로 강의를 골라 볼 수 있어요.</p>
     </div>
     <button class="ds-helpbubble__close" aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
   </div>

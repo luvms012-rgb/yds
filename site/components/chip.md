@@ -41,12 +41,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
   <div class="u-flex u-wrap u-gap-2">
-    <button type="button" class="ds-chip" aria-pressed="true">무료 배송</button>
-    <button type="button" class="ds-chip" aria-pressed="false">오늘 출발</button>
+    <button type="button" class="ds-chip" aria-pressed="true">무료 강의</button>
+    <button type="button" class="ds-chip" aria-pressed="false">이번 주 개강</button>
     <button type="button" class="ds-chip" aria-pressed="true">할인 중</button>
     <button type="button" class="ds-chip" aria-pressed="false">평점 4점 이상</button>
   </div>
-  <span class="ds-t04 ds-fg-subtle">상품 128개</span>
+  <span class="ds-t04 ds-fg-subtle">강의 128개</span>
 </div>
 ```
 
@@ -59,26 +59,26 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="u-flex u-wrap u-gap-2">
     <button type="button" class="ds-chip" data-variant="outlineWeak" data-layout="iconOnly" aria-label="필터"><i class="ds-icon ds-icon--sliders-horizontal" aria-hidden="true"></i></button>
     <button type="button" class="ds-chip" data-variant="outlineWeak" aria-haspopup="dialog">최근 3개월<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
-    <button type="button" class="ds-chip" data-variant="outlineWeak" aria-haspopup="dialog">배송 완료<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
+    <button type="button" class="ds-chip" data-variant="outlineWeak" aria-haspopup="dialog">수강 완료<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
   </div>
   <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">무선 이어폰</span>
-          <span class="ds-list-item__desc">11월 2일 주문</span>
+          <span class="ds-list-item__title">영어 회화 기초</span>
+          <span class="ds-list-item__desc">11월 2일 신청</span>
         </span>
-        <span class="ds-list-item__suffix">배송 완료</span>
+        <span class="ds-list-item__suffix">수강 완료</span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
     </li>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">보온 텀블러</span>
-          <span class="ds-list-item__desc">10월 21일 주문</span>
+          <span class="ds-list-item__title">비즈니스 이메일 쓰기</span>
+          <span class="ds-list-item__desc">10월 21일 신청</span>
         </span>
-        <span class="ds-list-item__suffix">배송 완료</span>
+        <span class="ds-list-item__suffix">수강 완료</span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
     </li>
@@ -98,8 +98,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </div>
   <div class="u-flex u-wrap u-gap-2">
     <button type="button" class="ds-chip" data-variant="outlineStrong" data-size="small" aria-label="서울 조건 빼기">서울<i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
-    <button type="button" class="ds-chip" data-variant="outlineStrong" data-size="small" aria-label="1인실 조건 빼기">1인실<i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
-    <button type="button" class="ds-chip" data-variant="outlineStrong" data-size="small" aria-label="주차 가능 조건 빼기">주차 가능<i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+    <button type="button" class="ds-chip" data-variant="outlineStrong" data-size="small" aria-label="주말반 조건 빼기">주말반<i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+    <button type="button" class="ds-chip" data-variant="outlineStrong" data-size="small" aria-label="초급 조건 빼기">초급<i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
   </div>
 </div>
 ```

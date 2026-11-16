@@ -49,21 +49,21 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <strong class="ds-t07 ds-fw-bold">32,000원</strong>
   </div>
   <div class="u-flex u-gap-2">
-    <button class="ds-btn" data-variant="neutralWeak" data-size="large" data-layout="fill">장바구니 담기</button>
-    <button class="ds-btn" data-size="large" data-layout="fill">바로 구매하기</button>
+    <button class="ds-btn" data-variant="neutralWeak" data-size="large" data-layout="fill">관심 강의 담기</button>
+    <button class="ds-btn" data-size="large" data-layout="fill">수강 신청하기</button>
   </div>
 </div>
 ```
 
 ### 버튼은 세 개까지, 나머지는 아이콘으로
 
-나란히 배치하는 버튼은 세 개까지로 하고, 찜이나 공유처럼 가끔 사용하는 동작은 작은 아이콘 버튼으로 제공합니다. 아이콘만 있는 버튼에는 `aria-label`로 이름을 지정합니다.
+나란히 배치하는 버튼은 세 개까지로 하고, 관심 강의 담기나 공유처럼 가끔 사용하는 동작은 작은 아이콘 버튼으로 제공합니다. 아이콘만 있는 버튼에는 `aria-label`로 이름을 지정합니다.
 
 ```html
 <div class="u-col u-gap-4" style="width: 100%; max-width: 420px">
   <strong class="ds-t06 ds-fw-bold">영어 회화 첫걸음</strong>
   <div class="u-flex u-gap-2">
-    <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="찜하기"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button>
+    <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="관심 강의 담기"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button>
     <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="공유하기"><i class="ds-icon ds-icon--share" aria-hidden="true"></i></button>
     <button class="ds-btn" data-size="large" data-layout="fill">수강 신청하기</button>
   </div>

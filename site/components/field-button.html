@@ -67,7 +67,7 @@
 <a class="site-nav__item" href="../components/command-palette.html" data-site-keys="명령 찾기 커맨드 팔레트 빠른 이동 단축키 검색 창">Command Palette<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-field.html" data-site-keys="날짜 날짜 입력 생년월일 날짜 칸 데이트">Date Field<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-picker-date-cell.html" data-site-keys="날짜 달력 날짜 고르기 데이트 피커">Date Picker</a>
-<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 주문 정보 결제 정보 이름과 값">Description List</a>
+<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 수강 정보 결제 정보 이름과 값">Description List</a>
 <a class="site-nav__item" href="../components/dialog.html" data-site-keys="대화상자 다이얼로그 모달 팝업 창">Dialog</a>
 <a class="site-nav__item" href="../components/divider.html" data-site-keys="구분선 나누는 선 디바이더">Divider</a>
 <a class="site-nav__item" href="../components/empty.html" data-site-keys="빈 화면 비어 있음 엠프티 결과 없음">Empty</a>
@@ -171,25 +171,25 @@
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="ds-field u-full" style="max-width: 360px">
   <div class="ds-field__header">
-    <label class="ds-field__label" for="field-button-ex1-field">배송 요청 사항</label>
+    <label class="ds-field__label" for="field-button-ex1-field">수강 반</label>
     <span class="ds-field__indicator">선택</span>
   </div>
   <button type="button" class="ds-fieldbutton" id="field-button-ex1-field" data-ds-open="field-button-ex1-sheet" aria-haspopup="dialog">
-    <span class="ds-fieldbutton__value" data-placeholder="요청 사항을 골라 주세요"></span>
+    <span class="ds-fieldbutton__value" data-placeholder="반을 골라 주세요"></span>
     <i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i>
   </button>
 </div>
 <dialog class="ds-bottomsheet" id="field-button-ex1-sheet" aria-labelledby="field-button-ex1-title" data-handle>
   <div class="ds-bottomsheet__header">
-    <h2 class="ds-bottomsheet__title" id="field-button-ex1-title">배송 요청 사항</h2>
+    <h2 class="ds-bottomsheet__title" id="field-button-ex1-title">수강 반</h2>
     <button class="ds-bottomsheet__close" data-ds-close aria-label="닫기"></button>
   </div>
   <div class="ds-bottomsheet__body">
     <div class="ds-radio-group" role="radiogroup" aria-labelledby="field-button-ex1-title">
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request" checked><span>문 앞에 두기</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>경비실에 맡기기</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>택배함에 넣기</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>배송 전에 연락하기</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request" checked><span>평일 오전반</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>평일 저녁반</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>주말 오전반</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>주말 오후반</span></label>
     </div>
   </div>
   <div class="ds-bottomsheet__footer">
@@ -200,25 +200,25 @@
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field u-full&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 360px&quot;</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__header&quot;</span>&gt;
-    &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__label&quot;</span> <span class="hl-f">for</span>=<span class="hl-s">&quot;field-button-ex1-field&quot;</span>&gt;배송 요청 사항&lt;/<span class="hl-t">label</span>&gt;
+    &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__label&quot;</span> <span class="hl-f">for</span>=<span class="hl-s">&quot;field-button-ex1-field&quot;</span>&gt;수강 반&lt;/<span class="hl-t">label</span>&gt;
     &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-field__indicator&quot;</span>&gt;선택&lt;/<span class="hl-t">span</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">button</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;button&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fieldbutton&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;field-button-ex1-field&quot;</span> <span class="hl-f">data-ds-open</span>=<span class="hl-s">&quot;field-button-ex1-sheet&quot;</span> <span class="hl-f">aria-haspopup</span>=<span class="hl-s">&quot;dialog&quot;</span>&gt;
-    &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fieldbutton__value&quot;</span> <span class="hl-f">data-placeholder</span>=<span class="hl-s">&quot;요청 사항을 골라 주세요&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
+    &lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fieldbutton__value&quot;</span> <span class="hl-f">data-placeholder</span>=<span class="hl-s">&quot;반을 골라 주세요&quot;</span>&gt;&lt;/<span class="hl-t">span</span>&gt;
     &lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--chevron-down&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;
   &lt;/<span class="hl-t">button</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;
 &lt;<span class="hl-t">dialog</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;field-button-ex1-sheet&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;field-button-ex1-title&quot;</span> <span class="hl-f">data-handle</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__header&quot;</span>&gt;
-    &lt;<span class="hl-t">h2</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__title&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;field-button-ex1-title&quot;</span>&gt;배송 요청 사항&lt;/<span class="hl-t">h2</span>&gt;
+    &lt;<span class="hl-t">h2</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__title&quot;</span> <span class="hl-f">id</span>=<span class="hl-s">&quot;field-button-ex1-title&quot;</span>&gt;수강 반&lt;/<span class="hl-t">h2</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__close&quot;</span> <span class="hl-f">data-ds-close</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;닫기&quot;</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__body&quot;</span>&gt;
     &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio-group&quot;</span> <span class="hl-f">role</span>=<span class="hl-s">&quot;radiogroup&quot;</span> <span class="hl-f">aria-labelledby</span>=<span class="hl-s">&quot;field-button-ex1-title&quot;</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span> <span class="hl-f">checked</span>&gt;&lt;<span class="hl-t">span</span>&gt;문 앞에 두기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;경비실에 맡기기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;택배함에 넣기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
-      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;배송 전에 연락하기&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
+      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span> <span class="hl-f">checked</span>&gt;&lt;<span class="hl-t">span</span>&gt;평일 오전반&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
+      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;평일 저녁반&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
+      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;주말 오전반&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
+      &lt;<span class="hl-t">label</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio&quot;</span>&gt;&lt;<span class="hl-t">input</span> <span class="hl-f">type</span>=<span class="hl-s">&quot;radio&quot;</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-radio__control&quot;</span> <span class="hl-f">name</span>=<span class="hl-s">&quot;field-button-ex1-request&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;주말 오후반&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">label</span>&gt;
     &lt;/<span class="hl-t">div</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-bottomsheet__footer&quot;</span>&gt;

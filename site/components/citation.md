@@ -46,12 +46,12 @@ AI 답변은 Markdown으로 감싸고, 근거가 된 문장 끝에 번호 Citati
 
 ```html
 <div class="u-col u-gap-4" style="width: 100%; max-width: 520px">
-  <div class="ds-chat-bubble" data-sender="user">받은 지 5일 된 상품도 환불돼요?</div>
+  <div class="ds-chat-bubble" data-sender="user">결제한 지 5일 된 강의도 환불돼요?</div>
   <div class="ds-markdown">
-    <p>네, 상품을 받은 날부터 7일 안이면 환불을 신청할 수 있어요.<a class="ds-citation" data-type="number" href="#citation-ex1-ref1" aria-label="출처 1">1</a> 포장을 뜯었더라도 쓰지 않은 상품이면 돼요.<a class="ds-citation" data-type="number" href="#citation-ex1-ref2" aria-label="출처 2">2</a></p>
+    <p>네, 결제한 날부터 7일 안이면 환불을 신청할 수 있어요.<a class="ds-citation" data-type="number" href="#citation-ex1-ref1" aria-label="출처 1">1</a> 강의를 듣지 않았다면 모두 돌려받아요.<a class="ds-citation" data-type="number" href="#citation-ex1-ref2" aria-label="출처 2">2</a></p>
     <h4>출처</h4>
     <ol>
-      <li id="citation-ex1-ref1"><a href="#">교환과 환불 규정</a></li>
+      <li id="citation-ex1-ref1"><a href="#">수강료 환불 규정</a></li>
       <li id="citation-ex1-ref2"><a href="#">환불 자주 묻는 질문</a></li>
     </ol>
   </div>
@@ -64,9 +64,9 @@ AI 답변은 Markdown으로 감싸고, 근거가 된 문장 끝에 번호 Citati
 
 ```html
 <div class="ds-markdown" style="width: 100%; max-width: 520px">
-  <h3>택배 상자 버리는 법</h3>
-  <p>송장과 테이프를 떼고 상자를 접어서 종이류로 내놓으면 돼요.<a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--globe" aria-hidden="true"></i></span><span class="ds-citation__label">분리배출 안내</span></a></p>
-  <p>비닐 완충재는 따로 모아 비닐류로 내놓아요.<a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--globe" aria-hidden="true"></i></span><span class="ds-citation__label">생활 쓰레기를 바르게 내놓는 방법 모음</span></a></p>
+  <h3>시험 날 챙길 것</h3>
+  <p>신분증과 수험표를 챙기고, 시작 30분 전까지 들어가요.<a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--globe" aria-hidden="true"></i></span><span class="ds-citation__label">응시 안내</span></a></p>
+  <p>휴대폰은 시험 전에 꺼서 감독관에게 맡겨요.<a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--globe" aria-hidden="true"></i></span><span class="ds-citation__label">시험 날 꼭 알아야 할 응시 규칙 모음</span></a></p>
 </div>
 ```
 

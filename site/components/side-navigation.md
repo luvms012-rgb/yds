@@ -101,7 +101,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
         <a class="ds-sidenav__item" href="#" aria-current="page" aria-label="홈"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--house-solid" aria-hidden="true"></i></span><span class="ds-sidenav__label">홈</span></a>
         <a class="ds-sidenav__item" href="#" aria-label="내 강의실"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--book-open" aria-hidden="true"></i></span><span class="ds-sidenav__label">내 강의실</span></a>
         <a class="ds-sidenav__item" href="#" aria-label="시험 일정"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span><span class="ds-sidenav__label">시험 일정</span></a>
-        <a class="ds-sidenav__item" href="#" aria-label="주문 내역"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--receipt" aria-hidden="true"></i></span><span class="ds-sidenav__label">주문 내역</span></a>
+        <a class="ds-sidenav__item" href="#" aria-label="결제 내역"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--receipt" aria-hidden="true"></i></span><span class="ds-sidenav__label">결제 내역</span></a>
         <a class="ds-sidenav__item" href="#" aria-label="설정"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--settings" aria-hidden="true"></i></span><span class="ds-sidenav__label">설정</span></a>
       </div>
     </div>

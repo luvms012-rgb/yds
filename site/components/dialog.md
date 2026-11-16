@@ -85,35 +85,35 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 입력 폼은 하단에 저장과 취소
 
-새 배송지를 입력하고 저장하는 것처럼 주요 동작이 있으면 하단에 저장과 취소 버튼을 배치하고 상단 닫기 버튼은 뺍니다. 하단 버튼은 Action Button large를 사용합니다.
+새 단어장을 만들고 저장하는 것처럼 주요 동작이 있으면 하단에 저장과 취소 버튼을 배치하고 상단 닫기 버튼은 뺍니다. 하단 버튼은 Action Button large를 사용합니다.
 
 ```html
 <button class="ds-btn" data-variant="neutralOutline" data-ds-open="dialog-ex2">
-  <i class="ds-icon ds-icon--plus" aria-hidden="true"></i>배송지 추가
+  <i class="ds-icon ds-icon--plus" aria-hidden="true"></i>단어장 추가
 </button>
 <dialog class="ds-dialog" id="dialog-ex2" aria-labelledby="dialog-ex2-title">
   <div class="ds-dialog__header">
-    <h2 class="ds-dialog__title" id="dialog-ex2-title">새 배송지</h2>
-    <p class="ds-dialog__desc">주문할 때 바로 고를 수 있어요.</p>
+    <h2 class="ds-dialog__title" id="dialog-ex2-title">새 단어장</h2>
+    <p class="ds-dialog__desc">단어를 저장할 때 바로 고를 수 있어요.</p>
   </div>
   <div class="ds-dialog__body">
     <div class="u-col u-gap-5">
       <div class="ds-field">
         <div class="ds-field__header">
-          <label class="ds-field__label" for="dialog-ex2-name">배송지 이름</label>
+          <label class="ds-field__label" for="dialog-ex2-name">단어장 이름</label>
           <span class="ds-field__required" aria-hidden="true"></span>
         </div>
         <div class="ds-input" data-variant="outline">
-          <input class="ds-input__control" id="dialog-ex2-name" placeholder="예: 회사" required>
+          <input class="ds-input__control" id="dialog-ex2-name" placeholder="예: 회의 표현" required>
         </div>
       </div>
       <div class="ds-field">
         <div class="ds-field__header">
-          <label class="ds-field__label" for="dialog-ex2-person">받는 분</label>
+          <label class="ds-field__label" for="dialog-ex2-person">설명</label>
           <span class="ds-field__required" aria-hidden="true"></span>
         </div>
         <div class="ds-input" data-variant="outline">
-          <input class="ds-input__control" id="dialog-ex2-person" placeholder="이름을 입력해 주세요" required>
+          <input class="ds-input__control" id="dialog-ex2-person" placeholder="설명을 입력해 주세요" required>
         </div>
       </div>
     </div>

@@ -53,25 +53,25 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
   <div class="ds-field__header">
-    <label class="ds-field__label" for="field-button-ex1-field">배송 요청 사항</label>
+    <label class="ds-field__label" for="field-button-ex1-field">수강 반</label>
     <span class="ds-field__indicator">선택</span>
   </div>
   <button type="button" class="ds-fieldbutton" id="field-button-ex1-field" data-ds-open="field-button-ex1-sheet" aria-haspopup="dialog">
-    <span class="ds-fieldbutton__value" data-placeholder="요청 사항을 골라 주세요"></span>
+    <span class="ds-fieldbutton__value" data-placeholder="반을 골라 주세요"></span>
     <i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i>
   </button>
 </div>
 <dialog class="ds-bottomsheet" id="field-button-ex1-sheet" aria-labelledby="field-button-ex1-title" data-handle>
   <div class="ds-bottomsheet__header">
-    <h2 class="ds-bottomsheet__title" id="field-button-ex1-title">배송 요청 사항</h2>
+    <h2 class="ds-bottomsheet__title" id="field-button-ex1-title">수강 반</h2>
     <button class="ds-bottomsheet__close" data-ds-close aria-label="닫기"></button>
   </div>
   <div class="ds-bottomsheet__body">
     <div class="ds-radio-group" role="radiogroup" aria-labelledby="field-button-ex1-title">
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request" checked><span>문 앞에 두기</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>경비실에 맡기기</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>택배함에 넣기</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>배송 전에 연락하기</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request" checked><span>평일 오전반</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>평일 저녁반</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>주말 오전반</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="field-button-ex1-request"><span>주말 오후반</span></label>
     </div>
   </div>
   <div class="ds-bottomsheet__footer">

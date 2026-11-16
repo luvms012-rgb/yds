@@ -122,10 +122,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <label class="ds-field__label" for="field-label-ex3-text">문의 내용</label>
     <span class="ds-field__required" aria-hidden="true"></span>
   </div>
-  <textarea class="ds-textarea" id="field-label-ex3-text" rows="4" maxlength="500" placeholder="궁금한 점을 자세히 적어 주세요" required>주문한 책이 아직 오지 않았어요. 배송 상황을 알려 주세요.</textarea>
+  <textarea class="ds-textarea" id="field-label-ex3-text" rows="4" maxlength="500" placeholder="궁금한 점을 자세히 적어 주세요" required>3강 문법 해설을 더 자세히 듣고 싶어요. 예문도 있나요?</textarea>
   <div class="ds-field__footer">
     <p class="ds-field__help">주민등록번호 같은 개인 정보는 적지 말아 주세요.</p>
-    <span class="ds-field__count">33/500</span>
+    <span class="ds-field__count">32/500</span>
   </div>
 </div>
 ```

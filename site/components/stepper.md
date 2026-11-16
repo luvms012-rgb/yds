@@ -75,13 +75,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 <article class="ds-card" style="width: 100%; max-width: 360px">
   <header class="ds-card__header">
     <h3 class="ds-card__title">환불 진행 상황</h3>
-    <p class="ds-card__desc">무선 이어폰 외 1건</p>
+    <p class="ds-card__desc">영어 회화 기초 외 1개</p>
   </header>
   <div class="ds-card__content">
     <ol class="ds-stepper" aria-label="환불 단계" data-orientation="vertical">
       <li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">환불 신청</span></li>
-      <li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">상품 회수</span></li>
-      <li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">상품 검수</span></li>
+      <li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">수강 확인</span></li>
+      <li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">금액 확인</span></li>
       <li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">환불 완료</span></li>
     </ol>
   </div>

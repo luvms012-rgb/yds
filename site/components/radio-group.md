@@ -40,17 +40,17 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 자주 선택하는 항목 기본 선택
 
-대부분이 선택하는 일반 배송을 기본으로 선택해 둡니다. 바꾸려는 사람만 다시 선택하면 되므로 고민이 줄어듭니다.
+대부분이 선택하는 온라인 성적표를 기본으로 선택해 둡니다. 바꾸려는 사람만 다시 선택하면 되므로 고민이 줄어듭니다.
 
 ```html
 <div class="ds-field u-full" style="max-width: 360px">
   <div class="ds-field__header">
-    <span class="ds-field__label" id="radio-group-ex1-label">배송 방법</span>
+    <span class="ds-field__label" id="radio-group-ex1-label">성적표 받는 방법</span>
   </div>
   <div class="ds-radio-group" role="radiogroup" aria-labelledby="radio-group-ex1-label">
-    <label class="ds-radio"><input type="radio" class="ds-radio__control" name="radio-group-ex1" checked><span>일반 배송, 무료</span></label>
-    <label class="ds-radio"><input type="radio" class="ds-radio__control" name="radio-group-ex1"><span>빠른 배송, 3,000원</span></label>
-    <label class="ds-radio"><input type="radio" class="ds-radio__control" name="radio-group-ex1"><span>편의점에서 받기</span></label>
+    <label class="ds-radio"><input type="radio" class="ds-radio__control" name="radio-group-ex1" checked><span>온라인 성적표, 무료</span></label>
+    <label class="ds-radio"><input type="radio" class="ds-radio__control" name="radio-group-ex1"><span>우편 성적표, 3,000원</span></label>
+    <label class="ds-radio"><input type="radio" class="ds-radio__control" name="radio-group-ex1"><span>방문해서 받기</span></label>
   </div>
 </div>
 ```

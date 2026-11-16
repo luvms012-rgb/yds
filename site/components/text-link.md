@@ -65,27 +65,27 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ```html
 <section class="u-col u-gap-3" style="width: 100%; max-width: 420px">
   <div class="u-flex u-center u-between">
-    <h3 class="ds-t06 ds-fw-bold">최근 주문</h3>
+    <h3 class="ds-t06 ds-fw-bold">최근 수강 신청</h3>
     <a class="ds-link" data-size="small" href="#">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a>
   </div>
   <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">무선 이어폰 외 1건</span>
-          <span class="ds-list-item__desc">11월 2일 주문</span>
+          <span class="ds-list-item__title">영어 회화 기초 외 1개</span>
+          <span class="ds-list-item__desc">11월 2일 신청</span>
         </span>
-        <span class="ds-list-item__suffix">배송 중</span>
+        <span class="ds-list-item__suffix">수강 중</span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
     </li>
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">텀블러 500ml</span>
-          <span class="ds-list-item__desc">10월 28일 주문</span>
+          <span class="ds-list-item__title">비즈니스 이메일 쓰기</span>
+          <span class="ds-list-item__desc">10월 28일 신청</span>
         </span>
-        <span class="ds-list-item__suffix">배송 완료</span>
+        <span class="ds-list-item__suffix">수강 완료</span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
     </li>

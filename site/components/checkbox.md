@@ -88,30 +88,30 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <ul class="ds-list" data-inset data-divider>
     <li>
       <div class="ds-list-item">
-        <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked aria-label="무선 이어폰"></label></span>
+        <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked aria-label="영어 회화 기초"></label></span>
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">무선 이어폰</span>
-          <span class="ds-list-item__desc">화이트, 1개</span>
+          <span class="ds-list-item__title">영어 회화 기초</span>
+          <span class="ds-list-item__desc">3개월, 강의 24개</span>
         </span>
         <span class="ds-list-item__suffix">59,000원</span>
       </div>
     </li>
     <li>
       <div class="ds-list-item">
-        <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked aria-label="보온 텀블러"></label></span>
+        <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" checked aria-label="기초 영문법"></label></span>
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">보온 텀블러</span>
-          <span class="ds-list-item__desc">500ml, 2개</span>
+          <span class="ds-list-item__title">기초 영문법</span>
+          <span class="ds-list-item__desc">교재 포함, 2권</span>
         </span>
         <span class="ds-list-item__suffix">24,000원</span>
       </div>
     </li>
     <li>
       <div class="ds-list-item">
-        <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="노트 3권 세트"></label></span>
+        <span class="ds-list-item__prefix"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="실전 모의고사 1회"></label></span>
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">노트 3권 세트</span>
-          <span class="ds-list-item__desc">1개</span>
+          <span class="ds-list-item__title">실전 모의고사 1회</span>
+          <span class="ds-list-item__desc">온라인 응시</span>
         </span>
         <span class="ds-list-item__suffix">9,800원</span>
       </div>

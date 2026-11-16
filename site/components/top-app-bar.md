@@ -66,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <div class="ds-appbar__left">
       <button type="button" class="ds-appbar__button" aria-label="뒤로"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
     </div>
-    <div class="ds-appbar__main"><h1 class="ds-appbar__title">주문 상세</h1></div>
+    <div class="ds-appbar__main"><h1 class="ds-appbar__title">접수 상세</h1></div>
     <div class="ds-appbar__right">
       <button type="button" class="ds-appbar__button" aria-label="문의하기"><i class="ds-icon ds-icon--headset" aria-hidden="true"></i></button>
       <button type="button" class="ds-appbar__button" aria-label="더보기"><i class="ds-icon ds-icon--ellipsis" aria-hidden="true"></i></button>
@@ -75,20 +75,20 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <ul class="ds-list" data-divider>
     <li>
       <div class="ds-list-item">
-        <span class="ds-list-item__content"><span class="ds-list-item__title">주문 번호</span></span>
+        <span class="ds-list-item__content"><span class="ds-list-item__title">수험 번호</span></span>
         <span class="ds-list-item__suffix">1042</span>
       </div>
     </li>
     <li>
       <div class="ds-list-item">
-        <span class="ds-list-item__content"><span class="ds-list-item__title">주문일</span></span>
+        <span class="ds-list-item__content"><span class="ds-list-item__title">접수일</span></span>
         <span class="ds-list-item__suffix">2026.11.02</span>
       </div>
     </li>
     <li>
       <div class="ds-list-item">
         <span class="ds-list-item__content"><span class="ds-list-item__title">상태</span></span>
-        <span class="ds-list-item__suffix">배송 중</span>
+        <span class="ds-list-item__suffix">접수 완료</span>
       </div>
     </li>
   </ul>

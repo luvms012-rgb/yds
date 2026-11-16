@@ -3459,7 +3459,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
          <ul class="ds-search-suggest__list" role="listbox" aria-labelledby="sg-h">
            <li role="none"><a class="ds-search-suggest__item" role="option" id="sg-1" href="#">
              <i class="ds-icon ds-icon--clock" aria-hidden="true"></i>
-             <span class="ds-search-suggest__content"><span class="ds-search-suggest__label">회의록</span>[<span class="ds-search-suggest__desc">보조 설명</span>]</span>
+             <span class="ds-search-suggest__content"><span class="ds-search-suggest__label">모의고사</span>[<span class="ds-search-suggest__desc">보조 설명</span>]</span>
            </a></li>
          </ul>
          [<p class="ds-search-suggest__empty">검색 결과가 없어요</p>]
@@ -4478,9 +4478,9 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
 
 
 /* --------------------------------------------------------------------------
-   75 Description List - 주문 정보, 계정 정보처럼 항목 이름과 값을 짝지어 보여 주는 목록 (2026-11-05 추가)
+   75 Description List - 결제 정보, 계정 정보처럼 항목 이름과 값을 짝지어 보여 주는 목록 (2026-11-05 추가)
      <dl class="ds-desclist" [data-layout="top"] [data-columns="2|3"] [data-align="end"] [data-divider]>
-       <div class="ds-desclist__item"><dt class="ds-desclist__label">주문 번호</dt><dd class="ds-desclist__value">20261105-0012</dd></div>
+       <div class="ds-desclist__item"><dt class="ds-desclist__label">결제 번호</dt><dd class="ds-desclist__value">20261105-0012</dd></div>
      </dl>
    layout: start(기본, 이름 왼쪽 + 값 오른쪽) / top(이름 위 + 값 아래, 값이 길 때)
    이름 t04 Medium fg/neutral-muted, 폭 --ds-desclist-label-width(기본 96) / 값 t04 fg/neutral
@@ -4517,8 +4517,8 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
 
 /* --------------------------------------------------------------------------
    76 Toolbar - 표, 카드, 패널 위에서 그 내용에 쓰는 동작을 한 줄로 모은 막대 (2026-11-05 추가)
-     <div class="ds-toolbar" role="toolbar" aria-label="주문 목록 도구" [data-size="small"] [data-variant="muted"] [data-divider]>
-       <div class="ds-toolbar__start">[<span class="ds-toolbar__title">주문 목록</span>] [<span class="ds-toolbar__count">3개 선택</span>] 버튼, 탭, 찾기 칸</div>
+     <div class="ds-toolbar" role="toolbar" aria-label="접수 목록 도구" [data-size="small"] [data-variant="muted"] [data-divider]>
+       <div class="ds-toolbar__start">[<span class="ds-toolbar__title">접수 목록</span>] [<span class="ds-toolbar__count">3개 선택</span>] 버튼, 탭, 찾기 칸</div>
        [<div class="ds-toolbar__center">…</div>]
        <div class="ds-toolbar__end">… [<span class="ds-toolbar__separator" role="separator"></span>] … [<button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>]</div>
      </div>

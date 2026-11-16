@@ -102,8 +102,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">오늘 도착 예정</span>
-          <span class="ds-list-item__desc">무선 이어폰 외 1건</span>
+          <span class="ds-list-item__title">오늘 들을 강의</span>
+          <span class="ds-list-item__desc">영어 회화 기초 외 1개</span>
         </span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
@@ -112,7 +112,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
           <span class="ds-list-item__title">쿠폰이 곧 사라져요</span>
-          <span class="ds-list-item__desc">3,000원 할인 쿠폰, 3일 남음</span>
+          <span class="ds-list-item__desc">수강료 3,000원 할인 쿠폰, 3일 남음</span>
         </span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
@@ -127,7 +127,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <span class="ds-bottomnav__icon"><i class="ds-icon ds-icon--search ds-icon--lg" aria-hidden="true"></i></span>
       <span class="ds-bottomnav__label">검색</span>
     </a>
-    <a class="ds-bottomnav__item" href="#" aria-label="장바구니, 상품 3개">
+    <a class="ds-bottomnav__item" href="#" aria-label="장바구니, 강의 3개">
       <span class="ds-bottomnav__icon"><i class="ds-icon ds-icon--shopping-cart ds-icon--lg" aria-hidden="true"></i><span class="ds-bottomnav__badge--count">3</span></span>
       <span class="ds-bottomnav__label">장바구니</span>
     </a>

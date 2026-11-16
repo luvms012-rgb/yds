@@ -23,7 +23,7 @@ const FORM_CSS = `
 `;
 const opt = (t, d, checked = false, type = 'checkbox', name = 'o') => `<label class="tp-optrow"><span class="ds-${type}" data-size="medium"><input type="${type}" class="ds-${type}__control" name="${name}"${checked ? ' checked' : ''} aria-label="${esc(t)}"></span><span class="tp-stack"><span class="tp-item-title">${t}</span><span class="tp-sub">${d}</span></span></label>`;
 const summary = (items, lines, total, title = '주문 요약') => card(`<div class="tp-between"><h2 class="tp-h3">${title}</h2>${badge(items.length + '개')}</div>${items.map(([n, d, p], i) => `<div class="tp-item">${thumb('1:1', '', K.photo('book', i, 240))}<div class="tp-stack"><div class="tp-between" style="align-items:flex-start;flex-wrap:nowrap"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></div><span class="tp-caption">${d}</span></div></div>`).join('')}${divider()}${lines.map(([k, v]) => `<div class="tp-sum-line"><span>${k}</span>${T(v)}</div>`).join('')}${divider()}<div class="tp-sum-total"><span>합계</span>${T(total)}</div>`);
-const ITEMS = [['TOEIC 실전 모의고사 1000제', '교재 / 2권 세트', '38,000원'], ['단어 암기 카드', '교구 / 1개', '12,000원'], ['오답 노트 3권', '문구 / 3개', '9,000원']];
+const ITEMS = [['실전 모의고사 1000제', '교재 / 2권 세트', '38,000원'], ['기초 영문법 30일 완성', '강의 / 90일 수강', '12,000원'], ['실전 모의고사 1회', '온라인 응시 / 1회', '9,000원']];
 
 /* 1. 결제 폼 (긴 폼 + 고정 요약) -------------------------------- */
 const payment = () => {
@@ -40,11 +40,11 @@ const payment = () => {
       <h2 class="tp-legend-t">연락처</h2>
       ${req('f-mail', '이메일', inp('f-mail', 'you@example.com', 'type="email"'))}
       ${checkbox('새 소식과 혜택을 이메일로 받기')}
-      <h2 class="tp-legend-t">배송 정보</h2>
+      <h2 class="tp-legend-t">교재 배송 정보</h2>
       <div class="tp-pair">${req('f-name', '받는 사람', inp('f-name', '홍길동'))}${field('f-phone', '휴대폰 번호', inp('f-phone', '010-0000-0000', 'type="tel"'))}</div>
       ${req('f-addr', '주소', inp('f-addr', '서울시 종로구 종로 104'))}
       <div class="tp-pair">${field('f-addr2', '상세 주소', inp('f-addr2', '3층'))}${req('f-zip', '우편번호', inp('f-zip', '03190'))}</div>
-      ${field('f-req', '배송 요청', sel('f-req', '문 앞에 놓아 주세요'))}
+      ${field('f-req', '교재 받는 방법', sel('f-req', '집으로 받기'))}
       ${checkbox('다음에도 이 배송지 쓰기', { checked: true })}
       <h2 class="tp-legend-t">결제 수단</h2>
       ${radios('pay', ['신용/체크 카드', '간편 결제', '계좌 이체'], 0)}
@@ -52,7 +52,7 @@ const payment = () => {
       ${checkbox('주문 내용을 확인했고 결제에 동의해요')}
     </div>
     <aside class="tp-pay__aside tp-stack" style="gap: var(--ds-space-x4)">
-      ${summary(ITEMS, [['상품 금액', '59,000원'], ['배송비', '3,000원'], ['할인', '-5,000원']], '57,000원')}
+      ${summary(ITEMS, [['주문 금액', '59,000원'], ['배송비', '3,000원'], ['할인', '-5,000원']], '57,000원')}
       ${btn('57,000원 결제하기', { variant: 'brandSolid', size: 'large', fill: true })}
     </aside>
   </div>
@@ -70,7 +70,7 @@ const checkoutWizard = () => {
   .tp-promo .ds-field { flex: 1 1 auto; }
 `;
   const qty = (n) => `<div class="ds-quantity" data-size="small"><button type="button" class="ds-quantity__btn" aria-label="수량 줄이기">${icon('minus')}</button><input class="ds-quantity__value" inputmode="numeric" value="${n}" aria-label="수량"><button type="button" class="ds-quantity__btn" aria-label="수량 늘리기">${icon('plus')}</button></div>`;
-  const cart = [['TOEIC 실전 모의고사 1000제', '교재 / 2권 세트 / 권당 19,000원', 2, '38,000원'], ['단어 암기 카드', '교구 / 개당 12,000원', 1, '12,000원'], ['오답 노트', '문구 / 권당 3,000원', 3, '9,000원'], ['형광펜 5색 세트', '문구 / 개당 4,500원', 1, '4,500원']];
+  const cart = [['실전 모의고사 1000제', '교재 / 2권 세트 / 권당 19,000원', 2, '38,000원'], ['기출 단어장', '교재 / 권당 12,000원', 1, '12,000원'], ['기초 영문법 워크북', '교재 / 권당 3,000원', 3, '9,000원'], ['기출 단어장 미니북', '교재 / 권당 4,500원', 1, '4,500원']];
   const body = `<div class="tp-app"><main class="tp-content">
   <div class="tp-cw">
     <div class="tp-form">
@@ -79,9 +79,9 @@ const checkoutWizard = () => {
       <h2 class="tp-h2">장바구니 확인</h2>
       <div>${cart.map(([n, d, q, p], i) => `<div class="tp-cart">${thumb('1:1', '', K.photo('book', i, 240), 'md')}<div class="tp-stack" style="gap: var(--ds-space-x2)"><div class="tp-between"><span class="tp-name">${n}</span><span class="tp-amount">${p}</span></div><span class="tp-caption">${d}</span><div class="tp-row">${qty(q)}${btn('빼기', { variant: 'ghost', ic: 'trash', size: 'xsmall' })}</div></div></div>`).join('')}</div>
       <div class="tp-promo">${field('promo', '할인 코드', inp('promo', 'WELCOME10'))}${btn('적용', { size: 'medium' })}</div>
-      <div class="tp-between">${btn('쇼핑 계속하기', { variant: 'ghost', ic: 'chevron-left', size: 'medium' })}${btn('배송 정보 입력', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div>
+      <div class="tp-between">${btn('교재 더 보기', { variant: 'ghost', ic: 'chevron-left', size: 'medium' })}${btn('배송 정보 입력', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div>
     </div>
-    <aside class="tp-cw__aside">${summary(cart.map(([n, d, q, p]) => [n, d.split(' / ')[0] + ' / ' + q + '개', p]), [['상품 금액', '63,500원'], ['배송비', '3,000원'], ['할인', '-6,350원']], '60,150원')}</aside>
+    <aside class="tp-cw__aside">${summary(cart.map(([n, d, q, p]) => [n, d.split(' / ')[0] + ' / ' + q + '개', p]), [['주문 금액', '63,500원'], ['배송비', '3,000원'], ['할인', '-6,350원']], '60,150원')}</aside>
   </div>
 </main></div>`;
   return { slug: 'checkout-wizard', en: 'Checkout Wizard', name: '결제 (단계별)', group: 'Payment', desc: '배송부터 결제까지 단계를 나눠 진행하는 결제 화면입니다. 입력할 것이 많을 때 한 번에 한 가지씩 받습니다.', css, body };
@@ -154,24 +154,24 @@ const vertical = () => {
   .tp-num-input { max-width: 160px; }
 `;
   const body = `<div class="tp-app">
-<header class="tp-head" style="align-items: center"><span class="tp-h4">오디오북 출판</span><div class="tp-row">${btn('임시 저장', { ic: 'save' })}${btn('나가기', { variant: 'ghost', ic: 'x' })}</div></header>
+<header class="tp-head" style="align-items: center"><span class="tp-h4">새 교재 등록</span><div class="tp-row">${btn('임시 저장', { ic: 'save' })}${btn('나가기', { variant: 'ghost', ic: 'x' })}</div></header>
 <div class="tp-vw">
-  <nav class="tp-vw__steps" aria-label="출판 단계">${stepper(['저자 정보', '책 정보', '표지와 샘플', '오디오 파일', '가격과 판매', '검토와 출판'], 1, '출판 단계').replace('class="ds-stepper"', 'class="ds-stepper" data-orientation="vertical"')}</nav>
+  <nav class="tp-vw__steps" aria-label="등록 단계">${stepper(['저자 정보', '교재 정보', '표지와 샘플', '음원 파일', '가격과 판매', '검토와 출판'], 1, '등록 단계').replace('class="ds-stepper"', 'class="ds-stepper" data-orientation="vertical"')}</nav>
   <main class="tp-vw__main">
-    <div class="tp-stack"><h1 class="tp-h1">책 정보</h1><p class="tp-caption">필수 칸을 채워야 다음으로 넘어갈 수 있어요.</p></div>
+    <div class="tp-stack"><h1 class="tp-h1">교재 정보</h1><p class="tp-caption">필수 칸을 채워야 다음으로 넘어갈 수 있어요.</p></div>
     <div class="tp-form">
-      ${req('b-title', '책 제목', inp('b-title', '', 'value="한 달 만에 끝내는 비즈니스 영어"'), '서점에 보일 그대로 적어 주세요.')}
+      ${req('b-title', '교재 제목', inp('b-title', '', 'value="한 달 만에 끝내는 비즈니스 영어"'), '서점에 보일 그대로 적어 주세요.')}
       ${field('b-sub', '부제', inp('b-sub', '선택 사항'))}
       ${req('b-author', '지은이', inp('b-author', '', 'value="와이비엠"'))}
       ${field('b-narr', '읽은 사람', inp('b-narr', '성우 이름'))}
       <div class="tp-pair">${field('b-ed', '판', inp('b-ed', '2판'))}${field('b-lang', '언어', sel('b-lang', '한국어'))}</div>
       <div class="tp-pair">${field('b-series', '시리즈', inp('b-series', '시리즈 이름'))}${field('b-no', '시리즈 순서', `<div class="tp-num-input">${inp('b-no', '1', 'type="number" min="1"')}</div>`)}</div>
-      ${req('b-desc', '소개', textarea('b-desc', 'rows="5" placeholder="장르보다 이 책만의 매력을 먼저 적어 주세요"'), '독자가 맨 먼저 읽는 글이에요.')}
+      ${req('b-desc', '소개', textarea('b-desc', 'rows="5" placeholder="이 교재로 무엇을 공부하는지 먼저 적어 주세요"'), '학습자가 맨 먼저 읽는 글이에요.')}
     </div>
     <div class="tp-between">${btn('이전', { size: 'medium', ic: 'chevron-left' })}${btn('다음', { variant: 'brandSolid', size: 'medium', icEnd: 'arrow-right' })}</div>
   </main>
   <aside class="tp-vw__help" aria-labelledby="h-t">
-    <h2 class="tp-h4" id="h-t">${icon('lightbulb', 'sm')} 책 제목 짓는 법</h2>
+    <h2 class="tp-h4" id="h-t">${icon('lightbulb', 'sm')} 교재 제목 짓는 법</h2>
     
     
     <p class="tp-caption">입력칸을 옮겨 가면 이 안내도 그 칸에 맞게 바뀌어요.</p>

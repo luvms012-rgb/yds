@@ -48,10 +48,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
       <li><a href="#">홈</a></li>
       <li><a href="#">고객센터</a></li>
       <li><a href="#">공지사항</a></li>
-      <li><span aria-current="page">연말 배송 일정 안내</span></li>
+      <li><span aria-current="page">연말 휴강 일정 안내</span></li>
     </ol>
   </nav>
-  <h1 class="ds-t11 ds-fw-bold">연말 배송 일정 안내</h1>
+  <h1 class="ds-t11 ds-fw-bold">연말 휴강 일정 안내</h1>
   <span class="ds-tag-group"><span>운영팀</span><span>2026.12.01</span><span>조회 1,204</span></span>
 </div>
 ```

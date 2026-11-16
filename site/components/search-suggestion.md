@@ -20,7 +20,7 @@
     <ul class="ds-search-suggest__list" role="listbox" aria-labelledby="sg-h">
       <li role="none"><a class="ds-search-suggest__item" role="option" id="sg-1" href="#">
         <i class="ds-icon ds-icon--clock" aria-hidden="true"></i>
-        <span class="ds-search-suggest__content"><span class="ds-search-suggest__label">회의록</span>[<span class="ds-search-suggest__desc">보조 설명</span>]</span>
+        <span class="ds-search-suggest__content"><span class="ds-search-suggest__label">모의고사</span>[<span class="ds-search-suggest__desc">보조 설명</span>]</span>
       </a></li>
     </ul>
     [<p class="ds-search-suggest__empty">검색 결과가 없어요</p>]

@@ -85,7 +85,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
           <a class="ds-list-item" href="#">
             <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--truck" aria-hidden="true"></i></span>
             <span class="ds-list-item__content">
-              <span class="ds-list-item__title">주문한 교재가 출발했어요</span>
+              <span class="ds-list-item__title">모의고사 성적이 나왔어요</span>
               <span class="ds-list-item__desc">1시간 전</span>
             </span>
           </a>

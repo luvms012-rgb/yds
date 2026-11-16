@@ -74,9 +74,9 @@ AI 답변처럼 제목, 목록, 굵은 글씨가 섞인 글은 변환된 HTML을
 
 ```html
 <div class="ds-markdown u-full" style="max-width: 480px">
-  <p>주문 금액이 3만 원 이상이면 배송비가 없어요.<a class="ds-citation" data-type="number" href="#" aria-label="출처 1">1</a> 섬이나 산간 지역은 3,000원이 더 붙어요.<a class="ds-citation" data-type="number" href="#" aria-label="출처 2">2</a></p>
+  <p>모의고사를 3회 넘게 풀면 해설 강의가 열려요.<a class="ds-citation" data-type="number" href="#" aria-label="출처 1">1</a> 해설 강의는 30일 동안 다시 볼 수 있어요.<a class="ds-citation" data-type="number" href="#" aria-label="출처 2">2</a></p>
   <p>
-    <a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span><span class="ds-citation__label">배송 안내</span></a>
+    <a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span><span class="ds-citation__label">모의고사 안내</span></a>
     <a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span><span class="ds-citation__label">자주 묻는 질문</span></a>
   </p>
 </div>

@@ -2,7 +2,7 @@
 
 # Description List
 
-주문 정보처럼 항목 이름과 값을 짝지어 표시하는 목록입니다.
+결제 정보처럼 항목 이름과 값을 짝지어 표시하는 목록입니다.
 
 ## 사용법
 
@@ -10,7 +10,7 @@
 
 ```html
 <dl class="ds-desclist" [data-layout="top"] [data-columns="2|3"] [data-align="end"] [data-divider]>
-  <div class="ds-desclist__item"><dt class="ds-desclist__label">주문 번호</dt><dd class="ds-desclist__value">20261105-0012</dd></div>
+  <div class="ds-desclist__item"><dt class="ds-desclist__label">결제 번호</dt><dd class="ds-desclist__value">20261105-0012</dd></div>
 </dl>
 ```
 
@@ -50,7 +50,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 금액이 있는 목록은 값을 오른쪽 정렬해 위아래 숫자를 비교하기 쉽게 합니다. 마지막 합계만 굵게 표시합니다.
 
 ```html
-<dl class="ds-desclist" data-divider data-align="end" style="width: 100%; max-width: 420px"><div class="ds-desclist__item"><dt class="ds-desclist__label">상품 금액</dt><dd class="ds-desclist__value">52,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">할인</dt><dd class="ds-desclist__value">-4,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">배송비</dt><dd class="ds-desclist__value">0원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 금액</dt><dd class="ds-desclist__value"><b>48,000원</b></dd></div></dl>
+<dl class="ds-desclist" data-divider data-align="end" style="width: 100%; max-width: 420px"><div class="ds-desclist__item"><dt class="ds-desclist__label">수강료</dt><dd class="ds-desclist__value">52,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">할인</dt><dd class="ds-desclist__value">-4,000원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">교재비</dt><dd class="ds-desclist__value">0원</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 금액</dt><dd class="ds-desclist__value"><b>48,000원</b></dd></div></dl>
 ```
 
 ### 값이 길면 이름을 위에 배치
@@ -58,7 +58,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 주소나 요청 사항처럼 긴 값은 이름을 위에 두고, 넓은 화면에서는 두 열로 나눕니다. 좁은 화면에서는 한 열로 표시합니다.
 
 ```html
-<dl class="ds-desclist" data-layout="top" data-columns="2" style="width: 100%"><div class="ds-desclist__item"><dt class="ds-desclist__label">받는 사람</dt><dd class="ds-desclist__value">와이비엠</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">연락처</dt><dd class="ds-desclist__value">010-1234-5678</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">배송지</dt><dd class="ds-desclist__value">서울시 종로구 종로 1길 23, 4층</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">요청 사항</dt><dd class="ds-desclist__value">문 앞에 두고 가 주세요</dd></div></dl>
+<dl class="ds-desclist" data-layout="top" data-columns="2" style="width: 100%"><div class="ds-desclist__item"><dt class="ds-desclist__label">수강생</dt><dd class="ds-desclist__value">와이비엠</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">연락처</dt><dd class="ds-desclist__value">010-1234-5678</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">수업 장소</dt><dd class="ds-desclist__value">서울시 종로구 종로 1길 23, 4층</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">요청 사항</dt><dd class="ds-desclist__value">회화 수업은 저녁반으로 듣고 싶어요</dd></div></dl>
 ```
 
 ## 규격

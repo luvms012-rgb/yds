@@ -97,7 +97,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">연말 배송 일정 안내</span>
+          <span class="ds-list-item__title">연말 휴강 일정 안내</span>
           <span class="ds-list-item__desc">공지, 12월 1일</span>
         </span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
@@ -106,7 +106,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <li>
       <a class="ds-list-item" href="#">
         <span class="ds-list-item__content">
-          <span class="ds-list-item__title">겨울맞이 쿠폰 받기</span>
+          <span class="ds-list-item__title">겨울 방학 학습 챌린지</span>
           <span class="ds-list-item__desc">이벤트, 11월 28일</span>
         </span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>

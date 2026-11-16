@@ -67,7 +67,7 @@
 <a class="site-nav__item" href="../components/command-palette.html" data-site-keys="명령 찾기 커맨드 팔레트 빠른 이동 단축키 검색 창">Command Palette<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-field.html" data-site-keys="날짜 날짜 입력 생년월일 날짜 칸 데이트">Date Field<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-picker-date-cell.html" data-site-keys="날짜 달력 날짜 고르기 데이트 피커">Date Picker</a>
-<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 주문 정보 결제 정보 이름과 값">Description List</a>
+<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 수강 정보 결제 정보 이름과 값">Description List</a>
 <a class="site-nav__item" href="../components/dialog.html" data-site-keys="대화상자 다이얼로그 모달 팝업 창">Dialog</a>
 <a class="site-nav__item" href="../components/divider.html" aria-current="page" data-site-keys="구분선 나누는 선 디바이더">Divider</a>
 <a class="site-nav__item" href="../components/empty.html" data-site-keys="빈 화면 비어 있음 엠프티 결과 없음">Empty</a>
@@ -151,20 +151,20 @@
 <tbody><tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>마지막 묶음 아래에는 구분선을 두지 않습니다.</td></tr>
 <tr><td><b class="ds-badge site-practice" data-tone="critical">Don't</b></td><td>여백과 정렬로 나눌 수 있으면 선을 더하지 않습니다.</td></tr></tbody></table></div>
 <h2 id="examples">예시<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="examples"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2><h3>묶음 사이에만 배치</h3>
-<p>주문 상세처럼 긴 모바일 화면은 묶음 사이에 굵은 구분선을 배치합니다. 마지막 묶음 아래에는 선을 두지 않아 화면이 깔끔하게 끝납니다.</p>
+<p>결제 상세처럼 긴 모바일 화면은 묶음 사이에 굵은 구분선을 배치합니다. 마지막 묶음 아래에는 선을 두지 않아 화면이 깔끔하게 끝납니다.</p>
 <div class="site-example">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-5 u-full" style="max-width: 375px">
   <section class="u-col u-gap-3">
-    <h3 class="ds-t06 ds-fw-bold">배송 정보</h3>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">받는 분</span><span>김하나</span></div>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">주소</span><span>서울시 종로구 종로 1길 23</span></div>
+    <h3 class="ds-t06 ds-fw-bold">수강 정보</h3>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">수강생</span><span>김하나</span></div>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">강의</span><span>영어 회화 기초</span></div>
   </section>
   <hr class="ds-divider" data-weight="thick">
   <section class="u-col u-gap-3">
     <h3 class="ds-t06 ds-fw-bold">결제 정보</h3>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">상품 금액</span><span>32,000원</span></div>
-    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">배송비</span><span>0원</span></div>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">수강료</span><span>32,000원</span></div>
+    <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">교재비</span><span>0원</span></div>
     <div class="u-flex u-between u-gap-4 ds-t05 ds-fw-bold"><span>총 결제 금액</span><span>32,000원</span></div>
   </section>
 </div></div></div>
@@ -172,15 +172,15 @@
   <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-5 u-full&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;max-width: 375px&quot;</span>&gt;
   &lt;<span class="hl-t">section</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-3&quot;</span>&gt;
-    &lt;<span class="hl-t">h3</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t06 ds-fw-bold&quot;</span>&gt;배송 정보&lt;/<span class="hl-t">h3</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;받는 분&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;김하나&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;주소&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;서울시 종로구 종로 1길 23&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
+    &lt;<span class="hl-t">h3</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t06 ds-fw-bold&quot;</span>&gt;수강 정보&lt;/<span class="hl-t">h3</span>&gt;
+    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;수강생&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;김하나&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
+    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;강의&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;영어 회화 기초&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
   &lt;/<span class="hl-t">section</span>&gt;
   &lt;<span class="hl-t">hr</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-divider&quot;</span> <span class="hl-f">data-weight</span>=<span class="hl-s">&quot;thick&quot;</span>&gt;
   &lt;<span class="hl-t">section</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-3&quot;</span>&gt;
     &lt;<span class="hl-t">h3</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t06 ds-fw-bold&quot;</span>&gt;결제 정보&lt;/<span class="hl-t">h3</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;상품 금액&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;32,000원&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
-    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;배송비&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;0원&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
+    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;수강료&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;32,000원&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
+    &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t04&quot;</span>&gt;&lt;<span class="hl-t">span</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-fg-subtle&quot;</span>&gt;교재비&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;0원&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
     &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-between u-gap-4 ds-t05 ds-fw-bold&quot;</span>&gt;&lt;<span class="hl-t">span</span>&gt;총 결제 금액&lt;/<span class="hl-t">span</span>&gt;&lt;<span class="hl-t">span</span>&gt;32,000원&lt;/<span class="hl-t">span</span>&gt;&lt;/<span class="hl-t">div</span>&gt;
   &lt;/<span class="hl-t">section</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>

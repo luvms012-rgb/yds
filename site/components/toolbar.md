@@ -9,8 +9,8 @@
 아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
 
 ```html
-<div class="ds-toolbar" role="toolbar" aria-label="주문 목록 도구" [data-size="small"] [data-variant="muted"] [data-divider]>
-  <div class="ds-toolbar__start">[<span class="ds-toolbar__title">주문 목록</span>] [<span class="ds-toolbar__count">3개 선택</span>] 버튼, 탭, 찾기 칸</div>
+<div class="ds-toolbar" role="toolbar" aria-label="접수 목록 도구" [data-size="small"] [data-variant="muted"] [data-divider]>
+  <div class="ds-toolbar__start">[<span class="ds-toolbar__title">접수 목록</span>] [<span class="ds-toolbar__count">3개 선택</span>] 버튼, 탭, 찾기 칸</div>
   [<div class="ds-toolbar__center">…</div>]
   <div class="ds-toolbar__end">… [<span class="ds-toolbar__separator" role="separator"></span>] … [<button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>]</div>
 </div>
@@ -63,8 +63,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ```html
 <div class="u-col u-full">
-  <div class="ds-toolbar" role="toolbar" aria-label="주문 목록 도구" data-divider><div class="ds-toolbar__start"><span class="ds-toolbar__title">주문 목록</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="거르기"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button><span class="ds-toolbar__separator" role="separator"></span><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>새 주문</button></div></div>
-  <table class="ds-table"><thead><tr><th>주문 번호</th><th>상품</th><th data-align="end">금액</th></tr></thead><tbody><tr><td>0012</td><td>데일리 백팩 18L</td><td data-align="end">42,000원</td></tr><tr><td>0011</td><td>스테인리스 텀블러</td><td data-align="end">18,000원</td></tr></tbody></table>
+  <div class="ds-toolbar" role="toolbar" aria-label="접수 목록 도구" data-divider><div class="ds-toolbar__start"><span class="ds-toolbar__title">접수 목록</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="거르기"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button><span class="ds-toolbar__separator" role="separator"></span><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>새 접수</button></div></div>
+  <table class="ds-table"><thead><tr><th>접수 번호</th><th>시험</th><th data-align="end">응시료</th></tr></thead><tbody><tr><td>0012</td><td>영어 말하기 시험</td><td data-align="end">84,000원</td></tr><tr><td>0011</td><td>영어 쓰기 시험</td><td data-align="end">52,000원</td></tr></tbody></table>
 </div>
 ```
 
@@ -73,7 +73,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 선택한 개수와 선택한 행에 적용할 수 있는 동작만 담고, 배경을 채워 일시적으로 나타난 막대임을 알립니다. 끝에 선택 해제를 배치합니다.
 
 ```html
-<div class="ds-toolbar u-full" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
+<div class="ds-toolbar u-full" role="toolbar" aria-label="고른 접수 도구" data-variant="muted" data-size="small"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
 ```
 
 ### 떠 있는 막대

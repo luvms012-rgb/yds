@@ -53,13 +53,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 <div class="u-col u-gap-4" style="width: 100%; max-width: 420px">
   <div class="ds-callout" data-tone="informative">
     <i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i>
-    <p class="ds-callout__content"><strong class="ds-callout__title">배송 안내</strong>  제주와 산간 지역은 하루 더 걸려요.</p>
+    <p class="ds-callout__content"><strong class="ds-callout__title">시험장 안내</strong>  시험장은 먼저 접수한 순서로 정해져요.</p>
   </div>
   <div class="ds-field">
-    <div class="ds-field__header"><label class="ds-field__label" for="callout-ex1-address">받는 주소</label></div>
+    <div class="ds-field__header"><label class="ds-field__label" for="callout-ex1-address">시험장</label></div>
     <div class="ds-input" data-variant="outline">
       <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
-      <input class="ds-input__control" id="callout-ex1-address" placeholder="도로명이나 건물 이름으로 찾기">
+      <input class="ds-input__control" id="callout-ex1-address" placeholder="시험장 이름이나 지역으로 찾기">
     </div>
   </div>
 </div>
@@ -100,12 +100,12 @@ Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않�
 <div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
   <a class="ds-callout" href="#">
     <i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i>
-    <p class="ds-callout__content"><strong class="ds-callout__title">친구 초대</strong>  친구가 가입하면 둘 다 3,000원을 받아요.</p>
+    <p class="ds-callout__content"><strong class="ds-callout__title">친구 초대</strong>  친구가 가입하면 둘 다 3,000원 쿠폰을 받아요.</p>
   </a>
   <ul class="ds-list" data-inset data-divider>
     <li>
       <a class="ds-list-item" href="#">
-        <span class="ds-list-item__content"><span class="ds-list-item__title">주문 내역</span></span>
+        <span class="ds-list-item__content"><span class="ds-list-item__title">수강 내역</span></span>
         <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>
       </a>
     </li>

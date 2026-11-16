@@ -67,7 +67,7 @@
 <a class="site-nav__item" href="../components/command-palette.html" data-site-keys="명령 찾기 커맨드 팔레트 빠른 이동 단축키 검색 창">Command Palette<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-field.html" data-site-keys="날짜 날짜 입력 생년월일 날짜 칸 데이트">Date Field<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="새 컴포넌트"></span></a>
 <a class="site-nav__item" href="../components/date-picker-date-cell.html" data-site-keys="날짜 달력 날짜 고르기 데이트 피커">Date Picker</a>
-<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 주문 정보 결제 정보 이름과 값">Description List</a>
+<a class="site-nav__item" href="../components/description-list.html" data-site-keys="정보 목록 상세 정보 수강 정보 결제 정보 이름과 값">Description List</a>
 <a class="site-nav__item" href="../components/dialog.html" data-site-keys="대화상자 다이얼로그 모달 팝업 창">Dialog</a>
 <a class="site-nav__item" href="../components/divider.html" data-site-keys="구분선 나누는 선 디바이더">Divider</a>
 <a class="site-nav__item" href="../components/empty.html" data-site-keys="빈 화면 비어 있음 엠프티 결과 없음">Empty</a>
@@ -167,8 +167,8 @@
     <strong class="ds-t07 ds-fw-bold">32,000원</strong>
   </div>
   <div class="u-flex u-gap-2">
-    <button class="ds-btn" data-variant="neutralWeak" data-size="large" data-layout="fill">장바구니 담기</button>
-    <button class="ds-btn" data-size="large" data-layout="fill">바로 구매하기</button>
+    <button class="ds-btn" data-variant="neutralWeak" data-size="large" data-layout="fill">관심 강의 담기</button>
+    <button class="ds-btn" data-size="large" data-layout="fill">수강 신청하기</button>
   </div>
 </div></div></div>
   <div class="site-example__code" hidden><figure class="ds-codeblock" data-lang="html">
@@ -179,20 +179,20 @@
     &lt;<span class="hl-t">strong</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t07 ds-fw-bold&quot;</span>&gt;32,000원&lt;/<span class="hl-t">strong</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-gap-2&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;fill&quot;</span>&gt;장바구니 담기&lt;/<span class="hl-t">button</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;fill&quot;</span>&gt;바로 구매하기&lt;/<span class="hl-t">button</span>&gt;
+    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralWeak&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;fill&quot;</span>&gt;관심 강의 담기&lt;/<span class="hl-t">button</span>&gt;
+    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;fill&quot;</span>&gt;수강 신청하기&lt;/<span class="hl-t">button</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;
 &lt;/<span class="hl-t">div</span>&gt;</code></pre>
 </figure></div>
 </div>
 <h3>버튼은 세 개까지, 나머지는 아이콘으로</h3>
-<p>나란히 배치하는 버튼은 세 개까지로 하고, 찜이나 공유처럼 가끔 사용하는 동작은 작은 아이콘 버튼으로 제공합니다. 아이콘만 있는 버튼에는 <code>aria-label</code>로 이름을 지정합니다.</p>
+<p>나란히 배치하는 버튼은 세 개까지로 하고, 관심 강의 담기나 공유처럼 가끔 사용하는 동작은 작은 아이콘 버튼으로 제공합니다. 아이콘만 있는 버튼에는 <code>aria-label</code>로 이름을 지정합니다.</p>
 <div class="site-example">
   <div class="site-example__bar"><div class="ds-chiptabs" role="tablist" aria-label="보기 방식"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-view="preview">미리보기</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-view="code">코드</button></div></div>
   <div class="site-example__preview"><div class="pv-stage pv-wide"><div class="u-col u-gap-4" style="width: 100%; max-width: 420px">
   <strong class="ds-t06 ds-fw-bold">영어 회화 첫걸음</strong>
   <div class="u-flex u-gap-2">
-    <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="찜하기"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button>
+    <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="관심 강의 담기"><i class="ds-icon ds-icon--heart" aria-hidden="true"></i></button>
     <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="iconOnly" aria-label="공유하기"><i class="ds-icon ds-icon--share" aria-hidden="true"></i></button>
     <button class="ds-btn" data-size="large" data-layout="fill">수강 신청하기</button>
   </div>
@@ -202,7 +202,7 @@
   <pre class="ds-codeblock__code"><code>&lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-col u-gap-4&quot;</span> <span class="hl-f">style</span>=<span class="hl-s">&quot;width: 100%; max-width: 420px&quot;</span>&gt;
   &lt;<span class="hl-t">strong</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-t06 ds-fw-bold&quot;</span>&gt;영어 회화 첫걸음&lt;/<span class="hl-t">strong</span>&gt;
   &lt;<span class="hl-t">div</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;u-flex u-gap-2&quot;</span>&gt;
-    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralOutline&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;찜하기&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--heart&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
+    &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralOutline&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;관심 강의 담기&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--heart&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-variant</span>=<span class="hl-s">&quot;neutralOutline&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;iconOnly&quot;</span> <span class="hl-f">aria-label</span>=<span class="hl-s">&quot;공유하기&quot;</span>&gt;&lt;<span class="hl-t">i</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-icon ds-icon--share&quot;</span> <span class="hl-f">aria-hidden</span>=<span class="hl-s">&quot;true&quot;</span>&gt;&lt;/<span class="hl-t">i</span>&gt;&lt;/<span class="hl-t">button</span>&gt;
     &lt;<span class="hl-t">button</span> <span class="hl-f">class</span>=<span class="hl-s">&quot;ds-btn&quot;</span> <span class="hl-f">data-size</span>=<span class="hl-s">&quot;large&quot;</span> <span class="hl-f">data-layout</span>=<span class="hl-s">&quot;fill&quot;</span>&gt;수강 신청하기&lt;/<span class="hl-t">button</span>&gt;
   &lt;/<span class="hl-t">div</span>&gt;

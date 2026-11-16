@@ -128,7 +128,7 @@
       <ul class="ds-select-list">
         <li><button class="ds-select-item" role="option" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">서울특별시</span></span></button></li>
         <li><button class="ds-select-item" role="option" aria-selected="false"><span class="ds-select-item__body"><span class="ds-select-item__label">부산광역시</span></span></button></li>
-        <li><button class="ds-select-item" role="option" aria-selected="false" disabled><span class="ds-select-item__body"><span class="ds-select-item__label">제주(배송 불가)</span></span></button></li>
+        <li><button class="ds-select-item" role="option" aria-selected="false" disabled><span class="ds-select-item__body"><span class="ds-select-item__label">제주(시험장 없음)</span></span></button></li>
       </ul>
     </div>
   </div>
@@ -146,9 +146,9 @@
 
 <section class="pv-sec" id="c-11" data-no="11"><header><h2><small>11</small>Radio Group</h2></header>
   <div class="pv-stage">
-    <div class="ds-radio-group" role="radiogroup" aria-label="수령 방법">
+    <div class="ds-radio-group" role="radiogroup" aria-label="성적표 받는 방법">
       <label class="ds-radio"><input type="radio" class="ds-radio__control" name="pv-r" checked><span>온라인</span></label>
-      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="pv-r"><span>방문 수령</span></label>
+      <label class="ds-radio"><input type="radio" class="ds-radio__control" name="pv-r"><span>방문해서 받기</span></label>
       <label class="ds-radio"><input type="radio" class="ds-radio__control" name="pv-r" disabled><span>우편</span></label>
     </div>
   </div>
@@ -187,7 +187,7 @@
 
 <section class="pv-sec" id="c-17" data-no="17"><header><h2><small>17</small>Tabs</h2></header>
   <div class="pv-stage pv-col">
-    <div class="ds-tabs" role="tablist"><button class="ds-tabs__trigger" role="tab" aria-selected="true">주문 내역</button><button class="ds-tabs__trigger" role="tab" aria-selected="false">배송 조회</button><button class="ds-tabs__trigger" role="tab" aria-selected="false" disabled>환불</button></div>
+    <div class="ds-tabs" role="tablist"><button class="ds-tabs__trigger" role="tab" aria-selected="true">수강 내역</button><button class="ds-tabs__trigger" role="tab" aria-selected="false">시험 접수</button><button class="ds-tabs__trigger" role="tab" aria-selected="false" disabled>환불</button></div>
     <div class="ds-tabs" role="tablist" data-layout="hug" data-size="medium"><button class="ds-tabs__trigger" role="tab" aria-selected="true">hug</button><button class="ds-tabs__trigger" role="tab" aria-selected="false">medium</button></div>
   </div>
 </section>
@@ -198,7 +198,7 @@
 </section>
 
 <section class="pv-sec" id="c-19" data-no="19"><header><h2><small>19</small>Toggle Button</h2></header>
-  <div class="pv-stage"><button type="button" class="ds-toggle" aria-pressed="true">마감 임박</button><button type="button" class="ds-toggle" aria-pressed="false">무료 배송</button><button type="button" class="ds-toggle" aria-pressed="false" data-size="medium">medium</button></div>
+  <div class="pv-stage"><button type="button" class="ds-toggle" aria-pressed="true">마감 임박</button><button type="button" class="ds-toggle" aria-pressed="false">무료 강의</button><button type="button" class="ds-toggle" aria-pressed="false" data-size="medium">medium</button></div>
 </section>
 
 <section class="pv-sec" id="c-20" data-no="20"><header><h2><small>20</small>Badge</h2></header>
@@ -269,7 +269,7 @@
 
 <section class="pv-sec" id="c-25" data-no="25"><header><h2><small>25</small>Help Bubble</h2></header>
   <div class="pv-stage">
-    <div class="ds-helpbubble" role="tooltip"><div class="ds-helpbubble__body"><strong class="ds-helpbubble__title">여기서 배송 상황을 확인해요</strong><p class="ds-helpbubble__desc">상품이 출발하면 바로 볼 수 있어요.</p></div><button class="ds-helpbubble__close" aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
+    <div class="ds-helpbubble" role="tooltip"><div class="ds-helpbubble__body"><strong class="ds-helpbubble__title">여기서 접수 상황을 확인해요</strong><p class="ds-helpbubble__desc">시험을 접수하면 바로 볼 수 있어요.</p></div><button class="ds-helpbubble__close" aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
     <div class="ds-helpbubble" role="tooltip" data-placement="bottom-start"><div class="ds-helpbubble__body"><strong class="ds-helpbubble__title">bottom-start</strong></div></div>
   </div>
 </section>
@@ -300,16 +300,16 @@
 <section class="pv-sec" id="c-27" data-no="27"><header><h2><small>27</small>Dialog</h2></header>
   <div class="pv-stage"><button class="ds-btn" data-variant="neutralWeak" data-ds-open="pv-dlg">Dialog 열기</button></div>
   <dialog class="ds-dialog" id="pv-dlg" aria-labelledby="pv-dlg-t">
-    <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="pv-dlg-t">배송지를 확인해 주세요</h2><p class="ds-dialog__desc">주문 뒤에는 바꿀 수 없어요.</p><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
+    <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="pv-dlg-t">시험장을 확인해 주세요</h2><p class="ds-dialog__desc">접수 뒤에는 바꿀 수 없어요.</p><button class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
     <div class="ds-dialog__body">서울시 종로구 종로 1길 23, 4층</div>
     <div class="ds-dialog__footer"><button class="ds-btn" data-variant="neutralSolid" data-size="large" data-ds-close>확인</button></div>
   </dialog>
 </section>
 
 <section class="pv-sec" id="c-28" data-no="28"><header><h2><small>28</small>Alert Dialog</h2></header>
-  <div class="pv-stage"><button class="ds-btn" data-variant="criticalSolid" data-ds-open="pv-alert">주문 취소</button></div>
+  <div class="pv-stage"><button class="ds-btn" data-variant="criticalSolid" data-ds-open="pv-alert">접수 취소</button></div>
   <dialog class="ds-dialog ds-alertdialog" id="pv-alert" role="alertdialog" aria-labelledby="pv-a-t" aria-describedby="pv-a-d">
-    <div class="ds-alertdialog__header"><h2 id="pv-a-t" class="ds-alertdialog__title">주문을 취소할까요?</h2><p id="pv-a-d" class="ds-alertdialog__desc">취소하면 되돌릴 수 없어요.</p></div>
+    <div class="ds-alertdialog__header"><h2 id="pv-a-t" class="ds-alertdialog__title">접수를 취소할까요?</h2><p id="pv-a-d" class="ds-alertdialog__desc">취소하면 되돌릴 수 없어요.</p></div>
     <div class="ds-alertdialog__footer" data-action="critical"><button class="ds-btn" data-variant="neutralWeak" data-ds-close>닫기</button><button class="ds-btn" data-variant="criticalSolid" data-ds-close>취소하기</button></div>
   </dialog>
 </section>
@@ -325,8 +325,8 @@
 
 <section class="pv-sec" id="c-30" data-no="30"><header><h2><small>30</small>Accordion</h2></header>
   <div class="pv-stage pv-col">
-    <details class="ds-accordion" open><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">배송은 얼마나 걸리나요?</span></span></summary><div class="ds-accordion__content">주문 뒤 2~3일 안에 받을 수 있어요.</div></details>
-    <details class="ds-accordion"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">환불은 언제까지 가능한가요?</span><span class="ds-accordion__desc">주문, 환불</span></span></summary><div class="ds-accordion__content">상품을 받은 날부터 7일 안에 할 수 있어요.</div></details>
+    <details class="ds-accordion" open><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">성적은 언제 나오나요?</span></span></summary><div class="ds-accordion__content">시험 뒤 10일 안에 확인할 수 있어요.</div></details>
+    <details class="ds-accordion"><summary class="ds-accordion__trigger"><span class="ds-accordion__body"><span class="ds-accordion__title">환불은 언제까지 가능한가요?</span><span class="ds-accordion__desc">접수, 환불</span></span></summary><div class="ds-accordion__content">접수 마감 전까지 할 수 있어요.</div></details>
   </div>
 </section>
 
@@ -383,10 +383,10 @@
     <nav class="ds-sidenav" aria-label="메뉴">
       <div class="ds-sidenav__header"><button class="ds-sidenav__trigger" aria-label="메뉴 접기" onclick="this.closest('.ds-sidenav').toggleAttribute('data-collapsed')"><i class="ds-icon ds-icon--panel-left" aria-hidden="true"></i></button></div>
       <div class="ds-sidenav__content"><div class="ds-sidenav__group">
-        <div class="ds-sidenav__group-label">쇼핑</div>
+        <div class="ds-sidenav__group-label">학습</div>
         <a class="ds-sidenav__item" href="#" aria-current="page"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--house-solid" aria-hidden="true"></i></span><span class="ds-sidenav__label">홈</span></a>
-        <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span><span class="ds-sidenav__label">주문 내역</span></a>
-        <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span><span class="ds-sidenav__label">배송 조회</span><i class="ds-icon ds-icon--chevron-down ds-icon--sm ds-sidenav__suffix" aria-hidden="true"></i></a>
+        <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--calendar" aria-hidden="true"></i></span><span class="ds-sidenav__label">수강 내역</span></a>
+        <a class="ds-sidenav__item" href="#"><span class="ds-sidenav__prefix"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span><span class="ds-sidenav__label">시험 접수</span><i class="ds-icon ds-icon--chevron-down ds-icon--sm ds-sidenav__suffix" aria-hidden="true"></i></a>
       </div></div>
     </nav>
   </div>
@@ -394,15 +394,15 @@
 
 <section class="pv-sec" id="c-39" data-no="39"><header><h2><small>39</small>Card</h2></header>
   <div class="pv-stage" style="align-items:flex-start">
-    <article class="ds-card pv-w"><header class="ds-card__header"><h3 class="ds-card__title">주말 디자인 워크숍</h3><p class="ds-card__desc">2026.11.08 (일) · 서울</p></header><div class="ds-card__content">신청 마감까지 3일 남았어요.</div><footer class="ds-card__footer"><button class="ds-btn" data-variant="neutralWeak" data-layout="fill">자세히 보기</button></footer></article>
+    <article class="ds-card pv-w"><header class="ds-card__header"><h3 class="ds-card__title">주말 영어 회화 특강</h3><p class="ds-card__desc">2026.11.08 (일), 서울</p></header><div class="ds-card__content">신청 마감까지 3일 남았어요.</div><footer class="ds-card__footer"><button class="ds-btn" data-variant="neutralWeak" data-layout="fill">자세히 보기</button></footer></article>
     <article class="ds-card pv-w" data-variant="elevated" data-size="small"><header class="ds-card__header"><h3 class="ds-card__title">elevated · small</h3><p class="ds-card__desc">elevation raised</p></header></article>
   </div>
-  <div class="pv-stage"><article class="ds-card pv-w" data-size="small"><header class="ds-card__header"><h3 class="ds-card__title">이번 달 주문</h3><p class="ds-card__desc">지난달보다 12% 늘었어요.</p></header><div class="ds-card__content">1,284건</div></article></div>
+  <div class="pv-stage"><article class="ds-card pv-w" data-size="small"><header class="ds-card__header"><h3 class="ds-card__title">이번 달 수강 신청</h3><p class="ds-card__desc">지난달보다 12% 늘었어요.</p></header><div class="ds-card__content">1,284건</div></article></div>
 </section>
 
 <section class="pv-sec" id="c-40" data-no="40"><header><h2><small>40</small>Empty</h2></header>
   <div class="pv-stage" style="justify-content:center">
-    <div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 주문 내역이 없어요</p><p class="ds-empty__desc">마음에 드는 상품을 찾아보세요.</p><div class="ds-empty__actions"><button class="ds-btn" data-variant="neutralWeak">둘러보기</button></div></div>
+    <div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 수강 내역이 없어요</p><p class="ds-empty__desc">마음에 드는 강의를 찾아보세요.</p><div class="ds-empty__actions"><button class="ds-btn" data-variant="neutralWeak">둘러보기</button></div></div>
   </div>
 </section>
 
@@ -419,7 +419,7 @@
       <table class="ds-table">
         <thead><tr><th scope="col" data-align="center" style="width:72px">번호</th><th scope="col">제목</th><th scope="col" data-align="center" style="width:120px">등록일</th></tr></thead>
         <tbody>
-          <tr data-interactive><td data-align="center">12</td><td>11월 배송 일정 안내</td><td data-align="center">2026.10.22</td></tr>
+          <tr data-interactive><td data-align="center">12</td><td>11월 휴강 일정 안내</td><td data-align="center">2026.10.22</td></tr>
           <tr data-interactive aria-selected="true"><td data-align="center">11</td><td>추가 할인 이벤트 공지</td><td data-align="center">2026.10.18</td></tr>
           <tr data-interactive><td data-align="center">10</td><td>영수증 발급 방법 변경 안내</td><td data-align="center">2026.10.10</td></tr>
         </tbody>
@@ -429,13 +429,13 @@
   <div class="pv-stage">
     <div class="ds-table-wrap">
       <table class="ds-table">
-        <thead><tr><th scope="col"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="모든 행 선택"></label></th><th scope="col">주문</th><th scope="col">상태</th><th scope="col" data-align="end">금액</th></tr></thead>
+        <thead><tr><th scope="col"><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="모든 행 선택"></label></th><th scope="col">수강 신청</th><th scope="col">상태</th><th scope="col" data-align="end">금액</th></tr></thead>
         <tbody>
           <tr class="ds-table__group"><td colspan="4">오늘</td></tr>
-          <tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="주문 1042 선택"></label></td><td><span class="ds-table__stack"><span>무선 이어폰 외 1건</span><span>주문 1042</span></span></td><td><span class="ds-badge" data-tone="informative">배송 준비</span></td><td data-align="end">128,000원</td></tr>
-          <tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="주문 1041 선택" checked></label></td><td><span class="ds-table__stack"><span>텀블러 500ml</span><span>주문 1041</span></span></td><td><span class="ds-badge" data-tone="positive">배송 중</span></td><td data-align="end">24,900원</td></tr>
+          <tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="신청 1042 선택"></label></td><td><span class="ds-table__stack"><span>영어 회화 기초 외 1개</span><span>신청 1042</span></span></td><td><span class="ds-badge" data-tone="informative">결제 대기</span></td><td data-align="end">128,000원</td></tr>
+          <tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="신청 1041 선택" checked></label></td><td><span class="ds-table__stack"><span>기초 영문법</span><span>신청 1041</span></span></td><td><span class="ds-badge" data-tone="positive">수강 중</span></td><td data-align="end">24,900원</td></tr>
           <tr class="ds-table__group"><td colspan="4">어제</td></tr>
-          <tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="주문 1038 선택"></label></td><td><span class="ds-table__stack"><span>여행용 파우치 세트</span><span>주문 1038</span></span></td><td><span class="ds-badge">배송 완료</span></td><td data-align="end">39,000원</td></tr>
+          <tr><td><label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" aria-label="신청 1038 선택"></label></td><td><span class="ds-table__stack"><span>비즈니스 이메일 쓰기</span><span>신청 1038</span></span></td><td><span class="ds-badge">수강 완료</span></td><td data-align="end">39,000원</td></tr>
         </tbody>
       </table>
     </div>
@@ -462,7 +462,7 @@
 <section class="pv-sec" id="c-45" data-no="45"><header><h2><small>45</small>List · List Item</h2></header>
   <div class="pv-stage" style="align-items:flex-start">
     <ul class="ds-list pv-w" data-inset data-divider>
-      <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--id-card" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">내 정보</span><span class="ds-list-item__desc">이름 · 연락처 · 이메일</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
+      <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--id-card" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">내 정보</span><span class="ds-list-item__desc">이름, 연락처, 이메일</span></span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
       <li><a class="ds-list-item" href="#"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">결제 수단</span></span><span class="ds-list-item__suffix">카드 2개</span><i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i></a></li>
       <li><label class="ds-list-item"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--message-circle" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">알림 받기</span></span><span class="ds-list-item__suffix"><span class="ds-switch"><input type="checkbox" role="switch" class="ds-switch__control" checked aria-label="알림 받기"></span></span></label></li>
       <li><a class="ds-list-item" href="#" aria-disabled="true"><span class="ds-list-item__prefix"><i class="ds-icon ds-icon--globe" aria-hidden="true"></i></span><span class="ds-list-item__content"><span class="ds-list-item__title">언어 설정</span><span class="ds-list-item__desc">준비 중</span></span></a></li>
@@ -490,8 +490,8 @@
       <li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">가입 완료</span></li>
     </ol>
     <ol class="ds-stepper" aria-label="신청 단계" data-orientation="vertical" style="margin-top:var(--ds-space-x6)">
-      <li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">상품 선택</span></li>
-      <li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">배송지 입력</span></li>
+      <li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">강의 선택</span></li>
+      <li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">수강생 정보</span></li>
       <li class="ds-stepper__step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">결제</span></li>
     </ol>
   </div>
@@ -655,22 +655,22 @@
     <div class="ds-search-anchor pv-w" style="width:320px">
       <div class="ds-input" data-variant="outline" data-size="medium">
         <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
-        <input class="ds-input__control" id="pv-sg-input" type="search" role="combobox" aria-controls="pv-sg" aria-expanded="true" aria-autocomplete="list" placeholder="검색어를 입력하세요" value="디자인">
+        <input class="ds-input__control" id="pv-sg-input" type="search" role="combobox" aria-controls="pv-sg" aria-expanded="true" aria-autocomplete="list" placeholder="검색어를 입력하세요" value="영어">
         <button type="button" class="ds-input__clear" aria-label="지우기"></button>
       </div>
       <div class="ds-search-suggest" id="pv-sg">
         <ul class="ds-search-suggest__list" role="listbox" aria-label="추천어">
-          <li role="none"><a class="ds-search-suggest__item" role="option" id="pv-sg-1" href="#"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">디자인 시스템</span></span></a></li>
-          <li role="none"><a class="ds-search-suggest__item" role="option" id="pv-sg-2" href="#"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">디자인 가이드</span><span class="ds-search-suggest__desc">문서 12개</span></span></a></li>
-          <li role="none"><a class="ds-search-suggest__item" role="option" id="pv-sg-3" href="#"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">디자인 토큰</span></span></a></li>
+          <li role="none"><a class="ds-search-suggest__item" role="option" id="pv-sg-1" href="#"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">영어 회화</span></span></a></li>
+          <li role="none"><a class="ds-search-suggest__item" role="option" id="pv-sg-2" href="#"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">영어 문법</span><span class="ds-search-suggest__desc">강의 18개</span></span></a></li>
+          <li role="none"><a class="ds-search-suggest__item" role="option" id="pv-sg-3" href="#"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">영어 듣기</span></span></a></li>
         </ul>
       </div>
     </div>
     <div class="ds-search-suggest pv-w" style="width:320px">
       <div class="ds-search-suggest__heading" id="pv-sg-h">최근 검색어</div>
       <ul class="ds-search-suggest__list" role="listbox" aria-labelledby="pv-sg-h">
-        <li role="none"><a class="ds-search-suggest__item" role="option" href="#"><i class="ds-icon ds-icon--clock" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">회의록</span></span></a></li>
-        <li role="none"><a class="ds-search-suggest__item" role="option" href="#"><i class="ds-icon ds-icon--clock" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">주간 보고</span></span></a></li>
+        <li role="none"><a class="ds-search-suggest__item" role="option" href="#"><i class="ds-icon ds-icon--clock" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">모의고사</span></span></a></li>
+        <li role="none"><a class="ds-search-suggest__item" role="option" href="#"><i class="ds-icon ds-icon--clock" aria-hidden="true"></i><span class="ds-search-suggest__content"><span class="ds-search-suggest__label">환불 규정</span></span></a></li>
       </ul>
     </div>
     <div class="ds-search-suggest pv-w" style="width:320px"><p class="ds-search-suggest__empty">검색 결과가 없어요</p></div>
@@ -692,8 +692,8 @@
         </label>
         <div class="ds-fileitem">
           <span class="ds-fileitem__thumbnail"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span>
-          <span class="ds-fileitem__texts"><span class="ds-fileitem__name">회의록_10월_전체_정리본.docx</span><span class="ds-fileitem__size">2.4MB</span></span>
-          <button type="button" class="ds-fileitem__remove" aria-label="회의록_10월_전체_정리본.docx 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
+          <span class="ds-fileitem__texts"><span class="ds-fileitem__name">과제_10월_영어_에세이_최종본.docx</span><span class="ds-fileitem__size">2.4MB</span></span>
+          <button type="button" class="ds-fileitem__remove" aria-label="과제_10월_영어_에세이_최종본.docx 빼기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button>
         </div>
         <div class="ds-fileitem" data-layout="image">
           <span class="ds-fileitem__thumbnail" style="width:100%;height:100%;background:none"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></span>
@@ -789,7 +789,7 @@
       <p>스크롤 되는 내용 1</p><p>스크롤 되는 내용 2</p><p>스크롤 되는 내용 3</p><p>스크롤 되는 내용 4</p><p>스크롤 되는 내용 5</p><p>스크롤 되는 내용 6</p><p>스크롤 되는 내용 7</p><p>스크롤 되는 내용 8</p><p>스크롤 되는 내용 9</p>
     </div>
     <div class="ds-scrollfog" data-direction="horizontal" style="display:flex;gap:var(--ds-space-x2);width:300px;padding-inline:20px">
-      <span class="ds-badge" data-size="large">전체</span><span class="ds-badge" data-size="large">디자인</span><span class="ds-badge" data-size="large">개발</span><span class="ds-badge" data-size="large">기획</span><span class="ds-badge" data-size="large">마케팅</span><span class="ds-badge" data-size="large">영업</span><span class="ds-badge" data-size="large">운영</span>
+      <span class="ds-badge" data-size="large">전체</span><span class="ds-badge" data-size="large">어학</span><span class="ds-badge" data-size="large">자격증</span><span class="ds-badge" data-size="large">취업</span><span class="ds-badge" data-size="large">컴퓨터</span><span class="ds-badge" data-size="large">교양</span><span class="ds-badge" data-size="large">비즈니스</span>
     </div>
   </div>
 </section>
@@ -902,11 +902,11 @@
       </button>
       <div class="ds-multiselect__panel" id="pv-msel" role="listbox" aria-multiselectable="true" hidden>
         <div class="ds-multiselect__heading">관심 분야</div>
-        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span><span class="ds-multiselect__label">디자인</span></label>
-        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span><span class="ds-multiselect__label">개발</span></label>
-        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span><span class="ds-multiselect__label">기획</span></label>
-        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span><span class="ds-multiselect__label">마케팅</span></label>
-        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" disabled></span><span class="ds-multiselect__label">영업</span></label>
+        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span><span class="ds-multiselect__label">어학</span></label>
+        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span><span class="ds-multiselect__label">자격증</span></label>
+        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span><span class="ds-multiselect__label">취업</span></label>
+        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" checked></span><span class="ds-multiselect__label">컴퓨터</span></label>
+        <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control" disabled></span><span class="ds-multiselect__label">교양</span></label>
       </div>
     </div>
   </div>
@@ -948,25 +948,25 @@
     <figure class="ds-chart" data-type="line" style="width: 100%; max-width: 420px"><figcaption class="ds-chart__header"><span class="ds-chart__title">월별 가입</span><span class="ds-chart__desc">올해</span></figcaption><div class="ds-chart__plot"><svg class="ds-chart__svg" viewBox="0 0 100 40" preserveAspectRatio="none" role="img" aria-label="월별 가입"><polygon class="ds-chart__area" points="0,40 0,30 16.7,26 33.3,28 50,18 66.7,20 83.3,12 100,8 100,40"/><polyline class="ds-chart__line" points="0,30 16.7,26 33.3,28 50,18 66.7,20 83.3,12 100,8"/><polyline class="ds-chart__line" data-series="2" points="0,34 16.7,32 33.3,30 50,29 66.7,26 83.3,24 100,22"/></svg></div><div class="ds-chart__axis"><span>1월</span><span>2월</span><span>3월</span><span>4월</span><span>5월</span><span>6월</span><span>7월</span></div><ul class="ds-chart__legend"><li><span class="ds-chart__swatch"></span>신규</li><li><span class="ds-chart__swatch" data-series="2"></span>다시 가입</li></ul></figure>
   </div>
   <div class="pv-stage">
-    <figure class="ds-chart" data-type="donut"><div class="ds-chart__donut" style="--ds-chart-1: 45; --ds-chart-2: 30; --ds-chart-3: 15; --ds-chart-4: 10" role="img" aria-label="결제 수단 비중: 카드 45%, 계좌 이체 30%, 간편 결제 15%, 기타 10%"><span class="ds-chart__total">1,284<small>전체 주문</small></span></div><ul class="ds-chart__legend"><li><span class="ds-chart__swatch"></span>카드</li><li><span class="ds-chart__swatch" data-series="2"></span>계좌 이체</li><li><span class="ds-chart__swatch" data-series="3"></span>간편 결제</li><li><span class="ds-chart__swatch" data-series="4"></span>기타</li></ul></figure>
+    <figure class="ds-chart" data-type="donut"><div class="ds-chart__donut" style="--ds-chart-1: 45; --ds-chart-2: 30; --ds-chart-3: 15; --ds-chart-4: 10" role="img" aria-label="결제 수단 비중: 카드 45%, 계좌 이체 30%, 간편 결제 15%, 기타 10%"><span class="ds-chart__total">1,284<small>전체 결제</small></span></div><ul class="ds-chart__legend"><li><span class="ds-chart__swatch"></span>카드</li><li><span class="ds-chart__swatch" data-series="2"></span>계좌 이체</li><li><span class="ds-chart__swatch" data-series="3"></span>간편 결제</li><li><span class="ds-chart__swatch" data-series="4"></span>기타</li></ul></figure>
   </div>
 </section>
 
 <section class="pv-sec" id="c-75" data-no="75"><header><h2><small>75</small>Description List</h2></header>
   <div class="pv-stage">
-    <dl class="ds-desclist" data-divider data-align="end" style="width: 100%; max-width: 420px"><div class="ds-desclist__item"><dt class="ds-desclist__label">주문 번호</dt><dd class="ds-desclist__value">20261105-0012</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">주문 날짜</dt><dd class="ds-desclist__value">2026. 11. 5.</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 수단</dt><dd class="ds-desclist__value">신용카드 (****4821)</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 금액</dt><dd class="ds-desclist__value"><b>48,000원</b></dd></div></dl>
+    <dl class="ds-desclist" data-divider data-align="end" style="width: 100%; max-width: 420px"><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 번호</dt><dd class="ds-desclist__value">20261105-0012</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 날짜</dt><dd class="ds-desclist__value">2026. 11. 5.</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 수단</dt><dd class="ds-desclist__value">신용카드 (****4821)</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">결제 금액</dt><dd class="ds-desclist__value"><b>48,000원</b></dd></div></dl>
   </div>
   <div class="pv-stage">
-    <dl class="ds-desclist" data-layout="top" data-columns="2" style="width: 100%"><div class="ds-desclist__item"><dt class="ds-desclist__label">이름</dt><dd class="ds-desclist__value">와이비엠</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">이메일</dt><dd class="ds-desclist__value">ybm@example.com</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">배송지</dt><dd class="ds-desclist__value">서울시 종로구 종로 1길 23, 4층</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">요청 사항</dt><dd class="ds-desclist__value">문 앞에 두고 가 주세요</dd></div></dl>
+    <dl class="ds-desclist" data-layout="top" data-columns="2" style="width: 100%"><div class="ds-desclist__item"><dt class="ds-desclist__label">이름</dt><dd class="ds-desclist__value">와이비엠</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">이메일</dt><dd class="ds-desclist__value">ybm@example.com</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">수업 장소</dt><dd class="ds-desclist__value">서울시 종로구 종로 1길 23, 4층</dd></div><div class="ds-desclist__item"><dt class="ds-desclist__label">요청 사항</dt><dd class="ds-desclist__value">회화 수업은 저녁반으로 듣고 싶어요</dd></div></dl>
   </div>
 </section>
 
 <section class="pv-sec" id="c-76" data-no="76"><header><h2><small>76</small>Toolbar</h2></header>
   <div class="pv-stage">
-    <div class="ds-toolbar" role="toolbar" aria-label="주문 목록 도구" data-divider style="width: 100%"><div class="ds-toolbar__start"><span class="ds-toolbar__title">주문 목록</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="거르기"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button><span class="ds-toolbar__separator" role="separator"></span><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>새 주문</button></div></div>
+    <div class="ds-toolbar" role="toolbar" aria-label="접수 목록 도구" data-divider style="width: 100%"><div class="ds-toolbar__start"><span class="ds-toolbar__title">접수 목록</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="거르기"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i></button><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="내려받기"><i class="ds-icon ds-icon--download" aria-hidden="true"></i></button><span class="ds-toolbar__separator" role="separator"></span><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>새 접수</button></div></div>
   </div>
   <div class="pv-stage">
-    <div class="ds-toolbar" role="toolbar" aria-label="고른 주문 도구" data-variant="muted" data-size="small" style="width: 100%"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
+    <div class="ds-toolbar" role="toolbar" aria-label="고른 접수 도구" data-variant="muted" data-size="small" style="width: 100%"><div class="ds-toolbar__start"><span class="ds-toolbar__count">3개 선택</span></div><div class="ds-toolbar__end"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">내보내기</button><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small">삭제</button><button type="button" class="ds-toolbar__clear" aria-label="선택 해제"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div></div>
   </div>
 </section>
 
@@ -987,7 +987,7 @@
 
 <section class="pv-sec" id="c-79" data-no="79"><header><h2><small>79</small>Search Field</h2></header>
   <div class="pv-stage">
-    <form class="ds-searchfield" role="search" style="width: 100%; max-width: 420px" action="#"><div class="ds-input" data-variant="outline" data-size="large"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" name="q" placeholder="찾을 낱말을 넣어 주세요" aria-label="찾기" value="운동화"><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></form>
+    <form class="ds-searchfield" role="search" style="width: 100%; max-width: 420px" action="#"><div class="ds-input" data-variant="outline" data-size="large"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" name="q" placeholder="찾을 낱말을 넣어 주세요" aria-label="찾기" value="영어 회화"><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></form>
   </div>
   <div class="pv-stage">
     <form class="ds-searchfield" role="search" data-variant="fill" style="width: 100%; max-width: 420px" action="#"><div class="ds-input" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" name="q" placeholder="찾을 낱말을 넣어 주세요" aria-label="찾기"><button type="button" class="ds-input__clear" aria-label="지우기"></button></div><button type="button" class="ds-searchfield__cancel">취소</button></form>
@@ -1015,7 +1015,7 @@
 
 <section class="pv-sec" id="c-84" data-no="84"><header><h2><small>84</small>Command Palette</h2></header>
   <div class="pv-stage">
-    <div class="ds-command" style="width:480px;margin:0;max-height:none"><div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" value="주문" aria-label="명령 찾기"></div><div class="ds-command__list" role="listbox" aria-label="명령"><div class="ds-command__group" role="group" aria-label="이동"><p class="ds-command__title">이동</p><div class="ds-command__item" role="option" aria-selected="true"><i class="ds-icon ds-icon--receipt" aria-hidden="true"></i><span class="ds-command__label">주문 내역</span><kbd class="ds-command__kbd">O</kbd></div><div class="ds-command__item" role="option"><i class="ds-icon ds-icon--truck" aria-hidden="true"></i><span class="ds-command__label">주문 배송 조회</span></div></div><div class="ds-command__group" role="group" aria-label="동작"><p class="ds-command__title">동작</p><div class="ds-command__item" role="option"><i class="ds-icon ds-icon--download" aria-hidden="true"></i><span class="ds-command__label">주문 내역 내려받기</span></div></div></div></div>
+    <div class="ds-command" style="width:480px;margin:0;max-height:none"><div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" value="수강" aria-label="명령 찾기"></div><div class="ds-command__list" role="listbox" aria-label="명령"><div class="ds-command__group" role="group" aria-label="이동"><p class="ds-command__title">이동</p><div class="ds-command__item" role="option" aria-selected="true"><i class="ds-icon ds-icon--receipt" aria-hidden="true"></i><span class="ds-command__label">수강 내역</span><kbd class="ds-command__kbd">O</kbd></div><div class="ds-command__item" role="option"><i class="ds-icon ds-icon--truck" aria-hidden="true"></i><span class="ds-command__label">수강 기간 늘리기</span></div></div><div class="ds-command__group" role="group" aria-label="동작"><p class="ds-command__title">동작</p><div class="ds-command__item" role="option"><i class="ds-icon ds-icon--download" aria-hidden="true"></i><span class="ds-command__label">수강 내역 내려받기</span></div></div></div></div>
   </div>
 </section>
 

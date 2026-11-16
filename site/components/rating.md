@@ -56,7 +56,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content u-gap-1">
-        <span class="ds-list-item__title">여행 영어 첫걸음</span>
+        <span class="ds-list-item__title">생활 영어 첫걸음</span>
         <span class="ds-rating" data-size="small" style="--ds-rating-value: 0" role="img" aria-label="아직 후기가 없어요"><span class="ds-rating__stars"></span><span class="ds-rating__count">아직 후기가 없어요</span></span>
       </span>
       <span class="ds-list-item__suffix">29,000원</span>

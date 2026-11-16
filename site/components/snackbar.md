@@ -79,7 +79,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">주문한 상품이 출발했어요</span>
+        <span class="ds-list-item__title">수강 신청이 확정됐어요</span>
         <span class="ds-list-item__desc">오늘 오전 9:12</span>
       </span>
       <span class="ds-list-item__suffix">
@@ -90,7 +90,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
-        <span class="ds-list-item__title">할인 쿠폰이 3일 뒤 사라져요</span>
+        <span class="ds-list-item__title">수강 기간이 3일 남았어요</span>
         <span class="ds-list-item__desc">어제 오후 6:30</span>
       </span>
       <span class="ds-list-item__suffix">

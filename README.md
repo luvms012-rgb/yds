@@ -487,7 +487,7 @@ CSS는 Figma 프로퍼티 이름을 그대로 `data-*` 속성으로 쓴다: `<bu
 - **Bottom Sheet** - 안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다.
 - **Menu Sheet** - 아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 글자를 가운데 정렬합니다.
 - **Pagination** - 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에는 ghost를 사용합니다.
-- **Quantity Picker** - 구매 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다.
+- **Quantity Picker** - 수강 신청 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다.
 - **Prefix Select** - 테두리 있는 입력 필드에는 medium을 사용해 글자 크기를 필드와 맞춥니다.
 - **Badge** - 분류처럼 반복되는 배지는 기본 색 하나로 통일하고, 진한 solid 배지는 새 메뉴처럼 한 곳에만 사용합니다.
 - **Chip Tabs** - 제목 아래 영역에 둘 때는 `data-inset="none"`으로 제목과 왼쪽 끝을 맞춥니다.

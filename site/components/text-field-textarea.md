@@ -38,7 +38,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
     <label class="ds-field__label" for="text-field-textarea-ex1">문의 내용</label>
     <span class="ds-field__required" aria-hidden="true"></span>
   </div>
-  <textarea class="ds-textarea" id="text-field-textarea-ex1" rows="4" maxlength="500" placeholder="주문 번호와 함께 궁금한 점을 적어 주세요" required></textarea>
+  <textarea class="ds-textarea" id="text-field-textarea-ex1" rows="4" maxlength="500" placeholder="강의 이름과 함께 궁금한 점을 적어 주세요" required></textarea>
   <div class="ds-field__footer">
     <p class="ds-field__help">비밀번호 같은 개인 정보는 적지 말아 주세요.</p>
     <span class="ds-field__count">0/500</span>
