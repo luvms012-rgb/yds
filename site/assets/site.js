@@ -732,10 +732,65 @@
     document.addEventListener("keydown", function (e) {
       if (dlg.hidden) return;
       if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft" && !e.target.closest("input, textarea")) step(-1);
-      else if (e.key === "ArrowRight" && !e.target.closest("input, textarea")) step(1);
+      else if (e.key === "ArrowLeft" && !(e.target.closest && e.target.closest("input, textarea"))) step(-1);
+      else if (e.key === "ArrowRight" && !(e.target.closest && e.target.closest("input, textarea"))) step(1);
     });
     try { var want = new URL(location.href).searchParams.get("preview"); if (want) { var c = cards.filter(function (x) { return slugOf(x) === want; })[0]; if (c) open(c); } } catch (e) {}
+  })();
+
+  // 템플릿 문서 보기의 "새 창으로 보기" (11-16 사용자): 제목, 설명과 함께 큰 창으로 열고 좌우 화살표(키보드 좌우)로 다른 템플릿을 넘겨 본다.
+  // 순서는 목록 순서(build.mjs TPL_LIST_JSON). Ctrl, Cmd, Shift, 가운데 버튼은 진짜 새 탭, 창 안 아이콘도 새 탭으로 연다
+  (function () {
+    var data = document.getElementById("site-tpl-list"); if (!data) return;
+    var list = []; try { list = JSON.parse(data.textContent); } catch (e) { return; }
+    var dlg = document.createElement("div"), cur = -1, back = null;
+    dlg.className = "site-tplv"; dlg.hidden = true;
+    dlg.setAttribute("role", "dialog"); dlg.setAttribute("aria-modal", "true"); dlg.setAttribute("aria-labelledby", "site-tplv-title");
+    dlg.innerHTML = '<div class="site-tplv__scrim" data-tplv-close></div>' +
+      '<div class="site-tplv__box"><header class="site-tplv__head"><div class="site-tplv__texts"><h2 class="site-tplv__title" id="site-tplv-title"></h2><p class="site-tplv__desc"></p></div>' +
+      '<span class="site-tplv__tools"><a class="ds-btn site-tplv__tab" data-variant="neutralWeak" data-layout="iconOnly" target="_blank" rel="noopener" aria-label="새 탭으로 열기"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i></a>' +
+      '<button type="button" class="ds-btn site-tplv__x" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></span></header>' +
+      '<div class="site-tplv__frame"><iframe title="" data-site-frame></iframe></div></div>' +
+      '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
+      '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
+    document.body.appendChild(dlg);
+    var frame = dlg.querySelector("iframe");
+    frame.addEventListener("load", function () { themeFrame(frame); });
+    function open(i) {
+      var t = list[i]; if (!t) return;
+      if (dlg.hidden) back = document.activeElement;
+      cur = i;
+      dlg.querySelector(".site-tplv__title").textContent = t[1];
+      dlg.querySelector(".site-tplv__desc").textContent = t[2];
+      dlg.querySelector(".site-tplv__tab").href = "pages/" + t[0] + ".html";
+      frame.title = t[1] + " 미리보기";
+      frame.src = "pages/" + t[0] + ".html";
+      dlg.hidden = false; root.classList.add("site-tplv-open");
+      dlg.querySelector(".site-tplv__x").focus();
+    }
+    function close() {
+      if (dlg.hidden) return;
+      dlg.hidden = true; root.classList.remove("site-tplv-open"); frame.src = "about:blank"; cur = -1;
+      if (back && back.focus) back.focus();
+    }
+    function step(n) { if (cur >= 0) open((cur + n + list.length) % list.length); }
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-site-tplv]");
+      if (!b || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      var slug = b.getAttribute("data-site-tplv");
+      open(Math.max(0, list.map(function (t) { return t[0]; }).indexOf(slug)));
+    });
+    dlg.addEventListener("click", function (e) {
+      if (e.target.closest("[data-tplv-close]")) close();
+      var s = e.target.closest("[data-tplv-step]"); if (s) step(+s.getAttribute("data-tplv-step"));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (dlg.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft" && !(e.target.closest && e.target.closest("input, textarea"))) step(-1);
+      else if (e.key === "ArrowRight" && !(e.target.closest && e.target.closest("input, textarea"))) step(1);
+    });
   })();
 
 

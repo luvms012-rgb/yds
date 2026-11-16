@@ -402,6 +402,8 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 .site-tplv__nav { position: absolute; top: 50%; z-index: 1; margin-top: -20px; --ds-btn-bg: var(--ds-color-bg-layer-floating); box-shadow: var(--ds-elevation-overlay); }  /* 어두운 덮개 위에 뜨는 버튼이라 흰 바탕 + 그림자 */
 .site-tplv__nav[data-tplv-step="-1"] { left: var(--ds-space-x2); }
 .site-tplv__nav[data-tplv-step="1"] { right: var(--ds-space-x2); }
+.site-tplv__tools { display: flex; flex: none; gap: var(--ds-space-x2); }
+@media (min-width: 768px) { .site-tplv { padding: var(--ds-space-x6) var(--ds-space-x16); } }  /* 좌우 화살표는 창 밖 덮개 위에 (11-16 사용자 참고 화면) */
 @media (max-width: 767px) {
   .site-tplv { padding: 0; }
   .site-tplv__box { border-radius: 0; max-height: none; }
@@ -538,6 +540,9 @@ body[data-side-open] .site-scrim { opacity: 1; pointer-events: auto; }
 /* 코드 탭: 코드 상자 머리의 언어 이름 자리에 작은 Chip Tabs (11-04 사용자 "탭을 이 안으로") */
 .site-codetabs__bar { --ds-ct-height: 28px; --ds-ct-padding-x: var(--ds-space-x3); --ds-ct-min-width: 0; padding-inline: 0; }
 .site-codetabs__bar .ds-chiptabs__trigger { font-size: var(--ds-font-size-t03); }
+/* 상자 머리 줄 칩 (11-16 사용자 "활성화가 과하다, 옅게"): 고르지 않은 칩은 바탕 없이 옅은 글자, 고른 칩만 한 단계 짙은 회색 바탕 */
+:is(.site-codetabs__bar, .site-example__bar) .ds-chiptabs__trigger { --ds-ct-bg: transparent; --ds-ct-fg: var(--ds-color-fg-neutral-muted); }
+:is(.site-codetabs__bar, .site-example__bar) .ds-chiptabs__trigger[aria-selected="true"] { --ds-ct-bg: var(--ds-color-bg-neutral-weak-alpha-pressed); --ds-ct-fg: var(--ds-color-fg-neutral); }
 .site-codetabs__panel[hidden] { display: none; }
 /* Get Started 시작하기 (11-09): 세그먼트 아래 고른 칸의 요청 글 상자 하나 */
 .site-gs__seg { width: 100%; max-width: 560px; }
