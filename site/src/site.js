@@ -992,7 +992,7 @@ document.addEventListener("click", function (e) {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(fromHash, 100); }); else setTimeout(fromHash, 100);
 
   /* 소소한 움직임 (2026-11-16 사용자 "스크롤 시 페이드인, 썸네일 순차, NEW 뱃지 탄성, 시작하기 요청 글 타이핑, 동시에 되지 않게 인지 가능한 딜레이").
-     순서: 첫 방문 위 메뉴(CSS, 0 ~ 0.5초) → 본문 덩어리 차례로(0.15초부터) → NEW 뱃지(CSS, 0.7초 뒤) → 요청 글 타이핑(상자가 보이고 나서 하나씩).
+     순서(메인): 본문 첫 묶음 차례로(0.15초부터) → 다 보이면 위 메뉴(site-nav-in) → 내려온 뒤 NEW 뱃지(CSS) → 요청 글 타이핑(상자가 보이고 나서 하나씩).
      머리 스크립트가 html 에 site-motion 을 달아 본문을 잠깐 숨기고, 여기서 site-motion-on 으로 연다(3초 안에 못 열면 머리 스크립트가 숨김을 푼다). 움직임 줄이기 설정이면 아무것도 하지 않는다 */
   (function () {
     var root = document.documentElement;
@@ -1011,7 +1011,15 @@ document.addEventListener("click", function (e) {
         else blocks.push(c);
       });
     })(doc);
-    var first = true;
+    var first = true, navDone = false;
+    /* 위 메뉴는 본문 첫 묶음이 보인 다음에 내린다(11-16 사용자 "본문 먼저 보이고 이후에 내려오도록"). 내려온 뒤 NEW 뱃지(CSS)와 타이핑 */
+    function navIn(after) {
+      if (root.classList.contains("site-nav-in")) return;
+      setTimeout(function () {
+        root.classList.add("site-nav-in");
+        setTimeout(function () { navDone = true; next(); }, 600);
+      }, after);
+    }
     function done(el) { el.classList.remove("site-rv", "is-in"); el.style.removeProperty("--site-rv-delay"); }
     function show(list, step, cap, base) {
       list.sort(function (a, b) { return a.compareDocumentPosition(b) & 4 ? -1 : 1; });
@@ -1025,9 +1033,10 @@ document.addEventListener("click", function (e) {
     var io = new IntersectionObserver(function (entries) {
       var b = [], t = [];
       entries.forEach(function (e) { if (!e.isIntersecting) return; io.unobserve(e.target); (e.target.matches(TILE) ? t : b).push(e.target); });
-      var base = first ? 150 : 0; first = false;
+      var base = first ? 150 : 0, wasFirst = first; first = false;
       if (b.length) show(b, 80, 6, base);
       if (t.length) show(t, 60, 9, base + (b.length ? 120 : 0));  /* 썸네일은 제목 다음에 하나씩 */
+      if (wasFirst) navIn(base + Math.min(b.length - 1, 6) * 80 + 450);
     }, { rootMargin: "0px 0px -6% 0px" });
     blocks.concat(tiles).forEach(function (el) { el.classList.add("site-rv"); io.observe(el); });
     /* 안전장치: 2초가 지나도 첫 화면 안의 덩어리가 그대로 숨어 있으면 바로 보인다 */
@@ -1035,6 +1044,7 @@ document.addEventListener("click", function (e) {
       var late = [].filter.call(document.querySelectorAll(".site-rv:not(.is-in)"), function (el) { return el.getBoundingClientRect().top < innerHeight; });
       late.forEach(function (el) { io.unobserve(el); });
       if (late.length) show(late, 0, 0, 0);
+      navIn(late.length ? 450 : 0);
     }, 2000);
 
     /* 시작하기 요청 글 타이핑: 상자가 보이면 하나씩 차례로 친다. 상자를 누르거나 포커스하면 바로 끝까지 보인다(복사도 온전히) */
@@ -1072,14 +1082,15 @@ document.addEventListener("click", function (e) {
         if (q.state !== "typing") return;
         var x = q.nodes[i];
         if (!x) return end(q);
-        k = Math.min(x.s.length, k + 1);  /* 한 글자씩 (11-16 사용자 "너무 빨라": 두 글자 24ms 에서 한 글자 45ms 로) */
+        k = Math.min(x.s.length, k + 1);  /* 한 글자씩 (11-16 사용자 두 글자 24ms "너무 빨라", 한 글자 45ms "너무 느려" → 그 사이 25ms) */
         x.n.data = x.s.slice(0, k);
         x.n.parentNode.insertBefore(caret, x.n.nextSibling);
         if (k >= x.s.length) { i++; k = 0; }
-        q.timer = setTimeout(tick, 45);
+        q.timer = setTimeout(tick, 25);
       })();
     }
     function next() {
+      if (!navDone) return;  /* 위 메뉴가 내려온 뒤에 친다 */
       for (var j = 0; j < queue.length; j++) {
         var q = queue[j];
         if (q.state === "done") continue;
