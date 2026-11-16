@@ -991,7 +991,7 @@ document.addEventListener("click", function (e) {
   window.addEventListener("hashchange", fromHash);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(fromHash, 100); }); else setTimeout(fromHash, 100);
 
-  /* 소소한 움직임 (2026-11-16 사용자): NEW 뱃지 탄성(CSS, 모든 쪽)과 메인 요청 글 타이핑만 남긴다(위 메뉴 내려오기, 스크롤 페이드인은 사용자 "삭제, 타이핑만 유지").
+  /* 소소한 움직임 (2026-11-16 사용자): 메인 요청 글 타이핑만 남긴다(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움).
      머리 스크립트가 메인 html 에 site-type 을 달아 요청 글을 잠깐 숨기고, 여기서 site-motion-on 으로 연다(3초 안에 못 열면 머리 스크립트가 숨김을 푼다). 움직임 줄이기 설정이면 아무것도 하지 않는다 */
   (function () {
     var root = document.documentElement;
@@ -1009,8 +1009,29 @@ document.addEventListener("click", function (e) {
       return { fig: fig, pre: pre, nodes: nodes, seen: false, state: "wait" };
     });
     if (!queue.length) { root.classList.add("site-motion-on"); return; }
+    /* 기다리는 상자에는 글이 놓일 줄마다 DS Skeleton 을 깔아 무엇이 쳐질지 미리 보인다(11-16 사용자 "빈 공간 말고 스켈레톤으로 예측 가능하게"). 그 상자 타이핑이 시작되면 걷는다 */
+    function skeleton(q) {
+      var box = q.pre.getBoundingClientRect(), r = document.createRange(), lines = [];
+      r.selectNodeContents(q.pre);
+      [].forEach.call(r.getClientRects(), function (c) {
+        if (c.width < 1) return;
+        var top = Math.round(c.top - box.top), l = lines.filter(function (x) { return Math.abs(x.top - top) < 4; })[0];
+        if (l) { l.left = Math.min(l.left, c.left - box.left); l.right = Math.max(l.right, c.right - box.left); }
+        else lines.push({ top: top, h: c.height, left: c.left - box.left, right: c.right - box.left });
+      });
+      q.skel = lines.map(function (x) {
+        var s = document.createElement("span"); s.className = "ds-skeleton site-type-skel"; s.setAttribute("aria-hidden", "true");
+        var h = Math.min(14, x.h - 6);
+        s.style.cssText = "left:" + x.left + "px;top:" + (x.top + (x.h - h) / 2) + "px;width:" + (x.right - x.left) + "px;height:" + h + "px";
+        return s;
+      });
+      q.pre.style.position = "relative";
+      q.skel.forEach(function (s) { q.pre.appendChild(s); });
+    }
+    function unskeleton(q) { (q.skel || []).forEach(function (s) { s.remove(); }); q.skel = null; q.pre.style.removeProperty("position"); }
     queue.forEach(function (q) {
       q.pre.style.minHeight = q.pre.offsetHeight + "px";
+      skeleton(q);
       q.nodes.forEach(function (x) { x.n.data = ""; });
       q.pre.setAttribute("aria-busy", "true");
       var finish = function () { if (q.state !== "done") end(q); };
@@ -1019,14 +1040,14 @@ document.addEventListener("click", function (e) {
     });
     var caret = document.createElement("span"); caret.className = "site-caret"; caret.setAttribute("aria-hidden", "true");
     function end(q) {
-      q.state = "done"; clearTimeout(q.timer);
+      q.state = "done"; clearTimeout(q.timer); unskeleton(q);
       q.nodes.forEach(function (x) { x.n.data = x.s; });
       if (caret.parentNode && q.pre.contains(caret)) caret.remove();
       q.pre.style.removeProperty("min-height"); q.pre.removeAttribute("aria-busy");
       setTimeout(next, 450);
     }
     function type(q) {
-      q.state = "typing";
+      q.state = "typing"; unskeleton(q);
       var i = 0, k = 0;
       (function tick() {
         if (q.state !== "typing") return;
