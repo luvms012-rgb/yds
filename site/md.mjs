@@ -141,12 +141,24 @@ const slim = (md) => md.split(/\n(?=## )/).filter((s) => !SLIM_DROP.has((s.match
 const REPEAT = [
   '아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.',
   'Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.',
+  '서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.',  // yds.txt "지킬 것" 에 같은 규칙이 있다 (2026-11-17 경량화)
 ];
+// 각 쪽 .md 경량화 (2026-11-17 사용자 "txt, md 경량화, 불필요하거나 반복되는 글 최소로"): 위 반복 문장은 빼되 [ ] 뜻만 짧게 남기고,
+// 예시 코드의 미리보기용 폭 지정(style="width/max-width")은 빼고, 링크는 그 .md 기준 상대 주소로 줄인다
+const BRACKET = REPEAT[0], BRACKET_SHORT = '구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.';
+const demoStyle = (s) => s.replace(/ style="(?:\s*(?:width|max-width|min-width)\s*:\s*[^;"]+;?)+\s*"/g, '');
+const relFrom = (s, base, mdFile) => {
+  const dir = path.posix.dirname(mdFile);
+  return s.replace(new RegExp('\\]\\(' + base.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^)\\s]*)\\)', 'g'), (m, p) => '](' + (path.posix.relative(dir, p.split('#')[0]) || path.posix.basename(p.split('#')[0])) + (p.includes('#') ? '#' + p.split('#')[1] : '') + ')');
+};
+const pageMd = (md, base, mdFile) => relFrom(demoStyle(md.split('\n').map((l) => (l === BRACKET ? BRACKET_SHORT : l)).filter((l) => !REPEAT.includes(l)).join('\n')), base, mdFile)
+  .replace(/\| 구분 \| 내용 \|\n\| --- \| --- \|\n/g, '').replace(/^\| \*\*(Do|Don't)\*\* \| (.*) \|$/gm, '- $1: $2').replace(/\n{3,}/g, '\n\n');
 const FULL_NOTE = (base) => `## 이 파일 읽는 법
 
 - 주소는 ${base} 기준 상대 주소다. 예) components/action-button.md 는 ${base}components/action-button.md
 - 사용법: 구조를 복사해 쓴다. 대괄호 \`[ ]\` 부분은 선택 항목이다. 쓰면 대괄호만 지우고, 안 쓰면 대괄호까지 모두 지운다.
 - 속성: Figma 속성 이름을 그대로 \`data-*\` 속성으로 쓴다.
+- CSS 변수: 서비스에서 모양을 바꿀 때는 그 컴포넌트 변수만 덮어쓴다.
 - 사용 지침: Do 는 지킬 것, Don't 는 하지 말 것이다.`;
 // 링크 주소 "](https://.../site/x" 만 상대 주소로 줄인다. 코드 예시 안 주소(curl 등)는 그대로 둔다(2026-11-15, 줄였더니 받기 명령이 동작하지 않았다)
 const relLinks = (s, base) => s.split('](' + base).join('](');
@@ -171,10 +183,10 @@ export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [], extra
       const md = htmlToMd(html, SITE_URL + file, mdUrls);
       if (!md) continue;
       const mdFile = file.replace(/\.html$/, '.md');
-      fs.writeFileSync(path.join(SITE, mdFile), `<!-- ${SITE_URL}${file} -->\n\n${md}`);
+      fs.writeFileSync(path.join(SITE, mdFile), `<!-- ${SITE_URL}${file} -->\n\n${pageMd(md, SITE_URL, mdFile)}`);
       // 목록 주소는 상대 주소: yds.txt 가 있는 곳 기준이라 그대로 열린다
       lines.push(`- [${title}](${mdFile})${desc ? `: ${desc}` : ''}`);
-      full.push(`<!-- ${mdFile} -->\n\n${relLinks(compact(slim(md)), SITE_URL)}`);
+      full.push(`<!-- ${mdFile} -->\n\n${relLinks(demoStyle(compact(slim(md))), SITE_URL)}`);
       count++;
     }
     if (lines.length) index.push(`## ${g.label}\n\n${lines.join('\n')}`);
@@ -183,8 +195,8 @@ export function writeMarkdown({ SITE, SITE_URL, groups, intro, extra = [], extra
   const all = `${intro}\n\n${FULL_NOTE(SITE_URL)}\n\n${[...full, ...extra.map((s) => relLinks(s, SITE_URL))].join('\n\n---\n\n')}\n`;
   fs.writeFileSync(path.join(SITE, 'yds.txt'), toc);
   fs.writeFileSync(path.join(SITE, 'yds-full.txt'), all);
-  // 예전 이름: 이미 복사해 간 요청 글과 llms.txt 를 찾는 도구가 깨지지 않게 같은 내용으로 남긴다. 화면에는 보이지 않는다
-  fs.writeFileSync(path.join(SITE, 'llms.txt'), toc);
-  fs.writeFileSync(path.join(SITE, 'llms-full.txt'), all);
+  // 예전 이름: 이미 복사해 간 요청 글과 llms.txt 를 찾는 도구가 깨지지 않게 남긴다. 2026-11-17 경량화로 같은 내용 사본 대신 새 파일을 가리키는 한 줄
+  fs.writeFileSync(path.join(SITE, 'llms.txt'), `# YDS\n\n이 파일은 yds.txt 로 옮겼다. ${SITE_URL}yds.txt 를 읽는다.\n`);
+  fs.writeFileSync(path.join(SITE, 'llms-full.txt'), `# YDS\n\n이 파일은 yds-full.txt 로 옮겼다. ${SITE_URL}yds-full.txt 를 읽는다.\n`);
   return count;
 }

@@ -26,7 +26,8 @@ import { loadBrands, brandCss, contrastOf } from './brands.mjs';
 
 const R = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = path.join(R, 'site');
-const PUBLIC = 'https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/';  // 공식 주소 (2026-11-17)
+const DEMO_STYLE = / style="(?:\s*(?:width|max-width|min-width)\s*:\s*[^;"]+;?)+\s*"/g;  // .md 는 미리보기용 폭 지정을 뺀다 (site/md.mjs demoStyle, 2026-11-17)
+const PUBLIC = 'https://design.ybmnet.co.kr/yds/';  // 공식 주소 (2026-11-17)
 const DEV = JSON.parse(fs.readFileSync(path.join(R, 'deploy.config.json'), 'utf8')).pagesUrl;  // --live 는 개발용 GitHub Pages 를 본다
 const SITE_URL = PUBLIC + 'site/';
 const flags = new Set(process.argv.slice(2));
@@ -154,26 +155,28 @@ check('4 마크다운', ({ err }) => {
     const art = stripDivs(h.slice(h.indexOf('<article class="site-doc"'), h.lastIndexOf('</article>')), /<div class="(?:site-example__preview|site-tile__thumb|site-cover)[^"]*"/g);
     const mdCode = [...md.matchAll(/```[a-z]*\n([\s\S]*?)```/g)].map((m) => norm(m[1]));
     for (const m of art.matchAll(/<pre[^>]*><code[^>]*>([\s\S]*?)<\/code><\/pre>/g)) {
-      const c = norm(dec(m[1])); if (c && !mdCode.some((x) => x.includes(c))) err(`화면 코드가 .md 에 없음 ${rel(mdf)}: ${c.slice(0, 50)}`);
+      const c = norm(dec(m[1]).replace(DEMO_STYLE, '')); if (c && !mdCode.some((x) => x.includes(c))) err(`화면 코드가 .md 에 없음 ${rel(mdf)}: ${c.slice(0, 50)}`);
     }
     for (const m of md.matchAll(/\]\(([^)\s]+)\)/g)) {
-      const u = m[1].split('#')[0]; if (!u || !u.startsWith(PUBLIC)) continue;
-      if (!fs.existsSync(path.join(R, u.slice(PUBLIC.length)))) err(`깨진 링크 ${u} <- ${rel(mdf)}`);
+      const u = m[1].split('#')[0]; if (!u || /^(mailto:|https?:\/\/)/.test(u) && !u.startsWith(PUBLIC)) continue;
+      // 2026-11-17 경량화: .md 안 링크는 그 .md 기준 상대 주소
+      if (!fs.existsSync(u.startsWith(PUBLIC) ? path.join(R, u.slice(PUBLIC.length)) : path.join(path.dirname(mdf), u))) err(`깨진 링크 ${u} <- ${rel(mdf)}`);
     }
   }
   for (const [slug, list] of Object.entries(EX)) {
     const mdf = path.join(SITE, 'components', slug + '.md');
     const md = fs.existsSync(mdf) ? norm(fs.readFileSync(mdf, 'utf8')) : '';
-    for (const e of list) if (!md.includes(norm(dedent(e.html)))) err(`예시 코드가 .md 에 없음 ${slug}: ${e.title}`);
+    // .md 는 미리보기용 폭 지정(style="width/max-width")을 뺀다 (site/md.mjs demoStyle, 2026-11-17 경량화)
+    for (const e of list) if (!md.includes(norm(dedent(e.html).replace(DEMO_STYLE, '')))) err(`예시 코드가 .md 에 없음 ${slug}: ${e.title}`);
   }
-  for (const f of ['site/yds.txt', 'site/yds-full.txt']) for (const m of read(f).matchAll(/https:\/\/imagesisa\.ybmnet\.co\.kr\/platform\/design_ybmnet_co_kr\/yds\/([^\s)"'<>`]+)/g)) {
+  for (const f of ['site/yds.txt', 'site/yds-full.txt']) for (const m of read(f).matchAll(/https:\/\/design\.ybmnet\.co\.kr\/yds\/([^\s)"'<>`]+)/g)) {
     const u = m[1].split('#')[0].replace(/[.,]$/, '');
     if (/^dist\/brands\/(my-brand|브랜드이름)\.css$/.test(u)) continue; // 브랜드 안내의 예시 주소
     if (/^v\d+\.\d+\.\d+\//.test(u)) continue; // 버전 폴더는 서버 묶음에만 있다(tools/server-pack.mjs 가 git 태그에서 꺼냄)
     if (!fs.existsSync(path.join(R, u))) err(`${f} 깨진 주소 ${u}`);
   }
-  // 예전 이름은 이미 복사해 간 요청 글을 위해 같은 내용으로 남긴다
-  for (const [a, b] of [['site/llms.txt', 'site/yds.txt'], ['site/llms-full.txt', 'site/yds-full.txt']]) if (read(a) !== read(b)) err(`${a} 내용이 ${b} 와 다름`);
+  // 예전 이름은 이미 복사해 간 요청 글을 위해 남긴다. 2026-11-17 경량화부터 새 파일을 가리키는 한 줄
+  for (const [a, b] of [['site/llms.txt', 'yds.txt'], ['site/llms-full.txt', 'yds-full.txt']]) if (!read(a).includes(PUBLIC + 'site/' + b)) err(`${a} 가 ${b} 를 가리키지 않음`);
   const reg = readJson('components.json').components.length;
   const listed = (read('site/components/index.md').match(/^- \[/gm) || []).length;
   if (listed !== reg) err(`components/index.md 목록 ${listed}개, 컴포넌트 ${reg}개`);
