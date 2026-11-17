@@ -20,7 +20,7 @@ Figma 파일 `1VCEsFU3xMWuXIntIrZz9i`(디자인 시스템)과 `works/ybm-ds` 를
    - Figma 가 맞음 → `components.css`·`components.json`·`index.html`·README §6 을 고친다
    - 코드가 맞음 → Figma 컴포넌트를 고친다(`figma-use` + `figma-generate-library`)
    그다음 1~3 을 다시 실행한다.
-5. 사용자에게 결과를 짧게 보고한다: 바뀐 것, 커밋 메시지, 공식 사이트 주소(<https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/>, 서버 반영은 server-pack 묶음을 사용자가 올린 뒤).
+5. 사용자에게 결과를 짧게 보고한다: 바뀐 것, 커밋 메시지, 공식 사이트 주소(<https://design.ybmnet.co.kr/yds/site/>, 서버 반영은 server-pack 묶음을 사용자가 올린 뒤).
 6. `docs/handoff.md` 를 덮어쓴다(한 것 / 남은 일 / 주의). Figma 에 못 맞춘 것이 있으면 남은 일에 적는다.
 
 템플릿이나 문서 프레임을 Figma 에 다시 그리는 일은 `.claude/skills/yds-figma-draw/SKILL.md` 를 따른다.

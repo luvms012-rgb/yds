@@ -1,5 +1,5 @@
 // 사내 서버용 묶음: node tools/server-pack.mjs
-// 공식 주소 https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/ 에 그대로 풀어 올릴 파일을 zip 하나로 만든다 (2026-11-17 사용자).
+// 공식 주소 https://design.ybmnet.co.kr/yds/ 에 그대로 풀어 올릴 파일을 zip 하나로 만든다 (2026-11-17 사용자).
 // 결과: works/project/(서버업로드)/yds_날짜.zip (예전 yds_*.zip 은 지운다). 올리기는 사용자가 한다.
 // 안 = index.html(문서 사이트로 넘김), catalog.html(예전 맨 위 카탈로그), site/(문서 사이트), dist/(최신 CSS, JS),
 //      v1.0.0/dist ... (git 태그마다 버전 고정 주소), components.json, VERSION, tokens/ 공개 파일 셋
