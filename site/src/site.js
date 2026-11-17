@@ -687,8 +687,7 @@
       '<button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기" autofocus></button></span></div>' +
       '<div class="ds-dialog__body"><div class="site-tplv__stage" data-device="desktop"><iframe title="" data-site-frame></iframe></div>' +
       '<div class="site-tplv__code" hidden><figure class="ds-codeblock" data-lang="html"><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption><pre class="ds-codeblock__code"><code></code></pre></figure></div></div>' +
-      '<div class="ds-dialog__footer site-tplv__foot"><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a>' +
-      '<button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small" data-tplv-ask><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i>AI 요청 글 복사</button></div>' +
+      '<div class="ds-dialog__footer site-tplv__foot"><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
@@ -724,12 +723,6 @@
       if (i >= 0) open(i); else if (dlg.open) { pushed = false; dlg.close(); }
     });
     function step(n) { if (cur >= 0) open((cur + n + list.length) % list.length, "replace"); }
-    function ask() {
-      var t = list[cur]; if (!t) return;
-      var text = cfg.ask + "\n'" + t[1] + "' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘.\n" + cfg.base + t[0] + ".html";
-      var say = function (ok) { if (window.DS && DS.snackbar) DS.snackbar(ok ? "요청 글을 복사했어요. AI 도구에 붙여 넣으세요." : "복사하지 못했어요.", { tone: ok ? "positive" : "critical" }); };
-      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say(true); }, function () { say(false); }); else say(false);
-    }
     document.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest("[data-site-tplv]");
       if (!b || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
@@ -749,7 +742,6 @@
         if (code) loadSource(codeBox);
         return;
       }
-      if (e.target.closest("[data-tplv-ask]")) ask();
     });
     dlg.addEventListener("keydown", function (e) {
       if (e.target.closest("pre, .ds-segmented")) return;
@@ -1143,8 +1135,8 @@ document.addEventListener("click", function (e) {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var S = function (x, k, c) { return { x: x, v: 0, t: x, k: k, c: reduce ? 2 * Math.sqrt(k) : c }; };
   var step = function (s, dt) { var a = -s.k * (s.x - s.t) - s.c * s.v; s.v += a * dt; s.x += s.v * dt; };
-  var lh = parseFloat(getComputedStyle(field).lineHeight) || 24, MAX = lh * 6;
-  var H = S(lh, 420, 34), M = S(0, 520, 30);
+  var cs = getComputedStyle(field), lh = parseFloat(cs.lineHeight) || 24, pad = parseFloat(cs.paddingTop) || 0, MAX = lh * 6 + pad;
+  var H = S(lh + pad, 420, 34), M = S(0, 520, 30);
   var busy = false, user = false, p = 0, timers = [];
   // 시뮬레이션 시간 타이머: 화면이 멈추면 같이 멈춘다
   function later(sec, fn) { var t = { t: sec, fn: fn }; timers.push(t); return t; }
@@ -1153,7 +1145,7 @@ document.addEventListener("click", function (e) {
     var y = field.scrollTop; field.style.height = "auto";
     H.t = Math.min(field.scrollHeight, MAX);
     field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden";
-    field.style.height = H.x + "px"; field.scrollTop = y;
+    field.style.height = H.x + "px"; field.scrollTop = field.scrollHeight > MAX ? y : 0;
     send.classList.toggle("is-ready", busy || !!field.value.trim());
   }
   function submit() {
@@ -1172,7 +1164,7 @@ document.addEventListener("click", function (e) {
   function auto() {
     if (!PROMPTS.length) return;
     var text = PROMPTS[p++ % PROMPTS.length];
-    for (var i = 0; i < text.length; i++) (function (i) { later(i * 0.035, function () { field.value = text.slice(0, i + 1); fit(); field.scrollTop = field.scrollHeight; }); })(i);
+    for (var i = 0; i < text.length; i++) (function (i) { later(i * 0.035, function () { field.value = text.slice(0, i + 1); fit(); if (field.scrollHeight > MAX) field.scrollTop = field.scrollHeight; }); })(i);
     later(text.length * 0.035 + 0.9, submit);
   }
   send.addEventListener("click", function () { if (busy) { clear(); finish(); } else submit(); });
@@ -1192,6 +1184,8 @@ document.addEventListener("click", function (e) {
     for (var i = timers.length - 1; i >= 0; i--) { var t = timers[i]; if ((t.t -= dt) <= 0) { timers.splice(timers.indexOf(t), 1); t.fn(); } }
     for (var k = 0; k < 4; k++) { step(H, dt / 4); step(M, dt / 4); }
     field.style.height = H.x.toFixed(2) + "px";
+    // 칸이 커지는 동안 글은 제자리에 두고 새 줄이 아래로 드러나게 한다(11-17 사용자 "줄이 늘면 글이 위에서 떨어진다"). 6줄을 넘을 때만 아래로 스크롤
+    if (field.scrollHeight <= MAX && field.scrollTop) field.scrollTop = 0;
     var m = Math.max(0, Math.min(1.2, M.x));
     arrow.style.transform = "scale(" + Math.max(0, 1 - m) + ") rotate(" + (m * 90) + "deg)";
     stop.style.transform = "scale(" + Math.max(0, m) + ")";

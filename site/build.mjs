@@ -447,7 +447,8 @@ const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
 // 11-11 사용자 "합쳐져 있는데 나눠줘, 3개로, 공통은 모두 포함, 제목은 대괄호": 묶음마다 상자 하나, 안은 [묶음 이름 예시] → 공통 글 → 예시 목록(- 줄)
 // 템플릿 문서 보기의 AI 요청 글과 HTML 내려받기는 11-17 사용자가 지웠다
-const AI_COMMON = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
+// 11-17 사용자 "안내서 말고 다른 쉬운 용어로": 첫 줄은 "아래 파일을 읽고"
+const AI_COMMON = `아래 파일을 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt`;
 // 11-14 사용자 "1, 2 진행" (레퍼런스 A 시작하기 비교): 상자 하나에 요청 하나, 끝에 "먼저 묻기" 한 줄.
 // 같은 날 사용자 "자유도를 줘야, 지금은 이대로 써야 할 것 같은 느낌": 구체적인 예시 문장 대신 바꿀 곳을 [ ] 빈칸으로 둔다. 고정은 안내서 주소뿐(먼저 묻기 문장은 사용자 지시로 뺐다).
@@ -552,10 +553,10 @@ curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
-  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'YDS 안내서', '가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요.'],
+  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'AI가 읽는 YDS 설명 파일', '가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요.'],
   [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때 켭니다. 디자이너는 이것 하나면 됩니다.'],
   [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', 'AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다.'],
-  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 안내서 주소를 넣지 않아도 됩니다.'],
+  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 yds.txt 주소를 넣지 않아도 됩니다.'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.'],
   [`<span class="site-gs__rules">${BRANDS.map((b) => `<a class="ds-link" href="../dist/brands/${b.slug}.css" target="_blank" rel="noopener">${b.slug}.css</a>`).join('')}</span>`, '등록된 브랜드 파일', '내 서비스에 브랜드가 있는지, 색과 모서리 값이 무엇인지 볼 때 엽니다. 없으면 AI 요청 글의 [브랜드 만들기]로 시작합니다.'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),
@@ -1106,8 +1107,8 @@ const THUMBS = fs.existsSync(path.join(SITE, 'templates/thumbs/index.json')) ? r
 const tplThumb = (slug) => THUMBS[slug] && fs.existsSync(path.join(SITE, 'templates/thumbs', slug + '.webp'))
   ? `<img class="site-tpl-img site-tpl-img--light" src="thumbs/${slug}.webp?v=${THUMBS[slug]}" alt="" width="1080" height="675" loading="lazy" decoding="async"><img class="site-tpl-img site-tpl-img--dark" src="thumbs/${slug}-dark.webp?v=${THUMBS[slug]}" alt="" width="1080" height="675" loading="lazy" decoding="async">`
   : `<iframe src="pages/${slug}.html" title="" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe>`;
-// 2026-11-17 사용자 "새창은 불필요, 모달로 크게 보는 화면": 목록 카드도 이 보기 창으로 연다. 창 아래 줄의 AI 요청 글(ask + 이름 + 주소)과 Figma 주소도 여기서
-const TPL_LIST_JSON = JSON.stringify({ ask: AI_COMMON, base: SITE_URL + 'templates/pages/', items: [...templates].sort(tplSort).map((t) => [t.slug, t.name, t.desc, t.figma ? LINKS.figmaUrl(t.figma.pc) : '']) }).replace(/</g, '\\u003c');
+// 2026-11-17 사용자 "새창은 불필요, 모달로 크게 보는 화면": 목록 카드도 이 보기 창으로 연다. 창 아래 줄은 Figma 만(AI 요청 글 복사는 11-17 사용자가 지웠다)
+const TPL_LIST_JSON = JSON.stringify({ items: [...templates].sort(tplSort).map((t) => [t.slug, t.name, t.desc, t.figma ? LINKS.figmaUrl(t.figma.pc) : '']) }).replace(/</g, '\\u003c');
 write({
   file: 'templates/index.html', section: 'templates', title: 'Templates', layout: 'full',  // 11-05 사용자: 목록은 왼쪽 메뉴 없이 분류 탭으로
   body: `${hero('Templates', '자주 만드는 화면을 YDS 컴포넌트로 미리 구성했습니다.').replace(' class="site-hero"', '')  /* 11-05 사용자: 다른 화면처럼 왼쪽 정렬 */.replace('</p></header>', (SHOW_THEMES ? ' 테마를 입힌 실제 사이트 예시는 <a class="ds-link" href="../themes/index.html">Themes</a>에 있습니다.' : '') + '</p></header>')}

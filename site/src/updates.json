@@ -9,7 +9,7 @@
           "items": [
             [
               "규칙",
-              "YDS 공식 주소를 사내 서버(https://design.ybmnet.co.kr/yds/)로 옮겼습니다. 설치 코드, 버전 고정 주소, AI 안내서 주소는 이 주소를 씁니다."
+              "YDS 공식 주소를 사내 서버(https://design.ybmnet.co.kr/yds/)로 옮겼습니다. 설치 코드, 버전 고정 주소, AI가 읽는 yds.txt 주소는 이 주소를 씁니다."
             ]
           ]
         }

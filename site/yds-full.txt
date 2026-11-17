@@ -103,10 +103,10 @@ curl --create-dirs -o .cursor/rules/yds.mdc https://design.ybmnet.co.kr/yds/site
 
 | 파일 | 무엇인가요 | 언제 쓰나요 |
 | --- | --- | --- |
-| [yds.txt](yds.txt) | YDS 안내서 | 가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요. |
+| [yds.txt](yds.txt) | AI가 읽는 YDS 설명 파일 | 가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요. |
 | [Figma 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92) | YDS 컴포넌트와 변수가 담긴 Figma 파일 | Figma로 화면을 그릴 때 켭니다. 디자이너는 이것 하나면 됩니다. |
 | [yds-full.txt](yds-full.txt) | 컴포넌트 사용법과 규칙을 모은 파일 하나 | AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다. |
-| [CLAUDE.md](ai/CLAUDE.md)[yds.mdc](ai/yds.mdc)[AGENTS.md](ai/AGENTS.md) | 코딩 도구용 YDS 규칙 파일 | 코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 안내서 주소를 넣지 않아도 됩니다. |
+| [CLAUDE.md](ai/CLAUDE.md)[yds.mdc](ai/yds.mdc)[AGENTS.md](ai/AGENTS.md) | 코딩 도구용 YDS 규칙 파일 | 코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 yds.txt 주소를 넣지 않아도 됩니다. |
 | [yds-check.mjs](ai/yds-check.mjs) | YDS 규칙 검사 스크립트 | 화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다. |
 | [toeic.css](https://design.ybmnet.co.kr/yds/dist/brands/toeic.css) | 등록된 브랜드 파일 | 내 서비스에 브랜드가 있는지, 색과 모서리 값이 무엇인지 볼 때 엽니다. 없으면 AI 요청 글의 [브랜드 만들기]로 시작합니다. |
 
