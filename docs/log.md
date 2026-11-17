@@ -12,6 +12,14 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-17 회사 Windows 오전 (인수인계에서 옮김)
+
+- **공식 주소를 사내 서버로**(GitHub 배포 3c5adc03): GitHub 는 개발용(push, 개발 미리보기 Pages)이고 사이트와 Figma 에 링크하지 않는다. 위 막대와 푸터 GitHub 아이콘 삭제, 루트 카탈로그 GitHub 버튼은 "문서 사이트", 옛 루트 yds.txt, yds-full.txt 삭제.
+- **사이트를 YDS 부품으로(전수 검사 "바꿔야 함" 8곳)**: 위 막대 Top Navigation, 휴대폰 메뉴 서랍 Side Panel, 메뉴 구분선 Divider, 템플릿 크게 보기 Dialog, 규격과 아이콘 코드 칸 Code Block, 안내 카드 `a.ds-card`, 요청 표 두 줄 칸 `.ds-table__stack`. "고려" 16곳은 손대지 않음.
+- **서버 묶음**: `node tools/server-pack.mjs` → `works/project/(서버업로드)/yds_날짜.zip`. index.html(문서 사이트로 넘김), catalog.html, site/, dist/, v 폴더(git 태그에서 꺼냄), components.json, VERSION, tokens 공개 파일. 개인 GitHub 주소가 남으면 멈춘다.
+- **Figma**: 문서 프레임 링크 170개와 글자 속 주소 18곳을 그때의 imagesisa 주소로 맞춤(오후에 주소가 다시 바뀜).
+- **사용 현황**: 사내 서버 cs, signup 화면 전체로 집계(오후에 탭 자체를 지움).
+
 ### 2026-11-16 집 Mac 밤 (인수인계에서 옮김)
 
 - **Updates**: 요청, 사용 현황 탭을 소식과 같은 간격(탭 아래 40)으로, 탭 이름과 겹치는 큰 제목 삭제. 요청 탭은 실제 요청 2건(Avatar 상태 점 반영됨, Table 헤더 고정 접수), 제목은 서술형, 요청자는 소속만. 의견 보내기 버튼은 오른쪽. 사용 현황은 컴포넌트 쓰임 막대만(usage.mjs 는 버전과 색 정보도 계속 모은다).
