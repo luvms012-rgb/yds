@@ -1123,76 +1123,34 @@ document.addEventListener("click", function (e) {
   b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); var h = document.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } });
 })();
 
-/* 프롬프트 상자 (2026-11-17 사용자, Get Started "AI와 함께 시작하기"): 요청 글이 저절로 한 글자씩 쳐지고 보내지기를 되풀이한다.
-   입력 칸 높이는 글에 맞춰 스프링으로 늘고(강도 420, 감쇠 34), 보내는 동안 화살표가 멈추기 네모로 바뀐다(520, 30).
-   칸을 누르면 사람이 이어받는다: Enter 보내기, Shift+Enter 줄바꿈, 답하는 중에 버튼을 누르면 멈춘다. 동작 줄이기 설정이면 첫 글만 놓고 움직이지 않는다 */
+/* 프롬프트 상자 (2026-11-17 사용자, Get Started "AI와 함께 시작하기"): 상자가 보이면 요청 글 하나를 한 번만 한 글자씩 쳐 놓고 멈춘다.
+   칸 높이는 글에 맞춰 스프링으로 늘고(강도 420, 감쇠 34), 늘어나는 동안 글은 제자리에 둔다. 보내기 버튼은 움직이지 않는 회색 그림.
+   HTML 에 글이 이미 들어 있어(스크립트가 없어도 보인다) 시작할 때 비우고 친다. 동작 줄이기 설정이면 글을 그대로 둔다 */
 (function () {
   var box = document.querySelector("[data-site-pbox]");
   if (!box) return;
-  var field = box.querySelector(".site-pbox__field"), send = box.querySelector(".site-pbox__send");
-  var arrow = box.querySelector(".site-pbox__arrow"), stop = box.querySelector(".site-pbox__stop");
-  var PROMPTS = []; try { PROMPTS = JSON.parse(box.getAttribute("data-prompts")) || []; } catch (e) {}
+  var field = box.querySelector(".site-pbox__field");
+  var text = field.value;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var S = function (x, k, c) { return { x: x, v: 0, t: x, k: k, c: reduce ? 2 * Math.sqrt(k) : c }; };
-  var step = function (s, dt) { var a = -s.k * (s.x - s.t) - s.c * s.v; s.v += a * dt; s.x += s.v * dt; };
   var cs = getComputedStyle(field), lh = parseFloat(cs.lineHeight) || 24, pad = parseFloat(cs.paddingTop) || 0, MAX = lh * 6 + pad;
-  var H = S(lh + pad, 420, 34), M = S(0, 520, 30);
-  var busy = false, user = false, p = 0, timers = [];
-  // 시뮬레이션 시간 타이머: 화면이 멈추면 같이 멈춘다
-  function later(sec, fn) { var t = { t: sec, fn: fn }; timers.push(t); return t; }
-  function clear() { timers = []; }
-  function fit() {
-    var y = field.scrollTop; field.style.height = "auto";
-    H.t = Math.min(field.scrollHeight, MAX);
-    field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden";
-    field.style.height = H.x + "px"; field.scrollTop = field.scrollHeight > MAX ? y : 0;
-    send.classList.toggle("is-ready", busy || !!field.value.trim());
-  }
-  function submit() {
-    if (busy || !field.value.trim()) return;
-    busy = true; M.t = 1;
-    send.setAttribute("aria-label", "멈추기");
-    later(0.3, function () { field.value = ""; fit(); });
-    later(2, finish);
-  }
-  function finish() {
-    busy = false; M.t = 0;
-    send.setAttribute("aria-label", "보내기");
-    fit();
-    if (!user) later(1.2, auto);
-  }
-  function auto() {
-    if (!PROMPTS.length) return;
-    var text = PROMPTS[p++ % PROMPTS.length];
-    for (var i = 0; i < text.length; i++) (function (i) { later(i * 0.035, function () { field.value = text.slice(0, i + 1); fit(); if (field.scrollHeight > MAX) field.scrollTop = field.scrollHeight; }); })(i);
-    later(text.length * 0.035 + 0.9, submit);
-  }
-  send.addEventListener("click", function () { if (busy) { clear(); finish(); } else submit(); });
-  field.addEventListener("focus", function () {
-    if (user) return;
-    user = true;
-    if (!busy) { clear(); field.value = ""; fit(); }
-  });
-  field.addEventListener("input", fit);
-  field.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); submit(); } });
-
-  if (reduce) { field.value = PROMPTS[0] || ""; H.x = H.t; fit(); H.x = H.t; field.style.height = H.x + "px"; return; }
-  // 상자가 화면에 보일 때만 돈다
-  var seen = false, last = 0, running = false;
+  var H = { x: lh + pad, v: 0, t: lh + pad, k: 420, c: 34 };
+  function target() { field.style.height = "auto"; H.t = Math.min(field.scrollHeight, MAX); field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden"; field.style.height = H.x + "px"; field.scrollTop = 0; }
+  if (reduce || !text) { field.style.height = "auto"; field.style.height = Math.min(field.scrollHeight, MAX) + "px"; return; }
+  field.value = ""; target();
+  var started = false, n = 0, acc = 0, last = 0, done = false;
   function loop(now) {
     var dt = Math.max(0, Math.min((now - last) / 1000, 1 / 30)); last = now;
-    for (var i = timers.length - 1; i >= 0; i--) { var t = timers[i]; if ((t.t -= dt) <= 0) { timers.splice(timers.indexOf(t), 1); t.fn(); } }
-    for (var k = 0; k < 4; k++) { step(H, dt / 4); step(M, dt / 4); }
+    if (!done) { acc += dt; while (acc >= 0.035 && n < text.length) { acc -= 0.035; n++; field.value = text.slice(0, n); target(); } if (n >= text.length) done = true; }
+    for (var k = 0; k < 4; k++) { var a = -H.k * (H.x - H.t) - H.c * H.v; H.v += a * dt / 4; H.x += H.v * dt / 4; }
     field.style.height = H.x.toFixed(2) + "px";
-    // 칸이 커지는 동안 글은 제자리에 두고 새 줄이 아래로 드러나게 한다(11-17 사용자 "줄이 늘면 글이 위에서 떨어진다"). 6줄을 넘을 때만 아래로 스크롤
     if (field.scrollHeight <= MAX && field.scrollTop) field.scrollTop = 0;
-    var m = Math.max(0, Math.min(1.2, M.x));
-    arrow.style.transform = "scale(" + Math.max(0, 1 - m) + ") rotate(" + (m * 90) + "deg)";
-    stop.style.transform = "scale(" + Math.max(0, m) + ")";
-    if (running) requestAnimationFrame(loop);
+    if (done && Math.abs(H.x - H.t) < 0.1 && Math.abs(H.v) < 0.1) { field.style.height = H.t + "px"; return; }  // 다 치고 칸이 멈추면 끝
+    requestAnimationFrame(loop);
   }
-  function start() { if (running) return; running = true; last = performance.now(); requestAnimationFrame(loop); if (!seen) { seen = true; later(0.4, auto); } }
-  fit();
-  function check() { var b = box.getBoundingClientRect(); if (b.bottom > 0 && b.top < window.innerHeight) start(); else running = false; }
-  window.addEventListener("scroll", check, { passive: true }); window.addEventListener("resize", check); check();
+  function check() {
+    if (started) return;
+    var b = box.getBoundingClientRect();
+    if (b.bottom > 0 && b.top < window.innerHeight) { started = true; window.removeEventListener("scroll", check); last = performance.now(); setTimeout(function () { last = performance.now(); requestAnimationFrame(loop); }, 400); }
+  }
+  window.addEventListener("scroll", check, { passive: true }); check();
 })();

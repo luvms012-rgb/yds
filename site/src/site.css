@@ -688,13 +688,8 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-totop[data-show]:active { scale: .94; transition-duration: var(--ds-duration-fast); }
 @media (prefers-reduced-motion: reduce) { .site-totop, .site-totop[data-show] { translate: none; scale: none; transition: opacity var(--ds-duration-fast) linear, visibility 0s linear var(--ds-duration-fast); } .site-totop[data-show] { transition: opacity var(--ds-duration-fast) linear, visibility 0s; } }
 @media (max-width: 767px) { .site-totop { right: var(--ds-space-x4); bottom: var(--ds-space-x4); } }
-/* 프롬프트 상자 (2026-11-17, Get Started AI 절): 입력 칸 + 보내기 버튼 한 줄, 높이와 버튼 모양은 site.js 스프링이 움직인다 */
+/* 프롬프트 상자 (2026-11-17, Get Started AI 절): 요청 글 칸 + 회색 보내기 그림 한 줄, 칸 높이는 site.js 스프링 */
 .site-pbox { display: flex; align-items: flex-end; gap: var(--ds-space-x2_5); margin-top: var(--ds-space-x4); padding: var(--ds-space-x2_5) var(--ds-space-x2_5) var(--ds-space-x2_5) var(--ds-space-x4_5); border: 1px solid var(--ds-color-stroke-neutral-weak); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-layer-default); }
 .site-pbox__field { flex: 1; min-width: 0; height: calc(var(--ds-line-height-t05) + var(--ds-space-x1)); margin: 0 0 var(--ds-space-x1) 0; padding: var(--ds-space-x1) 0 0;  /* 위 4 여백: 한 줄일 때도 칸 + 아래 여백이 보내기 버튼 높이(32)와 같아 줄이 늘어도 첫 줄이 움직이지 않는다(11-17) */ border: 0; outline: none; resize: none; overflow: hidden; background: none; color: var(--ds-color-fg-neutral); font: inherit; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; caret-color: var(--ds-color-fg-neutral); }
 .site-pbox__field::placeholder { color: var(--ds-color-fg-placeholder); }
-.site-pbox__send { position: relative; flex: none; width: var(--ds-space-x8); height: var(--ds-space-x8); margin: 0; padding: 0; border: 0; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral-muted); cursor: pointer; transition: background-color var(--ds-duration-fast) var(--ds-easing-standard), color var(--ds-duration-fast) var(--ds-easing-standard); }
-.site-pbox__send.is-ready { background: var(--ds-color-bg-neutral-inverted); color: var(--ds-color-fg-neutral-inverted); }
-.site-pbox__send:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
-.site-pbox__send > span { position: absolute; inset: 0; display: grid; place-items: center; will-change: transform; }
-.site-pbox__stop { transform: scale(0); }
-.site-pbox__stop::after { content: ""; width: var(--ds-space-x2_5); height: var(--ds-space-x2_5); border-radius: var(--ds-shape-2xs); background: currentColor; }
+.site-pbox__send { flex: none; display: grid; place-items: center; width: var(--ds-space-x8); height: var(--ds-space-x8); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral-muted); }  /* 움직이지 않는 회색 그림 (11-17 사용자) */

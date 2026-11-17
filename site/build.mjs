@@ -463,14 +463,11 @@ const AI_EXAMPLES = [
 ];
 // 2026-11-17 사용자 "이 부분 다시 만들거야": 요청 글 상자 3개를 빼고 프롬프트 상자 샘플 하나(입력 칸이 글에 맞춰 스프링으로 늘고, 보내면 멈추기 버튼으로 바뀐다. 생각 중, 초안 완료 줄은 뺐다). 움직임은 site.js "프롬프트 상자"
 // 저절로 쳐지는 요청 글은 AI_EXAMPLES 세 갈래를 실제 문장으로 채운 것
-const PROMPT_TEXTS = [
-  `${AI_COMMON}\n수강 신청 화면을 만들어 줘. 비슷한 템플릿이 있으면 출발점으로 써 줘.`,
-  `${AI_COMMON}\n회원가입 페이지에 YDS를 적용해 줘. 버튼과 입력칸만 바꾸고 나머지는 그대로 둬.`,
-  `${AI_COMMON}\n새 브랜드를 만들어 줘. 대표색은 #00843d로, 모서리와 글꼴은 부드럽고 친근한 느낌에 맞게 정해 줘.`,
-];
+// 11-17 사용자 "한 번만 타이핑하고 정지, 버튼은 회색 그대로, 자연스러운 일반 문장으로": 요청 글 하나를 한 번 쳐 놓고 멈춘다. 버튼은 꾸밈(누르지 않음)
+const PROMPT_TEXTS = [`수강 신청 화면을 만들려고 해. 템플릿에 비슷한 화면이 있으면 참고해서 YDS로 제작해 줘.\n${SITE_URL}yds.txt`];  // 문장은 사용자 예시 그대로(11-17), 주소는 AI 가 YDS 를 읽게 다음 줄에
 const PROMPT_BOX = `<div class="site-pbox" data-site-pbox data-prompts="${esc(JSON.stringify(PROMPT_TEXTS))}">
-  <textarea class="site-pbox__field" rows="1" placeholder="AI에게 맡길 일을 적어 보세요" aria-label="AI 요청 글"></textarea>
-  <button class="site-pbox__send" type="button" aria-label="보내기"><span class="site-pbox__arrow"><i class="ds-icon ds-icon--arrow-up ds-icon--sm" aria-hidden="true"></i></span><span class="site-pbox__stop" aria-hidden="true"></span></button>
+  <textarea class="site-pbox__field" rows="1" readonly aria-label="AI 요청 글 예시">${esc(PROMPT_TEXTS[0])}</textarea>
+  <span class="site-pbox__send" aria-hidden="true"><i class="ds-icon ds-icon--arrow-up ds-icon--sm"></i></span>
 </div>`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->

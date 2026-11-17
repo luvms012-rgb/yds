@@ -546,12 +546,7 @@ transition: opacity var(--ds-duration-slow) var(--ds-easing-enter), translate va
 .site-pbox { display: flex; align-items: flex-end; gap: var(--ds-space-x2_5); margin-top: var(--ds-space-x4); padding: var(--ds-space-x2_5) var(--ds-space-x2_5) var(--ds-space-x2_5) var(--ds-space-x4_5); border: 1px solid var(--ds-color-stroke-neutral-weak); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-layer-default); }
 .site-pbox__field { flex: 1; min-width: 0; height: calc(var(--ds-line-height-t05) + var(--ds-space-x1)); margin: 0 0 var(--ds-space-x1) 0; padding: var(--ds-space-x1) 0 0;   border: 0; outline: none; resize: none; overflow: hidden; background: none; color: var(--ds-color-fg-neutral); font: inherit; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; caret-color: var(--ds-color-fg-neutral); }
 .site-pbox__field::placeholder { color: var(--ds-color-fg-placeholder); }
-.site-pbox__send { position: relative; flex: none; width: var(--ds-space-x8); height: var(--ds-space-x8); margin: 0; padding: 0; border: 0; border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral-muted); cursor: pointer; transition: background-color var(--ds-duration-fast) var(--ds-easing-standard), color var(--ds-duration-fast) var(--ds-easing-standard); }
-.site-pbox__send.is-ready { background: var(--ds-color-bg-neutral-inverted); color: var(--ds-color-fg-neutral-inverted); }
-.site-pbox__send:focus-visible { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
-.site-pbox__send > span { position: absolute; inset: 0; display: grid; place-items: center; will-change: transform; }
-.site-pbox__stop { transform: scale(0); }
-.site-pbox__stop::after { content: ""; width: var(--ds-space-x2_5); height: var(--ds-space-x2_5); border-radius: var(--ds-shape-2xs); background: currentColor; }
+.site-pbox__send { flex: none; display: grid; place-items: center; width: var(--ds-space-x8); height: var(--ds-space-x8); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral-muted); }
 :root { --site-chart-1: var(--ds-color-palette-brand-600); }
 body {
 --ds-color-bg-brand-solid: var(--ds-color-bg-neutral-solid);
