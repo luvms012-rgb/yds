@@ -1,6 +1,6 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-17 회사 Windows. 공식 주소를 사내 서버로 옮기는 마무리 작업. **아직 커밋, 배포 안 함**(사용자가 "배포" 라고 할 때). Figma 는 이미 바뀌었다(링크 170 + 18 곳). 시작은 `git pull` 뒤 이 파일.
+- 갱신: 2026-11-17 회사 Windows. 공식 주소를 사내 서버로 옮기는 마무리 작업. GitHub 배포됨(3c5adc03), 서버 묶음 yds_20261117.zip 만듦(올리기는 사용자). Figma 도 바뀌었다(링크 170 + 18 곳). 시작은 `git pull` 뒤 이 파일.
 
 ## 한 것 (11-17)
 
@@ -13,7 +13,7 @@
 
 ## 남은 일
 
-0. **배포**: 사용자가 "배포" 라고 하면 `node sync.mjs deploy` (개발 GitHub 와 Pages 갱신). 그 뒤 `node tools/server-pack.mjs` 로 묶음을 새로 만들고, 사용자가 서버 yds 폴더에 푼다. 서버에 올린 뒤 주소 몇 개(첫 화면, site/yds.txt, dist/ybm-ds.css, v1.2.0/dist/ybm-ds.css)가 열리는지 확인.
+0. **서버 올리기**: 사용자가 works/project/(서버업로드)/yds_20261117.zip 을 서버 yds 폴더에 푼다. 그 뒤 첫 화면, site/yds.txt, dist/ybm-ds.css, v1.2.0/dist/ybm-ds.css 가 열리는지 확인. 다시 고친 뒤에는 배포 → node tools/server-pack.mjs 순서.
 1. **서버 올린 뒤 확인할 것**: 서버가 .mjs, .mdc, .md 를 내려 주는지(ai/yds-check.mjs), 한글 글자 깨짐 없는지, 캐시 시간.
 2. **다음 버전**: `node sync.mjs release x.y.z`(사용자 확인 뒤). 새 태그는 server-pack 이 자동으로 v 폴더로 넣는다.
 3. **Table 헤더 고정(요청 접수)**, **Figma 작은 차이**, **답을 기다리는 것**(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비): 11-16 그대로. 자세한 것은 log.md "2026-11-16 집 Mac 밤".
