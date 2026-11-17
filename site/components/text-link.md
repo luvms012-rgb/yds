@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/text-link.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-link.html -->
 
 # Text Link
 
@@ -106,7 +106,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본, t05) / small(t03, 본문 옆이나 표, 칸 머리처럼 보조 자리) (2026-11-03 추가)
 문장 안(p, li): size와 상관없이 주변 글자 크기를 따릅니다 (2026-11-09)
 화살표 링크: 끝에 chevron-right 아이콘을 넣으면 밑줄 없이 표시합니다. 화살표가 이동을 알립니다 (2026-11-12)

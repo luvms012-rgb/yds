@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/foundations/elevation.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/elevation.html -->
 
 # Elevation
 

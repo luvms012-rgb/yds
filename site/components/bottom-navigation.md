@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/bottom-navigation.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/bottom-navigation.html -->
 
 # Bottom Navigation
 
@@ -147,7 +147,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma: bg/layer-default / 상단 1px stroke/neutral-muted / 항목 높이 51 / padding 4/2 / gap 2 / 아이콘 24(Solid)
   label Static t01 SemiBold / 선택 아이콘 fg/brand + 라벨 fg/neutral / 미선택 fg/neutral-subtle / disabled fg/disabled
   뱃지 bg/critical-solid + 1.5px bg/layer-default 테두리 / dot 6 / count 최소 18 / Static t01 Bold static-white

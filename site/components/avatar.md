@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/avatar.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/avatar.html -->
 
 # Avatar
 
@@ -167,7 +167,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size : 20 / 24 / 36(기본) / 40 / 48 / 56 / 64 / 80 / 96 / 108   (모두 4의 배수, 2026-11-15 42 를 40 으로 바꿈. 예전 data-size="42" 도 40 으로 보인다)
 shape: circle(기본) / rounded(크기의 1/4, 곡률 노브 따름) / square
 내용 우선순위: 사진 > 이니셜 > 기본 실루엣(사진/이니셜이 없으면 자동)

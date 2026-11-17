@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/command-palette.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/command-palette.html -->
 
 # Command Palette
 
@@ -78,7 +78,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 여는 법: data-ds-open="cmd", 또는 dialog에 data-ds-hotkey="k"를 붙이면 Ctrl(Mac은 Command) + K로 열립니다
 검색어를 입력하면 이름으로 필터링하고, 위아래 화살표로 선택한 뒤 Enter로 실행합니다(그 항목의 click) / 화면 위에서 15% 위치, 폭 --ds-command-width
 ```

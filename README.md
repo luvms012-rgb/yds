@@ -5,8 +5,8 @@ YBM 서비스 공용 디자인 시스템. Figma 변수/컴포넌트가 정본이
 
 - 최종 갱신: 2026-10-27
 - Figma 파일: `1VCEsFU3xMWuXIntIrZz9i` - <https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/>
-- GitHub 저장소: <https://github.com/luvms012-rgb/yds>
-- 배포 주소(Pages): <https://luvms012-rgb.github.io/yds/> - 첫 화면이 컴포넌트 미리보기
+- 공식 주소(사내 서버, 2026-11-17): <https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/> - 문서 사이트 <https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/>. 서버에는 `node tools/server-pack.mjs` 가 만든 묶음을 사용자가 올린다
+- 개발용 GitHub 저장소: <https://github.com/luvms012-rgb/yds> (push 와 개발 미리보기 Pages 에만 쓴다. 사이트와 Figma 에는 링크하지 않는다)
 - 로컬 폴더: 회사 `C:\Users\luvms\Desktop\works\ybm-ds`, 집 Mac `~/Works/ybm-ds` (폴더 이름은 예전 이름 그대로)
 
 ---
@@ -60,8 +60,8 @@ git에 올리지 않는 것(`.gitignore`): `tokens/.figma-check.js`, `tokens/.fi
 
 ```html
 <!-- 배포 주소에서 바로 (가이드 사이트/외부 시안) -->
-<link rel="stylesheet" href="https://luvms012-rgb.github.io/yds/dist/ybm-ds.css">
-<script src="https://luvms012-rgb.github.io/yds/dist/ybm-ds.js" defer></script>
+<link rel="stylesheet" href="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/dist/ybm-ds.css">
+<script src="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/dist/ybm-ds.js" defer></script>
 
 <!-- 로컬 작업(works 폴더 안) - 상대경로. 가이드 배포 때 위 주소로 자동 치환된다 -->
 <link rel="stylesheet" href="../../../../ybm-ds/dist/ybm-ds.css">
@@ -138,7 +138,7 @@ node sync.mjs release 1.1.0    새 버전: VERSION, DS 머리 버전, Updates �
 ```
 
 - 검사 항목: 링크, 사이트 규칙, 템플릿과 예시(site/ai/yds-check.mjs), 마크다운, 싱크(components.json ↔ CSS ↔ README ↔ 사이트), 컴포넌트 9곳, 빌드 경고.
-- 버전은 `VERSION` 하나가 원본이다. 서비스는 버전 고정 주소 `https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v버전/dist/ybm-ds.css` 를 쓴다. 최신 주소(`…/ybm-ds/dist/ybm-ds.css`)는 늘 main 이다.
+- 버전은 `VERSION` 하나가 원본이다. 서비스는 버전 고정 주소 `https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/v버전/dist/ybm-ds.css`(서버 버전 폴더, server-pack 이 git 태그에서 꺼내 넣는다) 를 쓴다. 최신 주소(`…/ybm-ds/dist/ybm-ds.css`)는 늘 main 이다.
 - 버전 올리는 법: 고치지 않던 서비스 화면이 바뀔 수 있으면(부품 크기, 배치, 이름 지움) 가운데 자리(1.**1**.0), 고침과 추가만이면 끝자리(1.0.**1**), 예전 클래스나 토큰을 지우면 앞자리(**2**.0.0). 예전 이름은 지우기 전에 compat 파일로 한 번 이어 준다.
 - Updates 에 소식을 먼저 적고(site/src/updates.json 맨 위, 화면이 바뀔 수 있는 것은 type "확인할 변경") release 를 돌리면 그 소식에 버전이 붙는다.
 

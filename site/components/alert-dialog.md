@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/alert-dialog.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/alert-dialog.html -->
 
 # Alert Dialog
 
@@ -116,7 +116,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 action(data-action): single(기본) / pair / critical / stacked / nonpreferred
 Figma: 폭 272 / gap x2 / header 20/20/0/20 / gap x1_5 / title t07 Bold / desc t05 fg/neutral-muted
        footer 16/20/20/20 / 버튼 medium / single/stacked 세로 gap x2 / pair/critical 가로 2등분 gap x2 / nonpreferred 세로 gap x4

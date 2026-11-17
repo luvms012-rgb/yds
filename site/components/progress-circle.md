@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/progress-circle.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/progress-circle.html -->
 
 # Progress Circle
 
@@ -118,7 +118,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 tone: neutral(기본) / brand / staticWhite   size: 24(기본) / 40 / 56   indeterminate: 켜기
   indeterminate: data-indeterminate (회전하는 25% 호, 예전 data-type="indeterminate" 도 읽음)
 Figma: 두께 24→3 / 40→5 / 56→7 / 둥근 끝 / 12시 시작

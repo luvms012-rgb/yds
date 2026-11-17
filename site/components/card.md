@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/card.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/card.html -->
 
 # Card
 
@@ -110,7 +110,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant: outline(기본) / elevated (subtle 은 예전 화면용 이름, 2026-11-04 부터 기본과 같은 모양)   size: medium(기본) / small(모서리 lg)
 Figma: bg/layer-default / shape/xl / padding medium x5 / small x4 / 영역 gap x4 / x3
   header gap x1 / title t06 Bold(small t05 Bold, 2026-11-03 한 단계 올림: Empty 제목과 같은 단계) fg/neutral / desc t04(small t03) fg/neutral-subtle

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/image-frame.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/image-frame.html -->
 
 # Image Frame
 
@@ -93,7 +93,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 ratio: 기본 1:1 / data-ratio="4:3" / data-ratio="16:9" / data-ratio="3:4"(책 표지) / data-ratio="2:3"(포스터, 2026-11-15 추가) (그 밖은 --ds-imageframe-ratio)   stroke: data-stroke
 radius: sm(기본) / none / md / lg / xl (2026-11-03 추가, 작은 썸네일 sm/md, 카드 안 사진 lg, 큰 대표 사진 xl)
 Figma: shape/sm / 빈 자리 bg/neutral / stroke 안쪽 1px stroke/neutral-subtle

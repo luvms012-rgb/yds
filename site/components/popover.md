@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/popover.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/popover.html -->
 
 # Popover
 
@@ -150,7 +150,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 actions: single / pair / none(footer 없음)   placement: bottom-start(기본) / bottom-end / top-start / top-end
 ybm-ds.js: data-ds-popover로 열고 닫으며, 바깥 클릭, Esc, 안쪽의 data-ds-close로도 닫힙니다.
 Figma: 폭 320 / padding x5 / gap x4 / shape/xl / bg/layer-floating / 1px stroke/neutral-muted / elevation 2

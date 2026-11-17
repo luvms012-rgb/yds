@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/time-picker.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/time-picker.html -->
 
 # Time Picker
 
@@ -164,7 +164,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 ybm-ds.js가 가운데에 온 항목에 aria-selected를 붙이고, 열에서 change 이벤트(detail.value)를 보냅니다.
 초기 값에 aria-selected="true"를 붙이면 그 위치로 맞춰집니다. 분 간격은 넣는 항목으로 정합니다(기본 5분).
 Figma: 폭 320(채움) / 높이 220 = 항목 5줄 × x11 / 좌우 x4 / 열 간격 x2

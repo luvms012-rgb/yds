@@ -23,15 +23,15 @@ const ASSET_V = crypto.createHash('sha1').update(['src/site.css', 'src/site.js',
 const DS = path.resolve(SITE, '..');
 const read = (p) => fs.readFileSync(path.join(DS, p), 'utf8');
 const readJson = (p) => JSON.parse(read(p));
-const PUBLIC = 'https://luvms012-rgb.github.io/yds';
-const GITHUB = 'https://github.com/luvms012-rgb/yds';
-const RAW = 'https://raw.githubusercontent.com/luvms012-rgb/yds/main';
+// 2026-11-17 사용자: 공식 주소는 사내 서버(deploy.config.json publicUrl). GitHub 는 개발용이라 화면에 링크하지 않는다
+const PUBLIC = 'https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds';
+const RAW = PUBLIC;  // CSS 원본도 같은 서버 주소에서 읽는다
 const FIGMA = 'https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=';
 const FIGMA_HOME = FIGMA + '3059-92'; // Figma Get Started 페이지: 파일 전체로 가는 링크는 모두 여기로
 const SITE_URL = PUBLIC + '/site/';
-// 버전 (저장소 VERSION, node sync.mjs release 가 올린다). 버전 고정 주소는 jsDelivr 가 GitHub 태그를 그대로 내준다
+// 버전 (저장소 VERSION, node sync.mjs release 가 올린다). 버전 고정 주소는 서버의 버전 폴더(tools/server-pack.mjs 가 git 태그에서 꺼내 넣는다)
 const VERSION = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'VERSION'), 'utf8').trim();
-const PIN = `https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v${VERSION}`;
+const PIN = `${PUBLIC}/v${VERSION}`;
 // 페이지 머리말의 Figma / Code 버튼 주소 - Figma 문서 프레임의 "문서 / 코드" 링크와 같은 계획(tokens/links.mjs)
 const LINKS = linkPlan(DS);
 const linkByNo = Object.fromEntries(LINKS.entries.map((e) => [e.no, e]));
@@ -306,11 +306,10 @@ function sideNav(section, file, root) {
       parts.push(group(TPL_GROUP_KO[g] || g, rows, 'tpl-' + g));
     }
   }
-  const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('')}</nav><div class="site-nav__sep"></div></div>`;
+  const mobile = `<div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴">${NAV.map(([k, l, h]) => `<a class="site-nav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('')}</nav><hr class="ds-divider site-nav__sep"></div>`;
   // 컴포넌트 메뉴 맨 위 찾기 칸 (높이 32, 모서리 12, 1px 테두리) - 메뉴 항목과 목록 카드를 함께 거른다
   const search = section === 'components' ? `<div class="site-side__searchbar"><div class="ds-input site-side__search" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" placeholder="컴포넌트 찾기" aria-label="컴포넌트 찾기" data-site-search><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></div>` : '';
   return `<aside class="site-side" id="site-side" aria-label="페이지 목록">
-  <div class="site-side__top"><b>메뉴</b><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" data-site-close aria-label="메뉴 닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
   ${mobile}${search}
   <nav class="site-nav" aria-label="${esc((NAV.find((n) => n[0] === section) || ['', 'Themes'])[1])} 메뉴"${search ? ' data-site-navfilter' : ''}>${parts.join('\n')}</nav>
 </aside>`;
@@ -322,7 +321,7 @@ const iconBtn = (attrs, label, inner) => `<button type="button" class="ds-btn" d
 // Best Practices 표 - [할 것(true) / 하지 말 것(false), 문장]
 const practices = (items) => table(['구분', '내용'], [...items.filter(([ok]) => ok), ...items.filter(([ok]) => !ok)].map(([ok, text]) => [`<b class="ds-badge site-practice" data-tone="${ok ? 'positive' : 'critical'}">${ok ? 'Do' : 'Don\'t'}</b>`, inline(text)]));
 const metaLink = (href, label, icon) => `<a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="${href}" target="_blank" rel="noopener"><i class="ds-icon ${icon} ds-icon--sm" aria-hidden="true"></i>${label}</a>`;
-const metaLinks = (l) => l ? `<div class="site-meta">${l.figma ? metaLink(l.figma, 'Figma', 'site-i--figma') : ''}${metaLink(l.code, '코드', 'site-i--github')}</div>` : '';
+const metaLinks = (l) => l ? `<div class="site-meta">${l.figma ? metaLink(l.figma, 'Figma', 'site-i--figma') : ''}${l.code ? `<a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="#${l.code.split('#')[1]}"><i class="ds-icon ds-icon--code ds-icon--sm" aria-hidden="true"></i>코드</a>` : ''}</div>` : '';  // 11-17 사용자: GitHub 대신 같은 쪽 코드 절로
 const iconLink = (href, label, icon, extra = '') => `<a class="ds-btn${extra}" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="${href}" target="_blank" rel="noopener" aria-label="${esc(label)}"><i class="ds-icon ${icon}" aria-hidden="true"></i></a>`;
 
 // layout - doc: 본문 752 + 목차 (문서, 컴포넌트 목록과 상세도 같은 폭) / wide: 메뉴 옆 전체 폭 (템플릿 상세)
@@ -347,7 +346,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a><a href="${GITHUB}" target="_blank" rel="noopener">GitHub</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
@@ -383,22 +382,26 @@ ${desc ? `<meta property="og:description" content="${esc(desc)}">
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
-<header class="site-top" data-site-latest="${LATEST_UPDATE}" data-site-latest-req="${LATEST_REQUEST}">
-  <a class="site-logo" href="${root}index.html"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
-  <nav class="site-topnav" aria-label="주요 메뉴">
-    ${NAV.map(([k, l, h]) => `<a class="site-topnav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('\n    ')}
+<header class="ds-topnav site-top" data-layout="center" data-site-latest="${LATEST_UPDATE}" data-site-latest-req="${LATEST_REQUEST}">
+  <div class="ds-topnav__left">
+  <a class="ds-topnav__heading" href="${root}index.html"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
+  <nav class="ds-topnav__menu" aria-label="주요 메뉴">
+    ${NAV.map(([k, l, h]) => `<a class="ds-topnav__item" href="${root}${h}"${k === section ? ' aria-current="page"' : ''}${k === 'updates' ? ' data-site-updates' : ''}>${l}</a>`).join('\n    ')}
   </nav>
-  <div class="site-top__end">
+  </div>
+  <div class="ds-topnav__end">
     ${iconBtn('data-ds-open="site-search" aria-keyshortcuts="Control+K Meta+K"', '찾기', '<i class="ds-icon ds-icon--search" aria-hidden="true"></i>')}
     ${iconBtn('data-site-theme-toggle', '화면 모드 바꾸기', '<i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-theme-btn"')}
     ${iconLink(FIGMA_HOME, 'Figma 파일', 'site-i--figma', ' site-only-wide')}
-    ${iconLink(GITHUB, 'GitHub 저장소', 'site-i--github', ' site-only-wide')}
-    ${iconBtn('data-site-menu aria-controls="site-side" aria-expanded="false"', '메뉴 열기', '<i class="ds-icon ds-icon--menu" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-menu-btn"')}
+    ${iconBtn('data-site-menu aria-controls="site-drawer" aria-haspopup="dialog" aria-expanded="false"', '메뉴 열기', '<i class="ds-icon ds-icon--menu" aria-hidden="true"></i>').replace('class="ds-btn"', 'class="ds-btn site-menu-btn"')}
   </div>
 </header>
+<dialog class="ds-sidepanel site-drawer" id="site-drawer" data-size="small" aria-labelledby="site-drawer-title">
+  <div class="ds-sidepanel__header"><div class="ds-sidepanel__texts"><h2 class="ds-sidepanel__title" id="site-drawer-title">메뉴</h2></div><button type="button" class="ds-sidepanel__close" data-ds-close aria-label="메뉴 닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
+  <div class="ds-sidepanel__body" data-site-drawer></div>
+</dialog>
 <div class="site-body site-body--${layout}${layout === 'doc' && section === 'components' && !/index\.html$/.test(file) ? ' site-body--comp' : ''}${layout === 'doc' && section === 'foundations' && !/index\.html$/.test(file) ? ' site-body--found' : ''}">
 ${sideNav(section, file, root)}
-<div class="site-scrim" data-site-close></div>
 <main class="site-main" id="main">
 <article class="site-doc">
 ${body}
@@ -507,7 +510,7 @@ const bpRows = [['sm', '480px', '큰 휴대폰'], ['md', '768px', '태블릿, PC
 // 설치 코드 첫 탭(기본으로 보이는 탭)은 버전 고정 (2026-11-16 사용자: 운영은 버전 고정이 규칙이라). 고정 탭은 브랜드 줄도 고정 주소
 const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-segmented site-seg" role="group" aria-label="보기 방식">${tabs.map(([l], j) => `<button type="button" class="ds-segmented__item" aria-pressed="${j === sel}" data-site-tab="${j}">${esc(l)}</button>`).join('')}</div>`; return `<div class="site-codetabs">${tabs.map(([, h], i) => `<div class="site-codetabs__panel"${i ? ' hidden' : ''}>${h.replace(/<span class="ds-codeblock__language">[^<]*<\/span>/, bar(i))}</div>`).join('')}</div>`; };
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
-const hubCard = (href, title, desc, out = false) => `<a class="site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="site-hub__desc">${esc(desc)}</span></a>`;
+const hubCard = (href, title, desc, out = false) => `<a class="ds-card site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="ds-card__header"><span class="ds-card__title site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="ds-card__desc">${esc(desc)}</span></span></a>`;
 write({
   file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.', layout: 'page',
   body: `<header>
@@ -548,7 +551,7 @@ ${table(['파일', '무엇인가요', '언제 쓰나요'], [
   [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', 'AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다.'],
   [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 안내서 주소를 넣지 않아도 됩니다.'],
   [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.'],
-  [`<a class="ds-link" href="${GITHUB}/tree/main/brands" target="_blank" rel="noopener">brands</a>`, '등록된 브랜드 파일', '내 서비스에 브랜드가 있는지, 색과 모서리 값이 무엇인지 볼 때 엽니다. 없으면 AI 요청 글의 [브랜드 만들기]로 시작합니다.'],
+  [`<span class="site-gs__rules">${BRANDS.map((b) => `<a class="ds-link" href="../dist/brands/${b.slug}.css" target="_blank" rel="noopener">${b.slug}.css</a>`).join('')}</span>`, '등록된 브랜드 파일', '내 서비스에 브랜드가 있는지, 색과 모서리 값이 무엇인지 볼 때 엽니다. 없으면 AI 요청 글의 [브랜드 만들기]로 시작합니다.'],
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
 
@@ -1061,7 +1064,7 @@ comps.forEach((c) => {
   // 자료는 site/src/examples/*.json (컴포넌트 slug마다 2 ~ 3개). 없으면 예전처럼 index.html 예시 한 칸
   const exs = EXAMPLES[c.slug];
   sections.push(`<h2 id="examples">예시</h2>${exs ? exs.map((e) => `<h3>${esc(e.title)}</h3>\n<p>${inline(e.desc)}</p>\n${example(`<div class="pv-stage${e.wide ? ' pv-wide' : ''}">${e.html}</div>`, dedent(e.html))}`).join('\n') : c.example ? example(c.example, codeOf(c.example) || c.markup) : '<p>아직 예시가 없습니다.</p>'}`);
-  if (c.vars.length || c.spec) sections.push(`<h2 id="spec">규격</h2>${c.vars.length ? `<h3>CSS 변수</h3><p>서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.</p>${table(['변수', '기본값'], c.vars.map(([n, v]) => [`<code>${esc(n)}</code>`, `<code>${esc(v)}</code>`]))}` : ''}${c.spec ? `<h3>크기와 여백</h3><pre class="site-spec">${esc(c.spec)}</pre>` : ''}`);
+  if (c.vars.length || c.spec) sections.push(`<h2 id="spec">규격</h2>${c.vars.length ? `<h3>CSS 변수</h3><p>서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.</p>${table(['변수', '기본값'], c.vars.map(([n, v]) => [`<code>${esc(n)}</code>`, `<code>${esc(v)}</code>`]))}` : ''}${c.spec ? `<h3>크기와 여백</h3>${codeblock(c.spec, 'text', '', '규격')}` : ''}`);
   write({
     file: `components/${c.slug}.html`, section: 'components', title: c.name.split(' · ')[0], desc: c.desc,
     pager: [prev && { href: `${prev.slug}.html`, label: prev.name.split(' · ')[0] }, next && { href: `${next.slug}.html`, label: next.name.split(' · ')[0] }],
@@ -1129,7 +1132,7 @@ templates.forEach((t) => {
   <p class="site-eyebrow"><a href="index.html">Templates</a> / ${esc(t.group)}</p>
   <h1 class="site-h1">${esc(t.name)}</h1>
   <p class="site-lead">${esc(t.desc)}</p>
-  <div class="site-meta">${btn(`pages/${t.slug}.html`, '크게 보기', 'neutralSolid', 'xsmall', 'maximize-2').replace('href="pages', `data-site-tplv="${t.slug}" target="_blank" rel="noopener" href="pages`)}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}${metaLink(`${GITHUB}/blob/main/site/templates/pages/${t.slug}.html`, '코드', 'site-i--github')}</div>
+  <div class="site-meta">${btn(`pages/${t.slug}.html`, '크게 보기', 'neutralSolid', 'xsmall', 'maximize-2').replace('href="pages', `data-site-tplv="${t.slug}" target="_blank" rel="noopener" href="pages`)}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}<a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="pages/${t.slug}.html" download="${t.slug}.html"><i class="ds-icon ds-icon--download ds-icon--sm" aria-hidden="true"></i>HTML 내려받기</a></div>
 </header>
 <div class="site-tpl-prompt">${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap', 'AI 요청 글'))}</div>
 <div class="site-frame">
@@ -1181,10 +1184,10 @@ write({
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
 ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
-  `<span class="site-req__title">${esc(r.title)}</span><span class="site-req__meta">${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span>`,
+  `<span class="ds-table__stack"><span class="site-req__title">${esc(r.title)}</span><span>${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span></span>`,
   esc(r.type),
   `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
-  r.done ? `<span class="site-req__text">${inline(r.done[1])}</span><span class="site-req__meta">${shortDate(r.done[0])} 반영</span>` : r.reason ? `<span class="site-req__text">${inline(r.reason)}</span>` : '',  // reason: 보류나 검토 중일 때 결정 이유
+  r.done ? `<span class="ds-table__stack"><span>${inline(r.done[1])}</span><span>${shortDate(r.done[0])} 반영</span></span>` : r.reason ? inline(r.reason) : '',  // reason: 보류나 검토 중일 때 결정 이유
 ])).replace('class="ds-table"', 'class="ds-table site-req"')}
 ${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}`,
 });
@@ -1232,7 +1235,7 @@ if (SHOW_THEMES) write({
     <p class="site-themes__desc">테마별로 실제 사이트 화면을 확인할 수 있습니다. 테마는 브랜드 색, 바탕 색, 모서리만 바꾸고 컴포넌트는 그대로 유지합니다. 원하는 테마 파일을 복사해 사용하세요.</p>
     <a class="ds-link" data-size="small" href="../index.html#custom-theme">테마 사용방법</a>
   </div>
-  <div class="site-themes__acts"><a class="ds-btn" data-variant="neutralSolid" data-size="small" data-layout="fill" href="${GITHUB}/blob/main/dist/themes/${firstTheme.slug}.css" target="_blank" rel="noopener" data-site-theme-file>이 테마 쓰기</a><a class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill" href="pages/${firstTheme.slug}.html" target="_blank" rel="noopener" data-site-theme-open>새 창으로 보기</a></div>
+  <div class="site-themes__acts"><a class="ds-btn" data-variant="neutralSolid" data-size="small" data-layout="fill" href="${PUBLIC}/dist/themes/${firstTheme.slug}.css" target="_blank" rel="noopener" data-site-theme-file>이 테마 쓰기</a><a class="ds-btn" data-variant="neutralWeak" data-size="small" data-layout="fill" href="pages/${firstTheme.slug}.html" target="_blank" rel="noopener" data-site-theme-open>새 창으로 보기</a></div>
   <div class="site-themes__list" role="group" aria-label="테마">${THEME_CARDS.map((t, i) => themeCard(t, i === 1)).join('')}</div>
 </div></aside>
 <div class="site-themes__stage"><iframe src="pages/${firstTheme.slug}.html" title="${esc(firstTheme.name)} 테마를 입힌 화면" scrolling="no" data-site-frame data-site-nomono data-site-theme-frame></iframe></div>

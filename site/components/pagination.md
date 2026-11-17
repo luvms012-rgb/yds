@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/pagination.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/pagination.html -->
 
 # Pagination
 
@@ -125,7 +125,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 type: full(기본) / simple   variant: solid(기본, 고른 쪽 진한 면) / ghost(고른 쪽만 옅은 회색 면, 숫자는 진한 글자)
 Figma item: 36(높이/최소 폭) / px x2 / shape/sm / 숫자 t04 Medium fg/neutral-muted / 화살표 20 fg/neutral / ellipsis 16 fg/neutral-subtle
   pressed bg/transparent-pressed / current bg/neutral-solid + fg/on-neutral-solid t04 Bold / disabled 화살표 fg/disabled

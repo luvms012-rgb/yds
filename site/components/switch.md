@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/switch.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/switch.html -->
 
 # Switch
 
@@ -129,7 +129,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: 24(기본) / 16 / 32   tone: brand(기본) / neutral
 Figma 16: 트랙 26×16 / 썸 10(켜짐 12) / gap x1_5 / label t03 Medium
        24: 트랙 38×24 / 썸 16(켜짐 20) / gap x2   / label t04 Medium

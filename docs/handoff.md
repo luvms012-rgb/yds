@@ -1,31 +1,28 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-16 집 Mac 밤. 모두 배포됨. 시작은 `git pull` 뒤 이 파일. 오늘 낮 ~ 밤에 한 일 전체는 [log.md](log.md) 맨 위 "2026-11-16 회사 Windows 저녁 + 집 Mac 밤".
+- 갱신: 2026-11-17 회사 Windows. 공식 주소를 사내 서버로 옮기는 마무리 작업. **아직 커밋, 배포 안 함**(사용자가 "배포" 라고 할 때). Figma 는 이미 바뀌었다(링크 170 + 18 곳). 시작은 `git pull` 뒤 이 파일.
 
-## 한 것 (11-16 밤, 집 Mac)
+## 한 것 (11-17)
 
-- **Updates**: 요청, 사용 현황 탭을 소식과 같은 간격(탭 아래 40)으로, 탭 이름과 겹치는 큰 제목 삭제. 요청 탭은 실제 요청 2건(Avatar 상태 점 반영됨, Table 헤더 고정 접수), 제목은 서술형, 요청자는 소속만. 의견 보내기 버튼은 오른쪽. 사용 현황은 컴포넌트 쓰임 막대만(usage.mjs 는 버전과 색 정보도 계속 모은다).
-- **NEW 표시**: 기준 값을 `assets/latest.json` 한 곳에서 캐시 없이 읽는다(페이지 HTML 10분 캐시 때문에 페이지마다 달랐다). 새 소식 줄, 새 요청, 상태 바뀜에만 뜨고 문구 고치기는 뜨지 않는다.
-- **템플릿 목록**: 썸네일을 미리 찍은 WebP(라이트, 다크)로 바꿔 빨라졌다(`node tools/tpl-thumbs.mjs`, deploy 가 바뀐 것만 자동 실행, check 5-1e). 썸네일 밝기는 사이트 표시만 따른다. 카드는 미리보기 아래 이름만(컴포넌트 목록과 같은 16px).
-- **Figma 이름과 문서 부품**: 컴포넌트 설명 58곳의 옛 이름을 YDS 로, 외부 DS 비교 줄과 출처 줄 9곳 삭제. 사이트와 Figma 링크 양쪽 모두 일치(사이트 → Figma 166, Figma → 사이트와 코드 170). Internal Components 에 `_Doc/Token Row`(3451:136, 막대, 모서리, 글자, 아이콘 4변형, 207줄), `_Doc/Swatch`(3451:151, color, elevation, 95개), `_Doc/Preview Cell`(3451:158, 속성 미리보기 칸, 360칸 중 125칸)을 더해 15종. 미리보기 칸 나머지는 안 부품이 커서 속성만으로 똑같이 안 나와 그대로 둠(바꾼 칸은 모든 레이어를 원래와 대조). 공유 데이터 `yds/docfn` 과 `yds/docmap` 에 토큰 줄, 미리보기 칸 변환을 더해 다시 그려도 유지된다. 견본은 그리기 도구 밖(예전에 손으로 넣은 것). figma-quick 과 sync.mjs 점검은 Internal Components 페이지를 세트 대조에서 뺀다.
-- **Updates**: 맨 아래 "자세한 변경 기록은 GitHub" 문장 삭제.
-- **Figma 싱크 끝**: 템플릿 81쪽을 지금 사이트(가로 1440, YBM 사진 156칸, 새 이름)로 다시 그리고 섹션 9개를 groups.mjs 순서로 묶음. 문서 프레임 83개를 사이트 예시, 속성, 지침대로 다시 그림(Badge xlarge, Accordion inset 포함). Avatar 40 상태 점 16, 버튼 안 play/pause 를 Solid 변형으로(그리기 도구도 고침, ba279ab8). 넘침 0, 빠른 대조 일치(변수 359, 컴포넌트 118, 링크 170, 템플릿 81), 기준점 저장.
-- **사이트**: 맨 위로 버튼(떠오르며 나타남, 그림자 없음, 화살표만 위로), 한 줄 버튼 크기 섞임 검사(check 5-1d), 템플릿 새 창도 모노톤(`?brand` 면 브랜드 색), DS 파일 주소 `?v=`, 배포용 site.css 주석 빼기.
+- **공식 주소**: <https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/> (`deploy.config.json` publicUrl). GitHub 는 개발용(push, 개발 미리보기 Pages)이고 사이트와 Figma 에 링크하지 않는다. 사이트, AI 안내서, 설치 코드, 예시 로고, tokens/links.mjs, check.mjs 모두 새 주소. 버전 고정 주소는 `yds/v1.2.0/dist/...`.
+- **GitHub 링크 정리(사용자 "추천안대로")**: 위 막대와 푸터의 GitHub 아이콘 삭제, 컴포넌트와 Foundations 의 "코드" 버튼은 같은 쪽 `#usage` / `#code` 로, 템플릿 "코드" 는 "HTML 내려받기", 브랜드 줄은 서버 브랜드 CSS 파일 링크, 루트 카탈로그의 GitHub 버튼은 "문서 사이트". 옛 루트 yds.txt, yds-full.txt(v1.1.0 사본) 삭제.
+- **사이트를 YDS 부품으로(전수 검사에서 "바꿔야 함" 8곳)**: 위 막대 → Top Navigation(`data-layout="center"`), 휴대폰 메뉴 서랍 → Side Panel(열 때 site.js 가 옆 메뉴를 패널 안으로 옮긴다), 메뉴 구분선 → Divider, 템플릿 "크게 보기" → Dialog(창 밖 좌우 화살표 유지, 옛 목록 보기 창 코드는 지움), 규격 → Code Block, 아이콘 패널 코드 칸 → Code Block, 안내 카드 → `a.ds-card`, 요청 표 두 줄 칸 → `.ds-table__stack`. 위 메뉴 글자는 DS 값(14 Medium)이 됐다. "고려" 16곳(4 의 배수 아닌 값, 숫자 z-index, 안 쓰는 CSS 등)은 손대지 않음.
+- **서버 묶음**: `node tools/server-pack.mjs` → `works/project/(서버업로드)/yds_날짜.zip`(25MB, 파일 725개). 안 = index.html(문서 사이트로 넘김), catalog.html(예전 루트 카탈로그), site/, dist/, v1.0.0 ~ v1.2.0/dist(git 태그에서 꺼냄), components.json, VERSION, tokens 공개 파일 셋. 만드는 코드, 작업 규칙 글, 숨긴 Themes 는 뺀다. 개인 GitHub 주소가 남으면 멈춘다. 풀어서 상대 링크 20,275개 검사, 빠진 파일 0.
+- **Figma**: 문서 프레임 85개의 문서 / 코드 링크 170개를 사이트 주소로(코드 = `#usage`, Foundations `#code`), Get Started 와 Internal Components 의 GitHub 링크, AI 요청 글과 설치 코드 글자 속 주소, Foundations 의 옛 llms.txt, Navigation 예시 로고 주소(18곳). 빠른 대조 일치(변수 359, 컴포넌트 118, 링크 170, 템플릿 81), 기준점 저장. tokens/links.mjs 와 figma-quick 에서 GitHub 원본 주소(src) 제거.
+- **사용 현황**: 사내 서버 cs 9쪽, signup 13쪽 전체로 17 컴포넌트, 표시는 요약 Card 셋 + 컴포넌트 x 서비스 비교 표(배포됨 2b8a56c7).
 
 ## 남은 일
 
-0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만. 다음 버전(`node sync.mjs release`, 사용자 확인 뒤)에 v1.2.0 뒤 변경이 고정 주소에 들어간다.
-1. **Table 헤더 고정(요청 접수)**: 디자인팀 요청. 만들면 요청 탭 "반영됨" 과 Updates 소식 한 줄.
-2. **Figma 작은 차이(필요할 때만)**: Text Link 화살표 변형 없음, Get Started 머리 검색 버튼, ai-tutor-report 취소선 글 사이 띄어쓰기. 라이브러리 다시 게시는 사용자.
-3. **답을 기다리는 것**: 프로젝트 현황 "전체 진행" 도넛을 상태 색으로 바꿀지, 템플릿 더미 글에 남은 "토익"을 일반 이름으로 바꿀지, toeic 브랜드 다크 버튼 대비 3.64.
-4. **사용 현황 갱신**: 한 달에 한 번 사용자가 말할 때 `node tools/usage.mjs` 뒤 빌드, 배포. 서비스가 늘면 services.json 에 이름과 화면 주소만.
-5. **어학 앱 템플릿 후보(사용자가 고르면)**: 발음 진단 결과, 학습 완료 보상, 학습 통계, 단어장과 오답 노트, 학습 목표 설정, 리그.
-6. 그 밖의 오래된 대기는 log.md "인수인계 원문 2026-11-16" 남은 일 3 ~ 6.
+0. **배포**: 사용자가 "배포" 라고 하면 `node sync.mjs deploy` (개발 GitHub 와 Pages 갱신). 그 뒤 `node tools/server-pack.mjs` 로 묶음을 새로 만들고, 사용자가 서버 yds 폴더에 푼다. 서버에 올린 뒤 주소 몇 개(첫 화면, site/yds.txt, dist/ybm-ds.css, v1.2.0/dist/ybm-ds.css)가 열리는지 확인.
+1. **서버 올린 뒤 확인할 것**: 서버가 .mjs, .mdc, .md 를 내려 주는지(ai/yds-check.mjs), 한글 글자 깨짐 없는지, 캐시 시간.
+2. **다음 버전**: `node sync.mjs release x.y.z`(사용자 확인 뒤). 새 태그는 server-pack 이 자동으로 v 폴더로 넣는다.
+3. **Table 헤더 고정(요청 접수)**, **Figma 작은 차이**, **답을 기다리는 것**(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비): 11-16 그대로. 자세한 것은 log.md "2026-11-16 집 Mac 밤".
+4. 사이트 DS 전수 검사의 "고려" 16곳은 사용자가 원하면.
 
 ## 주의
 
-- 템플릿을 고치면 썸네일을 다시 찍어야 한다. deploy 가 자동으로 하지만 Chrome 이 있어야 하고(Windows 경로 포함), 81개를 모두 찍으면 3 ~ 4분 걸린다.
+- 서버 묶음은 지시 때만 만든다. 올리기는 사용자.
 - Windows 에서 deploy 검사가 "7 빌드 경고, site/build.mjs 실패" 로 멈추면 대개 파일 잠금이다. `node site/build.mjs` 를 한 번 돌리고 다시 한다.
-- 문자열 안 역슬래시는 Edit 도구가 풀어 버린다. 그런 줄은 node 나 python 스크립트 파일로 고친다.
-- 숨은 브라우저 패널에서는 타이머와 IntersectionObserver 가 멈춘다. 움직임 확인은 헤드리스 Chrome.
+- Git Bash 에서 node 인자로 `/site/...` 처럼 / 로 시작하는 글자를 넘기면 Windows 경로로 바뀐다(캡처 스크립트에서 겪음).
+- 숨은 브라우저 패널에서는 타이머와 IntersectionObserver 가 멈춘다. 확인은 헤드리스 Chrome.
 - 템플릿은 생성기(`site/templates/gen/*.mjs`)를 고친다. `pages/*.html` 손 수정은 다음 빌드에서 되돌아간다.

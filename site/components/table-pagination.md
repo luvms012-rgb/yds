@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/table-pagination.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/table-pagination.html -->
 
 # Table Pagination
 
@@ -202,7 +202,7 @@ Table Pagination은 데이터 표 전용입니다. 검색 결과나 게시판 �
 
 ### 크기와 여백
 
-```
+```text
 state: default / unknownTotal(전체 개수를 모를 때) / empty(데이터 없음)
 empty: 범위 select 에 disabled, 이동 버튼에 aria-disabled="true"
 Figma: 최소 폭 640 / padding x2 x4 / 양 끝 정렬 / 한 줄 고정(좁으면 표와 같은 가로 스크롤 영역에 배치)

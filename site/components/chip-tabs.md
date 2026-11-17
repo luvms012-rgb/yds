@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/chip-tabs.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chip-tabs.html -->
 
 # Chip Tabs
 
@@ -120,7 +120,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant: neutralSolid(기본) / neutralOutline   size: medium(기본 36) / large 40
 inset: 기본 좌우 x4(화면 끝까지 넘기는 목록) / data-inset="none" 좌우 여백 없음(제목 아래 콘텐츠 칸 안에 놓을 때, 2026-11-03)
 Figma list: 좌우 x4 / gap x2 / trigger: shape/pill / medium h36 px14 min-w48 / large h40 px16 min-w52 / t04 Medium

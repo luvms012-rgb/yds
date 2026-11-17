@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/carousel.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/carousel.html -->
 
 # Carousel
 
@@ -261,7 +261,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 모양(data-layout): overlay(기본, 버튼과 번호가 항목 위에 뜸) / bar(항목 아래 한 줄에 진행 막대와 버튼). 크기, 둥글기, 위치는 변수로만 바꿉니다.
 항목은 넘길 때 시작 위치에 맞춰 멈춥니다. 넘겨 보는 이미지 배너는 Image Frame을 항목으로 넣어 만듭니다.
 번호(1/4)는 항목 안이 아니라 캐러셀 바로 안에 [<span class="ds-carousel__count" aria-hidden="true">1/4</span>]로 배치합니다. 넘겨도 위치가 고정되고 숫자는 ybm-ds.js가 바꿉니다.

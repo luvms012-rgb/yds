@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/search-suggestion.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/search-suggestion.html -->
 
 # Search Suggestion
 
@@ -163,7 +163,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 검색 입력 필드는 Text Field(04) outline에 search 아이콘과 지우기 버튼을 붙여 사용합니다.
 입력 전에는 최근 검색어(머리말 + clock), 입력 중에는 추천어(search), 결과가 없으면 empty 문구를 표시합니다.
 열고 닫기와 목록 채우기는 서비스에서 처리합니다. ybm-ds.js는 입력 필드에서 위아래 화살표로 줄을 선택하는 것과 Enter만 처리합니다.

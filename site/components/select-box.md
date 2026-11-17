@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/select-box.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-box.html -->
 
 # Select Box
 
@@ -147,7 +147,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 layout: horizontal(기본) / vertical(여러 열로 놓을 때)
 선택 표시는 Checkbox(square/neutral/medium), Radio(neutral/medium)를 그대로 사용합니다.
 Figma: padding x4 x5 / gap x3 / shape/lg / bg/layer-default / 1px stroke/neutral-weak

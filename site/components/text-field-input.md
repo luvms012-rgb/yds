@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/text-field-input.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-field-input.html -->
 
 # Text Field Input
 
@@ -161,7 +161,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant : underline(기본) / outline      size : large(기본) / medium
 Figma
   outline  large : h52 / px16 / gap10 / shape/lg / t05 / icon 20

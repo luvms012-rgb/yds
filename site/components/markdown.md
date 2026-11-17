@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/markdown.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/markdown.html -->
 
 # Markdown
 
@@ -86,7 +86,7 @@ AI 답변처럼 제목, 목록, 굵은 글씨가 섞인 글은 변환된 HTML을
 
 ### 크기와 여백
 
-```
+```text
 변환된 HTML을 감싸기만 하면 제목, 문단, 목록, 인용, 표, 코드의 크기와 간격이 맞춰집니다. 코드 묶음은 Code Block, 출처는 Citation을 사용합니다.
 Figma: 본문 t04 / h1 t09 Bold, h2 t07 Bold (앞뒤 x6 / x3) / h3 t06, h4 t05, h5/h6 t04 SemiBold (앞뒤 x4 / x2)
   문단, 목록, 그림 x3 / 코드, 인용, 표 x4 / 구분선 x6 / 인용 왼쪽 2px stroke/neutral-weak, fg/neutral-muted

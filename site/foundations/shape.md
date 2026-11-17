@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/foundations/shape.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/shape.html -->
 
 # Radius
 
@@ -35,7 +35,7 @@
 }
 ```
 
-브랜드 전체의 모서리는 [브랜드 파일](https://luvms012-rgb.github.io/yds/site/index.md#ai)의 `shapeScale`로 정합니다.
+브랜드 전체의 모서리는 [브랜드 파일](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/index.md#ai)의 `shapeScale`로 정합니다.
 
 ## 사용 지침
 

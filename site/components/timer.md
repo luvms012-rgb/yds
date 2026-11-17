@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/timer.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/timer.html -->
 
 # Timer
 
@@ -90,7 +90,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 format: 기본 clock(12:34, 1시간 넘으면 1:02:34) / data-format="elapsed"(12분 34초)
 흐른 시간: data-start="시작 시각" / 남은 시간: data-end="끝 시각" (ISO 문자열 또는 밀리초)
 ybm-ds.js가 1초마다 글자와 datetime을 바꾸고, 남은 시간이 0이 되면 ds-timer-end 이벤트를 한 번 보냅니다.

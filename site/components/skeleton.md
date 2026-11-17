@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/skeleton.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/skeleton.html -->
 
 # Skeleton
 
@@ -85,7 +85,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 shape: rectangle(기본) / circle / text
 Figma: bg/neutral-weak-alpha(2026-11-11 반투명) / rectangle shape/sm / circle pill / text 늘 3줄, 줄 높이 14 / 줄 사이 x2 / 마지막 줄 64%
 모서리(2026-11-03): --ds-skeleton-radius로 나중에 표시될 콘텐츠와 모서리를 맞춥니다

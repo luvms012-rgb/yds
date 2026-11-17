@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/segmented-text-input.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/segmented-text-input.html -->
 
 # Segmented Text Input
 
@@ -122,7 +122,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: large(기본) 높이 52, shape/lg, t05 / medium(PC 전용) 높이 40, shape/sm, t04
 입력 필드는 Text Field outline과 같습니다(aria-invalid, disabled, readonly) / 구간 너비는 maxlength 자리 수만큼, 구간과 구분자 사이 x1_5
 data-masked: 입력한 글자를 점으로 표시합니다 / dots: 받지 않는 자리를 지름 7 점으로 표시합니다, 점 사이 x1

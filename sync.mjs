@@ -159,7 +159,7 @@ function linksJs(apply) {
   const p = plan();
   const tpl = JSON.parse(read('site/src/templates.json'));
   const templates = tpl.templates.filter((t) => t.figma).map((t) => ({ slug: t.slug, ids: [t.figma.pc, t.figma.mobile].filter(Boolean) }));
-  const small = { templates, extra: [tpl.figmaHeader, ...Object.values(JSON.parse(read('components.json')).figmaDocs || {})].filter(Boolean), entries: p.entries.map(({ no, ids, doc, slug, start, end }) => ({ no, ids, doc, slug, start, end })), fixed: p.fixed.filter((f) => f.frame).map(({ frame, doc, code }) => ({ frame, doc, code })), about: p.about, site: p.site, src: p.src };
+  const small = { templates, extra: [tpl.figmaHeader, ...Object.values(JSON.parse(read('components.json')).figmaDocs || {})].filter(Boolean), entries: p.entries.map(({ no, ids, doc, slug, start, end }) => ({ no, ids, doc, slug, start, end })), fixed: p.fixed.filter((f) => f.frame).map(({ frame, doc, code }) => ({ frame, doc, code })), about: p.about, site: p.site };
   return `const PLAN = ${JSON.stringify(small)};
 const APPLY = ${apply};
 const res = { ok: 0, changed: [], wrong: [], missing: [], docMismatch: [] };
@@ -182,7 +182,7 @@ for (const { frame, list } of groups.values()) {
   const main = list.find((e) => e.slug === s) || list.find((e) => e.slug.startsWith(s + '-')) || list[0];
   const joined = list.every((e, i) => !i || e.start === list[i - 1].end + 1);
   const [a, b] = joined ? [list[0].start, list[list.length - 1].end] : [main.start, main.end];
-  targets.push({ frame, doc: PLAN.site + 'components/' + main.slug + '.html', code: PLAN.src + '#L' + a + '-L' + b });
+  targets.push({ frame, doc: PLAN.site + 'components/' + main.slug + '.html', code: PLAN.site + 'components/' + main.slug + '.html#usage' });
 }
 const linkOf = (t) => { const s = t.getStyledTextSegments(['hyperlink']).find((x) => x.hyperlink); return s ? s.hyperlink.value : null; };
 const fonts = async (t) => { for (const s of t.getStyledTextSegments(['fontName'])) await figma.loadFontAsync(s.fontName); };
@@ -575,7 +575,7 @@ async function release(ver, message) {
     if (!p.ok) die('태그 올리기 실패 — ' + p.err);
   }
   say(c.g(`  ✔ 태그 v${ver}`));
-  say(c.d(`    버전 고정 주소 https://cdn.jsdelivr.net/gh/luvms012-rgb/yds@v${ver}/dist/ybm-ds.css`));
+  say(c.d(`    버전 고정 주소 ${CFG.publicUrl}v${ver}/dist/ybm-ds.css (서버 묶음에 들어간다: node tools/server-pack.mjs)`));
 }
 
 async function deploy(message) {

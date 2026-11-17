@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/date-picker-date-cell.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/date-picker-date-cell.html -->
 
 # Date Picker / Date Cell
 
@@ -142,7 +142,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 selection: single / range
 Figma: 폭 320 / padding x5 / gap x3 / shape/2xl / bg/layer-default / elevation overlay(+헤어라인)
   header h40 / 이동 버튼 24 폭 / chevron 24 fg/neutral / title t06 Bold 가운데

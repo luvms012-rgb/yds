@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/stepper.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/stepper.html -->
 
 # Stepper
 
@@ -92,7 +92,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 state: complete / current / upcoming(기본)   orientation: horizontal(기본) / vertical
 Figma: indicator 24 원형 / 숫자 t02 Bold(자동 번호) / 연결선 2px / 라벨 t03(horizontal 아래 가운데 / vertical 오른쪽)
   complete bg/brand-solid + check 14 fg/on-brand-solid / 연결선 stroke/brand-solid

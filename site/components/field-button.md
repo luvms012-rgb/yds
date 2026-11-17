@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/field-button.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/field-button.html -->
 
 # Field Button
 
@@ -136,7 +136,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma large : h52 / px16 / gap10 / shape/lg / t05 / icon 20 / medium: h40 / px14 / gap8 / shape/sm / t04 / icon 16
        바탕 bg/layer-default / 1px stroke/neutral-weak / invalid 1px stroke/critical-solid / disabled/readOnly bg/disabled
        affix/아이콘 fg/neutral-subtle / placeholder fg/placeholder / 값 fg/neutral

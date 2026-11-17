@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/toggle-button.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/toggle-button.html -->
 
 # Toggle Button
 
@@ -62,7 +62,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: small(기본) / medium
 Figma small: py6 px12 / t03 Bold / medium: py10 px16 / t04 Bold / shape/lg
   off bg/layer-default + stroke/neutral-weak / on bg/brand-weak + stroke/brand-solid + fg/brand / disabled bg/disabled + fg/disabled

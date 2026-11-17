@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/code-block.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/code-block.html -->
 
 # Code Block
 
@@ -110,7 +110,7 @@ console.log(text); // 2026. 11. 4.</code></pre>
 
 ### 크기와 여백
 
-```
+```text
 header에는 언어 이름과 복사 버튼을 배치합니다. 복사 버튼(data-ds-copy)을 누르면 ybm-ds.js가 코드를 복사하고 잠시 data-copied를 붙입니다.
 data-wrap: 긴 줄을 가로로 넘기지 않고 줄바꿈합니다(2026-10-30 추가).
 Figma: shape/sm, 1px stroke/neutral-weak, bg/neutral / header padding x2 x4, 아래 1px 선, 언어 12 Medium fg/neutral-subtle, 복사 24 안에 16

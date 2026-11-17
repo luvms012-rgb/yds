@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/code-input.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/code-input.html -->
 
 # Code Input
 
@@ -80,7 +80,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: large(기본) 칸 48x56, shape/lg, t08 SemiBold / medium 칸 40x48, shape/md, t06 SemiBold / 칸 사이 x2
 선: 1px stroke/neutral-weak, 포커스 stroke/neutral-contrast, 틀림 stroke/critical-solid, 비활성 bg/disabled
 ybm-ds.js: 한 글자를 넣으면 다음 칸, 지우면 앞 칸으로 이동하고, 붙여 넣으면 모든 칸을 채웁니다. 다 채우면 ds-code-complete(detail.value)를 보냅니다

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/help-bubble.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/help-bubble.html -->
 
 # Help Bubble
 
@@ -69,7 +69,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 placement: top(기본) / top-start / top-end / bottom / bottom-start / bottom-end / left / left-start / left-end / right / right-start / right-end
 Figma: bg/neutral-solid / shape/lg / padding 10/12 / 본문 gap x0_5 / 최대 글 폭 236
        title t03 Bold / desc t03 / fg/on-neutral-solid / 꼬리 12×8(가장자리 정렬 시 x3_5 안쪽) / elevation 2

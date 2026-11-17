@@ -12,36 +12,40 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Segmented Text Input - YDS">
 <meta property="og:description" content="주민등록번호, 카드번호처럼 일부를 가려야 하는 값을 구간마다 나눠 받는 입력 칸입니다.">
-<meta property="og:image" content="https://luvms012-rgb.github.io/yds/site/assets/og-image.png">
+<meta property="og:image" content="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../dist/ybm-ds.css?v=8639ff9a">
-<link rel="stylesheet" href="../assets/site.css?v=a8faa1cf">
+<link rel="stylesheet" href="../assets/site.css?v=d4cf4c6d">
 <script src="../../dist/ybm-ds.js?v=8639ff9a" defer></script>
-<script src="../assets/site.js?v=a8faa1cf" defer></script>
+<script src="../assets/site.js?v=d4cf4c6d" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
-<header class="site-top" data-site-latest="fc5f751ec0" data-site-latest-req="52f1ca8914">
-  <a class="site-logo" href="../index.html"><img src="../assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
-  <nav class="site-topnav" aria-label="주요 메뉴">
-    <a class="site-topnav__item" href="../index.html">Get Started</a>
-    <a class="site-topnav__item" href="../foundations/breakpoint.html">Foundations</a>
-    <a class="site-topnav__item" href="../components/index.html" aria-current="page">Components</a>
-    <a class="site-topnav__item" href="../templates/index.html">Templates</a>
-    <a class="site-topnav__item" href="../updates.html" data-site-updates>Updates</a>
+<header class="ds-topnav site-top" data-layout="center" data-site-latest="4c1180ccb7" data-site-latest-req="52f1ca8914">
+  <div class="ds-topnav__left">
+  <a class="ds-topnav__heading" href="../index.html"><img src="../assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></a>
+  <nav class="ds-topnav__menu" aria-label="주요 메뉴">
+    <a class="ds-topnav__item" href="../index.html">Get Started</a>
+    <a class="ds-topnav__item" href="../foundations/breakpoint.html">Foundations</a>
+    <a class="ds-topnav__item" href="../components/index.html" aria-current="page">Components</a>
+    <a class="ds-topnav__item" href="../templates/index.html">Templates</a>
+    <a class="ds-topnav__item" href="../updates.html" data-site-updates>Updates</a>
   </nav>
-  <div class="site-top__end">
+  </div>
+  <div class="ds-topnav__end">
     <button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="찾기" data-ds-open="site-search" aria-keyshortcuts="Control+K Meta+K"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></button>
     <button type="button" class="ds-btn site-theme-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="화면 모드 바꾸기" data-site-theme-toggle><i class="ds-icon site-i--moon" aria-hidden="true"></i><i class="ds-icon site-i--sun" aria-hidden="true"></i></button>
     <a class="ds-btn site-only-wide" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener" aria-label="Figma 파일"><i class="ds-icon site-i--figma" aria-hidden="true"></i></a>
-    <a class="ds-btn site-only-wide" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="https://github.com/luvms012-rgb/yds" target="_blank" rel="noopener" aria-label="GitHub 저장소"><i class="ds-icon site-i--github" aria-hidden="true"></i></a>
-    <button type="button" class="ds-btn site-menu-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="메뉴 열기" data-site-menu aria-controls="site-side" aria-expanded="false"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button>
+    <button type="button" class="ds-btn site-menu-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="메뉴 열기" data-site-menu aria-controls="site-drawer" aria-haspopup="dialog" aria-expanded="false"><i class="ds-icon ds-icon--menu" aria-hidden="true"></i></button>
   </div>
 </header>
+<dialog class="ds-sidepanel site-drawer" id="site-drawer" data-size="small" aria-labelledby="site-drawer-title">
+  <div class="ds-sidepanel__header"><div class="ds-sidepanel__texts"><h2 class="ds-sidepanel__title" id="site-drawer-title">메뉴</h2></div><button type="button" class="ds-sidepanel__close" data-ds-close aria-label="메뉴 닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
+  <div class="ds-sidepanel__body" data-site-drawer></div>
+</dialog>
 <div class="site-body site-body--doc site-body--comp">
 <aside class="site-side" id="site-side" aria-label="페이지 목록">
-  <div class="site-side__top"><b>메뉴</b><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" data-site-close aria-label="메뉴 닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></div>
-  <div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴"><a class="site-nav__item" href="../index.html">Get Started</a><a class="site-nav__item" href="../foundations/breakpoint.html">Foundations</a><a class="site-nav__item" href="../components/index.html" aria-current="page">Components</a><a class="site-nav__item" href="../templates/index.html">Templates</a><a class="site-nav__item" href="../updates.html" data-site-updates>Updates</a></nav><div class="site-nav__sep"></div></div><div class="site-side__searchbar"><div class="ds-input site-side__search" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" placeholder="컴포넌트 찾기" aria-label="컴포넌트 찾기" data-site-search><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></div>
+  <div class="site-side__mobile"><nav class="site-nav" aria-label="주요 메뉴"><a class="site-nav__item" href="../index.html">Get Started</a><a class="site-nav__item" href="../foundations/breakpoint.html">Foundations</a><a class="site-nav__item" href="../components/index.html" aria-current="page">Components</a><a class="site-nav__item" href="../templates/index.html">Templates</a><a class="site-nav__item" href="../updates.html" data-site-updates>Updates</a></nav><hr class="ds-divider site-nav__sep"></div><div class="site-side__searchbar"><div class="ds-input site-side__search" data-variant="outline" data-size="medium"><i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i><input class="ds-input__control" type="search" placeholder="컴포넌트 찾기" aria-label="컴포넌트 찾기" data-site-search><button type="button" class="ds-input__clear" aria-label="지우기"></button></div></div>
   <nav class="site-nav" aria-label="Components 메뉴" data-site-navfilter><a class="site-nav__item" href="../components/index.html">Overview</a>
 <a class="site-nav__item" href="../components/accordion.html" data-site-keys="아코디언 접기 펼치기 FAQ">Accordion</a>
 <a class="site-nav__item" href="../components/action-button.html" data-site-keys="버튼 액션 버튼 실행 버튼">Action Button</a>
@@ -127,13 +131,12 @@
 <a class="site-nav__item" href="../components/tree.html" data-site-keys="트리 폴더 계층 분류 펼치기 접기 하위 항목">Tree</a>
 <a class="site-nav__item" href="../components/wheel-picker.html" data-site-keys="휠 피커 돌려서 고르기 날짜 고르기 생년월일 숫자 고르기">Wheel Picker</a></nav>
 </aside>
-<div class="site-scrim" data-site-close></div>
 <main class="site-main" id="main">
 <article class="site-doc">
 <header class="site-head">
   <h1 class="site-h1">Segmented Text Input</h1>
   <p class="site-lead">주민등록번호, 카드번호처럼 일부를 가려야 하는 값을 구간마다 나눠 받는 입력 칸입니다.</p>
-  <div class="site-meta"><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3230-3474" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://github.com/luvms012-rgb/yds/blob/main/dist/components.css#L4874-L4959" target="_blank" rel="noopener"><i class="ds-icon site-i--github ds-icon--sm" aria-hidden="true"></i>코드</a><span class="site-md"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" aria-haspopup="menu" aria-expanded="false" data-site-md-toggle><i class="ds-icon ds-icon--file-text ds-icon--sm" aria-hidden="true"></i>Markdown<i class="ds-icon ds-icon--chevron-down ds-icon--sm" aria-hidden="true"></i></button><div class="ds-menu site-md__menu" role="menu" hidden><button type="button" class="ds-menu-item" role="menuitem" data-site-md="link" data-href="segmented-text-input.md"><i class="ds-icon ds-icon--link" aria-hidden="true"></i>링크 복사</button><button type="button" class="ds-menu-item" role="menuitem" data-site-md="copy" data-href="segmented-text-input.md"><i class="ds-icon ds-icon--copy" aria-hidden="true"></i>내용 복사</button><a class="ds-menu-item" role="menuitem" href="segmented-text-input.md" target="_blank" rel="noopener"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i>새 창으로 열기</a><div class="ds-menu__divider" role="separator"></div><a class="ds-menu-item" role="menuitem" href="../yds.txt" target="_blank" rel="noopener"><i class="ds-icon ds-icon--list" aria-hidden="true"></i>전체 목차 yds.txt</a></div></span></div>
+  <div class="site-meta"><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3230-3474" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a><a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="#usage"><i class="ds-icon ds-icon--code ds-icon--sm" aria-hidden="true"></i>코드</a><span class="site-md"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="xsmall" aria-haspopup="menu" aria-expanded="false" data-site-md-toggle><i class="ds-icon ds-icon--file-text ds-icon--sm" aria-hidden="true"></i>Markdown<i class="ds-icon ds-icon--chevron-down ds-icon--sm" aria-hidden="true"></i></button><div class="ds-menu site-md__menu" role="menu" hidden><button type="button" class="ds-menu-item" role="menuitem" data-site-md="link" data-href="segmented-text-input.md"><i class="ds-icon ds-icon--link" aria-hidden="true"></i>링크 복사</button><button type="button" class="ds-menu-item" role="menuitem" data-site-md="copy" data-href="segmented-text-input.md"><i class="ds-icon ds-icon--copy" aria-hidden="true"></i>내용 복사</button><a class="ds-menu-item" role="menuitem" href="segmented-text-input.md" target="_blank" rel="noopener"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i>새 창으로 열기</a><div class="ds-menu__divider" role="separator"></div><a class="ds-menu-item" role="menuitem" href="../yds.txt" target="_blank" rel="noopener"><i class="ds-icon ds-icon--list" aria-hidden="true"></i>전체 목차 yds.txt</a></div></span></div>
 <div class="site-toc-select"><button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-controls="site-toc-list" aria-label="이 페이지 목차" data-site-toc><span class="ds-select__value">사용법</span></button><div class="ds-select-content site-toc-list" id="site-toc-list" role="listbox" data-size="medium" hidden><ul class="ds-select-list"><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="usage" aria-selected="true"><span class="ds-select-item__body"><span class="ds-select-item__label">사용법</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="anatomy"><span class="ds-select-item__body"><span class="ds-select-item__label">구조</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="props"><span class="ds-select-item__body"><span class="ds-select-item__label">속성</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="behavior"><span class="ds-select-item__body"><span class="ds-select-item__label">동작</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="guide"><span class="ds-select-item__body"><span class="ds-select-item__label">사용 지침</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="compare"><span class="ds-select-item__body"><span class="ds-select-item__label">Text Field와 비교</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="examples"><span class="ds-select-item__body"><span class="ds-select-item__label">예시</span></span></button></li><li><button type="button" class="ds-select-item" role="option" data-site-toc-go="spec"><span class="ds-select-item__body"><span class="ds-select-item__label">규격</span></span></button></li></ul></div></div>
 </header>
 <div class="site-tile__thumb site-cover" data-site-fit-max="2" aria-hidden="true"><div class="site-tile__inner" inert><div class="pv-stage"><div class="ds-input ds-segmentinput" data-variant="outline" data-size="large" role="group" aria-label="카드 번호" style="width:300px"><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="1번째 4자리" value="9410"><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="2번째 4자리" data-masked value="1234"><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="3번째 4자리" data-masked value="5678"><span class="ds-segmentinput__separator" aria-hidden="true">-</span><input class="ds-segmentinput__segment" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="4번째 4자리" value="3021"><span class="ds-segmentinput__suffix"><i class="ds-icon ds-icon--credit-card" aria-hidden="true"></i></span></div></div></div></div>
@@ -232,18 +235,21 @@
 <tr><td><code>--ds-segmentinput-suffix-height</code></td><td><code>20px</code></td></tr>
 <tr><td><code>--ds-segmentinput-chars</code></td><td><code>4</code></td></tr>
 <tr><td><code>--ds-segmentinput-filled</code></td><td><code>0</code></td></tr>
-<tr><td><code>--ds-segmentinput-slot</code></td><td><code>calc(var(--ds-segmentinput-dot) + var(--ds-segmentinput-dot-gap))</code></td></tr></tbody></table></div><h3>크기와 여백</h3><pre class="site-spec">size: large(기본) 높이 52, shape/lg, t05 / medium(PC 전용) 높이 40, shape/sm, t04
+<tr><td><code>--ds-segmentinput-slot</code></td><td><code>calc(var(--ds-segmentinput-dot) + var(--ds-segmentinput-dot-gap))</code></td></tr></tbody></table></div><h3>크기와 여백</h3><figure class="ds-codeblock" data-lang="text">
+  <figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">규격</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
+  <pre class="ds-codeblock__code"><code>size: large(기본) 높이 52, shape/lg, t05 / medium(PC 전용) 높이 40, shape/sm, t04
 입력 필드는 Text Field outline과 같습니다(aria-invalid, disabled, readonly) / 구간 너비는 maxlength 자리 수만큼, 구간과 구분자 사이 x1_5
 data-masked: 입력한 글자를 점으로 표시합니다 / dots: 받지 않는 자리를 지름 7 점으로 표시합니다, 점 사이 x1
 suffix 30x20, shape/2xs, bg/neutral-weak-alpha(카드사 로고 자리), 아이콘을 넣으면 28x28 정사각형(아이콘 16) / 라벨, 도움말, 오류는 Field Label(.ds-field)로 감쌉니다
 형식만 정해진 값(전화번호, 이메일, 유효기간)은 Text Field, 인증번호를 한 칸에 한 글자씩 받을 때는 Code Input을 사용합니다
-ybm-ds.js: 자리 수를 채우면 다음 구간으로 이동하고, 빈 구간에서 Backspace는 앞 구간의 마지막 글자를 지웁니다</pre>
+ybm-ds.js: 자리 수를 채우면 다음 구간으로 이동하고, 빈 구간에서 Backspace는 앞 구간의 마지막 글자를 지웁니다</code></pre>
+</figure>
 <nav class="site-pager" aria-label="이전, 다음 문서"><a href="segmented-control.html" data-dir="prev"><span class="site-pager__label"><i class="ds-icon ds-icon--chevron-left ds-icon--sm" aria-hidden="true"></i>이전</span><b>Segmented Control</b></a><a href="select-box.html" data-dir="next"><span class="site-pager__label">다음<i class="ds-icon ds-icon--chevron-right ds-icon--sm" aria-hidden="true"></i></span><b>Select Box</b></a></nav>
 <footer class="site-footer">
   <div class="site-footer__brand"><img src="../assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p><a href="../index.html">Get Started</a><a href="../foundations/breakpoint.html">Foundations</a><a href="../components/index.html">Components</a><a href="../templates/index.html">Templates</a><a href="../updates.html">Updates</a></div>
-    <div><p class="site-footer__title">더 보기</p><a href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">Figma</a><a href="https://github.com/luvms012-rgb/yds" target="_blank" rel="noopener">GitHub</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform" target="_blank" rel="noopener">의견 보내기</a></div>
+    <div><p class="site-footer__title">더 보기</p><a href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">Figma</a><a href="https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform" target="_blank" rel="noopener">의견 보내기</a></div>
   </nav>
 </footer>
 </article>

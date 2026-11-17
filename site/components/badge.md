@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/badge.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/badge.html -->
 
 # Badge
 
@@ -105,7 +105,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본) / large / xlarge(2026-11-13, 14px 글자가 필요한 PC 화면)   variant: weak(기본) / solid / outline
 tone: neutral(기본) / brand / informative / positive / warning / critical
 Figma medium: py2 px6 / min-h20 / shape/2xs / t01 Medium / 아이콘 12

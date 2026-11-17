@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/side-panel.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/side-panel.html -->
 
 # Side Panel
 
@@ -122,7 +122,7 @@ PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을
 
 ### 크기와 여백
 
-```
+```text
 네이티브 <dialog>를 사용합니다. data-ds-open으로 열고, data-ds-close나 바깥 영역을 누르면 닫힙니다.
 size: small 480 / 기본 medium 720 / large 960 (화면의 80% 를 넘지 않음)   direction: 기본 오른쪽 / data-direction="left"
 본문이 스크롤되면 ybm-ds.js가 data-scrolled를 붙여 본문 위에 1px 선을 표시합니다. 화면이 좁으면 Bottom Sheet로 바꿔 사용합니다.

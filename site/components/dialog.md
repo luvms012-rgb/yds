@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/dialog.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/dialog.html -->
 
 # Dialog
 
@@ -139,7 +139,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma: 폭 480(large 800) / shape/2xl / bg/layer-floating / 그림자 없음(2026-10-01 결정)
   header 24/20/16/20 / gap x4 / title t07 Bold(Alert Dialog 와 같게, 2026-11-02) fg/neutral / desc t05 fg/neutral-muted
   body 12/20/16/20(아래쪽 버튼이 없으면 아래 24) / min-h64 / footer 24/20 / Action Button large

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/quantity-picker.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/quantity-picker.html -->
 
 # Quantity Picker
 
@@ -100,7 +100,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본 40) / small 36 / large 52   layout: hug(기본) / data-layout="fill"
 Figma: bg/layer-default / 1px stroke/neutral-weak / small/medium shape/sm / large shape/lg
        버튼 정사각(36/40/52) / 아이콘 16/18/22 fg/neutral / 값 min-w40 px8 / t05 Medium(large t06)

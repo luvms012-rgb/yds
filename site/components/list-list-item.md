@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/list-list-item.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/list-list-item.html -->
 
 # List / List Item
 
@@ -175,7 +175,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 inset: data-inset(카드 안처럼 둥근 묶음)   size: medium(기본) / small   divider: data-divider
 Figma item medium: min-h56 / py x3 / px x4 / gap x3 / title t05 fg/neutral / desc t03 fg/neutral-subtle
             small : min-h48 / py x2_5 / title t04 / desc t02

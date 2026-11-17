@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/foundations/typography.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/typography.html -->
 
 # Typography
 
@@ -6,7 +6,7 @@
 
 ## 개요
 
-기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](https://luvms012-rgb.github.io/yds/site/index.md#ai)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 사용합니다.
+기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/index.md#ai)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 사용합니다.
 
 ## 크기
 

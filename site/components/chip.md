@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/chip.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chip.html -->
 
 # Chip
 
@@ -122,7 +122,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant: solid(기본) / outlineStrong / outlineWeak   size: medium(기본 36) / small 32 / large 40
 layout : 기본 withText / data-layout="iconOnly"      state: aria-pressed="true"(checked) / disabled
 Figma: shape/pill / t04 Regular(large t05) / 좌우 12/14/16 / min-w 44/48/52 / 아이콘 14/16/16 / 아이콘↔라벨 x1_5

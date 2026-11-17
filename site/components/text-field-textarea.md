@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/text-field-textarea.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-field-textarea.html -->
 
 # Text Field Textarea
 
@@ -83,7 +83,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant : outline(기본) / underline      size : large(기본) / medium
 Figma outline large : px16 / py14 / min-h94 / shape/lg / t05
       outline medium: px14 / py12 / min-h82 / shape/sm / t04

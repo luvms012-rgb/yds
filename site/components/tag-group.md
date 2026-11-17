@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/tag-group.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tag-group.html -->
 
 # Tag Group
 
@@ -66,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: t3(기본 13/20) / t4(14/21)   tone: neutralSubtle(기본) / neutral
 Figma: 항목 사이 "/" 구분 / gap x1 / neutral fg/neutral-muted / neutralSubtle fg/neutral-subtle
 ```

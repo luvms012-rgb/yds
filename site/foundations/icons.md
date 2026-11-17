@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/foundations/icons.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/icons.html -->
 
 # Iconography
 
@@ -6,7 +6,7 @@
 
 ## 개요
 
-아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 160개이고, 필요하면 Lucide 1,999개 가운데서 추가할 수 있습니다. 모든 아이콘은 [Library](https://luvms012-rgb.github.io/yds/site/foundations/icons-library.md)에서 찾아 바로 복사할 수 있습니다.
+아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 160개이고, 필요하면 Lucide 1,999개 가운데서 추가할 수 있습니다. 모든 아이콘은 [Library](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/icons-library.md)에서 찾아 바로 복사할 수 있습니다.
 
 ```html
 <!-- 글자 옆: 꾸밈용이라 aria-hidden -->
@@ -250,7 +250,7 @@
 
 가능하면 기존 아이콘을 사용합니다. 새 아이콘이 꼭 필요하면 아래 순서를 따르세요.
 
-1. [Library](https://luvms012-rgb.github.io/yds/site/foundations/icons-library.md)의 Lucide 전체에서 알맞은 아이콘을 선택합니다.
+1. [Library](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/icons-library.md)의 Lucide 전체에서 알맞은 아이콘을 선택합니다.
 2. 오른쪽 정보 영역의 첫 번째 코드를 복사해, YDS 다음에 불러오는 서비스 CSS 파일 맨 끝에 붙여 넣습니다.
 3. 그다음부터 `ds-icon--이름` 클래스로 사용합니다.
 
@@ -275,4 +275,4 @@
 | **Don't** | 아이콘 그림을 직접 수정하지 않습니다. Lucide 원본 그대로 사용합니다. |
 | **Don't** | 아이콘 하나로 복잡한 의미를 전달하지 않습니다. 의미가 분명하지 않으면 텍스트를 함께 사용합니다. |
 
-아이콘 그림은 Lucide(ISC 라이선스)입니다. [라이선스 전문](https://luvms012-rgb.github.io/yds/site/assets/lucide-LICENSE.txt)
+아이콘 그림은 Lucide(ISC 라이선스)입니다. [라이선스 전문](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/lucide-LICENSE.txt)

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/date-field.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/date-field.html -->
 
 # Date Field
 
@@ -74,7 +74,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 입력 필드는 Text Field와 같습니다(size, aria-invalid, disabled) / 숫자만 입력하면 스크립트가 점을 넣습니다(20010412 → 2001.04.12)
 생년월일처럼 먼 날짜는 Date Field, 가까운 날짜를 달력에서 선택할 때는 Date Picker를 사용합니다
 ```

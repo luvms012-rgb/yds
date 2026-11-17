@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/callout.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/callout.html -->
 
 # Callout
 
@@ -133,7 +133,7 @@ Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않�
 
 ### 크기와 여백
 
-```
+```text
 tone: neutral(기본) / informative / positive / warning / critical
 Figma: padding x3_5 / gap x2 / min-h50 / shape/md / t04 / 아이콘 Solid 16
   neutral bg/neutral-weak-alpha + fg/neutral(info) / informative bg/informative-weak + fg/brand-contrast(info)

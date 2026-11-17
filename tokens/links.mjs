@@ -25,25 +25,23 @@ export function linkPlan(DS) {
   const read = (p) => fs.readFileSync(path.join(DS, p), 'utf8');
   const cfg = JSON.parse(read('deploy.config.json'));
   const manifest = JSON.parse(read('components.json'));
-  const site = cfg.pagesUrl + 'site/';
-  const src = `${cfg.repoUrl}/blob/${cfg.branch}/`;
+  const site = (cfg.publicUrl || cfg.pagesUrl) + 'site/';
   const figmaUrl = (id) => `https://www.figma.com/design/${manifest.figmaFile}/?node-id=${id.replace(':', '-')}`;
-  const range = (file, [a, b]) => `${src}${file}#L${a}-L${b}`;
   const comp = cssSections(read('dist/components.css'), /^\s+(\d\d)(?:-\d+)?\s/);
   const tok = cssSections(read('dist/tokens.css'), /^\s+(\d)\.\s/);
   const entries = manifest.components.map((c) => {
     if (!comp[c.no]) throw new Error(`components.css 에 ${c.no} ${c.name} 구획(/* ---- 다음 줄 "${c.no} ${c.name}")이 없어요.`);
     const slug = slugify(c.name);
-    return { no: c.no, ids: c.figma.map((f) => f.id), doc: c.doc || null, slug, start: comp[c.no][0], end: comp[c.no][1], figma: c.doc ? figmaUrl(c.doc) : null, site: `${site}components/${slug}.html`, code: range('dist/components.css', comp[c.no]) };
+    return { no: c.no, ids: c.figma.map((f) => f.id), doc: c.doc || null, slug, start: comp[c.no][0], end: comp[c.no][1], figma: c.doc ? figmaUrl(c.doc) : null, site: `${site}components/${slug}.html`, code: `${site}components/${slug}.html#usage` };  // 11-17 사용자: 코드 링크는 GitHub 대신 같은 쪽 사용법 코드
   });
   const docs = manifest.figmaDocs || {};
   const fixed = Object.entries(FOUNDATION_SECTIONS).map(([slug, sec]) => ({
     slug, frame: docs[slug] || null, figma: docs[slug] ? figmaUrl(docs[slug]) : null,
     doc: `${site}foundations/${slug}.html`,
-    code: sec ? range('dist/tokens.css', [tok[sec[0]][0], tok[sec[1]][1]]) : `${src}dist/icons.css`,
+    code: `${site}foundations/${slug}.html#${sec ? 'code' : 'usage'}`,
   }));
   // About 페이지 링크 묶음 (글자와 링크를 함께 맞춘다)
   // 11-06: Get Started 표지(About 링크 묶음 2482:830)는 Figma 에서 지워졌다. Get Started 문서 프레임 링크는 docpage 가 건다
   const about = [];
-  return { entries, fixed, about, site, src: `${src}dist/components.css`, figmaUrl };
+  return { entries, fixed, about, site, figmaUrl };  // 11-17: GitHub 원본 주소(src)는 지움, 링크는 모두 사내 서버 사이트
 }

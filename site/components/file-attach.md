@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/file-attach.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/file-attach.html -->
 
 # File Attach
 
@@ -193,7 +193,7 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
 
 ### 크기와 여백
 
-```
+```text
 끌어 놓는 영역(Dropzone) 아래에 선택 버튼(Trigger)과 파일(Item)을 한 줄로 배치합니다. 넘치면 가로로 스크롤합니다.
 파일을 Dropzone 위로 끌고 오면 ybm-ds.js가 data-state="dragover"를 붙입니다(점선 → 실선).
 Figma: 전체 gap x2 / 줄 gap x2

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/checkbox-group.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/checkbox-group.html -->
 
 # Checkbox Group
 
@@ -83,7 +83,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 묶음 이름, 설명, 오류 문구는 03 Field Label로 감쌉니다.
 Figma: 항목 사이 x1
 ```

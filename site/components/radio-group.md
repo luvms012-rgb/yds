@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/radio-group.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/radio-group.html -->
 
 # Radio Group
 
@@ -138,7 +138,7 @@ List 안에 배치할 때는 `label.ds-list-item`으로 줄 전체를 라벨로 
 
 ### 크기와 여백
 
-```
+```text
 size: large(기본 24) / medium(20)   tone: brand(기본) / neutral   orientation: 기본 세로 / data-orientation="horizontal"(짧은 선택지 2~4개, 좁으면 줄바꿈, 2026-11-15 추가)
 Figma: 행 min-h 36/32 / 위 6 / gap x2 / 원 bg/layer-default + 1px stroke/neutral-weak / label t05/t04
   checked 고리(두께 7/6, 가운데 10/8 은 투명) brand bg/brand-solid / neutral bg/neutral-solid (2026-10-31 흰 점 → 투명)

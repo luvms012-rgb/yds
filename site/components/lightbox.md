@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/lightbox.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/lightbox.html -->
 
 # Lightbox
 
@@ -76,7 +76,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 여는 버튼: data-ds-open="lb" [data-ds-index="2"](몇 번째 사진부터) / 버튼이나 좌우 화살표 키로 넘기고, Esc나 빈 곳을 누르면 닫힙니다
 바탕은 항상 어둡습니다(사진이 잘 보이도록 라이트와 다크 모드가 같습니다)
 ```

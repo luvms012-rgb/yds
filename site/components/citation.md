@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/citation.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/citation.html -->
 
 # Citation
 
@@ -74,7 +74,7 @@ AI 답변은 Markdown으로 감싸고, 근거가 된 문장 끝에 번호 Citati
 
 ### 크기와 여백
 
-```
+```text
 type: 기본 label(출처 이름 칩) / data-type="number"(글 뒤 위첨자 번호)
 Figma: 높이 x5, t02, fg/neutral-muted / number 최소 폭 x5, 좌우 x1, pill, bg/brand-weak, SemiBold
   label 좌우 x2(아이콘이 있으면 왼쪽 x0_5), gap x1, shape/sm, 1px stroke/neutral-weak, 최대 15em / 아이콘 칸 x4 원, 아이콘 12

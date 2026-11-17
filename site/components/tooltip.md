@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/tooltip.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tooltip.html -->
 
 # Tooltip
 
@@ -106,7 +106,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 placement: top(기본) / bottom / left / right
 Figma: padding x1 x2 / shape/xs / bg/neutral-solid / t02 Medium fg/on-neutral-solid / 최대 폭 240
        대상과 간격 x1_5 / elevation overlay / 꼬리 없음

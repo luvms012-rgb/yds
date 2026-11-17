@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/menu-menu-item.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/menu-menu-item.html -->
 
 # Menu / Menu Item
 
@@ -111,7 +111,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 선택지 (2026-11-05 추가)
   고른 표시는 끝에 check 18 fg/neutral(Select 와 같다), 하위 메뉴 표시는 끝에 chevron-right 16 fg/neutral-subtle
   묶음 제목 t02 Medium fg/neutral-subtle, 위 x2 아래 x1 좌우 x3 / 하위 메뉴는 마우스를 올리거나 누르면 오른쪽에 붙어 열립니다

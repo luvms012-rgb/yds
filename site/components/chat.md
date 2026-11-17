@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/chat.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chat.html -->
 
 # Chat
 
@@ -131,7 +131,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 ▸ Message Bubble  sender: assistant(기본) / user
   Figma: padding x2_5 x3_5 / t05 / 최대 폭 288(글 260) / 모서리 shape/xl, 말꼬리 쪽만 shape/2xs
          assistant bg/neutral-weak-alpha fg/neutral (왼쪽 위 꼬리) / user bg/brand-solid fg/on-brand-solid (오른쪽 아래 꼬리)

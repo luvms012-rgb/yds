@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/result-section.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/result-section.html -->
 
 # Result Section
 
@@ -97,7 +97,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: 기본 large(화면 전체) / data-size="medium"(화면 일부)
 위쪽 그림은 아이콘(완료 fg/positive, 오류 fg/critical)이나 Progress Circle 로 바꿔 사용합니다.
 아이콘 크기: 기본은 large 48, medium 40 / 바꿀 때 ds-result__asset 에 data-size="32|40|48|64"

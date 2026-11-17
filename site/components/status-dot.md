@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/status-dot.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/status-dot.html -->
 
 # Status Dot
 
@@ -109,7 +109,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 tone: positive / warning / critical / brand / neutral(기본)   data-pulse: 진행 중일 때 깜빡임
 Figma: x2 원 / positive bg/positive-solid, warning bg/warning-solid, critical bg/critical-solid, brand bg/brand-solid, neutral fg/neutral-subtle
   깜빡임 2초, 투명도 1 → 0.5 → 1 (동작 줄이기 설정에서는 멈춤)

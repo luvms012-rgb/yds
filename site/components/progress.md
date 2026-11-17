@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/progress.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/progress.html -->
 
 # Progress
 
@@ -70,7 +70,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 tone: brand(기본) / neutral   size: medium(기본 8) / small 4
 Figma: 트랙 bg/neutral-weak-alpha(2026-11-11 모든 색 같음, 회색 박스 안에서도 보이게) / 채움 bg/brand-solid(neutral bg/neutral-solid) / pill
 ```

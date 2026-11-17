@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/chart.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chart.html -->
 
 # Chart
 
@@ -108,7 +108,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 색: chart/series-1~5 (data-series 1~5, 기본 1) / 눈금선 stroke/neutral-muted / 막대 폭 최대 32, 위 모서리 shape/2xs
 높이: --ds-chart-height(기본 160) / 도넛 지름 --ds-chart-size(기본 160), 두께 24, 값은 백분율 숫자(합 100 이하, 남은 몫은 bg/neutral)
 title t05 SemiBold / desc t03 fg/neutral-muted / 축 글자 t02 fg/neutral-muted / 범례 t03, 색 표시 10

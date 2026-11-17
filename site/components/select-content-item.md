@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/select-content-item.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-content-item.html -->
 
 # Select Content / Item
 
@@ -109,7 +109,7 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 
 ### 크기와 여백
 
-```
+```text
 Dialog / Bottom Sheet 안에서는 .ds-select-list만 단독으로 사용합니다.
 Figma Content: shape/2xl / bg/layer-floating / elevation overlay(+헤어라인) / 위아래 x2 / 그룹 사이 x2
        group label large px16 py10 t04 Medium / medium py8 t03 Regular / fg/neutral-subtle

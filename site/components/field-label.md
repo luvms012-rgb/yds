@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/field-label.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/field-label.html -->
 
 # Field Label
 
@@ -143,7 +143,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma: 세로 gap x2 / label t05 Medium(bold 변형 t05 Bold) fg/neutral / indicator t04 fg/neutral-subtle(좌 4)
        required 점 4×4 fg/critical / footer 좌우 x0_5 / 안내 t04 fg/neutral-subtle / 오류 t04 fg/critical
 오류: 입력 요소에 aria-invalid="true"를 붙이면 help 대신 error를 critical 색으로 표시합니다.

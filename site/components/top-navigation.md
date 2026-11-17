@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/top-navigation.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/top-navigation.html -->
 
 # Top Navigation
 
@@ -65,7 +65,7 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
 ```html
 <header class="ds-topnav" style="width: 100%">
   <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://luvms012-rgb.github.io/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
+    <a class="ds-topnav__heading" href="#"><img src="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
     <nav class="ds-topnav__menu" aria-label="주요 메뉴">
       <a class="ds-topnav__item" href="#">홈</a>
       <a class="ds-topnav__item" href="#" aria-current="page">강의</a>
@@ -88,7 +88,7 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
 ```html
 <header class="ds-topnav" data-layout="center" style="width: 100%">
   <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://luvms012-rgb.github.io/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
+    <a class="ds-topnav__heading" href="#"><img src="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
     <nav class="ds-topnav__menu" aria-label="주요 메뉴">
       <a class="ds-topnav__item" href="#">홈</a>
       <a class="ds-topnav__item" href="#" aria-current="page">강의</a>
@@ -108,7 +108,7 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
 
 ### 크기와 여백
 
-```
+```text
 Figma: padding x2 / bg/layer-default / 왼쪽 묶음 gap x4 / 메뉴 사이 x1 / 오른쪽 끝 버튼 사이 x1
   로고 칸 높이 x8, 좌우 padding x2, 로고 높이 20(메뉴 글자 14 보다 조금 크게, 2026-11-12)
   Top Navigation Item 높이 x8, 좌우 padding x3, shape/sm, t04 Medium fg/neutral-subtle(옅게)

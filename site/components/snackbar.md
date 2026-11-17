@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/snackbar.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/snackbar.html -->
 
 # Snackbar
 
@@ -116,7 +116,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant: default / positive / critical
 Figma: padding x2_5(+본문 좌우 x1_5) / min-h44 / max-w560 / shape/sm / bg/neutral-solid / elevation overlay
        message t04 fg/on-neutral-solid / action t04 Bold / gap x2_5 / 아이콘 Solid 24

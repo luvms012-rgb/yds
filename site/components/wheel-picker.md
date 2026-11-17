@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/wheel-picker.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/wheel-picker.html -->
 
 # Wheel Picker
 
@@ -67,7 +67,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
     열 수만큼
 모양과 동작은 Time Picker와 같고 규칙도 같습니다(50 Time Picker). 시간을 선택할 때는 Time Picker를 사용합니다
 ybm-ds.js가 가운데에 온 항목에 aria-selected를 붙이고, 멈추면 열에서 change(detail.value)를 보냅니다

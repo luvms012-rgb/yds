@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/top-app-bar.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/top-app-bar.html -->
 
 # Top App Bar
 
@@ -183,7 +183,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 theme(Figma) = data-platform: 기본 ios(제목 가운데) / "android"(제목 왼쪽)
 tone: 기본 layer / data-tone="transparent"(사진 같은 배경 위, 글자와 아이콘 흰색) + data-gradient(가독성용 위쪽 그라데이션)
 titleLayout: 부제목을 넣으면 withSubtitle 모양이 됩니다

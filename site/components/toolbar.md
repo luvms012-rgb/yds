@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/toolbar.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/toolbar.html -->
 
 # Toolbar
 
@@ -88,7 +88,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본) 높이 56, 좌우 x4, 사이 x2 / small 높이 48, 좌우 x3 / 안의 버튼은 small을 사용합니다
 variant: plain(기본, 바탕 없음) / muted(여러 줄을 고른 뒤 잠깐 나오는 막대, bg/neutral-weak-alpha + shape/lg)
   muted 막대 안 버튼은 ghost(마우스를 올릴 때만 바탕)를 사용합니다. 회색 막대 위에 회색 버튼을 겹치지 않습니다 (2026-11-11)

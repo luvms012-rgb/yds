@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/floating-action-button.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/floating-action-button.html -->
 
 # Floating Action Button
 
@@ -128,7 +128,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma extended: h48 / px18 / gap x1 / 아이콘 16 / t05 Bold / iconOnly 56×56 / 아이콘 24
        shape/pill / bg/brand-solid(pressed -pressed) / 글자/아이콘 fg/on-brand-solid / elevation floating
 ```

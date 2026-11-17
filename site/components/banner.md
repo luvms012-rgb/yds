@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/banner.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/banner.html -->
 
 # Banner
 
@@ -142,7 +142,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 tone: neutral(기본) / informative / positive / warning / critical   variant: weak(기본) / solid
 Figma: 전체 폭 / 모서리 없음 / min-h48 / padding x3 x4 / 내용 최대 폭 --ds-banner-max(1200) 가운데 / gap x2
   t04 / 제목 Bold / 아이콘 Solid 16 / action t04 Bold 밑줄 / 닫기 20(터치 영역 40)

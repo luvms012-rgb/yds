@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/empty.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/empty.html -->
 
 # Empty
 
@@ -78,7 +78,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본) / small
 Figma medium: padding 40/16 / gap x4 / media 56(아이콘 28) / title t06 Bold / desc t04 / actions 위 x2 / 버튼 medium
       small : padding 24/16 / gap x3 / media 40(아이콘 20) / title t05 Bold / desc t03 / actions 위 x1 / 버튼 small

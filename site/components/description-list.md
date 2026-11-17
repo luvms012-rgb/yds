@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/description-list.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/description-list.html -->
 
 # Description List
 
@@ -73,7 +73,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 layout: start(기본, 이름 왼쪽 + 값 오른쪽) / top(이름 위 + 값 아래, 값이 길 때)
 이름 t04 Medium fg/neutral-muted, 폭 --ds-desclist-label-width(기본 96) / 값 t04 fg/neutral
 줄 사이 x2 / data-divider 면 줄마다 위아래 x3 + 사이 선 stroke/neutral-muted / 이름과 값 사이 x4 / 여러 칸 사이 x6(폭 480 아래는 한 칸)

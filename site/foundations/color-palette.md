@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/foundations/color-palette.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color-palette.html -->
 
 # Color
 

@@ -61,8 +61,7 @@
       return;
     }
 
-    if (t.closest("[data-site-menu]")) { document.body.toggleAttribute("data-side-open"); var open = document.body.hasAttribute("data-side-open"); document.querySelectorAll("[data-site-menu]").forEach(function (b) { b.setAttribute("aria-expanded", String(open)); }); return; }
-    if (t.closest("[data-site-close]")) { document.body.removeAttribute("data-side-open"); return; }
+    if (t.closest("[data-site-menu]")) { openDrawer(); return; }
 
 
     // Get Started 시작하기: 세그먼트로 칸 하나만 보인다 (움직임과 aria-pressed 는 ybm-ds.js)
@@ -136,14 +135,31 @@
     }
   });
 
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { document.body.removeAttribute("data-side-open"); } });
+  // 휴대폰 메뉴 (11-17 DS Side Panel): 열 때 옆 메뉴(aside)를 패널 본문으로 옮기고, 닫히면 제자리로 돌린다. 닫기, 바깥, Esc 는 ybm-ds.js
+  var drawer = document.getElementById("site-drawer"), sideHome = null;
+  function setMenuExpanded(v) { document.querySelectorAll("[data-site-menu]").forEach(function (b) { b.setAttribute("aria-expanded", String(v)); }); }
+  function openDrawer() {
+    var side = document.getElementById("site-side");
+    if (!drawer || !side || !drawer.showModal || drawer.open) return;
+    sideHome = document.createComment("site-side"); side.parentNode.insertBefore(sideHome, side);
+    drawer.querySelector("[data-site-drawer]").appendChild(side);
+    drawer.showModal(); setMenuExpanded(true);
+  }
+  if (drawer) {
+    drawer.addEventListener("close", function () {
+      var side = document.getElementById("site-side");
+      if (sideHome && side) { sideHome.parentNode.insertBefore(side, sideHome); sideHome.remove(); sideHome = null; }
+      setMenuExpanded(false);
+    });
+    window.addEventListener("resize", function () { if (drawer.open && window.innerWidth >= 768) drawer.close(); });
+  }
 
   // 템플릿 원본 코드 불러오기 (http로 열었을 때만)
   function loadSource(box) {
     var pre = box.querySelector("[data-site-src]");
     if (!pre || pre.getAttribute("data-loaded")) return;
     fetch(pre.getAttribute("data-site-src")).then(function (r) { return r.text(); }).then(function (txt) {
-      pre.querySelector("code").textContent = txt.replace(/(\.\.\/)+dist\//g, "https://luvms012-rgb.github.io/yds/dist/");
+      pre.querySelector("code").textContent = txt.replace(/(\.\.\/)+dist\//g, "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/dist/");
       pre.setAttribute("data-loaded", "");
     }).catch(function () { pre.querySelector("code").textContent = "코드는 웹 주소(http)로 열었을 때 보여요. 파일 위치: " + pre.getAttribute("data-site-src"); });
   }
@@ -229,7 +245,8 @@
     return out + libEsc(text.slice(last));
   }
   function libCode(label, text) {
-    return '<div class="site-lib__code"><div class="site-lib__codehead"><span>' + label + '</span><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="' + label + ' 복사" data-site-lib-copy><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></div><pre><code>' + libHl(text) + "</code></pre></div>";
+    // 11-17: DS Code Block 그대로(복사는 ybm-ds.js data-ds-copy)
+    return '<figure class="ds-codeblock site-lib__code" data-wrap><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">' + label + '</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="' + label + ' 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption><pre class="ds-codeblock__code"><code>' + libHl(text) + '</code></pre></figure>';
   }
   function libPanel(n) {
     var panel = document.querySelector("[data-site-lib-panel]"); if (!panel) return;
@@ -260,16 +277,14 @@
     libDraw();
   }
   document.addEventListener("click", function (e) {
-    var t = e.target.closest && e.target.closest("[data-site-lib-icon], [data-site-lib-set], [data-site-lib-copy]");
+    var t = e.target.closest && e.target.closest("[data-site-lib-icon], [data-site-lib-set]");
     if (!t) return;
     if (t.hasAttribute("data-site-lib-icon")) { libPick(t.getAttribute("data-site-lib-icon")); return; }
     if (t.hasAttribute("data-site-lib-set")) {
       lib.set = t.getAttribute("data-site-lib-set");
       document.querySelectorAll("[data-site-lib-set]").forEach(function (b) { b.setAttribute("aria-pressed", b === t ? "true" : "false"); });
-      libDraw(); return;
+      libDraw();
     }
-    var code = t.closest(".site-lib__code").querySelector("code").textContent;
-    if (navigator.clipboard) navigator.clipboard.writeText(code).then(function () { if (window.DS) DS.snackbar("복사했어요", { tone: "positive" }); });
   });
   document.addEventListener("input", function (e) { if (e.target.matches("[data-site-lib-q]")) { lib.q = e.target.value; libDraw(); } });
   // 찾기 칸에서 Enter: 걸러진 메뉴의 첫 컴포넌트로
@@ -669,94 +684,27 @@
     if (b) copyTplPrompt(b, b.getAttribute("data-name"), b.getAttribute("data-site-tpl-prompt"));
   });
 
-  // 2026-11-14 사용자 "모달보다 바로 문서 보기 화면으로, 왼쪽 메뉴가 있어 면밀히 관찰하기 좋다": 보기 창을 끈다.
-  // 되돌리기: TPL_VIEWER 를 true 로 바꾸면 예전처럼 보기 창이 열린다(아래 코드는 그대로 둔다).
-  var TPL_VIEWER = false;
+  // 2026-11-14 사용자 "모달보다 바로 문서 보기 화면으로": 목록 카드는 문서 보기로 바로 간다. 옛 ?preview= 주소도 문서 보기로 넘긴다
+  // (옛 목록 보기 창 코드는 11-17 지웠다. 되살리려면 git 기록)
   (function () {
-    var cards = [].slice.call(document.querySelectorAll(".site-tpl"));
-    if (!cards.length) return;
-    if (!TPL_VIEWER) {
-      try { var go = new URL(location.href).searchParams.get("preview"); if (go && /^[a-z0-9-]+$/.test(go)) location.replace(go + ".html"); } catch (e) {}
-      return;
-    }
-    var dlg = document.createElement("div");
-    dlg.className = "site-tplv"; dlg.hidden = true;
-    dlg.setAttribute("role", "dialog"); dlg.setAttribute("aria-modal", "true"); dlg.setAttribute("aria-labelledby", "site-tplv-title");
-    dlg.innerHTML = '<div class="site-tplv__scrim" data-tplv-close></div>' +
-      '<div class="site-tplv__box"><header class="site-tplv__head"><div class="site-tplv__texts"><h2 class="site-tplv__title" id="site-tplv-title"></h2><p class="site-tplv__desc"></p></div>' +
-      '<button type="button" class="ds-btn site-tplv__x" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></header>' +
-      '<div class="site-tplv__frame"><iframe title="" data-site-frame></iframe></div>' +
-      '<footer class="site-tplv__foot"><code class="site-tplv__path"></code><span class="site-tplv__acts"></span></footer></div>' +
-      '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
-      '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
-    document.body.appendChild(dlg);
-    var frame = dlg.querySelector("iframe"), cur = null, back = null;
-    frame.addEventListener("load", function () { themeFrame(frame); });
-    function slugOf(card) { var a = card.querySelector(".site-tpl__link"); return a ? a.getAttribute("href").replace(/\.html$/, "") : ""; }
-    function shown() { return cards.filter(function (c) { return !c.hidden; }); }
-    function setUrl(slug) { try { var u = new URL(location.href); if (slug) u.searchParams.set("preview", slug); else u.searchParams.delete("preview"); history.replaceState(null, "", u); } catch (e) {} }
-    function open(card) {
-      var slug = slugOf(card); if (!slug) return;
-      if (dlg.hidden) back = document.activeElement;
-      cur = card;
-      dlg.querySelector(".site-tplv__title").textContent = card.querySelector(".site-tpl__title").textContent;
-      dlg.querySelector(".site-tplv__desc").textContent = card.querySelector(".site-tpl__desc").textContent;
-      dlg.querySelector(".site-tplv__path").textContent = "site/templates/pages/" + slug + ".html";
-      var fig = card.querySelector('.site-tpl__actions a[target="_blank"]');
-      dlg.querySelector(".site-tplv__acts").innerHTML =
-        (fig ? '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + fig.getAttribute("href") + '" target="_blank" rel="noopener">Figma에서 열기</a>' : "") +
-        '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="' + slug + '.html">자세히 보기</a>' +
-        '<a class="ds-btn" data-variant="neutralWeak" data-size="small" href="pages/' + slug + '.html" target="_blank" rel="noopener">새 창으로 보기</a>' +
-        '<button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small" data-tplv-copy><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i>AI 요청 글 복사</button>';
-      frame.title = card.querySelector(".site-tpl__title").textContent + " 미리보기";
-      frame.src = "pages/" + slug + ".html";
-      dlg.hidden = false; root.classList.add("site-tplv-open");
-      setUrl(slug);
-      dlg.querySelector(".site-tplv__x").focus();
-    }
-    function close() {
-      if (dlg.hidden) return;
-      dlg.hidden = true; root.classList.remove("site-tplv-open"); frame.src = "about:blank"; cur = null; setUrl("");
-      if (back && back.focus) back.focus();
-    }
-    function step(n) { var list = shown(), i = list.indexOf(cur); if (i < 0) return; open(list[(i + n + list.length) % list.length]); }
-    cards.forEach(function (card) {
-      card.querySelectorAll('.site-tpl__link, .site-tpl__btn:not([target="_blank"])').forEach(function (a) {
-        a.addEventListener("click", function (e) { if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return; e.preventDefault(); open(card); });
-      });
-    });
-    // AI 요청 글 복사 (11-11 사용자): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다. 내려받을 것 없이 AI 도구에 붙여 넣는다
-    function copyPrompt(b) {
-      if (!cur) return;
-      copyTplPrompt(b, cur.querySelector(".site-tpl__title").textContent, slugOf(cur));
-    }
-    dlg.addEventListener("click", function (e) {
-      if (e.target.closest("[data-tplv-close]")) close();
-      var s = e.target.closest("[data-tplv-step]"); if (s) step(+s.getAttribute("data-tplv-step"));
-      var c = e.target.closest("[data-tplv-copy]"); if (c) copyPrompt(c);
-    });
-    document.addEventListener("keydown", function (e) {
-      if (dlg.hidden) return;
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft" && !(e.target.closest && e.target.closest("input, textarea"))) step(-1);
-      else if (e.key === "ArrowRight" && !(e.target.closest && e.target.closest("input, textarea"))) step(1);
-    });
-    try { var want = new URL(location.href).searchParams.get("preview"); if (want) { var c = cards.filter(function (x) { return slugOf(x) === want; })[0]; if (c) open(c); } } catch (e) {}
+    if (!document.querySelector(".site-tpl")) return;
+    try { var go = new URL(location.href).searchParams.get("preview"); if (go && /^[a-z0-9-]+$/.test(go)) location.replace(go + ".html"); } catch (e) {}
   })();
 
   // 템플릿 문서 보기의 "크게 보기" (11-16 사용자): 제목, 설명과 함께 큰 창으로 열고 좌우 화살표(키보드 좌우)로 다른 템플릿을 넘겨 본다.
+  // 11-17: DS Dialog(<dialog class="ds-dialog">, showModal) 로. 닫기는 ybm-ds.js 가 data-ds-close, 바깥 누르기, Esc 를 맡는다.
   // 순서는 목록 순서(build.mjs TPL_LIST_JSON). Ctrl, Cmd, Shift, 가운데 버튼은 진짜 새 탭, 창 안 아이콘도 새 탭으로 연다
   (function () {
     var data = document.getElementById("site-tpl-list"); if (!data) return;
     var list = []; try { list = JSON.parse(data.textContent); } catch (e) { return; }
-    var dlg = document.createElement("div"), cur = -1, back = null;
-    dlg.className = "site-tplv"; dlg.hidden = true;
-    dlg.setAttribute("role", "dialog"); dlg.setAttribute("aria-modal", "true"); dlg.setAttribute("aria-labelledby", "site-tplv-title");
-    dlg.innerHTML = '<div class="site-tplv__scrim" data-tplv-close></div>' +
-      '<div class="site-tplv__box"><header class="site-tplv__head"><div class="site-tplv__texts"><h2 class="site-tplv__title" id="site-tplv-title"></h2><p class="site-tplv__desc"></p></div>' +
-      '<span class="site-tplv__tools"><a class="ds-btn site-tplv__tab" data-variant="neutralWeak" data-layout="iconOnly" target="_blank" rel="noopener" aria-label="새 탭으로 열기"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i></a>' +
-      '<button type="button" class="ds-btn site-tplv__x" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-close aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button></span></header>' +
-      '<div class="site-tplv__frame"><iframe title="" data-site-frame></iframe></div></div>' +
+    var dlg = document.createElement("dialog"), cur = -1;
+    if (!dlg.showModal) return;
+    dlg.className = "ds-dialog site-tplv"; dlg.id = "site-tplv";
+    dlg.setAttribute("aria-labelledby", "site-tplv-title");
+    dlg.innerHTML = '<div class="ds-dialog__header"><h2 class="ds-dialog__title" id="site-tplv-title"></h2><p class="ds-dialog__desc"></p>' +
+      '<span class="site-tplv__tools"><a class="ds-btn site-tplv__tab" data-variant="ghost" data-layout="iconOnly" target="_blank" rel="noopener" aria-label="새 탭으로 열기"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i></a>' +
+      '<button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기" autofocus></button></span></div>' +
+      '<div class="ds-dialog__body"><iframe title="" data-site-frame></iframe></div>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
@@ -764,21 +712,15 @@
     frame.addEventListener("load", function () { themeFrame(frame); });
     function open(i) {
       var t = list[i]; if (!t) return;
-      if (dlg.hidden) back = document.activeElement;
       cur = i;
-      dlg.querySelector(".site-tplv__title").textContent = t[1];
-      dlg.querySelector(".site-tplv__desc").textContent = t[2];
+      dlg.querySelector(".ds-dialog__title").textContent = t[1];
+      dlg.querySelector(".ds-dialog__desc").textContent = t[2];
       dlg.querySelector(".site-tplv__tab").href = "pages/" + t[0] + ".html";
       frame.title = t[1] + " 미리보기";
       frame.src = "pages/" + t[0] + ".html";
-      dlg.hidden = false; root.classList.add("site-tplv-open");
-      dlg.querySelector(".site-tplv__x").focus();
+      if (!dlg.open) { dlg.showModal(); root.classList.add("site-tplv-open"); }
     }
-    function close() {
-      if (dlg.hidden) return;
-      dlg.hidden = true; root.classList.remove("site-tplv-open"); frame.src = "about:blank"; cur = -1;
-      if (back && back.focus) back.focus();
-    }
+    dlg.addEventListener("close", function () { root.classList.remove("site-tplv-open"); frame.src = "about:blank"; cur = -1; });
     function step(n) { if (cur >= 0) open((cur + n + list.length) % list.length); }
     document.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest("[data-site-tplv]");
@@ -788,14 +730,11 @@
       open(Math.max(0, list.map(function (t) { return t[0]; }).indexOf(slug)));
     });
     dlg.addEventListener("click", function (e) {
-      if (e.target.closest("[data-tplv-close]")) close();
       var s = e.target.closest("[data-tplv-step]"); if (s) step(+s.getAttribute("data-tplv-step"));
     });
-    document.addEventListener("keydown", function (e) {
-      if (dlg.hidden) return;
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft" && !(e.target.closest && e.target.closest("input, textarea"))) step(-1);
-      else if (e.key === "ArrowRight" && !(e.target.closest && e.target.closest("input, textarea"))) step(1);
+    dlg.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") step(-1);
+      else if (e.key === "ArrowRight") step(1);
     });
   })();
 

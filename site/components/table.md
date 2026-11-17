@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/table.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/table.html -->
 
 # Table
 
@@ -177,7 +177,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: default(기본) / small
 2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-11 표 맨 위와 맨 아래 선은 바깥 테두리 색(한 단계 짙게), 행 사이는 옅은 선
 Figma: 표 위 1px stroke/neutral-weak / 마지막 줄 아래 1px stroke/neutral-weak / 그 밖의 칸 아래 1px stroke/neutral-muted / header 바탕 없음

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/accordion.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/accordion.html -->
 
 # Accordion
 
@@ -85,7 +85,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 variant: inline(기본) / separated   size: medium(기본) / large
 inset: data-inset="none" (2026-11-13) 콘텐츠 칸 안에서 제목과 왼쪽 끝을 맞출 때 제목 줄과 내용의 좌우 여백을 없앱니다. inline 에만 씁니다.
 모션: 열고 닫을 때 높이가 부드럽게 바뀝니다(ybm-ds.js, 2026-11-04). 움직임 줄이기 설정을 켜면 바로 바뀝니다. name이 같은 묶음은 함께 움직입니다.

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/divider.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/divider.html -->
 
 # Divider
 
@@ -94,7 +94,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 weight: thin(기본 1px) / thick(8px 섹션 구분, 모바일)   orientation: horizontal(기본) / vertical
 Figma: thin 1px stroke/neutral-weak / thick 8 bg/neutral-muted / vertical 1×16(--ds-divider-length)
   inset 좌우 x4 / label t03 fg/neutral-subtle, 선과 간격 x3

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/segmented-control.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/segmented-control.html -->
 
 # Segmented Control
 
@@ -109,7 +109,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: small(기본) / medium   layout: hug(기본) / fill
 모션: 선택 배경이 선택한 항목으로 미끄러지듯 이동합니다(필수, ybm-ds.js). 누르면 aria-pressed가 바뀌고 change 이벤트가 발생합니다.
 Figma small : 트랙 bg/neutral-weak-alpha / padding 2 / shape/sm / item py6 px12 / shape/xs / t03 Medium fg/neutral-subtle (고른 칸 SemiBold)

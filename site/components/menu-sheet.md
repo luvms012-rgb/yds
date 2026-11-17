@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/menu-sheet.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/menu-sheet.html -->
 
 # Menu Sheet
 
@@ -139,7 +139,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Bottom Sheet와 같이 네이티브 <dialog>를 사용합니다. data-ds-open으로 열고, data-ds-close나 바깥 영역을 누르면 닫힙니다.
 Item tone: 기본 neutral / data-tone="critical"(되돌릴 수 없는 동작)   labelAlign: 기본 left / data-label-align="center"
 Figma: 최대 폭 480 / 위쪽 shape/2xl / bg/layer-floating / padding 위 x6, 좌우 global gutter, 아래 x4

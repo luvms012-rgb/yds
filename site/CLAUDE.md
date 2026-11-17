@@ -3,7 +3,7 @@
 YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정한 날짜와 경위는 [docs/log.md](../docs/log.md)("site/CLAUDE.md 전체 원문 2026-11-15") 에 있고 필요할 때만 찾는다. 수치의 정답은 코드(site.css, kit.mjs)이고 여기에는 다시 적지 않는다.
 
 ## 만들기와 파일
-- 주소 <https://luvms012-rgb.github.io/yds/site/>, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
+- 공식 주소 <https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/>(사내 서버, 11-17), 개발 미리보기는 GitHub Pages, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
 - `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check`. DS(components.json, dist/*.css 머리 주석, tokens.css, icons.css, ybm-ds.js, 루트 index.html 예시, README 6.2)를 읽어 페이지를 만든다.
 - 손으로 쓰는 것: `site/build.mjs`, `site/md.mjs`, `site/src/`(site.css, site.js, figma-notes.json, templates.json, updates.json, requests.json, covers.html, anatomy-*.{json,html}, search-ko.json, examples/), `site/templates/gen/*.mjs`.
 - 생성물(직접 고치지 않음): `site/index.html`, `site/get-started/`, `site/foundations/`, `site/components/`, `site/templates/*.html`, `site/templates/pages/`, `site/assets/`, `site/*.txt`, `site/ai/`.
@@ -107,8 +107,8 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 
 ## 템플릿 목록과 문서 보기
 - 목록 썸네일은 미리 찍은 그림(`site/templates/thumbs/<slug>.webp`, `-dark.webp`, 모노톤 1080x675). `node tools/tpl-thumbs.mjs`(바뀐 것만, `--all`)를 deploy 가 자동으로 돌리고, 낡으면 check "5-1e" 가 막는다.
-- 목록: 가운데 1552, 분류 칩, 3열, 컴포넌트 목록처럼 16:10 미리보기 아래에 이름만(덮개, 설명, 버튼, 마우스 효과 없음, 설명과 Figma 는 문서 보기에). 카드는 문서 보기로 바로 간다(보기 창은 site.js `TPL_VIEWER = false`, 옛 `?preview=` 주소는 문서 보기로 넘긴다).
-- "크게 보기"(maximize-2 아이콘) 는 보기 창(제목, 설명, 새 탭, 닫기, 좌우 화살표와 키보드, 순서 build.mjs `TPL_LIST_JSON`). Ctrl, Cmd, 가운데 버튼은 진짜 새 탭.
+- 목록: 가운데 1552, 분류 칩, 3열, 컴포넌트 목록처럼 16:10 미리보기 아래에 이름만(덮개, 설명, 버튼, 마우스 효과 없음, 설명과 Figma 는 문서 보기에). 카드는 문서 보기로 바로 간다(옛 `?preview=` 주소는 문서 보기로 넘긴다).
+- "크게 보기"(maximize-2 아이콘) 는 DS Dialog 보기 창(제목, 설명, 새 탭, 닫기, 좌우 화살표와 키보드, 순서 build.mjs `TPL_LIST_JSON`). Ctrl, Cmd, 가운데 버튼은 진짜 새 탭.
 - 문서 보기: 위에 AI 요청 글 상자, 아래 미리보기 | 코드 탭. 미리보기는 PC 1440x900 / 모바일 375x760(아이콘 두 개, 태블릿 없음)으로 그리고 site.js `fitStage` 가 줄인다.
 - AI 요청 글은 build.mjs `TPL_PROMPT` 하나가 정본: 안내서 문장과 주소 한 줄, 다음 줄에 "'이름' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘." 와 템플릿 주소. 빈칸은 파랑 글자(예시로 채우지 않는다). 문구를 바꿀 때는 묻는다.
 

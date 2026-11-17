@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/rating.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/rating.html -->
 
 # Rating
 
@@ -110,7 +110,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 보기:  <span class="ds-rating" style="--ds-rating-value: 4.5" role="img" aria-label="5점 만점에 4.5점"><span class="ds-rating__stars"></span><span class="ds-rating__value">4.5</span><span class="ds-rating__count">(312)</span></span>
 입력:  <fieldset class="ds-rating" data-input aria-label="별점"> 안에 <label class="ds-rating__option"><input type="radio" class="ds-rating__control" name="r" value="1"><span class="ds-rating__star"></span></label> 5개
 size: small 12 / medium 16 (기본) / large 20  /  값: --ds-rating-value 0~5 (소수 가능)  /  색: --ds-rating-fill, --ds-rating-empty

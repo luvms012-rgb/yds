@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/scroll-fog.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/scroll-fog.html -->
 
 # Scroll Fog
 
@@ -83,7 +83,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 direction: 기본 세로 / data-direction="horizontal"   흐려지는 쪽에는 최소 20의 여백을 확보합니다(화면 전체 세로 스크롤은 위 20, 아래 80)
 Figma: 끝 20 을 투명 → 불투명으로 / 코드는 배경색 덮개가 아닌 mask라 어떤 배경 위에서도 사용할 수 있습니다
 ```

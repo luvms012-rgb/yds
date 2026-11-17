@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/tree.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tree.html -->
 
 # Tree
 
@@ -85,7 +85,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본) 줄 40, t04 / small 줄 32, t03 / 줄 좌우 x2, 모서리 shape/sm, 아이콘 18
 한 단계 들여쓰기 20(펼침 표시 자리 20, 펼칠 항목이 없는 줄도 자리를 확보) / 이음선 stroke/neutral-muted, data-guides="none" 이면 들여쓰기만
 선택 aria-selected 또는 aria-current = bg/neutral-weak-alpha + fg/neutral + Medium (Side Navigation과 같음)

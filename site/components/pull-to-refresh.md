@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/pull-to-refresh.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/pull-to-refresh.html -->
 
 # Pull To Refresh
 
@@ -139,7 +139,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 ybm-ds.js가 터치로 당긴 거리를 --ds-ptr-displacement에 넣고, 88을 넘겨서 놓으면 data-state="refreshing"을 붙이고 ds-refresh 이벤트를 보냅니다.
 새로 고침이 끝나면 DS.endRefresh(요소)로 원래 상태로 되돌립니다. data-disabled로 비활성화합니다.
 Figma: 위쪽 영역 높이 x6 + x8 × 2 / Progress Circle 24 neutral, 당기는 동안 차오르고 새로 고치는 동안 회전

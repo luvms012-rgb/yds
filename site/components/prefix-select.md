@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/prefix-select.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/prefix-select.html -->
 
 # Prefix Select
 
@@ -50,6 +50,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma large: t06 Regular / chevron 24 / medium: t05 / chevron 20 / gap x1 / fg/neutral-subtle
 ```

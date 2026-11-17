@@ -27,7 +27,7 @@ const digest = (SNAP) => Object.fromEntries(Object.entries(SNAP).map(([c, v]) =>
 
 if (cmd === 'script') {
   const { NODES, PLAN } = parts();
-  const GH = PLAN.src.replace(/dist\/components\.css$/, '');
+  const GH = PLAN.site;  // 11-17: 코드 링크도 사이트 주소(예전 GitHub)
   const N = NODES.map((n) => n.id + (n.type === 'COMPONENT' ? 'c' : 's') + (n.variants || '')).join(' ');
   const E = PLAN.entries.map((e) => [e.no, e.slug, e.ids.join(','), e.doc || '', e.start, e.end].join(';')).join('|');
   const F = PLAN.fixed.map((f) => [f.frame, f.doc.replace(PLAN.site, '~'), f.code.replace(GH, '^')].join(';')).join('|');
@@ -57,7 +57,7 @@ const known = new Set(NODES.map((n) => n.id));
 for (const n of NODES) { const node = await figma.getNodeByIdAsync(n.id); if (!node) { components.missing.push(n.id); continue; } if (node.type !== n.type) { components.typeMismatch.push(n.id + ' ' + node.name + ' → ' + node.type); continue; } if (n.variants && node.children.length !== n.variants) { components.variantMismatch.push(n.id + ' ' + node.name + ' 기대 ' + n.variants + ' 실제 ' + node.children.length); continue; } components.ok++; }
 const NON = new Set(['Get Started', 'About', 'Foundations', 'Iconography', 'Icons', 'Templates', 'Updates', 'Internal Components']);
 for (const page of figma.root.children) { if (/^-+$/.test(page.name)) continue; await page.loadAsync(); if (NON.has(page.name)) continue; for (const s of page.findAllWithCriteria({ types: ['COMPONENT_SET'] })) if (!known.has(s.id)) components.unlisted.push(s.name + ' ' + s.id + ' · ' + s.children.length + ' @' + page.name); }
-const SITE = ${JSON.stringify(PLAN.site)}, GH = ${JSON.stringify(GH)}, SRC = ${JSON.stringify(PLAN.src)};
+const SITE = ${JSON.stringify(PLAN.site)}, GH = ${JSON.stringify(GH)};
 const E = ${JSON.stringify(E)}.split('|').map((x) => { const p = x.split(';'); return { no: p[0], slug: p[1], ids: p[2].split(','), doc: p[3], start: +p[4], end: +p[5] }; });
 const F = ${JSON.stringify(F)}.split('|').map((x) => { const p = x.split(';'); return { frame: p[0], doc: p[1].replace('~', SITE), code: p[2].replace('^', GH) }; });
 const T = ${JSON.stringify(T)}.split(' ');
@@ -68,7 +68,7 @@ const targets = [];
 for (const f of F) { const n = await figma.getNodeByIdAsync(f.frame); if (n) targets.push({ frame: n, doc: f.doc, code: f.code }); else links.missing.push('문서 프레임 ' + f.frame); }
 const groups = new Map();
 for (const e of E) { let n = null; for (const id of e.ids) if ((n = await figma.getNodeByIdAsync(id))) break; if (!n) { links.missing.push(e.no + ' 컴포넌트 노드'); continue; } const f = top(n); if (!groups.has(f.id)) groups.set(f.id, { frame: f, list: [] }); groups.get(f.id).list.push(e); if (e.doc !== f.id) links.docMismatch.push(e.no + ' ' + e.slug + ': json ' + e.doc + ' / Figma ' + f.id + ' ' + f.name); }
-for (const { frame, list } of groups.values()) { list.sort((a, b) => a.start - b.start); const s = slug(frame.name); const main = list.find((e) => e.slug === s) || list.find((e) => e.slug.startsWith(s + '-')) || list[0]; const joined = list.every((e, i) => !i || e.start === list[i - 1].end + 1); const [a, b] = joined ? [list[0].start, list[list.length - 1].end] : [main.start, main.end]; targets.push({ frame, doc: SITE + 'components/' + main.slug + '.html', code: SRC + '#L' + a + '-L' + b }); }
+for (const { frame, list } of groups.values()) { list.sort((a, b) => a.start - b.start); const s = slug(frame.name); const main = list.find((e) => e.slug === s) || list.find((e) => e.slug.startsWith(s + '-')) || list[0]; const joined = list.every((e, i) => !i || e.start === list[i - 1].end + 1); const [a, b] = joined ? [list[0].start, list[list.length - 1].end] : [main.start, main.end]; targets.push({ frame, doc: SITE + 'components/' + main.slug + '.html', code: SITE + 'components/' + main.slug + '.html#usage' }); }
 const linkOf = (t) => { const s = t.getStyledTextSegments(['hyperlink']).find((x) => x.hyperlink); return s ? s.hyperlink.value : null; };
 for (const t of targets) t.frame.findAll(() => false);
 for (const t of targets) for (const [name, url] of [['Documentation', t.doc], ['Code', t.code]]) { const node = t.frame.findAll((n) => n.type === 'TEXT' && n.name === name)[0]; if (!node) { links.missing.push(t.frame.name + ' ' + t.frame.id + ' / ' + name); continue; } const cur = linkOf(node); if (cur === url) links.ok++; else links.wrong.push(t.frame.name + ' / ' + name); }

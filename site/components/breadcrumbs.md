@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/breadcrumbs.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/breadcrumbs.html -->
 
 # Breadcrumbs
 
@@ -60,7 +60,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Figma: t03 / 항목 fg/neutral-subtle(링크 hover 밑줄) / 현재 fg/neutral Medium / 구분 chevron-right 14 fg/neutral-subtle
        항목/구분 사이 x1 / 줄바꿈 허용(좁으면 다음 줄)
 마지막 항목(현재 화면)에는 링크를 걸지 않습니다. 모바일 앱 화면에는 사용하지 않습니다(뒤로 가기 헤더 사용).

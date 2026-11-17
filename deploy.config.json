@@ -1,6 +1,11 @@
 {
   "repoUrl": "https://github.com/luvms012-rgb/yds",
   "pagesUrl": "https://luvms012-rgb.github.io/yds/",
+  "publicUrl": "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/",
   "branch": "main",
-  "author": { "name": "luvms012-rgb", "email": "luvms012@gmail.com" }
+  "author": {
+    "name": "luvms012-rgb",
+    "email": "luvms012@gmail.com"
+  },
+  "_설명": "2026-11-17 publicUrl = 공식 주소(사내 서버, 사이트와 Figma 의 모든 링크). pagesUrl, repoUrl = 개발용 GitHub(push 와 배포 확인에만)."
 }

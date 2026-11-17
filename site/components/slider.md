@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/slider.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/slider.html -->
 
 # Slider
 
@@ -87,7 +87,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 tone: neutral(기본) / brand
 채움 길이는 --ds-slider-value(0~100%)이며, ybm-ds.js가 input마다 자동으로 갱신합니다.
 Figma: 높이 20 / 트랙 4 pill bg/neutral-weak-alpha / 채움 bg/neutral-solid(brand bg/brand-solid)

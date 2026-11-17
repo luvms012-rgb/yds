@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/search-field.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/search-field.html -->
 
 # Search Field
 
@@ -61,7 +61,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 입력 필드는 Text Field(outline large / medium)와 같습니다 / variant fill: 선 없이 bg/neutral, 모서리 shape/pill(앱 머리, 목록 위)
 cancel t05 Medium fg/neutral, 입력 필드와 사이 x3 / Enter로 form을 제출합니다(추천어 목록은 Search Suggestion)
 ```

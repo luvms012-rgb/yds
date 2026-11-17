@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/bottom-sheet.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/bottom-sheet.html -->
 
 # Bottom Sheet
 
@@ -119,7 +119,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 headerAlign: left(기본) / center   handle: data-handle
 Figma: 폭 채움 / 위쪽 shape/3xl / bg/layer-floating
   header 24/20/16/20 / gap x2 / title t07 SemiBold / desc t05 fg/neutral-muted

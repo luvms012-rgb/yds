@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/mega-menu.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/mega-menu.html -->
 
 # Mega Menu
 
@@ -76,7 +76,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 패널은 위 메뉴 바로 아래에 화면 전체 폭으로 펼쳐지고, 안쪽 폭은 --ds-megamenu-width / 묶음은 4개까지
 트리거를 누르면 열리고 닫힙니다. Esc, 바깥 영역, 다른 트리거를 누르면 닫힙니다 / 768 미만에서는 표시하지 않습니다(Menu Sheet 사용)
 ```

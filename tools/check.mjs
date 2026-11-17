@@ -26,7 +26,8 @@ import { loadBrands, brandCss, contrastOf } from './brands.mjs';
 
 const R = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = path.join(R, 'site');
-const PUBLIC = 'https://luvms012-rgb.github.io/yds/';
+const PUBLIC = 'https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/';  // 공식 주소 (2026-11-17)
+const DEV = JSON.parse(fs.readFileSync(path.join(R, 'deploy.config.json'), 'utf8')).pagesUrl;  // --live 는 개발용 GitHub Pages 를 본다
 const SITE_URL = PUBLIC + 'site/';
 const flags = new Set(process.argv.slice(2));
 const read = (p) => fs.readFileSync(path.join(R, p), 'utf8');
@@ -165,9 +166,10 @@ check('4 마크다운', ({ err }) => {
     const md = fs.existsSync(mdf) ? norm(fs.readFileSync(mdf, 'utf8')) : '';
     for (const e of list) if (!md.includes(norm(dedent(e.html)))) err(`예시 코드가 .md 에 없음 ${slug}: ${e.title}`);
   }
-  for (const f of ['site/yds.txt', 'site/yds-full.txt']) for (const m of read(f).matchAll(/https:\/\/luvms012-rgb\.github\.io\/yds\/([^\s)"'<>`]+)/g)) {
+  for (const f of ['site/yds.txt', 'site/yds-full.txt']) for (const m of read(f).matchAll(/https:\/\/imagesisa\.ybmnet\.co\.kr\/platform\/design_ybmnet_co_kr\/yds\/([^\s)"'<>`]+)/g)) {
     const u = m[1].split('#')[0].replace(/[.,]$/, '');
     if (/^dist\/brands\/(my-brand|브랜드이름)\.css$/.test(u)) continue; // 브랜드 안내의 예시 주소
+    if (/^v\d+\.\d+\.\d+\//.test(u)) continue; // 버전 폴더는 서버 묶음에만 있다(tools/server-pack.mjs 가 git 태그에서 꺼냄)
     if (!fs.existsSync(path.join(R, u))) err(`${f} 깨진 주소 ${u}`);
   }
   // 예전 이름은 이미 복사해 간 요청 글을 위해 같은 내용으로 남긴다
@@ -321,7 +323,7 @@ if (flags.has('--live')) {
     while (i < files.length) {
       const f = files[i++];
       try {
-        const r = await fetch(PUBLIC + encodeURI(f) + '?t=' + Date.now() + Math.random(), { cache: 'no-store' });
+        const r = await fetch(DEV + encodeURI(f) + '?t=' + Date.now() + Math.random(), { cache: 'no-store' });
         if (r.status !== 200) { errors.push(`라이브에 없음 ${f} (${r.status})`); continue; }
         if (sha(Buffer.from(await r.arrayBuffer())) !== sha(fs.readFileSync(path.join(R, f)))) errors.push(`라이브와 다름 ${f}`);
       } catch { errors.push(`받기 실패 ${f}`); }

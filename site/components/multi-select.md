@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/multi-select.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/multi-select.html -->
 
 # Multi Select
 
@@ -140,7 +140,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 Popover와 같이 data-ds-popover="id"로 열고, 바깥 영역이나 Esc를 누르면 닫힙니다.
 ybm-ds.js가 선택한 값을 Badge로 필드에 표시하고, data-max(기본 2)를 넘으면 +N으로 줄입니다.
 Figma: Trigger 높이 40, padding x2 x3_5, gap x2, shape/sm, bg/layer-default, 1px stroke/neutral-weak (열림 stroke/neutral-contrast), 값 사이 x1, +N t04 Medium fg/neutral-muted

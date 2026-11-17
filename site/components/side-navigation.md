@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/side-navigation.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/side-navigation.html -->
 
 # Side Navigation
 
@@ -120,7 +120,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 collapsed: data-collapsed (240 → 56)
 Figma: bg/canvas / header h64 padding x2(트리거 40 shape/sm / panel-left 20 fg/neutral-subtle 오른쪽 정렬)
   content padding 8/8/24/8 / 그룹 사이 x2 / group label padding x1_5 / Static t04 Bold fg/neutral-muted

@@ -1,4 +1,4 @@
-<!-- https://luvms012-rgb.github.io/yds/site/components/checkbox.html -->
+<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/checkbox.html -->
 
 # Checkbox
 
@@ -137,7 +137,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ### 크기와 여백
 
-```
+```text
 size: medium(기본 20) / large(24)   variant: square(기본) / ghost   tone: brand(기본) / neutral
 indeterminate: input.indeterminate = true (스크립트) → 가로선
 Figma: 행 min-h 32/36 / 위 6 / gap x2 / 박스 shape/xs / label t04/t05 fg/neutral
