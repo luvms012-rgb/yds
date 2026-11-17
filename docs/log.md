@@ -12,6 +12,19 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-17 회사 Windows 오후 (인수인계에서 옮김)
+
+- **공식 주소 교체**: imagesisa 주소를 https://design.ybmnet.co.kr/yds/ 로(deploy.config.json publicUrl, tokens/links.mjs, check.mjs, server-pack.mjs, 문서, 예시). site/src/services.json 의 cs, signup 화면 주소는 그대로.
+- **템플릿 보기 창**: 목록 카드를 누르면 새 창 대신 큰 DS Dialog 가 열린다. 위 줄 이름, 설명, PC / 모바일, 미리보기 / 코드, 닫기. 가운데 실제 템플릿, 좌우 화살표와 키보드로 다음 템플릿. 아래 줄 Figma, AI 요청 글 복사. 주소에 `?preview=이름`(공유, 새로 고침, 뒤로 가기로 닫기). iframe 은 `location.replace` 로 바꿔 기록이 쌓이지 않는다. 휴대폰은 전체 화면.
+- **템플릿 문서 보기**: AI 요청 글 상자와 HTML 내려받기 삭제(크게 보기, Figma 만).
+- **코드 버튼 삭제**: 컴포넌트와 Foundations 제목 아래는 Figma, Markdown 만.
+- **컴포넌트 왼쪽 메뉴**: 목록과 같은 분류 묶음(접는 아코디언, 찾는 동안은 펼침).
+- **사이트 찾기**: Esc 표시, 결과 설명 줄, 아래 키 안내 삭제.
+- **Updates**: 사용 현황 탭 삭제(소식, 요청 둘). 요청 탭은 사내 워크 게시판(`FEEDBACK_FORM`)으로, 요청하는 법에 제목, 내용 예시 상자와 "워크 게시판에 쓰기" 버튼.
+- **Get Started AI 절**: 요청 글 상자 셋 대신 프롬프트 상자 하나(한국어 요청 글 3개를 자동 타이핑, 보내기, 멈춤이 이어진다, 누르면 직접 쓰기, 동작 줄이기면 멈춘 글). 모서리는 xl.
+- **AI 안내서 경량화**: 쪽마다 반복 안내 문장 한 번만, 미리보기용 폭 style 제거, 긴 링크는 상대 주소, llms.txt 와 llms-full.txt 는 yds.txt 를 가리키는 한 줄.
+- site/CLAUDE.md 를 위 내용으로 고침(템플릿 보기 창, 메뉴 묶음, 찾기, 요청 탭 워크 게시판, 사용 현황 삭제, 프롬프트 상자).
+
 ### 2026-11-17 회사 Windows 오전 (인수인계에서 옮김)
 
 - **공식 주소를 사내 서버로**(GitHub 배포 3c5adc03): GitHub 는 개발용(push, 개발 미리보기 Pages)이고 사이트와 Figma 에 링크하지 않는다. 위 막대와 푸터 GitHub 아이콘 삭제, 루트 카탈로그 GitHub 버튼은 "문서 사이트", 옛 루트 yds.txt, yds-full.txt 삭제.
