@@ -370,15 +370,6 @@ transition: background-color var(--ds-duration-fast) var(--ds-easing-standard), 
 .site-req__send { margin-top: var(--ds-space-x4); }
 .site-doc > .site-pagetabs ~ .ds-codeblock + .ds-codeblock { margin-top: var(--ds-space-x2); }
 .site-pagetabs .site-newdot { margin-left: var(--ds-space-x1); }
-.site-doc .site-req { min-width: 640px; }
-.site-req td { vertical-align: top; }
-.site-req__title { display: block; color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
-.site-req__meta { display: block; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-variant-numeric: tabular-nums; }
-.site-inline :is(.site-req__title, .site-req__meta) { display: inline; }
-.site-inline .site-req__meta { margin-left: var(--ds-space-x2); }
-.site-doc .site-req :is(td, th):is(:nth-child(2), :nth-child(3)) { white-space: nowrap; word-break: keep-all; }
-.site-req th:first-child { width: 56%; }
-.site-req th:last-child { width: 24%; }
 .site-rolechips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); margin-top: var(--ds-space-x3); }
 .site-rolechip { display: inline-flex; align-items: center; padding: 6px var(--ds-space-x3) 6px var(--ds-space-x2); border-radius: var(--ds-shape-md); background: var(--ds-color-bg-neutral-weak-alpha); }
 .site-rolechip code { background: none !important; padding: 0 !important; font-size: var(--ds-font-size-t03) !important; }

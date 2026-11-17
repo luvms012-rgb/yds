@@ -258,7 +258,7 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "YDS 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기, "푸터로 통일"): 입구는 푸터 더 보기 하나. 폼 주소가 비어 있으면 만들지 않는다
 // 요청 현황은 Updates > 요청 탭에서만 보인다(11-14 사용자 "푸터에 요청 현황 제거, 업데이트에서만"). 새 소식이나 새 요청은 Updates 메뉴와 탭에 점으로 알린다
-// 2026-11-17 사용자: 의견은 따로 받지 않고 사내 워크 게시판에서 받는다(구글 폼 대신). 요청 탭에 제목과 내용 작성 예시를 둔다(REQ_EXAMPLE)
+// 2026-11-17 사용자: 의견은 따로 받지 않고 사내 워크 게시판에서 받는다(구글 폼 대신). 요청 탭에는 제목 예시만 둔다(11-18). 푸터와 Get Started 안내도 요청 방법, 워크 게시판으로
 const FEEDBACK_FORM = 'https://yteam.ybmnet.co.kr/work/dashboard.php';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
@@ -270,7 +270,7 @@ const FOUND = az([['color', 'Color'], ['typography', 'Typography'], ['spacing', 
 // NEW 표시의 기준 값(2026-11-16 사용자 "소식과 요청 업데이트만 NEW"): 문구만 고친 것은 세지 않는다.
 // 요청은 줄마다 접수한 날, 상태, 반영한 날, 요청 수만 본다(새 요청, 상태 바뀜). 소식은 맨 위 날짜와 항목 수, 영역만 본다(새 소식 줄)
 const hash10 = (v) => crypto.createHash('sha1').update(JSON.stringify(v)).digest('hex').slice(0, 10);
-const LATEST_REQUEST = (() => { const r = readJson('site/src/requests.json').requests; return r.length ? hash10(r.map((x) => [x.date, x.type, x.status, x.done ? x.done[0] : '', x.count || 1])) : ''; })();
+const LATEST_REQUEST = '';  // 2026-11-18 요청 목록을 지워 요청 탭 점은 뜨지 않는다(site.js 는 빈 값이면 띄우지 않는다)
 const LATEST_UPDATE = (() => { const { date, sections } = readJson('site/src/updates.json').releases[0]; return hash10([date, sections.map((s) => [s.type, s.items.map((i) => i[0])])]); })();
 const NAV = [['get-started', 'Get Started', 'index.html'], ['foundations', 'Foundations', `foundations/${FOUND[0][0]}.html`], ['components', 'Components', 'components/index.html'], ['templates', 'Templates', 'templates/index.html'], ['updates', 'Updates', 'updates.html']];
 // Get Started 문서 (왼쪽 메뉴 없음): 첫 화면 하나 (AI & Tools는 11-04 합침)
@@ -349,7 +349,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
   <div class="site-footer__brand"><img src="${root}assets/logo-ybmnet.svg" alt="YBM NET" width="81" height="24"></div>
   <nav class="site-footer__nav" aria-label="사이트 메뉴">
     <div><p class="site-footer__title">메뉴</p>${NAV.map(([, l, h]) => `<a href="${root}${h}">${l}</a>`).join('')}</div>
-    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a>${FEEDBACK_FORM ? `<a href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>` : ''}</div>
+    <div><p class="site-footer__title">더 보기</p>${SHOW_THEMES ? `<a href="${root}themes/index.html">Themes</a>` : ''}<a href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma</a><a href="${root}updates-requests.html">요청 방법</a></div>
   </nav>
 </footer>`;
   // h2에 제목 링크를 달고 목차를 만든다
@@ -464,7 +464,7 @@ const AI_EXAMPLES = [
 // 2026-11-17 사용자 "이 부분 다시 만들거야": 요청 글 상자 3개를 빼고 프롬프트 상자 샘플 하나(입력 칸이 글에 맞춰 스프링으로 늘고, 보내면 멈추기 버튼으로 바뀐다. 생각 중, 초안 완료 줄은 뺐다). 움직임은 site.js "프롬프트 상자"
 // 저절로 쳐지는 요청 글은 AI_EXAMPLES 세 갈래를 실제 문장으로 채운 것
 // 11-17 사용자 "한 번만 타이핑하고 정지, 버튼은 회색 그대로, 자연스러운 일반 문장으로": 요청 글 하나를 한 번 쳐 놓고 멈춘다. 버튼은 꾸밈(누르지 않음)
-const PROMPT_TEXTS = [`수강 신청 화면을 만들려고 해. 템플릿에 비슷한 화면이 있으면 참고해서 YDS로 제작해 줘.\n${SITE_URL}yds.txt`];  // 문장은 사용자 예시 그대로(11-17), 주소는 AI 가 YDS 를 읽게 다음 줄에
+const PROMPT_TEXTS = [`수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.\nYDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.\n${SITE_URL}yds.txt`];  // 문장은 사용자가 고른 그대로(11-18), 주소는 AI 가 YDS 를 읽게 다음 줄에
 const PROMPT_BOX = `<div class="site-pbox" data-site-pbox data-prompts="${esc(JSON.stringify(PROMPT_TEXTS))}">
   <textarea class="site-pbox__field" rows="1" readonly aria-label="AI 요청 글 예시">${esc(PROMPT_TEXTS[0])}</textarea>
   <span class="site-pbox__send" aria-hidden="true"><i class="ds-icon ds-icon--arrow-up ds-icon--sm"></i></span>
@@ -539,7 +539,7 @@ ${PROMPT_BOX}
   <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
   <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
 </ol>
-<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">의견 보내기</a>로 팀 초대를 요청하세요.</p></div>
+<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">워크 게시판</a>에 팀 초대를 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
 <p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
@@ -1177,35 +1177,15 @@ ${RELEASES.map((r) => `<section class="site-group site-release">
 </section>`).join('\n')}`,
 });
 
-// 요청 (2026-11-14 사용자 "요청 현황 공개", 추천대로 Updates 안 두 번째 탭, 목록은 site/src/requests.json 을 담당자가 고친다)
-// 요청 → 반영 → 소식이 한 곳에서 이어진다. 상태 순서: 검토 중, 접수, 반영됨(최근 반영 먼저), 보류
-const REQUESTS = readJson('site/src/requests.json').requests;
-// 워크 게시판 작성 예시 (2026-11-17 사용자 "간단하게 타이틀과 내용을 예시로 쉽게"). [ ] 는 쓰는 사람이 바꾸는 곳(파랑 글자)
-const REQ_EXAMPLE = {
-  title: '[YDS] Date Picker 기간 선택 추가 요청',
-  body: `위치: YDS > Components > Date Picker
-요청 사항: 시작일과 종료일을 한 번에 고르는 기간 선택을 추가해 주세요.
-쓰는 곳: [서비스 이름] / [화면 이름]
-참고: [화면 캡처나 주소]`,
-};
-const REQ_ORDER = ['검토 중', '접수', '반영됨', '보류'];
-const REQ_TONE = { '검토 중': 'informative', '접수': 'neutral', '반영됨': 'positive', '보류': 'warning' };
-const shortDate = (d) => d.slice(5).replace('-', '.');
-const reqRows = [...REQUESTS].sort((x, y) => REQ_ORDER.indexOf(x.status) - REQ_ORDER.indexOf(y.status) || ((y.done || [y.date])[0]).localeCompare((x.done || [x.date])[0]));
+// 요청 탭 (2026-11-18 사용자 "요청 표 모두 삭제, 요청 방법은 아주 심플하게, 내용은 자유롭게, 폼은 불필요"): 제목 예시 하나와 워크 게시판 버튼만
+const REQ_TITLE = '[디자인시스템] Date Picker 기간 선택 추가 요청';
 write({
-  file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 현황', layout: 'page',
-  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">사내 워크 게시판으로 들어온 요청과 처리 상태입니다.</p></header>
+  file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 방법', layout: 'page',
+  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS 요청은 사내 워크 게시판으로 받습니다.</p></header>
 ${updTabs('updates-requests.html')}
-${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
-  `<span class="ds-table__stack"><span class="site-req__title">${esc(r.title)}</span><span>${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span></span>`,
-  esc(r.type),
-  `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
-  r.done ? `<span class="ds-table__stack"><span>${inline(r.done[1])}</span><span>${shortDate(r.done[0])} 반영</span></span>` : r.reason ? inline(r.reason) : '',  // reason: 보류나 검토 중일 때 결정 이유
-])).replace('class="ds-table"', 'class="ds-table site-req"')}
-<h2 id="how">요청하는 법</h2>
-<p>사내 워크 게시판에 아래 예시처럼 제목과 내용을 적어 올려 주세요.</p>
-${markBlanks(codeblock(REQ_EXAMPLE.title, 'text', ' data-wrap', '제목'))}
-${markBlanks(codeblock(REQ_EXAMPLE.body, 'text', ' data-wrap', '내용'))}
+<h2 id="how">요청 방법</h2>
+<p>제목을 아래처럼 적고, 내용은 자유롭게 써 주세요.</p>
+${codeblock(REQ_TITLE, 'text', ' data-wrap', '제목')}
 <div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '워크 게시판에 쓰기', 'neutralSolid', 'small', 'square-pen')}</div>`,
 });
 

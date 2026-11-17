@@ -465,15 +465,6 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-req__send { margin-top: var(--ds-space-x4); }  /* 워크 게시판에 쓰기는 작성 예시 바로 아래 (11-17) */
 .site-doc > .site-pagetabs ~ .ds-codeblock + .ds-codeblock { margin-top: var(--ds-space-x2); }
 .site-pagetabs .site-newdot { margin-left: var(--ds-space-x1); }  /* Updates 탭의 새 내용 점 (11-14) */
-.site-doc .site-req { min-width: 640px; }
-.site-req td { vertical-align: top; }
-.site-req__title { display: block; color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-medium); }
-.site-req__meta { display: block; color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t03); line-height: var(--ds-line-height-t03); font-variant-numeric: tabular-nums; }
-.site-inline :is(.site-req__title, .site-req__meta) { display: inline; }  /* 사용 현황: 한 칸 안 두 정보는 가로 한 줄 (11-16 사용자) */
-.site-inline .site-req__meta { margin-left: var(--ds-space-x2); }
-.site-doc .site-req :is(td, th):is(:nth-child(2), :nth-child(3)) { white-space: nowrap; word-break: keep-all; }
-.site-req th:first-child { width: 56%; }  /* 요청 칸을 넓게 (11-17 사용자) */
-.site-req th:last-child { width: 24%; }
 
 /* ---- Color Roles: 역할마다 대표 토큰 견본, 토큰 표 설명 ---- */
 .site-rolechips { display: flex; flex-wrap: wrap; gap: var(--ds-space-x2); margin-top: var(--ds-space-x3); }

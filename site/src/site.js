@@ -1132,7 +1132,7 @@ document.addEventListener("click", function (e) {
   var field = box.querySelector(".site-pbox__field");
   var text = field.value;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var cs = getComputedStyle(field), lh = parseFloat(cs.lineHeight) || 24, pad = parseFloat(cs.paddingTop) || 0, MAX = lh * 6 + pad;
+  var cs = getComputedStyle(field), lh = parseFloat(cs.lineHeight) || 24, pad = parseFloat(cs.paddingTop) || 0, MAX = lh * 8 + pad;  /* 휴대폰에서 요청 글과 주소가 모두 보이게 8줄 (11-18) */
   var H = { x: lh + pad, v: 0, t: lh + pad, k: 420, c: 34 };
   function target() { field.style.height = "auto"; H.t = Math.min(field.scrollHeight, MAX); field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden"; field.style.height = H.x + "px"; field.scrollTop = 0; }
   if (reduce || !text) { field.style.height = "auto"; field.style.height = Math.min(field.scrollHeight, MAX) + "px"; return; }

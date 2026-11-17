@@ -5,7 +5,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 ## 만들기와 파일
 - 공식 주소 <https://design.ybmnet.co.kr/yds/site/>(사내 서버, 11-17), 개발 미리보기는 GitHub Pages, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
 - `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check`. DS(components.json, dist/*.css 머리 주석, tokens.css, icons.css, ybm-ds.js, 루트 index.html 예시, README 6.2)를 읽어 페이지를 만든다.
-- 손으로 쓰는 것: `site/build.mjs`, `site/md.mjs`, `site/src/`(site.css, site.js, figma-notes.json, templates.json, updates.json, requests.json, covers.html, anatomy-*.{json,html}, search-ko.json, examples/), `site/templates/gen/*.mjs`.
+- 손으로 쓰는 것: `site/build.mjs`, `site/md.mjs`, `site/src/`(site.css, site.js, figma-notes.json, templates.json, updates.json, covers.html, anatomy-*.{json,html}, search-ko.json, examples/), `site/templates/gen/*.mjs`.
 - 생성물(직접 고치지 않음): `site/index.html`, `site/get-started/`, `site/foundations/`, `site/components/`, `site/templates/*.html`, `site/templates/pages/`, `site/assets/`, `site/*.txt`, `site/ai/`.
 - 사이트 CSS, JS 와 DS 파일 주소에는 내용 해시 `?v=`(build.mjs `ASSET_V`, `DIST_V`, kit.mjs `DIST_V`).
 - 제안만 하는 정책은 PROPOSAL.md(사용자가 고른 것만 넣는다). 레퍼런스 분석은 로컬 전용 REFERENCE-ANALYSIS.md.
@@ -45,17 +45,17 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 순서: 리드 한 문장 → 구조 카드 3개 → AI와 함께 시작하기 → Figma로 시작하기 → 개발 시작하기 → 파일 표. 원본은 build.mjs.
 - 구조 세 층: YDS(모두 쓰는 컴포넌트, 토큰, 규칙) / 브랜드(색, 모서리, 글꼴처럼 모양만 바꾸는 값의 묶음, 여러 서비스가 같이 쓰거나 서비스 하나가 따로 가짐) / 서비스(YDS + 브랜드 하나, 없으면 YDS 기본). 서비스 하나만 쓰는 색도 브랜드 파일에. 로고, 사진, 말투는 브랜드 범위 밖. 기본 브랜드 색은 palette/brand 파랑(600 #2563eb)으로 둔다(사용자 결정, 다시 묻지 않는다).
 - 절 제목 아래 설명은 시작 방법 세 절에만 한 문장. AI 절 "아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요."
-- AI 절은 프롬프트 상자 하나(build.mjs `PROMPT_TEXTS`, `PROMPT_BOX`): 자연스러운 요청 글 하나 "수강 신청 화면을 만들려고 해. 템플릿에 비슷한 화면이 있으면 참고해서 YDS로 제작해 줘." 와 다음 줄 yds.txt 주소. 인위적인 틀 문장("아래 파일을 읽고")은 쓰지 않는다. 모서리 xl. 문구는 사용자가 준 그대로이고 바꿀 때는 묻는다.
+- AI 절은 프롬프트 상자 하나(build.mjs `PROMPT_TEXTS`, `PROMPT_BOX`): 자연스러운 요청 글 하나 "수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어." / "YDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어." 두 줄과 다음 줄 yds.txt 주소(11-18). 인위적인 틀 문장("아래 파일을 읽고")은 쓰지 않는다. 모서리 xl. 문구는 사용자가 준 그대로이고 바꿀 때는 묻는다.
 - 개발 시작하기 설치 코드 탭: 버전 고정(기본) / 최신 / 규칙 파일. 첫 줄 주석 `<!-- 서비스 CSS보다 앞에 -->` 와 브랜드 CSS 줄(예시 이름 my-brand, 특정 서비스 이름 금지).
 - 넣지 않는 것(다시 넣자고 하기 전에는 제안하지 않는다): 제목 아래 Figma, 코드, Markdown 버튼 줄, 첫 화면 시연, 원칙 카드, 역할별 입구, 새 소식 묶음, 카드 개수, 푸터 저작권, 둘러보기, 브랜드 등록 요청 버튼, yds-full.txt 첨부 안내, 규칙 파일 옆 도구 이름, 적용 순서 5단계, Figma Do / Don't 표, 첫 컴포넌트 예시, 브랜드 카드 링크와 배지, 제목 옆 링크 복사 Tooltip, 디자이너에게 묻기, 테마 고르기 요청 글, 업그레이드 명령, 예시 앱, CLI.
 
 ## Updates
 - 소식(`site/src/updates.json` 맨 위 그날 날짜): DS 시스템 변경과 새 템플릿 추가만. 종류는 "새 기능", "변경된 부분". 항목 앞 영역 배지는 컴포넌트, 템플릿, 아이콘, 토큰, 브랜드, 규칙 중 하나("DS" 는 쓰지 않는다). 사이트 꾸밈, 템플릿 고치기는 적지 않는다. 버전을 올리면(`node sync.mjs release`) 맨 위 소식에 버전이 붙는다.
-- 요청 탭(`site/src/requests.json`): 사용자가 "이 요청 추가", "반영됨으로" 하면 Claude 가 고쳐 배포. 요청자는 소속만(이름은 공개하지 않는다, 사용자 확인), 같은 요청은 count. 제목과 반영 내용은 줄이지 않은 합니다체 문장. 상태 순서 검토 중, 접수, 반영됨, 보류. 탭 → 목록 → 의견 보내기(오른쪽). 결정 기준 칸은 넣지 않는다. 비면 Empty.
+- 요청 탭(11-18 사용자 "요청 표 모두 삭제, 요청 방법은 아주 심플하게, 폼은 불필요"): 요청 목록 표는 없다(requests.json 삭제, 되살리려면 git 기록). "요청 방법" 제목, 한 문장, 제목 예시 Code Block 하나(build.mjs `REQ_TITLE`), 워크 게시판에 쓰기 버튼만. 내용 양식은 두지 않는다.
 - 사용 현황 탭은 11-17 사용자가 지웠다(tools/usage.mjs 와 usage.json 은 남음, 다시 하자고 하기 전에는 제안하지 않는다).
 - 두 탭 모두 탭 아래 40 에서 내용 시작, 탭 이름과 겹치는 큰 제목은 두지 않는다.
-- NEW 표시(Updates 메뉴와 탭 점): 기준 값은 `assets/latest.json`(build.mjs `LATEST_UPDATE` 맨 위 날짜, 항목 수, 영역 / `LATEST_REQUEST` 줄마다 날짜, 상태, 반영한 날, 수)이고 모든 페이지가 캐시 없이 읽는다. 문구만 고치면 뜨지 않고, 못 읽으면 띄우지 않는다. 본 기록은 localStorage ybm-site-updates-seen, ybm-site-requests-seen.
-- 요청은 사내 워크 게시판(build.mjs `FEEDBACK_FORM`)으로 받는다. 요청 탭 "요청하는 법" 에 제목, 내용 예시(`REQ_EXAMPLE`)와 워크 게시판에 쓰기 버튼. 게시판 글은 사용자가 붙여 주면 요청 탭에 올린다.
+- NEW 표시(Updates 메뉴와 탭 점): 기준 값은 `assets/latest.json`(build.mjs `LATEST_UPDATE` 맨 위 날짜, 항목 수, 영역)이고 모든 페이지가 캐시 없이 읽는다. 문구만 고치면 뜨지 않고, 못 읽으면 띄우지 않는다. 요청 탭 점은 목록이 없어 뜨지 않는다(`LATEST_REQUEST` 빈 값). 본 기록은 localStorage ybm-site-updates-seen.
+- 요청은 사내 워크 게시판(build.mjs `FEEDBACK_FORM`)으로 받는다. 푸터 더 보기는 "요청 방법"(요청 탭), Get Started Figma 안내의 팀 초대 요청도 워크 게시판 링크.
 
 ## Foundations 와 컴포넌트 문서
 - Foundations: 항목마다 한 쪽, ABC 순, 큰 그림 없음. 구성은 개요 → 토큰 표(tokens.css 에서 읽음) → 코드에서 쓰기 → 사용 지침. Color, Iconography 는 탭으로 나눈다(build.mjs `FD_TABS`).
