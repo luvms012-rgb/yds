@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color-palette.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/color-palette.html -->
 
 # Color
 

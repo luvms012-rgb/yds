@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/motion.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/motion.html -->
 
 # Motion
 
@@ -40,8 +40,6 @@
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 화면의 변화를 자연스럽게 이어 줄 때만 움직임을 사용합니다. |
-| **Do** | 움직임 줄이기 설정을 따릅니다. |
-| **Don't** | 시선을 끌기 위한 장식용 움직임은 넣지 않습니다. |
+- Do: 화면의 변화를 자연스럽게 이어 줄 때만 움직임을 사용합니다.
+- Do: 움직임 줄이기 설정을 따릅니다.
+- Don't: 시선을 끌기 위한 장식용 움직임은 넣지 않습니다.

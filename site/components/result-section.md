@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/result-section.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/result-section.html -->
 
 # Result Section
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <section class="ds-result" [data-size="medium"]>
@@ -34,8 +34,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | large medium |
@@ -46,12 +44,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 신청 완료, 오류, 빈 결과처럼 결과가 화면의 중심일 때 사용합니다. |
-| **Do** | 다음 동작을 안내하는 주요 버튼은 하나만 위에 배치합니다. |
-| **Do** | 보조 동작은 ghost 버튼으로 아래에 배치합니다. |
-| **Do** | 목록이 비어 있다는 짧은 안내에는 Empty를 사용합니다. |
+- Do: 신청 완료, 오류, 빈 결과처럼 결과가 화면의 중심일 때 사용합니다.
+- Do: 다음 동작을 안내하는 주요 버튼은 하나만 위에 배치합니다.
+- Do: 보조 동작은 ghost 버튼으로 아래에 배치합니다.
+- Do: 목록이 비어 있다는 짧은 안내에는 Empty를 사용합니다.
 
 ## 예시
 
@@ -60,7 +56,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 신청 완료처럼 결과가 화면의 중심일 때 Result Section을 가운데에 배치합니다. 다음 동작은 주요 버튼 하나로 표시하고, 나머지는 ghost 버튼으로 아래에 배치합니다.
 
 ```html
-<div class="u-col u-full" style="max-width: 375px">
+<div class="u-col u-full">
   <header class="ds-appbar">
     <div class="ds-appbar__left"></div>
     <div class="ds-appbar__main">
@@ -87,8 +83,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

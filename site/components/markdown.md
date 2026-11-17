@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/markdown.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/markdown.html -->
 
 # Markdown
 
@@ -6,7 +6,7 @@ AI 답변처럼 제목, 목록, 표가 섞인 글을 표시하는 컴포넌트�
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-markdown">…변환된 HTML…</div>
@@ -14,20 +14,16 @@ AI 답변처럼 제목, 목록, 표가 섞인 글을 표시하는 컴포넌트�
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: 본문 t04, 제목과 블록 간격
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. |
-| **Do** | 코드는 Code Block에 넣습니다. |
-| **Do** | 근거는 번호나 출처 칩(Citation)으로 표시합니다. |
-| **Do** | 변환된 HTML을 감싸는 틀로만 사용합니다. |
-| **Don't** | 안쪽 제목, 문단, 목록의 크기와 간격을 직접 바꾸지 않습니다. |
-| **Don't** | 화면 제목이나 버튼 같은 UI 글자에는 사용하지 않습니다. |
+- Do: AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다.
+- Do: 코드는 Code Block에 넣습니다.
+- Do: 근거는 번호나 출처 칩(Citation)으로 표시합니다.
+- Do: 변환된 HTML을 감싸는 틀로만 사용합니다.
+- Don't: 안쪽 제목, 문단, 목록의 크기와 간격을 직접 바꾸지 않습니다.
+- Don't: 화면 제목이나 버튼 같은 UI 글자에는 사용하지 않습니다.
 
 ## 예시
 
@@ -36,7 +32,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 AI 답변처럼 제목, 목록, 굵은 글씨가 섞인 글은 변환된 HTML을 Markdown으로 감싸기만 하면 됩니다. 크기와 간격이 정해져 있어 답변마다 모양이 일정합니다.
 
 ```html
-<div class="u-col u-gap-4 u-full" style="max-width: 480px">
+<div class="u-col u-gap-4 u-full">
   <div class="ds-chat-bubble" data-sender="user">환불은 언제까지 할 수 있어요?</div>
   <div class="ds-markdown">
     <p>수강을 시작했는지에 따라 달라요.</p>
@@ -55,7 +51,7 @@ AI 답변처럼 제목, 목록, 굵은 글씨가 섞인 글은 변환된 HTML을
 글 사이의 코드는 Markdown 안에 Code Block으로 넣어 언어 이름과 복사 버튼을 함께 표시합니다. 단어 하나 정도의 짧은 코드는 `code`로 글 안에 넣습니다.
 
 ```html
-<div class="ds-markdown u-full" style="max-width: 480px">
+<div class="ds-markdown u-full">
   <p>고른 항목 수는 <code>filter</code>로 거른 뒤 길이를 세면 돼요.</p>
   <figure class="ds-codeblock">
     <figcaption class="ds-codeblock__header">
@@ -73,7 +69,7 @@ AI 답변처럼 제목, 목록, 굵은 글씨가 섞인 글은 변환된 HTML을
 근거가 된 문장 뒤에 번호 Citation을 붙이고, 답변 끝에 출처 이름 칩을 모아 표시합니다. 사용자가 답변의 근거를 바로 확인할 수 있어 답변을 신뢰할 수 있습니다.
 
 ```html
-<div class="ds-markdown u-full" style="max-width: 480px">
+<div class="ds-markdown u-full">
   <p>모의고사를 3회 넘게 풀면 해설 강의가 열려요.<a class="ds-citation" data-type="number" href="#" aria-label="출처 1">1</a> 해설 강의는 30일 동안 다시 볼 수 있어요.<a class="ds-citation" data-type="number" href="#" aria-label="출처 2">2</a></p>
   <p>
     <a class="ds-citation" href="#"><span class="ds-citation__icon"><i class="ds-icon ds-icon--file-text" aria-hidden="true"></i></span><span class="ds-citation__label">모의고사 안내</span></a>

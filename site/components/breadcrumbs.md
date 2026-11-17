@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/breadcrumbs.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/breadcrumbs.html -->
 
 # Breadcrumbs
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <nav class="ds-breadcrumbs" aria-label="현재 위치">
@@ -20,20 +20,16 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: 현재 항목 aria-current=page
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 웹 화면에서 깊이가 2단계 이상일 때만 사용합니다. |
-| **Do** | 모바일 앱에서는 뒤로 가기 버튼이 있는 헤더를 사용합니다. |
-| **Do** | 페이지 제목 위에 배치합니다. |
-| **Do** | 항목 이름은 해당 페이지 제목과 같게 작성합니다. |
-| **Don't** | 마지막 항목(현재 화면)은 링크로 만들지 않습니다. |
-| **Don't** | 5단계를 넘기지 않습니다. |
+- Do: 웹 화면에서 깊이가 2단계 이상일 때만 사용합니다.
+- Do: 모바일 앱에서는 뒤로 가기 버튼이 있는 헤더를 사용합니다.
+- Do: 페이지 제목 위에 배치합니다.
+- Do: 항목 이름은 해당 페이지 제목과 같게 작성합니다.
+- Don't: 마지막 항목(현재 화면)은 링크로 만들지 않습니다.
+- Don't: 5단계를 넘기지 않습니다.
 
 ## 예시
 
@@ -42,7 +38,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 웹에서 두 단계 넘게 들어간 화면은 제목 위에 Breadcrumbs를 배치해 현재 위치를 표시합니다. 마지막 항목은 현재 화면이므로 링크로 만들지 않습니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 640px">
+<div class="u-col u-gap-3">
   <nav class="ds-breadcrumbs" aria-label="현재 위치">
     <ol>
       <li><a href="#">홈</a></li>

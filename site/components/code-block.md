@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/code-block.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/code-block.html -->
 
 # Code Block
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <figure class="ds-codeblock">
@@ -27,8 +27,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `header` | true false |
@@ -43,12 +41,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다. |
-| **Do** | 코드는 Code Block에 넣습니다. |
-| **Do** | 근거는 번호나 출처 칩(Citation)으로 표시합니다. |
-| **Don't** | 5줄 미만 코드에는 줄 번호를 넣지 않습니다. |
+- Do: AI 답변처럼 서식 있는 글은 Markdown으로 감쌉니다.
+- Do: 코드는 Code Block에 넣습니다.
+- Do: 근거는 번호나 출처 칩(Citation)으로 표시합니다.
+- Don't: 5줄 미만 코드에는 줄 번호를 넣지 않습니다.
 
 ## 예시
 
@@ -57,7 +53,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 Markdown 답변 안의 코드는 Code Block에 넣고, 헤더에 언어 이름과 복사 버튼을 배치합니다. 복사 버튼에 `data-ds-copy`를 붙이면 누를 때 코드가 복사됩니다.
 
 ```html
-<div class="ds-markdown" style="width: 100%; max-width: 560px">
+<div class="ds-markdown">
   <p>오늘 날짜를 우리말 형식으로 보여 주려면 <code>toLocaleDateString</code>을 쓰면 돼요.</p>
   <figure class="ds-codeblock">
     <figcaption class="ds-codeblock__header">
@@ -77,7 +73,7 @@ console.log(text); // 2026. 11. 4.</code></pre>
 한 줄이 긴 코드는 `data-wrap`을 붙여 가로 스크롤 없이 줄을 바꿔 표시합니다. 주소처럼 끝까지 읽고 그대로 붙여 넣어야 하는 코드에 사용합니다.
 
 ```html
-<div class="ds-markdown" style="width: 100%; max-width: 480px">
+<div class="ds-markdown">
   <p>아래 줄을 페이지의 <code>&lt;head&gt;</code> 안에 붙여 넣어 주세요.</p>
   <figure class="ds-codeblock" data-wrap>
     <figcaption class="ds-codeblock__header">
@@ -94,7 +90,7 @@ console.log(text); // 2026. 11. 4.</code></pre>
 명령 한 줄처럼 짧고 무엇인지 분명한 코드는 헤더를 빼고 코드 영역만 표시합니다. 순서 안내 사이에 넣어도 글의 흐름이 끊기지 않습니다.
 
 ```html
-<div class="ds-markdown" style="width: 100%; max-width: 480px">
+<div class="ds-markdown">
   <h3>프로젝트 받기</h3>
   <ol>
     <li>터미널을 열어요.</li>

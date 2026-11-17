@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/popover.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/popover.html -->
 
 # Popover
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <span class="ds-popover-anchor">
@@ -36,8 +36,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `actions` | single pair none |
@@ -52,10 +50,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 화면을 막고 확인받아야 할 때는 Dialog를 사용합니다. |
-| **Don't** | Popover 안에서 다른 Popover를 열지 않습니다. |
+- Do: 화면을 막고 확인받아야 할 때는 Dialog를 사용합니다.
+- Don't: Popover 안에서 다른 Popover를 열지 않습니다.
 
 ## 예시
 
@@ -64,7 +60,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 공유처럼 버튼 옆에서 끝나는 작은 작업은 Popover로 엽니다. 바깥을 누르면 닫히므로, 화면을 막고 꼭 확인받아야 할 때는 Dialog를 사용합니다.
 
 ```html
-<div class="u-col u-gap-3 u-full" style="max-width: 480px">
+<div class="u-col u-gap-3 u-full">
   <div class="u-flex u-center u-between u-gap-2">
     <span class="ds-t06 ds-fw-bold">11월 학습 계획</span>
     <span class="ds-popover-anchor">
@@ -102,7 +98,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 필터처럼 선택한 뒤 적용하는 작업은 하단에 취소와 적용 버튼을 배치하고 상단 닫기 버튼은 뺍니다. 닫기 버튼을 빼면 하단 버튼에 `data-ds-close`를 붙여 창이 반드시 닫히게 합니다.
 
 ```html
-<div class="u-col u-gap-3 u-full" style="max-width: 480px">
+<div class="u-col u-gap-3 u-full">
   <div class="u-flex u-center u-between u-gap-2">
     <span class="ds-t06 ds-fw-bold">수강 내역</span>
     <span class="ds-popover-anchor">
@@ -140,8 +136,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-content-item.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/select-content-item.html -->
 
 # Select Content / Item
 
@@ -6,7 +6,7 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-select-content" role="listbox" [data-size="medium"]>
@@ -33,13 +33,11 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 항목 이름은 짧은 명사로 작성합니다. 동작이나 덧붙이는 설명은 이름에 넣지 않습니다. |
-| **Do** | 선택 칸 폭에서 이름이 잘리지 않는지 확인하세요. |
-| **Do** | 선택지는 한 가지 기준(자주 사용하는 순, 크기순, 시간순)으로 정렬합니다. 성격이 다른 선택지는 묶음으로 나누세요. |
-| **Do** | 값을 선택할 때는 Select, 동작을 실행할 때는 Menu를 사용합니다. |
-| **Don't** | "전체 선택"처럼 다른 선택지를 바꾸는 항목은 넣지 않습니다. 단, 하나만 선택하는 Select에서 "없음"도 답이 될 수 있으면 넣습니다. |
+- Do: 항목 이름은 짧은 명사로 작성합니다. 동작이나 덧붙이는 설명은 이름에 넣지 않습니다.
+- Do: 선택 칸 폭에서 이름이 잘리지 않는지 확인하세요.
+- Do: 선택지는 한 가지 기준(자주 사용하는 순, 크기순, 시간순)으로 정렬합니다. 성격이 다른 선택지는 묶음으로 나누세요.
+- Do: 값을 선택할 때는 Select, 동작을 실행할 때는 Menu를 사용합니다.
+- Don't: "전체 선택"처럼 다른 선택지를 바꾸는 항목은 넣지 않습니다. 단, 하나만 선택하는 Select에서 "없음"도 답이 될 수 있으면 넣습니다.
 
 ## 예시
 
@@ -48,7 +46,7 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 최근에 선택한 장소와 다른 장소처럼 성격이 다른 선택지는 그룹 이름으로 나눕니다. 그룹 안에서는 가나다순처럼 한 가지 기준으로 정렬합니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <span class="ds-field__label" id="select-content-item-ex1-label">시험 장소</span>
   </div>
@@ -79,7 +77,7 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 항목 이름은 "3개월"처럼 짧은 명사로 작성하고, 가격 같은 부가 정보는 `ds-select-item__desc`에 표시합니다. 기간이 짧은 것부터 한 가지 기준으로 정렬합니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <span class="ds-field__label" id="select-content-item-ex2-label">수강 기간</span>
   </div>
@@ -98,8 +96,6 @@ Select를 눌렀을 때 펼쳐지는 선택지 목록입니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

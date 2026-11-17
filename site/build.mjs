@@ -24,7 +24,7 @@ const DS = path.resolve(SITE, '..');
 const read = (p) => fs.readFileSync(path.join(DS, p), 'utf8');
 const readJson = (p) => JSON.parse(read(p));
 // 2026-11-17 사용자: 공식 주소는 사내 서버(deploy.config.json publicUrl). GitHub 는 개발용이라 화면에 링크하지 않는다
-const PUBLIC = 'https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds';
+const PUBLIC = 'https://design.ybmnet.co.kr/yds';
 const RAW = PUBLIC;  // CSS 원본도 같은 서버 주소에서 읽는다
 const FIGMA = 'https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=';
 const FIGMA_HOME = FIGMA + '3059-92'; // Figma Get Started 페이지: 파일 전체로 가는 링크는 모두 여기로
@@ -258,7 +258,8 @@ const btn = (href, label, variant = 'neutralWeak', size = 'small', icon = '') =>
 const SHOW_THEMES = false;  // 2026-11-05 사용자 "테마는 아직 쓰기엔 부족하다, 우선 전체 숨김"
 // 의견 보내기 (11-09 사용자 "YDS 담당자에게 코멘트, 메시지, 요구사항 전달", 구글 폼으로 받기, "푸터로 통일"): 입구는 푸터 더 보기 하나. 폼 주소가 비어 있으면 만들지 않는다
 // 요청 현황은 Updates > 요청 탭에서만 보인다(11-14 사용자 "푸터에 요청 현황 제거, 업데이트에서만"). 새 소식이나 새 요청은 Updates 메뉴와 탭에 점으로 알린다
-const FEEDBACK_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSeQdOrHp59nlOmnzLJwr6HXsU-WaTRdJwTna6gqzK3xP8sYuA/viewform';
+// 2026-11-17 사용자: 의견은 따로 받지 않고 사내 워크 게시판에서 받는다(구글 폼 대신). 요청 탭에 제목과 내용 작성 예시를 둔다(REQ_EXAMPLE)
+const FEEDBACK_FORM = 'https://yteam.ybmnet.co.kr/work/dashboard.php';
 // 왼쪽 메뉴는 영문, 묶음은 두고 묶음 안은 ABC 순 (레퍼런스 B)
 const az = (list) => [...list].sort((a, b) => a[1].localeCompare(b[1], 'en'));
 // 파운데이션: 항목마다 한 페이지 (슬러그, 영문 이름)
@@ -293,7 +294,9 @@ function sideNav(section, file, root) {
   if (section === 'foundations') parts.push(...FD_ORDER.map(([h, l]) => item(h, l)));
   if (section === 'components') {
     parts.push(item('components/index.html', 'Overview'));
-    parts.push(...compsAZ.map((c) => item(`components/${c.slug}.html`, c.name.split(' · ')[0], koKeys(c.name.split(' · ')[0])).replace(/<\/a>$/, NEW_COMPS.has(c.no) || UPD_COMPS.has(c.no) ? '<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="' + (NEW_COMPS.has(c.no) ? '새 컴포넌트' : '바뀐 컴포넌트') + '"></span></a>' : '</a>')));
+    // 11-17 사용자 "템플릿처럼 카테고리로 묶어서, 똑같은 UI": 목록과 같은 분류(COMP_CATS) 묶음, 묶음 안은 ABC 순
+    const compRow = (c) => item(`components/${c.slug}.html`, c.name.split(' · ')[0], koKeys(c.name.split(' · ')[0])).replace(/<\/a>$/, NEW_COMPS.has(c.no) || UPD_COMPS.has(c.no) ? '<span class="ds-statusdot site-compdot" data-tone="critical" role="img" aria-label="' + (NEW_COMPS.has(c.no) ? '새 컴포넌트' : '바뀐 컴포넌트') + '"></span></a>' : '</a>');
+    for (const cat of COMP_CATS) { const list = compsAZ.filter((c) => (REG_CAT[c.no] || 'Etc') === cat); if (list.length) parts.push(group(cat, list.map(compRow), 'comp-' + cat)); }
   }
   if (section === 'themes') parts.push(item('themes/index.html', 'Overview'));
   if (section === 'templates') {
@@ -321,7 +324,7 @@ const iconBtn = (attrs, label, inner) => `<button type="button" class="ds-btn" d
 // Best Practices 표 - [할 것(true) / 하지 말 것(false), 문장]
 const practices = (items) => table(['구분', '내용'], [...items.filter(([ok]) => ok), ...items.filter(([ok]) => !ok)].map(([ok, text]) => [`<b class="ds-badge site-practice" data-tone="${ok ? 'positive' : 'critical'}">${ok ? 'Do' : 'Don\'t'}</b>`, inline(text)]));
 const metaLink = (href, label, icon) => `<a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="${href}" target="_blank" rel="noopener"><i class="ds-icon ${icon} ds-icon--sm" aria-hidden="true"></i>${label}</a>`;
-const metaLinks = (l) => l ? `<div class="site-meta">${l.figma ? metaLink(l.figma, 'Figma', 'site-i--figma') : ''}${l.code ? `<a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="#${l.code.split('#')[1]}"><i class="ds-icon ds-icon--code ds-icon--sm" aria-hidden="true"></i>코드</a>` : ''}</div>` : '';  // 11-17 사용자: GitHub 대신 같은 쪽 코드 절로
+const metaLinks = (l) => l ? `<div class="site-meta">${l.figma ? metaLink(l.figma, 'Figma', 'site-i--figma') : ''}</div>` : '';  // 11-17 사용자: 코드 버튼 제거(Figma, Markdown 만)
 const iconLink = (href, label, icon, extra = '') => `<a class="ds-btn${extra}" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" href="${href}" target="_blank" rel="noopener" aria-label="${esc(label)}"><i class="ds-icon ${icon}" aria-hidden="true"></i></a>`;
 
 // layout - doc: 본문 752 + 목차 (문서, 컴포넌트 목록과 상세도 같은 폭) / wide: 메뉴 옆 전체 폭 (템플릿 상세)
@@ -368,7 +371,7 @@ function page({ file, title, section, body, layout = 'doc', desc = '', pager = [
 <title>${esc(title)} - YDS</title>
 ${desc ? `<meta name="description" content="${esc(desc)}">\n` : ''}<!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
-${file === 'index.html' || body.includes('class="site-tpl-prompt"') ? `<script>/* 소소한 움직임 (2026-11-16): 메인과 템플릿 문서 보기의 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이 아니면 켜고, site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion", "site-type"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>` : ''}
+${file === 'index.html' ? `<script>/* 소소한 움직임 (2026-11-16): 메인 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이 아니면 켜고, site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion", "site-type"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>` : ''}
 <link rel="icon" href="${root}assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(title)} - YDS">
@@ -413,10 +416,9 @@ ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">
 </div>
 <button type="button" class="ds-btn site-totop" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="맨 위로" data-site-totop aria-hidden="true" tabindex="-1"><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i></button>
 <dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
-  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input><kbd class="ds-command__kbd site-search__esc">Esc</kbd></div>
+  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input></div>
   <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small" data-inset="none">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>
   <div class="ds-command__list" id="site-search-list" role="listbox" aria-label="찾은 결과" data-site-search-list data-root="${root}"></div>
-  <div class="site-search__keys" aria-hidden="true"><span><kbd class="ds-command__kbd">↑</kbd><kbd class="ds-command__kbd">↓</kbd>이동</span><span><kbd class="ds-command__kbd">Enter</kbd>열기</span><span><kbd class="ds-command__kbd">Esc</kbd>닫기</span></div>
 </dialog>
 </body>
 </html>
@@ -444,14 +446,7 @@ const CSS_LINK = `<!-- 서비스 CSS보다 앞에 -->
 // 요청 글은 예시 한 줄로 (11-10 사용자 "프롬프팅을 예시 정도로 중요도를 낮추고", "운영 중인 사이트, 새 서비스, 화면 시안 나눌 필요 없다", 구성은 AI와 함께 / 직접 / Figma로 / 개발 시작하기). 순서와 규칙은 yds.txt 머리(LLMS_RULES)가 맡는다
 // 11-10 사용자가 준 시안(yds-start.html): 새 화면 / 운영 중인 페이지 두 갈래 예시. 제휴사 이름은 쓰지 않는다
 // 11-11 사용자 "합쳐져 있는데 나눠줘, 3개로, 공통은 모두 포함, 제목은 대괄호": 묶음마다 상자 하나, 안은 [묶음 이름 예시] → 공통 글 → 예시 목록(- 줄)
-// 템플릿 AI 요청 글 (2026-11-14 사용자 문구를 "내용은 자유롭게, 규칙은 지켜서" 로 다듬은 판, 사용자 "진행". "[내가 원하는 서비스 화면]" 자리는 쓰는 사람이 바꾼다). 문서 보기의 AI 요청 글 탭이 보여 주고, 머리 버튼은 이 글을 복사한다
-// 2026-11-15 사용자 "3줄 이어서, 줄바꿈 제거, 공통 적용", 이어서 "요청 문장부터 줄바꿈", 다시 "이 줄바꿈으로 통일": 안내서 문장 / 주소 / 요청 문장을 줄마다 하나씩, 주소는 늘 혼자 한 줄(메인 요청 글도 같다)
-// 2026-11-16 사용자 "템플릿도 프롬프팅에 포인트 컬러": 빈칸은 메인처럼 파랑(markBlanks). [만들고 싶은 화면] 은 사람마다 답이 달라 예시로 바꾸지 않는다(메인 요청 글과 같은 기준)
-const TPL_PROMPT = (t) => `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
-${SITE_URL}yds.txt
-'${t.name}' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘.
-${SITE_URL}templates/pages/${t.slug}.html`;
-// 2026-11-14 사용자 "템플릿 프롬프팅도 자유도를 주어서 좀 더 단순하게": 메인 요청 글처럼 빈칸 하나만 둔다. 같은 날 "구성과 내용은 자유롭게 바꿔도 돼" 는 사용자 "전문성이 없어 보임" 으로 뺐다("참고해" 로 충분). YDS 것만 쓰기 같은 규칙은 yds.txt "지킬 것" 에 있어 뺐다.
+// 템플릿 문서 보기의 AI 요청 글과 HTML 내려받기는 11-17 사용자가 지웠다
 const AI_COMMON = `아래 안내서를 읽고 YDS 규칙을 지켜 줘.
 ${SITE_URL}yds.txt`;
 // 11-14 사용자 "1, 2 진행" (레퍼런스 A 시작하기 비교): 상자 하나에 요청 하나, 끝에 "먼저 묻기" 한 줄.
@@ -465,6 +460,17 @@ const AI_EXAMPLES = [
   ['운영 중인 페이지에 적용하기', `[바꿀 화면의 주소나 첨부 파일]에 YDS를 적용해 줘. [버튼과 입력칸]만 바꾸고 나머지는 그대로 둬.`],
   ['브랜드 만들기', `[브랜드 이름] 브랜드를 만들어 줘. 대표색은 [#00843d]로, 모서리와 글꼴은 [부드럽고 친근한 느낌]에 맞게 정해 줘.`],
 ];
+// 2026-11-17 사용자 "이 부분 다시 만들거야": 요청 글 상자 3개를 빼고 프롬프트 상자 샘플 하나(입력 칸이 글에 맞춰 스프링으로 늘고, 보내면 멈추기 버튼으로 바뀐다. 생각 중, 초안 완료 줄은 뺐다). 움직임은 site.js "프롬프트 상자"
+// 저절로 쳐지는 요청 글은 AI_EXAMPLES 세 갈래를 실제 문장으로 채운 것
+const PROMPT_TEXTS = [
+  `${AI_COMMON}\n수강 신청 화면을 만들어 줘. 비슷한 템플릿이 있으면 출발점으로 써 줘.`,
+  `${AI_COMMON}\n회원가입 페이지에 YDS를 적용해 줘. 버튼과 입력칸만 바꾸고 나머지는 그대로 둬.`,
+  `${AI_COMMON}\n새 브랜드를 만들어 줘. 대표색은 #00843d로, 모서리와 글꼴은 부드럽고 친근한 느낌에 맞게 정해 줘.`,
+];
+const PROMPT_BOX = `<div class="site-pbox" data-site-pbox data-prompts="${esc(JSON.stringify(PROMPT_TEXTS))}">
+  <textarea class="site-pbox__field" rows="1" placeholder="AI에게 맡길 일을 적어 보세요" aria-label="AI 요청 글"></textarea>
+  <button class="site-pbox__send" type="button" aria-label="보내기"><span class="site-pbox__arrow"><i class="ds-icon ds-icon--arrow-up ds-icon--sm" aria-hidden="true"></i></span><span class="site-pbox__stop" aria-hidden="true"></span></button>
+</div>`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 <link rel="stylesheet" href="${PUBLIC}/dist/brands/my-brand.css">
@@ -526,8 +532,8 @@ write({
 </ol>
 
 <h2 id="ai">AI와 함께 시작하기</h2>
-<p>아래 예시를 참고해 [ ] 안에 하고 싶은 일을 자유롭게 적고 AI 도구에 붙여 넣으세요.</p>
-${AI_EXAMPLES.map(([name, ask]) => markBlanks(codeblock(`[${name}]\n\n${AI_COMMON}\n${ask}`, "text", " data-wrap", name))).join('\n')}
+<p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p>
+${PROMPT_BOX}
 
 <h2 id="figma">Figma로 시작하기</h2>
 <p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.</p>
@@ -1100,6 +1106,8 @@ const THUMBS = fs.existsSync(path.join(SITE, 'templates/thumbs/index.json')) ? r
 const tplThumb = (slug) => THUMBS[slug] && fs.existsSync(path.join(SITE, 'templates/thumbs', slug + '.webp'))
   ? `<img class="site-tpl-img site-tpl-img--light" src="thumbs/${slug}.webp?v=${THUMBS[slug]}" alt="" width="1080" height="675" loading="lazy" decoding="async"><img class="site-tpl-img site-tpl-img--dark" src="thumbs/${slug}-dark.webp?v=${THUMBS[slug]}" alt="" width="1080" height="675" loading="lazy" decoding="async">`
   : `<iframe src="pages/${slug}.html" title="" tabindex="-1" loading="lazy" scrolling="no" data-site-frame></iframe>`;
+// 2026-11-17 사용자 "새창은 불필요, 모달로 크게 보는 화면": 목록 카드도 이 보기 창으로 연다. 창 아래 줄의 AI 요청 글(ask + 이름 + 주소)과 Figma 주소도 여기서
+const TPL_LIST_JSON = JSON.stringify({ ask: AI_COMMON, base: SITE_URL + 'templates/pages/', items: [...templates].sort(tplSort).map((t) => [t.slug, t.name, t.desc, t.figma ? LINKS.figmaUrl(t.figma.pc) : '']) }).replace(/</g, '\\u003c');
 write({
   file: 'templates/index.html', section: 'templates', title: 'Templates', layout: 'full',  // 11-05 사용자: 목록은 왼쪽 메뉴 없이 분류 탭으로
   body: `${hero('Templates', '자주 만드는 화면을 YDS 컴포넌트로 미리 구성했습니다.').replace(' class="site-hero"', '')  /* 11-05 사용자: 다른 화면처럼 왼쪽 정렬 */.replace('</p></header>', (SHOW_THEMES ? ' 테마를 입힌 실제 사이트 예시는 <a class="ds-link" href="../themes/index.html">Themes</a>에 있습니다.' : '') + '</p></header>')}
@@ -1110,17 +1118,17 @@ write({
   </div>
 </div>
 <div class="site-tpl-grid">
-${[...templates].sort(tplSort).map((t) => `<a class="site-tpl" href="${t.slug}.html" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
+${[...templates].sort(tplSort).map((t) => `<a class="site-tpl" href="${t.slug}.html" data-site-tplv="${t.slug}" data-site-item="${esc((t.name + ' ' + t.en + ' ' + t.group + ' ' + t.desc).toLowerCase())}" data-site-cat="${esc(t.group)}">
   <div class="site-tpl-thumb" aria-hidden="true">${tplThumb(t.slug)}</div>
   <p class="site-tile__name site-tpl__title">${esc(t.name)}</p>
 </a>`).join('\n')}
 </div>
-<div class="ds-empty site-empty-result" hidden><span class="ds-empty__media"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></span><p class="ds-empty__title">해당하는 템플릿이 없어요</p></div>`,
+<div class="ds-empty site-empty-result" hidden><span class="ds-empty__media"><i class="ds-icon ds-icon--search" aria-hidden="true"></i></span><p class="ds-empty__title">해당하는 템플릿이 없어요</p></div>
+<script type="application/json" id="site-tpl-list">${TPL_LIST_JSON}</script>`,
 });
 // 목록에서 빠진 템플릿의 상세 페이지는 지운다 (생성기가 템플릿을 바꾸면 옛 페이지가 남지 않게)
 for (const f of fs.readdirSync(path.join(SITE, 'templates'))) if (f.endsWith('.html') && f !== 'index.html' && !templates.some((t) => t.slug + '.html' === f)) fs.unlinkSync(path.join(SITE, 'templates', f));
 // 보기 창(크게 보기)의 좌우 화살표 순서 = 목록 순서 (11-16 사용자)
-const TPL_LIST_JSON = JSON.stringify([...templates].sort(tplSort).map((t) => [t.slug, t.name, t.desc])).replace(/</g, '\\u003c');
 templates.forEach((t) => {
   // 쓴 컴포넌트는 템플릿 파일의 class를 보고 자동으로 찾는다
   const src = fs.readFileSync(path.join(SITE, 'templates/pages', t.slug + '.html'), 'utf8');
@@ -1132,9 +1140,8 @@ templates.forEach((t) => {
   <p class="site-eyebrow"><a href="index.html">Templates</a> / ${esc(t.group)}</p>
   <h1 class="site-h1">${esc(t.name)}</h1>
   <p class="site-lead">${esc(t.desc)}</p>
-  <div class="site-meta">${btn(`pages/${t.slug}.html`, '크게 보기', 'neutralSolid', 'xsmall', 'maximize-2').replace('href="pages', `data-site-tplv="${t.slug}" target="_blank" rel="noopener" href="pages`)}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}<a class="ds-btn" data-variant="neutralWeak" data-size="xsmall" href="pages/${t.slug}.html" download="${t.slug}.html"><i class="ds-icon ds-icon--download ds-icon--sm" aria-hidden="true"></i>HTML 내려받기</a></div>
+  <div class="site-meta">${btn(`pages/${t.slug}.html`, '크게 보기', 'neutralSolid', 'xsmall', 'maximize-2').replace('href="pages', `data-site-tplv="${t.slug}" target="_blank" rel="noopener" href="pages`)}${t.figma ? metaLink(LINKS.figmaUrl(t.figma.pc), 'Figma', 'site-i--figma') : ''}</div>
 </header>
-<div class="site-tpl-prompt">${markBlanks(codeblock(TPL_PROMPT(t), 'text', ' data-wrap', 'AI 요청 글'))}</div>
 <div class="site-frame">
   <div class="site-frame__bar">
     <div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-view="preview">미리보기</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-view="code">코드</button></div>
@@ -1160,7 +1167,7 @@ fs.rmSync(path.join(SITE, 'get-started/ai.md'), { force: true });
 // 레퍼런스 A Changelog 구성: 제목과 설명, 날짜마다 목록 하나. 종류 이름(새 기능, 변경된 부분)은 순서만 정하고 화면에 쓰지 않는다(11-10 사용자 "타이틀 완전 제거"). 영역 거르기 탭은 11-04 사용자 지시로 뺐다
 // 소식은 site/src/updates.json releases 맨 위에 날짜를 더한다
 const RELEASES = readJson('site/src/updates.json').releases;
-const updTabs = (file) => `<nav class="site-pagetabs" aria-label="Updates 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none">${[['updates.html', '소식'], ['updates-requests.html', '요청'], ['updates-usage.html', '사용 현황']].map(([f, l]) => `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${f === file}"${f === file ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</div></nav>`;
+const updTabs = (file) => `<nav class="site-pagetabs" aria-label="Updates 문서"><div class="ds-tabs" role="tablist" data-size="medium" data-layout="hug" data-inset="none">${[['updates.html', '소식'], ['updates-requests.html', '요청']].map(([f, l]) => `<a class="ds-tabs__trigger" role="tab" href="${f}" aria-selected="${f === file}"${f === file ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</div></nav>`;
 const fmtDate = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${y}. ${m}. ${dd}`; };
 write({
   file: 'updates.html', section: 'updates', title: 'Updates', desc: 'YDS 업데이트 소식', layout: 'page',
@@ -1175,13 +1182,21 @@ ${RELEASES.map((r) => `<section class="site-group site-release">
 // 요청 (2026-11-14 사용자 "요청 현황 공개", 추천대로 Updates 안 두 번째 탭, 목록은 site/src/requests.json 을 담당자가 고친다)
 // 요청 → 반영 → 소식이 한 곳에서 이어진다. 상태 순서: 검토 중, 접수, 반영됨(최근 반영 먼저), 보류
 const REQUESTS = readJson('site/src/requests.json').requests;
+// 워크 게시판 작성 예시 (2026-11-17 사용자 "간단하게 타이틀과 내용을 예시로 쉽게"). [ ] 는 쓰는 사람이 바꾸는 곳(파랑 글자)
+const REQ_EXAMPLE = {
+  title: '[YDS] Date Picker 기간 선택 추가 요청',
+  body: `위치: YDS > Components > Date Picker
+요청 사항: 시작일과 종료일을 한 번에 고르는 기간 선택을 추가해 주세요.
+쓰는 곳: [서비스 이름] / [화면 이름]
+참고: [화면 캡처나 주소]`,
+};
 const REQ_ORDER = ['검토 중', '접수', '반영됨', '보류'];
 const REQ_TONE = { '검토 중': 'informative', '접수': 'neutral', '반영됨': 'positive', '보류': 'warning' };
 const shortDate = (d) => d.slice(5).replace('-', '.');
 const reqRows = [...REQUESTS].sort((x, y) => REQ_ORDER.indexOf(x.status) - REQ_ORDER.indexOf(y.status) || ((y.done || [y.date])[0]).localeCompare((x.done || [x.date])[0]));
 write({
   file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 현황', layout: 'page',
-  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">의견 보내기로 들어온 요청과 처리 상태입니다.</p></header>
+  body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">사내 워크 게시판으로 들어온 요청과 처리 상태입니다.</p></header>
 ${updTabs('updates-requests.html')}
 ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i class="ds-icon ds-icon--inbox" aria-hidden="true"></i></span><p class="ds-empty__title">아직 들어온 요청이 없습니다</p></div>' : table(['요청', '종류', '상태', '반영'], reqRows.map((r) => [
   `<span class="ds-table__stack"><span class="site-req__title">${esc(r.title)}</span><span>${esc(r.from)} / ${shortDate(r.date)}${r.count > 1 ? ` / 요청 ${r.count}건` : ''}</span></span>`,
@@ -1189,34 +1204,14 @@ ${!reqRows.length ? '<div class="ds-empty"><span class="ds-empty__media"><i clas
   `<span class="ds-badge" data-tone="${REQ_TONE[r.status] || 'neutral'}">${esc(r.status)}</span>`,
   r.done ? `<span class="ds-table__stack"><span>${inline(r.done[1])}</span><span>${shortDate(r.done[0])} 반영</span></span>` : r.reason ? inline(r.reason) : '',  // reason: 보류나 검토 중일 때 결정 이유
 ])).replace('class="ds-table"', 'class="ds-table site-req"')}
-${FEEDBACK_FORM ? `<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '의견 보내기', 'neutralSolid', 'small', 'square-pen')}</div>` : ''}`,
+<h2 id="how">요청하는 법</h2>
+<p>사내 워크 게시판에 아래 예시처럼 제목과 내용을 적어 올려 주세요.</p>
+${markBlanks(codeblock(REQ_EXAMPLE.title, 'text', ' data-wrap', '제목'))}
+${markBlanks(codeblock(REQ_EXAMPLE.body, 'text', ' data-wrap', '내용'))}
+<div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '워크 게시판에 쓰기', 'neutralSolid', 'small', 'square-pen')}</div>`,
 });
 
-// 사용 현황 (2026-11-16 사용자 "운영 모델: 사용 측정과 기여 절차" → "검사 스크립트, jsDelivr 통계, 사용 현황 탭 진행")
-// 원본은 site/src/services.json(서비스 목록)과 site/src/usage.json(node tools/usage.mjs 가 만든다). 11-16 사용자: 서비스 표(버전, 직접 쓴 색)와 절 제목은 지우고 컴포넌트 표만 둔다
-const USAGE = fs.existsSync(path.join(DS, 'site/src/usage.json')) ? readJson('site/src/usage.json') : null;
-if (USAGE) {
-  const svc = USAGE.services;
-  const byComp = new Map();
-  for (const s of svc) for (const c of s.components) byComp.set(c, [...(byComp.get(c) || []), s.name]);
-  // 2026-11-16 사용자 "사용 현황 유의미하게" → 제안 1, 2 를 만든 뒤 "컴포넌트 쓰임만 유지, 나머지 제거": 컴포넌트 쓰임 막대만 둔다
-  const BASES = [...new Map(comps.map((c) => [c.name.split(' · ')[0], c.slug])).entries()];
-  const useCount = (b) => (byComp.get(b) || []).length;
-  const usedList = BASES.filter(([b]) => useCount(b)).sort((a, b) => useCount(b[0]) - useCount(a[0]) || a[0].localeCompare(b[0]));
-  // 11-17 사용자 "더 눈에 잘 보이는 UI": 막대 대신 위에 요약 숫자 카드 셋, 아래에 컴포넌트 x 서비스 비교 표(쓰는 칸에 체크)
-  const allUse = usedList.filter(([b]) => useCount(b) === svc.length).length;
-  const stat = (n, total, label) => `<div class="ds-card" data-size="small"><span class="site-usage__label">${label}</span><span class="site-usage__num">${n}${total ? `<span class="site-usage__total">/ ${total}</span>` : ''}</span></div>`;
-  const mark = (on) => on ? '<i class="ds-icon ds-icon--check site-usage__yes" aria-hidden="true"></i><span class="ds-sr-only">씀</span>' : '<span class="site-usage__no" aria-hidden="true">-</span><span class="ds-sr-only">안 씀</span>';
-  const matrix = `<div class="ds-table-wrap"><table class="ds-table site-usage-matrix" data-size="small"><thead><tr><th scope="col">컴포넌트</th>${svc.map((x) => `<th scope="col">${esc(x.name)}</th>`).join('')}</tr></thead><tbody>${usedList.map(([b, slug]) => `<tr><th scope="row"><a class="site-usage__comp" href="components/${slug}.html">${esc(b)}</a></th>${svc.map((x) => `<td>${mark(x.components.includes(b))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-  write({
-    file: 'updates-usage.html', section: 'updates', title: 'Updates', desc: 'YDS 사용 현황', layout: 'page',
-    body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">서비스에서 쓰는 YDS 컴포넌트입니다.</p></header>
-${updTabs('updates-usage.html')}
-<div class="site-usage__stats">${stat(usedList.length, BASES.length, '쓰는 컴포넌트')}${stat(allUse, usedList.length, '모든 서비스가 쓰는 컴포넌트')}${stat(svc.length, 0, '서비스')}</div>
-${matrix}
-<p class="site-req__meta site-usage__sum">${USAGE.checked} 기준</p>`,
-  });
-}
+// 사용 현황 탭은 2026-11-17 사용자가 지웠다(되살리려면 git 기록, 자료는 site/src/usage.json 과 tools/usage.mjs)
 
 /* ---------------------------------------------------------------- Themes */
 // 레퍼런스 A Themes 배치 그대로: 왼쪽 260 고정 칸 안 흰 카드(제목 + 미리보기 다크 버튼, 설명, 사용방법 링크, 알약 버튼 둘, 테마 카드 211×120),

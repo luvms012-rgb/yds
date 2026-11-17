@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/table.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/table.html -->
 
 # Table
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-table-wrap">            ← 열이 넘치면 가로 스크롤
@@ -33,8 +33,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | small |
@@ -42,15 +40,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 열은 모바일에서 3개, PC에서 6개 안팎까지 둡니다. 넘치면 가로 스크롤을 제공합니다. 모바일에서 열이 많으면 표 대신 Card 목록을 사용합니다. |
-| **Do** | 표에는 꼭 헤더 행을 둡니다(thead와 th scope="col"). |
-| **Do** | 데이터가 없을 때는 헤더 행 아래에 Empty(small)를 표 전체 폭으로 표시합니다. |
-| **Do** | 마우스를 올렸을 때 색이 바뀌는 효과는 행을 눌러 상세 화면으로 이동하는 표에서만 사용합니다. |
-| **Do** | 글은 왼쪽, 숫자와 금액은 오른쪽에 맞춥니다. 번호, 날짜, 상태처럼 짧고 길이가 같은 값은 가운데에 맞춥니다. |
-| **Don't** | 한 표 안에서 크기를 섞지 않습니다. 데이터가 많은 관리 화면은 small, 일반 사용자 화면은 기본 크기를 사용합니다. |
-| **Don't** | 한 칸에 두 줄 넘게 넣지 않습니다. 긴 글은 말줄임하고 상세 화면에서 표시합니다. |
+- Do: 열은 모바일에서 3개, PC에서 6개 안팎까지 둡니다. 넘치면 가로 스크롤을 제공합니다. 모바일에서 열이 많으면 표 대신 Card 목록을 사용합니다.
+- Do: 표에는 꼭 헤더 행을 둡니다(thead와 th scope="col").
+- Do: 데이터가 없을 때는 헤더 행 아래에 Empty(small)를 표 전체 폭으로 표시합니다.
+- Do: 마우스를 올렸을 때 색이 바뀌는 효과는 행을 눌러 상세 화면으로 이동하는 표에서만 사용합니다.
+- Do: 글은 왼쪽, 숫자와 금액은 오른쪽에 맞춥니다. 번호, 날짜, 상태처럼 짧고 길이가 같은 값은 가운데에 맞춥니다.
+- Don't: 한 표 안에서 크기를 섞지 않습니다. 데이터가 많은 관리 화면은 small, 일반 사용자 화면은 기본 크기를 사용합니다.
+- Don't: 한 칸에 두 줄 넘게 넣지 않습니다. 긴 글은 말줄임하고 상세 화면에서 표시합니다.
 
 ## 예시
 
@@ -63,10 +59,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <table class="ds-table">
     <thead>
       <tr>
-        <th scope="col" data-align="center" style="width: 72px">번호</th>
+        <th scope="col" data-align="center">번호</th>
         <th scope="col">제목</th>
-        <th scope="col" data-align="center" style="width: 112px">상태</th>
-        <th scope="col" data-align="center" style="width: 120px">문의일</th>
+        <th scope="col" data-align="center">상태</th>
+        <th scope="col" data-align="center">문의일</th>
       </tr>
     </thead>
     <tbody>
@@ -102,10 +98,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <table class="ds-table">
     <thead>
       <tr>
-        <th scope="col" data-align="center" style="width: 120px">결제일</th>
+        <th scope="col" data-align="center">결제일</th>
         <th scope="col">내용</th>
-        <th scope="col" style="width: 120px">결제 수단</th>
-        <th scope="col" data-align="end" style="width: 120px">금액</th>
+        <th scope="col">결제 수단</th>
+        <th scope="col" data-align="end">금액</th>
       </tr>
     </thead>
     <tbody>
@@ -141,10 +137,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <table class="ds-table">
     <thead>
       <tr>
-        <th scope="col" data-align="center" style="width: 72px">번호</th>
+        <th scope="col" data-align="center">번호</th>
         <th scope="col">제목</th>
-        <th scope="col" data-align="center" style="width: 112px">상태</th>
-        <th scope="col" data-align="center" style="width: 120px">문의일</th>
+        <th scope="col" data-align="center">상태</th>
+        <th scope="col" data-align="center">문의일</th>
       </tr>
     </thead>
     <tbody>
@@ -165,8 +161,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/top-app-bar.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/top-app-bar.html -->
 
 # Top App Bar
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <header class="ds-appbar" [data-platform="android"] [data-tone="transparent" data-gradient]>
@@ -36,8 +36,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `theme` | ios android CSS data-platform |
@@ -46,13 +44,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 모바일 화면마다 하나씩 둡니다. |
-| **Do** | 제목 위치(ios 가운데, android 왼쪽)는 한 서비스 안에서 통일합니다. |
-| **Do** | 왼쪽에는 뒤로 가기나 닫기 버튼을 둡니다. |
-| **Do** | 오른쪽에는 아이콘 버튼을 2개까지 둡니다. |
-| **Do** | transparent는 사진 위에서만 사용하고, gradient를 함께 적용합니다. |
+- Do: 모바일 화면마다 하나씩 둡니다.
+- Do: 제목 위치(ios 가운데, android 왼쪽)는 한 서비스 안에서 통일합니다.
+- Do: 왼쪽에는 뒤로 가기나 닫기 버튼을 둡니다.
+- Do: 오른쪽에는 아이콘 버튼을 2개까지 둡니다.
+- Do: transparent는 사진 위에서만 사용하고, gradient를 함께 적용합니다.
 
 ## 예시
 
@@ -61,7 +57,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 하위 화면 맨 위에 뒤로 가기 버튼과 화면 제목을 배치합니다. 오른쪽 아이콘 버튼은 2개까지만 두어 제목 영역을 확보합니다.
 
 ```html
-<div style="width: 100%; max-width: 375px">
+<div>
   <header class="ds-appbar">
     <div class="ds-appbar__left">
       <button type="button" class="ds-appbar__button" aria-label="뒤로"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
@@ -100,7 +96,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 전체 화면으로 여는 작성 화면은 제목을 왼쪽 끝에, 닫기 버튼을 오른쪽 끝에 배치합니다. 부제목에는 현재 단계처럼 제목을 보완하는 짧은 정보만 넣습니다.
 
 ```html
-<div style="width: 100%; max-width: 375px">
+<div>
   <header class="ds-appbar" data-platform="android">
     <div class="ds-appbar__left"></div>
     <div class="ds-appbar__main">
@@ -139,7 +135,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 안드로이드 앱에서는 `data-platform="android"`로 제목을 왼쪽에 배치합니다. 한 서비스 안에서는 모든 화면의 제목 위치를 통일합니다.
 
 ```html
-<div style="width: 100%; max-width: 375px">
+<div>
   <header class="ds-appbar" data-platform="android">
     <div class="ds-appbar__left">
       <button type="button" class="ds-appbar__button" aria-label="뒤로"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
@@ -173,8 +169,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

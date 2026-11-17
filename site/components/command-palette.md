@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/command-palette.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/command-palette.html -->
 
 # Command Palette
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <dialog class="ds-command" id="cmd" aria-label="명령 찾기" [data-ds-hotkey="k"]>
@@ -37,8 +37,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: `data-ds-hotkey="k"`, 거르기, 위아래 화살표와 Enter, 묶음과 단축키 표시
 
 ## 동작
@@ -49,12 +47,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 자주 사용하는 화면 이동과 동작이 많은 업무 화면에서 사용합니다. |
-| **Do** | 항목 이름은 동사나 화면 이름으로 짧게 작성합니다. |
-| **Do** | 검색 결과가 없으면 그 이유를 안내합니다. |
-| **Don't** | 주요 동작을 Command Palette에만 두지 않습니다. 화면에도 버튼으로 제공합니다. |
+- Do: 자주 사용하는 화면 이동과 동작이 많은 업무 화면에서 사용합니다.
+- Do: 항목 이름은 동사나 화면 이름으로 짧게 작성합니다.
+- Do: 검색 결과가 없으면 그 이유를 안내합니다.
+- Don't: 주요 동작을 Command Palette에만 두지 않습니다. 화면에도 버튼으로 제공합니다.
 
 ## 예시
 
@@ -69,8 +65,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

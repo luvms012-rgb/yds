@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chat.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/chat.html -->
 
 # Chat
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-chat-bubble" [data-sender="user"]>안녕하세요! 무엇을 도와드릴까요?</div>
@@ -33,8 +33,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `sender` | assistant user |
@@ -44,11 +42,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다. |
-| **Do** | 입력란이 비어 있으면 보내기 버튼을 비활성화합니다. |
-| **Do** | 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다. |
+- Do: 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치합니다.
+- Do: 입력란이 비어 있으면 보내기 버튼을 비활성화합니다.
+- Do: 답변을 생성하는 동안에는 보내기 버튼을 멈춤(stop) 버튼으로 바꿉니다.
 
 ## 예시
 
@@ -57,7 +53,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 상대 말풍선은 왼쪽, 내 말풍선은 오른쪽에 배치하고 내 메시지 아래에 읽음 상태를 표시합니다. 입력란이 비어 있는 동안에는 보내기 버튼을 비활성화합니다.
 
 ```html
-<div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
+<div class="u-col u-gap-4">
   <div class="u-col u-gap-3">
     <p class="ds-chat-system">오늘</p>
     <div class="ds-chat-bubble">안녕하세요. 수험 번호를 알려 주시면 접수 상태를 확인해 드릴게요.</div>
@@ -82,7 +78,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 답변을 생성하는 동안에는 보내기 버튼을 멈춤(`data-state="stop"`) 버튼으로 바꿉니다. 답변이 길어지거나 질문을 잘못 보냈을 때 바로 멈출 수 있습니다.
 
 ```html
-<div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
+<div class="u-col u-gap-4">
   <div class="u-col u-gap-3">
     <div class="ds-chat-bubble" data-sender="user">이번 주 수업 일정을 정리해 줘</div>
     <div class="ds-chat-bubble">월요일 저녁 7시에 회화, 수요일 저녁 7시에 문법 수업이 있어요. 금요일에는</div>
@@ -102,7 +98,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 보내지 못한 말풍선 아래에 `data-status="error"` 상태를 지정해 critical 색 텍스트로 알립니다. 다시 보내기 버튼을 바로 옆에 배치해 해결 방법까지 제공합니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
+<div class="u-col u-gap-3">
   <p class="ds-chat-system" data-layout="divider">오늘</p>
   <div class="ds-chat-bubble">궁금한 문제 화면을 사진으로 보내 주세요.</div>
   <div class="u-col u-gap-1">
@@ -119,8 +115,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

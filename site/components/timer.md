@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/timer.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/timer.html -->
 
 # Timer
 
@@ -6,15 +6,13 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <time class="ds-timer" data-end="2026-10-29T15:00:00+09:00" [data-format="elapsed"]>0:00</time>
 ```
 
 ## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -29,13 +27,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 크기와 색은 배치되는 위치에 맞춰 조정합니다. |
-| **Do** | 시간이 끝나면 `ds-timer-end` 이벤트를 받아 다음 동작을 실행합니다. |
-| **Don't** | 숫자 폭이 고정되어 있어 값이 바뀌어도 글자 위치가 흔들리지 않습니다. |
-| **Don't** | 날짜나 시각 표시에는 사용하지 않습니다. |
-| **Don't** | 매초 읽어 주는 aria-live는 넣지 않습니다. |
+- Do: 크기와 색은 배치되는 위치에 맞춰 조정합니다.
+- Do: 시간이 끝나면 `ds-timer-end` 이벤트를 받아 다음 동작을 실행합니다.
+- Don't: 숫자 폭이 고정되어 있어 값이 바뀌어도 글자 위치가 흔들리지 않습니다.
+- Don't: 날짜나 시각 표시에는 사용하지 않습니다.
+- Don't: 매초 읽어 주는 aria-live는 넣지 않습니다.
 
 ## 예시
 
@@ -44,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 인증번호 입력란 끝에 남은 시간을 Timer로 표시합니다. 숫자 폭이 고정되어 있어 1초마다 값이 바뀌어도 글자가 흔들리지 않습니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 360px">
+<div class="ds-field">
   <div class="ds-field__header">
     <label class="ds-field__label" for="timer-ex1-code">인증번호</label>
   </div>
@@ -70,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 경과 시간은 `data-start`에 시작 시각을 넣고 `data-format="elapsed"`로 분과 초를 표시합니다. 공부한 시간처럼 시간의 길이를 읽어야 할 때 사용합니다.
 
 ```html
-<article class="ds-card" data-size="small" style="width: 100%; max-width: 360px">
+<article class="ds-card" data-size="small">
   <header class="ds-card__header">
     <h3 class="ds-card__title">5강 회의에서 의견 말하기</h3>
     <p class="ds-card__desc">비즈니스 영어 회화</p>

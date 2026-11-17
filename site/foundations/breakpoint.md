@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/breakpoint.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/breakpoint.html -->
 
 # Breakpoint
 
@@ -35,8 +35,6 @@
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 모바일 화면을 먼저 만들고 min-width로 넓은 화면을 더합니다. |
-| **Do** | 기준점은 표의 네 값만 사용합니다. |
-| **Don't** | 기기 이름(아이폰, 갤럭시)에 맞춘 폭을 따로 만들지 않습니다. |
+- Do: 모바일 화면을 먼저 만들고 min-width로 넓은 화면을 더합니다.
+- Do: 기준점은 표의 네 값만 사용합니다.
+- Don't: 기기 이름(아이폰, 갤럭시)에 맞춘 폭을 따로 만들지 않습니다.

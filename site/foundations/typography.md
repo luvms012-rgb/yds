@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/typography.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/typography.html -->
 
 # Typography
 
@@ -6,7 +6,7 @@
 
 ## 개요
 
-기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/index.md#ai)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 사용합니다.
+기본 글꼴은 Pretendard입니다. 다른 글꼴은 [브랜드 파일](../index.md#ai)에서 정합니다. 크기는 `--ds-font-size-t01` ~ `t17`, 줄 높이는 같은 번호의 `--ds-line-height-*`를 짝으로 사용합니다.
 
 ## 크기
 
@@ -59,10 +59,8 @@
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 크기와 줄 높이는 같은 번호끼리 짝으로 사용합니다. |
-| **Do** | 제목은 Bold, 항목 제목은 SemiBold, 본문은 Regular로 위계를 나눕니다. |
-| **Do** | 한 화면에서 사용하는 글자 크기는 서너 단계로 제한합니다. |
-| **Don't** | px 값을 직접 입력하지 않습니다. |
-| **Don't** | 색만으로 강조하지 않습니다. 먼저 굵기로 강조합니다. |
+- Do: 크기와 줄 높이는 같은 번호끼리 짝으로 사용합니다.
+- Do: 제목은 Bold, 항목 제목은 SemiBold, 본문은 Regular로 위계를 나눕니다.
+- Do: 한 화면에서 사용하는 글자 크기는 서너 단계로 제한합니다.
+- Don't: px 값을 직접 입력하지 않습니다.
+- Don't: 색만으로 강조하지 않습니다. 먼저 굵기로 강조합니다.

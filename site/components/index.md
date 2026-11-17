@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/index.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/index.html -->
 
 # Components
 
@@ -6,186 +6,186 @@
 
 ## Action
 
-- [Action Button](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/action-button.md)
+- [Action Button](action-button.md)
 
-- [Chip](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chip.md)
+- [Chip](chip.md)
 
-- [Floating Action Button](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/floating-action-button.md)
+- [Floating Action Button](floating-action-button.md)
 
-- [Menu](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/menu-menu-item.md)
+- [Menu](menu-menu-item.md)
 
-- [Segmented Control](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/segmented-control.md)
+- [Segmented Control](segmented-control.md)
 
-- [Text Link](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-link.md)
+- [Text Link](text-link.md)
 
-- [Toggle Button](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/toggle-button.md)
+- [Toggle Button](toggle-button.md)
 
-- [Toolbar](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/toolbar.md)
+- [Toolbar](toolbar.md)
 
 ## Chat
 
-- [Chat](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chat.md)
+- [Chat](chat.md)
 
-- [Citation](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/citation.md)
+- [Citation](citation.md)
 
-- [Code Block](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/code-block.md)
+- [Code Block](code-block.md)
 
-- [Markdown](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/markdown.md)
+- [Markdown](markdown.md)
 
 ## Container
 
-- [Accordion](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/accordion.md)
+- [Accordion](accordion.md)
 
-- [Card](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/card.md)
+- [Card](card.md)
 
-- [Select Box](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-box.md)
+- [Select Box](select-box.md)
 
 ## Content
 
-- [Avatar](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/avatar.md)
+- [Avatar](avatar.md)
 
-- [Carousel](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/carousel.md)
+- [Carousel](carousel.md)
 
-- [Chart](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chart.md)
+- [Chart](chart.md)
 
-- [Empty](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/empty.md)
+- [Empty](empty.md)
 
-- [Image Frame](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/image-frame.md)
+- [Image Frame](image-frame.md)
 
-- [Tag Group](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tag-group.md)
+- [Tag Group](tag-group.md)
 
-- [Timer](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/timer.md)
+- [Timer](timer.md)
 
 ## Data Input
 
-- [Checkbox](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/checkbox.md)
+- [Checkbox](checkbox.md)
 
-- [Checkbox Group](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/checkbox-group.md)
+- [Checkbox Group](checkbox-group.md)
 
-- [Code Input](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/code-input.md)
+- [Code Input](code-input.md)
 
-- [Date Field](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/date-field.md)
+- [Date Field](date-field.md)
 
-- [Date Picker](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/date-picker-date-cell.md)
+- [Date Picker](date-picker-date-cell.md)
 
-- [Field Button](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/field-button.md)
+- [Field Button](field-button.md)
 
-- [Field Label](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/field-label.md)
+- [Field Label](field-label.md)
 
-- [File Attach](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/file-attach.md)
+- [File Attach](file-attach.md)
 
-- [Multi Select](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/multi-select.md)
+- [Multi Select](multi-select.md)
 
-- [Prefix Select](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/prefix-select.md)
+- [Prefix Select](prefix-select.md)
 
-- [Quantity Picker](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/quantity-picker.md)
+- [Quantity Picker](quantity-picker.md)
 
-- [Radio Group](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/radio-group.md)
+- [Radio Group](radio-group.md)
 
-- [Search Field](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/search-field.md)
+- [Search Field](search-field.md)
 
-- [Search Suggestion](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/search-suggestion.md)
+- [Search Suggestion](search-suggestion.md)
 
-- [Segmented Text Input](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/segmented-text-input.md)
+- [Segmented Text Input](segmented-text-input.md)
 
-- [Select Content](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-content-item.md)
+- [Select Content](select-content-item.md)
 
-- [Select Trigger](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-trigger.md)
+- [Select Trigger](select-trigger.md)
 
-- [Slider](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/slider.md)
+- [Slider](slider.md)
 
-- [Switch](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/switch.md)
+- [Switch](switch.md)
 
-- [Text Field Input](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-field-input.md)
+- [Text Field Input](text-field-input.md)
 
-- [Text Field Textarea](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-field-textarea.md)
+- [Text Field Textarea](text-field-textarea.md)
 
-- [Time Picker](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/time-picker.md)
+- [Time Picker](time-picker.md)
 
-- [Wheel Picker](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/wheel-picker.md)
+- [Wheel Picker](wheel-picker.md)
 
 ## Feedback & Status
 
-- [Badge](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/badge.md)
+- [Badge](badge.md)
 
-- [Banner](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/banner.md)
+- [Banner](banner.md)
 
-- [Callout](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/callout.md)
+- [Callout](callout.md)
 
-- [Progress](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/progress.md)
+- [Progress](progress.md)
 
-- [Progress Circle](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/progress-circle.md)
+- [Progress Circle](progress-circle.md)
 
-- [Rating](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/rating.md)
+- [Rating](rating.md)
 
-- [Result Section](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/result-section.md)
+- [Result Section](result-section.md)
 
-- [Skeleton](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/skeleton.md)
+- [Skeleton](skeleton.md)
 
-- [Status Dot](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/status-dot.md)
+- [Status Dot](status-dot.md)
 
 ## Layout
 
-- [Divider](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/divider.md)
+- [Divider](divider.md)
 
-- [Pull To Refresh](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/pull-to-refresh.md)
+- [Pull To Refresh](pull-to-refresh.md)
 
-- [Scroll Fog](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/scroll-fog.md)
+- [Scroll Fog](scroll-fog.md)
 
 ## Navigation
 
-- [Bottom Navigation](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/bottom-navigation.md)
+- [Bottom Navigation](bottom-navigation.md)
 
-- [Breadcrumbs](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/breadcrumbs.md)
+- [Breadcrumbs](breadcrumbs.md)
 
-- [Chip Tabs](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chip-tabs.md)
+- [Chip Tabs](chip-tabs.md)
 
-- [Mega Menu](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/mega-menu.md)
+- [Mega Menu](mega-menu.md)
 
-- [Pagination](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/pagination.md)
+- [Pagination](pagination.md)
 
-- [Side Navigation](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/side-navigation.md)
+- [Side Navigation](side-navigation.md)
 
-- [Stepper](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/stepper.md)
+- [Stepper](stepper.md)
 
-- [Table Pagination](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/table-pagination.md)
+- [Table Pagination](table-pagination.md)
 
-- [Tabs](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tabs.md)
+- [Tabs](tabs.md)
 
-- [Top App Bar](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/top-app-bar.md)
+- [Top App Bar](top-app-bar.md)
 
-- [Top Navigation](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/top-navigation.md)
+- [Top Navigation](top-navigation.md)
 
 ## Overlay
 
-- [Alert Dialog](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/alert-dialog.md)
+- [Alert Dialog](alert-dialog.md)
 
-- [Bottom Sheet](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/bottom-sheet.md)
+- [Bottom Sheet](bottom-sheet.md)
 
-- [Command Palette](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/command-palette.md)
+- [Command Palette](command-palette.md)
 
-- [Dialog](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/dialog.md)
+- [Dialog](dialog.md)
 
-- [Help Bubble](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/help-bubble.md)
+- [Help Bubble](help-bubble.md)
 
-- [Lightbox](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/lightbox.md)
+- [Lightbox](lightbox.md)
 
-- [Menu Sheet](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/menu-sheet.md)
+- [Menu Sheet](menu-sheet.md)
 
-- [Popover](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/popover.md)
+- [Popover](popover.md)
 
-- [Side Panel](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/side-panel.md)
+- [Side Panel](side-panel.md)
 
-- [Snackbar](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/snackbar.md)
+- [Snackbar](snackbar.md)
 
-- [Tooltip](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tooltip.md)
+- [Tooltip](tooltip.md)
 
 ## Table & List
 
-- [Description List](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/description-list.md)
+- [Description List](description-list.md)
 
-- [List](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/list-list-item.md)
+- [List](list-list-item.md)
 
-- [Table](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/table.md)
+- [Table](table.md)
 
-- [Tree](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tree.md)
+- [Tree](tree.md)

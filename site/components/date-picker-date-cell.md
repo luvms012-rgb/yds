@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/date-picker-date-cell.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/date-picker-date-cell.html -->
 
 # Date Picker / Date Cell
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-datepicker">
@@ -34,23 +34,19 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `cell state` | today selected range-start range-middle range-end |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 날짜 선택이 화면의 주요 기능이거나 흐름의 한 단계면 화면에 바로 배치합니다. 폼의 입력 필드를 눌러 선택할 때는 Bottom Sheet 안에 배치합니다. |
-| **Do** | 여는 버튼은 Select Trigger, Text Field Input, Field Button 중 하나를 사용합니다. |
-| **Do** | 처음에는 오늘이 포함된 달을 표시합니다. 이미 선택한 날짜가 있으면 그 날짜가 포함된 달을 표시합니다. |
-| **Do** | 기간의 최소, 최대 조건은 Callout으로 미리 알려 줍니다. 시작일만 선택한 상태에서는 확인 버튼을 비활성화합니다. |
-| **Do** | 오늘을 선택하면 오늘 표시보다 선택 표시를 우선합니다. |
-| **Do** | 생년월일처럼 먼 날짜는 직접 입력받습니다. |
-| **Do** | 선택할 수 없는 날짜는 그 이유를 안내합니다. |
+- Do: 날짜 선택이 화면의 주요 기능이거나 흐름의 한 단계면 화면에 바로 배치합니다. 폼의 입력 필드를 눌러 선택할 때는 Bottom Sheet 안에 배치합니다.
+- Do: 여는 버튼은 Select Trigger, Text Field Input, Field Button 중 하나를 사용합니다.
+- Do: 처음에는 오늘이 포함된 달을 표시합니다. 이미 선택한 날짜가 있으면 그 날짜가 포함된 달을 표시합니다.
+- Do: 기간의 최소, 최대 조건은 Callout으로 미리 알려 줍니다. 시작일만 선택한 상태에서는 확인 버튼을 비활성화합니다.
+- Do: 오늘을 선택하면 오늘 표시보다 선택 표시를 우선합니다.
+- Do: 생년월일처럼 먼 날짜는 직접 입력받습니다.
+- Do: 선택할 수 없는 날짜는 그 이유를 안내합니다.
 
 ## 예시
 
@@ -59,7 +55,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 날짜 선택이 신청 흐름의 한 단계일 때는 달력을 화면에 바로 배치합니다. 처음에는 오늘이 포함된 달을 표시하고, 선택할 수 없는 지난 날짜는 `disabled`로 비활성화합니다.
 
 ```html
-<div class="u-col u-gap-5 u-full" style="max-width: 320px">
+<div class="u-col u-gap-5 u-full">
   <div class="u-col u-gap-2">
     <h3 class="ds-t08 ds-fw-bold">시험 날짜를 골라 주세요</h3>
     <p class="ds-t04 ds-fg-subtle">지난 날짜는 고를 수 없어요.</p>
@@ -88,7 +84,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 폼의 날짜 입력 필드는 Field Button으로 만들고, 누르면 Bottom Sheet 안의 달력에서 선택합니다. 오늘을 선택하면 오늘 표시 대신 선택 상태만 표시합니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <label class="ds-field__label" for="date-picker-date-cell-ex2-field">방문 날짜</label>
     <span class="ds-field__required" aria-hidden="true"></span>
@@ -131,8 +127,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

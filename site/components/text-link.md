@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-link.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/text-link.html -->
 
 # Text Link
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <a class="ds-link" href="…" [data-size="small"]>비밀번호를 잊으셨나요?</a>
@@ -14,8 +14,6 @@
 ```
 
 ## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -25,13 +23,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 체크박스 옆 약관 링크는 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다. |
-| **Do** | 링크 글에는 이동할 화면을 작성합니다. "여기", "더 보기"만 사용하지 않습니다. |
-| **Do** | 전체 보기처럼 묶음 밖으로 이동하는 링크는 끝에 chevron-right 아이콘을 붙입니다. 화살표가 있으면 밑줄 없이 표시됩니다. |
-| **Don't** | 화면을 이동하지 않는 동작에는 사용하지 않습니다. 동작에는 Action Button을 사용합니다. |
-| **Don't** | 문장 안 링크에는 화살표를 붙이지 않습니다. 문장 안 링크는 밑줄로 구분합니다. |
+- Do: 체크박스 옆 약관 링크는 라벨 밖에 두어 원문을 열 때 체크 상태가 바뀌지 않게 합니다.
+- Do: 링크 글에는 이동할 화면을 작성합니다. "여기", "더 보기"만 사용하지 않습니다.
+- Do: 전체 보기처럼 묶음 밖으로 이동하는 링크는 끝에 chevron-right 아이콘을 붙입니다. 화살표가 있으면 밑줄 없이 표시됩니다.
+- Don't: 화면을 이동하지 않는 동작에는 사용하지 않습니다. 동작에는 Action Button을 사용합니다.
+- Don't: 문장 안 링크에는 화살표를 붙이지 않습니다. 문장 안 링크는 밑줄로 구분합니다.
 
 ## 예시
 
@@ -40,7 +36,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 주요 버튼 아래에 아이디 찾기, 비밀번호 재설정 같은 보조 이동을 Text Link로 배치합니다. 버튼보다 약하게 보여 로그인 버튼이 먼저 눈에 띕니다.
 
 ```html
-<div class="u-col u-gap-4" style="width: 100%; max-width: 360px">
+<div class="u-col u-gap-4">
   <div class="ds-input" data-variant="outline">
     <input class="ds-input__control" aria-label="아이디" placeholder="아이디" autocomplete="username">
   </div>
@@ -63,7 +59,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 그룹 제목 오른쪽에 화살표를 붙인 작은 Text Link로 전체 보기를 배치합니다. 화살표가 이동을 알리므로 밑줄 없이 표시됩니다. `data-size="small"`은 제목 옆, 표, 입력 필드 위처럼 보조 영역에 사용합니다.
 
 ```html
-<section class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<section class="u-col u-gap-3">
   <div class="u-flex u-center u-between">
     <h3 class="ds-t06 ds-fw-bold">최근 수강 신청</h3>
     <a class="ds-link" data-size="small" href="#">전체 보기<i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></a>
@@ -96,8 +92,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

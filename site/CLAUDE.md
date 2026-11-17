@@ -3,7 +3,7 @@
 YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정한 날짜와 경위는 [docs/log.md](../docs/log.md)("site/CLAUDE.md 전체 원문 2026-11-15") 에 있고 필요할 때만 찾는다. 수치의 정답은 코드(site.css, kit.mjs)이고 여기에는 다시 적지 않는다.
 
 ## 만들기와 파일
-- 공식 주소 <https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/>(사내 서버, 11-17), 개발 미리보기는 GitHub Pages, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
+- 공식 주소 <https://design.ybmnet.co.kr/yds/site/>(사내 서버, 11-17), 개발 미리보기는 GitHub Pages, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
 - `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check`. DS(components.json, dist/*.css 머리 주석, tokens.css, icons.css, ybm-ds.js, 루트 index.html 예시, README 6.2)를 읽어 페이지를 만든다.
 - 손으로 쓰는 것: `site/build.mjs`, `site/md.mjs`, `site/src/`(site.css, site.js, figma-notes.json, templates.json, updates.json, requests.json, covers.html, anatomy-*.{json,html}, search-ko.json, examples/), `site/templates/gen/*.mjs`.
 - 생성물(직접 고치지 않음): `site/index.html`, `site/get-started/`, `site/foundations/`, `site/components/`, `site/templates/*.html`, `site/templates/pages/`, `site/assets/`, `site/*.txt`, `site/ai/`.
@@ -28,9 +28,9 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 ## 사이트 틀
 - 메뉴 다섯: Get Started, Foundations, Components, Templates, Updates. 페이지 제목은 왼쪽 메뉴와 같은 영문.
 - 배치(`page({ layout })`): page(가운데 한 칸: Get Started, Updates) / doc(글 + 목차: Foundations, 컴포넌트 상세) / wide(메뉴 옆 넓은 폭: 컴포넌트 목록, 템플릿 문서 보기) / full(템플릿 목록, 가운데 1552).
-- 왼쪽 메뉴: Foundations, Components 는 ABC 순(컴포넌트 목록 맨 위 찾기 칸, 한글로도 찾기 `search-ko.json`), 템플릿은 groups.mjs 순서와 한국어 이름(분류 칩의 한국어는 build.mjs `TPL_GROUP_KO`), 분류 묶음은 접는 아코디언(접힘 기억, 지금 페이지 묶음은 펼침). 하위 분류 이름 줄은 그리지 않는다.
+- 왼쪽 메뉴: Foundations 는 ABC 순, Components 는 목록과 같은 분류 묶음(build.mjs `COMP_CATS`, 묶음 안 ABC 순, 맨 위 찾기 칸, 한글로도 찾기 `search-ko.json`, 찾는 동안은 접은 묶음도 펼침), 템플릿은 groups.mjs 순서와 한국어 이름(분류 칩의 한국어는 build.mjs `TPL_GROUP_KO`), 분류 묶음은 접는 아코디언(접힘 기억, 지금 페이지 묶음은 펼침). 하위 분류 이름 줄은 그리지 않는다.
 - 왼쪽 메뉴 빨간 점: 새 컴포넌트(components.css 머리말 "(날짜 추가)" 가 가장 늦은 묶음, 30일), Updates 문장에 이름이 나온 컴포넌트(3일), Updates "템플릿" 소식에 이름이 나온 템플릿(30일). build.mjs `NEW_COMPS`, `UPD_COMPS`, `NEW_TPLS`.
-- 사이트 찾기: 상단 돋보기와 Ctrl/Command + K 의 DS Command Palette(`#site-search`). site.js "사이트 찾기" 가 `assets/search.json`(build.mjs 끝)을 처음 열 때 읽는다. 대상은 시작하기, Foundations, 컴포넌트(search-ko.json), 예시, 템플릿, 토큰(`#t=이름` 표 줄 칠하기), 아이콘(`#q=이름`). 범위 칩, 종류별 묶음과 "n개 더 보기", 글자 강조, 최근 5개.
+- 사이트 찾기: 상단 돋보기와 Ctrl/Command + K 의 DS Command Palette(`#site-search`). site.js "사이트 찾기" 가 `assets/search.json`(build.mjs 끝)을 처음 열 때 읽는다. 대상은 시작하기, Foundations, 컴포넌트(search-ko.json), 예시, 템플릿, 토큰(`#t=이름` 표 줄 칠하기), 아이콘(`#q=이름`). 범위 칩, 종류별 묶음과 "n개 더 보기", 글자 강조, 최근 5개. 결과 줄은 이름과 종류만(설명 줄, Esc 표시, 아래 키 안내는 11-17 뺌).
 - 다크 모드는 기기 설정을 따르고 상단 버튼 선택이 우선(localStorage ybm-site-theme). 다크면 html `data-theme="dark"`, 라이트면 지운다. 테마별 그림은 이 표시만 본다(prefers-color-scheme 를 따로 보지 않는다).
 - 상자 모양은 메인 코드 상자 하나: 회색 머리 줄(bg-neutral-weak-alpha, 높이 44, 선 없음) + 흰 내용, 머리 줄 탭은 DS Segmented Control 기본 크기(`site-seg`, 선택 배경이 미끄러진다). 코드 상자, 예시, 템플릿 보기, AI 요청 글 모두. 표는 흰 바탕 + 줄 선.
 - 사이트 글자는 크기마다 정한 줄높이, 굵기 400/500/600, 자간 0. 전 페이지 검사 스크립트는 `.cache/typo/audit.js`(로컬 전용, 미리보기에서 불러 `window.__audit`).
@@ -39,7 +39,7 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 - 맨 위로 버튼: 모든 페이지, 화면 높이만큼 내리면 오른쪽 아래에 떠오르며 나타난다(`[data-site-totop]`, 그림자 없음, 마우스를 올리면 화살표만 위로).
 
 ## 움직임 (2026-11-16)
-- 메인과 템플릿 문서 보기의 AI 요청 글 타이핑만 둔다(상자가 보이면 한 글자씩, 누르면 끝까지, 기다리는 상자에 Skeleton, 동작 줄이기면 끔. site.js 끝 "소소한 움직임"). 위 메뉴 내려오기, 스크롤 페이드인, 썸네일 차례로, NEW 탄성은 사용자가 지웠다(다시 하자고 하기 전에는 제안하지 않는다).
+- 메인의 AI 요청 글 타이핑만 둔다(상자가 보이면 한 글자씩, 누르면 끝까지, 기다리는 상자에 Skeleton, 동작 줄이기면 끔. site.js 끝 "소소한 움직임"). 위 메뉴 내려오기, 스크롤 페이드인, 썸네일 차례로, NEW 탄성은 사용자가 지웠다(다시 하자고 하기 전에는 제안하지 않는다).
 
 ## Get Started
 - 순서: 리드 한 문장 → 구조 카드 3개 → AI와 함께 시작하기 → Figma로 시작하기 → 개발 시작하기 → 파일 표. 원본은 build.mjs.
@@ -107,12 +107,11 @@ YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정
 
 ## 템플릿 목록과 문서 보기
 - 목록 썸네일은 미리 찍은 그림(`site/templates/thumbs/<slug>.webp`, `-dark.webp`, 모노톤 1080x675). `node tools/tpl-thumbs.mjs`(바뀐 것만, `--all`)를 deploy 가 자동으로 돌리고, 낡으면 check "5-1e" 가 막는다.
-- 목록: 가운데 1552, 분류 칩, 3열, 컴포넌트 목록처럼 16:10 미리보기 아래에 이름만(덮개, 설명, 버튼, 마우스 효과 없음, 설명과 Figma 는 문서 보기에). 카드는 문서 보기로 바로 간다(옛 `?preview=` 주소는 문서 보기로 넘긴다).
-- "크게 보기"(maximize-2 아이콘) 는 DS Dialog 보기 창(제목, 설명, 새 탭, 닫기, 좌우 화살표와 키보드, 순서 build.mjs `TPL_LIST_JSON`). Ctrl, Cmd, 가운데 버튼은 진짜 새 탭.
-- 문서 보기: 위에 AI 요청 글 상자, 아래 미리보기 | 코드 탭. 미리보기는 PC 1440x900 / 모바일 375x760(아이콘 두 개, 태블릿 없음)으로 그리고 site.js `fitStage` 가 줄인다.
-- AI 요청 글은 build.mjs `TPL_PROMPT` 하나가 정본: 안내서 문장과 주소 한 줄, 다음 줄에 "'이름' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘." 와 템플릿 주소. 빈칸은 파랑 글자(예시로 채우지 않는다). 문구를 바꿀 때는 묻는다.
+- 목록: 가운데 1552, 분류 칩, 3열, 컴포넌트 목록처럼 16:10 미리보기 아래에 이름만(덮개, 설명, 버튼, 마우스 효과 없음, 설명과 Figma 는 문서 보기에). 카드를 누르면 보기 창(아래)이 바로 열리고 주소에 `?preview=이름` 이 붙는다(공유, 새로 고침, 뒤로 가기로 닫기). Ctrl, Cmd, 가운데 버튼은 문서 보기를 새 탭으로(11-17 사용자 "새창은 불필요, 모달로 크게 보는 화면").
+- 보기 창(목록 카드와 문서 보기의 "크게 보기" 가 같이 씀)은 DS Dialog: 위 줄 이름, 설명, PC / 모바일, 미리보기 / 코드, 닫기, 가운데 실제 템플릿, 좌우 화살표와 키보드로 다음 템플릿(순서 build.mjs `TPL_LIST_JSON`), 아래 줄 Figma, AI 요청 글 복사. 새 탭 버튼은 없다. 휴대폰은 전체 화면.
+- 문서 보기: 제목 아래 크게 보기, Figma 버튼, 그 아래 미리보기 | 코드 탭(AI 요청 글 상자와 HTML 내려받기는 11-17 뺌). 미리보기는 PC 1440x900 / 모바일 375x760(아이콘 두 개, 태블릿 없음)으로 그리고 site.js `fitStage` 가 줄인다.
 
 ## Figma 연결
 - 절차는 `.claude/skills/yds-figma-draw/SKILL.md`(그리기), `.claude/skills/ds-sync/SKILL.md`(변수, 컴포넌트 대조).
 - Figma 문서 프레임 본문은 `node sync.mjs docs` 로 사이트와 같은 설명, 지침으로 다시 채울 수 있다.
-- 공식 파일 `1VCEsFU3xMWuXIntIrZz9i`, Foundations 페이지 `2274:1143`. 사이트의 Figma, Code 버튼 주소는 `tokens/links.mjs` 와 components.json `doc` / `figmaDocs`, 템플릿은 templates.json `figma.pc`.
+- 공식 파일 `1VCEsFU3xMWuXIntIrZz9i`, Foundations 페이지 `2274:1143`. 사이트 제목 아래 버튼은 Figma, Markdown 둘(코드 버튼은 11-17 뺌). Figma 버튼 주소는 `tokens/links.mjs` 와 components.json `doc` / `figmaDocs`, 템플릿은 templates.json `figma.pc`.

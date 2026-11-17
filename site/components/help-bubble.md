@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/help-bubble.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/help-bubble.html -->
 
 # Help Bubble
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-helpbubble" role="tooltip" data-placement="bottom-start">
@@ -29,19 +29,15 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: `--ds-hb-arrow-offset`
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 닫기 버튼이 필요하거나 설명이 여러 줄이면 Help Bubble을 사용합니다. |
-| **Do** | 처음 보는 기능을 한 번 짚어 줄 때 사용합니다. |
-| **Do** | 한 화면에 하나만 띄우고 닫기 버튼을 둡니다. |
-| **Don't** | Tooltip은 마우스를 올리거나 포커스할 때만 표시되고, 터치 화면에서는 표시되지 않습니다. |
-| **Don't** | 꼭 읽어야 하는 내용은 넣지 않습니다. |
+- Do: 닫기 버튼이 필요하거나 설명이 여러 줄이면 Help Bubble을 사용합니다.
+- Do: 처음 보는 기능을 한 번 짚어 줄 때 사용합니다.
+- Do: 한 화면에 하나만 띄우고 닫기 버튼을 둡니다.
+- Don't: Tooltip은 마우스를 올리거나 포커스할 때만 표시되고, 터치 화면에서는 표시되지 않습니다.
+- Don't: 꼭 읽어야 하는 내용은 넣지 않습니다.
 
 ## 예시
 
@@ -50,7 +46,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 새로 생긴 버튼 바로 아래에 배치하고 꼬리가 그 버튼을 향하게 해 무엇을 가리키는지 표시합니다. 사용자가 읽고 직접 닫아야 하므로 Tooltip이 아닌 Help Bubble을 사용하고 닫기 버튼을 제공합니다.
 
 ```html
-<div class="u-full" style="max-width: 420px">
+<div class="u-full">
   <div class="u-flex u-gap-2">
     <button class="ds-btn" data-variant="neutralOutline" data-size="small" aria-describedby="help-bubble-ex1"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i>필터</button>
     <button class="ds-btn" data-variant="neutralOutline" data-size="small"><i class="ds-icon ds-icon--arrow-up-down" aria-hidden="true"></i>최신순</button>

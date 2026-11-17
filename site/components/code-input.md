@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/code-input.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/code-input.html -->
 
 # Code Input
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-codeinput" role="group" aria-label="인증번호 6자리" [data-size="medium"] [aria-invalid="true"]>
@@ -15,8 +15,6 @@
 ```
 
 ## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -32,12 +30,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 칸 수는 발송하는 번호의 자릿수와 같게 맞춥니다. |
-| **Do** | 숫자만 받을 때는 `inputmode="numeric"`과 `autocomplete="one-time-code"`를 넣어 문자로 받은 번호가 자동으로 입력되게 합니다. |
-| **Do** | 남은 시간은 Timer로, 입력이 틀리면 입력란 아래 오류 문구로 알립니다. |
-| **Don't** | 비밀번호처럼 가려야 하는 값에는 사용하지 않습니다. |
+- Do: 칸 수는 발송하는 번호의 자릿수와 같게 맞춥니다.
+- Do: 숫자만 받을 때는 `inputmode="numeric"`과 `autocomplete="one-time-code"`를 넣어 문자로 받은 번호가 자동으로 입력되게 합니다.
+- Do: 남은 시간은 Timer로, 입력이 틀리면 입력란 아래 오류 문구로 알립니다.
+- Don't: 비밀번호처럼 가려야 하는 값에는 사용하지 않습니다.
 
 ## 예시
 
@@ -58,7 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 모든 칸을 오류 색으로 바꾸고 아래에 이유를 한 줄로 표시합니다. 다시 입력할 수 있도록 칸을 비우지 않습니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header"><span class="ds-field__label" id="ex-otp2">인증번호</span></div>
   <div class="ds-codeinput" role="group" aria-labelledby="ex-otp2" aria-invalid="true"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="1번째 숫자" value="4"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="2번째 숫자" value="1"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="3번째 숫자" value="9"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="4번째 숫자" value="0"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="5번째 숫자" value="2"><input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="6번째 숫자" value="6"></div>
   <div class="ds-field__footer"><p class="ds-field__error">번호가 맞지 않아요. 다시 확인해 주세요.</p></div>
@@ -68,8 +64,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

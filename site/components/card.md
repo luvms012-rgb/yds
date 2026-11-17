@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/card.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/card.html -->
 
 # Card
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <article class="ds-card" [data-variant="elevated"] [data-size="small"]>
@@ -28,8 +28,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `variant` | elevated |
@@ -37,13 +35,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 화면의 주요 버튼(brandSolid)은 카드 안이 아니라 화면 하단에 배치합니다. 카드 하단에는 보조 동작만 배치합니다. |
-| **Do** | 따로 옮기거나 지울 수 있는 단위일 때만 카드로 만듭니다. 설정 묶음 같은 화면 구역은 제목과 여백으로 나눕니다. |
-| **Don't** | 같은 목록 안에서는 variant를 섞지 않습니다. 흰 화면에서는 outline, 회색 바탕 위에서는 elevated를 사용합니다. |
-| **Don't** | 카드 전체를 누를 수 있으면 하단에 버튼을 두지 않습니다. 누르는 영역이 두 곳이 됩니다. |
-| **Don't** | 카드 안에 또 카드를 넣지 않습니다. 카드 안을 나눌 때는 Divider를 사용합니다. |
+- Do: 화면의 주요 버튼(brandSolid)은 카드 안이 아니라 화면 하단에 배치합니다. 카드 하단에는 보조 동작만 배치합니다.
+- Do: 따로 옮기거나 지울 수 있는 단위일 때만 카드로 만듭니다. 설정 묶음 같은 화면 구역은 제목과 여백으로 나눕니다.
+- Don't: 같은 목록 안에서는 variant를 섞지 않습니다. 흰 화면에서는 outline, 회색 바탕 위에서는 elevated를 사용합니다.
+- Don't: 카드 전체를 누를 수 있으면 하단에 버튼을 두지 않습니다. 누르는 영역이 두 곳이 됩니다.
+- Don't: 카드 안에 또 카드를 넣지 않습니다. 카드 안을 나눌 때는 Divider를 사용합니다.
 
 ## 예시
 
@@ -52,15 +48,15 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 카드 전체가 링크이면 하단 버튼을 두지 않습니다. 누르는 영역이 하나여서 카드 어디를 눌러도 같은 화면으로 이동합니다.
 
 ```html
-<div class="u-flex u-wrap u-gap-3" style="width: 100%; max-width: 612px">
-  <a class="ds-card" href="#" style="width: 100%; max-width: 300px">
+<div class="u-flex u-wrap u-gap-3">
+  <a class="ds-card" href="#">
     <header class="ds-card__header">
       <h3 class="ds-card__title">주말 영어 회화 특강</h3>
       <p class="ds-card__desc">11월 15일 (토) 오후 2시</p>
     </header>
     <div class="ds-card__content"><span class="ds-badge" data-tone="warning">마감 임박</span></div>
   </a>
-  <a class="ds-card" href="#" style="width: 100%; max-width: 300px">
+  <a class="ds-card" href="#">
     <header class="ds-card__header">
       <h3 class="ds-card__title">비즈니스 이메일 원데이</h3>
       <p class="ds-card__desc">11월 16일 (일) 오전 11시</p>
@@ -75,7 +71,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 카드 안의 묶음은 Divider로 구분하고, 카드 안에 카드를 넣지 않습니다. 화면의 주요 버튼은 카드 밖 아래에 배치하고, 카드 하단에는 보조 동작만 둡니다.
 
 ```html
-<div class="u-col u-gap-4" style="width: 100%; max-width: 375px">
+<div class="u-col u-gap-4">
   <article class="ds-card">
     <header class="ds-card__header">
       <h3 class="ds-card__title">결제 금액</h3>
@@ -98,8 +94,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

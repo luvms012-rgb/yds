@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/list-list-item.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/list-list-item.html -->
 
 # List / List Item
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <ul class="ds-list" [data-inset] [data-divider]>
@@ -37,8 +37,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | 켜고 끄는 속성 | `inset` `divider` |
@@ -47,13 +45,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 한 행 안에 누를 수 있는 요소는 3개까지만 둡니다. |
-| **Do** | 설정, 메뉴처럼 한 줄에 하나씩 고르는 목록에 사용합니다. |
-| **Do** | 여러 값을 나란히 비교할 때는 Table을 사용합니다. |
-| **Don't** | 행 전체가 링크이면 안에 다른 버튼을 넣지 않습니다. |
-| **Don't** | 한 목록 안에서 줄 높이(size)를 섞지 않습니다. |
+- Do: 한 행 안에 누를 수 있는 요소는 3개까지만 둡니다.
+- Do: 설정, 메뉴처럼 한 줄에 하나씩 고르는 목록에 사용합니다.
+- Do: 여러 값을 나란히 비교할 때는 Table을 사용합니다.
+- Don't: 행 전체가 링크이면 안에 다른 버튼을 넣지 않습니다.
+- Don't: 한 목록 안에서 줄 높이(size)를 섞지 않습니다.
 
 ## 예시
 
@@ -62,7 +58,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 항목 전체가 하나의 링크일 때는 오른쪽에 값과 꺾쇠만 표시하고 다른 버튼은 넣지 않습니다. 누르는 영역이 하나여서 어디를 눌러도 같은 화면으로 이동합니다.
 
 ```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider>
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--user" aria-hidden="true"></i></span>
@@ -97,7 +93,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 누르는 즉시 반영되는 설정은 항목 끝에 Switch를 배치하고 항목 전체를 `label`로 감쌉니다. 텍스트를 눌러도 켜고 끌 수 있어 누르는 영역이 넓어집니다.
 
 ```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider>
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
@@ -133,7 +129,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 한 항목에 수정, 삭제처럼 동작이 여러 개이면 항목을 링크로 만들지 않고 버튼을 항목 끝에 배치합니다. 누를 수 있는 요소는 한 항목에 3개까지만 둡니다.
 
 ```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -164,8 +160,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

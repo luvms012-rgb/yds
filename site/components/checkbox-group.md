@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/checkbox-group.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/checkbox-group.html -->
 
 # Checkbox Group
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <fieldset class="ds-checkbox-group">
@@ -23,17 +23,13 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: 세로 간격 x1, 묶음 이름은 Field Label
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 서로 관련된 체크박스만 묶습니다. |
-| **Do** | 묶음 이름과 오류 문구는 Field Label로 연결합니다. |
-| **Do** | 선택지는 3~7개로 둡니다. 더 많으면 Multi Select를 사용합니다. |
+- Do: 서로 관련된 체크박스만 묶습니다.
+- Do: 묶음 이름과 오류 문구는 Field Label로 연결합니다.
+- Do: 선택지는 3~7개로 둡니다. 더 많으면 Multi Select를 사용합니다.
 
 ## 예시
 
@@ -42,7 +38,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 같은 질문에 답하는 체크박스만 세로로 쌓고, 그룹 이름과 안내는 Field Label로 표시합니다. 그룹에 `aria-labelledby`로 이름을 연결해 스크린 리더도 무엇을 선택하는지 알 수 있게 합니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 375px">
+<div class="ds-field">
   <div class="ds-field__header">
     <span class="ds-field__label" id="checkbox-group-ex1-label">관심 분야</span>
     <span class="ds-field__indicator">선택</span>
@@ -62,7 +58,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 필수 그룹에서 아무것도 선택하지 않으면 그룹에 `aria-invalid="true"`를 붙여 안내 문구를 오류 문구로 바꿉니다. 오류 문구에는 무엇을 하면 되는지 적습니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 375px">
+<div class="ds-field">
   <div class="ds-field__header">
     <span class="ds-field__label" id="checkbox-group-ex2-label">답변 받을 방법</span>
     <span class="ds-field__required" aria-hidden="true"></span>

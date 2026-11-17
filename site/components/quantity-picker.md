@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/quantity-picker.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/quantity-picker.html -->
 
 # Quantity Picker
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-quantity" data-size="medium">
@@ -25,8 +25,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | fill |
@@ -34,9 +32,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 수강 신청 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다. |
+- Do: 수강 신청 버튼 옆에서는 버튼과 높이가 같은 large를 사용합니다.
 
 ## 예시
 
@@ -45,7 +41,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 수량이 1이면 줄이기 버튼에 `disabled`를 붙입니다. 더 줄일 수 없다는 것을 누르기 전에 알 수 있습니다.
 
 ```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -80,7 +76,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 남은 수량보다 많이 입력하면 값 입력란에 `aria-invalid="true"`를 붙이고 Field Label 오류 문구로 이유를 안내합니다. 늘리기 버튼도 비활성화해 더 늘릴 수 없다는 것을 함께 표시합니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 240px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <label class="ds-field__label" for="quantity-picker-ex2">수량</label>
   </div>

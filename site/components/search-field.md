@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/search-field.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/search-field.html -->
 
 # Search Field
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <form class="ds-searchfield" role="search" [data-variant="fill"] action="…">
@@ -30,8 +30,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `variant` | outline fill |
@@ -40,12 +38,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | `<form role="search">`로 감싸 Enter로 검색어를 전송하게 합니다. |
-| **Do** | 앱 상단이나 목록 위처럼 바탕이 흰 곳에는 fill을 사용합니다. |
-| **Do** | 추천어 목록이 필요하면 Search Suggestion을 함께 사용합니다. |
-| **Do** | 취소 버튼은 검색 화면을 따로 열었을 때만 둡니다. |
+- Do: `<form role="search">`로 감싸 Enter로 검색어를 전송하게 합니다.
+- Do: 앱 상단이나 목록 위처럼 바탕이 흰 곳에는 fill을 사용합니다.
+- Do: 추천어 목록이 필요하면 Search Suggestion을 함께 사용합니다.
+- Do: 취소 버튼은 검색 화면을 따로 열었을 때만 둡니다.
 
 ## 예시
 

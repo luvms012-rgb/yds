@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/side-panel.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/side-panel.html -->
 
 # Side Panel
 
@@ -6,7 +6,7 @@ PC 화면 가장자리에서 밀려 나오는 창입니다. 현재 화면을 유
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <dialog class="ds-sidepanel" id="sp" aria-labelledby="sp-t" [data-size="small"] [data-direction="left"]>
@@ -33,8 +33,6 @@ PC 화면 가장자리에서 밀려 나오는 창입니다. 현재 화면을 유
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | small medium large |
@@ -48,12 +46,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. |
-| **Do** | 화면이 좁으면 Bottom Sheet로 전환합니다. |
-| **Do** | 짧은 확인이나 작은 폼에는 Dialog를 사용합니다. |
-| **Do** | 닫기 버튼은 항상 둡니다. |
+- Do: PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다.
+- Do: 화면이 좁으면 Bottom Sheet로 전환합니다.
+- Do: 짧은 확인이나 작은 폼에는 Dialog를 사용합니다.
+- Do: 닫기 버튼은 항상 둡니다.
 
 ## 예시
 
@@ -62,7 +58,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을 사용합니다. 화면이 좁은 모바일에서는 같은 내용을 Bottom Sheet에 담습니다.
 
 ```html
-<div class="u-col u-gap-3 u-full" style="max-width: 480px">
+<div class="u-col u-gap-3 u-full">
   <div class="u-flex u-center u-between">
     <span class="ds-t04 ds-fg-muted">강의 32개</span>
     <button type="button" class="ds-btn" data-variant="neutralOutline" data-size="small" data-ds-open="side-panel-ex1"><i class="ds-icon ds-icon--list-filter" aria-hidden="true"></i>필터</button>
@@ -113,8 +109,6 @@ PC 화면에서 목록을 가리지 않고 필터를 선택할 때 Side Panel을
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

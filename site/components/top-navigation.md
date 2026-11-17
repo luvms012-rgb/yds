@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/top-navigation.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/top-navigation.html -->
 
 # Top Navigation
 
@@ -6,7 +6,7 @@ PC 화면 맨 위에서 서비스의 주요 화면 사이를 이동하는 컴포
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <header class="ds-topnav">
@@ -36,8 +36,6 @@ PC 화면 맨 위에서 서비스의 주요 화면 사이를 이동하는 컴포
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | center 메뉴 가운데 |
@@ -48,13 +46,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | PC 화면에서만 사용합니다. |
-| **Do** | 메뉴는 7개까지 둡니다. |
-| **Do** | 현재 화면이 속한 메뉴에는 `aria-current="page"`를 붙입니다. |
-| **Do** | 화면이 좁아지면 Top App Bar와 메뉴 버튼으로 전환합니다. |
-| **Do** | 로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 둡니다. |
+- Do: PC 화면에서만 사용합니다.
+- Do: 메뉴는 7개까지 둡니다.
+- Do: 현재 화면이 속한 메뉴에는 `aria-current="page"`를 붙입니다.
+- Do: 화면이 좁아지면 Top App Bar와 메뉴 버튼으로 전환합니다.
+- Do: 로그인한 사용자에게는 오른쪽 끝에 알림 버튼과 내 정보 버튼을 둡니다.
 
 ## 예시
 
@@ -63,9 +59,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 배치합니다. 현재 화면이 속한 메뉴에 `aria-current="page"`를 붙여 위치를 알립니다.
 
 ```html
-<header class="ds-topnav" style="width: 100%">
+<header class="ds-topnav">
   <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
+    <a class="ds-topnav__heading" href="#"><img src="https://design.ybmnet.co.kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
     <nav class="ds-topnav__menu" aria-label="주요 메뉴">
       <a class="ds-topnav__item" href="#">홈</a>
       <a class="ds-topnav__item" href="#" aria-current="page">강의</a>
@@ -86,9 +82,9 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
 메뉴가 적고 로고와 버튼이 양끝에 있을 때 `data-layout="center"`로 메뉴를 막대 가운데에 둡니다.
 
 ```html
-<header class="ds-topnav" data-layout="center" style="width: 100%">
+<header class="ds-topnav" data-layout="center">
   <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
+    <a class="ds-topnav__heading" href="#"><img src="https://design.ybmnet.co.kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
     <nav class="ds-topnav__menu" aria-label="주요 메뉴">
       <a class="ds-topnav__item" href="#">홈</a>
       <a class="ds-topnav__item" href="#" aria-current="page">강의</a>

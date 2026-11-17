@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/rating.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/rating.html -->
 
 # Rating
 
@@ -10,8 +10,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | small medium large |
@@ -21,11 +19,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 별 옆에 평점 숫자와 후기 수를 함께 표시하세요. |
-| **Do** | 별점을 입력할 때는 별 5개를 모두 표시하고, 선택한 별까지 채웁니다. |
-| **Do** | 별 색은 경고색(노랑) 하나만 사용합니다. |
+- Do: 별 옆에 평점 숫자와 후기 수를 함께 표시하세요.
+- Do: 별점을 입력할 때는 별 5개를 모두 표시하고, 선택한 별까지 채웁니다.
+- Do: 별 색은 경고색(노랑) 하나만 사용합니다.
 
 ## 예시
 
@@ -34,7 +30,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록에서는 별 옆에 평점 숫자와 후기 수를 함께 표시합니다. 별만으로는 4.5점과 4점을 구분하기 어렵고, 후기 수가 있어야 평점을 얼마나 믿을지 판단할 수 있습니다.
 
 ```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider>
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content u-gap-1">
@@ -70,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 후기를 작성할 때는 입력형(`data-input`)으로 별 5개를 모두 표시하고 선택한 별까지 채웁니다. 다섯 개 중 몇 개를 선택했는지 한눈에 알 수 있습니다.
 
 ```html
-<div class="u-col u-gap-6 u-full" style="max-width: 420px">
+<div class="u-col u-gap-6 u-full">
   <div class="ds-field">
     <div class="ds-field__header">
       <span class="ds-field__label" id="rating-ex2-label">강의는 어떠셨나요?</span>
@@ -97,8 +93,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

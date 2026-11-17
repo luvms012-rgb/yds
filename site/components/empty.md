@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/empty.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/empty.html -->
 
 # Empty
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-empty" [data-size="small"]>
@@ -28,21 +28,17 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | 켜고 끄는 속성 | `size` |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 제목에는 현재 상황을, 설명에는 다음에 할 일을 작성합니다. 오류는 Empty 대신 Callout(critical)이나 Result Section으로 알립니다. |
-| **Do** | 버튼은 두지 않거나 하나만 둡니다. 많아도 두 개까지만 사용합니다. |
-| **Do** | 아이콘은 상황에 맞게 바꿉니다. |
-| **Do** | 카드나 목록 안의 좁은 자리에는 small을 사용합니다. |
-| **Do** | "데이터 없음" 대신 무엇이 왜 비어 있는지 작성합니다. |
+- Do: 제목에는 현재 상황을, 설명에는 다음에 할 일을 작성합니다. 오류는 Empty 대신 Callout(critical)이나 Result Section으로 알립니다.
+- Do: 버튼은 두지 않거나 하나만 둡니다. 많아도 두 개까지만 사용합니다.
+- Do: 아이콘은 상황에 맞게 바꿉니다.
+- Do: 카드나 목록 안의 좁은 자리에는 small을 사용합니다.
+- Do: "데이터 없음" 대신 무엇이 왜 비어 있는지 작성합니다.
 
 ## 예시
 
@@ -51,7 +47,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 제목에는 현재 상황을, 설명에는 다음에 할 일을 적습니다. 검색어만 바꾸면 되는 상황이므로 버튼 없이 안내만 표시합니다.
 
 ```html
-<div class="u-col u-gap-2 u-full" style="max-width: 420px">
+<div class="u-col u-gap-2 u-full">
   <div class="ds-input" data-variant="outline" data-size="medium">
     <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
     <input class="ds-input__control" type="search" value="영어 문법 심화반" aria-label="강의 찾기">
@@ -68,8 +64,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

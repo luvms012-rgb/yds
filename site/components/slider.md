@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/slider.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/slider.html -->
 
 # Slider
 
@@ -6,15 +6,13 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <input type="range" class="ds-slider" min="0" max="100" value="45" [data-tone="brand"]>
 ```
 
 ## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -28,14 +26,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 누르는 영역은 손잡이뿐 아니라 막대 전체입니다. 막대를 누르면 손잡이가 그 위치로 바로 이동합니다. |
-| **Do** | 값이 이어지는 슬라이더는 부드럽게 움직입니다. 단계가 있는 슬라이더는 가장 가까운 단계에서 멈춥니다. |
-| **Do** | 적절한 기본값을 미리 설정해 사용자의 수고와 실수를 줄입니다. |
-| **Do** | 손잡이를 움직이는 동안 현재 값을 표시합니다. |
-| **Do** | 정확한 숫자 입력에는 Quantity Picker나 Text Field Input을, 단계가 몇 개뿐이면 Segmented Control을 사용합니다. |
-| **Do** | 값에는 단위를 함께 표시합니다. |
+- Do: 누르는 영역은 손잡이뿐 아니라 막대 전체입니다. 막대를 누르면 손잡이가 그 위치로 바로 이동합니다.
+- Do: 값이 이어지는 슬라이더는 부드럽게 움직입니다. 단계가 있는 슬라이더는 가장 가까운 단계에서 멈춥니다.
+- Do: 적절한 기본값을 미리 설정해 사용자의 수고와 실수를 줄입니다.
+- Do: 손잡이를 움직이는 동안 현재 값을 표시합니다.
+- Do: 정확한 숫자 입력에는 Quantity Picker나 Text Field Input을, 단계가 몇 개뿐이면 Segmented Control을 사용합니다.
+- Do: 값에는 단위를 함께 표시합니다.
 
 ## 예시
 
@@ -44,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 손잡이를 움직이는 동안 라벨 옆 숫자도 함께 바꿔 표시합니다. 막대만으로는 현재 값이 정확히 얼마인지 알 수 없습니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header u-between">
     <label class="ds-field__label" for="slider-ex1">음량</label>
     <output class="ds-t04 ds-fg-muted" id="slider-ex1-value" for="slider-ex1">40%</output>
@@ -58,7 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 재생 속도처럼 정해진 단계가 있으면 `step`을 지정해 가장 가까운 단계에 멈추게 합니다. 막대 아래에 단계 값을 표시해 어디에 멈출지 미리 알려 줍니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header u-between">
     <label class="ds-field__label" for="slider-ex2">재생 속도</label>
     <output class="ds-t04 ds-fg-muted" id="slider-ex2-value" for="slider-ex2">1배</output>
@@ -76,8 +72,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

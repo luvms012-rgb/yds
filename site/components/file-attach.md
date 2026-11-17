@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/file-attach.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/file-attach.html -->
 
 # File Attach
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-fileattach">
@@ -50,8 +50,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `Dropzone state` | enabled dragOver disabled |
@@ -69,13 +67,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 파일을 끌어 놓는 영역은 PC 화면에만 배치합니다. |
-| **Do** | 모바일에서는 추가 버튼(Trigger)과 파일 항목만 사용합니다. |
-| **Do** | 추가 버튼에는 현재 개수와 최대 개수를 표시합니다. |
-| **Do** | 파일이 최대 개수에 도달하면 추가 버튼을 disabled로 바꿉니다. |
-| **Do** | 받을 수 있는 형식과 최대 크기를 미리 안내합니다. |
+- Do: 파일을 끌어 놓는 영역은 PC 화면에만 배치합니다.
+- Do: 모바일에서는 추가 버튼(Trigger)과 파일 항목만 사용합니다.
+- Do: 추가 버튼에는 현재 개수와 최대 개수를 표시합니다.
+- Do: 파일이 최대 개수에 도달하면 추가 버튼을 disabled로 바꿉니다.
+- Do: 받을 수 있는 형식과 최대 크기를 미리 안내합니다.
 
 ## 예시
 
@@ -84,7 +80,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고, 올린 파일은 그 아래에 한 줄씩 표시합니다. 첨부할 수 있는 형식과 개수는 Field Label 안내 문구로 미리 알립니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 480px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <span class="ds-field__label">첨부 파일</span>
     <span class="ds-field__indicator">선택</span>
@@ -118,7 +114,7 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
 모바일에서는 끌어다 놓는 영역 없이 추가 버튼과 사진 목록만 사용합니다. 추가 버튼에는 현재 개수와 최대 개수를 표시해 몇 장 더 올릴 수 있는지 알립니다.
 
 ```html
-<div class="u-col u-gap-5 u-full" style="max-width: 375px">
+<div class="u-col u-gap-5 u-full">
   <div class="ds-field">
     <div class="ds-field__header">
       <label class="ds-field__label" for="file-attach-ex2-text">모임 후기</label>
@@ -157,7 +153,7 @@ PC 화면의 문의 폼에는 파일을 끌어다 놓는 영역을 배치하고,
 파일이 최대 개수만큼 차면 추가 버튼의 입력 요소를 `disabled`로 바꿉니다. 더 올리려면 먼저 하나를 삭제해야 한다는 것을 안내 문구로 함께 알립니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 375px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <span class="ds-field__label">후기 사진</span>
   </div>

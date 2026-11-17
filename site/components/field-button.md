@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/field-button.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/field-button.html -->
 
 # Field Button
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <button type="button" class="ds-fieldbutton" data-size="large">
@@ -27,8 +27,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | large medium |
@@ -37,12 +35,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 폼으로 전송해야 하는 값은 disabled 대신 readOnly를 사용하세요. disabled 값은 전송되지 않습니다. |
-| **Do** | 사용자가 직접 입력해야 하면 Field Button 대신 Text Field Input을 사용합니다. |
-| **Do** | 라벨, 설명, 오류 문구는 Field Label로 감싸 연결하세요. |
-| **Don't** | 지우기(clear) 버튼은 오른쪽 아이콘과 역할이 겹치므로 넣지 않습니다. |
+- Do: 폼으로 전송해야 하는 값은 disabled 대신 readOnly를 사용하세요. disabled 값은 전송되지 않습니다.
+- Do: 사용자가 직접 입력해야 하면 Field Button 대신 Text Field Input을 사용합니다.
+- Do: 라벨, 설명, 오류 문구는 Field Label로 감싸 연결하세요.
+- Don't: 지우기(clear) 버튼은 오른쪽 아이콘과 역할이 겹치므로 넣지 않습니다.
 
 ## 예시
 
@@ -51,7 +47,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 선택할 값이 정해진 필드는 Field Button으로 만들고, 누르면 Bottom Sheet에서 선택합니다. 사용자가 직접 입력해야 하는 필드에는 Text Field Input을 사용합니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <label class="ds-field__label" for="field-button-ex1-field">수강 반</label>
     <span class="ds-field__indicator">선택</span>
@@ -85,7 +81,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 수정할 수 없지만 폼과 함께 전송해야 하는 값은 `disabled` 대신 `aria-readonly="true"`를 사용합니다. `disabled` 값은 폼과 함께 전송되지 않기 때문입니다.
 
 ```html
-<div class="u-col u-gap-5 u-full" style="max-width: 360px">
+<div class="u-col u-gap-5 u-full">
   <div class="ds-field">
     <div class="ds-field__header">
       <label class="ds-field__label" for="field-button-ex2-area">시험 지역</label>
@@ -116,7 +112,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 라벨과 오류 문구는 Field Label로 감싸 연결하고, 선택하지 않은 필드에는 `aria-invalid="true"`를 붙입니다. 오류가 나면 안내 문구 자리에 해결 방법이 표시됩니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <label class="ds-field__label" for="field-button-ex3-field">관심 분야</label>
     <span class="ds-field__required" aria-hidden="true"></span>

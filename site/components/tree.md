@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tree.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/tree.html -->
 
 # Tree
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <ul class="ds-tree" role="tree" aria-label="폴더" [data-size="small"] [data-guides="none"]>
@@ -37,8 +37,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | medium small |
@@ -54,13 +52,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 좁은 영역에서는 연결선 없이 들여쓰기만 사용합니다. |
-| **Do** | 항목마다 알아보기 쉬운 이름과 아이콘을 둡니다. |
-| **Do** | 중요한 항목은 처음부터 펼친 상태로 표시합니다. |
-| **Don't** | 계층은 4단계를 넘기지 않습니다. |
-| **Don't** | 위아래 관계가 없는 목록에는 사용하지 않습니다. 그때는 List를 사용합니다. |
+- Do: 좁은 영역에서는 연결선 없이 들여쓰기만 사용합니다.
+- Do: 항목마다 알아보기 쉬운 이름과 아이콘을 둡니다.
+- Do: 중요한 항목은 처음부터 펼친 상태로 표시합니다.
+- Don't: 계층은 4단계를 넘기지 않습니다.
+- Don't: 위아래 관계가 없는 목록에는 사용하지 않습니다. 그때는 List를 사용합니다.
 
 ## 예시
 
@@ -69,14 +65,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 폴더와 파일을 아이콘으로 구분하고, 현재 열린 파일을 선택 상태로 표시합니다. 펼칠 항목이 없는 줄도 펼침 아이콘 자리를 비워 두어 이름이 나란히 정렬됩니다.
 
 ```html
-<ul class="ds-tree" role="tree" aria-label="강의 자료 폴더" style="width: 100%; max-width: 320px"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 자료</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">1주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-selected="true" tabindex="0"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 계획서.docx</span></div></li><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">발표 자료.pdf</span></div></li></ul></li><li class="ds-tree__node" role="treeitem" aria-expanded="false" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">2주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">읽을거리.pdf</span></div></li></ul></li></ul></li><li class="ds-tree__node" role="treeitem" aria-expanded="false" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">과제</span><span class="ds-tree__suffix">3</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">과제 1.docx</span></div></li></ul></li><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">공지.txt</span></div></li></ul>
+<ul class="ds-tree" role="tree" aria-label="강의 자료 폴더"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 자료</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-expanded="true" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder-open ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">1주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" aria-selected="true" tabindex="0"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">강의 계획서.docx</span></div></li><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">발표 자료.pdf</span></div></li></ul></li><li class="ds-tree__node" role="treeitem" aria-expanded="false" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">2주차</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">읽을거리.pdf</span></div></li></ul></li></ul></li><li class="ds-tree__node" role="treeitem" aria-expanded="false" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--folder ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">과제</span><span class="ds-tree__suffix">3</span></div><ul class="ds-tree__group" role="group"><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">과제 1.docx</span></div></li></ul></li><li class="ds-tree__node" role="treeitem" tabindex="-1"><div class="ds-tree__row"><span class="ds-tree__toggle" aria-hidden="true"></span><i class="ds-icon ds-icon--file-text ds-tree__icon" aria-hidden="true"></i><span class="ds-tree__label">공지.txt</span></div></li></ul>
 ```
 
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

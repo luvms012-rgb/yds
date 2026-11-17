@@ -159,7 +159,7 @@
     var pre = box.querySelector("[data-site-src]");
     if (!pre || pre.getAttribute("data-loaded")) return;
     fetch(pre.getAttribute("data-site-src")).then(function (r) { return r.text(); }).then(function (txt) {
-      pre.querySelector("code").textContent = txt.replace(/(\.\.\/)+dist\//g, "https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/dist/");
+      pre.querySelector("code").textContent = txt.replace(/(\.\.\/)+dist\//g, "https://design.ybmnet.co.kr/yds/dist/");
       pre.setAttribute("data-loaded", "");
     }).catch(function () { pre.querySelector("code").textContent = "코드는 웹 주소(http)로 열었을 때 보여요. 파일 위치: " + pre.getAttribute("data-site-src"); });
   }
@@ -183,7 +183,8 @@
     if (nav) {
       // 한글 낱말(data-site-keys)도 함께 본다: "버튼" 으로 찾아도 Action Button이 나온다
       nav.querySelectorAll(".site-nav__item").forEach(function (a) { a.hidden = !!q && (a.textContent + " " + (a.getAttribute("data-site-keys") || "")).toLowerCase().indexOf(q) < 0; });
-      nav.querySelectorAll(".site-nav__group").forEach(function (g) { g.hidden = !g.querySelector(".site-nav__item:not([hidden])"); if (q) g.open = true; });
+      nav.querySelectorAll(".site-nav__group").forEach(function (g) { g.hidden = !g.querySelector(".site-nav__item:not([hidden])"); });
+      if (q) nav.setAttribute("data-site-filtering", ""); else nav.removeAttribute("data-site-filtering");  // 찾는 동안은 접은 묶음도 펼쳐 보인다
     }
   }
   document.addEventListener("input", function (e) { if (e.target.matches("[data-site-search]")) filter(); });
@@ -663,79 +664,100 @@
     if (cur && cur.offsetTop + cur.offsetHeight > side.clientHeight) side.scrollTop = cur.offsetTop - side.clientHeight / 3;
   });
 
-  // 템플릿 보기 창: 목록에서 카드를 누르면 화면 100% 가 아닌 정해진 크기의 큰 창에서 템플릿을 보여 준다.
-  // 주소에 ?preview=이름 을 남겨 그대로 공유할 수 있다. 새 탭으로 열기(Ctrl, Cmd, 가운데 버튼)는 상세 페이지로 간다.
-  // 템플릿 AI 요청 글 복사 (11-11 사용자, 11-14 문서 보기에도): 안내서 주소와 이 템플릿 주소를 넣은 요청 글을 복사한다
-  function copyTplPrompt(b, name, slug) {
-    var shown = document.querySelector(".site-tpl-prompt code");
-    var text = shown ? shown.textContent : "아래 안내서를 읽고 YDS 규칙을 지켜 줘.\n" + new URL("../yds.txt", location.href).href +
-      "\n\n'" + name + "' 템플릿을 출발점으로 [내가 원하는 서비스 화면]을 만들어 줘.\n" + new URL("pages/" + slug + ".html", location.href).href +
-      "\n\n- 구성, 배치, 내용은 내 서비스의 목적과 쓰는 사람에 맞게 새로 짜 줘. 템플릿을 그대로 따라 하지 않아도 돼.\n- 모양은 YDS 규칙을 지켜 줘. 컴포넌트, 토큰, 아이콘은 YDS 에 있는 것만 쓰고, 색이나 크기를 직접 정하지 마.";
-    var say = function (msg, ok) { if (window.DS && DS.snackbar) DS.snackbar(msg, { tone: ok ? "positive" : "critical" }); };
-    var legacy = function () {
-      var t = document.createElement("textarea"); t.value = text; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;opacity:0;pointer-events:none";
-      document.body.appendChild(t); t.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (err) {} t.remove(); b.focus();
-      say(ok ? "요청 글을 복사했어요. AI 도구에 붙여 넣으세요." : "복사하지 못했어요. 새 창으로 열어 주소를 복사해 주세요.", ok);
-    };
-    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say("요청 글을 복사했어요. AI 도구에 붙여 넣으세요.", true); }, legacy); else legacy();
-  }
-  document.addEventListener("click", function (e) {
-    var b = e.target.closest && e.target.closest("[data-site-tpl-prompt]");
-    if (b) copyTplPrompt(b, b.getAttribute("data-name"), b.getAttribute("data-site-tpl-prompt"));
-  });
-
-  // 2026-11-14 사용자 "모달보다 바로 문서 보기 화면으로": 목록 카드는 문서 보기로 바로 간다. 옛 ?preview= 주소도 문서 보기로 넘긴다
-  // (옛 목록 보기 창 코드는 11-17 지웠다. 되살리려면 git 기록)
-  (function () {
-    if (!document.querySelector(".site-tpl")) return;
-    try { var go = new URL(location.href).searchParams.get("preview"); if (go && /^[a-z0-9-]+$/.test(go)) location.replace(go + ".html"); } catch (e) {}
-  })();
-
-  // 템플릿 문서 보기의 "크게 보기" (11-16 사용자): 제목, 설명과 함께 큰 창으로 열고 좌우 화살표(키보드 좌우)로 다른 템플릿을 넘겨 본다.
-  // 11-17: DS Dialog(<dialog class="ds-dialog">, showModal) 로. 닫기는 ybm-ds.js 가 data-ds-close, 바깥 누르기, Esc 를 맡는다.
-  // 순서는 목록 순서(build.mjs TPL_LIST_JSON). Ctrl, Cmd, Shift, 가운데 버튼은 진짜 새 탭, 창 안 아이콘도 새 탭으로 연다
+  // 템플릿 보기 창 (2026-11-17 사용자 "새창은 불필요, 모달로 크게 보는 화면", 제안대로): 목록 카드와 문서 보기의 "크게 보기" 가 같은 DS Dialog 를 연다.
+  // 위 줄: 이름, 설명, PC / 모바일, 미리보기 / 코드, 닫기. 가운데: 실제 템플릿. 좌우 화살표(키보드 좌우)로 다음 템플릿. 아래 줄: Figma, AI 요청 글 복사. 새 탭 버튼은 없다.
+  // 목록에서는 주소에 ?preview=이름 을 붙여 공유, 새로 고침, 뒤로 가기와 맞춘다. Ctrl, Cmd, Shift, 가운데 버튼은 진짜 새 탭(문서 보기). 순서는 목록 순서(build.mjs TPL_LIST_JSON)
   (function () {
     var data = document.getElementById("site-tpl-list"); if (!data) return;
-    var list = []; try { list = JSON.parse(data.textContent); } catch (e) { return; }
-    var dlg = document.createElement("dialog"), cur = -1;
+    var cfg; try { cfg = JSON.parse(data.textContent); } catch (e) { return; }
+    var list = cfg.items || [], onList = !!document.querySelector(".site-tpl-grid");
+    var dlg = document.createElement("dialog"), cur = -1, pushed = false;
     if (!dlg.showModal) return;
+    var seg = function (label, attr, items, cls) {
+      return '<div class="' + (cls ? cls + " " : "") + 'ds-segmented site-seg' + (items[0][2] ? " site-seg--icon" : "") + '" role="group" aria-label="' + label + '">' + items.map(function (it, i) {
+        return '<button type="button" class="ds-segmented__item" aria-pressed="' + (i === 0) + '" ' + attr + '="' + it[0] + '"' +
+          (it[2] ? ' aria-label="' + it[1] + '"><i class="ds-icon ds-icon--' + it[2] + ' ds-icon--sm" aria-hidden="true"></i>' : ">" + it[1]) + "</button>";
+      }).join("") + "</div>";
+    };
     dlg.className = "ds-dialog site-tplv"; dlg.id = "site-tplv";
     dlg.setAttribute("aria-labelledby", "site-tplv-title");
     dlg.innerHTML = '<div class="ds-dialog__header"><h2 class="ds-dialog__title" id="site-tplv-title"></h2><p class="ds-dialog__desc"></p>' +
-      '<span class="site-tplv__tools"><a class="ds-btn site-tplv__tab" data-variant="ghost" data-layout="iconOnly" target="_blank" rel="noopener" aria-label="새 탭으로 열기"><i class="ds-icon ds-icon--external-link" aria-hidden="true"></i></a>' +
+      '<span class="site-tplv__tools">' + seg("화면 폭", "data-tplv-device", [["desktop", "PC", "monitor"], ["mobile", "모바일", "smartphone"]], "site-tplv__device") +
+      seg("보기 방식", "data-tplv-view", [["preview", "미리보기"], ["code", "코드"]]) +
       '<button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기" autofocus></button></span></div>' +
-      '<div class="ds-dialog__body"><iframe title="" data-site-frame></iframe></div>' +
+      '<div class="ds-dialog__body"><div class="site-tplv__stage" data-device="desktop"><iframe title="" data-site-frame></iframe></div>' +
+      '<div class="site-tplv__code" hidden><figure class="ds-codeblock" data-lang="html"><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption><pre class="ds-codeblock__code"><code></code></pre></figure></div></div>' +
+      '<div class="ds-dialog__footer site-tplv__foot"><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a>' +
+      '<button type="button" class="ds-btn" data-variant="neutralSolid" data-size="small" data-tplv-ask><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i>AI 요청 글 복사</button></div>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
-    var frame = dlg.querySelector("iframe");
+    var frame = dlg.querySelector("iframe"), stage = dlg.querySelector(".site-tplv__stage"), codeBox = dlg.querySelector(".site-tplv__code");
+    var fig = codeBox.querySelector("figure"), figma = dlg.querySelector(".site-tplv__figma"), device = dlg.querySelector(".site-tplv__device");
     frame.addEventListener("load", function () { themeFrame(frame); });
-    function open(i) {
+    var slugs = list.map(function (t) { return t[0]; });
+    // iframe 주소는 방문 기록 없이 바꾼다(그래야 뒤로 가기가 창을 닫는다)
+    function load(u) { try { frame.contentWindow.location.replace(new URL(u, location.href).href); } catch (e) { frame.src = u; } }
+    function url(slug) { var u = new URL(location.href); if (slug) u.searchParams.set("preview", slug); else u.searchParams.delete("preview"); return u.pathname + u.search + u.hash; }
+    function open(i, how) {
       var t = list[i]; if (!t) return;
       cur = i;
       dlg.querySelector(".ds-dialog__title").textContent = t[1];
       dlg.querySelector(".ds-dialog__desc").textContent = t[2];
-      dlg.querySelector(".site-tplv__tab").href = "pages/" + t[0] + ".html";
+      figma.hidden = !t[3]; if (t[3]) figma.href = t[3];
       frame.title = t[1] + " 미리보기";
-      frame.src = "pages/" + t[0] + ".html";
+      load("pages/" + t[0] + ".html");
+      fig.setAttribute("data-site-src", "pages/" + t[0] + ".html"); fig.removeAttribute("data-loaded");
+      fig.querySelector("code").textContent = "불러오는 중…";
+      if (!codeBox.hidden) loadSource(codeBox);
+      if (onList && how === "push") { history.pushState({ tplv: t[0] }, "", url(t[0])); pushed = true; }
+      else if (onList && how === "replace") history.replaceState(history.state, "", url(t[0]));
       if (!dlg.open) { dlg.showModal(); root.classList.add("site-tplv-open"); }
     }
-    dlg.addEventListener("close", function () { root.classList.remove("site-tplv-open"); frame.src = "about:blank"; cur = -1; });
-    function step(n) { if (cur >= 0) open((cur + n + list.length) % list.length); }
+    dlg.addEventListener("close", function () {
+      root.classList.remove("site-tplv-open"); load("about:blank"); cur = -1;
+      if (!onList || !new URL(location.href).searchParams.get("preview")) return;
+      if (pushed && history.state && history.state.tplv) { pushed = false; history.back(); } else history.replaceState(null, "", url(""));
+    });
+    window.addEventListener("popstate", function () {
+      var i = slugs.indexOf(new URL(location.href).searchParams.get("preview"));
+      if (i >= 0) open(i); else if (dlg.open) { pushed = false; dlg.close(); }
+    });
+    function step(n) { if (cur >= 0) open((cur + n + list.length) % list.length, "replace"); }
+    function ask() {
+      var t = list[cur]; if (!t) return;
+      var text = cfg.ask + "\n'" + t[1] + "' 템플릿을 참고해 [만들고 싶은 화면]을 만들어 줘.\n" + cfg.base + t[0] + ".html";
+      var say = function (ok) { if (window.DS && DS.snackbar) DS.snackbar(ok ? "요청 글을 복사했어요. AI 도구에 붙여 넣으세요." : "복사하지 못했어요.", { tone: ok ? "positive" : "critical" }); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () { say(true); }, function () { say(false); }); else say(false);
+    }
     document.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest("[data-site-tplv]");
       if (!b || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      var i = slugs.indexOf(b.getAttribute("data-site-tplv")); if (i < 0) return;
       e.preventDefault();
-      var slug = b.getAttribute("data-site-tplv");
-      open(Math.max(0, list.map(function (t) { return t[0]; }).indexOf(slug)));
+      open(i, "push");
     });
     dlg.addEventListener("click", function (e) {
-      var s = e.target.closest("[data-tplv-step]"); if (s) step(+s.getAttribute("data-tplv-step"));
+      var s = e.target.closest("[data-tplv-step]"); if (s) { step(+s.getAttribute("data-tplv-step")); return; }
+      var d = e.target.closest("[data-tplv-device]");
+      if (d) { press(d); stage.setAttribute("data-device", d.getAttribute("data-tplv-device")); return; }
+      var v = e.target.closest("[data-tplv-view]");
+      if (v) {
+        press(v);
+        var code = v.getAttribute("data-tplv-view") === "code";
+        codeBox.hidden = !code; stage.hidden = code; device.hidden = code;
+        if (code) loadSource(codeBox);
+        return;
+      }
+      if (e.target.closest("[data-tplv-ask]")) ask();
     });
     dlg.addEventListener("keydown", function (e) {
+      if (e.target.closest("pre, .ds-segmented")) return;
       if (e.key === "ArrowLeft") step(-1);
       else if (e.key === "ArrowRight") step(1);
     });
+    // ?preview=이름 으로 들어오면 목록 위에 바로 연다(옛 공유 주소도 열린다)
+    if (onList) { var i0 = slugs.indexOf(new URL(location.href).searchParams.get("preview")); if (i0 >= 0) open(i0); }
   })();
 
 
@@ -939,7 +961,7 @@ document.addEventListener("click", function (e) {
       : it.type === "token" && it.title.indexOf("--ds-color-") === 0 ? '<span class="site-search__swatch" style="background: var(' + esc(it.title) + ')" aria-hidden="true"></span>'
       : '<i class="ds-icon ds-icon--' + ty[1] + '" aria-hidden="true"></i>';
     return '<a class="ds-command__item site-search__item" role="option" aria-selected="false" id="ss-' + (n++) + '" href="' + esc(ROOT + it.url) + '" data-ss-url="' + esc(it.url) + '">' + lead +
-      '<span class="ds-command__label"><span class="site-search__title">' + hit(it.title, terms) + "</span>" + (it.desc ? '<span class="site-search__desc">' + hit(it.desc, terms) + "</span>" : "") + "</span>" +
+      '<span class="ds-command__label"><span class="site-search__title">' + hit(it.title, terms) + "</span></span>" +
       '<span class="site-search__type">' + ty[0] + "</span></a>";
   }
   function group(title, items, terms, more, key, label) {
@@ -1018,7 +1040,6 @@ document.addEventListener("click", function (e) {
     var boxes = [];
     if (ai) for (var n = ai.nextElementSibling; n && n.tagName !== "H2"; n = n.nextElementSibling) if (n.matches(".ds-codeblock[data-wrap]")) boxes.push(n);
     /* 템플릿 문서 보기의 AI 요청 글도 같은 타이핑 (11-17 사용자 "메인과 똑같이") */
-    [].forEach.call(document.querySelectorAll(".site-tpl-prompt .ds-codeblock"), function (n) { boxes.push(n); });
     var queue = boxes.map(function (fig) {
       var pre = fig.querySelector(".ds-codeblock__code");
       var walker = document.createTreeWalker(pre, NodeFilter.SHOW_TEXT), nodes = [], t;
@@ -1108,4 +1129,76 @@ document.addEventListener("click", function (e) {
   }
   var raf = 0; window.addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(function () { raf = 0; sync(); }); }, { passive: true }); sync();
   b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); var h = document.querySelector("h1"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } });
+})();
+
+/* 프롬프트 상자 (2026-11-17 사용자, Get Started "AI와 함께 시작하기"): 요청 글이 저절로 한 글자씩 쳐지고 보내지기를 되풀이한다.
+   입력 칸 높이는 글에 맞춰 스프링으로 늘고(강도 420, 감쇠 34), 보내는 동안 화살표가 멈추기 네모로 바뀐다(520, 30).
+   칸을 누르면 사람이 이어받는다: Enter 보내기, Shift+Enter 줄바꿈, 답하는 중에 버튼을 누르면 멈춘다. 동작 줄이기 설정이면 첫 글만 놓고 움직이지 않는다 */
+(function () {
+  var box = document.querySelector("[data-site-pbox]");
+  if (!box) return;
+  var field = box.querySelector(".site-pbox__field"), send = box.querySelector(".site-pbox__send");
+  var arrow = box.querySelector(".site-pbox__arrow"), stop = box.querySelector(".site-pbox__stop");
+  var PROMPTS = []; try { PROMPTS = JSON.parse(box.getAttribute("data-prompts")) || []; } catch (e) {}
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var S = function (x, k, c) { return { x: x, v: 0, t: x, k: k, c: reduce ? 2 * Math.sqrt(k) : c }; };
+  var step = function (s, dt) { var a = -s.k * (s.x - s.t) - s.c * s.v; s.v += a * dt; s.x += s.v * dt; };
+  var lh = parseFloat(getComputedStyle(field).lineHeight) || 24, MAX = lh * 6;
+  var H = S(lh, 420, 34), M = S(0, 520, 30);
+  var busy = false, user = false, p = 0, timers = [];
+  // 시뮬레이션 시간 타이머: 화면이 멈추면 같이 멈춘다
+  function later(sec, fn) { var t = { t: sec, fn: fn }; timers.push(t); return t; }
+  function clear() { timers = []; }
+  function fit() {
+    var y = field.scrollTop; field.style.height = "auto";
+    H.t = Math.min(field.scrollHeight, MAX);
+    field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden";
+    field.style.height = H.x + "px"; field.scrollTop = y;
+    send.classList.toggle("is-ready", busy || !!field.value.trim());
+  }
+  function submit() {
+    if (busy || !field.value.trim()) return;
+    busy = true; M.t = 1;
+    send.setAttribute("aria-label", "멈추기");
+    later(0.3, function () { field.value = ""; fit(); });
+    later(2, finish);
+  }
+  function finish() {
+    busy = false; M.t = 0;
+    send.setAttribute("aria-label", "보내기");
+    fit();
+    if (!user) later(1.2, auto);
+  }
+  function auto() {
+    if (!PROMPTS.length) return;
+    var text = PROMPTS[p++ % PROMPTS.length];
+    for (var i = 0; i < text.length; i++) (function (i) { later(i * 0.035, function () { field.value = text.slice(0, i + 1); fit(); field.scrollTop = field.scrollHeight; }); })(i);
+    later(text.length * 0.035 + 0.9, submit);
+  }
+  send.addEventListener("click", function () { if (busy) { clear(); finish(); } else submit(); });
+  field.addEventListener("focus", function () {
+    if (user) return;
+    user = true;
+    if (!busy) { clear(); field.value = ""; fit(); }
+  });
+  field.addEventListener("input", fit);
+  field.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); submit(); } });
+
+  if (reduce) { field.value = PROMPTS[0] || ""; H.x = H.t; fit(); H.x = H.t; field.style.height = H.x + "px"; return; }
+  // 상자가 화면에 보일 때만 돈다
+  var seen = false, last = 0, running = false;
+  function loop(now) {
+    var dt = Math.max(0, Math.min((now - last) / 1000, 1 / 30)); last = now;
+    for (var i = timers.length - 1; i >= 0; i--) { var t = timers[i]; if ((t.t -= dt) <= 0) { timers.splice(timers.indexOf(t), 1); t.fn(); } }
+    for (var k = 0; k < 4; k++) { step(H, dt / 4); step(M, dt / 4); }
+    field.style.height = H.x.toFixed(2) + "px";
+    var m = Math.max(0, Math.min(1.2, M.x));
+    arrow.style.transform = "scale(" + Math.max(0, 1 - m) + ") rotate(" + (m * 90) + "deg)";
+    stop.style.transform = "scale(" + Math.max(0, m) + ")";
+    if (running) requestAnimationFrame(loop);
+  }
+  function start() { if (running) return; running = true; last = performance.now(); requestAnimationFrame(loop); if (!seen) { seen = true; later(0.4, auto); } }
+  fit();
+  function check() { var b = box.getBoundingClientRect(); if (b.bottom > 0 && b.top < window.innerHeight) start(); else running = false; }
+  window.addEventListener("scroll", check, { passive: true }); window.addEventListener("resize", check); check();
 })();

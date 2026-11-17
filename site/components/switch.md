@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/switch.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/switch.html -->
 
 # Switch
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <label class="ds-switch" data-size="24">
@@ -24,8 +24,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | 16 24 32 |
@@ -33,10 +31,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 누르는 즉시 반영되는 설정에만 사용합니다. |
-| **Do** | 저장 버튼이 따로 있으면 Checkbox를 사용합니다. |
+- Do: 누르는 즉시 반영되는 설정에만 사용합니다.
+- Do: 저장 버튼이 따로 있으면 Checkbox를 사용합니다.
 
 ## 예시
 
@@ -45,7 +41,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 알림 설정처럼 누르는 즉시 반영되는 항목에 Switch를 사용합니다. 별도 저장 버튼이 없으므로 켜고 끈 상태가 곧 결과입니다.
 
 ```html
-<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider>
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
@@ -81,7 +77,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 기기에서 알림을 꺼 두어 변경할 수 없는 항목은 Switch를 disabled 상태로 표시하고 이유를 설명에 적습니다. 바로 아래에 기기 설정으로 이동하는 항목을 배치해 다음 동작을 안내합니다.
 
 ```html
-<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider>
   <li>
     <label class="ds-list-item">
       <span class="ds-list-item__content">
@@ -114,8 +110,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

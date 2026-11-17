@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/color.html -->
 
 # Color
 
@@ -10,17 +10,17 @@ YDS의 색상은 역할 색과 팔레트 색 두 가지로 구성됩니다. 화�
 
 ## 역할 색
 
-역할 색은 색상이 아니라 역할을 기준으로 이름을 정합니다. 오류는 `critical`, 성공은 `positive`처럼 이름만 보고 용도를 알 수 있습니다. 자세한 규칙과 전체 목록은 [Roles](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color-roles.md)에 있습니다.
+역할 색은 색상이 아니라 역할을 기준으로 이름을 정합니다. 오류는 `critical`, 성공은 `positive`처럼 이름만 보고 용도를 알 수 있습니다. 자세한 규칙과 전체 목록은 [Roles](color-roles.md)에 있습니다.
 
 ## 팔레트 색
 
-팔레트 색은 회색과 일곱 가지 색을 100 ~ 1000 단계로 나눈 기본 값입니다. 역할 색으로 표현하기 어려울 때만 화면에 사용합니다. 다크 모드에서도 같은 단계 번호를 그대로 사용합니다. 전체 목록은 [Palette](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color-palette.md)에 있습니다.
+팔레트 색은 회색과 일곱 가지 색을 100 ~ 1000 단계로 나눈 기본 값입니다. 역할 색으로 표현하기 어려울 때만 화면에 사용합니다. 다크 모드에서도 같은 단계 번호를 그대로 사용합니다. 전체 목록은 [Palette](color-palette.md)에 있습니다.
 
 ## 관련 문서
 
-- [역할 색](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color-roles.md)
+- [역할 색](color-roles.md)
 
-- [팔레트 색](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/color-palette.md)
+- [팔레트 색](color-palette.md)
 
 ## 코드에서 쓰기
 
@@ -34,14 +34,12 @@ YDS의 색상은 역할 색과 팔레트 색 두 가지로 구성됩니다. 화�
 
 ### 브랜드 컬러 바꾸기
 
-브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 지정합니다. 대표색 하나만 정하면 나머지 단계와 다크 모드 값이 만들어집니다. [브랜드 만들기](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/index.md#ai)
+브랜드 컬러는 서비스 CSS가 아니라 브랜드 파일에 지정합니다. 대표색 하나만 정하면 나머지 단계와 다크 모드 값이 만들어집니다. [브랜드 만들기](../index.md#ai)
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 역할에 맞는 색을 선택합니다. 오류는 critical, 성공은 positive입니다. |
-| **Do** | 진한 면 위 글자는 fg-on-[역할]-solid를 사용합니다. |
-| **Do** | 브랜드 색은 주요 버튼처럼 꼭 눈에 띄어야 하는 곳에만 사용합니다. |
-| **Don't** | hex나 팔레트 색을 화면에 직접 사용하지 않습니다. |
-| **Don't** | 색만으로 뜻을 전하지 않습니다. 아이콘이나 글자를 함께 사용합니다. |
+- Do: 역할에 맞는 색을 선택합니다. 오류는 critical, 성공은 positive입니다.
+- Do: 진한 면 위 글자는 fg-on-[역할]-solid를 사용합니다.
+- Do: 브랜드 색은 주요 버튼처럼 꼭 눈에 띄어야 하는 곳에만 사용합니다.
+- Don't: hex나 팔레트 색을 화면에 직접 사용하지 않습니다.
+- Don't: 색만으로 뜻을 전하지 않습니다. 아이콘이나 글자를 함께 사용합니다.

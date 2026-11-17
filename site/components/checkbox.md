@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/checkbox.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/checkbox.html -->
 
 # Checkbox
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <label class="ds-checkbox" data-tone="neutral">
@@ -24,8 +24,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `variant` | square ghost |
@@ -39,11 +37,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 누르는 즉시 반영되는 설정에는 Switch를 사용합니다. |
-| **Do** | 일부만 선택되면 전체 선택 체크박스를 indeterminate로 표시합니다. |
-| **Don't** | 줄 안에 버튼을 넣지 않습니다. |
+- Do: 누르는 즉시 반영되는 설정에는 Switch를 사용합니다.
+- Do: 일부만 선택되면 전체 선택 체크박스를 indeterminate로 표시합니다.
+- Don't: 줄 안에 버튼을 넣지 않습니다.
 
 ## 예시
 
@@ -52,7 +48,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 맨 위에 전체 동의 체크박스를 두고, 약관 항목은 ghost로 박스 없이 체크만 표시합니다. 항목마다 전문을 여는 링크를 제공해 무엇에 동의하는지 확인할 수 있게 합니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
+<div class="u-col u-gap-3">
   <label class="ds-checkbox" data-size="large">
     <input type="checkbox" class="ds-checkbox__control" checked>
     <span class="ds-checkbox__label ds-fw-semibold">약관에 모두 동의해요</span>
@@ -80,7 +76,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록 위에 전체 선택 체크박스를 두고, 일부만 선택했으면 가로선(`data-indeterminate`)으로 표시합니다. 선택한 항목은 상단 버튼으로 한 번에 처리합니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 375px">
+<div class="u-col u-gap-3">
   <div class="u-flex u-center u-between">
     <label class="ds-checkbox"><input type="checkbox" class="ds-checkbox__control" data-indeterminate><span class="ds-checkbox__label">전체 선택 (2/3)</span></label>
     <button class="ds-btn" data-variant="ghost" data-size="xsmall">선택 삭제</button>
@@ -123,8 +119,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

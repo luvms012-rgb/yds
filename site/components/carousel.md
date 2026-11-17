@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/carousel.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/carousel.html -->
 
 # Carousel
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="추천">
@@ -63,8 +63,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | overlay bar |
@@ -80,16 +78,14 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. |
-| **Do** | 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. |
-| **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
-| **Do** | 자동 넘김은 큰 배너에만 사용하고, 멈춤 버튼을 함께 둡니다. |
-| **Do** | 묶음에는 aria-label을 붙입니다. |
-| **Don't** | 모두가 봐야 하는 내용은 넣지 않습니다. |
-| **Don't** | 멈춤 버튼 없이 자동으로 넘기지 않습니다. |
-| **Don't** | Carousel 안에 Carousel을 넣지 않습니다. |
+- Do: 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다.
+- Do: 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다.
+- Do: 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다.
+- Do: 자동 넘김은 큰 배너에만 사용하고, 멈춤 버튼을 함께 둡니다.
+- Do: 묶음에는 aria-label을 붙입니다.
+- Don't: 모두가 봐야 하는 내용은 넣지 않습니다.
+- Don't: 멈춤 버튼 없이 자동으로 넘기지 않습니다.
+- Don't: Carousel 안에 Carousel을 넣지 않습니다.
 
 ## 예시
 
@@ -98,7 +94,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 같은 모양의 강의 카드를 한 줄로 배치하고 옆으로 넘겨 봅니다. PC에서는 양 끝 버튼으로 한 화면씩 넘기고, 끝에 닿으면 그쪽 버튼이 사라집니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-3">
   <div class="u-flex u-center u-between">
     <h3 class="ds-t06 ds-fw-bold">함께 들으면 좋은 강의</h3>
     <a class="ds-link" data-size="small" href="#">전체 보기</a>
@@ -106,7 +102,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   <div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="함께 들으면 좋은 강의">
     <div class="ds-carousel__scroller">
       <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 160px">
+        <a class="ds-card" data-size="small" href="#">
           <div class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=320&q=70" alt=""></div>
           <div class="u-col u-gap-0_5">
             <span class="ds-t04">영어 회화 기초</span>
@@ -115,7 +111,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
         </a>
       </div>
       <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 160px">
+        <a class="ds-card" data-size="small" href="#">
           <div class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=320&q=70" alt=""></div>
           <div class="u-col u-gap-0_5">
             <span class="ds-t04">비즈니스 영어 회화</span>
@@ -124,7 +120,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
         </a>
       </div>
       <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 160px">
+        <a class="ds-card" data-size="small" href="#">
           <div class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=320&q=70" alt=""></div>
           <div class="u-col u-gap-0_5">
             <span class="ds-t04">기초 영문법</span>
@@ -133,7 +129,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
         </a>
       </div>
       <div class="ds-carousel__item">
-        <a class="ds-card" data-size="small" href="#" style="width: 160px">
+        <a class="ds-card" data-size="small" href="#">
           <div class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=320&q=70" alt=""></div>
           <div class="u-col u-gap-0_5">
             <span class="ds-t04">영어 듣기 첫걸음</span>
@@ -153,25 +149,25 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 사진은 Image Frame의 비율에 맞춰 꽉 채우고, 한 장을 한 항목으로 넣어 넘깁니다. 번호로 몇 번째 사진인지 알리고, 번호를 누르면 모든 사진을 한 번에 봅니다.
 
 ```html
-<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="풍경 사진" style="width: 100%; max-width: 420px">
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="풍경 사진">
   <div class="ds-carousel__scroller">
-    <div class="ds-carousel__item" style="width: 100%">
-      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=840&q=70" alt="산으로 둘러싸인 호수">
       </div>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=840&q=70" alt="구름 위로 솟은 산">
       </div>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=840&q=70" alt="안개 낀 산자락">
       </div>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <div class="ds-imageframe" data-ratio="4:3" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=840&q=70" alt="햇살이 드는 숲">
       </div>
     </div>
@@ -194,30 +190,30 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 배너 아래 한 줄에 진행 막대, 번호, 이동과 멈춤 버튼을 둡니다. 막대가 지금 몇 번째까지 왔는지 채워 보여 줍니다.
 
 ```html
-<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-layout="bar" data-autoplay="5000" style="width: 100%; max-width: 560px">
+<div class="ds-carousel" role="region" aria-roledescription="carousel" aria-label="이벤트" data-layout="bar" data-autoplay="5000">
   <div class="ds-carousel__scroller">
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=960&q=70" alt="산으로 둘러싸인 호수">
       </a>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=960&q=70" alt="구름 위로 솟은 산">
       </a>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=960&q=70" alt="안개 낀 산자락">
       </a>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=960&q=70" alt="햇살이 드는 숲">
       </a>
     </div>
-    <div class="ds-carousel__item" style="width: 100%">
-      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg" style="width: 100%">
+    <div class="ds-carousel__item">
+      <a class="ds-imageframe" href="#" data-ratio="16:9" data-radius="lg">
         <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=70" alt="언덕 사이로 난 길">
       </a>
     </div>
@@ -237,8 +233,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

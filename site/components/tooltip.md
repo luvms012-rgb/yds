@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tooltip.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/tooltip.html -->
 
 # Tooltip
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <span class="ds-tooltip-anchor">
@@ -17,19 +17,15 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: placement top, bottom, left, right, hover/focus 전용
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 닫기 버튼이 필요하거나 설명이 여러 줄이면 Help Bubble을 사용합니다. |
-| **Do** | 링크나 버튼이 필요하면 Popover를 사용합니다. |
-| **Don't** | Tooltip은 마우스를 올리거나 포커스할 때만 표시되고, 터치 화면에서는 표시되지 않습니다. |
-| **Don't** | 작업에 꼭 필요한 정보는 넣지 않습니다. 터치 화면에서는 보이지 않습니다. |
-| **Don't** | 비활성 요소의 이유를 Tooltip으로 알리지 않습니다. 비활성 요소는 마우스 올림과 포커스를 받지 않습니다. |
+- Do: 닫기 버튼이 필요하거나 설명이 여러 줄이면 Help Bubble을 사용합니다.
+- Do: 링크나 버튼이 필요하면 Popover를 사용합니다.
+- Don't: Tooltip은 마우스를 올리거나 포커스할 때만 표시되고, 터치 화면에서는 표시되지 않습니다.
+- Don't: 작업에 꼭 필요한 정보는 넣지 않습니다. 터치 화면에서는 보이지 않습니다.
+- Don't: 비활성 요소의 이유를 Tooltip으로 알리지 않습니다. 비활성 요소는 마우스 올림과 포커스를 받지 않습니다.
 
 ## 예시
 
@@ -38,7 +34,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 아이콘만 있는 버튼에 마우스를 올리거나 포커스하면 Tooltip으로 이름을 표시합니다. 버튼의 `aria-label`과 같은 짧은 라벨만 넣습니다.
 
 ```html
-<article class="ds-card" data-size="small" style="width: 100%; max-width: 420px">
+<article class="ds-card" data-size="small">
   <div class="u-flex u-center u-between u-gap-3">
     <div class="u-col u-gap-1">
       <p class="ds-t05 ds-fw-semibold">3강 수업 자료</p>
@@ -67,7 +63,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 아이콘이 이어진 글쓰기 툴바에서 이름과 단축키를 한 줄로 표시합니다. 터치 화면에서는 보이지 않으므로 꼭 알아야 할 내용은 넣지 않습니다.
 
 ```html
-<div class="u-col u-gap-2" style="width: 100%; max-width: 480px">
+<div class="u-col u-gap-2">
   <div class="u-flex u-gap-1" role="toolbar" aria-label="글쓰기 도구">
     <span class="ds-tooltip-anchor">
       <button type="button" class="ds-btn" data-variant="ghost" data-layout="iconOnly" aria-label="되돌리기" aria-describedby="tooltip-ex2-undo"><i class="ds-icon ds-icon--undo-2" aria-hidden="true"></i></button>
@@ -97,8 +93,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

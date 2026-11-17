@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/multi-select.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/multi-select.html -->
 
 # Multi Select
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-multiselect">
@@ -35,8 +35,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `Trigger content` | placeholder selected |
@@ -50,11 +48,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 여러 개를 선택할 때만 Multi Select를 사용합니다. |
-| **Do** | 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다. |
-| **Do** | 선택지가 15개를 넘으면 검색 필드를 제공합니다. |
+- Do: 여러 개를 선택할 때만 Multi Select를 사용합니다.
+- Do: 선택한 값이 많으면 2개까지 표시하고 나머지는 +N으로 줄입니다.
+- Do: 선택지가 15개를 넘으면 검색 필드를 제공합니다.
 
 ## 예시
 
@@ -63,7 +59,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 관심 분야처럼 여러 값을 선택하는 필드에만 Multi Select를 사용합니다. 선택한 값이 많으면 필드에는 2개까지 표시하고 나머지는 +N으로 줄입니다.
 
 ```html
-<form class="u-col u-gap-5 u-full" style="max-width: 360px">
+<form class="u-col u-gap-5 u-full">
   <div class="ds-field">
     <div class="ds-field__header">
       <label class="ds-field__label" for="multi-select-ex1-trigger">관심 분야</label>
@@ -103,7 +99,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 여러 지역을 한 번에 선택하는 필터는 Multi Select를, 정렬처럼 하나만 선택하는 필드는 Select를 사용합니다. 선택지가 많으면 헤더로 묶어 찾기 쉽게 합니다.
 
 ```html
-<div class="u-col u-gap-3 u-full" style="max-width: 480px">
+<div class="u-col u-gap-3 u-full">
   <div class="u-flex u-gap-2">
     <div class="ds-multiselect u-grow">
       <button type="button" class="ds-multiselect__trigger" data-ds-popover="multi-select-ex2" aria-haspopup="listbox" aria-expanded="false" aria-label="지역">
@@ -121,7 +117,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
         <label class="ds-multiselect__option"><span class="ds-checkbox" data-tone="neutral"><input type="checkbox" class="ds-checkbox__control"></span><span class="ds-multiselect__label">광주</span></label>
       </div>
     </div>
-    <div style="width: 128px">
+    <div>
       <button type="button" class="ds-select" data-size="medium" aria-haspopup="listbox" aria-expanded="false" aria-label="정렬">
         <span class="ds-select__value">가까운 순</span>
       </button>

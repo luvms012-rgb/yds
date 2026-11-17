@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/pull-to-refresh.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/pull-to-refresh.html -->
 
 # Pull To Refresh
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-ptr">
@@ -28,8 +28,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `state` | pulling refreshing |
@@ -44,10 +42,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 최신 내용을 다시 불러오는 목록 화면에만 사용합니다. |
-| **Do** | 텍스트를 드래그해 선택하는 영역에서는 data-disabled로 비활성화합니다. |
+- Do: 최신 내용을 다시 불러오는 목록 화면에만 사용합니다.
+- Do: 텍스트를 드래그해 선택하는 영역에서는 data-disabled로 비활성화합니다.
 
 ## 예시
 
@@ -56,7 +52,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 알림처럼 새 내용이 계속 쌓이는 목록을 `ds-ptr`로 감쌉니다. 모바일에서 목록 맨 위를 아래로 당기면 새로 고침 표시가 나타나고 `ds-refresh` 이벤트가 발생합니다.
 
 ```html
-<div class="u-col u-full" style="max-width: 375px">
+<div class="u-col u-full">
   <header class="ds-appbar">
     <div class="ds-appbar__left">
       <button type="button" class="ds-appbar__button" aria-label="뒤로"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
@@ -110,7 +106,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 공지 본문처럼 글자를 드래그해 선택하는 영역은 `data-disabled`로 당기기를 비활성화합니다. 글자를 선택하려던 동작이 새로 고침으로 바뀌지 않습니다.
 
 ```html
-<div class="ds-ptr u-full" data-disabled style="max-width: 420px">
+<div class="ds-ptr u-full" data-disabled>
   <div class="ds-ptr__indicator">
     <span class="ds-progress-circle" role="progressbar" aria-label="새로 고침"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="ds-progress-circle__track" pathLength="100"/><circle class="ds-progress-circle__range" pathLength="100"/></svg></span>
   </div>
@@ -129,8 +125,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

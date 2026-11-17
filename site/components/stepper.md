@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/stepper.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/stepper.html -->
 
 # Stepper
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <ol class="ds-stepper" aria-label="가입 단계" [data-orientation="vertical"]>
@@ -26,16 +26,12 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: state complete, current, upcoming, orientation vertical
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 단계는 3~5개를 사용하고, 라벨은 짧은 명사로 작성합니다. |
-| **Do** | 단계가 더 많으면 "2 / 6"처럼 텍스트로 표시합니다. |
+- Do: 단계는 3~5개를 사용하고, 라벨은 짧은 명사로 작성합니다.
+- Do: 단계가 더 많으면 "2 / 6"처럼 텍스트로 표시합니다.
 
 ## 예시
 
@@ -44,7 +40,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 수강 신청 4단계를 짧은 명사 라벨로 나열하고 현재 단계를 표시합니다. 단계가 3~5개인 가입, 신청, 결제 흐름의 맨 위에 배치합니다.
 
 ```html
-<div class="u-col u-gap-8" style="width: 100%; max-width: 480px">
+<div class="u-col u-gap-8">
   <ol class="ds-stepper" aria-label="수강 신청 단계">
     <li class="ds-stepper__step" data-state="complete"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">강의 선택</span></li>
     <li class="ds-stepper__step" data-state="current" aria-current="step"><span class="ds-stepper__indicator"></span><span class="ds-stepper__label">수강생 정보</span></li>
@@ -72,7 +68,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 여러 날에 걸친 환불 과정을 세로 Stepper로 표시합니다. 끝난 단계와 현재 단계가 보이므로 사용자가 문의하지 않고도 진행 상황을 알 수 있습니다.
 
 ```html
-<article class="ds-card" style="width: 100%; max-width: 360px">
+<article class="ds-card">
   <header class="ds-card__header">
     <h3 class="ds-card__title">환불 진행 상황</h3>
     <p class="ds-card__desc">영어 회화 기초 외 1개</p>

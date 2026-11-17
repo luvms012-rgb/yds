@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/tabs.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/tabs.html -->
 
 # Tabs
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-tabs" role="tablist" [data-size="medium"] [data-layout="hug"]>
@@ -16,8 +16,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | fill hug |
@@ -25,10 +23,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 순서가 있는 단계에는 Stepper를 사용합니다. |
-| **Do** | 한 번에 보이는 탭은 6개 안팎으로 제한합니다. 넘치면 가로 스크롤을 제공하고, 선택한 탭이 화면 안에 보이게 합니다. |
+- Do: 순서가 있는 단계에는 Stepper를 사용합니다.
+- Do: 한 번에 보이는 탭은 6개 안팎으로 제한합니다. 넘치면 가로 스크롤을 제공하고, 선택한 탭이 화면 안에 보이게 합니다.
 
 ## 예시
 
@@ -37,7 +33,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 한 화면의 주요 영역을 Tabs로 나누고, 각 탭이 화면 폭을 똑같이 나눠 가집니다. 탭이 2~4개이고 이름이 짧을 때 기본값인 fill 레이아웃을 사용합니다.
 
 ```html
-<div style="width: 100%; max-width: 375px">
+<div>
   <header class="ds-appbar">
     <div class="ds-appbar__left"></div>
     <div class="ds-appbar__main"><h1 class="ds-appbar__title">내 강의실</h1></div>
@@ -78,7 +74,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 PC 상세 화면에서는 `data-layout="hug"`로 탭이 글자 길이만큼만 차지하게 합니다. `data-inset="none"`을 함께 지정해 위 제목과 왼쪽 끝을 맞춥니다.
 
 ```html
-<div class="u-col u-gap-4" style="width: 100%">
+<div class="u-col u-gap-4">
   <h2 class="ds-t09 ds-fw-bold">비즈니스 영어 회화</h2>
   <div class="ds-tabs" role="tablist" aria-label="강의 정보" data-layout="hug" data-inset="none" data-size="medium">
     <button type="button" class="ds-tabs__trigger" role="tab" aria-selected="true">소개</button>
@@ -96,8 +92,6 @@ PC 상세 화면에서는 `data-layout="hug"`로 탭이 글자 길이만큼만 �
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

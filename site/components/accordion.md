@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/accordion.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/accordion.html -->
 
 # Accordion
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <details class="ds-accordion" [data-layout="separated"] [data-size="large"] [data-inset="none"]>
@@ -30,8 +30,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | separated |
@@ -40,17 +38,15 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 항목은 2개 이상 사용합니다. 항목 하나만 단독으로 사용하지 않습니다. |
-| **Do** | 누르는 영역은 화살표 아이콘이 아니라 제목 줄 전체입니다. |
-| **Do** | 한 번에 하나만 열지, 여러 개를 열지 먼저 정합니다. 정한 방식은 화면 전체에 동일하게 적용합니다. |
-| **Do** | 크기는 모바일에서 medium, PC에서 large를 사용합니다. |
-| **Do** | 처음부터 필요한 항목은 펼친 상태로 표시합니다. |
-| **Don't** | inline(이어진 목록)과 separated(따로 떨어진 카드)를 한 화면에서 섞지 않습니다. |
-| **Don't** | 펼친 내용 안에 스크롤을 넣지 않습니다. 내용이 길면 별도 페이지로 분리하세요. |
-| **Don't** | 꼭 봐야 하는 내용은 접어 두지 않습니다. |
-| **Don't** | 짧은 한 문단은 접지 않습니다. |
+- Do: 항목은 2개 이상 사용합니다. 항목 하나만 단독으로 사용하지 않습니다.
+- Do: 누르는 영역은 화살표 아이콘이 아니라 제목 줄 전체입니다.
+- Do: 한 번에 하나만 열지, 여러 개를 열지 먼저 정합니다. 정한 방식은 화면 전체에 동일하게 적용합니다.
+- Do: 크기는 모바일에서 medium, PC에서 large를 사용합니다.
+- Do: 처음부터 필요한 항목은 펼친 상태로 표시합니다.
+- Don't: inline(이어진 목록)과 separated(따로 떨어진 카드)를 한 화면에서 섞지 않습니다.
+- Don't: 펼친 내용 안에 스크롤을 넣지 않습니다. 내용이 길면 별도 페이지로 분리하세요.
+- Don't: 꼭 봐야 하는 내용은 접어 두지 않습니다.
+- Don't: 짧은 한 문단은 접지 않습니다.
 
 ## 예시
 
@@ -59,7 +55,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 같은 `name`을 지정해 한 번에 하나만 열리게 하고, 제목 영역 어디를 눌러도 펼쳐지게 합니다. 고객센터처럼 질문이 여러 개인 화면에서 답을 하나씩 확인할 때 사용합니다.
 
 ```html
-<div style="width: 100%; max-width: 420px">
+<div>
   <details class="ds-accordion" name="accordion-ex1" open>
     <summary class="ds-accordion__trigger">
       <span class="ds-accordion__body"><span class="ds-accordion__title">수강 신청을 취소하고 싶어요</span></span>

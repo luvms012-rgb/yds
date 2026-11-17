@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/callout.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/callout.html -->
 
 # Callout
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-callout" data-tone="warning">
@@ -27,21 +27,17 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `tone` | neutral informative positive warning critical magic 은 CSS 만 |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 앞쪽 아이콘은 채움(Solid) 모양을 사용합니다. |
-| **Do** | 제목, 본문, 링크는 한 줄로 이어 작성하고, 사이는 두 칸 띄웁니다. |
-| **Do** | Banner는 화면 맨 위에 전체 폭으로 배치하고, 한 번에 하나만 표시합니다. |
-| **Do** | 본문 안의 안내는 Callout을 사용합니다. |
-| **Don't** | 전체를 누를 수 있는 Callout에는 링크 텍스트를 따로 넣지 않습니다. |
+- Do: 앞쪽 아이콘은 채움(Solid) 모양을 사용합니다.
+- Do: 제목, 본문, 링크는 한 줄로 이어 작성하고, 사이는 두 칸 띄웁니다.
+- Do: Banner는 화면 맨 위에 전체 폭으로 배치하고, 한 번에 하나만 표시합니다.
+- Do: 본문 안의 안내는 Callout을 사용합니다.
+- Don't: 전체를 누를 수 있는 Callout에는 링크 텍스트를 따로 넣지 않습니다.
 
 ## 예시
 
@@ -50,7 +46,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 이 화면에만 해당하는 안내는 본문 안, 관련 입력 필드 바로 위에 Callout으로 배치합니다. 제목과 본문은 한 줄로 이어 작성하고 사이는 두 칸 띄웁니다.
 
 ```html
-<div class="u-col u-gap-4" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-4">
   <div class="ds-callout" data-tone="informative">
     <i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i>
     <p class="ds-callout__content"><strong class="ds-callout__title">시험장 안내</strong>  시험장은 먼저 접수한 순서로 정해져요.</p>
@@ -70,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 문제가 생긴 정보 바로 위에 critical Callout을 배치하고 해결 방법을 링크로 제공합니다. 링크는 문장 끝에 두 칸 띄워 이어 작성합니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-3">
   <div class="ds-callout" data-tone="critical">
     <i class="ds-icon ds-icon--circle-alert-solid" aria-hidden="true"></i>
     <p class="ds-callout__content">등록한 카드의 유효 기간이 지났어요.  <a class="ds-callout__link" href="#">결제 수단 바꾸기</a></p>
@@ -97,7 +93,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않습니다. 누르는 영역이 하나여서 어디를 눌러야 할지 헷갈리지 않습니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-3">
   <a class="ds-callout" href="#">
     <i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i>
     <p class="ds-callout__content"><strong class="ds-callout__title">친구 초대</strong>  친구가 가입하면 둘 다 3,000원 쿠폰을 받아요.</p>
@@ -123,8 +119,6 @@ Callout 전체가 링크이면 안에 별도의 링크 텍스트를 넣지 않�
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/dialog.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/dialog.html -->
 
 # Dialog
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <dialog class="ds-dialog" id="dlg" aria-labelledby="dlg-title" [data-size="large"]>
@@ -33,8 +33,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: size(480/800), `--ds-dialog-width`
 
 ## 동작
@@ -45,17 +43,15 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 하단 주요 버튼은 Action Button large(52)를 사용합니다. |
-| **Do** | Popover는 버튼 옆에 뜨는 작은 창이고, 바깥을 누르면 닫힙니다. |
-| **Do** | 화면을 막고 확인받아야 할 때는 Dialog를 사용합니다. |
-| **Do** | 화면 폭이 768보다 좁으면 Bottom Sheet로 전환합니다. 헤더, 본문, 버튼 구조는 그대로 유지합니다. |
-| **Do** | 제목만 보고 무엇을 묻는지 알 수 있게 작성합니다. |
-| **Do** | 입력이 있는 창은 바깥을 눌러도 닫히지 않게 합니다. |
-| **Do** | 짧은 알림에는 Snackbar나 Callout을 사용합니다. |
-| **Don't** | 상단 닫기 버튼과 하단 취소 버튼을 함께 사용하지 않습니다. 정보만 표시할 때는 상단 닫기 버튼을 사용합니다. 폼이나 설정처럼 주요 동작이 있으면 하단 취소 버튼을 사용합니다. |
-| **Don't** | 창 위에 다른 창을 겹쳐 열지 않습니다. 단계가 필요하면 한 창 안에서 나눕니다. |
+- Do: 하단 주요 버튼은 Action Button large(52)를 사용합니다.
+- Do: Popover는 버튼 옆에 뜨는 작은 창이고, 바깥을 누르면 닫힙니다.
+- Do: 화면을 막고 확인받아야 할 때는 Dialog를 사용합니다.
+- Do: 화면 폭이 768보다 좁으면 Bottom Sheet로 전환합니다. 헤더, 본문, 버튼 구조는 그대로 유지합니다.
+- Do: 제목만 보고 무엇을 묻는지 알 수 있게 작성합니다.
+- Do: 입력이 있는 창은 바깥을 눌러도 닫히지 않게 합니다.
+- Do: 짧은 알림에는 Snackbar나 Callout을 사용합니다.
+- Don't: 상단 닫기 버튼과 하단 취소 버튼을 함께 사용하지 않습니다. 정보만 표시할 때는 상단 닫기 버튼을 사용합니다. 폼이나 설정처럼 주요 동작이 있으면 하단 취소 버튼을 사용합니다.
+- Don't: 창 위에 다른 창을 겹쳐 열지 않습니다. 단계가 필요하면 한 창 안에서 나눕니다.
 
 ## 예시
 
@@ -64,7 +60,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 환불 규정처럼 읽기만 하는 내용은 상단 닫기 버튼 하나로 닫습니다. 하단에 확인이나 취소 버튼을 추가하지 않아 닫는 방법을 하나로 유지합니다.
 
 ```html
-<div class="u-flex u-center u-between u-gap-3 u-full" style="max-width: 420px">
+<div class="u-flex u-center u-between u-gap-3 u-full">
   <p class="ds-t04 ds-fg-muted">결제 전에 환불 규정을 확인해 주세요.</p>
   <button class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="dialog-ex1">환불 규정 보기</button>
 </div>
@@ -128,8 +124,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

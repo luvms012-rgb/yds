@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/alert-dialog.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/alert-dialog.html -->
 
 # Alert Dialog
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <dialog class="ds-dialog ds-alertdialog" role="alertdialog" aria-labelledby="a-t" aria-describedby="a-d">
@@ -29,8 +29,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `action` | pair critical nonpreferred |
@@ -39,14 +37,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 되돌릴 수 없는 작업을 확인받을 때 사용합니다. |
-| **Do** | 바깥을 눌러도 닫히지 않고 버튼으로만 닫힙니다. |
-| **Do** | 확인 버튼에는 "나가기"처럼 실제로 일어나는 동작을 적습니다. |
-| **Do** | 설명에는 버튼을 누르면 일어나는 결과를 적습니다. |
-| **Do** | 처음 포커스는 취소 버튼에 둡니다. |
-| **Don't** | 작업이 끝날 때까지 창을 닫지 않습니다. |
+- Do: 되돌릴 수 없는 작업을 확인받을 때 사용합니다.
+- Do: 바깥을 눌러도 닫히지 않고 버튼으로만 닫힙니다.
+- Do: 확인 버튼에는 "나가기"처럼 실제로 일어나는 동작을 적습니다.
+- Do: 설명에는 버튼을 누르면 일어나는 결과를 적습니다.
+- Do: 처음 포커스는 취소 버튼에 둡니다.
+- Don't: 작업이 끝날 때까지 창을 닫지 않습니다.
 
 ## 예시
 
@@ -55,7 +51,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 되돌릴 수 없는 삭제는 Alert Dialog로 확인받고, 실행 버튼은 criticalSolid를 사용합니다. 바깥을 눌러도 닫히지 않아 버튼을 눌러야만 다음으로 진행됩니다.
 
 ```html
-<ul class="ds-list" data-inset style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">
@@ -83,7 +79,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 버튼 문구가 길어 가로 두 칸에 들어가지 않으면 `stacked`로 세로로 쌓습니다. 해지처럼 잃는 것이 있는 동작은 무엇이 사라지는지 설명에 적습니다.
 
 ```html
-<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">

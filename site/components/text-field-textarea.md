@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-field-textarea.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/text-field-textarea.html -->
 
 # Text Field Textarea
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <textarea class="ds-textarea" data-size="medium" rows="3" placeholder="…"></textarea>
@@ -14,17 +14,13 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | 켜고 끄는 속성 | `variant` `size` |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 글자 수 제한이 있으면 남은 글자 수를 함께 표시합니다. |
+- Do: 글자 수 제한이 있으면 남은 글자 수를 함께 표시합니다.
 
 ## 예시
 
@@ -33,7 +29,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 여러 줄 글은 Textarea로 입력받고 아래에 글자 수를 함께 표시합니다. 길이 제한이 있는 문의, 후기, 요청 사항에 사용합니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 420px">
+<div class="ds-field">
   <div class="ds-field__header">
     <label class="ds-field__label" for="text-field-textarea-ex1">문의 내용</label>
     <span class="ds-field__required" aria-hidden="true"></span>
@@ -51,7 +47,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 필수 항목이 비었거나 너무 짧으면 Textarea에 `aria-invalid="true"`를 붙이고 오류 문구를 표시합니다. 몇 자를 더 입력해야 하는지처럼 고치는 방법을 적습니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 420px">
+<div class="ds-field">
   <div class="ds-field__header">
     <label class="ds-field__label" for="text-field-textarea-ex2">취소 사유</label>
     <span class="ds-field__required" aria-hidden="true"></span>
@@ -68,8 +64,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

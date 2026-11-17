@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/progress-circle.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/progress-circle.html -->
 
 # Progress Circle
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <span class="ds-progress-circle" data-size="40" data-tone="brand" role="progressbar" aria-valuenow="40" style="--ds-progress-value: 40">
@@ -23,8 +23,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `tone` | neutral brand staticWhite |
@@ -32,12 +30,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 로딩은 Progress Circle의 indeterminate로 표시합니다. |
-| **Do** | Spinner 컴포넌트는 따로 없습니다. |
-| **Do** | staticWhite는 어두운 배경이나 사진 위에서만 사용합니다. |
-| **Do** | determinate는 진행률을 실제로 알 수 있을 때만 사용합니다. 모를 때는 indeterminate를 사용합니다. |
+- Do: 로딩은 Progress Circle의 indeterminate로 표시합니다.
+- Do: Spinner 컴포넌트는 따로 없습니다.
+- Do: staticWhite는 어두운 배경이나 사진 위에서만 사용합니다.
+- Do: determinate는 진행률을 실제로 알 수 있을 때만 사용합니다. 모를 때는 indeterminate를 사용합니다.
 
 ## 예시
 
@@ -46,7 +42,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록 끝에서 다음 내용을 불러올 때처럼 언제 끝날지 모르면 `data-indeterminate`를 사용합니다. 알 수 없는 진행률을 임의로 채우면 멈춘 것처럼 보입니다.
 
 ```html
-<div class="u-col u-gap-3 u-full" style="max-width: 420px">
+<div class="u-col u-gap-3 u-full">
   <ul class="ds-list" data-divider>
     <li>
       <a class="ds-list-item" href="#">
@@ -76,7 +72,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 파일을 내려받을 때처럼 진행 정도를 알 수 있으면 determinate를 사용합니다. 옆에 "72%"처럼 값을 함께 표시해 남은 양을 알려 줍니다.
 
 ```html
-<ul class="ds-list u-full" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-inset data-divider>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix">
@@ -109,8 +105,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

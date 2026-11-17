@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/segmented-control.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/segmented-control.html -->
 
 # Segmented Control
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-segmented" role="group" aria-label="보기 방식" [data-size="medium"] [data-layout="fill"]>
@@ -15,8 +15,6 @@
 ```
 
 ## 속성
-
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 | 속성 | 값 |
 | --- | --- |
@@ -30,13 +28,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 선택하면 선택 배경이 이동하는 모션을 그대로 유지합니다. |
-| **Do** | 항목은 2~4개만 사용합니다. 더 많으면 알아보기 어렵고 누르는 영역이 좁아집니다. |
-| **Do** | 한 화면에 하나만 사용합니다. 여러 개를 두면 무엇이 중요한지 알기 어렵습니다. |
-| **Do** | 라벨은 짧게 작성합니다. 항목 폭에 비해 라벨이 길면 다른 컴포넌트를 사용하세요. |
-| **Don't** | 화면 이동에는 사용하지 않습니다. 화면을 이동할 때는 Tabs를 사용합니다. |
+- Do: 선택하면 선택 배경이 이동하는 모션을 그대로 유지합니다.
+- Do: 항목은 2~4개만 사용합니다. 더 많으면 알아보기 어렵고 누르는 영역이 좁아집니다.
+- Do: 한 화면에 하나만 사용합니다. 여러 개를 두면 무엇이 중요한지 알기 어렵습니다.
+- Do: 라벨은 짧게 작성합니다. 항목 폭에 비해 라벨이 길면 다른 컴포넌트를 사용하세요.
+- Don't: 화면 이동에는 사용하지 않습니다. 화면을 이동할 때는 Tabs를 사용합니다.
 
 ## 예시
 
@@ -45,7 +41,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 수업 일정을 목록으로 볼지 달력으로 볼지처럼 같은 내용의 보기 방식만 바꿀 때 사용합니다. 다른 화면으로 이동하는 메뉴는 Tabs를 사용하세요.
 
 ```html
-<div class="u-col u-gap-3 u-full" style="max-width: 420px">
+<div class="u-col u-gap-3 u-full">
   <div class="u-flex u-center u-between">
     <h3 class="ds-t06 ds-fw-bold">수업 일정</h3>
     <div class="ds-segmented" role="group" aria-label="보기 방식">
@@ -81,7 +77,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 모바일처럼 폭이 좁으면 `data-layout="fill"`로 각 항목이 폭을 똑같이 나눠 채웁니다. 한 화면에 하나만 배치해 지금 무엇을 바꾸는지 분명하게 합니다.
 
 ```html
-<div class="u-col u-gap-5 u-full" style="max-width: 375px">
+<div class="u-col u-gap-5 u-full">
   <div class="ds-segmented" role="group" aria-label="신청 방식" data-size="medium" data-layout="fill">
     <button type="button" class="ds-segmented__item" aria-pressed="true">개인 신청</button>
     <button type="button" class="ds-segmented__item" aria-pressed="false">단체 신청</button>

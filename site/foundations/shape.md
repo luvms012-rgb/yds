@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/shape.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/shape.html -->
 
 # Radius
 
@@ -35,11 +35,9 @@
 }
 ```
 
-브랜드 전체의 모서리는 [브랜드 파일](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/index.md#ai)의 `shapeScale`로 정합니다.
+브랜드 전체의 모서리는 [브랜드 파일](../index.md#ai)의 `shapeScale`로 정합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 안쪽 요소의 모서리는 바깥 요소보다 작게 지정합니다. |
-| **Don't** | 한 화면 안에서 같은 종류의 요소에 다른 둥글기를 섞지 않습니다. |
+- Do: 안쪽 요소의 모서리는 바깥 요소보다 작게 지정합니다.
+- Don't: 한 화면 안에서 같은 종류의 요소에 다른 둥글기를 섞지 않습니다.

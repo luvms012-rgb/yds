@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/search-suggestion.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/search-suggestion.html -->
 
 # Search Suggestion
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-search-anchor">
@@ -45,8 +45,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `content` | suggestion recent empty |
@@ -61,11 +59,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 검색 필드는 Text Field outline에 search 아이콘과 지우기 버튼을 붙여 만듭니다. |
-| **Do** | 검색 필드에는 `type="search"`와 `role="combobox"`를 붙입니다. |
-| **Do** | 입력 전에는 최근 검색어, 입력 중에는 추천어, 결과가 없으면 안내 문구를 표시합니다. |
+- Do: 검색 필드는 Text Field outline에 search 아이콘과 지우기 버튼을 붙여 만듭니다.
+- Do: 검색 필드에는 `type="search"`와 `role="combobox"`를 붙입니다.
+- Do: 입력 전에는 최근 검색어, 입력 중에는 추천어, 결과가 없으면 안내 문구를 표시합니다.
 
 ## 예시
 
@@ -74,7 +70,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 검색 필드를 눌렀지만 아직 입력하지 않았으면 헤더와 함께 최근 검색어를 표시합니다. 앞에 `clock` 아이콘을 두어 추천어와 구별합니다.
 
 ```html
-<div class="u-col u-gap-4 u-full" style="max-width: 420px">
+<div class="u-col u-gap-4 u-full">
   <div class="ds-search-anchor">
     <div class="ds-input" data-variant="outline" data-size="medium">
       <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
@@ -106,7 +102,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 글자를 입력하는 동안에는 `search` 아이콘이 붙은 추천어를 표시합니다. 강의 수처럼 선택에 도움이 되는 정보는 보조 설명으로 표시합니다.
 
 ```html
-<div class="u-col u-gap-4 u-full" style="max-width: 420px">
+<div class="u-col u-gap-4 u-full">
   <div class="ds-search-anchor">
     <div class="ds-input" data-variant="outline" data-size="medium">
       <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>
@@ -137,7 +133,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 맞는 추천어가 없으면 빈 영역 대신 `ds-search-suggest__empty` 문구를 표시합니다. 아무것도 나타나지 않으면 검색이 멈춘 것처럼 보입니다.
 
 ```html
-<div class="u-col u-gap-4 u-full" style="max-width: 420px">
+<div class="u-col u-gap-4 u-full">
   <div class="ds-search-anchor">
     <div class="ds-input" data-variant="outline" data-size="medium">
       <i class="ds-icon ds-icon--search ds-input__icon" aria-hidden="true"></i>

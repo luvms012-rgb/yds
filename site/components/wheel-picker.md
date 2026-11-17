@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/wheel-picker.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/wheel-picker.html -->
 
 # Wheel Picker
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-wheelpicker" role="group" aria-label="생년월일" [aria-disabled="true"]>
@@ -26,8 +26,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: 열 여러 개, `aria-selected`, change 이벤트(Time Picker 와 같은 휠)
 
 ## 동작
@@ -38,12 +36,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 순서대로 이어진 값을 선택할 때 사용합니다. |
-| **Do** | 모바일에서는 Field Button을 눌러 Bottom Sheet 안에서 엽니다. |
-| **Do** | 시간을 선택할 때는 Time Picker를 사용합니다. |
-| **Don't** | 선택할 값이 몇 개 안 되면 휠을 사용하지 않습니다. 그때는 Radio Group이나 Select를 사용합니다. |
+- Do: 순서대로 이어진 값을 선택할 때 사용합니다.
+- Do: 모바일에서는 Field Button을 눌러 Bottom Sheet 안에서 엽니다.
+- Do: 시간을 선택할 때는 Time Picker를 사용합니다.
+- Don't: 선택할 값이 몇 개 안 되면 휠을 사용하지 않습니다. 그때는 Radio Group이나 Select를 사용합니다.
 
 ## 예시
 
@@ -60,7 +56,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 연속된 숫자 하나를 선택할 때는 열을 하나만 사용합니다. 단위는 항목 텍스트에 함께 표시합니다.
 
 ```html
-<div class="ds-wheelpicker" style="max-width: 240px" role="group" aria-label="키"><div class="ds-wheelpicker__column" role="listbox" aria-label="키" tabindex="0"><div class="ds-wheelpicker__option" role="option">150cm</div><div class="ds-wheelpicker__option" role="option">151cm</div><div class="ds-wheelpicker__option" role="option">152cm</div><div class="ds-wheelpicker__option" role="option">153cm</div><div class="ds-wheelpicker__option" role="option">154cm</div><div class="ds-wheelpicker__option" role="option">155cm</div><div class="ds-wheelpicker__option" role="option">156cm</div><div class="ds-wheelpicker__option" role="option">157cm</div><div class="ds-wheelpicker__option" role="option">158cm</div><div class="ds-wheelpicker__option" role="option">159cm</div><div class="ds-wheelpicker__option" role="option">160cm</div><div class="ds-wheelpicker__option" role="option">161cm</div><div class="ds-wheelpicker__option" role="option">162cm</div><div class="ds-wheelpicker__option" role="option">163cm</div><div class="ds-wheelpicker__option" role="option">164cm</div><div class="ds-wheelpicker__option" role="option">165cm</div><div class="ds-wheelpicker__option" role="option">166cm</div><div class="ds-wheelpicker__option" role="option">167cm</div><div class="ds-wheelpicker__option" role="option">168cm</div><div class="ds-wheelpicker__option" role="option">169cm</div><div class="ds-wheelpicker__option" role="option" aria-selected="true">170cm</div><div class="ds-wheelpicker__option" role="option">171cm</div><div class="ds-wheelpicker__option" role="option">172cm</div><div class="ds-wheelpicker__option" role="option">173cm</div><div class="ds-wheelpicker__option" role="option">174cm</div><div class="ds-wheelpicker__option" role="option">175cm</div><div class="ds-wheelpicker__option" role="option">176cm</div><div class="ds-wheelpicker__option" role="option">177cm</div><div class="ds-wheelpicker__option" role="option">178cm</div><div class="ds-wheelpicker__option" role="option">179cm</div><div class="ds-wheelpicker__option" role="option">180cm</div><div class="ds-wheelpicker__option" role="option">181cm</div><div class="ds-wheelpicker__option" role="option">182cm</div><div class="ds-wheelpicker__option" role="option">183cm</div><div class="ds-wheelpicker__option" role="option">184cm</div><div class="ds-wheelpicker__option" role="option">185cm</div><div class="ds-wheelpicker__option" role="option">186cm</div><div class="ds-wheelpicker__option" role="option">187cm</div><div class="ds-wheelpicker__option" role="option">188cm</div><div class="ds-wheelpicker__option" role="option">189cm</div><div class="ds-wheelpicker__option" role="option">190cm</div></div></div>
+<div class="ds-wheelpicker" role="group" aria-label="키"><div class="ds-wheelpicker__column" role="listbox" aria-label="키" tabindex="0"><div class="ds-wheelpicker__option" role="option">150cm</div><div class="ds-wheelpicker__option" role="option">151cm</div><div class="ds-wheelpicker__option" role="option">152cm</div><div class="ds-wheelpicker__option" role="option">153cm</div><div class="ds-wheelpicker__option" role="option">154cm</div><div class="ds-wheelpicker__option" role="option">155cm</div><div class="ds-wheelpicker__option" role="option">156cm</div><div class="ds-wheelpicker__option" role="option">157cm</div><div class="ds-wheelpicker__option" role="option">158cm</div><div class="ds-wheelpicker__option" role="option">159cm</div><div class="ds-wheelpicker__option" role="option">160cm</div><div class="ds-wheelpicker__option" role="option">161cm</div><div class="ds-wheelpicker__option" role="option">162cm</div><div class="ds-wheelpicker__option" role="option">163cm</div><div class="ds-wheelpicker__option" role="option">164cm</div><div class="ds-wheelpicker__option" role="option">165cm</div><div class="ds-wheelpicker__option" role="option">166cm</div><div class="ds-wheelpicker__option" role="option">167cm</div><div class="ds-wheelpicker__option" role="option">168cm</div><div class="ds-wheelpicker__option" role="option">169cm</div><div class="ds-wheelpicker__option" role="option" aria-selected="true">170cm</div><div class="ds-wheelpicker__option" role="option">171cm</div><div class="ds-wheelpicker__option" role="option">172cm</div><div class="ds-wheelpicker__option" role="option">173cm</div><div class="ds-wheelpicker__option" role="option">174cm</div><div class="ds-wheelpicker__option" role="option">175cm</div><div class="ds-wheelpicker__option" role="option">176cm</div><div class="ds-wheelpicker__option" role="option">177cm</div><div class="ds-wheelpicker__option" role="option">178cm</div><div class="ds-wheelpicker__option" role="option">179cm</div><div class="ds-wheelpicker__option" role="option">180cm</div><div class="ds-wheelpicker__option" role="option">181cm</div><div class="ds-wheelpicker__option" role="option">182cm</div><div class="ds-wheelpicker__option" role="option">183cm</div><div class="ds-wheelpicker__option" role="option">184cm</div><div class="ds-wheelpicker__option" role="option">185cm</div><div class="ds-wheelpicker__option" role="option">186cm</div><div class="ds-wheelpicker__option" role="option">187cm</div><div class="ds-wheelpicker__option" role="option">188cm</div><div class="ds-wheelpicker__option" role="option">189cm</div><div class="ds-wheelpicker__option" role="option">190cm</div></div></div>
 ```
 
 ## 규격

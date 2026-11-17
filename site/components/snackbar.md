@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/snackbar.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/snackbar.html -->
 
 # Snackbar
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-snackbar" role="status" data-tone="positive" data-state="open">
@@ -25,8 +25,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `tone` | positive critical |
@@ -39,13 +37,11 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 4초 동안 표시하고, 한 번에 하나만 띄웁니다. |
-| **Do** | 요청이 실패하면 실패 이유를 짧게 적고 다시 시도 버튼을 함께 둡니다. |
-| **Do** | 결과만 몇 단어로 알립니다. |
-| **Do** | 되돌릴 수 있는 작업에는 "실행 취소" 버튼을 제공합니다. |
-| **Do** | 입력 오류는 입력 필드 아래 안내 글로, 작업을 막는 오류는 Banner로 알립니다. 이때 Snackbar는 사용하지 않습니다. |
+- Do: 4초 동안 표시하고, 한 번에 하나만 띄웁니다.
+- Do: 요청이 실패하면 실패 이유를 짧게 적고 다시 시도 버튼을 함께 둡니다.
+- Do: 결과만 몇 단어로 알립니다.
+- Do: 되돌릴 수 있는 작업에는 "실행 취소" 버튼을 제공합니다.
+- Do: 입력 오류는 입력 필드 아래 안내 글로, 작업을 막는 오류는 Banner로 알립니다. 이때 Snackbar는 사용하지 않습니다.
 
 ## 예시
 
@@ -54,7 +50,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 저장 버튼을 누르면 화면 아래에 결과를 한 줄로 안내합니다. 4초 뒤 자동으로 사라지므로 사용자가 닫지 않아도 되는 알림에 사용합니다.
 
 ```html
-<div class="u-col u-gap-5" style="width: 100%; max-width: 360px">
+<div class="u-col u-gap-5">
   <div class="ds-field">
     <div class="ds-field__header">
       <label class="ds-field__label" for="snackbar-ex1-name">닉네임</label>
@@ -75,7 +71,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 알림을 삭제하면 되돌리기 버튼 하나와 함께 안내합니다. 확인 창으로 흐름을 막지 않으면서 실수를 바로잡을 방법을 제공할 때 사용합니다.
 
 ```html
-<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__content">

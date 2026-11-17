@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/pagination.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/pagination.html -->
 
 # Pagination
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <nav class="ds-pagination" aria-label="페이지">
@@ -36,8 +36,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | simple |
@@ -46,15 +44,13 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에는 ghost를 사용합니다. |
-| **Do** | 페이지 번호는 현재 페이지를 포함해 5개(넓은 화면에서는 7개)까지 표시합니다. 나머지는 말줄임표로 줄입니다. 첫 번호와 마지막 번호는 항상 표시합니다. |
-| **Do** | 목록 아래 가운데에 배치합니다. 페이지를 이동하면 목록 맨 위로 스크롤합니다. |
-| **Do** | 현재 페이지 번호는 누를 수 없게 하고 aria-current="page"를 붙입니다. |
-| **Do** | 첫 페이지에서는 처음, 이전 버튼을 숨기지 않고 비활성화합니다. 마지막 페이지의 다음, 마지막 버튼도 마찬가지입니다. |
-| **Do** | 화살표 버튼에는 aria-label을 꼭 붙입니다. |
-| **Don't** | 끝없이 이어지는 피드나 "더 보기"가 어울리는 목록에는 사용하지 않습니다. |
+- Do: 카드 안이나 옆 패널처럼 진한 면이 무거워 보이는 곳에는 ghost를 사용합니다.
+- Do: 페이지 번호는 현재 페이지를 포함해 5개(넓은 화면에서는 7개)까지 표시합니다. 나머지는 말줄임표로 줄입니다. 첫 번호와 마지막 번호는 항상 표시합니다.
+- Do: 목록 아래 가운데에 배치합니다. 페이지를 이동하면 목록 맨 위로 스크롤합니다.
+- Do: 현재 페이지 번호는 누를 수 없게 하고 aria-current="page"를 붙입니다.
+- Do: 첫 페이지에서는 처음, 이전 버튼을 숨기지 않고 비활성화합니다. 마지막 페이지의 다음, 마지막 버튼도 마찬가지입니다.
+- Do: 화살표 버튼에는 aria-label을 꼭 붙입니다.
+- Don't: 끝없이 이어지는 피드나 "더 보기"가 어울리는 목록에는 사용하지 않습니다.
 
 ## Table Pagination과 비교
 
@@ -75,7 +71,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록 하단 가운데에 배치하고, 첫 페이지에서는 이전 버튼을 숨기지 않고 비활성화합니다. 좁은 화면에서는 번호를 5칸 안에서 표시하고 마지막 번호를 항상 남겨 전체 길이를 알 수 있게 합니다.
 
 ```html
-<div class="u-col u-gap-4 u-full" style="max-width: 375px">
+<div class="u-col u-gap-4 u-full">
   <ul class="ds-list" data-divider>
     <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">연말 휴강 일정 안내</span><span class="ds-list-item__desc">2026.11.03</span></span></a></li>
     <li><a class="ds-list-item" href="#" data-size="small"><span class="ds-list-item__content"><span class="ds-list-item__title">개인정보 처리방침 변경 안내</span><span class="ds-list-item__desc">2026.10.28</span></span></a></li>
@@ -99,7 +95,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 카드처럼 좁은 영역에서는 `data-layout="simple"`로 현재 페이지와 전체 페이지 수만 표시합니다. 번호를 나열할 공간이 없을 때 이전, 다음 버튼만으로 이동합니다.
 
 ```html
-<article class="ds-card u-full" data-size="small" style="max-width: 360px">
+<article class="ds-card u-full" data-size="small">
   <header class="ds-card__header">
     <h3 class="ds-card__title">수강 후기</h3>
     <p class="ds-card__desc">후기 24개</p>

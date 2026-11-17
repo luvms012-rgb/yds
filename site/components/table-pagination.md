@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/table-pagination.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/table-pagination.html -->
 
 # Table Pagination
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-tablepagination">
@@ -43,8 +43,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `state` | default unknownTotal empty |
@@ -53,11 +51,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 데이터 표 아래에서만 사용합니다. |
-| **Do** | 일반 목록에는 Pagination을 사용합니다. |
-| **Do** | 페이지당 행 수 선택지는 3~4개로 제공합니다. |
+- Do: 데이터 표 아래에서만 사용합니다.
+- Do: 일반 목록에는 Pagination을 사용합니다.
+- Do: 페이지당 행 수 선택지는 3~4개로 제공합니다.
 
 ## Pagination과 비교
 
@@ -82,10 +78,10 @@ Table Pagination은 데이터 표 전용입니다. 검색 결과나 게시판 �
   <table class="ds-table" data-size="small">
     <thead>
       <tr>
-        <th scope="col" style="width: 120px">이름</th>
+        <th scope="col">이름</th>
         <th scope="col">이메일</th>
-        <th scope="col" data-align="center" style="width: 120px">가입일</th>
-        <th scope="col" data-align="end" style="width: 104px">수강 강의</th>
+        <th scope="col" data-align="center">가입일</th>
+        <th scope="col" data-align="end">수강 강의</th>
       </tr>
     </thead>
     <tbody>
@@ -149,9 +145,9 @@ Table Pagination은 데이터 표 전용입니다. 검색 결과나 게시판 �
   <table class="ds-table" data-size="small">
     <thead>
       <tr>
-        <th scope="col" data-align="center" style="width: 128px">시각</th>
+        <th scope="col" data-align="center">시각</th>
         <th scope="col">한 일</th>
-        <th scope="col" style="width: 120px">담당자</th>
+        <th scope="col">담당자</th>
       </tr>
     </thead>
     <tbody>

@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/spacing.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/spacing.html -->
 
 # Spacing
 
@@ -55,8 +55,6 @@
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 관련 있는 요소는 가깝게 붙이고, 다른 묶음은 넓게 띄웁니다. |
-| **Do** | 화면 좌우 여백은 global-gutter 하나로 맞춥니다. |
-| **Don't** | 토큰에 없는 간격(예: 13px)을 만들지 않습니다. |
+- Do: 관련 있는 요소는 가깝게 붙이고, 다른 묶음은 넓게 띄웁니다.
+- Do: 화면 좌우 여백은 global-gutter 하나로 맞춥니다.
+- Don't: 토큰에 없는 간격(예: 13px)을 만들지 않습니다.

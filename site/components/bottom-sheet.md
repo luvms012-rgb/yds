@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/bottom-sheet.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/bottom-sheet.html -->
 
 # Bottom Sheet
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <dialog class="ds-bottomsheet" aria-labelledby="bs-t" [data-header-align="center"] [data-handle]>
@@ -33,23 +33,19 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `header-align` | center |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다. |
-| **Do** | 입력이나 긴 내용은 Bottom Sheet에 담습니다. |
-| **Do** | 되돌릴 수 없는 동작은 critical로 따로 묶습니다. |
-| **Do** | PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다. |
-| **Do** | 화면이 좁으면 Bottom Sheet로 전환합니다. |
-| **Do** | 안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다. |
-| **Do** | 내용이 길면 단계별 시트로 나누고, 겹치는 시트는 2개까지 둡니다. |
+- Do: 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다.
+- Do: 입력이나 긴 내용은 Bottom Sheet에 담습니다.
+- Do: 되돌릴 수 없는 동작은 critical로 따로 묶습니다.
+- Do: PC 화면 옆에 보조 내용이나 필터를 둘 때 Side Panel을 사용합니다.
+- Do: 화면이 좁으면 Bottom Sheet로 전환합니다.
+- Do: 안내 한 줄과 버튼만 있는 시트는 `data-header-align="center"`로 제목을 가운데 정렬합니다.
+- Do: 내용이 길면 단계별 시트로 나누고, 겹치는 시트는 2개까지 둡니다.
 
 ## 예시
 
@@ -58,7 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 값을 선택한 뒤 적용 버튼을 눌러 반영하는 경우 Bottom Sheet를 사용합니다. 상단에 닫기 버튼이 있으므로 하단에는 적용 버튼 하나만 배치합니다.
 
 ```html
-<div class="u-flex u-center u-between" style="width: 100%; max-width: 375px">
+<div class="u-flex u-center u-between">
   <span class="ds-t04 ds-fg-muted">강의 128개</span>
   <button type="button" class="ds-chip" data-variant="outlineWeak" data-size="small" aria-haspopup="dialog" data-ds-open="bottom-sheet-ex1">최신순<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
 </div>
@@ -86,7 +82,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 선택지 외에 직접 입력할 수도 있는 값은 Field Button으로 Bottom Sheet를 열어 입력받습니다. Menu Sheet는 몇 가지 동작 중 하나를 선택할 때만 사용하고, 입력이 있으면 Bottom Sheet를 사용합니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 375px">
+<div class="ds-field">
   <div class="ds-field__header"><span class="ds-field__label" id="bottom-sheet-ex2-label">학습 목표</span></div>
   <button type="button" class="ds-fieldbutton" data-size="large" aria-labelledby="bottom-sheet-ex2-label bottom-sheet-ex2-value" aria-haspopup="dialog" data-ds-open="bottom-sheet-ex2">
     <span class="ds-fieldbutton__value" id="bottom-sheet-ex2-value">시험 점수 올리기</span>

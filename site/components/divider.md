@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/divider.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/divider.html -->
 
 # Divider
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <hr class="ds-divider" [data-weight="thick"] [data-inset]>
@@ -16,8 +16,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | 켜고 끄는 속성 | `inset` `label` |
@@ -26,10 +24,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Don't** | 마지막 묶음 아래에는 구분선을 두지 않습니다. |
-| **Don't** | 여백과 정렬로 나눌 수 있으면 선을 더하지 않습니다. |
+- Don't: 마지막 묶음 아래에는 구분선을 두지 않습니다.
+- Don't: 여백과 정렬로 나눌 수 있으면 선을 더하지 않습니다.
 
 ## 예시
 
@@ -38,7 +34,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 결제 상세처럼 긴 모바일 화면은 묶음 사이에 굵은 구분선을 배치합니다. 마지막 묶음 아래에는 선을 두지 않아 화면이 깔끔하게 끝납니다.
 
 ```html
-<div class="u-col u-gap-5 u-full" style="max-width: 375px">
+<div class="u-col u-gap-5 u-full">
   <section class="u-col u-gap-3">
     <h3 class="ds-t06 ds-fw-bold">수강 정보</h3>
     <div class="u-flex u-between u-gap-4 ds-t04"><span class="ds-fg-subtle">수강생</span><span>김하나</span></div>
@@ -59,7 +55,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 같은 일을 하는 두 방법 사이에는 텍스트가 있는 구분선을 배치합니다. 선 가운데 '또는'이 있어 둘 중 하나만 선택하면 된다는 것을 바로 알 수 있습니다.
 
 ```html
-<div class="u-col u-gap-4 u-full" style="max-width: 360px">
+<div class="u-col u-gap-4 u-full">
   <button class="ds-btn" data-variant="brandSolid" data-size="large" data-layout="fill">비밀번호로 로그인</button>
   <div class="ds-divider" role="separator" data-label><span>또는</span></div>
   <button class="ds-btn" data-variant="neutralOutline" data-size="large" data-layout="fill">인증번호로 로그인</button>
@@ -83,8 +79,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

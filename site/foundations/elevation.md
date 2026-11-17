@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/elevation.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/elevation.html -->
 
 # Elevation
 
@@ -41,8 +41,6 @@
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 요소의 용도에 맞는 그림자 이름을 선택합니다. 메뉴는 overlay, 다이얼로그는 modal입니다. |
-| **Do** | 같은 높이 안에서 면을 나눌 때는 그림자 대신 테두리를 사용합니다. |
-| **Don't** | 그림자 값을 직접 만들지 않습니다. |
+- Do: 요소의 용도에 맞는 그림자 이름을 선택합니다. 메뉴는 overlay, 다이얼로그는 modal입니다.
+- Do: 같은 높이 안에서 면을 나눌 때는 그림자 대신 테두리를 사용합니다.
+- Don't: 그림자 값을 직접 만들지 않습니다.

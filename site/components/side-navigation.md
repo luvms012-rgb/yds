@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/side-navigation.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/side-navigation.html -->
 
 # Side Navigation
 
@@ -6,7 +6,7 @@ PC 화면 왼쪽에서 메뉴 사이를 이동하는 컴포넌트입니다.
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <nav class="ds-sidenav" aria-label="메뉴" [data-collapsed]>
@@ -42,19 +42,15 @@ PC 화면 왼쪽에서 메뉴 사이를 이동하는 컴포넌트입니다.
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: expanded 240, collapsed 56
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 메뉴는 화면 폭 1280 이상에서 펼치고, 768 이상에서 접습니다. |
-| **Do** | 화면 폭이 768보다 좁으면 서랍(Drawer)으로 전환합니다. |
-| **Do** | 하위 메뉴가 있는 항목은 눌러도 이동하지 않고 펼치거나 접기만 합니다. 하위 메뉴가 선택돼 있으면 상위 항목을 펼친 상태로 표시합니다. |
-| **Do** | 메뉴 이름은 짧게 작성합니다. |
-| **Don't** | 하위 메뉴가 없는 항목은 누르면 바로 이동하고, 화살표를 표시하지 않습니다. |
+- Do: 메뉴는 화면 폭 1280 이상에서 펼치고, 768 이상에서 접습니다.
+- Do: 화면 폭이 768보다 좁으면 서랍(Drawer)으로 전환합니다.
+- Do: 하위 메뉴가 있는 항목은 눌러도 이동하지 않고 펼치거나 접기만 합니다. 하위 메뉴가 선택돼 있으면 상위 항목을 펼친 상태로 표시합니다.
+- Do: 메뉴 이름은 짧게 작성합니다.
+- Don't: 하위 메뉴가 없는 항목은 누르면 바로 이동하고, 화살표를 표시하지 않습니다.
 
 ## 예시
 
@@ -91,7 +87,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 화면 폭이 1280보다 좁으면 `data-collapsed`로 접어 아이콘만 표시합니다. 이름이 숨겨지므로 항목마다 `aria-label`을 붙이고, 768보다 좁아지면 서랍 메뉴로 바꿉니다.
 
 ```html
-<div class="u-flex u-gap-6 u-full" style="max-width: 560px">
+<div class="u-flex u-gap-6 u-full">
   <nav class="ds-sidenav" aria-label="학습 메뉴" data-collapsed>
     <div class="ds-sidenav__header">
       <button type="button" class="ds-sidenav__trigger" aria-label="메뉴 펼치기"><i class="ds-icon ds-icon--panel-left" aria-hidden="true"></i></button>

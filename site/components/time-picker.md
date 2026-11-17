@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/time-picker.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/time-picker.html -->
 
 # Time Picker
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-timepicker" role="group" aria-label="시간" [aria-disabled="true"]>
@@ -28,8 +28,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `state` | enabled disabled |
@@ -44,10 +42,8 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 시간 선택이 화면의 주요 기능이면 화면에 바로 배치합니다. |
-| **Do** | 입력 필드에서 선택할 때는 Bottom Sheet 안에 배치하고, Field Button을 눌러 엽니다. |
+- Do: 시간 선택이 화면의 주요 기능이면 화면에 바로 배치합니다.
+- Do: 입력 필드에서 선택할 때는 Bottom Sheet 안에 배치하고, Field Button을 눌러 엽니다.
 
 ## 예시
 
@@ -56,7 +52,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 시간 선택이 화면의 주요 기능이므로 Time Picker를 화면에 바로 배치합니다. 휠을 굴리거나 항목을 눌러 오전/오후, 시, 분을 선택합니다.
 
 ```html
-<div class="u-col u-gap-6" style="width: 100%; max-width: 360px">
+<div class="u-col u-gap-6">
   <div class="u-col u-gap-2">
     <h3 class="ds-t08 ds-fw-bold">학습 알림 시간을 골라 주세요</h3>
     <p class="ds-t04 ds-fg-muted">매일 이 시간에 오늘 할 공부를 알려 줘요.</p>
@@ -104,7 +100,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 폼 안에서는 Field Button을 누르면 Bottom Sheet가 열리고 그 안에서 시간을 선택합니다. 날짜, 장소처럼 다른 입력 필드와 함께 있는 예약 화면에 사용합니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 360px">
+<div class="ds-field">
   <div class="ds-field__header">
     <span class="ds-field__label" id="time-picker-ex2-label">상담 시간</span>
     <span class="ds-field__required" aria-hidden="true"></span>

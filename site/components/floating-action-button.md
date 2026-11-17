@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/floating-action-button.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/floating-action-button.html -->
 
 # Floating Action Button
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <button class="ds-fab"><i class="ds-icon ds-icon--plus" aria-hidden="true"></i>글쓰기</button>
@@ -15,21 +15,17 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `layout` | iconOnly extended=false |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 사용할 수 없으면 버튼을 숨깁니다. |
-| **Do** | 한 화면에 하나만 둡니다. 두 개 이상이면 무엇이 주요 동작인지 알기 어렵습니다. |
-| **Do** | extended에는 라벨을 꼭 넣습니다. |
-| **Do** | 버튼이 내용을 가리지 않도록 화면 아래에 버튼 높이만큼 여백을 둡니다. |
-| **Don't** | disabled 상태로 표시하지 않습니다. 사용할 수 없는 동작이면 버튼을 숨깁니다. |
+- Do: 사용할 수 없으면 버튼을 숨깁니다.
+- Do: 한 화면에 하나만 둡니다. 두 개 이상이면 무엇이 주요 동작인지 알기 어렵습니다.
+- Do: extended에는 라벨을 꼭 넣습니다.
+- Do: 버튼이 내용을 가리지 않도록 화면 아래에 버튼 높이만큼 여백을 둡니다.
+- Don't: disabled 상태로 표시하지 않습니다. 사용할 수 없는 동작이면 버튼을 숨깁니다.
 
 ## 예시
 
@@ -38,7 +34,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 게시판 화면의 대표 동작인 글쓰기 하나만 라벨이 있는 FAB로 제공합니다. 검색 같은 다른 동작은 상단 바의 아이콘 버튼으로 배치해 무엇이 주요 동작인지 헷갈리지 않게 합니다.
 
 ```html
-<div class="u-col u-full" style="max-width: 375px">
+<div class="u-col u-full">
   <header class="ds-appbar">
     <div class="ds-appbar__left">
       <button type="button" class="ds-appbar__button" aria-label="뒤로"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
@@ -88,7 +84,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 더하기처럼 뜻이 바로 보이는 동작은 아이콘만 표시하고 `aria-label`로 이름을 꼭 지정합니다. 일정 화면처럼 추가가 유일한 대표 동작일 때 사용하고, 사용할 수 없을 때는 `disabled` 대신 숨깁니다.
 
 ```html
-<div class="u-col u-full" style="max-width: 375px">
+<div class="u-col u-full">
   <header class="ds-appbar" data-platform="android">
     <div class="ds-appbar__main">
       <h1 class="ds-appbar__title">내 일정</h1>

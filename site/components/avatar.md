@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/avatar.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/avatar.html -->
 
 # Avatar
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 사진   <span class="ds-avatar" data-size="48"><img src="…" alt="김민수"></span>
@@ -27,8 +27,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `size` | 20 24 36 40 48 56 64 80 96 108 |
@@ -40,11 +38,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 사진을 불러오지 못해도 이니셜이 표시되도록 이름을 항상 넣습니다. |
-| **Do** | 묶음은 3~5개까지 표시하고 나머지는 +N으로 줄입니다. |
-| **Don't** | 로고나 강의 썸네일에는 사용하지 않습니다. Image Frame을 사용합니다. |
+- Do: 사진을 불러오지 못해도 이니셜이 표시되도록 이름을 항상 넣습니다.
+- Do: 묶음은 3~5개까지 표시하고 나머지는 +N으로 줄입니다.
+- Don't: 로고나 강의 썸네일에는 사용하지 않습니다. Image Frame을 사용합니다.
 
 ## 예시
 
@@ -53,7 +49,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 사진이 없으면 이름 첫 글자를, 이름도 없으면 기본 모양을 표시합니다. 이름이 바로 옆에 있으면 Avatar에 `aria-hidden`을 붙여 이름이 두 번 읽히지 않게 합니다.
 
 ```html
-<ul class="ds-list" data-inset data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-inset data-divider>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix"><span class="ds-avatar" aria-hidden="true"><span class="ds-avatar__initials">김</span></span></span>
@@ -92,7 +88,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 상태 점은 색과 모양이 함께 달라서 색을 구분하기 어려워도 알아볼 수 있습니다. 이름 아래에도 상태를 텍스트로 적고, Avatar만 표시할 때는 `aria-label`에 "이름, 상태"를 적습니다.
 
 ```html
-<ul class="ds-list" data-divider style="width: 100%; max-width: 420px">
+<ul class="ds-list" data-divider>
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__prefix"><span class="ds-avatar" data-size="40" aria-hidden="true"><span class="ds-avatar__initials">정</span><span class="ds-avatar__status" data-tone="positive"></span></span></span>
@@ -128,7 +124,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 아바타는 3개에서 5개까지만 겹쳐 표시하고 나머지는 +N으로 줄입니다. 묶음에는 `aria-label`로 전체 인원 수를 적어 함께 알립니다.
 
 ```html
-<article class="ds-card" style="width: 100%; max-width: 360px">
+<article class="ds-card">
   <header class="ds-card__header">
     <h3 class="ds-card__title">영어 회화 스터디</h3>
     <p class="ds-card__desc">매주 화요일 저녁 8시</p>
@@ -148,8 +144,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/text-field-input.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/text-field-input.html -->
 
 # Text Field Input
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-input" data-variant="outline" data-size="medium">
@@ -30,8 +30,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `variant` | outline underline |
@@ -45,12 +43,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 플레이스홀더는 입력 예시에만 사용합니다. 입력하면 사라지므로 라벨 대신 사용하지 않습니다. |
-| **Do** | 오류 메시지에는 무엇이 틀렸는지와 고치는 방법을 함께 작성합니다. |
-| **Do** | 이메일, 전화번호, 숫자 입력 필드는 type을 지정해 알맞은 키보드가 나타나게 합니다. |
-| **Do** | 입력할 수 없는 이유는 Tooltip이 아니라 입력 필드 아래 안내 글로 알립니다. 비활성 필드는 포커스를 받지 않습니다. |
+- Do: 플레이스홀더는 입력 예시에만 사용합니다. 입력하면 사라지므로 라벨 대신 사용하지 않습니다.
+- Do: 오류 메시지에는 무엇이 틀렸는지와 고치는 방법을 함께 작성합니다.
+- Do: 이메일, 전화번호, 숫자 입력 필드는 type을 지정해 알맞은 키보드가 나타나게 합니다.
+- Do: 입력할 수 없는 이유는 Tooltip이 아니라 입력 필드 아래 안내 글로 알립니다. 비활성 필드는 포커스를 받지 않습니다.
 
 ## Segmented Text Input과 비교
 
@@ -71,7 +67,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 입력 필드 위에는 Field Label로 이름을, 아래에는 안내 문구를 표시합니다. 플레이스홀더는 입력하면 사라지므로 꼭 지켜야 할 형식은 안내 문구에 적습니다.
 
 ```html
-<div class="u-col u-gap-6" style="width: 100%; max-width: 360px">
+<div class="u-col u-gap-6">
   <div class="ds-field">
     <div class="ds-field__header">
       <label class="ds-field__label" for="text-field-input-ex1-name">이름</label>
@@ -101,7 +97,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 형식이 맞지 않으면 입력 요소에 `aria-invalid="true"`를 붙여 테두리와 문구를 빨간색으로 표시합니다. 오류 문구에는 무엇을 어떻게 고치면 되는지 적습니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 360px">
+<div class="ds-field">
   <div class="ds-field__header">
     <label class="ds-field__label" for="text-field-input-ex2-mail">이메일</label>
   </div>
@@ -120,7 +116,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 포인트처럼 단위가 있는 값은 `ds-input__suffix`로 단위를 표시합니다. 옆에 버튼을 배치할 때는 medium 입력 필드와 medium 버튼을 함께 사용해 높이를 맞춥니다.
 
 ```html
-<div class="ds-field" style="width: 100%; max-width: 360px">
+<div class="ds-field">
   <div class="ds-field__header">
     <label class="ds-field__label" for="text-field-input-ex3-point">포인트 사용</label>
   </div>
@@ -140,8 +136,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

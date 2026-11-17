@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/bottom-navigation.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/bottom-navigation.html -->
 
 # Bottom Navigation
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <nav class="ds-bottomnav" aria-label="주요 메뉴">
@@ -28,20 +28,16 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 그 밖에: 뱃지 `__badge--dot/--count` (bg/critical-solid)
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 탭은 3~5개를 사용합니다. |
-| **Do** | 라벨은 한글 5자(영문 10자) 이내로 작성합니다. |
-| **Do** | 아이콘은 채움(Solid) 모양을 사용합니다. |
-| **Do** | 배지 숫자는 1~99까지 표시하고, 100 이상은 `99+`로 표시합니다. |
-| **Do** | 숫자가 0이면 배지를 숨깁니다. |
-| **Don't** | 숫자 배지는 동시에 3개를 넘게 표시하지 않습니다. |
+- Do: 탭은 3~5개를 사용합니다.
+- Do: 라벨은 한글 5자(영문 10자) 이내로 작성합니다.
+- Do: 아이콘은 채움(Solid) 모양을 사용합니다.
+- Do: 배지 숫자는 1~99까지 표시하고, 100 이상은 `99+`로 표시합니다.
+- Do: 숫자가 0이면 배지를 숨깁니다.
+- Don't: 숫자 배지는 동시에 3개를 넘게 표시하지 않습니다.
 
 ## 예시
 
@@ -50,7 +46,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 앱의 주요 화면 3개에서 5개를 하단에 배치하고, 현재 화면은 `aria-current="page"`로 표시합니다. 라벨은 한글 다섯 자 이내로 짧게 작성합니다.
 
 ```html
-<div style="width: 100%; max-width: 375px">
+<div>
   <ul class="ds-list" data-divider>
     <li>
       <a class="ds-list-item" href="#">
@@ -97,7 +93,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 개수가 중요한 탭에는 숫자 배지를, 새 소식만 알릴 때는 점을 표시합니다. 99가 넘으면 `99+`로 줄이고, 0이면 배지를 숨깁니다.
 
 ```html
-<div style="width: 100%; max-width: 375px">
+<div>
   <ul class="ds-list" data-divider>
     <li>
       <a class="ds-list-item" href="#">

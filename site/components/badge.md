@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/badge.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/badge.html -->
 
 # Badge
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <span class="ds-badge" data-variant="solid" data-tone="brand">NEW</span>
@@ -27,8 +27,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `variant` | weak solid outline |
@@ -37,12 +35,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 누를 수 없는 표시용 라벨로만 사용합니다. |
-| **Do** | 같은 위치의 상태는 모두 배지로 표시하고, 강약은 색으로만 구분합니다. |
-| **Do** | 분류처럼 반복되는 배지는 기본 색 하나로 통일하고, 진한 solid 배지는 새 메뉴처럼 한 곳에만 사용합니다. |
-| **Do** | 1~2단어로 작성합니다. |
+- Do: 누를 수 없는 표시용 라벨로만 사용합니다.
+- Do: 같은 위치의 상태는 모두 배지로 표시하고, 강약은 색으로만 구분합니다.
+- Do: 분류처럼 반복되는 배지는 기본 색 하나로 통일하고, 진한 solid 배지는 새 메뉴처럼 한 곳에만 사용합니다.
+- Do: 1~2단어로 작성합니다.
 
 ## 예시
 
@@ -51,7 +47,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 같은 자리의 상태는 모두 배지로 보여 줍니다. 할 일이 남은 상태만 눈에 띄는 색으로 두어, 확인할 줄이 바로 보입니다.
 
 ```html
-<ul class="ds-list" data-inset data-divider style="max-width: 420px">
+<ul class="ds-list" data-inset data-divider>
   <li>
     <a class="ds-list-item" href="#">
       <span class="ds-list-item__content">
@@ -88,8 +84,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

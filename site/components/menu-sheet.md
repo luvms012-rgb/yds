@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/menu-sheet.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/menu-sheet.html -->
 
 # Menu Sheet
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <dialog class="ds-menusheet" id="ms" aria-labelledby="ms-t">
@@ -41,8 +41,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `Item tone` | neutral critical |
@@ -57,12 +55,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다. |
-| **Do** | 입력이나 긴 내용은 Bottom Sheet에 담습니다. |
-| **Do** | 되돌릴 수 없는 동작은 critical로 따로 묶습니다. |
-| **Do** | 아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 글자를 가운데 정렬합니다. |
+- Do: 몇 가지 동작 중 하나를 선택할 때는 Menu Sheet를 사용합니다.
+- Do: 입력이나 긴 내용은 Bottom Sheet에 담습니다.
+- Do: 되돌릴 수 없는 동작은 critical로 따로 묶습니다.
+- Do: 아이콘 없이 짧은 동작 몇 개만 있으면 `data-label-align="center"`로 글자를 가운데 정렬합니다.
 
 ## 예시
 
@@ -71,7 +67,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 모바일에서 더보기 버튼을 누르면 Menu Sheet로 할 수 있는 동작을 표시합니다. 몇 가지 동작 중 하나를 선택할 때 사용하고, 입력이나 긴 내용이 필요하면 Bottom Sheet를 사용합니다.
 
 ```html
-<ul class="ds-list u-full" data-inset style="max-width: 375px">
+<ul class="ds-list u-full" data-inset>
   <li>
     <div class="ds-list-item">
       <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--image" aria-hidden="true"></i></span>
@@ -105,7 +101,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 대화방 나가기처럼 되돌릴 수 없는 동작은 critical로 표시하고 다른 동작과 분리된 묶음에 배치합니다. 한 줄 설명으로 결과를 안내해 누르기 전에 알 수 있게 합니다.
 
 ```html
-<header class="ds-appbar u-full" style="max-width: 375px">
+<header class="ds-appbar u-full">
   <div class="ds-appbar__left">
     <button type="button" class="ds-appbar__button" aria-label="뒤로"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>
   </div>

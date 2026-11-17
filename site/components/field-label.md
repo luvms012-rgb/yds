@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/field-label.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/field-label.html -->
 
 # Field Label
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-field" [data-label-weight="bold"]>
@@ -38,18 +38,14 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `label-weight` | bold |
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 모든 입력 필드에 라벨을 표시합니다. 플레이스홀더를 라벨 대신 사용하지 않습니다. |
-| **Do** | 필수 표시는 꼭 입력해야 하는 필드에만 합니다. |
+- Do: 모든 입력 필드에 라벨을 표시합니다. 플레이스홀더를 라벨 대신 사용하지 않습니다.
+- Do: 필수 표시는 꼭 입력해야 하는 필드에만 합니다.
 
 ## 예시
 
@@ -58,7 +54,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 필수 입력 필드에는 라벨 옆에 필수 점을, 비워도 되는 필드에는 '선택'을 표시합니다. 필수 점은 스크린 리더가 읽지 않으므로 입력 요소에 `required`를 함께 붙입니다.
 
 ```html
-<form class="u-col u-gap-5 u-full" style="max-width: 360px">
+<form class="u-col u-gap-5 u-full">
   <div class="ds-field">
     <div class="ds-field__header">
       <label class="ds-field__label" for="field-label-ex1-name">이름</label>
@@ -97,7 +93,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 입력 요소에 `aria-invalid="true"`를 붙이면 안내 문구가 빨간색 오류 문구로 바뀝니다. 오류 문구에는 무엇이 틀렸는지와 해결 방법을 함께 적습니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 360px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <label class="ds-field__label" for="field-label-ex2-mail">이메일</label>
     <span class="ds-field__required" aria-hidden="true"></span>
@@ -117,7 +113,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 글자 수 제한이 있는 필드는 오른쪽 아래에 현재 글자 수와 최대 글자 수를 표시합니다. 안내 문구는 왼쪽에 배치해 두 정보를 한 줄에서 함께 읽을 수 있습니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 420px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <label class="ds-field__label" for="field-label-ex3-text">문의 내용</label>
     <span class="ds-field__required" aria-hidden="true"></span>
@@ -133,8 +129,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

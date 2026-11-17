@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/select-box.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/select-box.html -->
 
 # Select Box
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-selectbox-group" [style="--ds-selectbox-columns: 2"]>
@@ -34,8 +34,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `type` | check radio |
@@ -44,11 +42,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 설명이 필요한 선택지가 2~6개일 때 사용합니다. |
-| **Do** | 짧은 선택지는 Radio Group이나 Checkbox를 사용합니다. |
-| **Don't** | 한 묶음 안에서 check와 radio를 섞지 않습니다. |
+- Do: 설명이 필요한 선택지가 2~6개일 때 사용합니다.
+- Do: 짧은 선택지는 Radio Group이나 Checkbox를 사용합니다.
+- Don't: 한 묶음 안에서 check와 radio를 섞지 않습니다.
 
 ## 예시
 
@@ -57,7 +53,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 선택지마다 가격과 조건 같은 설명이 필요할 때 Select Box로 크게 표시합니다. 짧은 라벨만으로 선택할 수 있으면 Radio Group을 사용하세요.
 
 ```html
-<div class="ds-field u-full" style="max-width: 420px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <span class="ds-field__label" id="select-box-ex1-label">이용권</span>
   </div>
@@ -92,7 +88,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 관심 분야처럼 여러 개를 선택할 때는 모든 항목에 체크 표시를 사용합니다. 한 그룹 안에서 check와 radio를 섞으면 몇 개를 선택해야 하는지 헷갈립니다.
 
 ```html
-<div class="ds-field u-full" style="max-width: 420px">
+<div class="ds-field u-full">
   <div class="ds-field__header">
     <span class="ds-field__label" id="select-box-ex2-label">관심 있는 분야를 모두 골라 주세요</span>
   </div>
@@ -136,8 +132,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

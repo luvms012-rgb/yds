@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/chip.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/chip.html -->
 
 # Chip
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <button type="button" class="ds-chip" aria-pressed="false">
@@ -16,8 +16,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `variant` | solid outlineStrong outlineWeak |
@@ -26,11 +24,9 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 조건을 켜고 끄는 선택에 사용합니다. |
-| **Do** | 선택 상태는 `aria-pressed`로 알립니다. |
-| **Do** | 화면 분류를 바꿀 때는 Chip Tabs를, 누를 수 없는 표시에는 Badge를 사용합니다. |
+- Do: 조건을 켜고 끄는 선택에 사용합니다.
+- Do: 선택 상태는 `aria-pressed`로 알립니다.
+- Do: 화면 분류를 바꿀 때는 Chip Tabs를, 누를 수 없는 표시에는 Badge를 사용합니다.
 
 ## 예시
 
@@ -39,7 +35,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 함께 선택할 수 있는 필터는 Chip을 사용하고, 선택한 칩에는 `aria-pressed="true"`를 붙입니다. 하나만 선택해 보이는 내용을 바꿀 때는 Chip Tabs를 사용합니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-3">
   <div class="u-flex u-wrap u-gap-2">
     <button type="button" class="ds-chip" aria-pressed="true">무료 강의</button>
     <button type="button" class="ds-chip" aria-pressed="false">이번 주 개강</button>
@@ -55,7 +51,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 값을 선택해야 하는 필터는 칩에 현재 값과 아래 화살표를 함께 표시합니다. 누르면 Bottom Sheet나 Select Content가 열려 값을 바꿀 수 있습니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-3">
   <div class="u-flex u-wrap u-gap-2">
     <button type="button" class="ds-chip" data-variant="outlineWeak" data-layout="iconOnly" aria-label="필터"><i class="ds-icon ds-icon--sliders-horizontal" aria-hidden="true"></i></button>
     <button type="button" class="ds-chip" data-variant="outlineWeak" aria-haspopup="dialog">최근 3개월<i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i></button>
@@ -91,7 +87,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 적용한 조건은 오른쪽에 x 아이콘이 있는 칩으로 모아 표시하고, 누르면 해당 조건이 해제됩니다. 칩마다 `aria-label`로 어떤 조건이 해제되는지 적습니다.
 
 ```html
-<div class="u-col u-gap-3" style="width: 100%; max-width: 420px">
+<div class="u-col u-gap-3">
   <div class="u-flex u-center u-between">
     <span class="ds-t04 ds-fg-muted">적용한 조건 3개</span>
     <button class="ds-btn" data-variant="ghost" data-size="xsmall">모두 지우기</button>
@@ -107,8 +103,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

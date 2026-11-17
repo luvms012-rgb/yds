@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/components/image-frame.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/components/image-frame.html -->
 
 # Image Frame
 
@@ -6,7 +6,7 @@
 
 ## 사용법
 
-아래 구조를 복사해 사용합니다. 대괄호 `[ ]`로 묶인 부분은 크기나 설명 글처럼 생략할 수 있는 선택 항목입니다. 사용할 때는 대괄호만 지우고, 사용하지 않을 때는 대괄호를 포함해 해당 부분을 모두 지우세요.
+구조를 복사해 사용합니다. 대괄호 `[ ]` 부분은 선택 항목입니다.
 
 ```html
 <div class="ds-imageframe" data-ratio="4:3" [data-radius="lg"] [data-stroke]>
@@ -24,8 +24,6 @@
 
 ## 속성
 
-Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
-
 | 속성 | 값 |
 | --- | --- |
 | `ratio` | 1:1 4:3 16:9 |
@@ -33,14 +31,12 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다. |
-| **Do** | 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다. |
-| **Do** | 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다. |
-| **Do** | 카드 안 사진은 `data-radius`로 카드 모서리와 맞춥니다. |
-| **Do** | 흰 배경 사진에는 `data-stroke`로 옅은 테두리를 둘러 화면 배경과 구분합니다. |
-| **Do** | 책 표지는 `data-ratio="3:4"`, 포스터는 `data-ratio="2:3"`을 사용합니다. |
+- Do: 사진은 Image Frame의 비율에 맞춰 꽉 채웁니다.
+- Do: 여러 장을 넘겨 볼 때는 Carousel 항목으로 넣습니다.
+- Do: 터치 화면에서는 이전, 다음 버튼 없이 스와이프로 넘깁니다.
+- Do: 카드 안 사진은 `data-radius`로 카드 모서리와 맞춥니다.
+- Do: 흰 배경 사진에는 `data-stroke`로 옅은 테두리를 둘러 화면 배경과 구분합니다.
+- Do: 책 표지는 `data-ratio="3:4"`, 포스터는 `data-ratio="2:3"`을 사용합니다.
 
 ## 예시
 
@@ -49,10 +45,10 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 목록 썸네일은 1:1 프레임에 사진을 꽉 채워, 올린 사진의 비율이 달라도 목록이 가지런합니다. 작은 썸네일에는 `data-radius="md"`처럼 작은 모서리를 사용합니다.
 
 ```html
-<ul class="ds-list u-full" data-divider style="max-width: 420px">
+<ul class="ds-list u-full" data-divider>
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><span class="ds-imageframe" data-radius="md" style="width: 64px"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=160&q=70" alt=""></span></span>
+      <span class="ds-list-item__prefix"><span class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=160&q=70" alt=""></span></span>
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">영어 독해 기초</span>
         <span class="ds-list-item__desc">강의 20개, 10시간</span>
@@ -61,7 +57,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </li>
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><span class="ds-imageframe" data-radius="md" style="width: 64px"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=160&q=70" alt=""></span></span>
+      <span class="ds-list-item__prefix"><span class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=160&q=70" alt=""></span></span>
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">처음 배우는 코딩</span>
         <span class="ds-list-item__desc">강의 32개, 16시간</span>
@@ -70,7 +66,7 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
   </li>
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><span class="ds-imageframe" data-radius="md" style="width: 64px"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=160&q=70" alt=""></span></span>
+      <span class="ds-list-item__prefix"><span class="ds-imageframe" data-radius="md"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=160&q=70" alt=""></span></span>
       <span class="ds-list-item__content">
         <span class="ds-list-item__title">한 장으로 끝내는 글쓰기</span>
         <span class="ds-list-item__desc">강의 12개, 6시간</span>
@@ -83,8 +79,6 @@ Figma 속성 이름을 그대로 `data-*` 속성으로 사용합니다.
 ## 규격
 
 ### CSS 변수
-
-서비스에서 모양을 바꿀 때는 이 변수만 덮어씁니다.
 
 | 변수 | 기본값 |
 | --- | --- |

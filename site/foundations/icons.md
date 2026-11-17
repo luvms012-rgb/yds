@@ -1,4 +1,4 @@
-<!-- https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/icons.html -->
+<!-- https://design.ybmnet.co.kr/yds/site/foundations/icons.html -->
 
 # Iconography
 
@@ -6,7 +6,7 @@
 
 ## 개요
 
-아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 160개이고, 필요하면 Lucide 1,999개 가운데서 추가할 수 있습니다. 모든 아이콘은 [Library](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/icons-library.md)에서 찾아 바로 복사할 수 있습니다.
+아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 160개이고, 필요하면 Lucide 1,999개 가운데서 추가할 수 있습니다. 모든 아이콘은 [Library](icons-library.md)에서 찾아 바로 복사할 수 있습니다.
 
 ```html
 <!-- 글자 옆: 꾸밈용이라 aria-hidden -->
@@ -250,7 +250,7 @@
 
 가능하면 기존 아이콘을 사용합니다. 새 아이콘이 꼭 필요하면 아래 순서를 따르세요.
 
-1. [Library](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/foundations/icons-library.md)의 Lucide 전체에서 알맞은 아이콘을 선택합니다.
+1. [Library](icons-library.md)의 Lucide 전체에서 알맞은 아이콘을 선택합니다.
 2. 오른쪽 정보 영역의 첫 번째 코드를 복사해, YDS 다음에 불러오는 서비스 CSS 파일 맨 끝에 붙여 넣습니다.
 3. 그다음부터 `ds-icon--이름` 클래스로 사용합니다.
 
@@ -265,14 +265,12 @@
 
 ## 사용 지침
 
-| 구분 | 내용 |
-| --- | --- |
-| **Do** | 같은 뜻에는 늘 같은 아이콘을 사용합니다. 닫기는 x, 더 보기는 ellipsis입니다. |
-| **Do** | 아이콘만 있는 버튼에는 aria-label을 붙입니다. |
-| **Do** | 아이콘 색은 글자색을 그대로 따릅니다. 상태 색이 필요하면 부모 요소의 글자색을 바꿉니다. |
-| **Do** | 크기는 16, 20, 24 중에서 선택합니다. |
-| **Don't** | 이모지나 다른 아이콘 세트를 섞지 않습니다. |
-| **Don't** | 아이콘 그림을 직접 수정하지 않습니다. Lucide 원본 그대로 사용합니다. |
-| **Don't** | 아이콘 하나로 복잡한 의미를 전달하지 않습니다. 의미가 분명하지 않으면 텍스트를 함께 사용합니다. |
+- Do: 같은 뜻에는 늘 같은 아이콘을 사용합니다. 닫기는 x, 더 보기는 ellipsis입니다.
+- Do: 아이콘만 있는 버튼에는 aria-label을 붙입니다.
+- Do: 아이콘 색은 글자색을 그대로 따릅니다. 상태 색이 필요하면 부모 요소의 글자색을 바꿉니다.
+- Do: 크기는 16, 20, 24 중에서 선택합니다.
+- Don't: 이모지나 다른 아이콘 세트를 섞지 않습니다.
+- Don't: 아이콘 그림을 직접 수정하지 않습니다. Lucide 원본 그대로 사용합니다.
+- Don't: 아이콘 하나로 복잡한 의미를 전달하지 않습니다. 의미가 분명하지 않으면 텍스트를 함께 사용합니다.
 
-아이콘 그림은 Lucide(ISC 라이선스)입니다. [라이선스 전문](https://imagesisa.ybmnet.co.kr/platform/design_ybmnet_co_kr/yds/site/assets/lucide-LICENSE.txt)
+아이콘 그림은 Lucide(ISC 라이선스)입니다. [라이선스 전문](../assets/lucide-LICENSE.txt)
