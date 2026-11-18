@@ -15,12 +15,12 @@
 - **Toolbar 부품(2717:624)**: DS 의 `ds-toolbar__clear` 와 `ds-toolbar__separator` 에 맞춰 속성 `clear`(기본 끔), `separator`(기본 켬)를 더함. floating 변형은 원래 x 가 있어 그대로.
 - **이미 맞아 있던 것(확인만)**: 문서 프레임 링크 170곳 모두 새 주소, 글자와 설명 속 옛 주소 0곳. 아이콘 맥락 수정 10곳(Command Palette, Menu, Tooltip, List, Bottom Navigation 등) 예시와 대표 그림 모두 반영돼 있음. Command Palette 대표 그림은 사이트와 같고, Tree 의 "읽을거리.pdf" 는 사이트에서도 접힌 2주차 폴더 안이라 차이 아님.
 - 빠른 대조 일치(변수 359, 컴포넌트 118, 링크 170, 템플릿 81), 기준점 저장.
+- **토큰화와 정리(사용자 "1. 토큰화 2. 삭제")**: Top App Bar 투명 모양 그라데이션을 직접 값 0.35 에서 `--ds-color-palette-static-black-alpha-600`(0.30) → transparent 로(components.css, ybm-ds.css 다시 묶음), Figma Top App Bar 그라데이션 4곳도 같은 변수에 묶음. Figma Feedback & Status 페이지 맨 위 빈 흰 프레임 `img`(2836:1298) 삭제.
 - **변수 검수(사이트, Figma)**: 사이트와 템플릿이 쓰는 `--ds-*` 는 모두 정의됨(없는 변수 0), 토큰 365개가 라이트와 다크에서 모두 값이 있음, 사이트와 템플릿 CSS 에 직접 쓴 색 0. Figma 는 끊긴 변수(지워짐, 다른 파일) 0, 템플릿 18,609 레이어 직접 색 0. Foundations 에 남아 있던 직접 색 146곳(Color 팔레트 글자, 역할 색 제목, `_Doc/Swatch` 바탕과 선과 글자, Iconography 바탕)을 bg/layer-default, stroke/neutral-weak, fg/neutral, fg/neutral-muted 에 묶음. Avatar 의 직접 색은 실루엣을 깎는 도형 안쪽이라 그대로, Lucide 원본 선 검정은 아이콘 기본 색이라 그대로.
 
 ## 남은 일
 
 0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만.
-1. **DS 코드 한 곳(사용자 판단)**: Top App Bar 투명 모양의 그라데이션이 `rgb(0 0 0 / 0.35)` 직접 값이다(components.css, 딱 맞는 토큰 없음, 가까운 것 static-black-alpha-600 0.30 / 700 0.45). 토큰으로 바꿀지 묻는다. Figma Feedback & Status 페이지 맨 위의 100x100 흰 프레임 `img`(2836:1298)도 쓰임을 모른다.
 1. **Figma 작은 차이**: Mega Menu 대표 그림의 지금 페이지 글자(토익)가 사이트는 SemiBold, Figma 는 부품 안 굵기 변수 때문에 인스턴스에서 바뀌지 않는다. 부품에 지금 페이지 상태를 더할 때 맞춘다.
 2. (끝남) 아이콘 맥락 수정 Figma 반영은 11-18 밤 확인, 모두 반영돼 있음.
 3. **공식 주소가 아직 404**: https://design.ybmnet.co.kr/yds/ 아래 dist, site 가 404 다(11-17 확인). 서버 묶음(`node tools/server-pack.mjs`)은 사용자가 요청할 때 만들고 올리기는 사용자. 묶음을 만들 때 yds.txt 는 https://design.ybmnet.co.kr/yds/yds.txt 에 놓이고 사이트에 보이는 주소도 이것으로 맞춘다(지금 사이트는 /yds/site/yds.txt).
