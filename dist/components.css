@@ -3361,7 +3361,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   position: absolute;
   z-index: -1;
   inset: 0 0 calc(var(--ds-space-x5) * -1);
-  background: linear-gradient(rgb(0 0 0 / 0.35), rgb(0 0 0 / 0));
+  background: linear-gradient(var(--ds-color-palette-static-black-alpha-600), transparent);
   pointer-events: none;
 }
 .ds-appbar__button {
