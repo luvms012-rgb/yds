@@ -12,6 +12,22 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-19 회사 Windows (공식 주소 서버 묶음, /site/ 없앰)
+
+- **사용자 "yds/site 사용 금지"**: 공개 주소에서 문서 사이트는 https://design.ybmnet.co.kr/yds/ 바로 아래, AI 파일은 /yds/yds.txt, /yds/yds-full.txt. 저장소 폴더는 site/ 그대로이고 서버 묶음이 site/ 안을 맨 위에 펼친다.
+- **코드**: site/build.mjs `SITE_URL = PUBLIC + '/'`, tokens/links.mjs(Figma 문서 링크)도 /site/ 없이, tools/check.mjs 는 공개 주소를 site/ 먼저 찾고 없으면 맨 위(dist 등)에서 찾는다(`pubFile`), Top Navigation 예시 로고 주소 /yds/assets/logo-ybmnet.svg.
+- **서버 묶음**(tools/server-pack.mjs): site/ 안을 맨 위로, site 밖을 가리키던 상대 경로(../dist 등) 524곳을 한 칸 줄임, 이름 겹침과 /yds/site/ 남음이 있으면 멈춤, catalog.html 의 site/ 링크도 맨 위로. 결과 works/project/(서버업로드)/yds_20261119.zip(25.3MB, 724파일, v1.0.0, v1.1.0, v1.2.0 고정 dist).
+- **묶음 검사**: 풀어서 392 파일, 링크 2만 1천 8백을 서버 배치 그대로 확인, 깨진 것 0(코드 예시 속 &quot; 로 끝나는 주소 7개는 검사 방법 차이), /yds/site/ 와 개인 GitHub 주소 0, site.js 의 찾기 목록과 latest.json 은 상대 경로라 그대로 동작.
+- **옛 Get Started 넘김 페이지**: 11-18 저녁에 손으로 #dev 로 고친 것이 빌드에서 #start 로 되돌아갔다. 생성기(build.mjs 옛 Usage, Scripts 넘김)를 #dev 로 고침.
+- **Figma**: 16쪽 모든 글자와 링크에서 /yds/site/ 를 /yds/ 로. 링크 180곳, 글자 4곳(Get Started 요청 글, Foundations 브랜드 요청 글, Top Navigation 예시 코드 2곳), 남은 곳 0. 빠른 대조 일치(변수 359, 컴포넌트 118, 링크 170, 템플릿 81), 기준점 저장.
+
+### 2026-11-18 집 Mac 밤 (Figma 싱크, 인수인계에서 옮김)
+
+- **대표 그림 83개 글자, 아이콘 대조**: 다른 곳은 Mega Menu(첫 묶음 → 토익, 토익 스피킹, 회화)와 Toolbar(내보내기 아이콘과 구분선 빼고 선택 해제 x) 두 곳이라 고쳤다.
+- **Toolbar 부품(2717:624)**: 속성 `clear`(기본 끔), `separator`(기본 켬)를 더함.
+- **토큰화와 정리**: Top App Bar 투명 모양 그라데이션을 `--ds-color-palette-static-black-alpha-600` → transparent 로(Figma 4곳도 같은 변수), Feedback & Status 맨 위 빈 프레임 `img`(2836:1298) 삭제.
+- **변수 검수**: 사이트, 템플릿의 `--ds-*` 모두 정의됨, 토큰 365개 라이트와 다크 값 있음, 직접 쓴 색 0. Figma 끊긴 변수 0, 템플릿 직접 색 0, Foundations 직접 색 146곳을 변수에 묶음(Avatar 실루엣, Lucide 원본 선 검정은 그대로).
+
 ### 2026-11-18 회사 Windows 저녁 (Figma 싱크)
 
 - **Figma 대조**: 변수 359, 컴포넌트 118세트, 템플릿 화면 81 모두 일치. 기준점 저장(figma-quick save).
