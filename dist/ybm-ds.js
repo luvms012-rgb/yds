@@ -35,16 +35,43 @@
 (function () {
   "use strict";
 
+  /* ---- 닫힘 움직임 (2026-11-18 사용자 "끊기듯 바로 사라지지 않고, 나타날 때 움직임 그대로 사라지게") ----
+     data-closing 을 붙여 CSS 의 나가는 움직임을 돌린 뒤 실제로 닫는다. 나가는 움직임이 없거나 동작 줄이기 설정이면 바로 닫는다 */
+  var REDUCE = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function leave(el, done) {
+    if (el.__dsLeave) return;
+    if (REDUCE) { done(); return; }
+    el.setAttribute("data-closing", "");
+    if (getComputedStyle(el).animationName === "none") { el.removeAttribute("data-closing"); done(); return; }
+    var timer;
+    function stop() { el.removeEventListener("animationend", fin); clearTimeout(timer); el.removeAttribute("data-closing"); el.__dsLeave = null; }
+    function fin(e) { if (e && (e.target !== el || e.pseudoElement)) return; stop(); done(); }
+    el.__dsLeave = stop;
+    el.addEventListener("animationend", fin);
+    timer = setTimeout(fin, 500);
+  }
+  function stay(el) { if (el && el.__dsLeave) el.__dsLeave(); }  // 닫는 중에 다시 열면 닫기를 멈춘다
+
   /* ---- Dialog ----------------------------------------------------------- */
   function openDialog(id) {
     var dialog = document.getElementById(id);
+    if (dialog) stay(dialog);
     if (dialog && !dialog.open) { dialog.showModal(); alignWheels(dialog); }
     return dialog;
   }
   function closeDialog(dialog, value) {
     if (typeof dialog === "string") dialog = document.getElementById(dialog);
-    if (dialog && dialog.open) dialog.close(value || "");
+    if (dialog && dialog.open) leave(dialog, function () { dialog.close(value || ""); });
   }
+  // Esc 도 같은 움직임으로 닫는다(기본 닫기를 막고 closeDialog). 열린 Popover 가 있으면 그쪽이 먼저
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" || e.isComposing || REDUCE) return;
+    var mods; try { mods = document.querySelectorAll("dialog:modal"); } catch (err) { return; }
+    var top = mods[mods.length - 1];
+    if (!top || top.querySelector(".ds-popover[id]:not([hidden]), .ds-multiselect__panel[id]:not([hidden])")) return;
+    e.preventDefault();
+    closeDialog(top);
+  }, true);
 
   /* ---- Snackbar --------------------------------------------------------- */
   var snackbarTimer;
@@ -106,8 +133,10 @@
 
   /* ---- Popover: data-ds-popover="id" 로 열고 닫기 --------------------------- */
   function setPopover(pop, open) {
-    if (!pop || pop.hidden === !open) return;
-    pop.hidden = !open;
+    if (!pop) return;
+    if (open) stay(pop);
+    if (pop.hidden === !open || (!open && pop.__dsLeave)) return;
+    if (open) pop.hidden = false; else leave(pop, function () { pop.hidden = true; });
     document.querySelectorAll('[data-ds-popover="' + pop.id + '"]').forEach(function (b) { b.setAttribute("aria-expanded", String(open)); });
   }
   function closePopovers(except) {
@@ -704,14 +733,14 @@
     if (all) { all.checked = n > 0 && n === boxes.length; all.indeterminate = n > 0 && n < boxes.length; }
     var count = bar.querySelector(".ds-toolbar__count");
     if (count) count.textContent = (bar.getAttribute("data-count-format") || "{n}개 선택").replace("{n}", n);
-    bar.hidden = n === 0;
+    if (n) { stay(bar); bar.hidden = false; } else if (!bar.hidden) leave(bar, function () { bar.hidden = true; });
   }
 
   /* ---- Mega Menu --------------------------------------------------------- */
   function setMegamenu(trigger, open) {
     var panel = document.getElementById(trigger.getAttribute("data-ds-megamenu"));
     if (!panel) return;
-    panel.hidden = !open;
+    if (open) { stay(panel); panel.hidden = false; } else if (!panel.hidden) leave(panel, function () { panel.hidden = true; });
     trigger.setAttribute("aria-expanded", open ? "true" : "false");
   }
   function closeMegamenus(except) {

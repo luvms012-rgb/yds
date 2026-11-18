@@ -17,6 +17,8 @@
 4-1. **Dialog(11-18 끝냄)**: 코드와 Figma 모두 1493:940 기준(제목과 설명 사이 6, 머리 아래 20, 제목 Bold, 내용 16). Figma 변형 8개와 Overlay 페이지의 떼어 낸 그림 2개(3441:53978, 3441:55186)까지 맞췄다. 떼어 낸 그림은 컴포넌트를 고쳐도 따라오지 않으니 함께 고친다.
 4-2. **아이콘 맥락 수정(11-18, Figma 미반영)**: 사이트 기준이 확정되면 Figma 도 같게. Command Palette 수강 내역 receipt→book-open, 수강 기간 늘리기 truck→calendar-days / Menu 공유하기 external-link→share, 수정하기 file-text→pencil / Tooltip 링크 복사 external-link→link / List 알림 받기 message-circle→bell / Bottom Navigation 알림 file-text→bell / 알림 목록 성적 truck→chart-column / Accordion 구조 그림 성적 truck→chart-column / 설정 목록 수강 기기 map-pin→smartphone.
 4. **Figma 싱크 때**: 문서 프레임 링크 170곳과 글자 속 주소 18곳이 옛 imagesisa 주소, `node sync.mjs links` 뒤 맞춘다. 문서 프레임 "코드" 링크 빼기, Figma 템플릿 문서에 AI 요청 글이나 HTML 내려받기가 있으면 빼기.
+4-3. **서버 묶음 만들 때(11-18 사용자)**: yds.txt 공식 주소는 https://design.ybmnet.co.kr/yds/yds.txt 가 맞다(지금 사이트에는 /yds/site/yds.txt 로 나온다). 서버에 올릴 파일을 만들 때 이 주소에 맞춘다.
+4-4. **Figma 컴포넌트 대표 그림 3441:27000**: 사이트 기준으로 맞추는 중(11-18).
 5. 다음 버전은 `node sync.mjs release x.y.z`(사용자 확인 뒤). 사이트 DS 전수 검사의 "고려" 16곳은 사용자가 원하면.
 
 ## 주의

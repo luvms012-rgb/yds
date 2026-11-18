@@ -1184,20 +1184,16 @@ ${RELEASES.map((r) => `<section class="site-group site-release">
 });
 
 // 요청 탭 (2026-11-18 사용자 "요청 표 모두 삭제, 요청 방법은 아주 심플하게, 폼은 불필요", 이어서 "꼭 이렇게 써야 할 것 같은 문장 금지, 제목과 내용은 자유롭게, 자유로운 예시"): 자유롭게 쓴 예시 하나와 워크 게시판 버튼만
-const REQ_EXAMPLE = `[기획팀] 달력에서 기간 고르기 추가 요청
-
-안녕하세요.
-기획팀 김○○입니다.
-수강 신청 화면에서 수강 기간을 고르려고 하는데, 달력에서 기간도 고를 수 있게 해 주실 수 있을까요?
-- 쓰는 곳: 수강 신청, 결제 내역 조회
-- 필요한 것: 달력 하나에서 시작일과 종료일을 한 번에 고르기
-- 참고 화면: 다른 서비스의 기간 고르기 화면 캡처를 첨부했습니다.
-확인 부탁드립니다. 감사합니다.`;  // 11-18 사용자 "너무 짧고 이상해, YDS 맥락에 맞게": 실제 사내 요청 글 모양(말머리 제목, 인사, 요청, 목록, 끝인사), 이어서 "쉬운 용어로, 팀은 기획팀": 컴포넌트 이름 대신 쉬운 말
+const REQ_EXAMPLE = `<article class="ds-card site-req">
+  <span class="ds-badge site-req__who" data-size="xlarge"><span class="ds-badge__label">기획팀</span><span class="ds-badge__label">김○○</span></span>
+  <h2 class="site-req__title">달력에서 기간 고르기 추가 요청</h2>
+  <div class="site-req__body"><p>안녕하세요. 기획팀 김○○입니다.<br>수강 신청 화면에서 수강 기간을 고르려고 하는데, 달력에서 기간도 고를 수 있게 해 주실 수 있을까요?</p><ul><li>쓰는 곳: 수강 신청, 결제 내역 조회</li><li>필요한 것: 달력 하나에서 시작일과 종료일을 한 번에 고르기</li><li>참고 화면: 다른 서비스의 기간 고르기 화면 캡처를 첨부했습니다.</li></ul><p>확인 부탁드립니다. 감사합니다.</p></div>
+</article>`;  // 11-18 사용자 "코드 박스 말고 카드 UI, 별점 자리에 작성자": DS Card, 위에 작성자 Badge, 제목, 본문
 write({
   file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 방법', layout: 'page',
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS 요청은 사내 워크 게시판으로 받습니다.</p></header>
 ${updTabs('updates-requests.html')}
-${codeblock(REQ_EXAMPLE, 'text', ' data-wrap', '예시')}
+${REQ_EXAMPLE}
 <div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '워크 게시판에 쓰기', 'neutralSolid', 'small', 'square-pen')}</div>`,
 });
 

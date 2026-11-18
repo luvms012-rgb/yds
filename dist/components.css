@@ -4959,3 +4959,32 @@ dialog.ds-command:not([open]) { display: none; }
 .ds-segmentinput:has(.ds-segmentinput__segment:disabled) .ds-segmentinput__separator { color: var(--ds-color-fg-disabled); }
 .ds-segmentinput[data-variant="outline"]:has(.ds-segmentinput__segment:is(:disabled, [readonly])) { --ds-input-bg: var(--ds-color-bg-disabled); }
 .ds-segmentinput__segment:disabled { cursor: not-allowed; }
+
+
+/* --------------------------------------------------------------------------
+   닫힘 움직임 (2026-11-18) — 나타날 때 움직임을 거꾸로 돌리며 사라진다
+   ybm-ds.js 가 닫기 전에 data-closing 을 붙이고, 움직임이 끝나면 닫는다(동작 줄이기 설정이면 바로 닫는다)
+   대상: Dialog, Alert Dialog, Bottom Sheet, Menu Sheet, Side Panel, Lightbox, Command Palette, Popover, Multi Select 목록, Mega Menu, Toolbar
+   Snackbar 와 Tooltip 은 원래 transition 으로 들어오고 나간다
+   -------------------------------------------------------------------------- */
+.ds-command[open] { animation: ds-dialog-in var(--ds-duration-normal) var(--ds-easing-emphasized); }
+.ds-popover:not([hidden]), .ds-multiselect__panel:not([hidden]) { animation: ds-pop-in var(--ds-duration-fast) var(--ds-easing-enter); }
+@keyframes ds-pop-in { from { opacity: 0; transform: translateY(-4px); } }
+
+.ds-dialog[open][data-closing], .ds-command[open][data-closing] { animation: ds-dialog-out var(--ds-duration-fast) var(--ds-easing-exit) forwards; }
+:is(.ds-bottomsheet, .ds-menusheet)[open][data-closing] { animation: ds-sheet-out var(--ds-duration-normal) var(--ds-easing-exit) forwards; }
+.ds-sidepanel[open][data-closing] { animation: ds-sidepanel-out var(--ds-duration-normal) var(--ds-easing-exit) forwards; }
+.ds-sidepanel[data-direction="left"][open][data-closing] { animation-name: ds-sidepanel-out-left; }
+:is(.ds-lightbox, .ds-toolbar)[data-closing] { animation: ds-fade-out var(--ds-duration-fast) var(--ds-easing-exit) forwards; }
+:is(.ds-popover, .ds-multiselect__panel)[data-closing] { animation: ds-pop-out var(--ds-duration-fast) var(--ds-easing-exit) forwards; pointer-events: none; }
+@media (min-width: 768px) { .ds-megamenu[data-closing] { animation: ds-fade-out var(--ds-duration-fast) var(--ds-easing-exit) forwards; } }
+dialog[data-closing]::backdrop { animation: ds-fade-out var(--ds-duration-fast) var(--ds-easing-exit) forwards; }
+@keyframes ds-dialog-out { to { opacity: 0; transform: translateY(8px) scale(0.98); } }
+@keyframes ds-sheet-out { to { transform: translateY(100%); } }
+@keyframes ds-sidepanel-out { to { transform: translateX(100%); } }
+@keyframes ds-sidepanel-out-left { to { transform: translateX(-100%); } }
+@keyframes ds-pop-out { to { opacity: 0; transform: translateY(-4px); } }
+@keyframes ds-fade-out { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .ds-command[open], .ds-popover:not([hidden]), .ds-multiselect__panel:not([hidden]), [data-closing], dialog[data-closing]::backdrop { animation: none; }
+}

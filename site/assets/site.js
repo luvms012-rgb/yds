@@ -628,7 +628,7 @@ if (pushed && history.state && history.state.tplv) { pushed = false; history.bac
 });
 window.addEventListener("popstate", function () {
 var i = slugs.indexOf(new URL(location.href).searchParams.get("preview"));
-if (i >= 0) open(i); else if (dlg.open) { pushed = false; dlg.close(); }
+if (i >= 0) open(i); else if (dlg.open) { pushed = false; if (window.DS) DS.closeDialog(dlg); else dlg.close(); }
 });
 function step(n) { if (cur >= 0) open((cur + n + list.length) % list.length, "replace"); }
 document.addEventListener("click", function (e) {

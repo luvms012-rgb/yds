@@ -151,7 +151,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-doc > * + * { margin-top: var(--ds-space-x4); }
 .site-doc > dialog { margin: revert-layer; }  /* 위 규칙의 위 여백이 Dialog 가운데 정렬(margin auto)을 깨지 않게, DS 값으로 되돌린다 (11-18 사용자 "모달 위치가 왜 맨 위")
 /* 본문 글자 규칙은 미리보기(.pv-stage, .site-tile__inner) 안의 부품에는 적용하지 않는다. 사이트 CSS 는 cascade layer 밖이라 DS 부품 스타일보다 세서, 그대로 두면 부품 제목에 큰 여백이 생긴다 */
-.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *) { position: relative; margin-top: var(--ds-space-x12); font-size: var(--ds-font-size-t09); line-height: 32px; font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }  /* 24/32 SemiBold (11-04 사용자), 위 48 */
+.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *, .ds-card *) { position: relative; margin-top: var(--ds-space-x12); font-size: var(--ds-font-size-t09); line-height: 32px; font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }  /* 24/32 SemiBold (11-04 사용자), 위 48 */
 .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x8); font-size: var(--ds-font-size-t07); line-height: 32px; font-weight: var(--ds-font-weight-regular); letter-spacing: 0; }  /* 20/32 Medium, 위 32 */
 .site-doc > header + h2 { margin-top: var(--ds-space-x12); }
 .site-doc > h2 + * { margin-top: var(--ds-space-x4); }  /* 제목 아래는 h2, h3 모두 12 (11-04 사용자 "사이 여백 일정하게") */
@@ -465,6 +465,15 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-doc > .site-pagetabs ~ h2:not(.pv-stage *) { margin-top: var(--ds-space-x10); font-size: var(--ds-font-size-t07); line-height: 28px; font-weight: var(--ds-font-weight-medium); }
 .site-doc > .site-pagetabs ~ h2 + * { margin-top: var(--ds-space-x4); }
 /* Updates > 요청 (11-14): 요청 이름 아래 소속과 날짜, 반영 칸은 날짜 아래 내용 */
+/* 요청 탭 예시 카드 (11-18): DS Card, 맨 위 작성자 Badge(팀과 이름 사이 점), 제목, 본문. 여백은 덩어리마다 32 */
+.site-req { --ds-card-padding: var(--ds-space-x8); --ds-card-gap: var(--ds-space-x8); --ds-card-radius: var(--ds-shape-2xl, var(--ds-shape-xl)); align-items: flex-start; }
+.site-req__who { --ds-badge-radius: var(--ds-shape-pill); --ds-badge-padding-x: var(--ds-space-x3); --ds-badge-height: var(--ds-space-x8); gap: var(--ds-space-x2); }
+.site-req__who > .ds-badge__label + .ds-badge__label::before { content: ""; display: inline-block; width: 4px; height: 4px; margin-inline-end: var(--ds-space-x2); vertical-align: middle; border-radius: var(--ds-shape-pill); background: currentColor; }
+.site-doc .site-req__title { margin: 0; word-break: keep-all; color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t09); line-height: var(--ds-line-height-t09); font-weight: var(--ds-font-weight-bold); }
+.site-req__body { color: var(--ds-color-fg-neutral-subtle); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; }
+.site-doc .site-req__body > :is(p, ul) { margin: 0; }
+.site-doc .site-req__body > * + * { margin-top: var(--ds-space-x3); }
+.site-doc .site-req__body ul { padding-left: var(--ds-space-x5); list-style: disc; }
 .site-req__send { display: flex; justify-content: flex-end; margin-top: var(--ds-space-x4); }  /* 워크 게시판에 쓰기는 작성 예시 바로 아래 오른쪽 (11-18) */
 .site-doc > .site-pagetabs ~ .ds-codeblock + .ds-codeblock { margin-top: var(--ds-space-x2); }
 .site-pagetabs .site-newdot { margin-left: var(--ds-space-x1); }  /* Updates 탭의 새 내용 점 (11-14) */
@@ -553,7 +562,8 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-burst { position: absolute; left: 50%; top: 50%; width: 0; height: 0; pointer-events: none; }
 .site-burst > i { position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border-radius: 50%; opacity: 0; will-change: transform, opacity; }  /* 누르면 코인이 눌렸다 튀고 작은 점이 둥글게 터진다(site.js "토큰 코인 폭죽", 11-18) */
 .site-coin__body { fill: var(--ds-color-palette-yellow-400); }  /* 바깥 옅은 테두리 없이 한 색 (11-18) */
-.site-coin__won { fill: none; stroke: var(--ds-color-palette-gray-00); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+[data-theme="dark"] .site-coin__body { fill: var(--ds-color-palette-yellow-800); }  /* 팔레트는 다크에서 어둡게 바뀌어 갈색이 되므로, 그림인 코인은 다크에서도 밝은 노랑 (11-18) */
+.site-coin__won { fill: none; stroke: var(--ds-color-palette-static-white); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 @media (prefers-reduced-motion: reduce) { .site-gs__ai-head > .ds-btn { animation: none !important; } }
 .site-doc > .site-gs__ai-head + * { margin-top: var(--ds-space-x6); }
 .site-tips { display: grid; gap: var(--ds-space-x2); margin: 0; padding-left: var(--ds-space-x5); list-style: disc; color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; }
@@ -599,7 +609,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 @media (min-width: 768px) { .site-doc header p.site-lead { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); } }
 .site-doc > header .site-meta { margin-top: var(--ds-space-x7); }
 /* 섹션 제목, 소제목, 본문 */
-.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *) { margin-top: var(--ds-space-x16); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
+.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *, .ds-card *) { margin-top: var(--ds-space-x16); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
 .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x10); font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }
 .site-doc > header + h2 { margin-top: var(--ds-space-x16); }
 .site-doc > h2 + * { margin-top: var(--ds-space-x4); }  /* 11-05 사용자: h2 아래 16 */
@@ -610,7 +620,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-doc > h3 + p + :not(h2, h3, p) { margin-top: var(--ds-space-x4); }
 .site-doc > p + p { margin-top: var(--ds-space-x3); }
 @media (min-width: 768px) {
-  .site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *) { margin-top: var(--ds-space-x20); font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); }
+  .site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *, .ds-card *) { margin-top: var(--ds-space-x20); font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); }
   .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x12); font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); }
   .site-doc > header + h2 { margin-top: var(--ds-space-x20); }
 }
