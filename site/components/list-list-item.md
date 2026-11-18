@@ -79,7 +79,7 @@
   </li>
   <li>
     <a class="ds-list-item" href="#">
-      <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--map-pin" aria-hidden="true"></i></span>
+      <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--smartphone" aria-hidden="true"></i></span>
       <span class="ds-list-item__content"><span class="ds-list-item__title">수강 기기</span></span>
       <span class="ds-list-item__suffix">2대</span>
       <i class="ds-icon ds-icon--chevron-right ds-list-item__chevron" aria-hidden="true"></i>

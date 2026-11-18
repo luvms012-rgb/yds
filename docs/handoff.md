@@ -15,6 +15,7 @@
 2. **시험 접수 화면(시작 전에 멈춤)**: 사용자 "시험 접수 화면을 기획 중, 템플릿에 비슷한 화면이 있으면 참고해서 YDS로 구현" 을 받고 검토만 했다. 가까운 템플릿은 시험 신청(exam-apply), 시험 일정(회차 표), 고사장 신청 (지도), 시험 접수 완료. 어디에 둘지(YDS 템플릿인지, works 아래 따로 둘 서비스 화면인지)와 YDS 주소(공식 주소가 404 라 개발 미리보기 주소를 쓸지)를 먼저 묻는다.
 3. **Table 헤더 고정(요청 접수)**, **답을 기다리는 것**(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비): 그대로.
 4-1. **Dialog(11-18 끝냄)**: 코드와 Figma 모두 1493:940 기준(제목과 설명 사이 6, 머리 아래 20, 제목 Bold, 내용 16). Figma 변형 8개와 Overlay 페이지의 떼어 낸 그림 2개(3441:53978, 3441:55186)까지 맞췄다. 떼어 낸 그림은 컴포넌트를 고쳐도 따라오지 않으니 함께 고친다.
+4-2. **아이콘 맥락 수정(11-18, Figma 미반영)**: 사이트 기준이 확정되면 Figma 도 같게. Command Palette 수강 내역 receipt→book-open, 수강 기간 늘리기 truck→calendar-days / Menu 공유하기 external-link→share, 수정하기 file-text→pencil / Tooltip 링크 복사 external-link→link / List 알림 받기 message-circle→bell / Bottom Navigation 알림 file-text→bell / 알림 목록 성적 truck→chart-column / Accordion 구조 그림 성적 truck→chart-column / 설정 목록 수강 기기 map-pin→smartphone.
 4. **Figma 싱크 때**: 문서 프레임 링크 170곳과 글자 속 주소 18곳이 옛 imagesisa 주소, `node sync.mjs links` 뒤 맞춘다. 문서 프레임 "코드" 링크 빼기, Figma 템플릿 문서에 AI 요청 글이나 HTML 내려받기가 있으면 빼기.
 5. 다음 버전은 `node sync.mjs release x.y.z`(사용자 확인 뒤). 사이트 DS 전수 검사의 "고려" 16곳은 사용자가 원하면.
 

@@ -79,7 +79,7 @@
         </li>
         <li>
           <a class="ds-list-item" href="#">
-            <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--truck" aria-hidden="true"></i></span>
+            <span class="ds-list-item__prefix"><i class="ds-icon ds-icon--chart-column" aria-hidden="true"></i></span>
             <span class="ds-list-item__content">
               <span class="ds-list-item__title">모의고사 성적이 나왔어요</span>
               <span class="ds-list-item__desc">1시간 전</span>
