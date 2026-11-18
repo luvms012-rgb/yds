@@ -1,6 +1,14 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-18 회사 Windows 저녁. 모두 GitHub 에 배포됨. 시작은 `git pull` 뒤 이 파일. 오늘 한 일은 log.md "2026-11-18 회사 Windows".
+- 갱신: 2026-11-18 회사 Windows 저녁. Figma 싱크 뒤 커밋만 함(push, 배포 전). 시작은 `git pull` 뒤 이 파일. 오늘 한 일은 log.md "2026-11-18 회사 Windows".
+
+## 한 것 (11-18 저녁, Figma 싱크와 링크 전수 검사, 커밋만)
+
+- **Figma 대조**: 변수 359, 컴포넌트 118세트, 템플릿 화면 81 모두 일치. 기준점 저장(figma-quick save).
+- **Figma 링크**: 문서 프레임 Docs, Code 링크 170곳과 글자 속 주소 18곳(Get Started 요청 글, 설치 코드, 파일 표, Top Navigation 예시 로고 주소, 내부 머리말)을 https://design.ybmnet.co.kr/yds/ 로. 파일 안 링크 183개가 모두 공식 사이트, Figma, 워크 게시판만 가리키고 그 페이지와 #usage, #code 위치가 모두 있다.
+- **Figma Get Started**: 사이트처럼 설명 첫 문장, AI로 빠르게 시작하기(요청 글 상자 하나), Figma로 시작하기(안내 상자 하나, YDS 라이브러리와 워크 게시판 링크), 설치 코드 v1.2.0 고정 탭과 my-brand, 파일 표 문구와 brands 줄 삭제.
+- **아이콘 맥락**: Command Palette 컴포넌트 기본 내용(수강 내역 book-open, 단축키 H/O/S)과 대표 그림(찾기 "수강", 수강 내역, 수강 기간 늘리기, 수강 내역 내려받기)을 사이트대로. 예시 List smartphone, Pull To Refresh chart-column, 예시 코드 글 3곳. Tree 대표 그림의 "읽을거리.pdf" 는 사이트에서도 접힌 2주차 안이라 Figma 가 맞다.
+- **사이트 링크 전수 검사**(374 파일, 링크 2만 2천): Figma 링크 167곳 모두 있는 노드이고 페이지마다 자기 프레임, 컴포넌트와 Foundations 모두 .md 파일과 Markdown 링크 있음, 옛 주소 0. 고친 것은 옛 주소 넘김 페이지 2개(site/get-started/usage.html, scripts.html)가 없는 #start 로 넘기던 것을 #dev 로. v1.2.0 폴더와 브랜드 예시 주소는 서버 묶음에서 생기는 것이라 그대로.
 
 ## 한 것 (11-18, 회사 Windows)
 
@@ -12,14 +20,12 @@
 ## 남은 일
 
 0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만.
-1. **Figma 대표 그림 다시 대조(이어서 할 일)**: 83개를 다시 그렸지만 사이트와 글자, 아이콘 대조와 화면 비교는 몇 개만 했다. 다시 읽을 때는 인스턴스 안 글자를 놓치지 않게 읽는다(11-18 첫 대조에서 인스턴스 안 글이 빠져 잘못 읽힘). 이미 아는 차이:
-   - **Command Palette**: 대표 그림이 Figma 컴포넌트 인스턴스 기본 내용(house, receipt, settings 아이콘과 G H 단축키 줄)으로 보인다. 사이트는 수강 내역(book-open), 수강 기간 늘리기(calendar-days). 컴포넌트 쪽(아래 2번)을 고친 뒤 대표 그림을 다시 그린다.
-   - **Tree**: 사이트의 "읽을거리.pdf" 줄이 Figma 에 없다.
-2. **아이콘 맥락 수정 Figma 반영(11-18)**: Command Palette 수강 내역 receipt→book-open, 수강 기간 늘리기 truck→calendar-days / Menu 공유하기 external-link→share, 수정하기 file-text→pencil / Tooltip 링크 복사 external-link→link / List 알림 받기 message-circle→bell / Bottom Navigation 알림 file-text→bell / 알림 목록 성적 truck→chart-column / Accordion 구조 그림 성적 truck→chart-column / 설정 목록 수강 기기 map-pin→smartphone. 대표 그림은 다시 그려 맞췄고, 컴포넌트, 예시, 구조 그림, 템플릿 쪽이 남았다. 예시 칸은 `node sync.mjs docpage <slug> preview` 가 대표 그림과 예시를 함께 다시 그린다.
+1. **Figma 싱크(11-18 저녁 끝남)**: 위 "한 것" 참고. 다음 싱크는 바뀐 것만(`node tools/figma-quick.mjs changed`).
+2. (비움)
 3. **공식 주소가 아직 404**: https://design.ybmnet.co.kr/yds/ 아래 dist, site 가 404 다(11-17 확인). 서버 묶음(`node tools/server-pack.mjs`)은 사용자가 요청할 때 만들고 올리기는 사용자. 묶음을 만들 때 yds.txt 는 https://design.ybmnet.co.kr/yds/yds.txt 에 놓이고 사이트에 보이는 주소도 이것으로 맞춘다(지금 사이트는 /yds/site/yds.txt).
 4. **Figma 3441:43347(아이콘 위치 이미지)**: 사용자가 "우선 보류".
 5. **시험 접수 화면(시작 전에 멈춤)**: 어디에 둘지(YDS 템플릿 / works 아래 서비스 화면)와 YDS 주소를 먼저 묻는다. 가까운 템플릿은 시험 신청, 시험 일정, 고사장 신청, 시험 접수 완료.
-6. **Figma 싱크 때**: 문서 프레임 링크 170곳과 글자 속 주소 18곳이 옛 imagesisa 주소, `node sync.mjs links` 뒤 맞춘다. Table 헤더 고정(요청 접수), 답을 기다리는 것(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비)은 그대로.
+6. **답을 기다리는 것**: Table 헤더 고정(요청 접수), 진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비는 그대로.
 7. 다음 버전은 `node sync.mjs release x.y.z`(사용자 확인 뒤).
 
 ## 주의

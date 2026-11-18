@@ -12,6 +12,14 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-18 회사 Windows 저녁 (Figma 싱크)
+
+- **Figma 대조**: 변수 359, 컴포넌트 118세트, 템플릿 화면 81 모두 일치. 기준점 저장(figma-quick save).
+- **Figma 링크**: 문서 프레임 Docs, Code 링크 170곳과 글자 속 주소 18곳(Get Started 요청 글, 설치 코드, 파일 표, Top Navigation 예시 로고 주소, 내부 머리말)을 https://design.ybmnet.co.kr/yds/ 로. 파일 안 링크 183개가 모두 공식 사이트, Figma, 워크 게시판만 가리키고 그 페이지와 #usage, #code 위치가 모두 있다.
+- **Figma Get Started**: 사이트처럼 설명 첫 문장, AI로 빠르게 시작하기(요청 글 상자 하나), Figma로 시작하기(안내 상자 하나, YDS 라이브러리와 워크 게시판 링크), 설치 코드 v1.2.0 고정 탭과 my-brand, 파일 표 문구와 brands 줄 삭제.
+- **아이콘 맥락**: Command Palette 컴포넌트 기본 내용(수강 내역 book-open, 단축키 H/O/S)과 대표 그림(찾기 "수강", 수강 내역, 수강 기간 늘리기, 수강 내역 내려받기)을 사이트대로. 예시 List smartphone, Pull To Refresh chart-column, 예시 코드 글 3곳. Tree 대표 그림의 "읽을거리.pdf" 는 사이트에서도 접힌 2주차 안이라 Figma 가 맞다.
+- **사이트 링크 전수 검사**(374 파일, 링크 2만 2천): Figma 링크 167곳 모두 있는 노드이고 페이지마다 자기 프레임, 컴포넌트와 Foundations 모두 .md 파일과 Markdown 링크 있음, 옛 주소 0. 고친 것은 옛 주소 넘김 페이지 2개(site/get-started/usage.html, scripts.html)가 없는 #start 로 넘기던 것을 #dev 로. v1.2.0 폴더와 브랜드 예시 주소는 서버 묶음에서 생기는 것이라 그대로.
+
 ### 2026-11-18 회사 Windows
 
 - **Get Started**: 프롬프트 상자는 타이핑하는 동안 흰 바탕에 파랑/보라 글로우가 잔잔히 흐르고 끝나면 회색으로(테두리 빛줄기, 제목 그라데이션은 사용자가 지움). 타이핑은 자모 단위. 토큰 팁 버튼 앞 노란 코인(₩, 20px, 다크도 노랑 yellow-800), 누르면 탄성과 점 터짐 뒤 팁 창.
