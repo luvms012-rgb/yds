@@ -1,6 +1,6 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-18 회사 Windows 저녁. 모두 GitHub 에 배포됨. 시작은 `git pull` 뒤 이 파일. 오늘 한 일은 log.md "2026-11-18 회사 Windows".
+- 갱신: 2026-11-18 집 Mac 밤. Figma 싱크 이어서 함(커밋만, 배포 전). 시작은 `git pull` 뒤 이 파일. 오늘 낮 회사 일은 log.md "2026-11-18 회사 Windows".
 
 ## 한 것 (11-18, 회사 Windows)
 
@@ -9,17 +9,22 @@
 - **템플릿 보기 창 "주소 복사" 버튼**(아래 줄 Figma 왼쪽, 복사하면 Snackbar).
 - 그 밖에 닫힘 움직임, 요청 탭 카드, 프롬프트 상자 글로우, 토큰 코인은 log.md.
 
+## 한 것 (11-18 밤, 집 Mac, Figma 싱크)
+
+- **대표 그림 83개 글자, 아이콘 대조**: 사이트 미리보기에서 실제로 보이는 글자와 아이콘을 읽어 Figma 와 하나씩 비교했다. 다른 곳은 Mega Menu(첫 묶음이 부품 기본 글자 → 토익, 토익 스피킹, 회화)와 Toolbar(내보내기 아이콘과 구분선 빼고 선택 해제 x) 두 곳이라 고쳤다. 나머지 차이는 입력 칸 값, CSS 로 그리는 화살표처럼 읽는 방법 차이뿐.
+- **Toolbar 부품(2717:624)**: DS 의 `ds-toolbar__clear` 와 `ds-toolbar__separator` 에 맞춰 속성 `clear`(기본 끔), `separator`(기본 켬)를 더함. floating 변형은 원래 x 가 있어 그대로.
+- **이미 맞아 있던 것(확인만)**: 문서 프레임 링크 170곳 모두 새 주소, 글자와 설명 속 옛 주소 0곳. 아이콘 맥락 수정 10곳(Command Palette, Menu, Tooltip, List, Bottom Navigation 등) 예시와 대표 그림 모두 반영돼 있음. Command Palette 대표 그림은 사이트와 같고, Tree 의 "읽을거리.pdf" 는 사이트에서도 접힌 2주차 폴더 안이라 차이 아님.
+- 빠른 대조 일치(변수 359, 컴포넌트 118, 링크 170, 템플릿 81), 기준점 저장.
+
 ## 남은 일
 
 0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만.
-1. **Figma 대표 그림 다시 대조(이어서 할 일)**: 83개를 다시 그렸지만 사이트와 글자, 아이콘 대조와 화면 비교는 몇 개만 했다. 다시 읽을 때는 인스턴스 안 글자를 놓치지 않게 읽는다(11-18 첫 대조에서 인스턴스 안 글이 빠져 잘못 읽힘). 이미 아는 차이:
-   - **Command Palette**: 대표 그림이 Figma 컴포넌트 인스턴스 기본 내용(house, receipt, settings 아이콘과 G H 단축키 줄)으로 보인다. 사이트는 수강 내역(book-open), 수강 기간 늘리기(calendar-days). 컴포넌트 쪽(아래 2번)을 고친 뒤 대표 그림을 다시 그린다.
-   - **Tree**: 사이트의 "읽을거리.pdf" 줄이 Figma 에 없다.
-2. **아이콘 맥락 수정 Figma 반영(11-18)**: Command Palette 수강 내역 receipt→book-open, 수강 기간 늘리기 truck→calendar-days / Menu 공유하기 external-link→share, 수정하기 file-text→pencil / Tooltip 링크 복사 external-link→link / List 알림 받기 message-circle→bell / Bottom Navigation 알림 file-text→bell / 알림 목록 성적 truck→chart-column / Accordion 구조 그림 성적 truck→chart-column / 설정 목록 수강 기기 map-pin→smartphone. 대표 그림은 다시 그려 맞췄고, 컴포넌트, 예시, 구조 그림, 템플릿 쪽이 남았다. 예시 칸은 `node sync.mjs docpage <slug> preview` 가 대표 그림과 예시를 함께 다시 그린다.
+1. **Figma 작은 차이**: Mega Menu 대표 그림의 지금 페이지 글자(토익)가 사이트는 SemiBold, Figma 는 부품 안 굵기 변수 때문에 인스턴스에서 바뀌지 않는다. 부품에 지금 페이지 상태를 더할 때 맞춘다.
+2. (끝남) 아이콘 맥락 수정 Figma 반영은 11-18 밤 확인, 모두 반영돼 있음.
 3. **공식 주소가 아직 404**: https://design.ybmnet.co.kr/yds/ 아래 dist, site 가 404 다(11-17 확인). 서버 묶음(`node tools/server-pack.mjs`)은 사용자가 요청할 때 만들고 올리기는 사용자. 묶음을 만들 때 yds.txt 는 https://design.ybmnet.co.kr/yds/yds.txt 에 놓이고 사이트에 보이는 주소도 이것으로 맞춘다(지금 사이트는 /yds/site/yds.txt).
 4. **Figma 3441:43347(아이콘 위치 이미지)**: 사용자가 "우선 보류".
 5. **시험 접수 화면(시작 전에 멈춤)**: 어디에 둘지(YDS 템플릿 / works 아래 서비스 화면)와 YDS 주소를 먼저 묻는다. 가까운 템플릿은 시험 신청, 시험 일정, 고사장 신청, 시험 접수 완료.
-6. **Figma 싱크 때**: 문서 프레임 링크 170곳과 글자 속 주소 18곳이 옛 imagesisa 주소, `node sync.mjs links` 뒤 맞춘다. Table 헤더 고정(요청 접수), 답을 기다리는 것(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비)은 그대로.
+6. **Figma 싱크 때**: (링크와 주소는 11-18 밤 모두 새 주소 확인) Table 헤더 고정(요청 접수), 답을 기다리는 것(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비)은 그대로.
 7. 다음 버전은 `node sync.mjs release x.y.z`(사용자 확인 뒤).
 
 ## 주의
