@@ -116,7 +116,7 @@
     var promptBtn = t.closest("[data-site-prompt-copy]");
     if (promptBtn && navigator.clipboard) {
       var text = promptBtn.closest(".site-prompt").querySelector(".site-prompt__text").textContent;
-      navigator.clipboard.writeText(text).then(function () { if (window.DS) DS.snackbar("안내문을 복사했어요. AI 도구에 붙여 넣으세요.", { tone: "positive" }); });
+      navigator.clipboard.writeText(text).then(function () { if (window.DS) DS.snackbar("안내문을 복사했어요", { tone: "positive" }); });
       return;
     }
 
@@ -124,14 +124,14 @@
     var lu = t.closest("[data-site-lucide]");
     if (lu && navigator.clipboard) {
       var nm = lu.getAttribute("data-site-lucide"), inCss = !!lu.querySelector(".site-icon__css");
-      navigator.clipboard.writeText(inCss ? "ds-icon--" + nm : lucideCss(nm)).then(function () { if (window.DS) DS.snackbar(inCss ? "복사했어요: ds-icon--" + nm : "내 서비스 CSS에 넣을 코드를 복사했어요: " + nm); });
+      navigator.clipboard.writeText(inCss ? "ds-icon--" + nm : lucideCss(nm)).then(function () { if (window.DS) DS.snackbar(inCss ? "아이콘 이름을 복사했어요" : "아이콘 코드를 복사했어요", { tone: "positive" }); });
       return;
     }
 
     // 아이콘 이름 복사
     var icon = t.closest("[data-site-copy]");
     if (icon && navigator.clipboard) {
-      navigator.clipboard.writeText(icon.getAttribute("data-site-copy")).then(function () { if (window.DS) DS.snackbar("복사했어요: " + icon.getAttribute("data-site-copy")); });
+      navigator.clipboard.writeText(icon.getAttribute("data-site-copy")).then(function () { if (window.DS) DS.snackbar(icon.getAttribute("data-site-copy-msg") || "복사했어요", { tone: "positive" }); }  /* 복사 알림은 모두 초록 체크 + 짧은 한 줄 (11-18 사용자 "이걸로 통일") */);
     }
   });
 
@@ -687,12 +687,13 @@
       '<button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기" autofocus></button></span></div>' +
       '<div class="ds-dialog__body"><div class="site-tplv__stage" data-device="desktop"><iframe title="" data-site-frame></iframe></div>' +
       '<div class="site-tplv__code" hidden><figure class="ds-codeblock" data-lang="html"><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption><pre class="ds-codeblock__code"><code></code></pre></figure></div></div>' +
-      '<div class="ds-dialog__footer site-tplv__foot"><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
+      '<div class="ds-dialog__footer site-tplv__foot"><span class="site-tplv__url"><span class="site-tplv__url-label">주소</span><code class="site-tplv__url-text"></code><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="주소 복사" data-site-copy="" data-site-copy-msg="링크를 복사했어요"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></span><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
     var frame = dlg.querySelector("iframe"), stage = dlg.querySelector(".site-tplv__stage"), codeBox = dlg.querySelector(".site-tplv__code");
     var fig = codeBox.querySelector("figure"), figma = dlg.querySelector(".site-tplv__figma"), device = dlg.querySelector(".site-tplv__device");
+    var urlText = dlg.querySelector(".site-tplv__url-text"), urlBtn = dlg.querySelector(".site-tplv__url [data-site-copy]");
     frame.addEventListener("load", function () { themeFrame(frame); });
     var slugs = list.map(function (t) { return t[0]; });
     // iframe 주소는 방문 기록 없이 바꾼다(그래야 뒤로 가기가 창을 닫는다)
@@ -704,6 +705,7 @@
       dlg.querySelector(".ds-dialog__title").textContent = t[1];
       dlg.querySelector(".ds-dialog__desc").textContent = t[2];
       figma.hidden = !t[3]; if (t[3]) figma.href = t[3];
+      var full = new URL("pages/" + t[0] + ".html", location.href).href; urlText.textContent = full; urlBtn.setAttribute("data-site-copy", full);  /* 템플릿 HTML 전체 주소, 복사하면 Snackbar 만(Tooltip 은 11-18 사용자가 지움) */
       frame.title = t[1] + " 미리보기";
       load("pages/" + t[0] + ".html");
       fig.setAttribute("data-site-src", "pages/" + t[0] + ".html"); fig.removeAttribute("data-loaded");

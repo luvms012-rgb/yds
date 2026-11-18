@@ -882,7 +882,7 @@ const ICON_GROUPS = [
 }
 // 이름을 누르면 클래스 복사. 하는 일 안내는 브라우저 title 대신 DS Tooltip (11-10, 표 상자 밖으로 잘리지 않게 오른쪽)
 let iconTip = 0;
-const iconRow = (n, usage) => { const id = `site-tip-icon-${++iconTip}`; return [`<span class="ds-tooltip-anchor"><button type="button" class="site-icon-name" data-site-copy="ds-icon--${n}" aria-describedby="${id}"><i class="ds-icon ds-icon--${n}" aria-hidden="true"></i><code>${n}</code></button><span class="ds-tooltip" role="tooltip" id="${id}" data-placement="right">클래스 이름 복사</span></span>`, esc(usage)]; };
+const iconRow = (n, usage) => { const id = `site-tip-icon-${++iconTip}`; return [`<span class="ds-tooltip-anchor"><button type="button" class="site-icon-name" data-site-copy="ds-icon--${n}" data-site-copy-msg="아이콘 이름을 복사했어요" aria-describedby="${id}"><i class="ds-icon ds-icon--${n}" aria-hidden="true"></i><code>${n}</code></button><span class="ds-tooltip" role="tooltip" id="${id}" data-placement="right">클래스 이름 복사</span></span>`, esc(usage)]; };
 write({
   file: 'foundations/icons.html', section: 'foundations', title: 'Iconography', pager: fdPager('foundations/icons.html'),
   body: `<header><h1 class="site-h1">Iconography</h1><p class="site-lead">${ICON_LEAD}</p>${metaLinks(linkBySlug.icons)}</header>
