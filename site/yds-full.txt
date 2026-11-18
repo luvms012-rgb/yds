@@ -69,9 +69,7 @@ YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들�
 
 YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.
 
-1. **YDS 라이브러리로 디자인하기**Figma의 Assets 패널에서 [YDS 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92)를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.
-
-Assets에 YDS 라이브러리가 보이지 않으면 사내 [워크 게시판](https://yteam.ybmnet.co.kr/work/dashboard.php)에 권한을 요청하세요.
+1. Figma의 Assets 패널에서 [YDS 라이브러리](https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92)를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다. Assets에 YDS 라이브러리가 보이지 않으면 사내 [워크 게시판](https://yteam.ybmnet.co.kr/work/dashboard.php)에 권한을 요청하세요.
 
 ## 개발 시작하기
 

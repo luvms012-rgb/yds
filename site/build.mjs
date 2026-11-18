@@ -529,7 +529,7 @@ write({
 </ol>
 
 <h2 id="ai">AI로 빠르게 시작하기</h2>
-<div class="site-gs__ai-head"><p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="site-tips"><i class="ds-icon ds-icon--lightbulb ds-icon--sm" aria-hidden="true"></i>토큰 아끼는 팁</button></div>
+<div class="site-gs__ai-head"><p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="site-tips"><svg class="site-coin" viewBox="0 0 24 24" aria-hidden="true"><circle class="site-coin__body" cx="12" cy="12" r="11"/><path class="site-coin__won" d="M7.2 7.6l2 8.4 2.8-6.4 2.8 6.4 2-8.4M6.4 11.4h11.2"/></svg>토큰 아끼는 팁</button></div>
 ${PROMPT_BOX}
 <dialog class="ds-dialog" id="site-tips" aria-labelledby="site-tips-title">
   <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="site-tips-title">토큰 아끼는 팁</h2><button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
@@ -544,9 +544,8 @@ ${PROMPT_BOX}
 <h2 id="figma">Figma로 시작하기</h2>
 <p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.</p>
 <ol class="site-gs__layers">
-  <li><strong>YDS 라이브러리로 디자인하기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.</span></li>
+  <li><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.<br>Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">워크 게시판</a>에 권한을 요청하세요.</span></li>
 </ol>
-<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">워크 게시판</a>에 권한을 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
 <p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
@@ -1231,7 +1230,32 @@ else fs.rmSync(path.join(SITE, 'themes/index.html'), { force: true });
 
 /* ---------------------------------------------------------------- 자산 */
 fs.mkdirSync(path.join(SITE, 'assets'), { recursive: true });
-fs.copyFileSync(path.join(SITE, 'src/site.js'), path.join(SITE, 'assets/site.js'));
+/* site.js 경량화 (11-18): 주석과 줄 앞 들여쓰기, 빈 줄을 뺀다. 문자열, 템플릿 글자, 정규식은 건드리지 않고 줄바꿈은 남겨 동작이 같다 */
+const slimJs = (src) => {
+  let out = '', i = 0;
+  const n = src.length, regexBefore = /[(,=:[!&|?{};+\-*%<>~^]$/, kwBefore = /(?:^|[^\w$])(return|typeof|case|do|else|in|of|void)$/;
+  while (i < n) {
+    const c = src[i], d = src[i + 1];
+    if (c === '/' && d === '/') { while (i < n && src[i] !== '\n') i++; continue; }
+    if (c === '/' && d === '*') { const e = src.indexOf('*/', i + 2); i = e < 0 ? n : e + 2; out += ' '; continue; }
+    if (c === "'" || c === '"' || c === '`') {
+      let j = i + 1; while (j < n && src[j] !== c) { if (src[j] === '\\') j++; j++; }
+      out += src.slice(i, j + 1); i = j + 1; continue;
+    }
+    if (c === '/') {
+      const t = out.replace(/\s+$/, '');
+      if (!t || regexBefore.test(t) || kwBefore.test(t)) {
+        let j = i + 1, cls = false;
+        while (j < n) { const e = src[j]; if (e === '\\') { j += 2; continue; } if (e === '[') cls = true; else if (e === ']') cls = false; else if ((e === '/' && !cls) || e === '\n') break; j++; }
+        j++; while (j < n && /[a-z]/.test(src[j])) j++;
+        out += src.slice(i, j); i = j; continue;
+      }
+    }
+    out += c; i++;
+  }
+  return out.split('\n').map((l) => l.trim()).filter(Boolean).join('\n') + '\n';
+};
+fs.writeFileSync(path.join(SITE, 'assets/site.js'), slimJs(fs.readFileSync(path.join(SITE, 'src/site.js'), 'utf8')));
 // 가이드 모노톤: 사이트는 site.css 끝에 붙이고, 템플릿 미리보기 iframe은 site.js가 이 파일을 넣는다
 fs.copyFileSync(path.join(SITE, 'src/brand-mono.css'), path.join(SITE, 'assets/brand-mono.css'));
 fs.copyFileSync(path.join(SITE, 'src/logo-ybmnet.svg'), path.join(SITE, 'assets/logo-ybmnet.svg'));

@@ -687,13 +687,12 @@
       '<button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기" autofocus></button></span></div>' +
       '<div class="ds-dialog__body"><div class="site-tplv__stage" data-device="desktop"><iframe title="" data-site-frame></iframe></div>' +
       '<div class="site-tplv__code" hidden><figure class="ds-codeblock" data-lang="html"><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption><pre class="ds-codeblock__code"><code></code></pre></figure></div></div>' +
-      '<div class="ds-dialog__footer site-tplv__foot"><span class="site-tplv__url"><code class="site-tplv__url-text"></code><button type="button" class="ds-btn" data-variant="ghost" data-size="small" data-layout="iconOnly" aria-label="주소 복사" data-site-copy="" data-site-copy-msg="링크를 복사했어요"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></span><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
+      '<div class="ds-dialog__footer site-tplv__foot"><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
     var frame = dlg.querySelector("iframe"), stage = dlg.querySelector(".site-tplv__stage"), codeBox = dlg.querySelector(".site-tplv__code");
     var fig = codeBox.querySelector("figure"), figma = dlg.querySelector(".site-tplv__figma"), device = dlg.querySelector(".site-tplv__device");
-    var urlText = dlg.querySelector(".site-tplv__url-text"), urlBtn = dlg.querySelector(".site-tplv__url [data-site-copy]");
     frame.addEventListener("load", function () { themeFrame(frame); });
     var slugs = list.map(function (t) { return t[0]; });
     // iframe 주소는 방문 기록 없이 바꾼다(그래야 뒤로 가기가 창을 닫는다)
@@ -705,7 +704,6 @@
       dlg.querySelector(".ds-dialog__title").textContent = t[1];
       dlg.querySelector(".ds-dialog__desc").textContent = t[2];
       figma.hidden = !t[3]; if (t[3]) figma.href = t[3];
-      var full = new URL("pages/" + t[0] + ".html", location.href).href; urlText.textContent = full; urlBtn.setAttribute("data-site-copy", full);  /* 템플릿 HTML 전체 주소, 복사하면 Snackbar 만(Tooltip 은 11-18 사용자가 지움) */
       frame.title = t[1] + " 미리보기";
       load("pages/" + t[0] + ".html");
       fig.setAttribute("data-site-src", "pages/" + t[0] + ".html"); fig.removeAttribute("data-loaded");
@@ -1144,11 +1142,12 @@ document.addEventListener("click", function (e) {
   var H = { x: lh + pad, v: 0, t: lh + pad, k: 420, c: 34 };
   function target() { field.style.height = "auto"; H.t = Math.min(field.scrollHeight, MAX); field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden"; field.style.height = H.x + "px"; field.scrollTop = 0; }
   if (reduce || !text) { box.classList.add("is-done"); field.style.height = "auto"; field.style.height = Math.min(field.scrollHeight, MAX) + "px"; return; }
+  var frames = keyFrames(text), KEY = 0.022;  /* 한글은 자음, 모음 한 타씩(키 하나 22ms) */
   out.textContent = ""; box.classList.add("is-typing"); target();
   var started = false, n = 0, acc = 0, last = 0, done = false;
   function loop(now) {
     var dt = Math.max(0, Math.min((now - last) / 1000, 1 / 30)); last = now;
-    if (!done) { acc += dt; while (acc >= 0.035 && n < text.length) { acc -= 0.035; n++; out.textContent = text.slice(0, n); target(); } if (n >= text.length) { done = true; box.classList.remove("is-typing"); box.classList.add("is-done"); } }
+    if (!done) { acc += dt; while (acc >= KEY && n < frames.length) { acc -= KEY; out.textContent = frames[n++]; target(); } if (n >= frames.length) { done = true; box.classList.remove("is-typing"); box.classList.add("is-done"); } }
     for (var k = 0; k < 4; k++) { var a = -H.k * (H.x - H.t) - H.c * H.v; H.v += a * dt / 4; H.x += H.v * dt / 4; }
     field.style.height = H.x.toFixed(2) + "px";
     if (field.scrollHeight <= MAX && field.scrollTop) field.scrollTop = 0;
@@ -1161,4 +1160,63 @@ document.addEventListener("click", function (e) {
     if (b.bottom > 0 && b.top < window.innerHeight) { started = true; window.removeEventListener("scroll", check); last = performance.now(); setTimeout(function () { last = performance.now(); requestAnimationFrame(loop); }, 400); }
   }
   window.addEventListener("scroll", check, { passive: true }); check();
+
+  /* 한글 키보드 치기 (11-18): 글자마다 자음, 모음을 한 타씩 조합해 보여 준다(ㄱ, 가, 강).
+     겹모음(ㅘ), 겹받침(ㄺ)도 나눠 치고, 받침 없는 글자 뒤 다음 자음은 잠깐 받침으로 붙었다가 모음을 치면 넘어간다(가, 갈, 가르) */
+  function keyFrames(str) {
+    var L = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ", V = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ", T = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
+    var VV = { "ㅘ": "ㅗ", "ㅙ": "ㅗ", "ㅚ": "ㅗ", "ㅝ": "ㅜ", "ㅞ": "ㅜ", "ㅟ": "ㅜ", "ㅢ": "ㅡ" };
+    var TT = { "ㄳ": "ㄱㅅ", "ㄵ": "ㄴㅈ", "ㄶ": "ㄴㅎ", "ㄺ": "ㄹㄱ", "ㄻ": "ㄹㅁ", "ㄼ": "ㄹㅂ", "ㄽ": "ㄹㅅ", "ㄾ": "ㄹㅌ", "ㄿ": "ㄹㅍ", "ㅀ": "ㄹㅎ", "ㅄ": "ㅂㅅ" };
+    function make(l, v, t) { return String.fromCharCode(0xac00 + (l * 21 + V.indexOf(v)) * 28 + (t ? T.indexOf(t) : 0)); }
+    function split(ch) { var c = ch.charCodeAt(0) - 0xac00; if (!(c >= 0 && c <= 11171)) return null; return { l: Math.floor(c / 588), v: V.charAt(Math.floor(c % 588 / 28)), t: c % 28 ? T.charAt(c % 28) : "" }; }
+    function joinT(a, b) { for (var k in TT) if (TT[k] === a + b) return k; return ""; }
+    var out = [], done = "", skipInitial = false;
+    for (var i = 0; i < str.length; i++) {
+      var ch = str.charAt(i), h = split(ch);
+      if (!h) { out.push(done + ch); done += ch; skipInitial = false; continue; }
+      if (!skipInitial) out.push(done + L.charAt(h.l));
+      skipInitial = false;
+      if (VV[h.v]) out.push(done + make(h.l, VV[h.v]));
+      out.push(done + make(h.l, h.v));
+      if (h.t) { if (TT[h.t]) out.push(done + make(h.l, h.v, TT[h.t].charAt(0))); out.push(done + make(h.l, h.v, h.t)); }
+      var nx = split(str.charAt(i + 1)), nl = nx ? L.charAt(nx.l) : "";
+      if (nl) {
+        if (!h.t && T.indexOf(nl) > 0) { out.push(done + make(h.l, h.v, nl)); skipInitial = true; }
+        else if (h.t && !TT[h.t] && joinT(h.t, nl)) { out.push(done + make(h.l, h.v, joinT(h.t, nl))); skipInitial = true; }
+      }
+      done += ch;
+    }
+    if (out[out.length - 1] !== str) out.push(str);
+    return out;
+  }
+})();
+
+/* 토큰 코인 폭죽 (11-18): 팁 버튼을 누르면 코인이 작아졌다가 탄성 있게 커지고(스프링 강도 520, 감쇠 13), 색 점 8개가 둥글게 터졌다 사라진 뒤 팁 창이 열린다.
+   동작 줄이기 설정이면 바로 연다 */
+(function () {
+  var btn = document.querySelector(".site-gs__ai-head > [data-ds-open=\"site-tips\"]"), coin = btn && btn.querySelector(".site-coin");
+  if (!coin) return;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var wrap = document.createElement("span"), burst = document.createElement("span");
+  wrap.className = "site-coin-wrap"; burst.className = "site-burst"; burst.setAttribute("aria-hidden", "true");
+  coin.parentNode.insertBefore(wrap, coin); wrap.appendChild(burst); wrap.appendChild(coin);
+  var COLORS = ["yellow-400", "orange-400", "red-400", "green-400", "blue-400", "purple-400", "yellow-400", "orange-400"];
+  var dots = COLORS.map(function (c, i) { var el = document.createElement("i"); el.style.background = "var(--ds-color-palette-" + c + ")"; burst.appendChild(el); return { el: el, a: i / COLORS.length * Math.PI * 2 + 0.2 }; });
+  var H = { x: 1, v: 0, t: 1, k: 520, c: 13 }, bt = 9, last = 0, running = false, pass = false;
+  function frame(now) {
+    var dt = Math.min((now - last) / 1000, 1 / 30); last = now; bt += dt;
+    for (var s = 0; s < 4; s++) { var a = -H.k * (H.x - H.t) - H.c * H.v; H.v += a * dt / 4; H.x += H.v * dt / 4; }
+    coin.style.transform = "scale(" + H.x.toFixed(4) + ")";  /* 작아졌다가 탄성 있게 커진 뒤 제자리 */
+    var k = Math.min(bt / 0.55, 1), e = 1 - Math.pow(1 - k, 3);
+    dots.forEach(function (d, i) { var r = 10 + e * (18 + (i % 2) * 6); d.el.style.opacity = k >= 1 ? 0 : (1 - k * k).toFixed(3); d.el.style.transform = "translate(" + (Math.cos(d.a) * r).toFixed(2) + "px," + (Math.sin(d.a) * r).toFixed(2) + "px) scale(" + (1 - 0.7 * k).toFixed(3) + ")"; });
+    if (k >= 1 && Math.abs(H.x - 1) < 0.001 && Math.abs(H.v) < 0.01) { coin.style.transform = ""; running = false; return; }
+    requestAnimationFrame(frame);
+  }
+  btn.addEventListener("click", function (ev) {
+    if (pass || reduce) { pass = false; return; }
+    ev.stopPropagation(); ev.preventDefault();
+    H.x = 0.55; H.v = 9; bt = 0;
+    if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+    setTimeout(function () { pass = true; btn.click(); }, 520);  /* 점이 다 퍼진 뒤 팁 창을 연다 */
+  });
 })();
