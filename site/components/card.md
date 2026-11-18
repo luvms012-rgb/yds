@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/card.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/card.html -->
 
 # Card
 

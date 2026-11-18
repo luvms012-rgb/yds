@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/time-picker.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/time-picker.html -->
 
 # Time Picker
 

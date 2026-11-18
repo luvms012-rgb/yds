@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/empty.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/empty.html -->
 
 # Empty
 

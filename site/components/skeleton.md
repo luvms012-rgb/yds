@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/skeleton.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/skeleton.html -->
 
 # Skeleton
 

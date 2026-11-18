@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/chat.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/chat.html -->
 
 # Chat
 

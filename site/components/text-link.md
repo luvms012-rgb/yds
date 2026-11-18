@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/text-link.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/text-link.html -->
 
 # Text Link
 

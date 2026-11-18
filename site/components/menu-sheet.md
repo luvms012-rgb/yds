@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/menu-sheet.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/menu-sheet.html -->
 
 # Menu Sheet
 

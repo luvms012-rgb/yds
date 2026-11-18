@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/chart.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/chart.html -->
 
 # Chart
 

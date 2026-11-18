@@ -28,7 +28,7 @@ const PUBLIC = 'https://design.ybmnet.co.kr/yds';
 const RAW = PUBLIC;  // CSS 원본도 같은 서버 주소에서 읽는다
 const FIGMA = 'https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=';
 const FIGMA_HOME = FIGMA + '3059-92'; // Figma Get Started 페이지: 파일 전체로 가는 링크는 모두 여기로
-const SITE_URL = PUBLIC + '/site/';
+const SITE_URL = PUBLIC + '/';  // 2026-11-19 사용자 "yds/site 사용 금지": 공개 주소에서 문서 사이트는 /yds/ 바로 아래(tools/server-pack.mjs 가 site/ 안을 맨 위로 옮긴다). 저장소 폴더는 site/ 그대로
 // 버전 (저장소 VERSION, node sync.mjs release 가 올린다). 버전 고정 주소는 서버의 버전 폴더(tools/server-pack.mjs 가 git 태그에서 꺼내 넣는다)
 const VERSION = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'VERSION'), 'utf8').trim();
 const PIN = `${PUBLIC}/v${VERSION}`;
@@ -575,7 +575,7 @@ ${(() => { const t = readJson('site/src/themes.json').themes[0].slug; return cod
 });
 
 // 예전 Usage, Scripts 주소는 시작하기의 옮긴 절로 넘긴다 (공유된 링크가 깨지지 않게)
-for (const [f, to, label] of [['usage', 'start', '바로 써 보기'], ['scripts', 'start', '바로 써 보기']]) {
+for (const [f, to, label] of [['usage', 'dev', '바로 써 보기'], ['scripts', 'dev', '바로 써 보기']]) {
   fs.writeFileSync(path.join(SITE, `get-started/${f}.html`), `<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=../index.html#${to}"><title>Get Started - YDS</title></head><body><a href="../index.html#${to}">${label}</a></body></html>\n`);
   fs.rmSync(path.join(SITE, `get-started/${f}.md`), { force: true });
 }

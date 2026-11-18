@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/select-content-item.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/select-content-item.html -->
 
 # Select Content / Item
 

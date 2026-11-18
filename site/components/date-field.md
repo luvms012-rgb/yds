@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/date-field.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/date-field.html -->
 
 # Date Field
 

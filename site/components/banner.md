@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/banner.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/banner.html -->
 
 # Banner
 

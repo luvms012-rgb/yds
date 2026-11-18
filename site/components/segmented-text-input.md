@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/segmented-text-input.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/segmented-text-input.html -->
 
 # Segmented Text Input
 

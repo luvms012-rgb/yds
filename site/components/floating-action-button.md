@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/floating-action-button.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/floating-action-button.html -->
 
 # Floating Action Button
 

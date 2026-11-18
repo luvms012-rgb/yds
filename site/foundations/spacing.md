@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/spacing.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/spacing.html -->
 
 # Spacing
 

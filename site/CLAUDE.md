@@ -3,7 +3,7 @@
 YDS 문서 사이트 폴더다. 이 문서는 지금 규칙만 적는다. 결정한 날짜와 경위는 [docs/log.md](../docs/log.md)("site/CLAUDE.md 전체 원문 2026-11-15") 에 있고 필요할 때만 찾는다. 수치의 정답은 코드(site.css, kit.mjs)이고 여기에는 다시 적지 않는다.
 
 ## 만들기와 파일
-- 공식 주소 <https://design.ybmnet.co.kr/yds/site/>(사내 서버, 11-17), 개발 미리보기는 GitHub Pages, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
+- 공식 주소 <https://design.ybmnet.co.kr/yds/>(사내 서버, 11-17. 11-19 부터 공개 주소에 /site/ 를 쓰지 않는다. 저장소 site/ 안을 서버 묶음이 맨 위에 펼친다), 개발 미리보기는 GitHub Pages, 로컬 미리보기는 works/.claude/launch.json 의 ds-preview(http://localhost:5179/site/).
 - `node site/templates/gen/run.mjs` → `node site/build.mjs` → `node sync.mjs check`. DS(components.json, dist/*.css 머리 주석, tokens.css, icons.css, ybm-ds.js, 루트 index.html 예시, README 6.2)를 읽어 페이지를 만든다.
 - 손으로 쓰는 것: `site/build.mjs`, `site/md.mjs`, `site/src/`(site.css, site.js, figma-notes.json, templates.json, updates.json, covers.html, anatomy-*.{json,html}, search-ko.json, examples/), `site/templates/gen/*.mjs`.
 - 생성물(직접 고치지 않음): `site/index.html`, `site/get-started/`, `site/foundations/`, `site/components/`, `site/templates/*.html`, `site/templates/pages/`, `site/assets/`, `site/*.txt`, `site/ai/`.

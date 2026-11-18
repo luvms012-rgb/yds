@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/avatar.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/avatar.html -->
 
 # Avatar
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/multi-select.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/multi-select.html -->
 
 # Multi Select
 

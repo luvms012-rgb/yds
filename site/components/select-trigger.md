@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/select-trigger.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/select-trigger.html -->
 
 # Select Trigger
 

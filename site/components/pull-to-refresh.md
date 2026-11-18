@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/pull-to-refresh.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/pull-to-refresh.html -->
 
 # Pull To Refresh
 

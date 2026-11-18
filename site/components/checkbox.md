@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/checkbox.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/checkbox.html -->
 
 # Checkbox
 

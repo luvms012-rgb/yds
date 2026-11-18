@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/typography.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/typography.html -->
 
 # Typography
 

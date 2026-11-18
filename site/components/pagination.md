@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/pagination.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/pagination.html -->
 
 # Pagination
 

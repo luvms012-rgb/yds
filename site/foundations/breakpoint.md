@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/breakpoint.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/breakpoint.html -->
 
 # Breakpoint
 

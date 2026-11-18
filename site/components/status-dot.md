@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/status-dot.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/status-dot.html -->
 
 # Status Dot
 

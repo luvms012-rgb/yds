@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/tag-group.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/tag-group.html -->
 
 # Tag Group
 

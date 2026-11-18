@@ -12,12 +12,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Get Started - YDS">
 <meta property="og:description" content="YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.">
-<meta property="og:image" content="https://design.ybmnet.co.kr/yds/site/assets/og-image.png">
+<meta property="og:image" content="https://design.ybmnet.co.kr/yds/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../dist/ybm-ds.css?v=3a5b3074">
-<link rel="stylesheet" href="assets/site.css?v=ff55ca1d">
+<link rel="stylesheet" href="assets/site.css?v=04683026">
 <script src="../dist/ybm-ds.js?v=3a5b3074" defer></script>
-<script src="assets/site.js?v=ff55ca1d" defer></script>
+<script src="assets/site.js?v=04683026" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -65,15 +65,15 @@
 
 <h2 id="ai">AI로 빠르게 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="ai"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
 <div class="site-gs__ai-head"><p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="site-tips"><svg class="site-coin" viewBox="0 0 24 24" aria-hidden="true"><circle class="site-coin__body" cx="12" cy="12" r="11"/><path class="site-coin__won" d="M7.2 7.6l2 8.4 2.8-6.4 2.8 6.4 2-8.4M6.4 11.4h11.2"/></svg>토큰 아끼는 팁</button></div>
-<div class="site-pbox" data-site-pbox data-prompts="[&quot;수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.\nYDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.\nhttps://design.ybmnet.co.kr/yds/site/yds.txt&quot;]">
+<div class="site-pbox" data-site-pbox data-prompts="[&quot;수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.\nYDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.\nhttps://design.ybmnet.co.kr/yds/yds.txt&quot;]">
   <div class="site-pbox__field" role="textbox" aria-readonly="true" aria-multiline="true" aria-label="AI 요청 글 예시"><span class="site-pbox__text">수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.
 YDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.
-https://design.ybmnet.co.kr/yds/site/yds.txt</span><span class="site-pbox__caret" aria-hidden="true"></span></div>
+https://design.ybmnet.co.kr/yds/yds.txt</span><span class="site-pbox__caret" aria-hidden="true"></span></div>
 </div>
 <dialog class="ds-dialog" id="site-tips" aria-labelledby="site-tips-title">
   <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="site-tips-title">토큰 아끼는 팁</h2><button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
   <div class="ds-dialog__body"><ul class="site-tips">
-    <li>yds-full.txt 대신 yds.txt 주소를 넣으세요.<br><code>https://design.ybmnet.co.kr/yds/site/yds.txt</code></li>
+    <li>yds-full.txt 대신 yds.txt 주소를 넣으세요.<br><code>https://design.ybmnet.co.kr/yds/yds.txt</code></li>
     <li>참고할 템플릿이나 컴포넌트 이름을 적어 주세요. AI가 찾느라 여러 파일을 읽지 않습니다.</li>
     <li>규칙 파일은 프로젝트에 두고 사용하세요.</li>
   </ul></div>
@@ -105,9 +105,9 @@ https://design.ybmnet.co.kr/yds/site/yds.txt</span><span class="site-pbox__caret
 </figure></div><div class="site-codetabs__panel" hidden><figure class="ds-codeblock" data-lang="bash">
   <figcaption class="ds-codeblock__header"><div class="ds-segmented site-seg" role="group" aria-label="보기 방식"><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-tab="0">v1.2.0 고정</button><button type="button" class="ds-segmented__item" aria-pressed="false" data-site-tab="1">최신</button><button type="button" class="ds-segmented__item" aria-pressed="true" data-site-tab="2">규칙 파일</button></div><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption>
   <pre class="ds-codeblock__code"><code><span class="hl-m"># 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)</span>
-<span class="hl-f">curl</span> -O https://design.ybmnet.co.kr/yds/site/ai/AGENTS.md
-<span class="hl-f">curl</span> -O https://design.ybmnet.co.kr/yds/site/ai/CLAUDE.md
-<span class="hl-f">curl</span> --create-dirs -o .cursor/rules/yds.mdc https://design.ybmnet.co.kr/yds/site/ai/yds.mdc</code></pre>
+<span class="hl-f">curl</span> -O https://design.ybmnet.co.kr/yds/ai/AGENTS.md
+<span class="hl-f">curl</span> -O https://design.ybmnet.co.kr/yds/ai/CLAUDE.md
+<span class="hl-f">curl</span> --create-dirs -o .cursor/rules/yds.mdc https://design.ybmnet.co.kr/yds/ai/yds.mdc</code></pre>
 </figure></div></div>
 
 <h2 id="files">파일<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="files"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/color-palette.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/color-palette.html -->
 
 # Color
 

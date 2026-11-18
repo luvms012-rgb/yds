@@ -25,7 +25,7 @@ export function linkPlan(DS) {
   const read = (p) => fs.readFileSync(path.join(DS, p), 'utf8');
   const cfg = JSON.parse(read('deploy.config.json'));
   const manifest = JSON.parse(read('components.json'));
-  const site = (cfg.publicUrl || cfg.pagesUrl) + 'site/';
+  const site = cfg.publicUrl || cfg.pagesUrl + 'site/';  // 공개 주소에는 /site/ 가 없다(2026-11-19 사용자)
   const figmaUrl = (id) => `https://www.figma.com/design/${manifest.figmaFile}/?node-id=${id.replace(':', '-')}`;
   const comp = cssSections(read('dist/components.css'), /^\s+(\d\d)(?:-\d+)?\s/);
   const tok = cssSections(read('dist/tokens.css'), /^\s+(\d)\.\s/);

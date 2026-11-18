@@ -1,3 +1,3 @@
 # YDS
 
-이 파일은 yds-full.txt 로 옮겼다. https://design.ybmnet.co.kr/yds/site/yds-full.txt 를 읽는다.
+이 파일은 yds-full.txt 로 옮겼다. https://design.ybmnet.co.kr/yds/yds-full.txt 를 읽는다.

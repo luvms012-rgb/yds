@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/prefix-select.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/prefix-select.html -->
 
 # Prefix Select
 

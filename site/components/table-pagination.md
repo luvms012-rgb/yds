@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/table-pagination.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/table-pagination.html -->
 
 # Table Pagination
 

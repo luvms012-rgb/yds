@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/segmented-control.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/segmented-control.html -->
 
 # Segmented Control
 

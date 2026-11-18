@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/alert-dialog.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/alert-dialog.html -->
 
 # Alert Dialog
 

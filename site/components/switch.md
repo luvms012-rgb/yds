@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/switch.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/switch.html -->
 
 # Switch
 

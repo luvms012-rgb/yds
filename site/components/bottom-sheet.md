@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/bottom-sheet.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/bottom-sheet.html -->
 
 # Bottom Sheet
 

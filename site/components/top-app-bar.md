@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/top-app-bar.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/top-app-bar.html -->
 
 # Top App Bar
 

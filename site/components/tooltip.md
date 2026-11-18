@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/tooltip.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/tooltip.html -->
 
 # Tooltip
 

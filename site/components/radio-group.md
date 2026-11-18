@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/radio-group.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/radio-group.html -->
 
 # Radio Group
 

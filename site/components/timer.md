@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/timer.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/timer.html -->
 
 # Timer
 

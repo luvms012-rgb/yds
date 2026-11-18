@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/motion.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/motion.html -->
 
 # Motion
 

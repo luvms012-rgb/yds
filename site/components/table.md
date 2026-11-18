@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/table.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/table.html -->
 
 # Table
 

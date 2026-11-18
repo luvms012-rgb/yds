@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/chip-tabs.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/chip-tabs.html -->
 
 # Chip Tabs
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/toggle-button.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/toggle-button.html -->
 
 # Toggle Button
 

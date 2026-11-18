@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/action-button.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/action-button.html -->
 
 # Action Button
 

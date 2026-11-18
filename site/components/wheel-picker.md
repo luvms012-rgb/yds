@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/wheel-picker.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/wheel-picker.html -->
 
 # Wheel Picker
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/image-frame.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/image-frame.html -->
 
 # Image Frame
 

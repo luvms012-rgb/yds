@@ -5,7 +5,7 @@ YBM 서비스 공용 디자인 시스템. Figma 변수/컴포넌트가 정본이
 
 - 최종 갱신: 2026-10-27
 - Figma 파일: `1VCEsFU3xMWuXIntIrZz9i` - <https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/>
-- 공식 주소(사내 서버, 2026-11-17): <https://design.ybmnet.co.kr/yds/> - 문서 사이트 <https://design.ybmnet.co.kr/yds/site/>. 서버에는 `node tools/server-pack.mjs` 가 만든 묶음을 사용자가 올린다
+- 공식 주소(사내 서버, 2026-11-17): <https://design.ybmnet.co.kr/yds/> - 문서 사이트도 같은 주소(공개 주소에 /site/ 를 쓰지 않는다, 2026-11-19). 서버에는 `node tools/server-pack.mjs` 가 만든 묶음을 사용자가 올린다
 - 개발용 GitHub 저장소: <https://github.com/luvms012-rgb/yds> (push 와 개발 미리보기 Pages 에만 쓴다. 사이트와 Figma 에는 링크하지 않는다)
 - 로컬 폴더: 회사 `C:\Users\luvms\Desktop\works\ybm-ds`, 집 Mac `~/Works/ybm-ds` (폴더 이름은 예전 이름 그대로)
 
@@ -243,7 +243,7 @@ gray `00/100~1000`, brand, blue, red, green, yellow, orange, purple `100~1000`, 
 - YDS 변경의 반영: 화면이 바뀌지 않는 수정은 자동, 화면이 바뀔 수 있는 변경은 Updates "확인할 변경" 으로 적고 `node tools/brand-diff.mjs <브랜드> [기준 태그]` 로 부품별 전후를 비교한 뒤 `node sync.mjs release x.y.z`. 브랜드 파일도 같은 태그로 고정해 쓸 수 있다(jsDelivr `@v버전/dist/brands/...`).
 
 #### AI 용 마크다운 (2026-11-03)
-- 사이트의 시작하기, Foundations, 컴포넌트 문서는 같은 주소의 `.md` 로도 나온다(`site/md.mjs`, 빌드 때 생성). 전체 목차 `site/yds.txt`, 전체 한 파일 `site/yds-full.txt` (llmstxt.org 방식, 예전 이름 `llms.txt`, `llms-full.txt` 도 같은 내용으로 남긴다). 각 페이지 제목 아래 Markdown 메뉴에서 링크 복사, 내용 복사. `yds.txt` 끝에는 템플릿 HTML 원본 목록(Templates)과 테마 CSS 목록(Themes)도 붙는다. 시작하기 첫 화면의 AI 요청 문구도 yds.txt를 읽게 한다.
+- 사이트의 시작하기, Foundations, 컴포넌트 문서는 같은 주소의 `.md` 로도 나온다(`site/md.mjs`, 빌드 때 생성). 전체 목차 `site/yds.txt`, 전체 한 파일 `site/yds-full.txt` (llmstxt.org 방식, 예전 이름 `llms.txt`, `llms-full.txt` 는 새 파일을 가리키는 한 줄). 공개 주소는 맨 위 https://design.ybmnet.co.kr/yds/yds.txt 로, 서버 묶음(`tools/server-pack.mjs`)이 site/ 안을 맨 위에 펼친다. 각 페이지 제목 아래 Markdown 메뉴에서 링크 복사, 내용 복사. `yds.txt` 끝에는 템플릿 HTML 원본 목록(Templates)과 테마 CSS 목록(Themes)도 붙는다. 시작하기 첫 화면의 AI 요청 문구도 yds.txt를 읽게 한다.
 
 로고 고정색(모드 무관): `logo-ybm-blue #0055a7`, `logo-ybm-red #e83743`, `logo-ybm-gray #7d7d7d`
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/accordion.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/accordion.html -->
 
 # Accordion
 

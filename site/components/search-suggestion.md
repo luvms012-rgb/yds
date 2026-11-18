@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/search-suggestion.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/search-suggestion.html -->
 
 # Search Suggestion
 

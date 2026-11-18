@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/select-box.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/select-box.html -->
 
 # Select Box
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/field-label.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/field-label.html -->
 
 # Field Label
 

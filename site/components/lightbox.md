@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/lightbox.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/lightbox.html -->
 
 # Lightbox
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/scroll-fog.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/scroll-fog.html -->
 
 # Scroll Fog
 

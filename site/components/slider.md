@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/slider.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/slider.html -->
 
 # Slider
 

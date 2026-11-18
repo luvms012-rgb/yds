@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/dialog.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/dialog.html -->
 
 # Dialog
 

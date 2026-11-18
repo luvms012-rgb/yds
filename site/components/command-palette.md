@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/command-palette.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/command-palette.html -->
 
 # Command Palette
 

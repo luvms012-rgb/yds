@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/elevation.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/elevation.html -->
 
 # Elevation
 

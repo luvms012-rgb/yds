@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/callout.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/callout.html -->
 
 # Callout
 

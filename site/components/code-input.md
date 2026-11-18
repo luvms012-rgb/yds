@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/code-input.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/code-input.html -->
 
 # Code Input
 

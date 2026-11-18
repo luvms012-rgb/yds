@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/list-list-item.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/list-list-item.html -->
 
 # List / List Item
 

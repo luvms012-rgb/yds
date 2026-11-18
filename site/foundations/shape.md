@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/shape.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/shape.html -->
 
 # Radius
 

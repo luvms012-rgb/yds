@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/index.html -->
+<!-- https://design.ybmnet.co.kr/yds/index.html -->
 
 # Get Started
 
@@ -14,7 +14,7 @@ YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들�
 
 아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.
 
-수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어. YDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어. https://design.ybmnet.co.kr/yds/site/yds.txt
+수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어. YDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어. https://design.ybmnet.co.kr/yds/yds.txt
 
 ## Figma로 시작하기
 
@@ -44,9 +44,9 @@ YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.
 
 ```bash
 # 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
-curl -O https://design.ybmnet.co.kr/yds/site/ai/AGENTS.md
-curl -O https://design.ybmnet.co.kr/yds/site/ai/CLAUDE.md
-curl --create-dirs -o .cursor/rules/yds.mdc https://design.ybmnet.co.kr/yds/site/ai/yds.mdc
+curl -O https://design.ybmnet.co.kr/yds/ai/AGENTS.md
+curl -O https://design.ybmnet.co.kr/yds/ai/CLAUDE.md
+curl --create-dirs -o .cursor/rules/yds.mdc https://design.ybmnet.co.kr/yds/ai/yds.mdc
 ```
 
 ## 파일

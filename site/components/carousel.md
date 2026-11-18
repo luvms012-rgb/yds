@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/carousel.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/carousel.html -->
 
 # Carousel
 

@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/markdown.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/markdown.html -->
 
 # Markdown
 

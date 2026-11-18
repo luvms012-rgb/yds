@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/bottom-navigation.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/bottom-navigation.html -->
 
 # Bottom Navigation
 

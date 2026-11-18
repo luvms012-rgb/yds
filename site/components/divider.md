@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/divider.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/divider.html -->
 
 # Divider
 

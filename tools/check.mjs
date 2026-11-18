@@ -29,7 +29,9 @@ const SITE = path.join(R, 'site');
 const DEMO_STYLE = / style="(?:\s*(?:width|max-width|min-width)\s*:\s*[^;"]+;?)+\s*"/g;  // .md 는 미리보기용 폭 지정을 뺀다 (site/md.mjs demoStyle, 2026-11-17)
 const PUBLIC = 'https://design.ybmnet.co.kr/yds/';  // 공식 주소 (2026-11-17)
 const DEV = JSON.parse(fs.readFileSync(path.join(R, 'deploy.config.json'), 'utf8')).pagesUrl;  // --live 는 개발용 GitHub Pages 를 본다
-const SITE_URL = PUBLIC + 'site/';
+const SITE_URL = PUBLIC;  // 공개 주소에는 /site/ 가 없다(2026-11-19 사용자 "yds/site 사용 금지")
+// 공개 주소 → 저장소 파일: 문서 사이트 것은 site/ 아래, dist 같은 공개 파일은 맨 위
+const pubFile = (u) => { const r = u.slice(PUBLIC.length); return fs.existsSync(path.join(R, 'site', r)) ? path.join(R, 'site', r) : path.join(R, r); };
 const flags = new Set(process.argv.slice(2));
 const read = (p) => fs.readFileSync(path.join(R, p), 'utf8');
 const readJson = (p) => JSON.parse(read(p));
@@ -160,7 +162,7 @@ check('4 마크다운', ({ err }) => {
     for (const m of md.matchAll(/\]\(([^)\s]+)\)/g)) {
       const u = m[1].split('#')[0]; if (!u || /^(mailto:|https?:\/\/)/.test(u) && !u.startsWith(PUBLIC)) continue;
       // 2026-11-17 경량화: .md 안 링크는 그 .md 기준 상대 주소
-      if (!fs.existsSync(u.startsWith(PUBLIC) ? path.join(R, u.slice(PUBLIC.length)) : path.join(path.dirname(mdf), u))) err(`깨진 링크 ${u} <- ${rel(mdf)}`);
+      if (!fs.existsSync(u.startsWith(PUBLIC) ? pubFile(u) : path.join(path.dirname(mdf), u))) err(`깨진 링크 ${u} <- ${rel(mdf)}`);
     }
   }
   for (const [slug, list] of Object.entries(EX)) {
@@ -173,11 +175,11 @@ check('4 마크다운', ({ err }) => {
     const u = m[1].split('#')[0].replace(/[.,]$/, '');
     if (/^dist\/brands\/(my-brand|브랜드이름)\.css$/.test(u)) continue; // 브랜드 안내의 예시 주소
     if (/^v\d+\.\d+\.\d+\//.test(u)) continue; // 버전 폴더는 서버 묶음에만 있다(tools/server-pack.mjs 가 git 태그에서 꺼냄)
-    if (!fs.existsSync(path.join(R, u))) err(`${f} 깨진 주소 ${u}`);
+    if (!fs.existsSync(pubFile(PUBLIC + u))) err(`${f} 깨진 주소 ${u}`);
   }
   // "YDS(YBM Design System)" 풀이는 2026-11-18 사용자가 넣었다(예전 이름으로 세지 않는다)
   // 예전 이름은 이미 복사해 간 요청 글을 위해 남긴다. 2026-11-17 경량화부터 새 파일을 가리키는 한 줄
-  for (const [a, b] of [['site/llms.txt', 'yds.txt'], ['site/llms-full.txt', 'yds-full.txt']]) if (!read(a).includes(PUBLIC + 'site/' + b)) err(`${a} 가 ${b} 를 가리키지 않음`);
+  for (const [a, b] of [['site/llms.txt', 'yds.txt'], ['site/llms-full.txt', 'yds-full.txt']]) if (!read(a).includes(PUBLIC + b)) err(`${a} 가 ${b} 를 가리키지 않음`);
   const reg = readJson('components.json').components.length;
   const listed = (read('site/components/index.md').match(/^- \[/gm) || []).length;
   if (listed !== reg) err(`components/index.md 목록 ${listed}개, 컴포넌트 ${reg}개`);

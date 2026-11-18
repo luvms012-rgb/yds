@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/citation.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/citation.html -->
 
 # Citation
 

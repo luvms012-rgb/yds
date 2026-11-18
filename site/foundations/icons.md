@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/foundations/icons.html -->
+<!-- https://design.ybmnet.co.kr/yds/foundations/icons.html -->
 
 # Iconography
 

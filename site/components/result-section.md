@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/result-section.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/result-section.html -->
 
 # Result Section
 

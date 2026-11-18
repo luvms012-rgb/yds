@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/popover.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/popover.html -->
 
 # Popover
 

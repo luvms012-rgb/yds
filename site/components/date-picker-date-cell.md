@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/date-picker-date-cell.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/date-picker-date-cell.html -->
 
 # Date Picker / Date Cell
 

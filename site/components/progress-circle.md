@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/progress-circle.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/progress-circle.html -->
 
 # Progress Circle
 

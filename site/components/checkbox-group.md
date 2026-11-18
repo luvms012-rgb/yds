@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/checkbox-group.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/checkbox-group.html -->
 
 # Checkbox Group
 

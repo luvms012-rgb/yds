@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/mega-menu.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/mega-menu.html -->
 
 # Mega Menu
 

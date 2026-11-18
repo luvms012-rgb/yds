@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/description-list.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/description-list.html -->
 
 # Description List
 

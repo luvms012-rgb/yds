@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/top-navigation.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/top-navigation.html -->
 
 # Top Navigation
 
@@ -61,7 +61,7 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
 ```html
 <header class="ds-topnav">
   <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://design.ybmnet.co.kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
+    <a class="ds-topnav__heading" href="#"><img src="https://design.ybmnet.co.kr/yds/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
     <nav class="ds-topnav__menu" aria-label="주요 메뉴">
       <a class="ds-topnav__item" href="#">홈</a>
       <a class="ds-topnav__item" href="#" aria-current="page">강의</a>
@@ -84,7 +84,7 @@ PC 화면 맨 위에 로고, 주요 메뉴, 검색과 로그인을 한 줄로 �
 ```html
 <header class="ds-topnav" data-layout="center">
   <div class="ds-topnav__left">
-    <a class="ds-topnav__heading" href="#"><img src="https://design.ybmnet.co.kr/yds/site/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
+    <a class="ds-topnav__heading" href="#"><img src="https://design.ybmnet.co.kr/yds/assets/logo-ybmnet.svg" alt="YBM NET" width="68" height="20"></a>
     <nav class="ds-topnav__menu" aria-label="주요 메뉴">
       <a class="ds-topnav__item" href="#">홈</a>
       <a class="ds-topnav__item" href="#" aria-current="page">강의</a>

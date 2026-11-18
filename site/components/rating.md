@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/rating.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/rating.html -->
 
 # Rating
 

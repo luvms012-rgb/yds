@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/quantity-picker.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/quantity-picker.html -->
 
 # Quantity Picker
 

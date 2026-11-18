@@ -1,4 +1,4 @@
-<!-- https://design.ybmnet.co.kr/yds/site/components/chip.html -->
+<!-- https://design.ybmnet.co.kr/yds/components/chip.html -->
 
 # Chip
 
