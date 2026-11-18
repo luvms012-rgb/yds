@@ -337,7 +337,8 @@ async function renderS(el, parent, sh) {
   let spacers = null;
   if (!wrap && s.jc !== 'space-between' && flow.length > 1) {
     const gaps = []; for (let i = 1; i < flow.length; i++) { const a = flow[i - 1].b, b = flow[i].b; gaps.push(H ? b[0] - (a[0] + a[2]) : b[1] - (a[1] + a[3])); }
-    const mn = Math.min(...gaps); f.itemSpacing = mn; if (gaps.some((g) => Math.abs(g - mn) > 1)) spacers = gaps.map((g) => g - mn);
+    // 틈이 고르지 않으면 간격 0 에 틈마다 gap 칸을 넣는다. 간격을 남기면 gap 칸 앞뒤로 간격이 두 번 붙어 사이트보다 넓어진다 (2026-11-18)
+    const mn = Math.min(...gaps); f.itemSpacing = mn; if (gaps.some((g) => Math.abs(g - mn) > 1)) { f.itemSpacing = 0; spacers = gaps.map((g) => Math.max(g, 0)); }
   }
   const J = { center: 'CENTER', 'flex-end': 'MAX', end: 'MAX', right: 'MAX', 'space-between': 'SPACE_BETWEEN' };
   const A = { center: 'CENTER', 'flex-end': 'MAX', end: 'MAX', baseline: H ? 'BASELINE' : 'MIN' };

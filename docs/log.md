@@ -12,6 +12,23 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-18 회사 Windows
+
+- **Get Started**: 프롬프트 상자는 타이핑하는 동안 흰 바탕에 파랑/보라 글로우가 잔잔히 흐르고 끝나면 회색으로(테두리 빛줄기, 제목 그라데이션은 사용자가 지움). 타이핑은 자모 단위. 토큰 팁 버튼 앞 노란 코인(₩, 20px, 다크도 노랑 yellow-800), 누르면 탄성과 점 터짐 뒤 팁 창.
+- **site.js 경량화**: build.mjs `slimJs` 가 주석, 들여쓰기, 빈 줄을 뺀다(89KB → 69KB).
+- **요청 탭(updates-requests.html)**: 코드 상자 대신 카드(작성자 배지, 제목 24, 본문). 카드 안 h2 는 사이트 제목 규칙에서 뺐다(`.ds-card *`).
+- **닫힘 움직임(DS)**: Dialog, Alert Dialog, Bottom Sheet, Side Panel, Lightbox, Command Palette, Popover, Multi Select, Mega Menu, Toolbar 가 나타날 때 움직임을 거꾸로 하며 사라진다(ybm-ds.js `leave`/`stay`, components.css 끝 절). Esc 와 바깥 누름도 같다.
+- **Dialog**: 코드와 Figma 모두 1493:940 기준(제목과 설명 사이 6, 머리 아래 20, 제목 Bold, 내용 16).
+- **템플릿 보기 창 주소 복사**: 아래 줄 Figma 왼쪽에 "주소 복사" 버튼만(템플릿 HTML 전체 주소, 복사하면 초록 체크 Snackbar "링크를 복사했어요").
+- **Figma 그리기 도구 간격 버그**: `tokens/figma-docpage.template.js` 가 틈이 고르지 않은 줄에서 gap 칸 앞뒤로 간격을 한 번 더 붙였다. 간격 0 + 틈마다 gap 칸으로 고침. 이미 그린 컴포넌트 문서 5곳, 템플릿 17개 54곳은 그 자리에서 간격만 고쳤다.
+- **Figma 대표 그림 83개 다시 그림**: 사이트를 잰 뒤(`tokens/figma-styles.mjs`) 대표 그림만 모두 다시 그렸다. 큰 그리기 코드는 `{tpl, items}` 하나로 묶어 `figma-payload.mjs` 로 PNG 에 감싸 한 번 올리고 20개 안팎씩 나눠 실행했다(그림을 읽기 전에 그 사각형이 있는 페이지를 `loadAsync`).
+
+### 2026-11-17 집 Mac 저녁 (인수인계에서 옮김)
+
+- **Get Started 프롬프트 상자**: 자연스러운 요청 글 하나를 한 번만 타이핑하고 멈춘다. 보내기 버튼은 움직이지 않는 회색 그림. 칸이 늘어도 글과 첫 줄 위치가 움직이지 않게.
+- **"안내서" 없앰**: 파일 표 yds.txt 설명은 "AI가 읽는 YDS 설명 파일". 인위적인 틀 문장은 쓰지 않는다.
+- **템플릿 보기 창**: AI 요청 글 복사 버튼과 코드 삭제. 좌우 화살표 바탕이 비치지 않게. 제목 t09 SemiBold.
+
 ### 2026-11-17 회사 Windows 오후 (인수인계에서 옮김)
 
 - **공식 주소 교체**: imagesisa 주소를 https://design.ybmnet.co.kr/yds/ 로(deploy.config.json publicUrl, tokens/links.mjs, check.mjs, server-pack.mjs, 문서, 예시). site/src/services.json 의 cs, signup 화면 주소는 그대로.

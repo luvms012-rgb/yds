@@ -687,7 +687,7 @@
       '<button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기" autofocus></button></span></div>' +
       '<div class="ds-dialog__body"><div class="site-tplv__stage" data-device="desktop"><iframe title="" data-site-frame></iframe></div>' +
       '<div class="site-tplv__code" hidden><figure class="ds-codeblock" data-lang="html"><figcaption class="ds-codeblock__header"><span class="ds-codeblock__language">html</span><button type="button" class="ds-codeblock__copy" data-ds-copy aria-label="코드 복사"><i class="ds-icon ds-icon--copy ds-icon--sm" aria-hidden="true"></i></button></figcaption><pre class="ds-codeblock__code"><code></code></pre></figure></div></div>' +
-      '<div class="ds-dialog__footer site-tplv__foot"><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
+      '<div class="ds-dialog__footer site-tplv__foot"><button type="button" class="ds-btn site-tplv__copy" data-variant="neutralWeak" data-size="small" data-site-copy="" data-site-copy-msg="링크를 복사했어요"><i class="ds-icon ds-icon--link ds-icon--sm" aria-hidden="true"></i>주소 복사</button><a class="ds-btn site-tplv__figma" data-variant="neutralWeak" data-size="small" target="_blank" rel="noopener"><i class="ds-icon site-i--figma ds-icon--sm" aria-hidden="true"></i>Figma</a></div>' +  /* AI 요청 글 복사는 11-17 사용자가 지웠다 */
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="-1" aria-label="이전 템플릿"><i class="ds-icon ds-icon--chevron-left" aria-hidden="true"></i></button>' +
       '<button type="button" class="ds-btn site-tplv__nav" data-variant="neutralWeak" data-layout="iconOnly" data-tplv-step="1" aria-label="다음 템플릿"><i class="ds-icon ds-icon--chevron-right" aria-hidden="true"></i></button>';
     document.body.appendChild(dlg);
@@ -704,6 +704,7 @@
       dlg.querySelector(".ds-dialog__title").textContent = t[1];
       dlg.querySelector(".ds-dialog__desc").textContent = t[2];
       figma.hidden = !t[3]; if (t[3]) figma.href = t[3];
+      dlg.querySelector(".site-tplv__copy").setAttribute("data-site-copy", new URL("pages/" + t[0] + ".html", location.href).href);  /* 템플릿 HTML 전체 주소, 버튼만 (11-18 사용자) */
       frame.title = t[1] + " 미리보기";
       load("pages/" + t[0] + ".html");
       fig.setAttribute("data-site-src", "pages/" + t[0] + ".html"); fig.removeAttribute("data-loaded");

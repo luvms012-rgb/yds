@@ -380,7 +380,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-tplv__code { flex: 1 1 auto; display: flex; min-width: 0; min-height: 0; }
 .site-tplv__code .ds-codeblock { flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; margin: 0; }
 .site-tplv__code .ds-codeblock__code { flex: 1 1 auto; min-height: 0; max-height: none; overflow: auto; }
-.site-tplv__foot { justify-content: flex-end; padding-top: var(--ds-space-x4); padding-bottom: var(--ds-space-x4); }  /* 아래 줄: Figma (오른쪽), 주소 복사는 11-18 뺌 */
+.site-tplv__foot { justify-content: flex-end; padding-top: var(--ds-space-x4); padding-bottom: var(--ds-space-x4); }  /* 아래 줄 오른쪽: 주소 복사(버튼만, 11-18 저녁), Figma */
 .site-tplv__foot > .ds-btn { flex: none; }
 .site-tplv__foot > .ds-btn[hidden] { display: none; }
 .site-tplv iframe { flex: 1 1 auto; width: 100%; min-height: 0; background: var(--ds-color-bg-layer-default); border: 1px solid var(--site-box-line); border-radius: var(--ds-shape-xl); }
