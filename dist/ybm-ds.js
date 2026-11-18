@@ -60,6 +60,10 @@
       el.setAttribute("data-state", "closed");
       document.body.appendChild(el);
     }
+    // 2026-11-18: 모달(Dialog, Bottom Sheet)이 열려 있으면 맨 위 모달 안으로 옮겨 오버레이보다 위에 보이게 한다. 없으면 body
+    var host = document.body;
+    try { var mods = document.querySelectorAll("dialog:modal"); if (mods.length) host = mods[mods.length - 1]; } catch (e) {}
+    if (el.parentNode !== host) host.appendChild(el);
     el.textContent = "";
     var tone = opts.tone || opts.variant;   // 예전 이름 variant 도 받는다
     el.removeAttribute("data-variant");

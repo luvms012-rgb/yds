@@ -528,7 +528,7 @@ write({
   <li><strong>서비스</strong><span>YDS에 브랜드를 더해 실제 화면을 만듭니다.</span></li>
 </ol>
 
-<h2 id="ai">AI로 시작하기</h2>
+<h2 id="ai">AI로 빠르게 시작하기</h2>
 <div class="site-gs__ai-head"><p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="site-tips"><i class="ds-icon ds-icon--lightbulb ds-icon--sm" aria-hidden="true"></i>토큰 아끼는 팁</button></div>
 ${PROMPT_BOX}
 <dialog class="ds-dialog" id="site-tips" aria-labelledby="site-tips-title">
