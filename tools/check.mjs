@@ -175,6 +175,7 @@ check('4 마크다운', ({ err }) => {
     if (/^v\d+\.\d+\.\d+\//.test(u)) continue; // 버전 폴더는 서버 묶음에만 있다(tools/server-pack.mjs 가 git 태그에서 꺼냄)
     if (!fs.existsSync(path.join(R, u))) err(`${f} 깨진 주소 ${u}`);
   }
+  // "YDS(YBM Design System)" 풀이는 2026-11-18 사용자가 넣었다(예전 이름으로 세지 않는다)
   // 예전 이름은 이미 복사해 간 요청 글을 위해 남긴다. 2026-11-17 경량화부터 새 파일을 가리키는 한 줄
   for (const [a, b] of [['site/llms.txt', 'yds.txt'], ['site/llms-full.txt', 'yds-full.txt']]) if (!read(a).includes(PUBLIC + 'site/' + b)) err(`${a} 가 ${b} 를 가리키지 않음`);
   const reg = readJson('components.json').components.length;
@@ -198,7 +199,7 @@ check('5 싱크', ({ err }) => {
   const entry = read('dist/ybm-ds.css');
   if (entry !== bundle()) err('dist/ybm-ds.css 가 원본 CSS 와 다름 (node tools/bundle.mjs)');
   for (const p of ['tokens.css', 'base.css', 'icons.css', 'components.css', 'utilities.css']) if (!entry.includes(p)) err(`ybm-ds.css 가 ${p} 를 불러오지 않음`);
-  for (const f of ['README.md', 'site/yds.txt', 'dist/components.css', 'dist/ybm-ds.css', 'dist/ybm-ds.js', 'site/index.html', 'site/ai/AGENTS.md']) if (/YBM DS|YBM Design System/.test(read(f).replace(/컬렉션 「YBM DS」/g, ''))) err(`예전 이름 YBM DS 가 남음 ${f}`);
+  for (const f of ['README.md', 'site/yds.txt', 'dist/components.css', 'dist/ybm-ds.css', 'dist/ybm-ds.js', 'site/index.html', 'site/ai/AGENTS.md']) if (/YBM DS|YBM Design System/.test(read(f).replace(/컬렉션 「YBM DS」/g, '').replace(/YDS\(YBM Design System\)/g, ''))) err(`예전 이름 YBM DS 가 남음 ${f}`);
   for (const f of ['dist/components.css', 'dist/base.css', 'dist/utilities.css', 'dist/tokens.css', 'site/src/site.css']) if (/--ybm-/.test(read(f))) err(`예전 토큰 이름 --ybm- 이 남음 ${f}`);
   const ver = read('VERSION').trim();
   if (!/^\d+\.\d+\.\d+$/.test(ver)) err(`VERSION 이 x.y.z 모양이 아님: ${ver}`);

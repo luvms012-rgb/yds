@@ -319,7 +319,7 @@ function sideNav(section, file, root) {
 }
 
 // 사이트 찾기 범위 (site.js 의 종류 이름과 같다)
-const SEARCH_SCOPES = [['all', '전체'], ['comp', '컴포넌트'], ['tpl', '템플릿'], ['found', 'Foundations'], ['token', '토큰'], ['icon', '아이콘'], ['start', '시작하기']];
+// 찾기 범위 칩(SEARCH_SCOPES)은 11-18 사용자가 지웠다
 const iconBtn = (attrs, label, inner) => `<button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="${esc(label)}" ${attrs}>${inner}</button>`;
 // Best Practices 표 - [할 것(true) / 하지 말 것(false), 문장]
 const practices = (items) => table(['구분', '내용'], [...items.filter(([ok]) => ok), ...items.filter(([ok]) => !ok)].map(([ok, text]) => [`<b class="ds-badge site-practice" data-tone="${ok ? 'positive' : 'critical'}">${ok ? 'Do' : 'Don\'t'}</b>`, inline(text)]));
@@ -416,8 +416,8 @@ ${layout === 'doc' ? `<aside class="site-toc" aria-label="이 페이지 목차">
 </div>
 <button type="button" class="ds-btn site-totop" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="맨 위로" data-site-totop aria-hidden="true" tabindex="-1"><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i></button>
 <dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
-  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input></div>
-  <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small" data-inset="none">${SEARCH_SCOPES.map(([k, l], i) => `<button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="${i === 0}" data-site-search-scope="${k}">${l}</button>`).join('')}</div></div>
+  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘 이름으로 찾기" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input></div>
+  <!-- 범위 칩은 11-18 사용자가 지웠다 -->
   <div class="ds-command__list" id="site-search-list" role="listbox" aria-label="찾은 결과" data-site-search-list data-root="${root}"></div>
 </dialog>
 </body>
@@ -466,8 +466,7 @@ const AI_EXAMPLES = [
 // 11-17 사용자 "한 번만 타이핑하고 정지, 버튼은 회색 그대로, 자연스러운 일반 문장으로": 요청 글 하나를 한 번 쳐 놓고 멈춘다. 버튼은 꾸밈(누르지 않음)
 const PROMPT_TEXTS = [`수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.\nYDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.\n${SITE_URL}yds.txt`];  // 문장은 사용자가 고른 그대로(11-18), 주소는 AI 가 YDS 를 읽게 다음 줄에
 const PROMPT_BOX = `<div class="site-pbox" data-site-pbox data-prompts="${esc(JSON.stringify(PROMPT_TEXTS))}">
-  <textarea class="site-pbox__field" rows="1" readonly aria-label="AI 요청 글 예시">${esc(PROMPT_TEXTS[0])}</textarea>
-  <span class="site-pbox__send" aria-hidden="true"><i class="ds-icon ds-icon--arrow-up ds-icon--sm"></i></span>
+  <div class="site-pbox__field" role="textbox" aria-readonly="true" aria-multiline="true" aria-label="AI 요청 글 예시"><span class="site-pbox__text">${esc(PROMPT_TEXTS[0])}</span><span class="site-pbox__caret" aria-hidden="true"></span></div>
 </div>`;
 // 브랜드 만들기 (11-09 사용자 "YDS를 근간으로 두고 브랜드를 구성하는 방법으로"). 예시 이름은 특정 서비스가 아닌 my-brand, 예시 색은 흰 글자 대비 4.5 이상
 const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
@@ -516,10 +515,10 @@ const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-segmented site
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
 const hubCard = (href, title, desc, out = false) => `<a class="ds-card site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="ds-card__header"><span class="ds-card__title site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="ds-card__desc">${esc(desc)}</span></span></a>`;
 write({
-  file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.', layout: 'page',
+  file: 'index.html', section: 'get-started', title: 'Get Started', desc: 'YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.', layout: 'page',
   body: `<header>
   <h1 class="site-h1">Get Started</h1>
-  <p class="site-lead">YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
+  <p class="site-lead">YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
 </header>
 
 <h2 id="structure">구조</h2>
@@ -529,17 +528,25 @@ write({
   <li><strong>서비스</strong><span>YDS에 브랜드를 더해 실제 화면을 만듭니다.</span></li>
 </ol>
 
-<h2 id="ai">AI와 함께 시작하기</h2>
-<p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p>
+<h2 id="ai">AI로 시작하기</h2>
+<div class="site-gs__ai-head"><p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="site-tips"><i class="ds-icon ds-icon--lightbulb ds-icon--sm" aria-hidden="true"></i>토큰 아끼는 팁</button></div>
 ${PROMPT_BOX}
+<dialog class="ds-dialog" id="site-tips" aria-labelledby="site-tips-title">
+  <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="site-tips-title">토큰 아끼는 팁</h2><button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
+  <div class="ds-dialog__body"><ul class="site-tips">
+    <li>yds-full.txt 대신 yds.txt 주소를 넣으세요.<br><code>${SITE_URL}yds.txt</code></li>
+    <li>참고할 템플릿이나 컴포넌트 이름을 적어 주세요. AI가 찾느라 여러 파일을 읽지 않습니다.</li>
+    <li>규칙 파일은 프로젝트에 두고 사용하세요.</li>
+  </ul></div>
+  <div class="ds-dialog__footer"><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="medium" data-ds-close>확인</button></div>
+</dialog>
 
 <h2 id="figma">Figma로 시작하기</h2>
-<p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.</p>
+<p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.</p>
 <ol class="site-gs__layers">
-  <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
-  <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
+  <li><strong>YDS 라이브러리로 디자인하기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.</span></li>
 </ol>
-<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">워크 게시판</a>에 팀 초대를 요청하세요.</p></div>
+<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-callout__link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">워크 게시판</a>에 권한을 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기</h2>
 <p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
@@ -550,11 +557,11 @@ curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}
 
 <h2 id="files">파일</h2>
 ${table(['파일', '무엇인가요', '언제 쓰나요'], [
-  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'AI가 읽는 YDS 설명 파일', '가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요.'],
-  [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma로 화면을 그릴 때 켭니다. 디자이너는 이것 하나면 됩니다.'],
-  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', 'AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다.'],
-  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 yds.txt 주소를 넣지 않아도 됩니다.'],
-  [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.'],
+  [`<a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a>`, 'AI가 읽는 YDS 설명 파일', 'AI에게 화면을 부탁할 때 요청 글에 이 주소를 함께 넣어 주세요.'],
+  [`<a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">Figma 라이브러리</a>`, 'YDS 컴포넌트와 변수가 담긴 Figma 파일', 'Figma에서 화면을 디자인할 때 라이브러리로 켜 주세요.'],
+  [`<a class="ds-link" href="yds-full.txt" download>yds-full.txt</a>`, '컴포넌트 사용법과 규칙을 모은 파일 하나', 'AI가 주소를 열지 못하면 yds.txt 대신 이 파일을 첨부해 주세요.'],
+  [`<span class="site-gs__rules">${['CLAUDE.md', 'yds.mdc', 'AGENTS.md'].map((f) => `<a class="ds-link" href="ai/${f}" target="_blank" rel="noopener">${f}</a>`).join('')}</span>`, '코딩 도구용 YDS 규칙 파일', '코딩 도구를 쓸 때 프로젝트 맨 위 폴더에 넣어 두세요. 요청할 때마다 yds.txt 주소를 넣지 않아도 됩니다.'],
+  [`<a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a>`, 'YDS 규칙 검사 스크립트', '화면을 다 만든 뒤 한 번 실행해 보세요. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.'],
   // 등록된 브랜드 파일 줄은 2026-11-18 사용자가 지웠다
   ...(SHOW_THEMES ? [['Themes', '테마 CSS 주소와 어울리는 서비스', '테마를 선택할 때']] : []),
 ]).replace('class="ds-table"', 'class="ds-table site-gs__files"')}
@@ -1177,15 +1184,21 @@ ${RELEASES.map((r) => `<section class="site-group site-release">
 </section>`).join('\n')}`,
 });
 
-// 요청 탭 (2026-11-18 사용자 "요청 표 모두 삭제, 요청 방법은 아주 심플하게, 내용은 자유롭게, 폼은 불필요"): 제목 예시 하나와 워크 게시판 버튼만
-const REQ_TITLE = '[디자인시스템] Date Picker 기간 선택 추가 요청';
+// 요청 탭 (2026-11-18 사용자 "요청 표 모두 삭제, 요청 방법은 아주 심플하게, 폼은 불필요", 이어서 "꼭 이렇게 써야 할 것 같은 문장 금지, 제목과 내용은 자유롭게, 자유로운 예시"): 자유롭게 쓴 예시 하나와 워크 게시판 버튼만
+const REQ_EXAMPLE = `[기획팀] 달력에서 기간 고르기 추가 요청
+
+안녕하세요.
+기획팀 김○○입니다.
+수강 신청 화면에서 수강 기간을 고르려고 하는데, 달력에서 기간도 고를 수 있게 해 주실 수 있을까요?
+- 쓰는 곳: 수강 신청, 결제 내역 조회
+- 필요한 것: 달력 하나에서 시작일과 종료일을 한 번에 고르기
+- 참고 화면: 다른 서비스의 기간 고르기 화면 캡처를 첨부했습니다.
+확인 부탁드립니다. 감사합니다.`;  // 11-18 사용자 "너무 짧고 이상해, YDS 맥락에 맞게": 실제 사내 요청 글 모양(말머리 제목, 인사, 요청, 목록, 끝인사), 이어서 "쉬운 용어로, 팀은 기획팀": 컴포넌트 이름 대신 쉬운 말
 write({
   file: 'updates-requests.html', section: 'updates', title: 'Updates', desc: 'YDS 요청 방법', layout: 'page',
   body: `<header><h1 class="site-h1">Updates</h1><p class="site-lead">YDS 요청은 사내 워크 게시판으로 받습니다.</p></header>
 ${updTabs('updates-requests.html')}
-<h2 id="how">요청 방법</h2>
-<p>제목을 아래처럼 적고, 내용은 자유롭게 써 주세요.</p>
-${codeblock(REQ_TITLE, 'text', ' data-wrap', '제목')}
+${codeblock(REQ_EXAMPLE, 'text', ' data-wrap', '예시')}
 <div class="site-meta site-req__send">${btn(FEEDBACK_FORM, '워크 게시판에 쓰기', 'neutralSolid', 'small', 'square-pen')}</div>`,
 });
 
@@ -1353,6 +1366,7 @@ console.log(`  ✔ 사이트 ${written.length}쪽 생성 (컴포넌트 ${comps.l
   // 아이콘: 이름과 쓰임 (아이콘 Library 의 찾기 칸에 넣어 연다)
   for (const [g, m] of ICON_GROUPS) for (const [n, use] of Object.entries(m)) add('icon', n, `foundations/icons-library.html#q=${n}`, use, `${g} ${iconKo(n)}`);
   fs.writeFileSync(path.join(SITE, 'assets/search.json'), JSON.stringify(items));
+  fs.writeFileSync(path.join(SITE, 'assets/search.js'), 'window.__ydsSearch=' + JSON.stringify(items) + ';');  // 파일로 열었을 때(fetch 가 막힘) 읽는 같은 목록 (11-18)
   // NEW 표시 기준 값 한 곳(2026-11-16 사용자 "NEW 가 마음대로"): 페이지 HTML 은 브라우저가 10분 캐시해 페이지마다 값이 달라질 수 있어, 모든 페이지가 이 파일을 새로 읽어 판단한다
   fs.writeFileSync(path.join(SITE, 'assets/latest.json'), JSON.stringify({ u: LATEST_UPDATE, r: LATEST_REQUEST }));
   console.log(`  ✔ 사이트 찾기 목록 ${items.length}개 (assets/search.json)`);

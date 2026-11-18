@@ -34,6 +34,8 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-top { position: sticky; top: 0; z-index: var(--ds-z-sticky); height: var(--site-top); background: color-mix(in srgb, var(--ds-color-bg-layer-default) 80%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .site-top .ds-topnav__heading > img { height: 24px; }  /* YBM NET 공식 로고 그대로 - 색, 비율을 바꾸지 않는다 */
 .site-top .ds-topnav__end { grid-column: 3; gap: 2px; }
+.site-top .ds-topnav__item { font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); font-weight: var(--ds-font-weight-regular); }  /* 위 메뉴 글자는 16 (11-18 사용자 "16으로 원복") */
+.site-top .ds-topnav__item[aria-current="page"] { font-weight: var(--ds-font-weight-semibold); }
 .site-top .ds-topnav__end .ds-btn[data-layout="iconOnly"] { --ds-btn-height: 40px; --ds-btn-icon-only: 20px; --ds-btn-radius: var(--ds-shape-pill); --ds-btn-bg: transparent; --ds-btn-bg-pressed: var(--ds-color-bg-neutral-weak-alpha); --ds-btn-fg: var(--ds-color-fg-neutral); }  /* 2026-11-04: 32 / 아이콘 16 은 작아 40 / 20 으로 */
 .site-top .ds-topnav__menu, .site-only-wide { display: none; }
 @media (min-width: 768px) {
@@ -147,8 +149,9 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-doc header p.site-lead { margin-top: var(--ds-space-x4); color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t05); line-height: 24px; font-weight: var(--ds-font-weight-regular); letter-spacing: 0; }
 @media (min-width: 768px) { .site-h1 { font-size: var(--ds-font-size-t14); line-height: 52px; } }
 .site-doc > * + * { margin-top: var(--ds-space-x4); }
+.site-doc > dialog { margin: revert-layer; }  /* 위 규칙의 위 여백이 Dialog 가운데 정렬(margin auto)을 깨지 않게, DS 값으로 되돌린다 (11-18 사용자 "모달 위치가 왜 맨 위")
 /* 본문 글자 규칙은 미리보기(.pv-stage, .site-tile__inner) 안의 부품에는 적용하지 않는다. 사이트 CSS 는 cascade layer 밖이라 DS 부품 스타일보다 세서, 그대로 두면 부품 제목에 큰 여백이 생긴다 */
-.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { position: relative; margin-top: var(--ds-space-x12); font-size: var(--ds-font-size-t09); line-height: 32px; font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }  /* 24/32 SemiBold (11-04 사용자), 위 48 */
+.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *) { position: relative; margin-top: var(--ds-space-x12); font-size: var(--ds-font-size-t09); line-height: 32px; font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }  /* 24/32 SemiBold (11-04 사용자), 위 48 */
 .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x8); font-size: var(--ds-font-size-t07); line-height: 32px; font-weight: var(--ds-font-weight-regular); letter-spacing: 0; }  /* 20/32 Medium, 위 32 */
 .site-doc > header + h2 { margin-top: var(--ds-space-x12); }
 .site-doc > h2 + * { margin-top: var(--ds-space-x4); }  /* 제목 아래는 h2, h3 모두 12 (11-04 사용자 "사이 여백 일정하게") */
@@ -462,7 +465,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-doc > .site-pagetabs ~ h2:not(.pv-stage *) { margin-top: var(--ds-space-x10); font-size: var(--ds-font-size-t07); line-height: 28px; font-weight: var(--ds-font-weight-medium); }
 .site-doc > .site-pagetabs ~ h2 + * { margin-top: var(--ds-space-x4); }
 /* Updates > 요청 (11-14): 요청 이름 아래 소속과 날짜, 반영 칸은 날짜 아래 내용 */
-.site-req__send { margin-top: var(--ds-space-x4); }  /* 워크 게시판에 쓰기는 작성 예시 바로 아래 (11-17) */
+.site-req__send { display: flex; justify-content: flex-end; margin-top: var(--ds-space-x4); }  /* 워크 게시판에 쓰기는 작성 예시 바로 아래 오른쪽 (11-18) */
 .site-doc > .site-pagetabs ~ .ds-codeblock + .ds-codeblock { margin-top: var(--ds-space-x2); }
 .site-pagetabs .site-newdot { margin-left: var(--ds-space-x1); }  /* Updates 탭의 새 내용 점 (11-14) */
 
@@ -524,7 +527,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-gs__panel[hidden] { display: none; }
 .site-gs__panel .ds-codeblock { margin: 0; }
 .site-gs__layers { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-x8); margin: 0; padding: 0; list-style: none; }
-.site-gs__layers li { position: relative; display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: var(--ds-space-x6); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
+.site-gs__layers li { position: relative; display: flex; flex-direction: column; gap: var(--ds-space-x2); margin: 0; padding: var(--ds-space-x6); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }  /* Get Started 상자는 모두 회색으로 채운다(구조, Figma, 프롬프트 상자, 11-18 사용자 "박스를 bg로 채울 것") */
 .site-gs__layers strong { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-semibold); }
 .site-gs__layers span { color: var(--ds-color-fg-neutral-muted); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; }
 .site-gs__layers li + li::before { content: ""; position: absolute; top: calc(var(--ds-space-x7) * -1); left: calc(50% - var(--ds-space-x3)); width: var(--ds-space-x6); height: var(--ds-space-x6); background: var(--ds-color-fg-neutral-subtle); -webkit-mask: var(--ds-icon-chevron-down) center / contain no-repeat; mask: var(--ds-icon-chevron-down) center / contain no-repeat; }
@@ -532,7 +535,22 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
   .site-gs__layers { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }  /* 카드 수만큼 폭을 나눈다 */
   .site-gs__layers li + li::before { top: calc(50% - var(--ds-space-x3)); left: calc(var(--ds-space-x7) * -1); -webkit-mask-image: var(--ds-icon-chevron-right); mask-image: var(--ds-icon-chevron-right); }
 }
-.site-doc .site-gs__callout { margin-top: var(--ds-space-x4); }  /* Figma 단계 카드 아래 안내 (11-10 밤 사용자 "Callout 로") */
+.site-doc > h2 + .site-gs__ai-head { display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-x4); margin-top: var(--ds-space-x2); }  /* AI 절 설명 줄 오른쪽 끝에 "토큰 아끼는 팁" 버튼, 누르면 DS Dialog (11-18) */
+.site-gs__ai-head > p { margin: 0; }
+.site-gs__ai-head > .ds-btn { flex: none; margin-block: calc(var(--ds-space-x1_5) * -1); }  /* 버튼 높이가 줄 높이를 늘리지 않게 위아래 -6, 제목 아래 여백이 다른 절과 같다 */
+.site-gs__ai-head:has(+ .site-pbox.is-typing) > .ds-btn { opacity: 0; visibility: hidden; }
+.site-gs__ai-head:has(+ .site-pbox.is-done) > .ds-btn { animation: site-tip-drop 900ms cubic-bezier(0.22, 1, 0.36, 1) 250ms both; }  /* 요청 글을 다 치면 잠깐 뒤 위에서 떨어져 살짝 튕기고 멈춘다 (11-18) */
+@keyframes site-tip-drop {
+  0% { opacity: 0; transform: translateY(-24px); }
+  45% { opacity: 1; transform: translateY(4px); }
+  70% { transform: translateY(-2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) { .site-gs__ai-head > .ds-btn { animation: none !important; } }
+.site-doc > .site-gs__ai-head + * { margin-top: var(--ds-space-x6); }
+.site-tips { display: grid; gap: var(--ds-space-x2); margin: 0; padding-left: var(--ds-space-x5); list-style: disc; color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; }
+.site-tips li { margin: 0; }
+.site-doc .site-gs__callout { margin-top: var(--ds-space-x4); }  /* Figma 상자 아래 권한 안내 Callout (11-18 상자 안에 합쳤다가 사용자 "원복") */
 .site-gs__rules { display: flex; flex-wrap: wrap; gap: var(--ds-space-x1) var(--ds-space-x4); }  /* 규칙 파일 세 개를 가로로 (11-10 밤 사용자) */
 .site-gs__files td:first-child a { white-space: nowrap; }
 /* AI 요청 글 상자 (2026-11-16 사용자 첫 화면 UX): 한글 머리 칸은 본문 글꼴(고정폭이면 글자 사이가 벌어짐), 바꿀 빈칸 [ ] 은 파랑(사이트 브랜드는 흑백이라 fg-informative) */
@@ -574,7 +592,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 @media (min-width: 768px) { .site-doc header p.site-lead { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); } }
 .site-doc > header .site-meta { margin-top: var(--ds-space-x7); }
 /* 섹션 제목, 소제목, 본문 */
-.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x16); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
+.site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *) { margin-top: var(--ds-space-x16); font-size: var(--ds-font-size-t10); line-height: var(--ds-line-height-t10); font-weight: var(--ds-font-weight-semibold); letter-spacing: 0; }
 .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x10); font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); font-weight: var(--ds-font-weight-medium); letter-spacing: 0; }
 .site-doc > header + h2 { margin-top: var(--ds-space-x16); }
 .site-doc > h2 + * { margin-top: var(--ds-space-x4); }  /* 11-05 사용자: h2 아래 16 */
@@ -585,7 +603,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-doc > h3 + p + :not(h2, h3, p) { margin-top: var(--ds-space-x4); }
 .site-doc > p + p { margin-top: var(--ds-space-x3); }
 @media (min-width: 768px) {
-  .site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x20); font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); }
+  .site-doc h2:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *, .ds-dialog *) { margin-top: var(--ds-space-x20); font-size: var(--ds-font-size-t11); line-height: var(--ds-line-height-t11); }
   .site-doc h3:not(.pv-stage *, .site-tile__inner *, .site-example__preview *, .site-tpl *) { margin-top: var(--ds-space-x12); font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); }
   .site-doc > header + h2 { margin-top: var(--ds-space-x20); }
 }
@@ -680,7 +698,11 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 @media (prefers-reduced-motion: reduce) { .site-totop, .site-totop[data-show] { translate: none; scale: none; transition: opacity var(--ds-duration-fast) linear, visibility 0s linear var(--ds-duration-fast); } .site-totop[data-show] { transition: opacity var(--ds-duration-fast) linear, visibility 0s; } }
 @media (max-width: 767px) { .site-totop { right: var(--ds-space-x4); bottom: var(--ds-space-x4); } }
 /* 프롬프트 상자 (2026-11-17, Get Started AI 절): 요청 글 칸 + 회색 보내기 그림 한 줄, 칸 높이는 site.js 스프링 */
-.site-pbox { display: flex; align-items: flex-end; gap: var(--ds-space-x2_5); margin-top: var(--ds-space-x4); padding: var(--ds-space-x2_5) var(--ds-space-x2_5) var(--ds-space-x2_5) var(--ds-space-x4_5); border: 1px solid var(--ds-color-stroke-neutral-weak); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-layer-default); }
+.site-pbox { display: flex; align-items: flex-end; gap: var(--ds-space-x2_5); margin-top: var(--ds-space-x4); padding: var(--ds-space-x2_5) var(--ds-space-x4_5); border-radius: var(--ds-shape-xl); background: var(--ds-color-bg-neutral); }
 .site-pbox__field { flex: 1; min-width: 0; height: calc(var(--ds-line-height-t05) + var(--ds-space-x1)); margin: 0 0 var(--ds-space-x1) 0; padding: var(--ds-space-x1) 0 0;  /* 위 4 여백: 한 줄일 때도 칸 + 아래 여백이 보내기 버튼 높이(32)와 같아 줄이 늘어도 첫 줄이 움직이지 않는다(11-17) */ border: 0; outline: none; resize: none; overflow: hidden; background: none; color: var(--ds-color-fg-neutral); font: inherit; font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); word-break: keep-all; caret-color: var(--ds-color-fg-neutral); }
-.site-pbox__field::placeholder { color: var(--ds-color-fg-placeholder); }
-.site-pbox__send { flex: none; display: grid; place-items: center; width: var(--ds-space-x8); height: var(--ds-space-x8); border-radius: var(--ds-shape-pill); background: var(--ds-color-bg-neutral-weak-alpha); color: var(--ds-color-fg-neutral-muted); }  /* 움직이지 않는 회색 그림 (11-17 사용자) */
+.site-pbox__field { white-space: pre-wrap; overflow-wrap: anywhere; cursor: text; }
+.site-pbox__caret { display: inline-block; width: 2px; height: 1.15em; margin-left: 1px; vertical-align: -0.2em; background: var(--ds-color-fg-neutral); animation: site-caret 1.06s steps(1) infinite; }  /* 깜빡이는 커서, 치는 동안은 켜 둔다 (11-18) */
+.site-pbox.is-typing .site-pbox__caret { animation: none; }
+.site-pbox.is-done .site-pbox__caret { display: none; }
+@keyframes site-caret { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .site-pbox__caret { animation: none; } }

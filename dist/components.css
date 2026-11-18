@@ -1816,8 +1816,8 @@ a.ds-callout:active, button.ds-callout:active { filter: brightness(0.97); }
 .ds-dialog__header {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-x4);
-  padding: var(--ds-space-x6) var(--ds-space-x5) var(--ds-space-x4);
+  gap: var(--ds-space-x1_5);  /* 2026-11-18: 제목과 설명을 붙임(Figma 기준) */
+  padding: var(--ds-space-x6) var(--ds-space-x5) var(--ds-space-x5);
 }
 .ds-dialog__title { padding-right: 40px; font-size: var(--ds-font-size-t07); line-height: var(--ds-line-height-t07); font-weight: var(--ds-font-weight-bold); }
 .ds-dialog__header:not(:has(.ds-dialog__close)) .ds-dialog__title { padding-right: 0; }

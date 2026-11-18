@@ -908,19 +908,23 @@ document.addEventListener("click", function (e) {
   var ORDER = ["comp", "tpl", "ex", "found", "token", "icon", "start"];
   var SCOPE = { all: ORDER, comp: ["comp", "ex"], tpl: ["tpl"], found: ["found"], token: ["token"], icon: ["icon"], start: ["start"] };
   var RECENT = "ybm-site-search-recent";
-  var data = null, loading = null, scope = "all";
+  var data = null, loading = null, scope = "all";  /* 범위 칩과 "n개 더 보기" 는 11-18 지움 */
 
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function norm(s) { return String(s || "").toLowerCase(); }
   function load() {
     if (data || loading) return loading;
-    loading = fetch(ROOT + "assets/search.json", { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (a) {
+    // 읽기 실패만 안내하고 다음에 열 때 다시 읽는다. 그리기는 따로(그리기 오류를 읽기 실패로 보이지 않게, 11-18)
+    // 파일로 열면 fetch 가 막혀 같은 목록을 담은 search.js 를 script 로 읽는다 (11-18)
+    function viaScript() { return new Promise(function (ok, no) { if (window.__ydsSearch) return ok(window.__ydsSearch); var s = document.createElement("script"); s.src = ROOT + "assets/search.js"; s.onload = function () { window.__ydsSearch ? ok(window.__ydsSearch) : no(); }; s.onerror = no; document.head.appendChild(s); }); }
+    var get = location.protocol === "file:" ? viaScript() : fetch(ROOT + "assets/search.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(viaScript);
+    loading = get.then(function (a) {
       data = a.map(function (x) { return { type: x[0], title: x[1], url: x[2], desc: x[3], keys: x[4], t: norm(x[1]), k: norm(x[4]), d: norm(x[3]) }; });
-      render();
-    }).catch(function () { list.innerHTML = '<p class="ds-command__empty">찾기 목록을 불러오지 못했어요. 새로 고친 뒤 다시 열어 주세요.</p>'; });
+    }, function () { loading = null; list.innerHTML = '<p class="ds-command__empty">목록을 불러오지 못했어요. 잠시 뒤에 다시 열어 주세요.</p>'; });
+    loading.then(function () { if (data) render(); });
     return loading;
   }
-  function recent() { try { return JSON.parse(localStorage.getItem(RECENT)) || []; } catch (e) { return []; } }
+  function recent() { try { var r = JSON.parse(localStorage.getItem(RECENT)); return Array.isArray(r) ? r.filter(function (x) { return x && typeof x.title === "string" && typeof x.url === "string" && TYPES[x.type]; }) : []; } catch (e) { return []; } }  /* 옛 모양 기록은 버린다 */
   function remember(it) {
     try { var r = recent().filter(function (x) { return x.url !== it.url; }); r.unshift({ type: it.type, title: it.title, url: it.url, desc: it.desc }); localStorage.setItem(RECENT, JSON.stringify(r.slice(0, 5))); } catch (e) {}
   }
@@ -967,19 +971,23 @@ document.addEventListener("click", function (e) {
     if (!terms.length) {
       var r = recent();
       if (r.length) html += group("최근 연 것", r, [], 0);
-      var pick = data.filter(function (it) { return types.indexOf(it.type) >= 0; });
-      if (scope === "all") pick = data.filter(function (it) { return it.type === "start" || ["Color", "Typography", "Spacing", "Icon Library"].indexOf(it.title) >= 0; });
-      html += group(scope === "all" ? "바로 가기" : (TYPES[types[0]] || ["전체"])[0], pick.slice(0, scope === "all" ? 12 : 30), [], 0);
+      if (scope === "all") {
+        var by = function (ty, names) { return names.map(function (nm) { return data.filter(function (it) { return it.type === ty && it.title === nm; })[0]; }).filter(Boolean); };
+        html += group("자주 찾는 컴포넌트", by("comp", ["Action Button", "Text Field Input", "Select Box", "Checkbox", "Dialog", "Table", "Tabs", "Date Picker"]), [], 0);
+        html += group("Foundations", by("found", ["Color", "Typography", "Spacing", "Icon Library"]), [], 0);
+      } else html += group((TYPES[types[0]] || ["전체"])[0], data.filter(function (it) { return types.indexOf(it.type) >= 0; }).slice(0, 30), [], 0);
     } else {
-      var flat = terms.join(""), found = 0;
-      types.forEach(function (ty) {
+      // 더 보기 버튼 없이 찾은 것을 모두 보여 주고 스크롤한다. 가장 잘 맞는 결과가 있는 묶음이 위로 (11-18 사용자 "더 나은 UX")
+      var flat = terms.join(""), found = 0, groups = [];
+      types.forEach(function (ty, oi) {
         var hits = data.filter(function (it) { return it.type === ty; }).map(function (it) { return [score(it, terms, flat), it]; })
-          .filter(function (x) { return x[0] > 0; }).sort(function (a, b) { return b[0] - a[0] || a[1].title.length - b[1].title.length; }).map(function (x) { return x[1]; });
+          .filter(function (x) { return x[0] > 0; }).sort(function (a, b) { return b[0] - a[0] || a[1].title.length - b[1].title.length; });
         if (!hits.length) return;
         found += hits.length;
-        var cap = scope === "all" ? (ty === "comp" || ty === "tpl" ? 5 : 3) : 60;
-        html += group(TYPES[ty][0] + " " + hits.length, hits.slice(0, cap), terms, scope === "all" ? hits.length - cap : 0, ty === "ex" ? "comp" : ty, TYPES[ty][0]);
+        groups.push({ ty: ty, best: hits[0][0], oi: oi, items: hits.slice(0, 100).map(function (x) { return x[1]; }), n: hits.length });
       });
+      groups.sort(function (a, b) { return b.best - a.best || a.oi - b.oi; });
+      groups.forEach(function (g) { html += group(TYPES[g.ty][0] + " " + g.n, g.items, terms, 0); });
       if (!found) html = '<p class="ds-command__empty">"' + esc(input.value.trim()) + '"(으)로 찾은 결과가 없어요. 다른 낱말이나 한글, 영어 이름으로 찾아보세요.</p>';
     }
     list.innerHTML = html;
@@ -995,13 +1003,11 @@ document.addEventListener("click", function (e) {
   // DS 가 먼저 낱말로 거르고 나면(같은 input 이벤트, ybm-ds.js 가 먼저 등록) 결과를 새로 그린다
   document.addEventListener("input", function (e) { if (e.target === input) render(); });
   // 창이 열리면 목록을 읽고 처음 화면을 그린다
-  new MutationObserver(function () { if (box.open) { scope = "all"; setScope("all"); load(); } }).observe(box, { attributes: true, attributeFilter: ["open"] });
+  new MutationObserver(function () { if (box.open) { setScope("all"); load(); } }).observe(box, { attributes: true, attributeFilter: ["open"] });
   // 범위 칩, 더 보기는 창을 닫지 않는다(DS 는 항목을 누르면 닫으므로 먼저 받는다). 결과를 누르면 최근 연 것에 남긴다
   box.addEventListener("click", function (e) {
     var sc = e.target.closest("[data-site-search-scope]");
     if (sc) { setScope(sc.getAttribute("data-site-search-scope")); return; }
-    var more = e.target.closest("[data-site-search-more]");
-    if (more) { e.stopPropagation(); setScope(more.getAttribute("data-site-search-more")); return; }
     var a = e.target.closest("[data-ss-url]");
     if (a && data) { var url = a.getAttribute("data-ss-url"); var it = data.filter(function (x) { return x.url === url; })[0]; if (it) remember(it); }
   }, true);
@@ -1129,18 +1135,18 @@ document.addEventListener("click", function (e) {
 (function () {
   var box = document.querySelector("[data-site-pbox]");
   if (!box) return;
-  var field = box.querySelector(".site-pbox__field");
-  var text = field.value;
+  var field = box.querySelector(".site-pbox__field"), out = box.querySelector(".site-pbox__text");
+  var text = out.textContent;  /* 글 칸 + 깜빡이는 커서(11-18), 치는 동안은 is-typing 으로 커서를 켜 둔다 */
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   var cs = getComputedStyle(field), lh = parseFloat(cs.lineHeight) || 24, pad = parseFloat(cs.paddingTop) || 0, MAX = lh * 8 + pad;  /* 휴대폰에서 요청 글과 주소가 모두 보이게 8줄 (11-18) */
   var H = { x: lh + pad, v: 0, t: lh + pad, k: 420, c: 34 };
   function target() { field.style.height = "auto"; H.t = Math.min(field.scrollHeight, MAX); field.style.overflowY = field.scrollHeight > MAX ? "auto" : "hidden"; field.style.height = H.x + "px"; field.scrollTop = 0; }
-  if (reduce || !text) { field.style.height = "auto"; field.style.height = Math.min(field.scrollHeight, MAX) + "px"; return; }
-  field.value = ""; target();
+  if (reduce || !text) { box.classList.add("is-done"); field.style.height = "auto"; field.style.height = Math.min(field.scrollHeight, MAX) + "px"; return; }
+  out.textContent = ""; box.classList.add("is-typing"); target();
   var started = false, n = 0, acc = 0, last = 0, done = false;
   function loop(now) {
     var dt = Math.max(0, Math.min((now - last) / 1000, 1 / 30)); last = now;
-    if (!done) { acc += dt; while (acc >= 0.035 && n < text.length) { acc -= 0.035; n++; field.value = text.slice(0, n); target(); } if (n >= text.length) done = true; }
+    if (!done) { acc += dt; while (acc >= 0.035 && n < text.length) { acc -= 0.035; n++; out.textContent = text.slice(0, n); target(); } if (n >= text.length) { done = true; box.classList.remove("is-typing"); box.classList.add("is-done"); } }
     for (var k = 0; k < 4; k++) { var a = -H.k * (H.x - H.t) - H.c * H.v; H.v += a * dt / 4; H.x += H.v * dt / 4; }
     field.style.height = H.x.toFixed(2) + "px";
     if (field.scrollHeight <= MAX && field.scrollTop) field.scrollTop = 0;

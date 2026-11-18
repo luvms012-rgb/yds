@@ -49,7 +49,7 @@
 
 ## Get Started
 
-- [Get Started](index.md): YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.
+- [Get Started](index.md): YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.
 
 ## Foundations
 

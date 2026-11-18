@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Get Started - YDS</title>
-<meta name="description" content="YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.">
+<meta name="description" content="YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.">
 <!-- 생성물: node site/build.mjs가 만든다. 직접 고치지 말고 site/build.mjs나 site/src를 고친다 -->
 <script>try { var t = localStorage.getItem("ybm-site-theme"); if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.dataset.theme = "dark"; } catch (e) {}</script>
 <script>/* 소소한 움직임 (2026-11-16): 메인 요청 글 타이핑만(위 메뉴 내려오기, 스크롤 페이드인, NEW 뱃지 탄성은 사용자가 지움). 움직임 줄이기 설정이 아니면 켜고, site.js 가 3초 안에 못 열면 숨김을 푼다 */ try { if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { var d = document.documentElement; d.classList.add("site-motion", "site-type"); setTimeout(function () { if (!window.__siteMotion) d.classList.remove("site-motion", "site-type"); }, 3000); } } catch (e) {}</script>
 <link rel="icon" href="assets/logo-ybmnet.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Get Started - YDS">
-<meta property="og:description" content="YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.">
+<meta property="og:description" content="YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.">
 <meta property="og:image" content="https://design.ybmnet.co.kr/yds/site/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="../dist/ybm-ds.css?v=8639ff9a">
-<link rel="stylesheet" href="assets/site.css?v=1b9b0c3e">
-<script src="../dist/ybm-ds.js?v=8639ff9a" defer></script>
-<script src="assets/site.js?v=1b9b0c3e" defer></script>
+<link rel="stylesheet" href="../dist/ybm-ds.css?v=0a59ef68">
+<link rel="stylesheet" href="assets/site.css?v=186b0237">
+<script src="../dist/ybm-ds.js?v=0a59ef68" defer></script>
+<script src="assets/site.js?v=186b0237" defer></script>
 </head>
 <body class="site">
 <a class="site-skip" href="#main">본문 바로가기</a>
@@ -52,7 +52,7 @@
 <article class="site-doc">
 <header class="site-head">
   <h1 class="site-h1">Get Started</h1>
-  <p class="site-lead">YDS는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
+  <p class="site-lead">YDS(YBM Design System)는 다양한 서비스를 일관된 경험으로 만들기 위한 디자인 시스템입니다.</p>
 
 </header>
 
@@ -63,22 +63,29 @@
   <li><strong>서비스</strong><span>YDS에 브랜드를 더해 실제 화면을 만듭니다.</span></li>
 </ol>
 
-<h2 id="ai">AI와 함께 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="ai"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p>
+<h2 id="ai">AI로 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="ai"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
+<div class="site-gs__ai-head"><p>아래처럼 자유롭게 적고 AI 도구에 붙여 넣으세요.</p><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="small" data-ds-open="site-tips"><i class="ds-icon ds-icon--lightbulb ds-icon--sm" aria-hidden="true"></i>토큰 아끼는 팁</button></div>
 <div class="site-pbox" data-site-pbox data-prompts="[&quot;수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.\nYDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.\nhttps://design.ybmnet.co.kr/yds/site/yds.txt&quot;]">
-  <textarea class="site-pbox__field" rows="1" readonly aria-label="AI 요청 글 예시">수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.
+  <div class="site-pbox__field" role="textbox" aria-readonly="true" aria-multiline="true" aria-label="AI 요청 글 예시"><span class="site-pbox__text">수강 신청 화면을 새로 만들려고 해. 강의를 고르고 신청까지 한 번에 할 수 있으면 좋겠어.
 YDS 템플릿에 비슷한 화면이 있으면 참고해서 YDS 컴포넌트로 만들어 줘. YDS 쓰는 법은 아래 파일에 있어.
-https://design.ybmnet.co.kr/yds/site/yds.txt</textarea>
-  <span class="site-pbox__send" aria-hidden="true"><i class="ds-icon ds-icon--arrow-up ds-icon--sm"></i></span>
+https://design.ybmnet.co.kr/yds/site/yds.txt</span><span class="site-pbox__caret" aria-hidden="true"></span></div>
 </div>
+<dialog class="ds-dialog" id="site-tips" aria-labelledby="site-tips-title">
+  <div class="ds-dialog__header"><h2 class="ds-dialog__title" id="site-tips-title">토큰 아끼는 팁</h2><button type="button" class="ds-dialog__close" data-ds-close aria-label="닫기"></button></div>
+  <div class="ds-dialog__body"><ul class="site-tips">
+    <li>yds-full.txt 대신 yds.txt 주소를 넣으세요.<br><code>https://design.ybmnet.co.kr/yds/site/yds.txt</code></li>
+    <li>참고할 템플릿이나 컴포넌트 이름을 적어 주세요. AI가 찾느라 여러 파일을 읽지 않습니다.</li>
+    <li>규칙 파일은 프로젝트에 두고 사용하세요.</li>
+  </ul></div>
+  <div class="ds-dialog__footer"><button type="button" class="ds-btn" data-variant="neutralSolid" data-size="medium" data-ds-close>확인</button></div>
+</dialog>
 
 <h2 id="figma">Figma로 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="figma"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
-<p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 그리세요.</p>
+<p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.</p>
 <ol class="site-gs__layers">
-  <li><strong>라이브러리 켜기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">YDS 라이브러리</a>를 켭니다.</span></li>
-  <li><strong>화면 그리기</strong><span>컴포넌트와 색, 간격, 글자 등을 직접 넣지 않고 YDS에 있는 값에서 선택해서 사용합니다.</span></li>
+  <li><strong>YDS 라이브러리로 디자인하기</strong><span>Figma의 Assets 패널에서 <a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">YDS 라이브러리</a>를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.</span></li>
 </ol>
-<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-callout__link" href="https://yteam.ybmnet.co.kr/work/dashboard.php" target="_blank" rel="noopener">워크 게시판</a>에 팀 초대를 요청하세요.</p></div>
+<div class="ds-callout site-gs__callout" data-tone="informative"><i class="ds-icon ds-icon--info-solid" aria-hidden="true"></i><p class="ds-callout__content">Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-callout__link" href="https://yteam.ybmnet.co.kr/work/dashboard.php" target="_blank" rel="noopener">워크 게시판</a>에 권한을 요청하세요.</p></div>
 
 <h2 id="dev">개발 시작하기<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="dev"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
 <p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
@@ -107,11 +114,11 @@ https://design.ybmnet.co.kr/yds/site/yds.txt</textarea>
 <h2 id="files">파일<span class="site-anchor"><button type="button" class="ds-btn" data-variant="ghost" data-size="xsmall" data-layout="iconOnly" aria-label="이 제목 링크 복사" data-site-anchor="files"><i class="ds-icon ds-icon--link" aria-hidden="true"></i></button></span></h2>
 <div class="ds-table-wrap"><table class="ds-table site-gs__files" data-size="small">
 <thead><tr><th scope="col">파일</th><th scope="col">무엇인가요</th><th scope="col">언제 쓰나요</th></tr></thead>
-<tbody><tr><td><a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a></td><td>AI가 읽는 YDS 설명 파일</td><td>가장 기본이고 중요한 파일입니다. 잘 모르면 AI 요청 글에 이 주소를 꼭 넣으세요.</td></tr>
-<tr><td><a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">Figma 라이브러리</a></td><td>YDS 컴포넌트와 변수가 담긴 Figma 파일</td><td>Figma로 화면을 그릴 때 켭니다. 디자이너는 이것 하나면 됩니다.</td></tr>
-<tr><td><a class="ds-link" href="yds-full.txt" download>yds-full.txt</a></td><td>컴포넌트 사용법과 규칙을 모은 파일 하나</td><td>AI가 주소를 열지 못할 때 yds.txt 대신 이 파일을 첨부합니다. 내용은 더 자세합니다.</td></tr>
-<tr><td><span class="site-gs__rules"><a class="ds-link" href="ai/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a><a class="ds-link" href="ai/yds.mdc" target="_blank" rel="noopener">yds.mdc</a><a class="ds-link" href="ai/AGENTS.md" target="_blank" rel="noopener">AGENTS.md</a></span></td><td>코딩 도구용 YDS 규칙 파일</td><td>코딩 도구로 개발할 때 프로젝트 맨 위 폴더에 둡니다. 한 번 두면 요청 글마다 yds.txt 주소를 넣지 않아도 됩니다.</td></tr>
-<tr><td><a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a></td><td>YDS 규칙 검사 스크립트</td><td>화면을 다 만든 뒤 한 번 돌립니다. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.</td></tr></tbody></table></div>
+<tbody><tr><td><a class="ds-link" href="yds.txt" target="_blank" rel="noopener">yds.txt</a></td><td>AI가 읽는 YDS 설명 파일</td><td>AI에게 화면을 부탁할 때 요청 글에 이 주소를 함께 넣어 주세요.</td></tr>
+<tr><td><a class="ds-link" href="https://www.figma.com/design/1VCEsFU3xMWuXIntIrZz9i/?node-id=3059-92" target="_blank" rel="noopener">Figma 라이브러리</a></td><td>YDS 컴포넌트와 변수가 담긴 Figma 파일</td><td>Figma에서 화면을 디자인할 때 라이브러리로 켜 주세요.</td></tr>
+<tr><td><a class="ds-link" href="yds-full.txt" download>yds-full.txt</a></td><td>컴포넌트 사용법과 규칙을 모은 파일 하나</td><td>AI가 주소를 열지 못하면 yds.txt 대신 이 파일을 첨부해 주세요.</td></tr>
+<tr><td><span class="site-gs__rules"><a class="ds-link" href="ai/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a><a class="ds-link" href="ai/yds.mdc" target="_blank" rel="noopener">yds.mdc</a><a class="ds-link" href="ai/AGENTS.md" target="_blank" rel="noopener">AGENTS.md</a></span></td><td>코딩 도구용 YDS 규칙 파일</td><td>코딩 도구를 쓸 때 프로젝트 맨 위 폴더에 넣어 두세요. 요청할 때마다 yds.txt 주소를 넣지 않아도 됩니다.</td></tr>
+<tr><td><a class="ds-link" href="ai/yds-check.mjs" target="_blank" rel="noopener">yds-check.mjs</a></td><td>YDS 규칙 검사 스크립트</td><td>화면을 다 만든 뒤 한 번 실행해 보세요. YDS에 없는 색이나 클래스를 썼는지 찾아 줍니다.</td></tr></tbody></table></div>
 
 
 
@@ -128,8 +135,8 @@ https://design.ybmnet.co.kr/yds/site/yds.txt</textarea>
 </div>
 <button type="button" class="ds-btn site-totop" data-variant="neutralWeak" data-size="medium" data-layout="iconOnly" aria-label="맨 위로" data-site-totop aria-hidden="true" tabindex="-1"><i class="ds-icon ds-icon--arrow-up" aria-hidden="true"></i></button>
 <dialog class="ds-command site-search" id="site-search" aria-label="YDS 찾기" data-ds-hotkey="k">
-  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input></div>
-  <div class="site-search__scope"><div class="ds-chiptabs" role="tablist" aria-label="찾을 범위" data-size="small" data-inset="none"><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="true" data-site-search-scope="all">전체</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="comp">컴포넌트</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="tpl">템플릿</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="found">Foundations</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="token">토큰</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="icon">아이콘</button><button type="button" class="ds-chiptabs__trigger" role="tab" aria-selected="false" data-site-search-scope="start">시작하기</button></div></div>
+  <div class="ds-command__search"><i class="ds-icon ds-icon--search" aria-hidden="true"></i><input class="ds-command__input" type="text" role="combobox" aria-expanded="true" aria-controls="site-search-list" aria-autocomplete="list" placeholder="컴포넌트, 템플릿, 토큰, 아이콘 이름으로 찾기" aria-label="YDS 찾기" autocomplete="off" spellcheck="false" data-site-search-input></div>
+  <!-- 범위 칩은 11-18 사용자가 지웠다 -->
   <div class="ds-command__list" id="site-search-list" role="listbox" aria-label="찾은 결과" data-site-search-list data-root=""></div>
 </dialog>
 </body>

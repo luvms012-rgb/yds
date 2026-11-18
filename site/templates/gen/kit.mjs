@@ -167,7 +167,7 @@ export const page = ({ title, css = '', body, bodyClass = '', h1 = '' }) => `<!d
 <title>${esc(title)} - YDS 템플릿</title>
 <link rel="stylesheet" href="../../../dist/ybm-ds.css?v=${DIST_V}">
 <script src="../../../dist/ybm-ds.js?v=${DIST_V}" defer></script>
-<script>try{var f=window.frameElement,d=document.documentElement,m='<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">';if(f&&f.hasAttribute("data-site-frame")){var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))d.dataset.theme=p;if(!f.hasAttribute("data-site-nomono"))document.write(m)}else if(!f&&location.protocol!=="file:"&&!/[?&]brand(=|&|$)/.test(location.search)){var t=localStorage.getItem("ybm-site-theme");if(t)d.dataset.theme=t;document.write(m)}}catch(e){}</script>
+<script>try{var f=window.frameElement,d=document.documentElement,m='<link id="site-brand-mono" rel="stylesheet" href="../../assets/brand-mono.css">';if(f&&f.hasAttribute("data-site-frame")){try{var p=parent.document.documentElement.dataset.theme;if(p&&!f.hasAttribute("data-site-theme-frame"))d.dataset.theme=p}catch(e){}if(!f.hasAttribute("data-site-nomono"))document.write(m)}else if(!f&&location.protocol==="file:"&&self!==top&&!/[?&]brand(=|&|$)/.test(location.search)){document.write(m)}else if(!f&&location.protocol!=="file:"&&!/[?&]brand(=|&|$)/.test(location.search)){var t=localStorage.getItem("ybm-site-theme");if(t)d.dataset.theme=t;document.write(m)}}catch(e){}</script>
 <style>
 ${BASE_CSS}${css}</style>
 </head>
