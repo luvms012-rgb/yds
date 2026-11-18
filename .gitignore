@@ -17,3 +17,6 @@ Thumbs.db
 tokens/.figma-templates.json
 tokens/.figma-tplpage/
 tokens/.figma-quick.js
+
+# 서버 묶음 (tools/server-pack.mjs 결과, 올리기는 사용자)
+/(서버업로드)/

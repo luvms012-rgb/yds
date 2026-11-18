@@ -1,6 +1,6 @@
 // 사내 서버용 묶음: node tools/server-pack.mjs
 // 공식 주소 https://design.ybmnet.co.kr/yds/ 에 그대로 풀어 올릴 파일을 zip 하나로 만든다 (2026-11-17 사용자).
-// 결과: works/project/(서버업로드)/yds_날짜.zip (예전 yds_*.zip 은 지운다). 올리기는 사용자가 한다.
+// 결과: 저장소 안 (서버업로드)/yds_날짜.zip (2026-11-19 사용자 "로컬 폴더 yds 안에", git 에는 올리지 않음, 예전 yds_*.zip 은 지운다). 올리기는 사용자가 한다.
 // 안 = 문서 사이트(site/ 안을 맨 위에, /site/ 주소 없음), dist/(최신 CSS, JS), catalog.html(예전 맨 위 카탈로그),
 //      v1.0.0/dist ... (git 태그마다 버전 고정 주소), components.json, VERSION, tokens/ 공개 파일 셋
 // 빼는 것 = 만드는 코드(site 맨 위 *.mjs, src/, templates/gen/. AI 검사 스크립트 ai/yds-check.mjs 는 넣는다), 작업 규칙 글(CLAUDE.md, PROPOSAL.md, REFERENCE-ANALYSIS.md), 숨긴 Themes
@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cfg = JSON.parse(fs.readFileSync(path.join(root, 'deploy.config.json'), 'utf8'));
-const out = path.resolve(root, '..', 'project', '(서버업로드)');
+const out = path.join(root, '(서버업로드)');
 const stage = fs.mkdtempSync(path.join(os.tmpdir(), 'yds-pack-'));
 const rel = (p) => path.relative(root, p).split(path.sep).join('/');
 
@@ -84,5 +84,5 @@ let n = 0;
 (function count(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) e.isDirectory() ? count(path.join(d, e.name)) : n++; })(stage);
 fs.rmSync(stage, { recursive: true, force: true });
 console.log(`site 밖 상대 경로 ${fixed}곳 한 칸 줄임`);
-console.log(`만듦 ${path.relative(path.resolve(root, '..'), zip)} (${(fs.statSync(zip).size / 1048576).toFixed(1)}MB, 파일 ${n}개, 버전 고정 ${tags.join(', ')})`);
+console.log(`만듦 ${path.relative(root, zip)} (${(fs.statSync(zip).size / 1048576).toFixed(1)}MB, 파일 ${n}개, 버전 고정 ${tags.join(', ')})`);
 console.log(`올릴 곳: ${cfg.publicUrl} 폴더에 그대로 푼다`);

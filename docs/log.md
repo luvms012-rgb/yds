@@ -16,7 +16,7 @@
 
 - **사용자 "yds/site 사용 금지"**: 공개 주소에서 문서 사이트는 https://design.ybmnet.co.kr/yds/ 바로 아래, AI 파일은 /yds/yds.txt, /yds/yds-full.txt. 저장소 폴더는 site/ 그대로이고 서버 묶음이 site/ 안을 맨 위에 펼친다.
 - **코드**: site/build.mjs `SITE_URL = PUBLIC + '/'`, tokens/links.mjs(Figma 문서 링크)도 /site/ 없이, tools/check.mjs 는 공개 주소를 site/ 먼저 찾고 없으면 맨 위(dist 등)에서 찾는다(`pubFile`), Top Navigation 예시 로고 주소 /yds/assets/logo-ybmnet.svg.
-- **서버 묶음**(tools/server-pack.mjs): site/ 안을 맨 위로, site 밖을 가리키던 상대 경로(../dist 등) 524곳을 한 칸 줄임, 이름 겹침과 /yds/site/ 남음이 있으면 멈춤, catalog.html 의 site/ 링크도 맨 위로. 결과 works/project/(서버업로드)/yds_20261119.zip(25.3MB, 724파일, v1.0.0, v1.1.0, v1.2.0 고정 dist).
+- **서버 묶음**(tools/server-pack.mjs): site/ 안을 맨 위로, site 밖을 가리키던 상대 경로(../dist 등) 524곳을 한 칸 줄임, 이름 겹침과 /yds/site/ 남음이 있으면 멈춤, catalog.html 의 site/ 링크도 맨 위로. 결과 works/yds/(서버업로드)/yds_20261119.zip(처음엔 works/project/(서버업로드)/ 에 만들었다가 같은 날 사용자 요청으로 저장소 안으로 옮김, git 제외)(25.3MB, 724파일, v1.0.0, v1.1.0, v1.2.0 고정 dist).
 - **묶음 검사**: 풀어서 392 파일, 링크 2만 1천 8백을 서버 배치 그대로 확인, 깨진 것 0(코드 예시 속 &quot; 로 끝나는 주소 7개는 검사 방법 차이), /yds/site/ 와 개인 GitHub 주소 0, site.js 의 찾기 목록과 latest.json 은 상대 경로라 그대로 동작.
 - **옛 Get Started 넘김 페이지**: 11-18 저녁에 손으로 #dev 로 고친 것이 빌드에서 #start 로 되돌아갔다. 생성기(build.mjs 옛 Usage, Scripts 넘김)를 #dev 로 고침.
 - **Figma**: 16쪽 모든 글자와 링크에서 /yds/site/ 를 /yds/ 로. 링크 180곳, 글자 4곳(Get Started 요청 글, Foundations 브랜드 요청 글, Top Navigation 예시 코드 2곳), 남은 곳 0. 빠른 대조 일치(변수 359, 컴포넌트 118, 링크 170, 템플릿 81), 기준점 저장.

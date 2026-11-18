@@ -15,7 +15,7 @@
 | 항목 | 주소 |
 |---|---|
 | 공식 Figma | 파일 `1VCEsFU3xMWuXIntIrZz9i`, Foundations 페이지 `2274:1143`(문서 프레임 Color `2486:2`, Typography `2486:13`, Spacing `2486:24`, Radius `2486:35`, Elevation `2486:46`) |
-| 공식 주소 | <https://design.ybmnet.co.kr/yds/> (사내 서버. 문서 사이트도 이 주소 바로 아래이고 공개 주소에 /site/ 는 쓰지 않는다(2026-11-19). 저장소 `site/` 안을 `node tools/server-pack.mjs` 가 맨 위에 펼친 묶음을 사용자가 올린다) |
+| 공식 주소 | <https://design.ybmnet.co.kr/yds/> (사내 서버. 문서 사이트도 이 주소 바로 아래이고 공개 주소에 /site/ 는 쓰지 않는다(2026-11-19). 저장소 `site/` 안을 `node tools/server-pack.mjs` 가 맨 위에 펼친 묶음(저장소 안 `(서버업로드)/yds_날짜.zip`, git 제외)을 사용자가 올린다) |
 | 개발 GitHub | <https://github.com/luvms012-rgb/yds> (`main`, push 와 개발 미리보기 Pages 만. 사이트와 Figma 에 링크하지 않는다) |
 
 ## 상시 규칙 (시키지 않아도 매번)
@@ -29,6 +29,6 @@
 ## 두 PC 싱크
 - 시작: `git pull`(커밋 안 된 로컬 변경이 있으면 먼저 묻는다). 끝("저장하고 스탑"): 커밋, push, docs/handoff.md 덮어쓰기(한 것 / 남은 일 / 주의, 이번 것만), 끝난 일은 docs/log.md "기록" 맨 위로.
 - 로컬 전용 파일(`.cache/`, `tokens/.figma-*`, site/REFERENCE-ANALYSIS.md)은 올리지 않는다.
-- 새 PC: `git clone https://github.com/luvms012-rgb/yds.git`, Node.js 만 있으면 된다. push 는 그 PC 의 Git 로그인, Figma 는 Claude 커넥터(편집 권한 있는 계정).
+- 새 PC: `git clone https://github.com/luvms012-rgb/yds.git`(로컬 폴더 이름도 yds, 11-19 ybm-ds 에서 바꿈), Node.js 만 있으면 된다. push 는 그 PC 의 Git 로그인, Figma 는 Claude 커넥터(편집 권한 있는 계정).
 - Mac: `동기화.bat` 대신 `node sync.mjs deploy`. 가이드 사이트 재배포(`project/_publish/publish.ps1`)는 Windows 에서만. `.gitattributes` 가 `* -text` 라 줄바꿈을 바꾸지 않는다(CRLF 는 `동기화.bat` 하나).
 - 자세한 사용법, 동기화, 토큰, 컴포넌트 카탈로그는 README.md.

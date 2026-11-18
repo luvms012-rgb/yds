@@ -5,7 +5,7 @@ description: YDS 를 Figma ↔ 로컬(ds/) ↔ GitHub(yds 저장소·Pages) ↔ 
 
 # YDS 동기화
 
-Figma 파일 `1VCEsFU3xMWuXIntIrZz9i`(디자인 시스템)과 `works/ybm-ds` 를 맞추고 GitHub 까지 올린다. 모든 명령은 `works/ybm-ds` 에서 실행한다.
+Figma 파일 `1VCEsFU3xMWuXIntIrZz9i`(디자인 시스템)과 `works/yds` 를 맞추고 GitHub 까지 올린다. 모든 명령은 `works/yds` 에서 실행한다.
 
 ## 순서
 
