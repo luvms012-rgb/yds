@@ -544,7 +544,7 @@ ${PROMPT_BOX}
 <h2 id="figma">Figma로 시작하기</h2>
 <p>YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.</p>
 <ol class="site-gs__layers">
-  <li><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.<br>Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-link" href="${FEEDBACK_FORM}" target="_blank" rel="noopener">워크 게시판</a>에 권한을 요청하세요.</span></li>
+  <li><span>Figma의 Assets 패널에서 <a class="ds-link" href="${FIGMA_HOME}" target="_blank" rel="noopener">YDS 라이브러리</a>를 켜고, 컴포넌트와 색, 간격, 글자는 YDS에 있는 값에서 골라 사용합니다.<br>Assets에 YDS 라이브러리가 보이지 않으면 사내 <a class="ds-link" href="updates-requests.html">워크 게시판</a>에 권한을 요청하세요.</span></li>
 </ol>
 
 <h2 id="dev">개발 시작하기</h2>
