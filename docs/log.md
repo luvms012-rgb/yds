@@ -14,6 +14,8 @@
 
 ### 2026-11-19 회사 Windows (공식 주소 서버 묶음, /site/ 없앰)
 
+- **첫 업로드 뒤 404**: dist/ 전체, v1.x/dist, VERSION, .md, .mdc, .mjs, .webp 가 404. 원인은 묶음 맨 위에 들어간 site/.gitignore("dist/")를 올리기 도구가 따른 것과, IIS 가 등록 안 된 파일 형식을 404 로 내는 것. server-pack 이 점 파일을 빼고 web.config(MIME 등록, remove 뒤 mimeMap)를 넣고 필수 파일이 없으면 멈추게 고침.
+
 - **사용자 "yds/site 사용 금지"**: 공개 주소에서 문서 사이트는 https://design.ybmnet.co.kr/yds/ 바로 아래, AI 파일은 /yds/yds.txt, /yds/yds-full.txt. 저장소 폴더는 site/ 그대로이고 서버 묶음이 site/ 안을 맨 위에 펼친다.
 - **코드**: site/build.mjs `SITE_URL = PUBLIC + '/'`, tokens/links.mjs(Figma 문서 링크)도 /site/ 없이, tools/check.mjs 는 공개 주소를 site/ 먼저 찾고 없으면 맨 위(dist 등)에서 찾는다(`pubFile`), Top Navigation 예시 로고 주소 /yds/assets/logo-ybmnet.svg.
 - **서버 묶음**(tools/server-pack.mjs): site/ 안을 맨 위로, site 밖을 가리키던 상대 경로(../dist 등) 524곳을 한 칸 줄임, 이름 겹침과 /yds/site/ 남음이 있으면 멈춤, catalog.html 의 site/ 링크도 맨 위로. 결과 works/yds/(서버업로드)/yds_20261119.zip(처음엔 works/project/(서버업로드)/ 에 만들었다가 같은 날 사용자 요청으로 저장소 안으로 옮김, git 제외)(25.3MB, 724파일, v1.0.0, v1.1.0, v1.2.0 고정 dist).

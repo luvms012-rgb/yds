@@ -20,7 +20,9 @@ const rel = (p) => path.relative(root, p).split(path.sep).join('/');
 //   만드는 코드와 작업 글은 뺀다
 const SITE_SKIP = [
   /^site\/src(\/|$)/, /^site\/templates\/gen(\/|$)/, /^site\/themes(\/|$)/,
-  /^site\/(CLAUDE|PROPOSAL|REFERENCE-ANALYSIS)\.md$/, /^site\/[^/]+\.mjs$/, /(^|\/)\.DS_Store$/, /(^|\/)Thumbs\.db$/,
+  /^site\/(CLAUDE|PROPOSAL|REFERENCE-ANALYSIS)\.md$/, /^site\/[^/]+\.mjs$/, /(^|\/)Thumbs\.db$/,
+  // 점으로 시작하는 파일은 넣지 않는다. 2026-11-19 site/.gitignore("dist/")가 맨 위로 들어가 올리기 도구가 dist/ 와 v*/dist 를 빼먹었다
+  /(^|\/)\.[^/]+$/,
 ];
 fs.cpSync(path.join(root, 'site'), stage, { recursive: true, filter: (src) => !SITE_SKIP.some((re) => re.test(rel(src))) });
 // 저장소에서 site/ 밖(dist, components.json)을 가리키던 상대 경로는 한 칸 줄인다. site/ 안끼리의 경로는 그대로
@@ -40,13 +42,26 @@ let fixed = 0;
 
 // 2 최신 dist, 공개 파일 (site/ 에 같은 이름이 있으면 멈춘다)
 for (const f of ['dist', 'components.json', 'VERSION', 'tokens', 'catalog.html']) if (fs.existsSync(path.join(stage, f))) { console.error(`site/${f} 가 맨 위 공개 파일과 이름이 겹침`); process.exit(1); }
-fs.cpSync(path.join(root, 'dist'), path.join(stage, 'dist'), { recursive: true });
+fs.cpSync(path.join(root, 'dist'), path.join(stage, 'dist'), { recursive: true, filter: (src) => !/(^|[\\/])\.[^\\/]+$/.test(path.relative(root, src)) });
 for (const f of ['components.json', 'VERSION']) fs.copyFileSync(path.join(root, f), path.join(stage, f));
 fs.mkdirSync(path.join(stage, 'tokens'));
 for (const f of ['design-tokens.json', 'tokens.js', 'tailwind.preset.js']) fs.copyFileSync(path.join(root, 'tokens', f), path.join(stage, 'tokens', f));
 
 // 3 예전 맨 위 카탈로그는 catalog.html 로 (문서 사이트 링크 site/ 는 맨 위로)
 fs.writeFileSync(path.join(stage, 'catalog.html'), fs.readFileSync(path.join(root, 'index.html'), 'utf8').replace(/(href=")site\//g, '$1'));
+
+// 3-1 사내 서버는 IIS 라 등록되지 않은 파일 형식을 404 로 낸다(2026-11-19 확인: .md, .mdc, .mjs, .webp, 확장자 없는 VERSION).
+//     같은 이름이 서버에 이미 있어도 겹치지 않게 remove 뒤 mimeMap. 글 파일은 브라우저에서 바로 읽히게 text/plain utf-8
+const MIME = [['.md', 'text/plain; charset=utf-8'], ['.mdc', 'text/plain; charset=utf-8'], ['.txt', 'text/plain; charset=utf-8'], ['.mjs', 'text/javascript; charset=utf-8'], ['.webp', 'image/webp'], ['.woff2', 'font/woff2'], ['.', 'text/plain; charset=utf-8']];
+fs.writeFileSync(path.join(stage, 'web.config'), `<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+    <staticContent>
+${MIME.map(([e, t]) => `      <remove fileExtension="${e}" />\n      <mimeMap fileExtension="${e}" mimeType="${t}" />`).join('\n')}
+    </staticContent>
+  </system.webServer>
+</configuration>
+`);
 
 // 4 버전 고정 주소: git 태그마다 그 판의 dist 를 v1.2.0/dist 처럼 넣는다
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8' }).trim();
@@ -69,10 +84,12 @@ const bad = [];
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {
     const p = path.join(d, e.name);
     if (e.isDirectory()) walk(p);
+    else if (e.name.startsWith('.')) bad.push(path.relative(stage, p) + ' (점 파일)');
     else if (TEXT.test(e.name) && !/^v\d/.test(path.relative(stage, p)) && BAD.test(fs.readFileSync(p, 'utf8'))) bad.push(path.relative(stage, p));
   }
 })(stage);
-if (bad.length) { console.error('개인 GitHub 주소나 /yds/site/ 가 남은 파일:\n  ' + bad.join('\n  ')); process.exit(1); }
+for (const f of ['index.html', 'yds.txt', 'web.config', 'dist/ybm-ds.css', 'dist/ybm-ds.js', 'VERSION', ...tags.map((t) => `${t}/dist/ybm-ds.css`)]) if (!fs.existsSync(path.join(stage, f))) bad.push(f + ' (없음)');
+if (bad.length) { console.error('묶음에 문제가 있는 파일(개인 GitHub 주소, /yds/site/, 점 파일, 빠진 파일):\n  ' + bad.join('\n  ')); process.exit(1); }
 
 // 6 압축 (윈도우 tar = zip). 예전 yds_*.zip 은 지운다
 fs.mkdirSync(out, { recursive: true });
