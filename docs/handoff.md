@@ -4,6 +4,10 @@
 
 ## 한 것 (11-19, 회사 Windows)
 
+- **모달 열고 닫을 때 화면 흔들림 없앰(DS)**: 모달이 뒤 스크롤을 막으면서 창 스크롤바가 사라져 화면이 15px 옆으로 밀렸다. ybm-ds.js 가 스크롤바가 있는 화면이면 html 에 `data-ds-scrollbar` 를 붙이고, components.css 가 막는 동안 `scrollbar-gutter: stable` 로 자리를 남긴다(스크롤바가 없는 짧은 화면은 그대로). 헤드리스 Chrome 에서 팁 창, 템플릿 보기 창, Esc 닫기 모두 0px. 숨긴 브라우저 패널에서는 dialog close 이벤트가 오지 않아 잘못 재진다(헤드리스로 잰다). Figma 와 상관없다.
+- **Get Started Figma 상자 글자 색**: 제목 없는 상자 글을 프롬프트 상자와 같은 fg-neutral 하나로(구조 카드 설명은 회색 그대로).
+- **미리보기 서버**: works/.claude/ds-serve.mjs 의 ROOT 를 works/yds 로 고쳤다(폴더 이름 바뀐 뒤 404 였다).
+
 - **서버 재업로드 뒤 점검(사용자가 SVN 으로 커밋)**: 서버 반영은 TortoiseSVN(영문판) 커밋이다. 첫 업로드 때 `dist`, `v1.0.0`~`v1.2.0` 이 SVN 에 Add 되지 않아(? 표시) 404 였고, 사용자가 Add 뒤 다시 커밋했다. 지금 묶음 파일 723개를 서버에 하나씩 물어 모두 200(web.config, .gitignore 는 숨김이라 404 가 맞음), .md, .mdc, .mjs, .webp, VERSION 도 web.config 덕에 200 이고 글 파일은 utf-8.
 - **Figma 링크 모으기**: 16쪽에서 공식 주소 링크와 글 속 주소 96개(파일 95개)를 모아 서버에 물었더니 파일은 모두 200. 그 밖의 주소는 Figma 파일 링크, 워크 게시판, 예시 주소(example.com, unsplash)뿐이고 /yds/site/ 는 0.
 
