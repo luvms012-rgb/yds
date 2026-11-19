@@ -52,10 +52,26 @@
   }
   function stay(el) { if (el && el.__dsLeave) el.__dsLeave(); }  // 닫는 중에 다시 열면 닫기를 멈춘다
 
+  /* ---- 스크롤바 자리 (2026-11-19 사용자 "모달이 나오고 들어갈 때 화면이 흔들림") ----
+     모달이 뒤 스크롤을 막으면 스크롤바가 사라져 화면이 옆으로 밀린다. 스크롤바가 있는 화면이면 html 에 data-ds-scrollbar 를 붙여
+     CSS 가 막는 동안 그 자리를 남긴다(scrollbar-gutter). 모달이 열려 있는 동안은 다시 재지 않는다 */
+  function markScrollbar() {
+    var de = document.documentElement, open;
+    try { open = document.querySelector("dialog:modal"); } catch (e) { return; }
+    if (open) return;
+    de.toggleAttribute("data-ds-scrollbar", window.innerWidth - de.clientWidth > 0);
+  }
+  markScrollbar();
+  window.addEventListener("resize", markScrollbar);
+  window.addEventListener("load", markScrollbar);
+  if (window.ResizeObserver) new ResizeObserver(markScrollbar).observe(document.documentElement);
+  document.addEventListener("click", markScrollbar, true);  // 여는 버튼을 누르는 순간에도 한 번 더 잰다
+
   /* ---- Dialog ----------------------------------------------------------- */
   function openDialog(id) {
     var dialog = document.getElementById(id);
     if (dialog) stay(dialog);
+    markScrollbar();
     if (dialog && !dialog.open) { dialog.showModal(); alignWheels(dialog); }
     return dialog;
   }
