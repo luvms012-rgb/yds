@@ -21,6 +21,7 @@ const rel = (p) => path.relative(root, p).split(path.sep).join('/');
 const SITE_SKIP = [
   /^site\/src(\/|$)/, /^site\/templates\/gen(\/|$)/, /^site\/themes(\/|$)/,
   /^site\/(CLAUDE|PROPOSAL|REFERENCE-ANALYSIS)\.md$/, /^site\/[^/]+\.mjs$/, /(^|\/)Thumbs\.db$/,
+  /^site\/templates\/thumbs\/index\.json$/, // 썸네일 도구의 작업 기록(빌드와 검사만 읽는다, 2026-11-19)
   // 점으로 시작하는 파일은 넣지 않는다. 2026-11-19 site/.gitignore("dist/")가 맨 위로 들어가 올리기 도구가 dist/ 와 v*/dist 를 빼먹었다
   /(^|\/)\.[^/]+$/,
 ];
