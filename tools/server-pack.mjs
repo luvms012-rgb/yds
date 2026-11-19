@@ -65,7 +65,10 @@ ${MIME.map(([e, t]) => `      <remove fileExtension="${e}" />\n      <mimeMap fi
 
 // 4 버전 고정 주소: git 태그마다 그 판의 dist 를 v1.2.0/dist 처럼 넣는다
 const git = (...a) => execFileSync('git', a, { cwd: root, encoding: 'utf8' }).trim();
-const tags = git('tag', '--list', 'v*').split('\n').filter((t) => /^v\d+\.\d+\.\d+$/.test(t));
+// 사내 서버로 옮긴(11-17) 뒤 안내한 고정 주소는 v1.2.0 부터라 그 앞 판은 넣지 않는다(2026-11-19 사용자 "파일 경량화", 묶음 13MB 줄어듦)
+const FIRST_PIN = [1, 2, 0];
+const newer = (t) => { const v = t.slice(1).split('.').map(Number); for (let i = 0; i < 3; i++) if (v[i] !== FIRST_PIN[i]) return v[i] > FIRST_PIN[i]; return true; };
+const tags = git('tag', '--list', 'v*').split('\n').filter((t) => /^v\d+\.\d+\.\d+$/.test(t) && newer(t));
 const tar = process.platform === 'win32' ? path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe') : 'tar';
 for (const t of tags) {
   const dir = path.join(stage, t);

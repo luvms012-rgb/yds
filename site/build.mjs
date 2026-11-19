@@ -477,7 +477,7 @@ const BRAND_HTML = `<!-- 브랜드: YDS 다음에 불러온다 -->
 // yds.txt 머리에 붙는 규칙 (AI가 요청 글 대신 여기서 읽는다)
 const LLMS_RULES = `## 지킬 것
 
-- 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 운영 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓴다. 문서와 마크업은 최신 기준이라, 고정 주소에서는 그 버전 뒤에 더한 속성이 동작하지 않을 수 있다(Updates 에서 버전별로 확인).
+- 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 기본은 최신 주소다. 화면이 저절로 바뀌면 안 되는 서비스는 버전을 고정한 주소(${PIN}/dist/ybm-ds.css, ybm-ds.js)를 쓸 수 있고, 고정 주소에서는 그 버전 뒤에 더한 속성이 동작하지 않을 수 있다(Updates 에서 버전별로 확인).
 - 규칙 파일: 설치할 때 규칙 파일(${SITE_URL}ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다. 파일 하나만 만드는 일이면 받지 않아도 된다.
 - 컴포넌트: 목록(${PUBLIC}/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(${RAW}/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다. 목록에 없는 화면 요소(지도, 좌석표, 플레이어 등)는 서비스 클래스로 --ds-* 토큰만 써서 만들고, 만든 것을 결과에 알린다.
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
@@ -510,7 +510,7 @@ const LLMS_RULES = `## 지킬 것
 // 반응형 기준점 (Foundations Breakpoint, 11-04 시작하기에서 옮김)
 const bpRows = [['sm', '480px', '큰 휴대폰'], ['md', '768px', '태블릿, PC용 컴포넌트로 바뀌는 기준'], ['lg', '1280px', '넓은 PC, 3단 배치'], ['xl', '1440px', '아주 넓은 화면']];
 // 코드 탭 (11-04 사용자 "다크 모드는 프롬프팅과 html을 같이, 탭 형태로", "탭을 코드 상자 안으로"): 탭마다 코드 상자 하나, 상자 머리의 언어 이름 자리에 같은 Chip Tabs. 복사 버튼이 제 상자 코드를 복사하게 상자를 나눈다. 여닫기는 site.js data-site-tab
-// 설치 코드 첫 탭(기본으로 보이는 탭)은 버전 고정 (2026-11-16 사용자: 운영은 버전 고정이 규칙이라). 고정 탭은 브랜드 줄도 고정 주소
+// 설치 코드 탭은 최신, 규칙 파일 둘 (2026-11-19 사용자 "고정 탭 빼기". 버전 고정 주소는 서버에 그대로 있고 AI 규칙 설치 줄에만 적는다)
 const codeTabs = (tabs) => { const bar = (sel) => `<div class="ds-segmented site-seg" role="group" aria-label="보기 방식">${tabs.map(([l], j) => `<button type="button" class="ds-segmented__item" aria-pressed="${j === sel}" data-site-tab="${j}">${esc(l)}</button>`).join('')}</div>`; return `<div class="site-codetabs">${tabs.map(([, h], i) => `<div class="site-codetabs__panel"${i ? ' hidden' : ''}>${h.replace(/<span class="ds-codeblock__language">[^<]*<\/span>/, bar(i))}</div>`).join('')}</div>`; };
 // 안내 카드 (레퍼런스 B Get Started): 옅은 회색 칸에 제목과 화살표, 아래 한 줄 설명. out이면 새 창
 const hubCard = (href, title, desc, out = false) => `<a class="ds-card site-hub" href="${href}"${out ? ' target="_blank" rel="noopener"' : ''}><span class="ds-card__header"><span class="ds-card__title site-hub__title">${esc(title)}<i class="ds-icon ds-icon--${out ? 'external-link' : 'arrow-right'} ds-icon--sm" aria-hidden="true"></i></span><span class="ds-card__desc">${esc(desc)}</span></span></a>`;
@@ -549,7 +549,7 @@ ${PROMPT_BOX}
 
 <h2 id="dev">개발 시작하기</h2>
 <p>아래 코드를 &lt;head&gt;에 넣으면 YDS가 바로 적용됩니다.</p>
-${codeTabs([[`v${VERSION} 고정`, codeblock(`${CSS_LINK.replaceAll(`${PUBLIC}/dist/`, `${PIN}/dist/`)}`)], ['최신', codeblock(`${CSS_LINK}`)], ['규칙 파일', codeblock(`# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
+${codeTabs([['최신', codeblock(`${CSS_LINK}`)], ['규칙 파일', codeblock(`# 프로젝트 맨 위 폴더에서 (코딩 도구가 YDS 규칙을 읽는다)
 curl -O ${SITE_URL}ai/AGENTS.md
 curl -O ${SITE_URL}ai/CLAUDE.md
 curl --create-dirs -o .cursor/rules/yds.mdc ${SITE_URL}ai/yds.mdc`, 'bash')]])}

@@ -28,14 +28,6 @@ YDS 라이브러리를 켜고 컴포넌트를 골라 화면을 만드세요.
 
 ```html
 <!-- 서비스 CSS보다 앞에 -->
-<link rel="stylesheet" href="https://design.ybmnet.co.kr/yds/v1.2.0/dist/ybm-ds.css">
-<script src="https://design.ybmnet.co.kr/yds/v1.2.0/dist/ybm-ds.js" defer></script>
-<!-- 브랜드가 있으면 그다음에, <html data-ds-brand="my-brand"> -->
-<link rel="stylesheet" href="https://design.ybmnet.co.kr/yds/v1.2.0/dist/brands/my-brand.css">
-```
-
-```html
-<!-- 서비스 CSS보다 앞에 -->
 <link rel="stylesheet" href="https://design.ybmnet.co.kr/yds/dist/ybm-ds.css">
 <script src="https://design.ybmnet.co.kr/yds/dist/ybm-ds.js" defer></script>
 <!-- 브랜드가 있으면 그다음에, <html data-ds-brand="my-brand"> -->
