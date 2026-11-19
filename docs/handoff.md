@@ -4,6 +4,9 @@
 
 ## 한 것 (11-19, 회사 Windows)
 
+- **서버 재업로드 뒤 점검(사용자가 SVN 으로 커밋)**: 서버 반영은 TortoiseSVN(영문판) 커밋이다. 첫 업로드 때 `dist`, `v1.0.0`~`v1.2.0` 이 SVN 에 Add 되지 않아(? 표시) 404 였고, 사용자가 Add 뒤 다시 커밋했다. 지금 묶음 파일 723개를 서버에 하나씩 물어 모두 200(web.config, .gitignore 는 숨김이라 404 가 맞음), .md, .mdc, .mjs, .webp, VERSION 도 web.config 덕에 200 이고 글 파일은 utf-8.
+- **Figma 링크 모으기**: 16쪽에서 공식 주소 링크와 글 속 주소 96개(파일 95개)를 모아 서버에 물었더니 파일은 모두 200. 그 밖의 주소는 Figma 파일 링크, 워크 게시판, 예시 주소(example.com, unsplash)뿐이고 /yds/site/ 는 0.
+
 - **서버 첫 업로드 뒤 경로 점검**(사용자 "모든 경로 정상화"): 문서 페이지, assets, tokens, yds.txt 는 열리지만 `dist/` 전체와 `v1.x/dist`, `VERSION`, `.md`, `.mdc`, `.mjs`, `.webp` 가 404 였다(화면은 YDS CSS 없이 글자만). 원인 둘. 1) 묶음 맨 위에 site/.gitignore(내용 "dist/")가 들어가 올리기 도구가 dist 폴더를 모두 뺐다. 2) 서버가 IIS 라 등록 안 된 파일 형식(.md, .mdc, .mjs, .webp, 확장자 없음)을 404 로 낸다. 고침: server-pack 이 점 파일을 넣지 않고(남으면 멈춤), 맨 위에 web.config(파일 형식 등록, 글 파일은 utf-8)를 넣고, dist/ybm-ds.css, v*/dist, VERSION, web.config 가 없으면 멈춘다. 묶음 다시 만듦(.gitignore 0, dist 117파일).
 
 - **서버 묶음 자리를 저장소 안으로**(사용자 "로컬 폴더 yds 안에 다음부터 서버 업로드용 파일 생성"): `node tools/server-pack.mjs` 결과가 `works/yds/(서버업로드)/yds_날짜.zip` 에 생긴다. .gitignore 로 git 에는 올리지 않는다. 지금 파일은 `works/yds/(서버업로드)/yds_20261119.zip`(예전 자리 `works/project/(서버업로드)/` 의 yds zip 은 이리로 옮김).
@@ -15,7 +18,8 @@
 
 ## 남은 일
 
-0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만.
+0. **다음 세션 시작**: `git pull` → 이 파일 → 사용자가 말하는 일부터. 배포는 "배포" 라고 할 때만. 커밋 873abe29(점 파일, web.config, 필수 파일 검사)와 이 인수인계 커밋은 아직 push 전.
+0-1. **멈춘 곳(11-19, 사용자 "인수인계 만들고 정지")**: Figma 링크의 #usage, #code, #dev 위치 검사가 86개 모두 "앵커 없음" 으로 나왔는데, 로컬 사이트에는 id 가 있어 검사 스크립트(정규식) 문제로 보인다. 서버 쪽 `curl -s https://design.ybmnet.co.kr/yds/components/badge.html | grep -o 'id="usage"'` 로 먼저 확인한다. 그다음 남은 것: 브라우저로 첫 화면, 컴포넌트, 템플릿 화면이 YDS 모양으로 나오는지 보고 캡처를 보여 준다(Chrome 탭이 하나 열려 있음).
 1. **서버 다시 올리기(사용자, 11-19 09시 판)**: 새 zip 을 서버 `/yds/` 에 덮어 풀고, 서버에 남은 `/yds/.gitignore` 는 지운다. 올린 뒤 `curl` 로 dist/ybm-ds.css, v1.2.0/dist/ybm-ds.css, VERSION, index.md, ai/AGENTS.md, templates/thumbs/*.webp 가 200 인지, 화면에 YDS 버튼 모양이 나오는지 본다. web.config 를 올린 뒤 사이트 전체가 500 이면 서버가 파일 형식 설정을 막은 것이라 web.config 를 지우고 서버 담당자에게 형식 등록을 부탁한다. 처음 안내: zip 을 서버 `/yds/` 에 풀면 https://design.ybmnet.co.kr/yds/ 와 /yds/yds.txt 가 열린다. 올린 뒤 첫 화면, 컴포넌트 한 쪽, 템플릿 한 쪽, /yds/yds.txt, /yds/dist/ybm-ds.css, /yds/v1.2.0/dist/ybm-ds.css 가 열리는지 확인한다. 사이트를 고친 뒤에는 묶음을 다시 만들어야 서버에 반영된다(지시 때만).
 2. **Figma 작은 차이**: Mega Menu 대표 그림의 지금 페이지 글자(토익)가 사이트는 SemiBold, Figma 는 부품 안 굵기 변수 때문에 인스턴스에서 바뀌지 않는다. 부품에 지금 페이지 상태를 더할 때 맞춘다.
 3. **Figma 3441:43347(아이콘 위치 이미지)**: 사용자가 "우선 보류".
