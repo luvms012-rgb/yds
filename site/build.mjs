@@ -483,7 +483,7 @@ const LLMS_RULES = `## 지킬 것
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
 - 캐러셀: 자동 넘김(data-autoplay)은 큰 배너에만 쓰고, 멈춤 버튼(.ds-carousel__play)을 꼭 함께 둔다.
 - 같은 기능, 다른 모양: 값 차이는 컴포넌트 변수로, 구조 차이는 data-layout 으로 고른다. 비슷한 컴포넌트를 새로 만들거나 서비스 이름으로 모양을 나누지 않는다.
-- 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름을 먼저 쓴다. 없으면 Lucide 아이콘을 같은 형식(.ds-icon--이름 { --ds-icon: ... })으로 서비스 CSS에 더해 쓴다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
+- 아이콘: 목록(${SITE_URL}ai/icons.json)에 있는 이름을 먼저 쓴다. 없으면 Lucide 아이콘을 같은 형식(.ds-icon--이름 { --ds-icon: ... })으로 서비스 CSS에 더해 쓴다. 서비스가 다른 아이콘 세트를 정했으면 그 세트를 같은 형식으로 쓰되, 한 화면에 세트를 섞지 않고 컴포넌트 안 아이콘은 바꾸지 않는다. 꾸밈 아이콘에는 aria-hidden="true", 아이콘만 있는 버튼에는 aria-label을 붙인다.
 - 색, 간격, 글자 크기, 모서리, 그림자는 --ds-* 토큰만 쓴다. hex, rgb를 직접 쓰지 않는다.
 - 옅은 회색 칸(트랙, 빈 칸, 자리 표시, 회색 박스 안의 칸)은 --ds-color-bg-neutral-weak-alpha를 쓴다. 불투명 --ds-color-bg-neutral은 같은 회색 바탕 위에서 사라진다.
 - 원본: YDS 파일(ybm-ds.css, ybm-ds.js 등)은 담당자만 고친다. 가져다 쓰는 쪽은 원본을 고치거나 복사해 고치지 않고, 바꿀 것은 서비스 CSS에서 덮어쓴다. YDS 자체를 바꿔야 하면 담당자에게 요청한다.
@@ -857,8 +857,8 @@ const ICON_PRACTICES = [
   [true, '아이콘만 있는 버튼에는 aria-label을 붙입니다.'],
   [true, '아이콘 색은 글자색을 그대로 따릅니다. 상태 색이 필요하면 부모 요소의 글자색을 바꿉니다.'],
   [true, '크기는 16, 20, 24 중에서 선택합니다.'],
-  [false, '이모지나 다른 아이콘 세트를 섞지 않습니다.'],
-  [false, '아이콘 그림을 직접 수정하지 않습니다. Lucide 원본 그대로 사용합니다.'],
+  [false, '한 화면에 이모지나 여러 아이콘 세트를 섞지 않습니다.'],
+  [false, '아이콘 그림을 직접 수정하지 않습니다. 세트의 원본 그대로 사용합니다.'],
   [false, '아이콘 하나로 복잡한 의미를 전달하지 않습니다. 의미가 분명하지 않으면 텍스트를 함께 사용합니다.'],
 ];
 // 아이콘 쓰임 (아이콘 페이지 표). icons.css에 아이콘을 넣으면 여기에도 한 줄 - 빠지면 빌드가 알려 주고 Others에 넣는다
@@ -887,7 +887,7 @@ write({
   body: `<header><h1 class="site-h1">Iconography</h1><p class="site-lead">${ICON_LEAD}</p>${metaLinks(linkBySlug.icons)}</header>
 ${fdTabs('icons', 'foundations/icons.html')}
 <h2 id="overview">개요</h2>
-<p>아이콘은 Lucide 세트만 사용합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 바로 사용할 수 있는 아이콘은 ${iconNames.length}개이고, 필요하면 Lucide ${lucideCount.toLocaleString()}개 가운데서 추가할 수 있습니다. 모든 아이콘은 <a class="ds-link" href="icons-library.html">Library</a>에서 찾아 바로 복사할 수 있습니다.</p>
+<p>아이콘은 Lucide를 기본으로 권장합니다. 선 굵기가 일정하고 형태가 단순해 처음 보는 사람도 의미를 쉽게 이해할 수 있습니다. 서비스에 맞는 다른 아이콘 세트를 써도 되지만, 한 화면 안에서는 한 세트로 맞추고 컴포넌트 안 아이콘은 그대로 둡니다. 바로 사용할 수 있는 아이콘은 ${iconNames.length}개이고, 필요하면 Lucide ${lucideCount.toLocaleString()}개 가운데서 추가할 수 있습니다. 모든 아이콘은 <a class="ds-link" href="icons-library.html">Library</a>에서 찾아 바로 복사할 수 있습니다.</p>
 ${example(`<div class="pv-stage"><button type="button" class="ds-btn" data-variant="neutralWeak" data-size="medium"><i class="ds-icon ds-icon--search ds-icon--sm" aria-hidden="true"></i>찾기</button><button type="button" class="ds-btn" data-variant="ghost" data-size="medium" data-layout="iconOnly" aria-label="닫기"><i class="ds-icon ds-icon--x" aria-hidden="true"></i></button><span class="ds-badge" data-tone="positive"><i class="ds-icon ds-icon--circle-check-solid ds-icon--sm" aria-hidden="true"></i>완료</span></div>`, `<!-- 글자 옆: 꾸밈용이라 aria-hidden -->\n<button class="ds-btn" data-variant="neutralWeak" data-size="medium">\n  <i class="ds-icon ds-icon--search ds-icon--sm" aria-hidden="true"></i>찾기\n</button>\n\n<!-- 아이콘만 있는 버튼: 뜻을 aria-label로 -->\n<button class="ds-btn" data-variant="ghost" data-size="medium" data-layout="iconOnly" aria-label="닫기">\n  <i class="ds-icon ds-icon--x" aria-hidden="true"></i>\n</button>\n\n<!-- 배지 안: 글자와 함께라 aria-hidden -->\n<span class="ds-badge" data-tone="positive">\n  <i class="ds-icon ds-icon--circle-check-solid ds-icon--sm" aria-hidden="true"></i>완료\n</span>`)}
 <h2 id="categories">종류</h2>
 ${table(['종류', '모양', '쓰는 곳'], [['선', '<span class="site-icon-inline"><i class="ds-icon ds-icon--house" aria-hidden="true"></i><code>ds-icon--house</code></span>', '대부분의 위치에 사용하는 기본 모양입니다.'], ['채움', '<span class="site-icon-inline"><i class="ds-icon ds-icon--house-solid" aria-hidden="true"></i><code>ds-icon--house-solid</code></span>', '선택된 탭, 상태 표시처럼 더 강조해야 할 때 사용합니다. 이름 끝에 <code>-solid</code>가 붙습니다.']])}
