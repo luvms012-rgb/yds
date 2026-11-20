@@ -9,14 +9,14 @@
 - 규칙 파일: https://design.ybmnet.co.kr/yds/ai/AGENTS.md
 - 아이콘 목록: https://design.ybmnet.co.kr/yds/ai/icons.json
 - 검사 스크립트: https://design.ybmnet.co.kr/yds/ai/yds-check.mjs
-- 컴포넌트 목록: https://design.ybmnet.co.kr/yds/components.json, 마크업: https://design.ybmnet.co.kr/yds/dist/components.css
+- 컴포넌트 목록: https://design.ybmnet.co.kr/yds/components.json (마크업은 아래 Components 의 각 .md)
 - 토큰: https://design.ybmnet.co.kr/yds/dist/tokens.css (표준 형식 https://design.ybmnet.co.kr/yds/tokens/design-tokens.json, JS https://design.ybmnet.co.kr/yds/tokens/tokens.js, Tailwind https://design.ybmnet.co.kr/yds/tokens/tailwind.preset.js)
 
 ## 지킬 것
 
 - 설치: <head>에 CSS와 JS 두 줄을 넣는다. 서비스 CSS는 그다음에 불러온다. 기본은 최신 주소다. 화면이 저절로 바뀌면 안 되는 서비스는 버전을 고정한 주소(https://design.ybmnet.co.kr/yds/v1.2.0/dist/ybm-ds.css, ybm-ds.js)를 쓸 수 있고, 고정 주소에서는 그 버전 뒤에 더한 속성이 동작하지 않을 수 있다(Updates 에서 버전별로 확인).
 - 규칙 파일: 설치할 때 규칙 파일(https://design.ybmnet.co.kr/yds/ai/AGENTS.md)을 프로젝트 맨 위 폴더에 받아 둔다. Claude는 CLAUDE.md, Cursor는 .cursor/rules/yds.mdc 이름으로 둔다. 파일 하나만 만드는 일이면 받지 않아도 된다.
-- 컴포넌트: 목록(https://design.ybmnet.co.kr/yds/components.json)에 있는 것만 쓰고, 마크업은 컴포넌트 CSS(https://design.ybmnet.co.kr/yds/dist/components.css)의 컴포넌트별 머리 주석 그대로 쓴다. 목록에 없는 화면 요소(지도, 좌석표, 플레이어 등)는 서비스 클래스로 --ds-* 토큰만 써서 만들고, 만든 것을 결과에 알린다.
+- 컴포넌트: 목록(https://design.ybmnet.co.kr/yds/components.json)에 있는 것만 쓰고, 마크업은 그 컴포넌트 문서(yds.txt 목차의 .md)의 사용법 그대로 쓴다. CSS 파일은 통째로 읽지 않는다. 목록에 없는 화면 요소(지도, 좌석표, 플레이어 등)는 서비스 클래스로 --ds-* 토큰만 써서 만들고, 만든 것을 결과에 알린다.
 - 링크: 문장 안의 Text Link 는 주변 글자 크기를 그대로 따른다. 크기를 따로 지정하지 않는다. 전체 보기처럼 이동을 알리는 링크는 끝에 chevron-right 아이콘을 넣는다. 아이콘이 있으면 밑줄이 빠지므로 text-decoration 을 직접 바꾸지 않는다.
 - 캐러셀: 자동 넘김(data-autoplay)은 큰 배너에만 쓰고, 멈춤 버튼(.ds-carousel__play)을 꼭 함께 둔다.
 - 같은 기능, 다른 모양: 값 차이는 컴포넌트 변수로, 구조 차이는 data-layout 으로 고른다. 비슷한 컴포넌트를 새로 만들거나 서비스 이름으로 모양을 나누지 않는다.
