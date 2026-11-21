@@ -32,7 +32,7 @@ site/CLAUDE.md 에서 뺀 페이지별 세부 규격이다. 그 페이지를 고
 ## Foundations 와 컴포넌트 문서
 - Foundations: 항목마다 한 쪽, ABC 순, 큰 그림 없음. 구성은 개요 → 토큰 표(tokens.css 에서 읽음) → 코드에서 쓰기 → 사용 지침. Color, Iconography 는 탭으로 나눈다(build.mjs `FD_TABS`).
 - 아이콘 페이지: 찾기 칸 하나가 YDS 아이콘(icons.css)과 Lucide 전체(`site/src/lucide-icons.json`)를 함께 거른다. 한글은 `site/src/icon-ko.json`(한국어 → 영어 낱말)로 찾고 사이트 찾기의 아이콘도 같은 낱말을 쓴다(안 찾히는 말은 한 줄 더한다). YDS 에 없는 아이콘은 서비스 CSS 에 넣을 코드를 복사한다. Lucide 갱신은 `node site/lucide-update.mjs <폴더> <버전>`. 아이콘 쓰임 글은 build.mjs `ICON_GROUPS`(빠지면 빌드가 알려 준다).
-- 구조 그림: 실제 크기 부품 + 파란 이름과 곧은 화살표(site.js pinAnatomy, 겹침이 없는 자리, 피할 수 없으면 data-forced). 자리 글자가 있는 컴포넌트는 `site/src/anatomy-figures.html` 에 실제 쓰임 화면을 따로 쓴다. 휴대폰에서는 줄이지 않고 옆으로 민다.
+- 구조 그림: 실제 크기 부품 + 파란 이름과 곧은 화살표(site.js pinAnatomy, 겹침이 없는 자리, 피할 수 없으면 data-forced). 11-21 사용자 레퍼런스: 옆에서 긴 가로 화살표를 먼저(가까운 쪽), 막히면 위아래. 이름 줄은 왼쪽은 오른쪽 끝, 오른쪽은 왼쪽 끝을 맞추고 부품과의 거리는 그림 여백만큼(28 ~ 120, 그림마다 한 값). 화살표 끝은 실제로 보이는 것(글자 줄, 칠한 칸, 아이콘, 구분선, 가짜 요소)에 닿고 빈 곳을 가리키지 않는다. 이름 있는 부품을 품은 투명한 묶음(Header, Group, List 등)은 옅은 점선 테두리로 범위를 보이고 화살표가 그 테두리에 닿는다(여러 겹이면 바깥일수록 5px 밖). 끝이 다른 보이는 것에 6px 안으로 붙거나, 다른 것에 3px 안으로 스치는 자리는 피한다. 한 요소에 부품 클래스가 둘이면 한 번만 가리킨다. 자리 글자가 있는 컴포넌트는 `site/src/anatomy-figures.html` 에 실제 쓰임 화면을 따로 쓴다. 휴대폰에서는 줄이지 않고 옆으로 민다.
 - 대표 그림은 `site/src/covers.html` 에 컴포넌트마다 한국어 실제 쓰임 장면 하나(흰 바탕, 덩어리는 build.mjs COVER_PANEL). 목록 썸네일은 첫 예시의 앞 부품 2개. 새 컴포넌트를 넣으면 covers, search-ko, anatomy 도 더한다.
 
 ## AI 안내서

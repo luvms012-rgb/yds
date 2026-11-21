@@ -446,6 +446,7 @@ body.site { background: var(--ds-color-bg-layer-default); color: var(--ds-color-
 .site-anatomy__layer { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .site-anatomy__layer line { stroke: var(--site-anatomy-c); stroke-width: 1; }
 .site-anatomy__layer path { fill: var(--site-anatomy-c); }
+.site-anatomy__layer .site-anatomy__group { fill: none; stroke: var(--site-anatomy-c); stroke-width: 1; stroke-dasharray: 3 3; opacity: .6; }  /* 이름 있는 부품만 담은 묶음(Header 등)의 범위 (11-21) */
 .site-anatomy__name { position: absolute; z-index: 1; color: var(--site-anatomy-c); font-size: var(--ds-font-size-t03); line-height: 16px; white-space: nowrap; }
 .site-anatomy-table td:first-child { width: 1%; white-space: nowrap; }
 .site-anatomy__part { display: inline-flex; align-items: center; gap: var(--ds-space-x2); }

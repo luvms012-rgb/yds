@@ -409,10 +409,11 @@
     pinAnatomy();
   }
   // 구조 그림 (레퍼런스 B Anatomy): 부품은 실제 크기로 가운데, 이름은 그림 바깥에 두고 곧은 화살표로 부품 가장자리를 가리킨다.
-  // 나란한 부품은 위아래에서 세로 화살표로, 위아래로 쌓인 부품과 바깥 틀은 양옆에서 가로 화살표로 가리킨다.
+  // 2026-11-21 사용자 레퍼런스: 모든 부품을 양옆에서 긴 가로 화살표로 먼저 가리키고(가까운 쪽 먼저), 막힐 때만 위아래 세로 화살표.
+  // 이름은 왼쪽 줄은 오른쪽 끝, 오른쪽 줄은 왼쪽 끝을 맞추고, 부품과의 거리는 그림 여백이 허락하는 만큼(그림마다 한 값) 둔다.
   // 화살표는 다른 부품 위를 지나지 않고, 서로 엇갈리지 않으며, 이름끼리 겹치지 않는 자리를 고른다
   function pinAnatomy() {
-    var NS = "http://www.w3.org/2000/svg", GAP = 28, ROW = 26;
+    var NS = "http://www.w3.org/2000/svg", GAP = 28, ROW = 26, LEAD = 8;
     document.querySelectorAll("[data-site-anatomy]").forEach(function (box) {
       var old = box.querySelector(".site-anatomy__layer"); if (old) old.remove();
       [].slice.call(box.querySelectorAll(".site-anatomy__name")).forEach(function (n) { n.remove(); });
@@ -446,17 +447,61 @@
         });
         return u || r;
       };
-      // 그림에 보이는 부품만 모은다
+      // 부품 안에서 실제로 보이는 것(글자 줄, 바탕이나 테두리가 있는 상자, 아이콘, 그림)의 자리 목록.
+      // 화살표는 이것이 부품 가장자리에 닿는 자리에서만 들어가 빈 곳(줄 사이, 묶음의 남는 자리)을 가리키지 않는다 (11-21 사용자 레퍼런스)
+      var inkList = function (el) {
+        var out = [];
+        var walk = function (e) {
+          var r = e.getBoundingClientRect(); if (r.width < 1 || r.height < 1) return;
+          var cs0 = e instanceof HTMLElement ? getComputedStyle(e) : null;
+          // 구분선처럼 한두 변에만 선이 있는 칸은 그 선만 보이는 것이고 안은 계속 살핀다(칸 전체를 보이는 것으로 치면 빈 곳을 가리킨다)
+          var sides = cs0 ? ["Top", "Right", "Bottom", "Left"].filter(function (s) { return parseFloat(cs0["border" + s + "Width"]) > 0; }) : [];
+          // 바탕을 칠했어도 바깥 바탕과 같은 색이면(흰 위에 흰) 보이지 않는 칸이다
+          var under = function (n) { for (var a = n.parentElement; a; a = a.parentElement) { var c = getComputedStyle(a).backgroundColor; if (c !== "rgba(0, 0, 0, 0)" && c !== "transparent") return c; } return "rgb(255, 255, 255)"; };
+          var filled = cs0 && ((cs0.backgroundColor !== "rgba(0, 0, 0, 0)" && cs0.backgroundColor !== "transparent" && cs0.backgroundColor !== under(e)) || cs0.backgroundImage !== "none" || (cs0.boxShadow !== "none" && cs0.boxShadow.indexOf("rgba(0, 0, 0, 0)") !== 0));
+          if (!cs0 || /^(IMG|CANVAS|VIDEO|I)$/.test(e.tagName) || filled || sides.length > 2) { out.push(r); return; }
+          sides.forEach(function (s) { var w = parseFloat(cs0["border" + s + "Width"]); out.push(s === "Top" ? { left: r.left, top: r.top, right: r.right, bottom: r.top + w } : s === "Bottom" ? { left: r.left, top: r.bottom - w, right: r.right, bottom: r.bottom } : s === "Left" ? { left: r.left, top: r.top, right: r.left + w, bottom: r.bottom } : { left: r.right - w, top: r.top, right: r.right, bottom: r.bottom }); });
+          // 가짜 요소(::before 앞, ::after 끝에 그린 꺾쇠, 점 등)는 그 크기만큼 시작 쪽, 끝 쪽 자리로 친다
+          ["::before", "::after"].forEach(function (pe) {
+            var ps = getComputedStyle(e, pe); if (ps.content === "none" || ps.display === "none") return;
+            var pw = parseFloat(ps.width) || 0, ph = parseFloat(ps.height) || 0; if (pw < 1 || ph < 1) return;
+            var x = pe === "::before" ? r.left + parseFloat(cs0.paddingLeft) + (parseFloat(ps.marginLeft) || 0) : r.right - parseFloat(cs0.paddingRight) - (parseFloat(ps.marginRight) || 0) - pw, y = (r.top + r.bottom - ph) / 2;
+            if (ps.position === "absolute") {  // 절대 위치(목록 구분선 등)는 top, left 값으로 자리를 잡는다
+              x = ps.left !== "auto" ? r.left + parseFloat(ps.left) : ps.right !== "auto" ? r.right - parseFloat(ps.right) - pw : x;
+              y = ps.top !== "auto" ? r.top + parseFloat(ps.top) : ps.bottom !== "auto" ? r.bottom - parseFloat(ps.bottom) - ph : y;
+            }
+            out.push({ left: x, top: y, right: x + pw, bottom: y + ph });
+          });
+          if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.tagName)) { var ic = getComputedStyle(e), lh = parseFloat(ic.lineHeight) || parseFloat(ic.fontSize) * 1.5, it = e.tagName === "TEXTAREA" ? r.top + parseFloat(ic.paddingTop) : (r.top + r.bottom - lh) / 2; out.push({ left: r.left + parseFloat(ic.paddingLeft), top: it, right: r.left + parseFloat(ic.paddingLeft) + Math.min(r.width, 48), bottom: it + lh }); return; }  // 테두리 없는 입력 칸은 글이 시작하는 자리(왼쪽, 글자 줄 높이)만
+          [].forEach.call(e.childNodes, function (n) {
+            if (n.nodeType === 3 && n.textContent.trim()) { var g = document.createRange(); g.selectNodeContents(n); [].forEach.call(g.getClientRects(), function (q) { if (q.width >= 1 && q.height >= 1) out.push(q); }); }
+            else if (n.nodeType === 1 && seen(n)) walk(n);
+          });
+        };
+        walk(el);
+        return (out.length ? out : [el.getBoundingClientRect()]).map(rel);
+      };
+      // 그림에 보이는 부품만 모은다. 한 요소에 부품 클래스가 둘이면(예: 입력 칸) 한 번만 가리킨다
       var parts = [];
       box.getAttribute("data-site-anatomy").split(" ").forEach(function (cls, i) {
         var el = [].slice.call(box.querySelectorAll(".site-tile__inner ." + cls)).filter(seen)[0];
-        if (el) parts.push({ el: el, name: names[i] || cls, R: rel(inked(el)), B: rel(el.getBoundingClientRect()) });
+        if (el && !parts.some(function (p) { return p.el === el; })) {
+          var ink = inkList(el), R = ink.reduce(function (u, q) { return { l: Math.min(u.l, q.l), t: Math.min(u.t, q.t), r: Math.max(u.r, q.r), b: Math.max(u.b, q.b) }; }, { l: 1e9, t: 1e9, r: -1e9, b: -1e9 });  // 부품 범위 = 보이는 것들을 합친 범위
+          parts.push({ el: el, name: names[i] || cls, R: R, B: rel(el.getBoundingClientRect()), ink: ink });
+        }
       });
       if (!parts.length) return;
       var inside = function (a, c) { return a.l >= c.l - 0.5 && a.r <= c.r + 0.5 && a.t >= c.t - 0.5 && a.b <= c.b + 0.5; };
       parts.forEach(function (p) {
         p.kids = parts.filter(function (q) { return q !== p && (p.el.contains(q.el) || inside(q.R, p.R)); });
         p.outer = parts.filter(function (q) { return q !== p && (q.el.contains(p.el) || inside(p.R, q.R)); });
+      });
+      // 이름 있는 부품을 품은 투명한 묶음(Header, Group, List, Inner 등)은 테두리가 보이지 않아 어디를 가리켜도 안쪽 부품처럼 보인다.
+      // 그런 묶음은 옅은 점선 테두리로 범위를 보여 주고 화살표가 그 테두리에 닿게 한다. 여러 겹이면 바깥 묶음일수록 5px 씩 더 밖에 그린다
+      var groups = parts.filter(function (p) { return p.kids.length && p.el instanceof HTMLElement && !/^(IMG|CANVAS|VIDEO|I)$/.test(p.el.tagName) && !boxed(getComputedStyle(p.el)); });
+      groups.sort(function (a, c) { return a.kids.length - c.kids.length; }).forEach(function (p) {
+        var d = 6 + 5 * groups.filter(function (q) { return q !== p && p.kids.indexOf(q) >= 0; }).length;
+        p.group = true; p.R = { l: p.R.l - d, t: p.R.t - d, r: p.R.r + d, b: p.R.b + d };
       });
       // 이름을 붙이지 않는 같은 부품(두 번째 항목 등)도 화살표가 지나가면 안 된다
       var others = [];
@@ -472,12 +517,13 @@
         var r = e.getBoundingClientRect(); if (r.width < 8 || r.height < 8) return;
         var cs = getComputedStyle(e); if (cs.visibility === "hidden" || cs.opacity === "0") return;
         var bg = cs.backgroundColor !== "rgba(0, 0, 0, 0)" && cs.backgroundColor !== "transparent";
-        if (bg || parseFloat(cs.borderTopWidth) > 0 || parseFloat(cs.borderLeftWidth) > 0 || cs.boxShadow !== "none" || e.tagName === "IMG") others.push({ el: e, R: rel(r) });
+        var line = function (w, c) { return parseFloat(w) > 0 && !/rgba\([^)]*,\s*0\)|transparent/.test(c); };
+        if (bg || parseFloat(cs.borderTopWidth) > 0 || parseFloat(cs.borderLeftWidth) > 0 || cs.boxShadow !== "none" || e.tagName === "IMG") others.push({ el: e, R: rel(r), seen: bg || e.tagName === "IMG" || line(cs.borderTopWidth, cs.borderTopColor) || line(cs.borderLeftWidth, cs.borderLeftColor) });
         // 글자도 지나가지 않는다 (글자가 차지한 자리만)
         [].forEach.call(e.childNodes, function (n) {
           if (n.nodeType !== 3 || !n.textContent.trim()) return;
           var rg = document.createRange(); rg.selectNodeContents(n); var tr = rg.getBoundingClientRect();
-          if (tr.width >= 1 && tr.height >= 1) others.push({ el: e, R: rel(tr) });
+          if (tr.width >= 1 && tr.height >= 1) others.push({ el: e, R: rel(tr), seen: true });
         });
       });
       // 이름은 그림 전체 바깥에 둔다 (부품이 그림 안쪽에만 있어도 이름이 사진이나 표 위에 놓이지 않게)
@@ -501,10 +547,16 @@
       var overlap = function (a, c, g) { return a.l < c.r + g && a.r > c.l - g && a.t < c.b + g && a.b > c.t - g; };
       // 이 자리에 두면 몇 군데가 겹치는지 센다 (0이면 깨끗한 자리).
       // 그림 속 부품과 상자는 바뀌지 않으니 자리마다 한 번만 세고(fixed), 이미 놓은 화살표와 이름만 매번 센다(live)
-      var fixed = function (p, s, L) {
+      var fixed = function (p, s, L, k) {
         var n = 0;
         if (L.l < 4 || L.t < 4 || L.r > b.width - 4 || L.b > b.height - 4) n += 10;
-        for (var i = 0; i < p.obs.length; i++) { var q = p.obs[i]; if (hitsRect(s, q, 1)) n++; if (overlap(L, q, 4)) n += 3; }
+        for (var i = 0; i < p.obs.length; i++) { var q = p.obs[i]; if (hitsRect(s, q, 3)) n++; if (overlap(L, q, 4)) n += 3; }  // 3px 안으로 스치듯 지나가는 것도 피한다
+        // 묶음 안쪽까지 들어가는 화살표는 이름 있는 안쪽 부품 위를 지나지 않는다
+        if (k) p.kids.forEach(function (q) { if (!inside(k, q.R) && hitsRect(s, q.R, 1)) n++; });
+        // 화살표 끝이 가리키는 것이 아닌 다른 보이는 것에 6px 안으로 붙으면 그것을 가리키는 것처럼 보인다
+        var x = s.x2, y = s.y2;
+        // 끝이 안에 있거나, 가리키는 것과 원래 겹쳐 있는 것(사진 위 배지 등)은 세지 않는다
+        for (var f = 0; f < p.foreign.length; f++) { var g = p.foreign[f]; if ((x >= g.l && x <= g.r && y >= g.t && y <= g.b) || (k && overlap(g, k, 0))) continue; var dx = Math.max(g.l - x, 0, x - g.r), dy = Math.max(g.t - y, 0, y - g.b); if (dx * dx + dy * dy < 36) { n += 2; break; } }
         return n;
       };
       var live = function (s, L) {
@@ -522,29 +574,49 @@
         var name = document.createElement("span"); name.className = "site-anatomy__name"; name.textContent = p.name; box.appendChild(name);
         p.tag = name; p.w = name.offsetWidth; p.h = name.offsetHeight;
       });
+      // 이름과 그림 사이 거리: 옆은 그림 양옆 여백에서 가장 넓은 이름이 들어가는 만큼(28 ~ 120), 위아래는 28 ~ 48. 그림마다 한 값이라 이름 줄이 가지런하다
+      var maxW = Math.max.apply(null, parts.map(function (p) { return p.w; })), lh = Math.max.apply(null, parts.map(function (p) { return p.h; }));
+      var GS = Math.max(GAP, Math.min(120, Math.min(U.l, b.width - U.r) - maxW - 16));
+      var GV = Math.max(GAP, Math.min(48, Math.min(U.t, b.height - U.b) - lh - 16));
       var choices = function (p) {
         var w = p.w, h = p.h, R = p.R, cx = (R.l + R.r) / 2, cy = (R.t + R.b) / 2, c = [];
+        // 화살표 끝은 보이는 것(글자 줄, 상자, 아이콘)에 닿는다. 순서: 이름 없는 것 중 가장자리에 닿는 것 → 안쪽에 있는 것 → 이름 있는 안쪽 부품.
+        // 이름 있는 안쪽 부품(예: Header 안의 Close)을 마지막에 두어 묶음 화살표가 그 부품을 가리키는 것처럼 보이지 않게 한다
+        var owned = function (k) { return p.kids.some(function (q) { return inside(k, q.R); }) ? 1 : 0; };
+        var targets = function (edge) {
+          if (p.group) return [R];
+          var touch = function (k) { return edge === "l" ? k.l <= R.l + 3 : edge === "r" ? k.r >= R.r - 3 : edge === "t" ? k.t <= R.t + 3 : k.b >= R.b - 3; };
+          var horiz = edge === "l" || edge === "r", center = horiz ? cy : cx;
+          return p.ink.slice().sort(function (a, c) {
+            return (owned(a) * 2 + (touch(a) ? 0 : 1)) - (owned(c) * 2 + (touch(c) ? 0 : 1)) || Math.abs((horiz ? a.t + a.b : a.l + a.r) / 2 - center) - Math.abs((horiz ? c.t + c.b : c.l + c.r) / 2 - center);
+          }).slice(0, 8);
+        };
+        var span = function (lo, hi, step) { var m = (lo + hi) / 2, out = [m]; if (hi < lo) return out; for (var d = step; d <= (hi - lo) / 2; d += step) out.push(m - d, m + d); return out; };
         var vert = function (top) {
-          var xs = [cx]; for (var d = 8; d < (R.r - R.l) / 2 - 4; d += 8) xs.push(cx - d, cx + d);
-          for (var row = 0; row < 4; row++) xs.forEach(function (x) { [0, -0.35, 0.35].forEach(function (o) {
-            var lx = x - w / 2 + o * w, ly = top ? U.t - GAP - row * ROW - h : U.b + GAP + row * ROW;
-            c.push({ L: { l: lx, t: ly, r: lx + w, b: ly + h }, s: { x1: x, y1: top ? ly + h + 3 : ly - 3, x2: x, y2: top ? R.t - 1 : R.b + 1 } });
+          targets(top ? "t" : "b").forEach(function (k) { span(k.l + 2, k.r - 2, 8).forEach(function (x) {
+            for (var row = 0; row < 4; row++) [0, -0.35, 0.35].forEach(function (o) {
+              var lx = x - w / 2 + o * w, ly = top ? U.t - GV - row * ROW - h : U.b + GV + row * ROW;
+              c.push({ k: k, side: false, inner: top ? k.t - U.t : U.b - k.b, L: { l: lx, t: ly, r: lx + w, b: ly + h }, s: { x1: x, y1: top ? ly + h + LEAD : ly - LEAD, x2: x, y2: top ? k.t - 1 : k.b + 1 } });
+            });
           }); });
         };
         var side = function (left) {
-          var ys = [cy]; for (var d = 2; d < (R.b - R.t) / 2 - 2; d += 2) ys.push(cy - d, cy + d);
-          ys.forEach(function (y) {
-            var lx = left ? U.l - GAP - w : U.r + GAP;
-            c.push({ L: { l: lx, t: y - h / 2, r: lx + w, b: y + h / 2 }, s: { x1: left ? lx + w + 4 : lx - 4, y1: y, x2: left ? R.l - 1 : R.r + 1, y2: y } });
-          });
+          targets(left ? "l" : "r").forEach(function (k) { span(k.t + 2, k.b - 2, 2).forEach(function (y) {
+            var lx = left ? U.l - GS - w : U.r + GS;
+            c.push({ k: k, side: true, inner: left ? k.l - U.l : U.r - k.r, L: { l: lx, t: y - h / 2, r: lx + w, b: y + h / 2 }, s: { x1: left ? lx + w + LEAD : lx - LEAD, y1: y, x2: left ? k.l - 1 : k.r + 1, y2: y } });
+          }); });
         };
-        // 바깥 틀과 세로로 긴 부품은 옆, 그 밖은 위아래를 먼저 본다
-        var tall = R.b - R.t > (R.r - R.l) * 0.9;
-        if (p.kids.length || tall) { side(cx > (U.l + U.r) / 2 ? false : true); side(cx > (U.l + U.r) / 2); vert(cy < (U.t + U.b) / 2); vert(cy >= (U.t + U.b) / 2); }
-        else { vert(cy < (U.t + U.b) / 2); vert(cy >= (U.t + U.b) / 2); side(cx < (U.l + U.r) / 2); side(cx >= (U.l + U.r) / 2); }
+        // 레퍼런스처럼 옆을 먼저(가까운 쪽 먼저), 막히면 위아래(가까운 쪽 먼저)
+        var leftFirst = cx <= (U.l + U.r) / 2;
+        side(leftFirst); side(!leftFirst); vert(cy < (U.t + U.b) / 2); vert(cy >= (U.t + U.b) / 2);
         return c;
       };
-      parts.forEach(function (p) { p.c = choices(p); p.c.forEach(function (c) { c.base = fixed(p, c.s, c.L); }); });
+      parts.forEach(function (p) {
+        // 이 부품의 것이 아닌 보이는 것(다른 부품의 글자와 아이콘, 이름 없는 상자와 글자)
+        p.foreign = parts.filter(function (q) { return q !== p; }).reduce(function (a, q) { return a.concat(q.ink); }, []).concat(others.filter(function (e) { return e.seen; }).map(function (e) { return e.R; }))  // 실제로 보이는 것만(글자, 그림, 칠한 바탕이나 테두리)
+          .filter(function (g) { return !inside(g, p.R) && !inside(p.R, g) && !p.ink.some(function (k) { return inside(g, k); }); });  // 이 부품을 감싸는 바깥 틀도 뺀다
+      });
+      parts.forEach(function (p) { p.c = choices(p); p.c.forEach(function (c) { c.base = fixed(p, c.s, c.L, c.k); }); });
       // 정한 순서대로 한 부품씩 가장 깨끗한 자리를 고른다 (fix 는 자리를 먼저 정해 둔 부품)
       var solve = function (order, fix) {
         segs = []; labels = [];
@@ -554,9 +626,8 @@
           if (fix && p === fix.p) return;
           var pick = null, best = 1e9;
           for (var ci = 0; ci < p.c.length && best > 0; ci++) { var cc = p.c[ci]; if (cc.base >= best) continue; var sc = cc.base + live(cc.s, cc.L); if (sc < best) { best = sc; pick = cc; } }
-          // 고른 화살표가 길면 깨끗하면서 훨씬 짧은 자리로 바꾼다
-          var run = function (s) { return Math.abs(s.x2 - s.x1) + Math.abs(s.y2 - s.y1); };
-          if (best === 0 && run(pick.s) > 72) for (var cj = 0; cj < p.c.length; cj++) { var cd = p.c[cj]; if (cd.base === 0 && run(cd.s) < run(pick.s) * 0.6 && live(cd.s, cd.L) === 0) { pick = cd; break; } }
+          // 그림 안쪽을 길게 가로지르는 화살표는 깨끗하면서 훨씬 짧게 들어가는 자리로 바꾼다(그림 밖 길이는 모든 이름이 같아 세지 않는다)
+          if (best === 0 && pick.inner > 96) for (var cj = 0; cj < p.c.length; cj++) { var cd = p.c[cj]; if (cd.base === 0 && cd.inner < pick.inner * 0.5 && live(cd.s, cd.L) === 0) { pick = cd; break; } }
           segs.push(pick.s); labels.push(pick.L); res.total += best; res.picks.push({ p: p, pick: pick, best: best });
         });
         return res;
@@ -583,6 +654,12 @@
         }
         if (!gain) break;
       }
+      parts.forEach(function (p) {
+        if (!p.group) return;
+        var g = document.createElementNS(NS, "rect"); g.setAttribute("class", "site-anatomy__group");
+        g.setAttribute("x", p.R.l); g.setAttribute("y", p.R.t); g.setAttribute("width", p.R.r - p.R.l); g.setAttribute("height", p.R.b - p.R.t); g.setAttribute("rx", 4);
+        svg.appendChild(g);
+      });
       top.picks.forEach(function (x) {
         var name = x.p.tag, pick = x.pick;
         if (x.best > 0) name.setAttribute("data-forced", x.best);
