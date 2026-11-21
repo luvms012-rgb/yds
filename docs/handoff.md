@@ -2,15 +2,20 @@
 
 - 갱신: 2026-11-20 회사 Windows 오전. 마지막 배포 cecf8210(AI 규칙이 마크업을 컴포넌트 .md 에서 읽게, 작업 지침 경량화). 시작은 `git pull` 뒤 이 파일. 지난 일은 log.md "기록". 사이트 세부 규격은 필요할 때만 docs/site-detail.md.
 
+## 한 것 (11-21, 집 Mac)
+
+- **Figma 싱크 최종 검수**(사용자 "피그마 싱크 최종 검수", 읽기 전용): 변수 359(YDS 247, Typography 73, Shape 9, Elevation 30), 컴포넌트 세트 118(변형 수까지, 목록 밖 세트 0), 문서 프레임 Documentation/Code 링크 170, 템플릿 화면 81 모두 저장소와 일치. 11-18 뒤 바뀐 컴포넌트(Dialog, Command Palette, Top App Bar 등)는 11-18 저녁, 밤 싱크에 들어 있고 모달 스크롤바 수정은 Figma 와 상관없음. Figma 링크가 가리키는 사이트 위치(#usage, #code) 91곳을 서버와 로컬에서 확인해 모두 있음(11-19 "앵커 없음" 은 검사 스크립트 문제였다). Mac 기준점 저장(figma-quick save).
+- **서버 확인**: dist/ybm-ds.css, ybm-ds.js 는 로컬과 같다. yds.txt 는 11-20 AI 규칙(마크업을 컴포넌트 .md 에서 읽기) 이 아직 없어 변경분2 가 서버에 안 올라간 것으로 보인다.
+
 ## 남은 일
 
-1. **서버 올리기(사용자, 확인 안 됨)**: `(서버업로드)/yds_20261120_변경분.zip`(182, 아침) 을 먼저, 그다음 `yds_20261120_변경분2.zip`(187) 을 서버 `/yds/` 에 덮어 푼다. 서버를 비우고 올리면 `전체/yds_20261120_전체.zip` 하나. 서버에서 지울 것 `/yds/v1.0.0`, `/yds/v1.1.0`, `/yds/templates/thumbs/index.json`. 다음 변경분 비교 기준은 `전체/yds_20261120_전체.zip`(변경분2 까지 들어 있음).
+1. **서버 올리기(사용자, 11-21 확인: 변경분2 아직 없음)**: `(서버업로드)/yds_20261120_변경분.zip`(182, 아침) 을 먼저, 그다음 `yds_20261120_변경분2.zip`(187) 을 서버 `/yds/` 에 덮어 푼다. 서버를 비우고 올리면 `전체/yds_20261120_전체.zip` 하나. 서버에서 지울 것 `/yds/v1.0.0`, `/yds/v1.1.0`, `/yds/templates/thumbs/index.json`. 다음 변경분 비교 기준은 `전체/yds_20261120_전체.zip`(변경분2 까지 들어 있음).
 2. **Figma 작은 차이**: Mega Menu 대표 그림의 지금 페이지 글자가 사이트는 SemiBold, Figma 는 부품 안 굵기 변수 때문에 바뀌지 않는다. 부품에 지금 페이지 상태를 더할 때 맞춘다.
 3. **Figma 3441:43347(아이콘 위치 이미지)**: 사용자가 "우선 보류".
 4. **시험 접수 화면(시작 전에 멈춤)**: 어디에 둘지(YDS 템플릿 / works 아래 서비스 화면)를 먼저 묻는다. 가까운 템플릿은 시험 신청, 시험 일정, 고사장 신청, 시험 접수 완료.
 5. **Figma 싱크 때**: Table 헤더 고정(요청 접수). 답을 기다리는 것(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비)은 그대로.
 6. 다음 버전은 `node sync.mjs release x.y.z`(사용자 확인 뒤).
-7. **폴더 이름 바뀜 확인(묻고 나서)**: 저장소 밖 `works/project/_publish/publish.ps1`, `tools/server-zip.mjs`, README 의 로컬 예시 경로 `../../../../ybm-ds/dist/` 는 아직 예전 이름. Mac 은 폴더 이름을 같게 맞출지 묻는다.
+7. **폴더 이름 바뀜 확인(묻고 나서)**: 저장소 밖 `works/project/_publish/publish.ps1`, `tools/server-zip.mjs`, README 의 로컬 예시 경로 `../../../../ybm-ds/dist/` 는 아직 예전 이름. Mac 도 11-19 에 works/yds 로 바꿨다(launch.json 의 ds-preview 경로, uipatterns/scripts/sync-ybm-ds.js 가 yds 를 먼저 찾게).
 
 ## 주의
 
