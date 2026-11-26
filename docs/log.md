@@ -12,6 +12,10 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-26 회사 Windows (입력 부품 선, 표 머리)
+
+- 사내 백오피스 사용 피드백 "선이 너무 옅다" 를 받아 사용자가 두 가지만 YDS 에 반영하기로 함(안쪽 구분선, 테두리 버튼, 아이콘은 반영 안 함). 토큰 값은 그대로, 부품 기본값만: 입력 부품 7종 테두리 stroke/neutral, 마우스 올림 neutral-solid(비활성, 읽기 전용, 포커스 제외), Table 머리 줄 바탕 bg/neutral-weak-alpha, SemiBold, 아래선 neutral-weak(`--ds-table-head-bg`, `--ds-table-head-line`). check 5-1 에 입력 부품 테두리 묶음(stroke-neutral) 추가. Updates 두 줄, 배포 1a955c2b, 서버 변경분 383파일.
+
 ### 2026-11-19~20 회사 Windows (인수인계에서 옮김, 서버 반영, 아이콘 규칙, Updates 문장)
 
 - **모달 열고 닫을 때 화면 흔들림 없앰(DS)**: 모달이 뒤 스크롤을 막으면서 창 스크롤바가 사라져 화면이 15px 옆으로 밀렸다. ybm-ds.js 가 스크롤바가 있는 화면이면 html 에 `data-ds-scrollbar` 를 붙이고, components.css 가 막는 동안 `scrollbar-gutter: stable` 로 자리를 남긴다(스크롤바가 없는 짧은 화면은 그대로). 헤드리스 Chrome 에서 팁 창, 템플릿 보기 창, Esc 닫기 모두 0px. 숨긴 브라우저 패널에서는 dialog close 이벤트가 오지 않아 잘못 재진다(헤드리스로 잰다). Figma 와 상관없다.
