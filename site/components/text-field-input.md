@@ -149,7 +149,7 @@
 | `--ds-input-color` | `var(--ds-color-fg-neutral)` |
 | `--ds-input-bg` | `var(--ds-color-bg-transparent)` |
 | `--ds-input-radius` | `0px` |
-| `--ds-input-line` | `var(--ds-color-stroke-neutral-weak)` |
+| `--ds-input-line` | `var(--ds-color-stroke-neutral)` |
 | `--ds-input-line-active` | `var(--ds-color-stroke-neutral-contrast)` |
 | `--ds-input-line-fade` | `var(--ds-duration-normal) var(--ds-easing-standard)` |
 
@@ -163,5 +163,6 @@ Figma
   underline large : py8 / min-h44 / gap10 / t06 / icon 24 / 하단 1px
   underline medium: py6 / min-h36 / gap8  / t05 / icon 20
   focused 1px stroke/neutral-contrast / invalid 1px stroke/critical-solid
+  선 1px stroke/neutral / hover stroke/neutral-solid / focused stroke/neutral-contrast
   outline 바탕 bg/layer-default(underline 투명) / disabled (outline) bg/disabled / 글자 fg/disabled / readOnly (outline) bg/disabled
 ```

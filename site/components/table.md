@@ -168,15 +168,17 @@
 | `--ds-table-row-h` | `56px` |
 | `--ds-table-line` | `var(--ds-color-stroke-neutral-muted)` |
 | `--ds-table-edge` | `var(--ds-color-stroke-neutral-weak)` |
+| `--ds-table-head-bg` | `var(--ds-color-bg-neutral-weak-alpha)` |
+| `--ds-table-head-line` | `var(--ds-color-stroke-neutral-weak)` |
 
 ### 크기와 여백
 
 ```text
 size: default(기본) / small
 2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-11 표 맨 위와 맨 아래 선은 바깥 테두리 색(한 단계 짙게), 행 사이는 옅은 선
-Figma: 표 위 1px stroke/neutral-weak / 마지막 줄 아래 1px stroke/neutral-weak / 그 밖의 칸 아래 1px stroke/neutral-muted / header 바탕 없음
+Figma: 표 위 1px stroke/neutral-weak / 마지막 줄 아래 1px stroke/neutral-weak / 그 밖의 칸 아래 1px stroke/neutral-muted / header 바탕 bg/neutral-weak-alpha, 아래 1px stroke/neutral-weak
   높이 header 40 / body 56 (small 40 / 48) / 칸 좌우 x3, 양 끝 칸 x4 / 한 줄 말줄임
-  header t04 Medium fg/neutral / body t04 fg/neutral / 두 줄 칸 아래 줄 t02 fg/neutral-subtle
+  header t04 SemiBold fg/neutral / body t04 fg/neutral / 두 줄 칸 아래 줄 t02 fg/neutral-subtle
   묶음 행 44 bg/neutral-weak-alpha + SemiBold / hover(data-interactive 행만) bg/neutral-weak-alpha / selected bg/brand-weak
   정렬: 글 start(기본) / 숫자 end / 짧은 고정 길이 값(번호/날짜/상태) center → data-align (right 는 end 와 같음)
   선은 칸의 border로 그립니다(행 그림자는 칸에 바탕을 넣으면 가려지고, 표 양 끝에 세로 선이 생깁니다)

@@ -275,6 +275,7 @@
      underline large : py8 · min-h44 · gap10 · t06 · icon 24 · 하단 1px
      underline medium: py6 · min-h36 · gap8  · t05 · icon 20
      focused 1px stroke/neutral-contrast · invalid 1px stroke/critical-solid
+     선 1px stroke/neutral · hover stroke/neutral-solid · focused stroke/neutral-contrast
      outline 바탕 bg/layer-default(underline 투명) / disabled (outline) bg/disabled · 글자 fg/disabled / readOnly (outline) bg/disabled
    -------------------------------------------------------------------------- */
 .ds-input {
@@ -288,7 +289,7 @@
   --ds-input-color: var(--ds-color-fg-neutral);
   --ds-input-bg: var(--ds-color-bg-transparent);
   --ds-input-radius: 0px;
-  --ds-input-line: var(--ds-color-stroke-neutral-weak);
+  --ds-input-line: var(--ds-color-stroke-neutral);  /* 2026-11-26 입력 부품 선은 stroke/neutral, 마우스 올림 neutral-solid */
   --ds-input-line-active: var(--ds-color-stroke-neutral-contrast);
   --ds-input-line-fade: var(--ds-duration-normal) var(--ds-easing-standard);
 
@@ -322,6 +323,7 @@
   transition: opacity var(--ds-input-line-fade), background-color var(--ds-input-line-fade);
 }
 .ds-input:focus-within::after { opacity: 1; }
+@media (hover: hover) { .ds-input:hover:not(:focus-within, :has(.ds-input__control:is(:disabled, [readonly]))) { --ds-input-line: var(--ds-color-stroke-neutral-solid); } }
 .ds-input:has([aria-invalid="true"]) { --ds-input-line-active: var(--ds-color-stroke-critical-solid); }
 .ds-input:has([aria-invalid="true"])::after { opacity: 1; }
 .ds-input:has(.ds-input__control:disabled) { --ds-input-color: var(--ds-color-fg-disabled); }
@@ -423,7 +425,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
    Figma outline large : px16 · py14 · min-h94 · shape/lg · t05
          outline medium: px14 · py12 · min-h82 · shape/sm · t04
          underline large : py8+14 · min-h110 · t06 · 하단 1px / underline medium: py6+12 · min-h94 · t05
-   바탕 bg/layer-default(underline 투명) · focused 1px stroke/neutral-contrast · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
+   선 1px stroke/neutral · hover stroke/neutral-solid · 바탕 bg/layer-default(underline 투명) · focused 1px stroke/neutral-contrast · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
    -------------------------------------------------------------------------- */
 .ds-textarea {
   --ds-textarea-padding: var(--ds-space-x3_5) var(--ds-space-x4);
@@ -431,7 +433,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-textarea-radius: var(--ds-shape-lg);
   --ds-textarea-font-size: var(--ds-font-size-t05);
   --ds-textarea-line-height: var(--ds-line-height-t05);
-  --ds-textarea-line: var(--ds-color-stroke-neutral-weak);
+  --ds-textarea-line: var(--ds-color-stroke-neutral);
   --ds-textarea-line-width: 1px;
   display: block;
   width: 100%;
@@ -473,6 +475,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-textarea-line-height: var(--ds-line-height-t05);
 }
 .ds-textarea::placeholder { color: var(--ds-color-fg-placeholder); opacity: 1; }
+@media (hover: hover) { .ds-textarea:hover:not(:focus, :disabled, [readonly]) { --ds-textarea-line: var(--ds-color-stroke-neutral-solid); } }
 .ds-textarea:focus { --ds-textarea-line: var(--ds-color-stroke-neutral-contrast); --ds-textarea-line-width: 1px; }
 .ds-textarea[aria-invalid="true"] { --ds-textarea-line: var(--ds-color-stroke-critical-solid); --ds-textarea-line-width: 1px; }
 .ds-textarea:disabled { color: var(--ds-color-fg-disabled); }
@@ -490,7 +493,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
        <i class="ds-icon ds-icon--chevron-down" aria-hidden="true"></i>
      </button>
    Figma large : h52 · px16 · gap10 · shape/lg · t05 · icon 20 / medium: h40 · px14 · gap8 · shape/sm · t04 · icon 16
-          바탕 bg/layer-default · 1px stroke/neutral-weak · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
+          바탕 bg/layer-default · 1px stroke/neutral(hover neutral-solid) · invalid 1px stroke/critical-solid · disabled·readOnly bg/disabled
           affix·아이콘 fg/neutral-subtle · placeholder fg/placeholder · 값 fg/neutral
    readOnly: aria-readonly="true" (폼 제출이 필요하면 disabled 대신 readOnly, DS §6.4)
    -------------------------------------------------------------------------- */
@@ -502,7 +505,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-fb-font-size: var(--ds-font-size-t05);
   --ds-fb-line-height: var(--ds-line-height-t05);
   --ds-fb-icon: 20px;
-  --ds-fb-line: var(--ds-color-stroke-neutral-weak);
+  --ds-fb-line: var(--ds-color-stroke-neutral);
   --ds-fb-line-width: 1px;
   --ds-fb-bg: var(--ds-color-bg-layer-default);
   display: flex;
@@ -532,6 +535,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 .ds-fieldbutton__value { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ds-fieldbutton__value:empty::before { content: attr(data-placeholder); color: var(--ds-color-fg-placeholder); }
 .ds-fieldbutton__affix { flex: none; color: var(--ds-color-fg-neutral-subtle); }
+@media (hover: hover) { .ds-fieldbutton:hover:not(:disabled, [aria-readonly="true"]) { --ds-fb-line: var(--ds-color-stroke-neutral-solid); } }
 .ds-fieldbutton[aria-invalid="true"] { --ds-fb-line: var(--ds-color-stroke-critical-solid); --ds-fb-line-width: 1px; }
 .ds-fieldbutton:is(:disabled, [aria-readonly="true"]) { --ds-fb-bg: var(--ds-color-bg-disabled); }
 .ds-fieldbutton[aria-readonly="true"] { cursor: default; }
@@ -573,7 +577,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
        <span class="ds-select__value" data-placeholder="선택해 주세요"></span>
      </button>
    Figma large: h52 · px16 · gap10 · shape/lg · t05 · chevron 20 / medium: h40 · px14 · gap8 · shape/sm · t04 · chevron 16
-          바탕 bg/layer-default · chevron fg/neutral(열림 = chevron-up) · invalid 1px critical · disabled·readOnly bg/disabled
+          선 1px stroke/neutral(hover neutral-solid) · 바탕 bg/layer-default · chevron fg/neutral(열림 = chevron-up) · invalid 1px critical · disabled·readOnly bg/disabled
    -------------------------------------------------------------------------- */
 .ds-select {
   --ds-select-height: 52px;
@@ -583,7 +587,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   --ds-select-font-size: var(--ds-font-size-t05);
   --ds-select-line-height: var(--ds-line-height-t05);
   --ds-select-icon: 20px;
-  --ds-select-line: var(--ds-color-stroke-neutral-weak);
+  --ds-select-line: var(--ds-color-stroke-neutral);
   --ds-select-line-width: 1px;
   --ds-select-bg: var(--ds-color-bg-layer-default);
   display: flex;
@@ -622,6 +626,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
           mask: var(--ds-icon-chevron-down) center / contain no-repeat;
 }
 .ds-select[aria-expanded="true"]::after { -webkit-mask-image: var(--ds-icon-chevron-up); mask-image: var(--ds-icon-chevron-up); }
+@media (hover: hover) { .ds-select:hover:not(:disabled, [aria-readonly="true"]) { --ds-select-line: var(--ds-color-stroke-neutral-solid); } }
 .ds-select[aria-invalid="true"] { --ds-select-line: var(--ds-color-stroke-critical-solid); --ds-select-line-width: 1px; }
 .ds-select:is(:disabled, [aria-readonly="true"]) { --ds-select-bg: var(--ds-color-bg-disabled); }
 .ds-select:disabled { color: var(--ds-color-fg-disabled); cursor: not-allowed; }
@@ -2535,9 +2540,9 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
        </table>
      </div>
    2026-11-03 개편(템플릿 표 기준과 같게), 2026-11-11 표 맨 위와 맨 아래 선은 바깥 테두리 색(한 단계 짙게), 행 사이는 옅은 선
-   Figma: 표 위 1px stroke/neutral-weak · 마지막 줄 아래 1px stroke/neutral-weak · 그 밖의 칸 아래 1px stroke/neutral-muted · header 바탕 없음
+   Figma: 표 위 1px stroke/neutral-weak · 마지막 줄 아래 1px stroke/neutral-weak · 그 밖의 칸 아래 1px stroke/neutral-muted · header 바탕 bg/neutral-weak-alpha, 아래 1px stroke/neutral-weak
      높이 header 40 / body 56 (small 40 / 48) · 칸 좌우 x3, 양 끝 칸 x4 · 한 줄 말줄임
-     header t04 Medium fg/neutral · body t04 fg/neutral · 두 줄 칸 아래 줄 t02 fg/neutral-subtle
+     header t04 SemiBold fg/neutral · body t04 fg/neutral · 두 줄 칸 아래 줄 t02 fg/neutral-subtle
      묶음 행 44 bg/neutral-weak-alpha + SemiBold · hover(data-interactive 행만) bg/neutral-weak-alpha · selected bg/brand-weak
      정렬: 글 start(기본) · 숫자 end · 짧은 고정 길이 값(번호·날짜·상태) center → data-align (right 는 end 와 같음)
      선은 칸의 border로 그립니다(행 그림자는 칸에 바탕을 넣으면 가려지고, 표 양 끝에 세로 선이 생깁니다)
@@ -2549,6 +2554,8 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   --ds-table-row-h: 56px;
   --ds-table-line: var(--ds-color-stroke-neutral-muted);
   --ds-table-edge: var(--ds-color-stroke-neutral-weak);  /* 맨 위, 맨 아래 선 (2026-11-11) */
+  --ds-table-head-bg: var(--ds-color-bg-neutral-weak-alpha);  /* 머리 줄 바탕과 아래선 (2026-11-26) */
+  --ds-table-head-line: var(--ds-color-stroke-neutral-weak);
   width: 100%;
   table-layout: fixed;              /* 고정 폭 열은 <th style="width:…"> 또는 <col>, 나머지 열이 남은 폭을 나눈다 */
   border-collapse: collapse;
@@ -2573,7 +2580,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-table :is(th, td):last-child { padding-inline-end: var(--ds-space-x4); }
 .ds-table thead tr { height: var(--ds-table-head-h); }
 .ds-table thead th { padding-block: 0; }  /* 머리줄은 체크박스가 있어도 높이 40 그대로 (2026-11-10) */
-.ds-table thead th { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-medium); }
+.ds-table thead th { color: var(--ds-color-fg-neutral); font-size: var(--ds-font-size-t04); line-height: var(--ds-line-height-t04); font-weight: var(--ds-font-weight-semibold); background: var(--ds-table-head-bg); border-bottom-color: var(--ds-table-head-line); }
 .ds-table tbody tr { height: var(--ds-table-row-h); }
 .ds-table td { font-weight: var(--ds-font-weight-regular); }
 .ds-table [data-align="center"] { text-align: center; }
@@ -3086,7 +3093,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
   height: 36px;
   border-radius: var(--ds-shape-sm);
   background: var(--ds-color-bg-layer-default);
-  box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak);
+  box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral);
   color: var(--ds-color-fg-neutral);
 }
 .ds-tablepagination__select > select {
@@ -3113,6 +3120,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
           mask: var(--ds-icon-chevron-down) center / contain no-repeat;
   pointer-events: none;
 }
+@media (hover: hover) { .ds-tablepagination__select:hover:not(:has(select:disabled)) { box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-solid); } }
 .ds-tablepagination__select:has(select:focus-visible) { outline: 2px solid var(--ds-color-stroke-focus-ring); outline-offset: 2px; }
 .ds-tablepagination__select > select:focus-visible { outline: none; }
 .ds-tablepagination__select:has(select:disabled) { background: var(--ds-color-bg-disabled); color: var(--ds-color-fg-disabled); }
@@ -4238,12 +4246,13 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   padding: var(--ds-space-x2) var(--ds-space-x3_5);
   border-radius: var(--ds-shape-sm);
   background: var(--ds-color-bg-layer-default);
-  box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-weak);
+  box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral);
   color: var(--ds-color-fg-neutral);
   font-size: var(--ds-font-size-t04);
   line-height: var(--ds-line-height-t04);
   text-align: start;
 }
+@media (hover: hover) { .ds-multiselect__trigger:hover:not([aria-expanded="true"], :disabled) { box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-solid); } }
 .ds-multiselect__trigger[aria-expanded="true"] { box-shadow: inset 0 0 0 1px var(--ds-color-stroke-neutral-contrast); }
 .ds-multiselect__trigger > .ds-icon { color: var(--ds-color-fg-neutral-subtle); transition: rotate var(--ds-duration-fast) var(--ds-easing-standard); }
 .ds-multiselect__trigger[aria-expanded="true"] > .ds-icon { rotate: 180deg; }
@@ -4341,7 +4350,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
        <input class="ds-codeinput__cell" inputmode="numeric" autocomplete="one-time-code" aria-label="1번째 숫자"> 칸 수만큼
      </div>
    size: large(기본) 칸 48x56, shape/lg, t08 SemiBold / medium 칸 40x48, shape/md, t06 SemiBold / 칸 사이 x2
-   선: 1px stroke/neutral-weak, 포커스 stroke/neutral-contrast, 틀림 stroke/critical-solid, 비활성 bg/disabled
+   선: 1px stroke/neutral(hover neutral-solid), 포커스 stroke/neutral-contrast, 틀림 stroke/critical-solid, 비활성 bg/disabled
    ybm-ds.js: 한 글자를 넣으면 다음 칸, 지우면 앞 칸으로 이동하고, 붙여 넣으면 모든 칸을 채웁니다. 다 채우면 ds-code-complete(detail.value)를 보냅니다
    -------------------------------------------------------------------------- */
 .ds-codeinput {
@@ -4354,7 +4363,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
 .ds-field:has(> .ds-codeinput) { width: fit-content; max-width: 100%; }  /* 2026-11-11: 칸 묶음 너비에 맞춰 아래 도움말과 링크가 칸 끝선 안에 */
 .ds-codeinput[data-size="medium"] { --ds-codeinput-w: 40px; --ds-codeinput-h: 48px; --ds-codeinput-radius: var(--ds-shape-md); }
 .ds-codeinput__cell {
-  --ds-codeinput-line: var(--ds-color-stroke-neutral-weak);
+  --ds-codeinput-line: var(--ds-color-stroke-neutral);
   flex: none;
   width: var(--ds-codeinput-w);
   height: var(--ds-codeinput-h);
@@ -4375,6 +4384,7 @@ a.ds-citation[data-type="number"]:hover { background: var(--ds-color-bg-brand-we
   transition: box-shadow var(--ds-duration-fast) var(--ds-easing-standard);
 }
 .ds-codeinput[data-size="medium"] .ds-codeinput__cell { font-size: var(--ds-font-size-t06); line-height: var(--ds-line-height-t06); }
+@media (hover: hover) { .ds-codeinput__cell:hover:not(:focus, :disabled) { --ds-codeinput-line: var(--ds-color-stroke-neutral-solid); } }
 .ds-codeinput__cell:focus { outline: none; --ds-codeinput-line: var(--ds-color-stroke-neutral-contrast); }
 .ds-codeinput[aria-invalid="true"] .ds-codeinput__cell { --ds-codeinput-line: var(--ds-color-stroke-critical-solid); }
 .ds-codeinput__cell:disabled { background: var(--ds-color-bg-disabled); color: var(--ds-color-fg-disabled); cursor: not-allowed; }
