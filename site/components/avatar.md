@@ -149,12 +149,17 @@
 | --- | --- |
 | `--ds-avatar-size` | `36px` |
 | `--ds-avatar-badge` | `14px` |
+| `--ds-avatar-font` | `var(--ds-font-size-t05)` |
+| `--ds-avatar-weight` | `var(--ds-font-weight-medium)` |
 | `--ds-avatar-radius` | `var(--ds-shape-pill)` |
 | `--ds-avatar-bg` | `var(--ds-color-palette-gray-300)` |
 | `--ds-avatar-status-size` | `max(8px, calc(var(--ds-avatar-size) * 0.26))` |
 | `--ds-avatar-status-ring` | `clamp(1.5px, calc(var(--ds-avatar-size) * 0.04), 4px)` |
 | `--ds-avatar-status-color` | `var(--ds-color-bg-positive-solid)` |
 | `--ds-avatar-group-size` | `36px` |
+| `--ds-avatar-group-font` | `var(--ds-font-size-t05)` |
+| `--ds-avatar-group-more` | `var(--ds-font-size-t03)` |
+| `--ds-avatar-group-weight` | `var(--ds-font-weight-medium)` |
 | `--ds-avatar-group-radius` | `var(--ds-shape-pill)` |
 | `--ds-avatar-group-ring` | `max(1.5px, calc(var(--ds-avatar-group-size) * 0.05))` |
 | `--ds-avatar-group-ring-color` | `var(--ds-color-bg-layer-default)` |
@@ -174,5 +179,6 @@ shape: circle(기본) / rounded(크기의 1/4, 곡률 노브 따름) / square
   지름 = 아바타의 26% (최소 8px) / 배경색 링 / circle 은 4시 방향, rounded/square 는 우하단 모서리
 Figma: 원 / 이미지 없을 때 palette/gray-300(실루엣 gray-600, 2026-11-04) / 이니셜 fg/neutral-muted(2026-11-03, 흰 글자에서 바꿈) / 1px ring stroke/neutral-subtle(INSIDE)
        shape rounded/square 는 badgeMask=none 에만 / status 속성(Avatar Status 인스턴스) / Avatar Group/Group Overflow 세트
+       이니셜 글자 = 20→11 / 24→12 / 32→14 / 36→16 / 40→18 / 48→20 / 56→24 / 64→28 / 80→32 / 96→40 / 108→48 (정수, 2026-11-26) / 굵기 40 이하 Medium, 48 이상 SemiBold(묶음 +N 도 같음)
        badge 지름 = 24→10 / 36→14 / 42→16 / 48→18 / 56→20 / 64→22 / 80→28 / 96→32 / 108→36 (우하단)
 ```

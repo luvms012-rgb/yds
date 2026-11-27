@@ -1035,7 +1035,7 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   white-space: nowrap;
 }
 .ds-chip > .ds-icon { --ds-icon-size: var(--ds-chip-icon); }
-.ds-chip > .ds-avatar { --ds-avatar-size: 24px; margin-inline-start: calc(var(--ds-space-x1_5) - var(--ds-chip-padding-x)); }
+.ds-chip > .ds-avatar { --ds-avatar-size: 24px; --ds-avatar-font: var(--ds-font-size-t02); margin-inline-start: calc(var(--ds-space-x1_5) - var(--ds-chip-padding-x)); }
 .ds-chip[data-size="small"] { --ds-chip-height: 32px; --ds-chip-padding-x: calc(var(--ds-space-x1_5) * 2); --ds-chip-min-width: 44px; --ds-chip-icon: 14px; }
 .ds-chip[data-size="large"] { --ds-chip-height: 40px; --ds-chip-padding-x: calc(var(--ds-space-x2_5) + var(--ds-space-x1_5)); --ds-chip-min-width: var(--ds-space-x13); font-size: var(--ds-font-size-t05); line-height: var(--ds-line-height-t05); }
 .ds-chip[data-layout="iconOnly"] { width: var(--ds-chip-height); min-width: var(--ds-chip-height); padding: 0; }
@@ -1398,11 +1398,14 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 
    Figma: 원 · 이미지 없을 때 palette/gray-300(실루엣 gray-600, 2026-11-04) · 이니셜 fg/neutral-muted(2026-11-03, 흰 글자에서 바꿈) · 1px ring stroke/neutral-subtle(INSIDE)
           shape rounded·square 는 badgeMask=none 에만 · status 속성(Avatar Status 인스턴스) · Avatar Group·Group Overflow 세트
+          이니셜 글자 = 20→11 · 24→12 · 32→14 · 36→16 · 40→18 · 48→20 · 56→24 · 64→28 · 80→32 · 96→40 · 108→48 (정수, 2026-11-26) · 굵기 40 이하 Medium, 48 이상 SemiBold(묶음 +N 도 같음)
           badge 지름 = 24→10 · 36→14 · 42→16 · 48→18 · 56→20 · 64→22 · 80→28 · 96→32 · 108→36 (우하단)
    -------------------------------------------------------------------------- */
 .ds-avatar {
   --ds-avatar-size: 36px;
   --ds-avatar-badge: 14px;
+  --ds-avatar-font: var(--ds-font-size-t05);  /* 이니셜 글자 크기: 크기마다 정수 값 (2026-11-26) */
+  --ds-avatar-weight: var(--ds-font-weight-medium);  /* 40 이하 Medium, 48 이상 SemiBold */
   --ds-avatar-radius: var(--ds-shape-pill);
   --ds-avatar-bg: var(--ds-color-palette-gray-300);  /* 2026-11-04: 500 은 너무 진해 300 으로 */
   position: relative;
@@ -1418,9 +1421,9 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   background: var(--ds-avatar-bg);
   color: var(--ds-color-palette-gray-600);  /* 기본 실루엣 색 */
   font: inherit;
-  font-size: calc(var(--ds-avatar-size) * 0.42);
+  font-size: var(--ds-avatar-font);
   line-height: 1;
-  font-weight: var(--ds-font-weight-semibold);
+  font-weight: var(--ds-avatar-weight);
   text-decoration: none;
   user-select: none;
 }
@@ -1436,15 +1439,15 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 }
 
 /* 크기 */
-.ds-avatar[data-size="20"]  { --ds-avatar-size: 20px; }
-.ds-avatar[data-size="24"]  { --ds-avatar-size: 24px;  --ds-avatar-badge: 10px; }
-.ds-avatar:is([data-size="40"], [data-size="42"])  { --ds-avatar-size: 40px;  --ds-avatar-badge: 16px; }
-.ds-avatar[data-size="48"]  { --ds-avatar-size: 48px;  --ds-avatar-badge: 18px; }
-.ds-avatar[data-size="56"]  { --ds-avatar-size: 56px;  --ds-avatar-badge: 20px; }
-.ds-avatar[data-size="64"]  { --ds-avatar-size: 64px;  --ds-avatar-badge: 22px; }
-.ds-avatar[data-size="80"]  { --ds-avatar-size: 80px;  --ds-avatar-badge: 28px; }
-.ds-avatar[data-size="96"]  { --ds-avatar-size: 96px;  --ds-avatar-badge: 32px; }
-.ds-avatar[data-size="108"] { --ds-avatar-size: 108px; --ds-avatar-badge: 36px; }
+.ds-avatar[data-size="20"]  { --ds-avatar-size: 20px;  --ds-avatar-font: var(--ds-font-size-t01); }
+.ds-avatar[data-size="24"]  { --ds-avatar-size: 24px;  --ds-avatar-badge: 10px; --ds-avatar-font: var(--ds-font-size-t02); }
+.ds-avatar:is([data-size="40"], [data-size="42"])  { --ds-avatar-size: 40px;  --ds-avatar-badge: 16px; --ds-avatar-font: var(--ds-font-size-t06); }
+.ds-avatar[data-size="48"]  { --ds-avatar-size: 48px;  --ds-avatar-badge: 18px; --ds-avatar-font: var(--ds-font-size-t07); --ds-avatar-weight: var(--ds-font-weight-semibold); }
+.ds-avatar[data-size="56"]  { --ds-avatar-size: 56px;  --ds-avatar-badge: 20px; --ds-avatar-font: var(--ds-font-size-t09); --ds-avatar-weight: var(--ds-font-weight-semibold); }
+.ds-avatar[data-size="64"]  { --ds-avatar-size: 64px;  --ds-avatar-badge: 22px; --ds-avatar-font: var(--ds-font-size-t11); --ds-avatar-weight: var(--ds-font-weight-semibold); }
+.ds-avatar[data-size="80"]  { --ds-avatar-size: 80px;  --ds-avatar-badge: 28px; --ds-avatar-font: var(--ds-font-size-t12); --ds-avatar-weight: var(--ds-font-weight-semibold); }
+.ds-avatar[data-size="96"]  { --ds-avatar-size: 96px;  --ds-avatar-badge: 32px; --ds-avatar-font: var(--ds-font-size-t13); --ds-avatar-weight: var(--ds-font-weight-semibold); }
+.ds-avatar[data-size="108"] { --ds-avatar-size: 108px; --ds-avatar-badge: 36px; --ds-avatar-font: var(--ds-font-size-t14); --ds-avatar-weight: var(--ds-font-weight-semibold); }
 
 /* 모양 — rounded 는 곡률 노브(--ds-shape-scale)를 따른다 (노브가 0 인 영역에서는 각진다) */
 .ds-avatar[data-shape="rounded"] { --ds-avatar-radius: calc(var(--ds-avatar-size) * 0.25 * var(--ds-shape-scale)); }
@@ -1514,6 +1517,9 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
    -------------------------------------------------------------------------- */
 .ds-avatar-group {
   --ds-avatar-group-size: 36px;
+  --ds-avatar-group-font: var(--ds-font-size-t05);  /* 이니셜, 크기마다 정수 (2026-11-26) */
+  --ds-avatar-group-more: var(--ds-font-size-t03);  /* +N 글자, 크기마다 정수 */
+  --ds-avatar-group-weight: var(--ds-font-weight-medium);  /* 이니셜과 +N, 40 이하 Medium, 48 이상 SemiBold */
   --ds-avatar-group-radius: var(--ds-shape-pill);
   --ds-avatar-group-ring: max(1.5px, calc(var(--ds-avatar-group-size) * 0.05));
   --ds-avatar-group-ring-color: var(--ds-color-bg-layer-default);  /* 겹친 경계 고리 색 = 놓인 바탕색 (흰 바탕이 아니면 바탕색으로 덮어쓴다) */
@@ -1523,18 +1529,20 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
 }
 .ds-avatar-group > :is(.ds-avatar, .ds-avatar-group__overflow):nth-child(n) {
   --ds-avatar-size: var(--ds-avatar-group-size);
+  --ds-avatar-font: var(--ds-avatar-group-font);
+  --ds-avatar-weight: var(--ds-avatar-group-weight);
   --ds-avatar-badge: calc(var(--ds-avatar-group-size) * 0.36);
   --ds-avatar-radius: var(--ds-avatar-group-radius);
   box-shadow: 0 0 0 var(--ds-avatar-group-ring) var(--ds-avatar-group-ring-color);
 }
 .ds-avatar-group > * + * { margin-inline-start: calc(var(--ds-avatar-group-size) * -0.25); }
 .ds-avatar-group > :focus-visible { z-index: 1; }
-.ds-avatar-group[data-size="20"]  { --ds-avatar-group-size: 20px; }
-.ds-avatar-group[data-size="24"]  { --ds-avatar-group-size: 24px; }
-.ds-avatar-group:is([data-size="40"], [data-size="42"])  { --ds-avatar-group-size: 40px; }
-.ds-avatar-group[data-size="48"]  { --ds-avatar-group-size: 48px; }
-.ds-avatar-group[data-size="56"]  { --ds-avatar-group-size: 56px; }
-.ds-avatar-group[data-size="64"]  { --ds-avatar-group-size: 64px; }
+.ds-avatar-group[data-size="20"]  { --ds-avatar-group-size: 20px; --ds-avatar-group-font: var(--ds-font-size-t01); --ds-avatar-group-more: var(--ds-font-size-t01); }
+.ds-avatar-group[data-size="24"]  { --ds-avatar-group-size: 24px; --ds-avatar-group-font: var(--ds-font-size-t02); --ds-avatar-group-more: var(--ds-font-size-t01); }
+.ds-avatar-group:is([data-size="40"], [data-size="42"])  { --ds-avatar-group-size: 40px; --ds-avatar-group-font: var(--ds-font-size-t06); --ds-avatar-group-more: var(--ds-font-size-t04); }
+.ds-avatar-group[data-size="48"]  { --ds-avatar-group-size: 48px; --ds-avatar-group-font: var(--ds-font-size-t07); --ds-avatar-group-more: var(--ds-font-size-t05); --ds-avatar-group-weight: var(--ds-font-weight-semibold); }
+.ds-avatar-group[data-size="56"]  { --ds-avatar-group-size: 56px; --ds-avatar-group-font: var(--ds-font-size-t09); --ds-avatar-group-more: var(--ds-font-size-t07); --ds-avatar-group-weight: var(--ds-font-weight-semibold); }
+.ds-avatar-group[data-size="64"]  { --ds-avatar-group-size: 64px; --ds-avatar-group-font: var(--ds-font-size-t11); --ds-avatar-group-more: var(--ds-font-size-t08); --ds-avatar-group-weight: var(--ds-font-weight-semibold); }
 .ds-avatar-group[data-shape="rounded"] { --ds-avatar-group-radius: calc(var(--ds-avatar-group-size) * 0.25 * var(--ds-shape-scale)); }
 .ds-avatar-group[data-shape="square"]  { --ds-avatar-group-radius: 0; }
 
@@ -1553,9 +1561,9 @@ button.ds-input__prefix:hover { color: var(--ds-color-fg-neutral); }
   background: var(--ds-color-bg-neutral-muted);
   color: var(--ds-color-fg-neutral-muted);
   font: inherit;
-  font-size: max(10px, calc(var(--ds-avatar-size, 36px) * 0.36));
+  font-size: var(--ds-avatar-group-more, var(--ds-font-size-t03));
   line-height: 1;
-  font-weight: var(--ds-font-weight-semibold);
+  font-weight: var(--ds-avatar-group-weight, var(--ds-font-weight-medium));
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -3447,7 +3455,7 @@ a.ds-card:active, button.ds-card:active { background: linear-gradient(var(--ds-c
 .ds-topnav__item:hover { background: var(--ds-color-bg-transparent-pressed); color: var(--ds-color-fg-neutral); }
 .ds-topnav__item[aria-current="page"] { color: var(--ds-color-fg-neutral); font-weight: var(--ds-font-weight-semibold); }
 .ds-topnav__end { display: flex; flex: none; align-items: center; gap: var(--ds-space-x1); margin-inline-start: auto; }
-.ds-topnav__end > .ds-avatar { --ds-avatar-size: 32px; }  /* 로그인 버튼(xsmall 32)과 같은 높이 */
+.ds-topnav__end > .ds-avatar { --ds-avatar-size: 32px; --ds-avatar-font: var(--ds-font-size-t04); }  /* 로그인 버튼(xsmall 32)과 같은 높이 */
 .ds-topnav[data-layout="center"] { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--ds-space-x4); }
 .ds-topnav[data-layout="center"] .ds-topnav__left { display: contents; }
 .ds-topnav[data-layout="center"] .ds-topnav__heading { justify-self: start; }
