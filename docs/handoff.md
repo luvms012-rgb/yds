@@ -1,6 +1,6 @@
 # 인수인계 (최신 1건, 매번 덮어쓴다)
 
-- 갱신: 2026-11-26 회사 Windows. 마지막 배포 1a955c2b(입력 부품 테두리 stroke/neutral + 마우스 올림 neutral-solid, Table 머리 줄 bg/neutral-weak-alpha + SemiBold + 아래선 neutral-weak). 시작은 `git pull` 뒤 이 파일. 지난 일은 log.md "기록". 사이트 세부 규격은 필요할 때만 docs/site-detail.md.
+- 갱신: 2026-11-27 회사 Windows. 마지막 배포 99f6670a(Avatar 이니셜 글자 크기 정수, 40 이하 Medium 48 이상 SemiBold). 그 앞 1a955c2b(입력 부품 테두리, Table 머리). 시작은 `git pull` 뒤 이 파일. 지난 일은 log.md "기록". 사이트 세부 규격은 필요할 때만 docs/site-detail.md.
 
 ## 한 것 (11-21, 집 Mac)
 
@@ -12,8 +12,8 @@
 
 ## 남은 일
 
-1. **서버 올리기(사용자, 11-26 묶음)**: `(서버업로드)/yds_20261126_변경분.zip`(383파일, 지금 서버 파일과 하나씩 md5 비교, 11-20 AI 규칙, 11-21 구조 그림, 11-26 입력 선과 표 머리 모두 포함) 을 서버 `/yds/` 에 덮어 푼다. 서버를 비우고 올리면 `전체/yds_20261126_전체.zip` 하나. 서버에서 지울 것 `/yds/v1.0.0`, `/yds/v1.1.0`, `/yds/templates/thumbs/index.json`(남아 있으면).
-1-1. **Figma 싱크 때(11-26 입력 선, 표 머리)**: Text Field(input, textarea), Select, Field Button, Code Input, Multi Select, Table Pagination 선택 상자의 기본 테두리를 stroke/neutral 로, 마우스 올림 변형이 있으면 stroke/neutral-solid. Table 머리 줄 바탕 bg/neutral-weak-alpha, 글자 SemiBold, 머리 아래선 stroke/neutral-weak. 이 부품이 들어간 템플릿 화면도 따라온다(figma-quick changed 로 확인).
+1. **서버 올리기(사용자, 11-27 묶음)**: `(서버업로드)/yds_20261127_변경분.zip`(371파일, 지금 서버 파일과 하나씩 md5 비교, 11-20 부터 11-27 아바타까지 모두 포함) 을 서버 `/yds/` 에 덮어 푼다. 서버를 비우고 올리면 `전체/yds_20261127_전체.zip` 하나. 서버에서 지울 것 `/yds/v1.0.0`, `/yds/v1.1.0`, `/yds/templates/thumbs/index.json`(남아 있으면).
+1-1. **Figma 싱크 때(11-26 입력 선, 표 머리)**: Text Field(input, textarea), Select, Field Button, Code Input, Multi Select, Table Pagination 선택 상자의 기본 테두리를 stroke/neutral 로, 마우스 올림 변형이 있으면 stroke/neutral-solid. Table 머리 줄 바탕 bg/neutral-weak-alpha, 글자 SemiBold, 머리 아래선 stroke/neutral-weak. Avatar(11-27): 이니셜 글자 20→11, 24→12, 36→16, 40→18, 48→20, 56→24, 64→28, 80→32, 96→40, 108→48, 굵기 40 이하 Medium 48 이상 SemiBold, Avatar Group +N 도 같은 굵기(크기 20, 24→11, 36→13, 40→14, 48→16, 56→20, 64→22). 이 부품이 들어간 템플릿 화면도 따라온다(figma-quick changed 로 확인).
 3. **Figma 3441:43347(아이콘 위치 이미지)**: 사용자가 "우선 보류".
 4. **시험 접수 화면(시작 전에 멈춤)**: 어디에 둘지(YDS 템플릿 / works 아래 서비스 화면)를 먼저 묻는다. 가까운 템플릿은 시험 신청, 시험 일정, 고사장 신청, 시험 접수 완료.
 5. **Figma 싱크 때**: Table 헤더 고정(요청 접수). 답을 기다리는 것(진행 도넛 색, 템플릿 "토익" 글, toeic 다크 버튼 대비)은 그대로.

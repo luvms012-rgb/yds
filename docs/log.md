@@ -12,6 +12,10 @@
 
 ## 기록 (최신이 위)
 
+### 2026-11-27 회사 Windows (Avatar 글자)
+
+- 사용자 "12px 이 적당, 다른 사이즈도 소수점 없도록", "xs sm md 까지는 미듐, 그 이상은 세미볼드". Avatar 이니셜을 크기의 0.42 배 계산에서 크기마다 글자 크기 토큰(`--ds-avatar-font`)으로, 굵기 `--ds-avatar-weight`(40 이하 Medium, 48 이상 SemiBold). Avatar Group 은 `--ds-avatar-group-font`, `--ds-avatar-group-more`(+N), `--ds-avatar-group-weight`. 위 메뉴 32 는 14, Chip 24 는 12. Updates 한 줄, 배포 99f6670a, 서버 변경분 371파일.
+
 ### 2026-11-26 회사 Windows (입력 부품 선, 표 머리)
 
 - 사내 백오피스 사용 피드백 "선이 너무 옅다" 를 받아 사용자가 두 가지만 YDS 에 반영하기로 함(안쪽 구분선, 테두리 버튼, 아이콘은 반영 안 함). 토큰 값은 그대로, 부품 기본값만: 입력 부품 7종 테두리 stroke/neutral, 마우스 올림 neutral-solid(비활성, 읽기 전용, 포커스 제외), Table 머리 줄 바탕 bg/neutral-weak-alpha, SemiBold, 아래선 neutral-weak(`--ds-table-head-bg`, `--ds-table-head-line`). check 5-1 에 입력 부품 테두리 묶음(stroke-neutral) 추가. Updates 두 줄, 배포 1a955c2b, 서버 변경분 383파일.
